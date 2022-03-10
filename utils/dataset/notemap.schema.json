@@ -1,0 +1,211 @@
+{
+    "$id": "https://_schema.outv.im/info-pride/notemap",
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "description": "Notemap data for wiki.biligame.com/idolypride",
+    "examples": [
+        {
+            "tb": {
+                "realiser": {
+                    "2SP11A": {
+                        "1": [
+                            60,
+                            113
+                        ],
+                        "beat": 146,
+                        "3": [
+                            44,
+                            75,
+                            -105,
+                            123
+                        ],
+                        "2": [
+                            37,
+                            82
+                        ],
+                        "5": [
+                            9,
+                            69
+                        ],
+                        "4": [
+                            17,
+                            -50,
+                            95
+                        ]
+                    }
+                }
+            }
+        }
+    ],
+    "required": [
+        "tb"
+    ],
+    "title": "The root schema",
+    "type": "object",
+    "properties": {
+        "tb": {
+            "$id": "#/properties/tb",
+            "type": "object",
+            "title": "The table",
+            "description": "The container of the data.",
+            "examples": [
+                {
+                    "realiser": {
+                        "2SP11A": {
+                            "1": [
+                                60,
+                                113
+                            ],
+                            "beat": 146,
+                            "3": [
+                                44,
+                                75,
+                                -105,
+                                123
+                            ],
+                            "2": [
+                                37,
+                                82
+                            ],
+                            "5": [
+                                9,
+                                69
+                            ],
+                            "4": [
+                                17,
+                                -50,
+                                95
+                            ]
+                        }
+                    }
+                }
+            ],
+            "additionalProperties": {
+                "$id": "#/properties/tb/properties/song",
+                "type": "object",
+                "title": "Song",
+                "examples": [
+                    {
+                        "2SP11A": {
+                            "1": [
+                                60,
+                                113
+                            ],
+                            "beat": 146,
+                            "3": [
+                                44,
+                                75,
+                                -105,
+                                123
+                            ],
+                            "2": [
+                                37,
+                                82
+                            ],
+                            "5": [
+                                9,
+                                69
+                            ],
+                            "4": [
+                                17,
+                                -50,
+                                95
+                            ]
+                        }
+                    }
+                ],
+                "additionalProperties": {
+                    "$id": "#/properties/tb/properties/song/maptype",
+                    "type": "object",
+                    "title": "Map type",
+                    "description": "A variant of notemap for a song",
+                    "examples": [
+                        {
+                            "1": [
+                                60,
+                                113
+                            ],
+                            "beat": 146,
+                            "3": [
+                                44,
+                                75,
+                                -105,
+                                123
+                            ],
+                            "2": [
+                                37,
+                                82
+                            ],
+                            "5": [
+                                9,
+                                69
+                            ],
+                            "4": [
+                                17,
+                                -50,
+                                95
+                            ]
+                        }
+                    ],
+                    "required": [
+                        "1",
+                        "2",
+                        "3",
+                        "4",
+                        "5",
+                        "beat"
+                    ],
+                    "properties": {
+                        "1": {
+                            "$ref": "#/$defs/notemap"
+                        },
+                        "2": {
+                            "$ref": "#/$defs/notemap"
+                        },
+                        "3": {
+                            "$ref": "#/$defs/notemap"
+                        },
+                        "4": {
+                            "$ref": "#/$defs/notemap"
+                        },
+                        "5": {
+                            "$ref": "#/$defs/notemap"
+                        },
+                        "beat": {
+                            "$id": "#/properties/tb/properties/song/maptype/properties/beat",
+                            "type": "number",
+                            "title": "Beat count in total",
+                            "examples": [
+                                146
+                            ]
+                        }
+                    },
+                    "additionalProperties": false
+                }
+            }
+        }
+    },
+    "additionalProperties": false,
+    "$defs": {
+        "notemap": {
+            "type": "array",
+            "title": "Event type",
+            "description": "The type of this event",
+            "examples": [
+                [
+                    60,
+                    113
+                ]
+            ],
+            "items": {
+                "$id": "#/properties/tb/properties/song/maptype/properties/1/items",
+                "type": "number",
+                "title": "Beat number",
+                "description": "Positive for A skills and negative for SP skills",
+                "examples": [
+                    60,
+                    -105
+                ]
+            }
+        }
+    }
+}

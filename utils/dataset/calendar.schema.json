@@ -1,0 +1,159 @@
+{
+    "$id": "https://_schema.outv.im/info-pride/calendar",
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "description": "Calendar data for wiki.biligame.com/idolypride",
+    "examples": [
+        {
+            "tb": {
+                "202202": [
+                    {
+                        "end": "2022/2/21",
+                        "link": "卡池/卡池介绍-20220212",
+                        "start": "2022/2/12",
+                        "title": "[通常]僕なりのバレンタイン",
+                        "type": "通常卡池"
+                    },
+                    {
+                        "end": "2022/2/19",
+                        "link": "",
+                        "start": "2022/2/11",
+                        "title": "VENUS对战",
+                        "type": "VENUS对战"
+                    }
+                ]
+            }
+        }
+    ],
+    "required": [
+        "tb"
+    ],
+    "title": "The root schema",
+    "type": "object",
+    "properties": {
+        "tb": {
+            "$id": "#/properties/tb",
+            "type": "object",
+            "title": "The table",
+            "description": "The container of the data.",
+            "examples": [
+                {
+                    "202202": [
+                        {
+                            "end": "2022/2/21",
+                            "link": "卡池/卡池介绍-20220212",
+                            "start": "2022/2/12",
+                            "title": "[通常]僕なりのバレンタイン",
+                            "type": "通常卡池"
+                        },
+                        {
+                            "end": "2022/2/19",
+                            "link": "",
+                            "start": "2022/2/11",
+                            "title": "VENUS对战",
+                            "type": "VENUS对战"
+                        }
+                    ]
+                }
+            ],
+            "additionalProperties": {
+                "$id": "#/properties/tb/properties/month",
+                "type": "array",
+                "title": "Calendar month",
+                "description": "Each YYYY/MM in the calendar.",
+                "default": [],
+                "examples": [
+                    [
+                        {
+                            "end": "2022/2/21",
+                            "link": "卡池/卡池介绍-20220212",
+                            "start": "2022/2/12",
+                            "title": "[通常]僕なりのバレンタイン",
+                            "type": "通常卡池"
+                        }
+                    ]
+                ],
+                "items": {
+                    "$id": "#/properties/tb/properties/month/items",
+                    "type": "object",
+                    "title": "Calendar item",
+                    "description": "An calendar item",
+                    "default": {},
+                    "examples": [
+                        {
+                            "end": "2022/2/21",
+                            "link": "卡池/卡池介绍-20220212",
+                            "start": "2022/2/12",
+                            "title": "[通常]僕なりのバレンタイン",
+                            "type": "通常卡池"
+                        }
+                    ],
+                    "required": [
+                        "end",
+                        "start",
+                        "title",
+                        "type"
+                    ],
+                    "properties": {
+                        "end": {
+                            "$id": "#/properties/tb/properties/month/items/properties/end",
+                            "type": "string",
+                            "title": "Ending date",
+                            "description": "Event ending date, in YYYY/M/DD",
+                            "examples": [
+                                "2022/2/21"
+                            ]
+                        },
+                        "link": {
+                            "$id": "#/properties/tb/properties/month/items/properties/link",
+                            "type": "string",
+                            "title": "Wiki link",
+                            "description": "A page in wiki that illustrates the event",
+                            "default": "",
+                            "examples": [
+                                "卡池/卡池介绍-20220212"
+                            ]
+                        },
+                        "start": {
+                            "$id": "#/properties/tb/properties/month/items/properties/start",
+                            "type": "string",
+                            "title": "Starting date",
+                            "description": "Event starting date, in YYYY/M/DD",
+                            "examples": [
+                                "2022/2/12"
+                            ]
+                        },
+                        "title": {
+                            "$id": "#/properties/tb/properties/month/items/properties/title",
+                            "type": "string",
+                            "title": "Event title",
+                            "description": "The title of this event",
+                            "examples": [
+                                "[通常]僕なりのバレンタイン"
+                            ]
+                        },
+                        "type": {
+                            "$id": "#/properties/tb/properties/month/items/properties/type",
+                            "title": "Event type",
+                            "description": "The type of this event",
+                            "enum": [
+                                "通常卡池",
+                                "限定卡池",
+                                "复刻卡池",
+                                "定例活动",
+                                "links活动",
+                                "VENUS对战",
+                                "VENUS赛事活动",
+                                "联合对战"
+                            ],
+                            "examples": [
+                                "通常卡池"
+                            ]
+                        }
+                    },
+                    "additionalProperties": false
+                }
+            }
+        }
+    },
+    "additionalProperties": false
+}

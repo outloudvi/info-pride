@@ -6,9 +6,18 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "dataset:build": "utils/dataset/build.sh",
+    "dataset:validate": "utils/dataset/validate.sh",
+    "dataset:ajv": "ajv"
   },
   "dependencies": {
+    "@babel/core": "7",
+    "@emotion/react": "^11.8.1",
+    "@emotion/styled": "^11.8.1",
+    "@mui/icons-material": "^5.5.0",
+    "@mui/material": "^5.5.0",
+    "got": "^12.0.1",
     "next": "12.1.0",
     "react": "17.0.2",
     "react-dom": "17.0.2"
@@ -16,8 +25,10 @@
   "devDependencies": {
     "@types/node": "17.0.21",
     "@types/react": "17.0.39",
+    "ajv-cli": "^5.0.0",
     "eslint": "8.10.0",
     "eslint-config-next": "12.1.0",
+    "tslib": "^2.3.1",
     "typescript": "4.6.2"
   }
 }
