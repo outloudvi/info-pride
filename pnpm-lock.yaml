@@ -9,6 +9,7 @@ specifiers:
   '@types/node': 17.0.21
   '@types/react': 17.0.39
   ajv-cli: ^5.0.0
+  dayjs: ^1.10.8
   eslint: 8.10.0
   eslint-config-next: 12.1.0
   got: ^12.0.1
@@ -24,6 +25,7 @@ dependencies:
   '@emotion/styled': 11.8.1_c697ad3c4ddb0545c7a1d619984abba5
   '@mui/icons-material': 5.5.0_0d6831e705e18b34563b7cf6aa378955
   '@mui/material': 5.5.0_a557939b8cd577a0014b488227bec235
+  dayjs: 1.10.8
   got: 12.0.1
   next: 12.1.0_33bdac975a6e334c49640fab91e2abb4
   react: 17.0.2
@@ -1175,6 +1177,10 @@ packages:
   /damerau-levenshtein/1.0.8:
     resolution: {integrity: sha512-sdQSFB7+llfUcQHUQO3+B8ERRj0Oa4w9POWMI/puGtuf7gFywGmkaLCElnudfTiKZV+NvHqL0ifzdrI8Ro7ESA==}
     dev: true
+
+  /dayjs/1.10.8:
+    resolution: {integrity: sha512-wbNwDfBHHur9UOzNUjeKUOJ0fCb0a52Wx0xInmQ7Y8FstyajiV1NmK1e00cxsr9YrE9r7yAChE0VvpuY5Rnlow==}
+    dev: false
 
   /debug/2.6.9:
     resolution: {integrity: sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==}
