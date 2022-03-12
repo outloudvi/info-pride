@@ -26,7 +26,7 @@ dayjs.extend(dayjsIsSameOrBefore)
 const CurrentEvents = () => {
   dayjs.tz.setDefault('Asia/Tokyo')
 
-  const today = dayjs().date(10)
+  const today = dayjs()
   const allEvents = Object.values(calendar).reduce((a, b) => [...a, ...b])
   const activeEvents = allEvents
     .filter(
