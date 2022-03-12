@@ -2,16 +2,24 @@ import * as React from 'react'
 import AppBar from '@mui/material/AppBar'
 import Box from '@mui/material/Box'
 import Toolbar from '@mui/material/Toolbar'
-import Typography from '@mui/material/Typography'
+import Link from '@mui/material/Link'
+import NextLink from 'next/link'
 
 const MyAppBar = () => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            INFO PRIDE
-          </Typography>
+          <NextLink href="/" passHref>
+            <Link
+              underline="hover"
+              sx={{
+                color: 'white',
+              }}
+            >
+              INFO PRIDE
+            </Link>
+          </NextLink>
         </Toolbar>
       </AppBar>
     </Box>

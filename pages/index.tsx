@@ -5,6 +5,7 @@ import CurrentEvents from '../components/CurrentEvents'
 import Box from '@mui/material/Box'
 import Stack from '@mui/material/Stack'
 import Button from '@mui/material/Button'
+import Link from 'next/link'
 
 const MainPageSiteData = {
   官方网站: 'https://idolypride.jp',
@@ -22,33 +23,37 @@ const Home = () => {
     >
       <Grid container spacing={2}>
         <Grid item xs={12} lg={4}>
-          <Box>
-            <Typography textAlign="center" variant="h2">
-              INFO PRIDE
-            </Typography>
-            <Stack
-              spacing={2}
-              direction="column"
-              justifyContent="center"
-              paddingTop="2rem"
-            >
-              {Object.entries(MainPageSiteData).map(([title, link], key) => (
-                <Button
-                  key={key}
-                  variant="outlined"
-                  component="a"
-                  href={link}
-                  target="_blank"
-                  rel="noopener"
-                >
-                  {title}
-                </Button>
-              ))}
-            </Stack>
-          </Box>
+          <Typography textAlign="center" variant="h2">
+            INFO PRIDE
+          </Typography>
+          <Stack
+            spacing={2}
+            direction="column"
+            justifyContent="center"
+            paddingTop="2rem"
+          >
+            {Object.entries(MainPageSiteData).map(([title, link], key) => (
+              <Button
+                key={key}
+                variant="outlined"
+                component="a"
+                href={link}
+                target="_blank"
+                rel="noopener"
+              >
+                {title}
+              </Button>
+            ))}
+          </Stack>
         </Grid>
         <Grid item xs={12} lg={8}>
           <CurrentEvents />
+        </Grid>
+        {/* Line 2 */}
+        <Grid item xs={12}>
+          <Link href="/stories" passHref>
+            <Button variant="contained">剧情</Button>
+          </Link>
         </Grid>
       </Grid>
     </Container>
