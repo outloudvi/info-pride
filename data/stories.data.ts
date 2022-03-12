@@ -159,6 +159,7 @@ const data: Partial<
         name: '雫与千纱',
         video: { type: 'bilibili', vid: 'av677428266', pid: 5 },
       },
+      // TODO: Hoshimi E02 C11-15
       16: {
         name: '麻奈的顾虑',
         video: { type: 'bilibili', vid: 'av210396686' },
@@ -219,6 +220,320 @@ const data: Partial<
         name: '指南',
         video: { type: 'bilibili', vid: 'av381308830', pid: 5 },
       },
+      // TODO: 31-
+    },
+  },
+  Tokyo: {
+    1: {
+      1: {
+        video: { type: 'bilibili', vid: 'av761361639', pid: 1 },
+        name: 'TODO',
+      },
+      2: {
+        video: { type: 'bilibili', vid: 'av761361639', pid: 2 },
+        name: 'TODO',
+      },
+      3: {
+        video: { type: 'bilibili', vid: 'av761361639', pid: 3 },
+        name: 'TODO',
+      },
+      4: {
+        video: { type: 'bilibili', vid: 'av761361639', pid: 4 },
+        name: 'TODO',
+      },
+      5: {
+        video: { type: 'bilibili', vid: 'av761361639', pid: 5 },
+        name: 'TODO',
+      },
+      6: {
+        video: { type: 'bilibili', vid: 'av761361639', pid: 6 },
+        name: 'TODO',
+      },
+      7: {
+        video: { type: 'bilibili', vid: 'av761361639', pid: 7 },
+        name: 'TODO',
+      },
+      8: {
+        video: { type: 'bilibili', vid: 'av761361639', pid: 8 },
+        name: 'TODO',
+      },
+      9: {
+        video: { type: 'bilibili', vid: 'av761361639', pid: 9 },
+        name: 'TODO',
+      },
+      10: {
+        video: { type: 'bilibili', vid: 'av761361639', pid: 10 },
+        name: 'TODO',
+      },
+      11: {
+        video: { type: 'bilibili', vid: 'av761361639', pid: 11 },
+        name: 'TODO',
+      },
+      12: {
+        video: { type: 'bilibili', vid: 'av761361639', pid: 12 },
+        name: 'TODO',
+      },
+      13: {
+        video: { type: 'bilibili', vid: 'av761361639', pid: 13 },
+        name: 'TODO',
+      },
+      14: {
+        video: { type: 'bilibili', vid: 'av761361639', pid: 14 },
+        name: 'TODO',
+      },
+      15: {
+        video: { type: 'bilibili', vid: 'av761361639', pid: 15 },
+        name: 'TODO',
+      },
+      16: {
+        video: { type: 'bilibili', vid: 'av761361639', pid: 16 },
+        name: 'TODO',
+      },
+      17: {
+        video: { type: 'bilibili', vid: 'av761361639', pid: 17 },
+        name: 'TODO',
+      },
+      18: {
+        video: { type: 'bilibili', vid: 'av761361639', pid: 18 },
+        name: 'TODO',
+      },
+      19: {
+        video: { type: 'bilibili', vid: 'av761361639', pid: 19 },
+        name: 'TODO',
+      },
+      20: {
+        video: { type: 'bilibili', vid: 'av761361639', pid: 20 },
+        name: 'TODO',
+      },
+      21: {
+        video: { type: 'bilibili', vid: 'av761361639', pid: 21 },
+        name: 'TODO',
+      },
+      22: {
+        video: { type: 'bilibili', vid: 'av761361639', pid: 22 },
+        name: 'TODO',
+      },
+      23: {
+        video: { type: 'bilibili', vid: 'av761361639', pid: 23 },
+        name: 'TODO',
+      },
+      24: {
+        video: { type: 'bilibili', vid: 'av761361639', pid: 24 },
+        name: 'TODO',
+      },
+      25: {
+        video: { type: 'bilibili', vid: 'av761361639', pid: 25 },
+        name: 'TODO',
+      },
+    },
+  },
+  TRINITYAiLE: {
+    1: {
+      1: {
+        name: '绝对的偶像',
+        video: { type: 'bilibili', vid: 'av804196981', pid: 1 },
+      },
+      2: {
+        name: '想变得擅长',
+        video: { type: 'bilibili', vid: 'av804196981', pid: 2 },
+      },
+      3: {
+        name: '相遇的二人',
+        video: { type: 'bilibili', vid: 'av804196981', pid: 3 },
+      },
+      4: {
+        name: '背后的决心',
+        video: { type: 'bilibili', vid: 'av804196981', pid: 4 },
+      },
+      5: {
+        name: '一同的目标',
+        video: { type: 'bilibili', vid: 'av804196981', pid: 5 },
+      },
+      6: {
+        name: '发现加油者',
+        video: { type: 'bilibili', vid: 'av804196981', pid: 6 },
+      },
+      7: {
+        name: '新组合诞生',
+        video: { type: 'bilibili', vid: 'av804196981', pid: 7 },
+      },
+      8: {
+        name: '超越长濑麻奈',
+        video: { type: 'bilibili', vid: 'av804196981', pid: 8 },
+      },
+      9: {
+        name: '坚强的伙伴',
+        video: { type: 'bilibili', vid: 'av804196981', pid: 9 },
+      },
+      10: {
+        name: '面向大奖赛',
+        video: { type: 'bilibili', vid: 'av804196981', pid: 10 },
+      },
+      11: {
+        name: '心情迷路',
+        video: { type: 'bilibili', vid: 'av591800072' },
+      },
+      12: {
+        name: '不满意的对阵',
+        video: { type: 'bilibili', vid: 'av209755775' },
+      },
+      13: {
+        name: '接受并面对',
+        video: { type: 'bilibili', vid: 'av765030318' },
+      },
+      14: {
+        name: '证明真心',
+        video: { type: 'bilibili', vid: 'av422599076' },
+      },
+      15: {
+        name: '真实的优',
+        video: { type: 'bilibili', vid: 'av765427859' },
+      },
+      16: {
+        name: '可能没什么精神',
+        video: { type: 'bilibili', vid: 'av253020879' },
+      },
+      17: {
+        name: '最终预选赛前的纠纷',
+        video: { type: 'bilibili', vid: 'av508735117' },
+      },
+      18: {
+        name: '三个人的 TRIAiLE',
+        video: { type: 'bilibili', vid: 'av936200996' },
+      },
+      19: {
+        name: '都能振翅高飞',
+        video: { type: 'bilibili', vid: 'av338962895' },
+      },
+      20: {
+        name: '大奖赛结束了',
+        video: { type: 'bilibili', vid: 'av766715119' },
+      },
+      // TODO: 21-
+    },
+  },
+  Mana: {
+    1: {
+      1: {
+        name: 'TODO',
+        video: {
+          type: 'bilibili',
+          vid: 'av419302445',
+          pid: 1,
+        },
+      },
+      2: {
+        name: 'TODO',
+        video: {
+          type: 'bilibili',
+          vid: 'av419302445',
+          pid: 2,
+        },
+      },
+      3: {
+        name: 'TODO',
+        video: {
+          type: 'bilibili',
+          vid: 'av419302445',
+          pid: 3,
+        },
+      },
+      4: {
+        name: 'TODO',
+        video: {
+          type: 'bilibili',
+          vid: 'av419302445',
+          pid: 4,
+        },
+      },
+      5: {
+        name: 'TODO',
+        video: {
+          type: 'bilibili',
+          vid: 'av419302445',
+          pid: 5,
+        },
+      },
+      6: {
+        name: 'TODO',
+        video: {
+          type: 'bilibili',
+          vid: 'av419302445',
+          pid: 6,
+        },
+      },
+      7: {
+        name: 'TODO',
+        video: {
+          type: 'bilibili',
+          vid: 'av419302445',
+          pid: 7,
+        },
+      },
+      8: {
+        name: 'TODO',
+        video: {
+          type: 'bilibili',
+          vid: 'av419302445',
+          pid: 8,
+        },
+      },
+      9: {
+        name: 'TODO',
+        video: {
+          type: 'bilibili',
+          vid: 'av419302445',
+          pid: 9,
+        },
+      },
+      10: {
+        name: 'TODO',
+        video: {
+          type: 'bilibili',
+          vid: 'av419302445',
+          pid: 10,
+        },
+      },
+      11: {
+        name: 'TODO',
+        video: {
+          type: 'bilibili',
+          vid: 'av419302445',
+          pid: 11,
+        },
+      },
+      12: {
+        name: 'TODO',
+        video: {
+          type: 'bilibili',
+          vid: 'av419302445',
+          pid: 12,
+        },
+      },
+      13: {
+        name: 'TODO',
+        video: {
+          type: 'bilibili',
+          vid: 'av419302445',
+          pid: 13,
+        },
+      },
+      14: {
+        name: 'TODO',
+        video: {
+          type: 'bilibili',
+          vid: 'av419302445',
+          pid: 14,
+        },
+      },
+      15: {
+        name: 'TODO',
+        video: {
+          type: 'bilibili',
+          vid: 'av419302445',
+          pid: 15,
+        },
+      },
     },
   },
 }
@@ -243,6 +558,53 @@ const SubTitles: Partial<
       26: 'Resolution',
       31: 'Dear My Sister',
       40: 'Sunlight',
+    },
+    3: {
+      1: 'Successor of Miracle',
+      6: 'Sorrows of Orpheus',
+      11: 'Cherry.Worry',
+      16: 'Beat Meets',
+      21: 'Idoly Pride',
+    },
+    4: {
+      1: 'Still Live',
+      6: 'on My Way',
+      11: 'Glory Days',
+      // TODO: 16-
+    },
+  },
+  Tokyo: {
+    1: {
+      1: 'New Wind',
+      6: 'Stray Wings',
+      11: 'Shiny Melody',
+      16: 'Wear Feathers',
+      21: 'Black Impact',
+    },
+    2: {
+      1: 'Farewell and Oath',
+      6: 'Struggle for IDOLs',
+      // TODO: 11-
+    },
+  },
+  TRINITYAiLE: {
+    1: {
+      1: 'White Resolve',
+      6: 'Shoot for the Sky',
+      // TODO: 11-
+    },
+  },
+  LizNoir: {
+    1: {
+      1: 'a Budding Lily',
+      // TODO: 3-
+    },
+  },
+  Mana: {
+    1: {
+      1: 'First Step',
+      6: 'Trajectory of Miracle',
+      // TODO: 11-
     },
   },
 }
