@@ -13,8 +13,11 @@ export const Calendar = _calendar.tb as WikiCalendar
 // wikiPages
 import _cards from './wikiPages/cards.json'
 import _idols from './wikiPages/idols.json'
+import _songs from './wikiPages/songs.json'
 import type { TheRootSchema as WikiCards } from './wikiPages/cards'
 import type { TheRootSchema as WikiIdols } from './wikiPages/idols'
+import type { TheRootSchema as WikiSongs } from './wikiPages/songs'
 
 export const Cards = _cards as WikiCards
 export const Idols = _idols as WikiIdols
+export const Songs = _songs as WikiSongs

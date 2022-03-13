@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import dynamic from 'next/dynamic'
 import Typography from '@mui/material/Typography'
 import Container from '@mui/material/Container'
@@ -10,7 +10,7 @@ import MenuItem from '@mui/material/MenuItem'
 import _range from 'lodash/range'
 import Grid from '@mui/material/Grid'
 
-import { Notemap } from '../utils/dataset'
+import { Notemap, Songs } from '../utils/dataset'
 
 const NotemapGraph = dynamic(() => import('../components/NotemapGraph'), {
   ssr: false,
@@ -18,6 +18,13 @@ const NotemapGraph = dynamic(() => import('../components/NotemapGraph'), {
 
 const NotemapPage = () => {
   const songList = Object.keys(Notemap)
+  const songTitleList = useMemo(() => {
+    const songSlugToName: Record<string, string> = {}
+    Object.values(Songs).map((x) => {
+      songSlugToName[x.slug] = x.name
+    })
+    return songSlugToName
+  }, [])
   const [song, setSong] = useState<string>(songList[0])
   const notemapList = song !== undefined ? Object.keys(Notemap[song]) : []
   const [notemap, setNotemap] = useState<string>(notemapList[0])
@@ -42,7 +49,11 @@ const NotemapPage = () => {
               <MenuItem value=""></MenuItem>
               {songList.map((item, key) => (
                 <MenuItem key={key} value={item}>
-                  {item}
+                  <span
+                    dangerouslySetInnerHTML={{
+                      __html: songTitleList[item],
+                    }}
+                  ></span>
                 </MenuItem>
               ))}
             </Select>

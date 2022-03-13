@@ -11,6 +11,7 @@ import {
 
 const IdolsJson = 'idols.json'
 const CardsJson = 'cards.json'
+const SongsJson = 'songs.json'
 const SitePref = {
   domain: 'wiki.biligame.com',
   path: 'idolypride/api.php',
@@ -45,6 +46,27 @@ function findFirstTemplateWithName(pageJson, templateName) {
     .map((x) => x.templates ?? [])
     .reduce((a, b) => [...a, ...b])
     .filter((x) => x.template === templateName)?.[0]
+}
+
+function parseSong(pageJson) {
+  const infoTemplate = findFirstTemplateWithName(pageJson, '歌曲/主页面')
+  return {
+    ...mapProps(
+      {
+        name: '歌名',
+        slug: '简称',
+        lyricist: '作词',
+        composer: '作曲',
+        arranger: '编曲',
+        lyrics: '歌词',
+      },
+      { allRequired: true }
+    )(infoTemplate),
+    ...mapProps({
+      bvid: 'bv号',
+      pid: '分p号',
+    })(infoTemplate),
+  }
 }
 
 function parseCard(pageJson) {
@@ -110,39 +132,60 @@ function parseIdol(pageJson) {
 async function main() {
   const currDir = fileURLToPath(dirname(import.meta.url))
 
-  // Idols
-  const idolInfo = readJson(join(currDir, IdolsJson))
-  for (const idolName of IdolNames) {
-    if (idolInfo?.[idolName]) {
-      console.info(`Skipping idol ${idolName}`)
-      continue
-    }
-    console.info(`Fetching idol ${idolName}`)
-    const pageJson = await getPageJson(idolName, SitePref)
-    idolInfo[idolName] = parseIdol(pageJson)
-  }
-  writeFileSync(IdolsJson, JSON.stringify(idolInfo))
-
-  // Cards
-  const cardInfo = readJson(join(currDir, CardsJson))
-  for (const idolName of IdolNames) {
-    console.info(`Fetching cards for ${idolName}`)
-    const pageNames = await fetchPrefixList(`${idolName}/卡牌/`, SitePref)
-    for (const cardName of pageNames) {
-      if (cardInfo?.[idolName]?.[cardName]) {
-        console.info(`Skipping card ${cardName}`)
+  {
+    // Idols
+    const idolInfo = readJson(join(currDir, IdolsJson))
+    for (const idolName of IdolNames) {
+      if (idolInfo?.[idolName]) {
+        console.info(`Skipping idol ${idolName}`)
         continue
       }
-      console.info(`Fetching card ${cardName}`)
-      const pageJson = await getPageJson(cardName, SitePref)
-      const cardMeta = parseCard(pageJson)
-      for (const i of ['rarity', 'vocTop', 'danTop', 'staTop', 'visTop']) {
-        cardMeta[i] = Number(cardMeta[i])
-      }
-      ;(cardInfo[idolName] || (cardInfo[idolName] = {}))[cardName] = cardMeta
+      console.info(`Fetching idol ${idolName}`)
+      const pageJson = await getPageJson(idolName, SitePref)
+      idolInfo[idolName] = parseIdol(pageJson)
     }
-    writeFileSync(CardsJson, JSON.stringify(cardInfo))
-    await sleep(3000)
+    writeFileSync(IdolsJson, JSON.stringify(idolInfo))
+  }
+
+  {
+    // Cards
+    const cardInfo = readJson(join(currDir, CardsJson))
+    for (const idolName of IdolNames) {
+      console.info(`Fetching cards for ${idolName}`)
+      const pageNames = await fetchPrefixList(`${idolName}/卡牌/`, SitePref)
+      for (const cardName of pageNames) {
+        if (cardInfo?.[idolName]?.[cardName]) {
+          console.info(`Skipping card ${cardName}`)
+          continue
+        }
+        console.info(`Fetching card ${cardName}`)
+        const pageJson = await getPageJson(cardName, SitePref)
+        const cardMeta = parseCard(pageJson)
+        for (const i of ['rarity', 'vocTop', 'danTop', 'staTop', 'visTop']) {
+          cardMeta[i] = Number(cardMeta[i])
+        }
+        ;(cardInfo[idolName] || (cardInfo[idolName] = {}))[cardName] = cardMeta
+      }
+      writeFileSync(CardsJson, JSON.stringify(cardInfo))
+      await sleep(3000)
+    }
+  }
+
+  {
+    // Songs
+    const songInfo = readJson(join(currDir, SongsJson))
+    const pageNames = await fetchPrefixList('歌曲/', SitePref)
+    for (const songName of pageNames) {
+      if (songInfo?.[songName]) {
+        console.info(`Skipping song ${songName}`)
+        continue
+      }
+      console.info(`Fetching song ${songName}`)
+      const pageJson = await getPageJson(songName, SitePref)
+      const songMeta = parseSong(pageJson)
+      songInfo[songName] = songMeta
+    }
+    writeFileSync(SongsJson, JSON.stringify(songInfo))
   }
 }
 

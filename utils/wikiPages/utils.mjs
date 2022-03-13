@@ -27,6 +27,7 @@ export async function fetchPrefixList(prefix, sitePref) {
     ['format', 'json'],
     ['list', 'allpages'],
     ['apprefix', prefix],
+    ['aplimit', 'max'],
   ]) {
     url.searchParams.set(key, value)
   }

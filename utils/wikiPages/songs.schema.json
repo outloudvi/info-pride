@@ -1,0 +1,49 @@
+{
+    "$id": "https://_schema.outv.im/info-pride/songs",
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "description": "Song data for wiki.biligame.com/idolypride",
+    "title": "The root schema",
+    "type": "object",
+    "additionalProperties": {
+        "$ref": "#/$defs/songInfo"
+    },
+    "$defs": {
+        "songInfo": {
+            "type": "object",
+            "required": [
+                "name",
+                "slug",
+                "lyricist",
+                "composer",
+                "arranger"
+            ],
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "slug": {
+                    "type": "string"
+                },
+                "lyricist": {
+                    "type": "string"
+                },
+                "composer": {
+                    "type": "string"
+                },
+                "arranger": {
+                    "type": "string"
+                },
+                "lyrics": {
+                    "type": "string"
+                },
+                "bvid": {
+                    "type": "string"
+                },
+                "pid": {
+                    "type": "string"
+                }
+            }
+        },
+        "additionalProperties": false
+    }
+}

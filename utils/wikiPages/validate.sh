@@ -1,7 +1,7 @@
 #!/bin/bash
 set -eu
 
-PAGES=(idols cards)
+PAGES=(idols cards songs)
 
 pushd $(dirname $0)
 
