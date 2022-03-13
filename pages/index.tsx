@@ -47,7 +47,9 @@ const Home = () => {
         {/* Line 2 */}
         <Grid item xs={12}>
           <Link href="/stories" passHref>
-            <Button variant="contained">剧情</Button>
+            <Button variant="contained" className="mr-2">
+              剧情
+            </Button>
           </Link>
           <Link href="/notemap" passHref>
             <Button variant="contained">谱面</Button>
