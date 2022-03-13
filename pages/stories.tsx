@@ -21,20 +21,9 @@ const Stories = () => {
   const [chapter, setChapter] = useState<number>(1)
 
   return (
-    <Container
-      sx={{
-        marginTop: '2rem',
-      }}
-    >
+    <Container className="mt-3">
       <Typography variant="h2">剧情</Typography>
-      <Grid
-        container
-        spacing={2}
-        sx={{
-          marginTop: '1rem',
-          marginBottom: '1rem',
-        }}
-      >
+      <Grid container spacing={2} className="my-3">
         <Grid item xs={12} lg={4}>
           <FormControl fullWidth>
             <InputLabel id="lSeries">系列</InputLabel>

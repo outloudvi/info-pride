@@ -15,11 +15,7 @@ const MainPageSiteData = {
 
 const Home = () => {
   return (
-    <Container
-      sx={{
-        marginTop: '2rem',
-      }}
-    >
+    <Container className="mt-3">
       <Grid container spacing={2}>
         <Grid item xs={12} lg={4}>
           <Typography textAlign="center" variant="h2">

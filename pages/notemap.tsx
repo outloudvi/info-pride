@@ -24,22 +24,11 @@ const NotemapPage = () => {
   const selectedNotemap = song && notemap ? Notemap[song][notemap] : undefined
 
   return (
-    <Container
-      sx={{
-        marginTop: '2rem',
-      }}
-    >
+    <Container className="mt-3">
       <Typography variant="h2">谱面</Typography>
-      <Grid
-        container
-        spacing={2}
-        sx={{
-          marginTop: '1rem',
-          marginBottom: '1rem',
-        }}
-      >
+      <Grid container spacing={2} className="my-3">
         <Grid item xs={12} lg={6}>
-          <FormControl fullWidth>
+          <FormControl fullWidth className="mb-3">
             <InputLabel id="lSong">曲目</InputLabel>
             <Select
               labelId="lSong"

@@ -35,15 +35,13 @@ const CurrentEvents = () => {
     .sort((a, b) => Number(dayjs(a.start)) - Number(dayjs(b.start)))
 
   return (
-    <Card sx={{ minWidth: 275 }}>
+    <Card>
       <CardContent>
-        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+        <Typography className="text-gray-600 text-sm" gutterBottom>
           当前活动
         </Typography>
         <ul></ul>
-        <List
-          sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
-        >
+        <List>
           {activeEvents.map((item, key) => (
             <ListItem
               key={key}

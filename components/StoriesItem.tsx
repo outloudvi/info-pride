@@ -35,29 +35,13 @@ const StoriesItem = (props: PropType) => {
     <p>数据尚未收录 :D</p>
   ) : (
     <>
-      <Typography
-        sx={{
-          fontSize: '2.3rem',
-        }}
-      >
+      <Typography className="text-4xl">
         {Episodes[series][0]}
         {episode}章
       </Typography>
-      <Typography
-        sx={{
-          fontSize: '1.5rem',
-        }}
-      >
-        {subtitle}
-      </Typography>
+      <Typography className="text-2xl">{subtitle}</Typography>
       <br />
-      <Typography
-        sx={{
-          fontSize: '1.3rem',
-        }}
-      >
-        {data.name}
-      </Typography>
+      <Typography className="text-xl">{data.name}</Typography>
       <p>
         <Link href={toVideoLink(data.video)} target="_blank" rel="noopener">
           视频

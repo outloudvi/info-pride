@@ -22,9 +22,9 @@ export default function Document() {
         <footer>
           <Box
             sx={{
-              textAlign: 'center',
               color: '#666',
             }}
+            className="text-center"
           >
             <a
               href="https://github.com/outloudvi/info-pride"
