@@ -2,7 +2,6 @@ import Typography from '@mui/material/Typography'
 import Container from '@mui/material/Container'
 import Grid from '@mui/material/Grid'
 import CurrentEvents from '../components/CurrentEvents'
-import Box from '@mui/material/Box'
 import Stack from '@mui/material/Stack'
 import Button from '@mui/material/Button'
 import Link from 'next/link'
@@ -53,6 +52,9 @@ const Home = () => {
         <Grid item xs={12}>
           <Link href="/stories" passHref>
             <Button variant="contained">剧情</Button>
+          </Link>
+          <Link href="/notemap" passHref>
+            <Button variant="contained">谱面</Button>
           </Link>
         </Grid>
       </Grid>

@@ -5,12 +5,10 @@ import dayjsTz from 'dayjs/plugin/timezone'
 import dayjsIsSameOrAfter from 'dayjs/plugin/isSameOrAfter'
 import dayjsIsSameOrBefore from 'dayjs/plugin/isSameOrBefore'
 import Card from '@mui/material/Card'
-import CardActions from '@mui/material/CardActions'
 import CardContent from '@mui/material/CardContent'
-import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
 
-import { calendar } from '../utils/dataset'
+import { Calendar } from '../utils/dataset'
 import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'
 import ListItemText from '@mui/material/ListItemText'
@@ -27,7 +25,7 @@ const CurrentEvents = () => {
   dayjs.tz.setDefault('Asia/Tokyo')
 
   const today = dayjs()
-  const allEvents = Object.values(calendar).reduce((a, b) => [...a, ...b])
+  const allEvents = Object.values(Calendar).reduce((a, b) => [...a, ...b])
   const activeEvents = allEvents
     .filter(
       (x) =>
