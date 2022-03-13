@@ -38,4 +38,4 @@ yarn-error.log*
 *.tsbuildinfo
 
 # Project-specific
-utils/dataset/*.origin.json
+utils/*/*.origin.json

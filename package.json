@@ -7,8 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "dataset:build": "utils/dataset/build.sh",
-    "dataset:validate": "utils/dataset/validate.sh",
+    "dataset:bv": "utils/buildAndValidate.sh",
     "dataset:ajv": "ajv"
   },
   "dependencies": {
