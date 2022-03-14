@@ -10,7 +10,7 @@ const MyAppBar = () => {
       <AppBar position="static">
         <Toolbar>
           <Link href="/">
-            <a className="text-white no-underline hover:underline">
+            <a className="!text-white no-underline hover:underline">
               INFO PRIDE
             </a>
           </Link>

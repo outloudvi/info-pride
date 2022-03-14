@@ -1,8 +1,8 @@
+import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 import { CssBaseline, ThemeProvider } from '@mui/material'
 import lightTheme from '../styles/theme/lightTheme'
 import Head from 'next/head'
-import 'windi.css'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (

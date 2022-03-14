@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import Typography from '@mui/material/Typography'
-import Container from '@mui/material/Container'
 import FormControl from '@mui/material/FormControl'
 import InputLabel from '@mui/material/InputLabel'
 import Select from '@mui/material/Select'
@@ -11,6 +10,7 @@ import Grid from '@mui/material/Grid'
 import StoriesItem from '../components/StoriesItem'
 
 import { SeriesName, Series, Episodes } from '../data/stories'
+import Layout from '../components/Layout'
 
 const Stories = () => {
   const [series, setSeries] = useState<SeriesName | ''>(Series[0])
@@ -21,7 +21,7 @@ const Stories = () => {
   const [chapter, setChapter] = useState<number>(1)
 
   return (
-    <Container className="mt-3">
+    <Layout>
       <Typography variant="h2">剧情</Typography>
       <Grid container spacing={2} className="my-3">
         <Grid item xs={12} lg={4}>
@@ -88,7 +88,7 @@ const Stories = () => {
       {series !== '' && episode > 0 && chapter > 0 && (
         <StoriesItem series={series} episode={episode} chapter={chapter} />
       )}
-    </Container>
+    </Layout>
   )
 }
 

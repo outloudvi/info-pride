@@ -1,10 +1,10 @@
 import Typography from '@mui/material/Typography'
-import Container from '@mui/material/Container'
 import Grid from '@mui/material/Grid'
 import CurrentEvents from '../components/CurrentEvents'
 import Stack from '@mui/material/Stack'
 import Button from '@mui/material/Button'
 import Link from 'next/link'
+import Layout from '../components/Layout'
 
 const MainPageSiteData = {
   官方网站: 'https://idolypride.jp',
@@ -15,8 +15,8 @@ const MainPageSiteData = {
 
 const Home = () => {
   return (
-    <Container className="mt-3">
-      <Grid container spacing={2}>
+    <Layout>
+      <Grid container spacing={2} className="mt-3">
         <Grid item xs={12} lg={4}>
           <Typography textAlign="center" variant="h2">
             INFO PRIDE
@@ -56,7 +56,7 @@ const Home = () => {
           </Link>
         </Grid>
       </Grid>
-    </Container>
+    </Layout>
   )
 }
 

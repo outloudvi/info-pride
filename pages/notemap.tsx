@@ -1,7 +1,6 @@
 import { useMemo, useState } from 'react'
 import dynamic from 'next/dynamic'
 import Typography from '@mui/material/Typography'
-import Container from '@mui/material/Container'
 import FormControl from '@mui/material/FormControl'
 import InputLabel from '@mui/material/InputLabel'
 import Select from '@mui/material/Select'
@@ -11,6 +10,7 @@ import _range from 'lodash/range'
 import Grid from '@mui/material/Grid'
 
 import { Notemap, Songs } from '../utils/dataset'
+import Layout from '../components/Layout'
 
 const NotemapGraph = dynamic(() => import('../components/NotemapGraph'), {
   ssr: false,
@@ -31,7 +31,7 @@ const NotemapPage = () => {
   const selectedNotemap = song && notemap ? Notemap[song][notemap] : undefined
 
   return (
-    <Container className="mt-3">
+    <Layout>
       <Typography variant="h2">谱面</Typography>
       <Grid container spacing={2} className="my-3">
         <Grid item xs={12} lg={6}>
@@ -83,7 +83,7 @@ const NotemapPage = () => {
           )}
         </Grid>
       </Grid>
-    </Container>
+    </Layout>
   )
 }
 
