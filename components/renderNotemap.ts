@@ -8,6 +8,7 @@ type Config = {
   startHeight: number
   titleColorEven: string
   titleColor: string
+  laneColors: string[]
 }
 
 function renderNotemap(
@@ -15,16 +16,24 @@ function renderNotemap(
   el: SVGSVGElement | null,
   config?: Partial<Config>
 ): SVGSVGElement {
-  const { height, width, textHeight, startHeight, titleColor, titleColorEven } =
-    {
-      height: 600,
-      width: 450,
-      textHeight: 30,
-      startHeight: 40,
-      titleColorEven: '#32323d',
-      titleColor: '#484750',
-      ...config,
-    }
+  const {
+    height,
+    width,
+    textHeight,
+    startHeight,
+    titleColor,
+    titleColorEven,
+    laneColors,
+  } = {
+    height: 600,
+    width: 450,
+    textHeight: 30,
+    startHeight: 40,
+    titleColorEven: '#32323d',
+    titleColor: '#484750',
+    laneColors: ['blue', 'blue', 'blue', 'blue', 'blue'],
+    ...config,
+  }
   const widthPerColumn = width / 5
 
   const notes = [nm['1'], nm['2'], nm['3'], nm['4'], nm['5']]
@@ -43,6 +52,7 @@ function renderNotemap(
     x.filter((r) => r < 0).length > 0 ? 'SP' : x.length >= 3 ? '多' : '少'
   )
 
+  // Background part 1
   svg
     .append('g')
     .selectAll('rect')
@@ -55,6 +65,7 @@ function renderNotemap(
     .attr('height', textHeight)
     .attr('fill', (_, i) => (i % 2 === 0 ? titleColor : titleColorEven))
 
+  // Background part 2
   svg
     .append('rect')
     .attr('x', 0)
@@ -62,6 +73,8 @@ function renderNotemap(
     .attr('height', startHeight)
     .attr('width', width)
     .attr('fill', titleColor)
+
+  // Text "START"
   svg
     .append('text')
     .attr('x', width / 2)
@@ -73,6 +86,7 @@ function renderNotemap(
     .style('font-weight', 'bold')
     .text('START')
 
+  // Text: Lane note amount
   svg
     .append('g')
     .selectAll('text')
@@ -88,6 +102,7 @@ function renderNotemap(
     .style('font-weight', 'bold')
     .text((x) => x)
 
+  // Background part 3
   svg
     .append('g')
     .selectAll('rect')
@@ -100,6 +115,7 @@ function renderNotemap(
     .attr('height', height + 0.25 * widthPerColumn)
     .attr('fill', titleColor)
 
+  // Lane separator
   svg
     .append('g')
     .selectAll('line')
@@ -127,7 +143,7 @@ function renderNotemap(
       ([x]) => (Math.abs(x) / beat) * height + textHeight + startHeight
     )
     .attr('r', ([x]) => (x < 0 ? 0.25 : 0.15) * widthPerColumn)
-    .attr('fill', 'blue')
+    .attr('fill', ([, i]) => laneColors[i])
 
   // Extra styling for SP circles
   columns
@@ -145,6 +161,7 @@ function renderNotemap(
     .attr('fill', 'white')
     .attr('fill-opacity', 0.2)
 
+  // Beat #
   columns
     .selectAll('text')
     .data((x, i) => x.map((y) => [y, i]))
