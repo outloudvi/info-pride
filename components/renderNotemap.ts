@@ -121,13 +121,12 @@ function renderNotemap(
     .data((x, i) => x.map((y) => [y, i]))
     .enter()
     .append('circle')
-    .attr('cx', ([__a, i], __b) => (i + 0.5) * widthPerColumn)
+    .attr('cx', ([, i]) => (i + 0.5) * widthPerColumn)
     .attr(
       'cy',
-      ([x, __a], __b) =>
-        (Math.abs(x) / beat) * height + textHeight + startHeight
+      ([x]) => (Math.abs(x) / beat) * height + textHeight + startHeight
     )
-    .attr('r', ([x, __a], __b) => (x < 0 ? 0.25 : 0.15) * widthPerColumn)
+    .attr('r', ([x]) => (x < 0 ? 0.25 : 0.15) * widthPerColumn)
     .attr('fill', 'blue')
 
   // Extra styling for SP circles
@@ -137,11 +136,10 @@ function renderNotemap(
     .data((x, i) => x.filter((y) => y < 0).map((y) => [y, i]))
     .enter()
     .append('circle')
-    .attr('cx', ([__a, i], __b) => (i + 0.5) * widthPerColumn)
+    .attr('cx', ([, i]) => (i + 0.5) * widthPerColumn)
     .attr(
       'cy',
-      ([x, __a], __b) =>
-        (Math.abs(x) / beat) * height + textHeight + startHeight
+      ([x]) => (Math.abs(x) / beat) * height + textHeight + startHeight
     )
     .attr('r', 0.15 * widthPerColumn)
     .attr('fill', 'white')
@@ -152,17 +150,16 @@ function renderNotemap(
     .data((x, i) => x.map((y) => [y, i]))
     .enter()
     .append('text')
-    .attr('x', ([__a, i], __b) => (i + 0.5) * widthPerColumn)
+    .attr('x', ([, i]) => (i + 0.5) * widthPerColumn)
     .attr(
       'y',
-      ([x, __a], __b) =>
-        (Math.abs(x) / beat) * height + textHeight + startHeight
+      ([x]) => (Math.abs(x) / beat) * height + textHeight + startHeight
     )
     .attr('fill', 'white')
     .attr('text-anchor', 'middle')
     .attr('dominant-baseline', 'middle')
     .attr('font-weight', 'bold')
-    .text(([x, __a], __b) => Math.abs(x))
+    .text(([x]) => Math.abs(x))
 
   return svg.node()!
 }
