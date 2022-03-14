@@ -8,7 +8,8 @@ import Layout from '../components/Layout'
 
 const MainPageSiteData = {
   官方网站: 'https://idolypride.jp',
-  '攻略 wiki': 'https://wiki.biligame.com/idolypride/',
+  '攻略 wiki (BWiki)': 'https://wiki.biligame.com/idolypride/',
+  '攻略 wiki (AppMedia)': 'https://appmedia.jp/idolypride',
   情报站微博: 'https://weibo.com/7326542616/',
   'Telegram 讨论群组': 'https://t.me/hayasaka_mei',
 }
