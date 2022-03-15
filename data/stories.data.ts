@@ -517,6 +517,94 @@ const data: Partial<
       // TODO: 21-
     },
   },
+  LizNoir: {
+    1: {
+      1: {
+        name: '莉央的开始',
+        video: { type: 'bilibili', vid: 'av974411463' },
+      },
+      2: {
+        name: '最后一人',
+        video: { type: 'bilibili', vid: 'av759463610' },
+      },
+      3: {
+        name: '天生的舞蹈家',
+        video: { type: 'bilibili', vid: 'av419542839' },
+      },
+      4: {
+        name: '忘记一切',
+        video: { type: 'bilibili', vid: 'av804628389' },
+      },
+      5: {
+        name: '三枝的决心',
+        video: { type: 'bilibili', vid: 'av334855535' },
+      },
+      6: {
+        name: '长濑麻奈的登场',
+        video: { type: 'bilibili', vid: 'av632506420' },
+      },
+      7: {
+        name: '堂堂正正战斗',
+        video: { type: 'bilibili', vid: 'av377650772' },
+      },
+      8: {
+        name: '第一次的挫折',
+        video: { type: 'bilibili', vid: 'av717726964' },
+      },
+      9: {
+        name: '不说再见',
+        video: { type: 'bilibili', vid: 'av462869439' },
+      },
+      10: {
+        name: '时隔一年的LIVE',
+        video: { type: 'bilibili', vid: 'av720376376' },
+      },
+      11: {
+        name: 'BIG4的威严',
+        video: { type: 'bilibili', vid: 'av208123626' },
+      },
+      12: {
+        name: '姬野的方针',
+        video: { type: 'bilibili', vid: 'av805653353' },
+      },
+      13: {
+        name: '做这个世界上最棒的',
+        video: { type: 'bilibili', vid: 'av505829791' },
+      },
+      14: {
+        name: '如果没能夺冠的话',
+        video: { type: 'bilibili', vid: 'av633484590' },
+      },
+      15: {
+        name: '偶尔休息一下',
+        video: { type: 'bilibili', vid: 'av590883688' },
+      },
+      16: {
+        name: '在走廊上奔跑的新人',
+        video: { type: 'bilibili', vid: 'av421032915' },
+      },
+      17: {
+        name: '只有这次是特别的',
+        video: { type: 'bilibili', vid: 'av763654783' },
+      },
+      18: {
+        name: '莉央亲手做的料理',
+        video: { type: 'bilibili', vid: 'av293778360' },
+      },
+      19: {
+        name: '半决赛前一天',
+        video: { type: 'bilibili', vid: 'av293856588' },
+      },
+      20: {
+        name: '心情变得如此舒畅',
+        video: { type: 'bilibili', vid: 'av336380361' },
+      },
+      21: {
+        name: '解散的决断',
+        video: { type: 'bilibili', vid: 'av211607264' },
+      },
+    },
+  },
   Mana: {
     1: {
       1: {
@@ -685,6 +773,7 @@ const SubTitles: Partial<
       11: 'Shiny Melody',
       16: 'Wear Feathers',
       21: 'Black Impact',
+      // TODO: 26-
     },
     2: {
       1: 'Farewell and Oath',
@@ -702,7 +791,10 @@ const SubTitles: Partial<
   LizNoir: {
     1: {
       1: 'a Budding Lily',
-      // TODO: 3-
+      6: 'One More Dream',
+      11: 'Impatience of Hollyhock',
+      16: 'Love & Heart',
+      21: 'Smile or Perfect Performance',
     },
   },
   Mana: {
