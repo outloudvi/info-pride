@@ -5,24 +5,19 @@ import FormControl from '@mui/material/FormControl'
 import InputLabel from '@mui/material/InputLabel'
 import Select from '@mui/material/Select'
 import MenuItem from '@mui/material/MenuItem'
+import Grid from '@mui/material/Grid'
+import Box from '@mui/material/Box'
 
 import _range from 'lodash/range'
-import Grid from '@mui/material/Grid'
+
+import Layout from '../components/Layout'
 
 import { Notemap, Songs } from '../utils/dataset'
-import Layout from '../components/Layout'
-import Box from '@mui/material/Box'
+import { Colors } from '../data/colors'
 
 const NotemapGraph = dynamic(() => import('../components/NotemapGraph'), {
   ssr: false,
 })
-
-const Colors = {
-  Vocal: '#ed60bb',
-  Dance: '#1394ff',
-  Visual: '#fca104',
-  Default: 'blue',
-}
 
 const NotemapPage = () => {
   const songList = Object.keys(Notemap)

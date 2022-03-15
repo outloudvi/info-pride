@@ -14,6 +14,12 @@ const MainPageSiteData = {
   'Telegram 讨论群组': 'https://t.me/hayasaka_mei',
 }
 
+const Pages = {
+  剧情: '/stories',
+  谱面: '/notemap',
+  卡片: '/cards',
+}
+
 const Home = () => {
   return (
     <Layout>
@@ -47,14 +53,13 @@ const Home = () => {
         </Grid>
         {/* Line 2 */}
         <Grid item xs={12}>
-          <Link href="/stories" passHref>
-            <Button variant="contained" className="mr-2">
-              剧情
-            </Button>
-          </Link>
-          <Link href="/notemap" passHref>
-            <Button variant="contained">谱面</Button>
-          </Link>
+          {Object.entries(Pages).map(([name, link], key) => (
+            <Link key={key} href={link} passHref>
+              <Button variant="contained" className="mr-2">
+                {name}
+              </Button>
+            </Link>
+          ))}
         </Grid>
       </Grid>
     </Layout>

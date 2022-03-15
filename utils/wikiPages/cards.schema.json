@@ -166,6 +166,60 @@
                 },
                 "staTop": {
                     "type": "integer"
+                },
+                "nameJa": {
+                    "type": "string"
+                },
+                "nameCn": {
+                    "type": "string"
+                },
+                "ski1NameJa": {
+                    "type": "string"
+                },
+                "ski1DescJa": {
+                    "type": "string"
+                },
+                "ski1NameCn": {
+                    "type": "string"
+                },
+                "ski1DescCn": {
+                    "type": "string"
+                },
+                "ski2NameJa": {
+                    "type": "string"
+                },
+                "ski2DescJa": {
+                    "type": "string"
+                },
+                "ski2NameCn": {
+                    "type": "string"
+                },
+                "ski2DescCn": {
+                    "type": "string"
+                },
+                "ski3NameJa": {
+                    "type": "string"
+                },
+                "ski3DescJa": {
+                    "type": "string"
+                },
+                "ski3NameCn": {
+                    "type": "string"
+                },
+                "ski3DescCn": {
+                    "type": "string"
+                },
+                "eruNameJa": {
+                    "type": "string"
+                },
+                "eruDescJa": {
+                    "type": "string"
+                },
+                "eruNameCn": {
+                    "type": "string"
+                },
+                "eruDescCn": {
+                    "type": "string"
                 }
             },
             "additionalProperties": true

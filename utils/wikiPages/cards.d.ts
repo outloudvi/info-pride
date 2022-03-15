@@ -42,5 +42,23 @@ export interface Card {
   danTop: number;
   visTop: number;
   staTop: number;
+  nameJa: string;
+  nameCn: string;
+  ski1NameJa: string;
+  ski1DescJa: string;
+  ski1NameCn: string;
+  ski1DescCn: string;
+  ski2NameJa: string;
+  ski2DescJa: string;
+  ski2NameCn: string;
+  ski2DescCn: string;
+  ski3NameJa: string;
+  ski3DescJa: string;
+  ski3NameCn: string;
+  ski3DescCn: string;
+  eruNameJa?: string;
+  eruDescJa?: string;
+  eruNameCn?: string;
+  eruDescCn?: string;
   [k: string]: unknown;
 }
