@@ -31,22 +31,26 @@ const StoriesItem = (props: PropType) => {
   const data = StoriesData?.[series]?.[episode]?.[chapter]
   const subtitle = findSubtitle(props)
 
-  return data === undefined ? (
-    <p>数据尚未收录 :D</p>
-  ) : (
+  return (
     <>
       <Typography className="text-4xl">
         {Episodes[series][0]}
-        {episode}章
+        {episode}章 - {chapter}
       </Typography>
-      <Typography className="text-2xl">{subtitle}</Typography>
-      <br />
-      <Typography className="text-xl">{data.name}</Typography>
-      <p>
-        <Link href={toVideoLink(data.video)} target="_blank" rel="noopener">
-          视频
-        </Link>
-      </p>
+      {data === undefined ? (
+        <p>数据尚未收录 :D</p>
+      ) : (
+        <>
+          <Typography className="text-2xl">{subtitle}</Typography>
+          <br />
+          <Typography className="text-xl">{data.name}</Typography>
+          <p>
+            <Link href={toVideoLink(data.video)} target="_blank" rel="noopener">
+              视频
+            </Link>
+          </p>
+        </>
+      )}
     </>
   )
 }
