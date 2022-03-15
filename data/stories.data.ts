@@ -239,7 +239,11 @@ const data: Partial<
         name: '指南',
         video: { type: 'bilibili', vid: 'av381308830', pid: 5 },
       },
-      // TODO: 31-
+      31: {
+        name: '步伐一致',
+        video: { type: 'bilibili', vid: 'av297335586' },
+      },
+      // TODO: 32-
     },
   },
   Tokyo: {
