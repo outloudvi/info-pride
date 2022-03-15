@@ -159,7 +159,26 @@ const data: Partial<
         name: '雫与千纱',
         video: { type: 'bilibili', vid: 'av677428266', pid: 5 },
       },
-      // TODO: Hoshimi E02 C11-15
+      11: {
+        name: '相亲？',
+        video: { type: 'bilibili', vid: 'av974586992' },
+      },
+      12: {
+        name: '请容许我拒绝作战',
+        video: { type: 'bilibili', vid: 'av974586992', pid: 2 },
+      },
+      13: {
+        name: '来到咖啡店的人',
+        video: { type: 'bilibili', vid: 'av974586992', pid: 3 },
+      },
+      14: {
+        name: '遥子烦恼中',
+        video: { type: 'bilibili', vid: 'av974586992', pid: 4 },
+      },
+      15: {
+        name: '摇曳心情',
+        video: { type: 'bilibili', vid: 'av974586992', pid: 5 },
+      },
       16: {
         name: '麻奈的顾虑',
         video: { type: 'bilibili', vid: 'av210396686' },
