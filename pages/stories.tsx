@@ -1,4 +1,5 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
+import { useRouter } from 'next/router'
 import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
@@ -7,17 +8,39 @@ import Tab from '@mui/material/Tab'
 
 import _range from 'lodash/range'
 import Grid from '@mui/material/Grid'
+import Layout from '../components/Layout'
 import StoriesItem from '../components/StoriesItem'
 
 import { Series, Episodes } from '../data/stories'
 import StoriesData from '../data/stories.data'
-import Layout from '../components/Layout'
+import { tryToNumber, updateRoute } from '../rtUtils'
 
 const Stories = () => {
+  const router = useRouter()
+
   const [series, setSeries] = useState(0)
-  const [episode, setEpisode] = useState(1)
+  const [season, setSeason] = useState(1)
   const [chapter, setChapter] = useState(1)
   const [openedSeries, setOpenedSeries] = useState(0)
+
+  useEffect(() => {
+    if (!router.isReady) return
+    const { series, season, chapter } = router.query
+    const _series =
+      series &&
+      !Array.isArray(series) &&
+      Series.map((x) => x.toLowerCase()).indexOf(series.toLowerCase())
+    const _season = tryToNumber(season)
+    const _chapter = tryToNumber(chapter)
+    if (_series && _series !== -1 && _season && _chapter) {
+      setSeries(_series)
+      setOpenedSeries(_series)
+      setSeason(_season)
+      setChapter(_chapter)
+    }
+  }, [router])
+
+  console.log(series, season, chapter)
 
   const completion = useMemo(() => {
     const ret: any = {}
@@ -29,7 +52,6 @@ const Stories = () => {
         )
       )
     }
-    console.log(ret)
     return ret
   }, [])
 
@@ -64,43 +86,50 @@ const Stories = () => {
             >
               {openedSeries === seriesKey && (
                 <Box className="max-h-[60vh] overflow-y-auto">
-                  {Episodes[seriesSlug][1].map((episodeLength, episodeKey) => (
-                    <Box key={episodeKey}>
-                      <p>
-                        {Episodes[seriesSlug][0]} 第{episodeKey + 1}章
-                      </p>
-                      {_range(1, episodeLength + 1).map(
-                        (chapterNum, chapterKey) => {
-                          const currentSelection =
-                            series === seriesKey &&
-                            episode === episodeKey + 1 &&
-                            chapter === chapterNum
-                          return (
-                            <Button
-                              variant="text"
-                              size="small"
-                              color={
-                                completion?.[seriesSlug]?.[episodeKey]?.[
-                                  chapterKey
-                                ]
-                                  ? 'primary'
-                                  : 'secondary'
-                              }
-                              key={chapterKey}
-                              onClick={() => {
-                                setSeries(seriesKey)
-                                setEpisode(episodeKey + 1)
-                                setChapter(chapterNum)
-                              }}
-                              disabled={currentSelection}
-                            >
-                              {episodeKey + 1}-{chapterNum}
-                            </Button>
-                          )
-                        }
-                      )}
-                    </Box>
-                  ))}
+                  {Episodes[seriesSlug][1].map(
+                    (episodeLengthInSeason, seasonKey) => (
+                      <Box key={seasonKey}>
+                        <p>
+                          {Episodes[seriesSlug][0]} 第{seasonKey + 1}章
+                        </p>
+                        {_range(1, episodeLengthInSeason + 1).map(
+                          (chapterNum, chapterKey) => {
+                            const currentSelection =
+                              series === seriesKey &&
+                              season === seasonKey + 1 &&
+                              chapter === chapterNum
+                            return (
+                              <Button
+                                variant="text"
+                                size="small"
+                                color={
+                                  completion?.[seriesSlug]?.[seasonKey]?.[
+                                    chapterKey
+                                  ]
+                                    ? 'primary'
+                                    : 'secondary'
+                                }
+                                key={chapterKey}
+                                onClick={() => {
+                                  setSeries(seriesKey)
+                                  setSeason(seasonKey + 1)
+                                  setChapter(chapterNum)
+                                  updateRoute(
+                                    `/stories/${Series[seriesKey]}/${
+                                      seasonKey + 1
+                                    }/${chapterNum}`
+                                  )
+                                }}
+                                disabled={currentSelection}
+                              >
+                                {seasonKey + 1}-{chapterNum}
+                              </Button>
+                            )
+                          }
+                        )}
+                      </Box>
+                    )
+                  )}
                 </Box>
               )}
             </div>
@@ -109,7 +138,7 @@ const Stories = () => {
         <Grid item xs={12} lg={6}>
           <StoriesItem
             series={Series[series]}
-            episode={episode}
+            season={season}
             chapter={chapter}
           />
         </Grid>

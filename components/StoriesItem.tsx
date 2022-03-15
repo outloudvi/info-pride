@@ -6,12 +6,12 @@ import { toVideoLink } from './ExternalVideo'
 
 type PropType = {
   series: SeriesName
-  episode: number
+  season: number
   chapter: number
 }
 
-function findSubtitle({ series, episode, chapter }: PropType): string | null {
-  const subTitlesList = SubTitles?.[series]?.[episode]
+function findSubtitle({ series, season, chapter }: PropType): string | null {
+  const subTitlesList = SubTitles?.[series]?.[season]
   if (!subTitlesList) return null
   let ret: string | null = null
   for (const i of Object.keys(subTitlesList)
@@ -27,15 +27,15 @@ function findSubtitle({ series, episode, chapter }: PropType): string | null {
 }
 
 const StoriesItem = (props: PropType) => {
-  const { series, episode, chapter } = props
-  const data = StoriesData?.[series]?.[episode]?.[chapter]
+  const { series, season, chapter } = props
+  const data = StoriesData?.[series]?.[season]?.[chapter]
   const subtitle = findSubtitle(props)
 
   return (
     <>
       <Typography className="text-4xl">
         {Episodes[series][0]}
-        {episode}章 - {chapter}
+        {season}章 - {chapter}
       </Typography>
       {data === undefined ? (
         <p>数据尚未收录 :D</p>

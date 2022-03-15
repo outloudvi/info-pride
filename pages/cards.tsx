@@ -1,4 +1,6 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
+
 import Typography from '@mui/material/Typography'
 import FormControl from '@mui/material/FormControl'
 import InputLabel from '@mui/material/InputLabel'
@@ -16,14 +18,35 @@ import _range from 'lodash/range'
 import Layout from '../components/Layout'
 import CardItem from '../components/CardItem'
 
-import type { TheRootSchema, Card } from '../utils/wikiPages/cards'
+import { tryToNumber, updateRoute } from '../rtUtils'
+import type { TheRootSchema } from '../utils/wikiPages/cards'
+import { idolNameToSlug, idolSlugToName } from '../data/idols'
+
 type IdolName = keyof TheRootSchema
 
 const CardPage = () => {
+  const router = useRouter()
+
   const idolList = Object.keys(Cards) as IdolName[]
   const [idol, setIdol] = useState<IdolName>(idolList[0])
   const cardList = Cards[idol]
   const [cardSlug, setCardSlug] = useState('')
+
+  useEffect(() => {
+    if (!router.isReady) return
+    const { idol, slug } = router.query
+
+    if (idol === undefined) return
+    if (Array.isArray(idol)) return
+    const maybeIdolName = idolSlugToName(idol.toLowerCase())
+    if (!maybeIdolName) return
+    setIdol(maybeIdolName)
+
+    if (tryToNumber(slug) !== null) {
+      const cardId = tryToNumber(slug)
+      setCardSlug(`${maybeIdolName}/卡牌/${cardId}`)
+    }
+  }, [router])
 
   return (
     <Layout>
@@ -54,6 +77,8 @@ const CardPage = () => {
                   <ListItemButton
                     onClick={() => {
                       setCardSlug(slug)
+                      const cardId = slug.split('/').reverse()[0]
+                      updateRoute(`/cards/${idolNameToSlug(idol)}/${cardId}`)
                     }}
                   >
                     <ListItemText>
