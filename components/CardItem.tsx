@@ -44,7 +44,11 @@ const CardStories = ({
   if (!stories) {
     return (
       <div className="mb-2 text-gray-500">
-        尚无剧情信息。请添加卡片剧情信息到 data/cardStories.data.ts 的 data[
+        尚无剧情翻译信息。请添加翻译信息到{' '}
+        <a href={Paths.repo('data/cardStories.data.ts')}>
+          data/cardStories.data.ts
+        </a>{' '}
+        的 data[
         {idolName}][{cardNumber}] 。
       </div>
     )
@@ -56,17 +60,23 @@ const CardStories = ({
         variant="contained"
         aria-label="outlined primary button group"
       >
-        {[1, 2, 3].map((id) => (
-          <Button
-            key={id}
-            component="a"
-            href={toVideoLink(stories[id as unknown as 1 | 2 | 3].video)}
-            target="_blank"
-            rel="noopener"
-          >
-            {id} - {stories[id as unknown as 1 | 2 | 3].name}
-          </Button>
-        ))}
+        {[1, 2, 3].map((id) => {
+          const _id = id as unknown as 1 | 2 | 3
+          const storyName = ['', 'TODO'].includes(stories[_id].name)
+            ? `剧情第${_id}话`
+            : `${_id} - ${stories[_id].name}`
+          return (
+            <Button
+              key={id}
+              component="a"
+              href={toVideoLink(stories[_id].video)}
+              target="_blank"
+              rel="noopener"
+            >
+              {storyName}
+            </Button>
+          )
+        })}
       </ButtonGroup>
     </Box>
   )
