@@ -1,5 +1,5 @@
-type IdolSlug = keyof typeof Idols
-type IdolName = typeof Idols[IdolSlug]
+export type IdolSlug = keyof typeof Idols
+export type IdolName = typeof Idols[IdolSlug]
 
 /**
  * This shall also be updated with:

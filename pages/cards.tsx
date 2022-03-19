@@ -30,7 +30,7 @@ const CardPage = () => {
   const idolList = Object.keys(Cards) as IdolName[]
   const [idol, setIdol] = useState<IdolName>(idolList[0])
   const cardList = Cards[idol]
-  const [cardSlug, setCardSlug] = useState('')
+  const [cardNumber, setCardNumber] = useState(1)
 
   useEffect(() => {
     if (!router.isReady) return
@@ -42,9 +42,9 @@ const CardPage = () => {
     if (!maybeIdolName) return
     setIdol(maybeIdolName)
 
-    if (tryToNumber(slug) !== null) {
-      const cardId = tryToNumber(slug)
-      setCardSlug(cardId)
+    const cardNumber = tryToNumber(slug)
+    if (cardNumber !== null) {
+      setCardNumber(cardNumber)
     }
   }, [router])
 
@@ -72,12 +72,11 @@ const CardPage = () => {
               </Select>
             </FormControl>
             <List>
-              {Object.entries(cardList).map(([slug, card], key) => (
+              {Object.entries(cardList).map(([cardId, card], key) => (
                 <ListItem key={key} disablePadding>
                   <ListItemButton
                     onClick={() => {
-                      setCardSlug(slug)
-                      const cardId = slug.split('/').reverse()[0]
+                      setCardNumber(Number(cardId))
                       updateRoute(`/cards/${idolNameToSlug(idol)}/${cardId}`)
                     }}
                   >
@@ -97,8 +96,12 @@ const CardPage = () => {
           </Box>
         </Grid>
         <Grid item xs={12} lg={6}>
-          {cardList[cardSlug] && (
-            <CardItem card={cardList[cardSlug]} slug={cardSlug} />
+          {cardList[cardNumber] && (
+            <CardItem
+              card={cardList[cardNumber]}
+              idolName={idol}
+              cardNumber={cardNumber}
+            />
           )}
         </Grid>
       </Grid>
