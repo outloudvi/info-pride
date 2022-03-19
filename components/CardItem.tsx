@@ -39,35 +39,36 @@ const CardStories = ({
   idolName: IdolName
   cardNumber: number
 }) => {
-  const stories = CardStoriesData?.[idolName]?.[cardNumber] ?? {}
+  const stories = CardStoriesData?.[idolName]?.[cardNumber]
 
-  return Object.keys(stories).length > 0 ? (
+  if (!stories) {
+    return (
+      <div className="mb-2 text-gray-500">
+        尚无剧情信息。请添加卡片剧情信息到 data/cardStories.data.ts 的 data[
+        {idolName}][{cardNumber}] 。
+      </div>
+    )
+  }
+
+  return (
     <Box className="mb-2">
       <ButtonGroup
         variant="contained"
         aria-label="outlined primary button group"
       >
-        {Object.keys(stories)
-          .map(Number)
-          .sort((a, b) => a - b)
-          .map((id, key) => (
-            <Button
-              key={key}
-              component="a"
-              href={toVideoLink(stories[id].video)}
-              target="_blank"
-              rel="noopener"
-            >
-              {id} - {stories[id].name}
-            </Button>
-          ))}
+        {[1, 2, 3].map((id) => (
+          <Button
+            key={id}
+            component="a"
+            href={toVideoLink(stories[id as unknown as 1 | 2 | 3].video)}
+            target="_blank"
+            rel="noopener"
+          >
+            {id} - {stories[id as unknown as 1 | 2 | 3].name}
+          </Button>
+        ))}
       </ButtonGroup>
     </Box>
-  ) : (
-    <div className="mb-2 text-gray-500">
-      尚无剧情信息。请添加卡片剧情信息到 data/cardStories.data.ts 的 data[
-      {idolName}][{cardNumber}] 。
-    </div>
   )
 }
 
