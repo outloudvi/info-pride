@@ -122,6 +122,23 @@ const data: Partial<
       },
     },
   },
+  兵藤雫: {
+    6: {
+      // 能够一起唱歌的幸福
+      1: {
+        name: '意外的选择',
+        video: { type: 'bilibili', vid: 'av254481784' },
+      },
+      2: {
+        name: '笨拙而正直的努力',
+        video: { type: 'bilibili', vid: 'av894487028' },
+      },
+      3: {
+        name: '和憧憬之人前往同一舞台',
+        video: { type: 'bilibili', vid: 'av681881066' },
+      },
+    },
+  },
   伊吹渚: {
     6: {
       // 喜欢恶作剧的小恶魔
