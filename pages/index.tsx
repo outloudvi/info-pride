@@ -5,6 +5,7 @@ import Stack from '@mui/material/Stack'
 import Button from '@mui/material/Button'
 
 import CurrentEvents from '../components/CurrentEvents'
+import Notice from '../components/Notice'
 import Layout from '../components/Layout'
 import Paths from '../utils/paths'
 
@@ -64,7 +65,16 @@ const Home = () => {
           <CurrentEvents />
         </Grid>
         {/* Line 2 */}
-        <Grid item xs={12}>
+        <Grid item xs={12} lg={6}>
+          <Typography variant="h4" className="mb-2">
+            新闻
+          </Typography>
+          <Notice />
+        </Grid>
+        <Grid item xs={12} lg={6}>
+          <Typography variant="h4" className="mb-2">
+            功能
+          </Typography>
           {Object.entries(Pages).map(([name, link], key) => (
             <Link key={key} href={link} passHref>
               <Button variant="contained" className="mr-2">
