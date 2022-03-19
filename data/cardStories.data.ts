@@ -280,6 +280,21 @@ const data: Partial<
         video: { type: 'bilibili', vid: 'av208733508', pid: 3 },
       },
     },
+    7: {
+      // 比起奇迹，还是必然更好
+      1: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av507684412', pid: 1 },
+      },
+      2: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av507684412', pid: 2 },
+      },
+      3: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av507684412', pid: 3 },
+      },
+    },
   },
   小美山爱: {
     5: {
