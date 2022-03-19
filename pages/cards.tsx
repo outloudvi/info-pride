@@ -44,7 +44,7 @@ const CardPage = () => {
 
     if (tryToNumber(slug) !== null) {
       const cardId = tryToNumber(slug)
-      setCardSlug(`${maybeIdolName}/卡牌/${cardId}`)
+      setCardSlug(cardId)
     }
   }, [router])
 

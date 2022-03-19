@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import { writeFileSync } from 'fs'
 import { dirname, join } from 'path'
 import { fileURLToPath } from 'url'
@@ -152,9 +154,11 @@ async function main() {
     const cardInfo = readJson(join(currDir, CardsJson))
     for (const idolName of IdolNames) {
       console.info(`Fetching cards for ${idolName}`)
-      const pageNames = await fetchPrefixList(`${idolName}/卡牌/`, SitePref)
+      const pagePrefix = `${idolName}/卡牌/`
+      const pageNames = await fetchPrefixList(pagePrefix, SitePref)
       for (const cardName of pageNames) {
-        if (cardInfo?.[idolName]?.[cardName]) {
+        const cardId = cardName.replace(new RegExp(`^${pagePrefix}`), '')
+        if (cardInfo?.[idolName]?.[cardId]) {
           console.info(`Skipping card ${cardName}`)
           continue
         }
@@ -164,7 +168,7 @@ async function main() {
         for (const i of ['rarity', 'vocTop', 'danTop', 'staTop', 'visTop']) {
           cardMeta[i] = Number(cardMeta[i])
         }
-        ;(cardInfo[idolName] || (cardInfo[idolName] = {}))[cardName] = cardMeta
+        ;(cardInfo[idolName] || (cardInfo[idolName] = {}))[cardId] = cardMeta
       }
       writeFileSync(CardsJson, JSON.stringify(cardInfo))
       await sleep(3000)
