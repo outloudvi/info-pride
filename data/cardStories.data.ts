@@ -250,6 +250,21 @@ const data: Partial<
         video: { type: 'bilibili', vid: 'av206507224', pid: 3 },
       },
     },
+    4: {
+      // 秘密的照片会话
+      1: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av206687488' },
+      },
+      2: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av206687488' },
+      },
+      3: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av206687488' },
+      },
+    },
     5: {
       // 我们的平安夜
       1: {
