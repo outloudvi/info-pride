@@ -12,6 +12,36 @@ const data: Partial<
   >
 > = {
   川咲樱: {
+    4: {
+      // 梦的共演
+      1: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av291359551' },
+      },
+      2: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av803995318' },
+      },
+      3: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av588913322' },
+      },
+    },
+    5: {
+      // 希望成为你的光芒
+      1: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av590864753', pid: 1 },
+      },
+      2: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av590864753', pid: 2 },
+      },
+      3: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av590864753', pid: 3 },
+      },
+    },
     6: {
       // 笑口开，福运来
       1: {
@@ -25,6 +55,38 @@ const data: Partial<
       3: {
         name: '新年快乐！',
         video: { type: 'bilibili', vid: 'av765411385', pid: 3 },
+      },
+    },
+  },
+  一之濑怜: {
+    3: {
+      // 高台上微风轻拂
+      1: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av804212174' },
+      },
+      2: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av804212174' },
+      },
+      3: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av804212174' },
+      },
+    },
+    6: {
+      // 绝对秘密的吃货后台
+      1: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av892912195', pid: 1 },
+      },
+      2: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av892912195', pid: 2 },
+      },
+      3: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av892912195', pid: 3 },
       },
     },
   },
@@ -173,7 +235,23 @@ const data: Partial<
     },
   },
   铃村优: {
+    3: {
+      // 白色冲击
+      1: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av206507224', pid: 1 },
+      },
+      2: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av206507224', pid: 2 },
+      },
+      3: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av206507224', pid: 3 },
+      },
+    },
     5: {
+      // 我们的平安夜
       1: {
         name: 'TODO',
         video: { type: 'bilibili', vid: 'av294899075' },
@@ -297,6 +375,21 @@ const data: Partial<
     },
   },
   小美山爱: {
+    3: {
+      // 抓住梦想
+      1: {
+        name: '我不在了也可以吗？',
+        video: { type: 'bilibili', vid: 'av334321966' },
+      },
+      2: {
+        name: '超咸的拉面',
+        video: { type: 'bilibili', vid: 'av334321966' },
+      },
+      3: {
+        name: '三封信',
+        video: { type: 'bilibili', vid: 'av334321966' },
+      },
+    },
     5: {
       // 情人节的一点小礼物
       1: {
