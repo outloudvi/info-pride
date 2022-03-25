@@ -243,7 +243,23 @@ const data: Partial<
         name: '步伐一致',
         video: { type: 'bilibili', vid: 'av297335586' },
       },
-      // TODO: 32-
+      32: {
+        name: '束缚与被束缚',
+        video: { type: 'bilibili', vid: 'av297335586', pid: 2 },
+      },
+      33: {
+        name: '参加的两位人选',
+        video: { type: 'bilibili', vid: 'av297335586', pid: 3 },
+      },
+      34: {
+        name: '年轻的大前辈',
+        video: { type: 'bilibili', vid: 'av297335586', pid: 4 },
+      },
+      35: {
+        name: '些许勇气',
+        video: { type: 'bilibili', vid: 'av297335586', pid: 5 },
+      },
+      // TODO: 36-
     },
   },
   Tokyo: {
