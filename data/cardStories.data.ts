@@ -90,6 +90,26 @@ const data: Partial<
       },
     },
   },
+  佐伯遥子: {
+    7: {
+      // 绽放吧十七岁 (17 岁？)
+      1: {
+        name: '克服羞耻心',
+        video: { type: 'bilibili', vid: 'av212419381' },
+      },
+      2: {
+        name: '释放吧',
+        video: { type: 'bilibili', vid: 'av725033621' },
+      },
+      3: {
+        name: '万众瞩目的一刻',
+        video: { type: 'bilibili', vid: 'av895030224' },
+      },
+      phone: {
+        video: { type: 'bilibili', vid: 'av595085113' },
+      },
+    },
+  },
   长濑琴乃: {
     5: {
       // 娇羞夏月
