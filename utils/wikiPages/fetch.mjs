@@ -134,7 +134,7 @@ function parseIdol(pageJson) {
 async function main() {
   const currDir = fileURLToPath(dirname(import.meta.url))
 
-  {
+  try {
     // Idols
     const idolInfo = readJson(join(currDir, IdolsJson))
     for (const idolName of IdolNames) {
@@ -147,9 +147,11 @@ async function main() {
       idolInfo[idolName] = parseIdol(pageJson)
     }
     writeFileSync(IdolsJson, JSON.stringify(idolInfo))
+  } catch (e) {
+    console.error(`Failed to update idol data: ${e}`)
   }
 
-  {
+  try {
     // Cards
     const cardInfo = readJson(join(currDir, CardsJson))
     for (const idolName of IdolNames) {
@@ -173,9 +175,11 @@ async function main() {
       writeFileSync(CardsJson, JSON.stringify(cardInfo))
       await sleep(3000)
     }
+  } catch (e) {
+    console.error(`Failed to update card data: ${e}`)
   }
 
-  {
+  try {
     // Songs
     const songInfo = readJson(join(currDir, SongsJson))
     const pageNames = await fetchPrefixList('歌曲/', SitePref)
@@ -190,6 +194,8 @@ async function main() {
       songInfo[songName] = songMeta
     }
     writeFileSync(SongsJson, JSON.stringify(songInfo))
+  } catch (e) {
+    console.error(`Failed to update song data: ${e}`)
   }
 }
 
