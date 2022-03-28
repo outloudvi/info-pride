@@ -11,6 +11,23 @@ const data: Partial<
     >
   >
 > = {
+  长濑麻奈: {
+    1: {
+      // You're my everything
+      1: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av208278177', pid: 1 },
+      },
+      2: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av208278177', pid: 2 },
+      },
+      3: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av208278177', pid: 3 },
+      },
+    },
+  },
   川咲樱: {
     4: {
       // 梦的共演
@@ -61,6 +78,7 @@ const data: Partial<
   一之濑怜: {
     3: {
       // 高台上微风轻拂
+      // dups: av931765423
       1: {
         name: 'TODO',
         video: { type: 'bilibili', vid: 'av804212174' },
@@ -72,6 +90,21 @@ const data: Partial<
       3: {
         name: 'TODO',
         video: { type: 'bilibili', vid: 'av804212174' },
+      },
+    },
+    4: {
+      // 百折不挠
+      1: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av850483576', pid: 1 },
+      },
+      2: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av850483576', pid: 2 },
+      },
+      3: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av850483576', pid: 3 },
       },
     },
     6: {
@@ -91,6 +124,51 @@ const data: Partial<
     },
   },
   佐伯遥子: {
+    3: {
+      // 可靠的大姐姐
+      1: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av931773133', pid: 1 },
+      },
+      2: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av931773133', pid: 2 },
+      },
+      3: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av931773133', pid: 3 },
+      },
+    },
+    4: {
+      // 沐浴阳光
+      1: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av804365970', pid: 1 },
+      },
+      2: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av804365970', pid: 2 },
+      },
+      3: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av804365970', pid: 3 },
+      },
+    },
+    6: {
+      // 二人的冬日庆典
+      1: {
+        name: '复杂的心情',
+        video: { type: 'bilibili', vid: 'av507396126', pid: 1 },
+      },
+      2: {
+        name: '过去的我',
+        video: { type: 'bilibili', vid: 'av507396126', pid: 2 },
+      },
+      3: {
+        name: '二人的庆功宴',
+        video: { type: 'bilibili', vid: 'av507396126', pid: 3 },
+      },
+    },
     7: {
       // 绽放吧十七岁 (17 岁？)
       1: {
@@ -111,6 +189,20 @@ const data: Partial<
     },
   },
   长濑琴乃: {
+    4: {
+      1: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av892980835', pid: 1 },
+      },
+      2: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av892980835', pid: 2 },
+      },
+      3: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av892980835', pid: 3 },
+      },
+    },
     5: {
       // 娇羞夏月
       1: {
@@ -142,6 +234,23 @@ const data: Partial<
       },
     },
   },
+  白石千纱: {
+    4: {
+      // 一夜限定的神圣舞台
+      1: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av250917999', pid: 1 },
+      },
+      2: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av250917999', pid: 2 },
+      },
+      3: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av250917999', pid: 3 },
+      },
+    },
+  },
   兵藤雫: {
     6: {
       // 能够一起唱歌的幸福
@@ -160,6 +269,51 @@ const data: Partial<
     },
   },
   伊吹渚: {
+    3: {
+      // 靠在你的身后
+      1: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av677917588', pid: 1 },
+      },
+      2: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av677917588', pid: 2 },
+      },
+      3: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av677917588', pid: 3 },
+      },
+    },
+    4: {
+      // 闪耀海滩上的讯息
+      1: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av295432774', pid: 1 },
+      },
+      2: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av295432774', pid: 2 },
+      },
+      3: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av295432774', pid: 3 },
+      },
+    },
+    5: {
+      // 这一瞬间的主角
+      1: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av336786216', pid: 1 },
+      },
+      2: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av336786216', pid: 2 },
+      },
+      3: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av336786216', pid: 3 },
+      },
+    },
     6: {
       // 喜欢恶作剧的小恶魔
       // <s>直球偷家</s>
@@ -174,6 +328,9 @@ const data: Partial<
       3: {
         name: 'TODO',
         video: { type: 'bilibili', vid: 'av466939788' },
+      },
+      phone: {
+        video: { type: 'bilibili', vid: 'av767558058' },
       },
     },
   },
@@ -208,6 +365,21 @@ const data: Partial<
     },
   },
   白石沙季: {
+    3: {
+      // 手牵手
+      1: {
+        name: '整理整顿',
+        video: { type: 'bilibili', vid: 'av631776373', pid: 1 },
+      },
+      2: {
+        name: '有在发光吗？',
+        video: { type: 'bilibili', vid: 'av631776373', pid: 2 },
+      },
+      3: {
+        name: '与千纱的相处方式',
+        video: { type: 'bilibili', vid: 'av631776373', pid: 3 },
+      },
+    },
     5: {
       1: {
         name: 'TODO',
@@ -220,6 +392,100 @@ const data: Partial<
       3: {
         name: 'TODO',
         video: { type: 'bilibili', vid: 'av850413582', pid: 3 },
+      },
+    },
+  },
+  成宫铃: {
+    3: {
+      // 星光满溢
+      1: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av550376484', pid: 1 },
+      },
+      2: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av550376484', pid: 2 },
+      },
+      3: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av550376484', pid: 3 },
+      },
+    },
+    4: {
+      // 微苦的夏日回忆
+      1: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av592968587', pid: 1 },
+      },
+      2: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av592968587', pid: 2 },
+      },
+      3: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av592968587', pid: 3 },
+      },
+    },
+    5: {
+      // 节目效果拉满
+      1: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av550498872', pid: 1 },
+      },
+      2: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av550498872', pid: 2 },
+      },
+      3: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av550498872', pid: 3 },
+      },
+    },
+  },
+  早坂芽衣: {
+    3: {
+      // 镜头下的笑容
+      1: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av503841344', pid: 1 },
+      },
+      2: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av503841344', pid: 2 },
+      },
+      3: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av503841344', pid: 3 },
+      },
+    },
+    4: {
+      // 只有两个人的日落海滩
+      1: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av889558362', pid: 1 },
+      },
+      2: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av889558362', pid: 2 },
+      },
+      3: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av889558362', pid: 3 },
+      },
+    },
+    5: {
+      // 未来某一天再一起
+      1: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av721401394', pid: 1 },
+      },
+      2: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av721401394', pid: 2 },
+      },
+      3: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av721401394', pid: 3 },
       },
     },
   },
@@ -440,6 +706,21 @@ const data: Partial<
       3: {
         name: '三封信',
         video: { type: 'bilibili', vid: 'av334321966' },
+      },
+    },
+    4: {
+      // 对我来说重要的歌
+      1: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av677986629', pid: 1 },
+      },
+      2: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av677986629', pid: 2 },
+      },
+      3: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av677986629', pid: 3 },
       },
     },
     5: {
