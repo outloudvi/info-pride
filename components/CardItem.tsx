@@ -77,6 +77,16 @@ const CardStories = ({
             </Button>
           )
         })}
+        {stories.phone && (
+          <Button
+            component="a"
+            href={toVideoLink(stories.phone.video)}
+            target="_blank"
+            rel="noopener"
+          >
+            来电
+          </Button>
+        )}
       </ButtonGroup>
     </Box>
   )
