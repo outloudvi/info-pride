@@ -27,6 +27,22 @@ const data: Partial<
         video: { type: 'bilibili', vid: 'av208278177', pid: 3 },
       },
     },
+    2: {
+      // 执子之手
+      // #编剧辛苦了 #论只用语气词片段到底能组出什么剧情语音 #这块木头气死了 #不过果然是刀吧
+      1: {
+        name: '突然的礼物',
+        video: { type: 'bilibili', vid: 'av595197954', pid: 1 },
+      },
+      2: {
+        name: '要是能一直这样下去的话',
+        video: { type: 'bilibili', vid: 'av595197954', pid: 2 },
+      },
+      3: {
+        name: '自那之后不变的心意',
+        video: { type: 'bilibili', vid: 'av595197954', pid: 3 },
+      },
+    },
   },
   川咲樱: {
     4: {
@@ -743,6 +759,21 @@ const data: Partial<
     },
   },
   赤崎心: {
+    3: {
+      // 新liznoir的“骄傲”
+      1: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av594759853', pid: 1 },
+      },
+      2: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av594759853', pid: 2 },
+      },
+      3: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av594759853', pid: 3 },
+      },
+    },
     5: {
       // 映象深刻的绝赞中心
       1: {
