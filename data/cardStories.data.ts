@@ -504,6 +504,21 @@ const data: Partial<
         video: { type: 'bilibili', vid: 'av721401394', pid: 3 },
       },
     },
+    6: {
+      // 和一名偶像的相遇
+      1: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av767697149' },
+      },
+      2: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av937704335' },
+      },
+      3: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av297715784' },
+      },
+    },
   },
   天动瑠依: {
     4: {
