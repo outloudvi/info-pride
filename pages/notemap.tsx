@@ -58,7 +58,6 @@ const NotemapPage = () => {
                   setNotemap('')
                 }}
               >
-                <MenuItem value=""></MenuItem>
                 {songList.map((item, key) => (
                   <MenuItem key={key} value={item}>
                     <span
@@ -80,7 +79,6 @@ const NotemapPage = () => {
                   setNotemap(i.target.value)
                 }}
               >
-                <MenuItem value=""></MenuItem>
                 {notemapList.map((item, key) => (
                   <MenuItem key={key} value={item}>
                     {item}
