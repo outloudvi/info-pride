@@ -8,7 +8,7 @@ import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
 import Typography from '@mui/material/Typography'
 
-import { Calendar } from '../utils/dataset'
+import { Calendar, WikiModulesMeta } from '../utils/dataset'
 import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'
 import ListItemText from '@mui/material/ListItemText'
@@ -33,6 +33,41 @@ const CurrentEvents = () => {
         today.isSameOrBefore(x.end, 'day')
     )
     .sort((a, b) => Number(dayjs(a.start)) - Number(dayjs(b.start)))
+  const lastUpdate = dayjs(WikiModulesMeta.updatedAt * 1000)
+
+  const eventList =
+    activeEvents.length > 0 ? (
+      <List>
+        {activeEvents.map((item, key) => (
+          <ListItem
+            key={key}
+            secondaryAction={
+              item.link ? (
+                <IconButton
+                  edge="end"
+                  aria-label="wiki 页面"
+                  component="a"
+                  href={Paths.wiki(item.link)}
+                >
+                  <ArticleIcon />
+                </IconButton>
+              ) : null
+            }
+          >
+            <ListItemText
+              primary={item.title}
+              secondary={`${item.type} / ${item.start} - ${item.end}`}
+            />
+          </ListItem>
+        ))}
+      </List>
+    ) : (
+      <Box className="text-sm text-gray-600 mt-3">
+        <span>数据库中没有正在进行的活动。</span>
+        <br />
+        <span>最后更新于： {lastUpdate.format('YYYY/MM/DD hh:mm')}</span>
+      </Box>
+    )
 
   return (
     <Card>
@@ -40,31 +75,7 @@ const CurrentEvents = () => {
         <Typography className="text-gray-600 text-sm" gutterBottom>
           当前活动
         </Typography>
-        <ul></ul>
-        <List>
-          {activeEvents.map((item, key) => (
-            <ListItem
-              key={key}
-              secondaryAction={
-                item.link ? (
-                  <IconButton
-                    edge="end"
-                    aria-label="wiki 页面"
-                    component="a"
-                    href={Paths.wiki(item.link)}
-                  >
-                    <ArticleIcon />
-                  </IconButton>
-                ) : null
-              }
-            >
-              <ListItemText
-                primary={item.title}
-                secondary={`${item.type} / ${item.start} - ${item.end}`}
-              />
-            </ListItem>
-          ))}
-        </List>
+        {eventList}
       </CardContent>
     </Card>
   )
