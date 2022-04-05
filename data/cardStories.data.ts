@@ -251,6 +251,21 @@ const data: Partial<
     },
   },
   白石千纱: {
+    3: {
+      // 想要增加拍照时的自信
+      1: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av291762995', pid: 1 },
+      },
+      2: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av291762995', pid: 2 },
+      },
+      3: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av291762995', pid: 3 },
+      },
+    },
     4: {
       // 一夜限定的神圣舞台
       1: {
@@ -266,8 +281,53 @@ const data: Partial<
         video: { type: 'bilibili', vid: 'av250917999', pid: 3 },
       },
     },
+    6: {
+      // 一点点的勇气
+      1: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av724155740' },
+      },
+      2: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av509207271' },
+      },
+      3: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av381667896' },
+      },
+    },
   },
   兵藤雫: {
+    3: {
+      // 光之海洋
+      1: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av546767588' },
+      },
+      2: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av546767588' },
+      },
+      3: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av546767588' },
+      },
+    },
+    5: {
+      // 梦想一定会实现
+      1: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av849149506', pid: 1 },
+      },
+      2: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av849149506', pid: 2 },
+      },
+      3: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av849149506', pid: 3 },
+      },
+    },
     6: {
       // 能够一起唱歌的幸福
       1: {
@@ -351,7 +411,23 @@ const data: Partial<
     },
   },
   井川葵: {
+    3: {
+      // 湿发低语
+      1: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av206705615' },
+      },
+      2: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av546871385' },
+      },
+      3: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av759460701' },
+      },
+    },
     4: {
+      // growing up！
       1: {
         name: '不只是二月的巧克力而已',
         video: { type: 'bilibili', vid: 'av594183571' },
@@ -366,6 +442,7 @@ const data: Partial<
       },
     },
     5: {
+      // 我这么怪都是你的错
       1: {
         name: '隐瞒和蟹肉棒',
         video: { type: 'bilibili', vid: 'av250442533', pid: 1 },
@@ -397,6 +474,7 @@ const data: Partial<
       },
     },
     5: {
+      // 泪之谢幕
       1: {
         name: 'TODO',
         video: { type: 'bilibili', vid: 'av850413582', pid: 1 },
@@ -408,6 +486,21 @@ const data: Partial<
       3: {
         name: 'TODO',
         video: { type: 'bilibili', vid: 'av850413582', pid: 3 },
+      },
+    },
+    6: {
+      // 藏于心中的热情
+      1: {
+        name: '暴露内心的自我',
+        video: { type: 'bilibili', vid: 'av935838939' },
+      },
+      2: {
+        name: '贯彻自我',
+        video: { type: 'bilibili', vid: 'av210788482' },
+      },
+      3: {
+        name: '真的非常，最喜欢',
+        video: { type: 'bilibili', vid: 'av210788482' },
       },
     },
   },
@@ -787,6 +880,21 @@ const data: Partial<
       3: {
         name: 'TODO',
         video: { type: 'bilibili', vid: 'av594759853', pid: 3 },
+      },
+    },
+    4: {
+      // 吾即吾
+      1: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av805887097' },
+      },
+      2: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av763400456' },
+      },
+      3: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av420988923' },
       },
     },
     5: {
