@@ -19,7 +19,7 @@ const Notice = () => {
           },
         ])
       })
-  })
+  }, [])
 
   return (
     <ul>
