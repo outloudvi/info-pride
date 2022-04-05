@@ -530,7 +530,11 @@ const data: Partial<
         name: '大奖赛结束了',
         video: { type: 'bilibili', vid: 'av766715119' },
       },
-      // TODO: 21-
+      21: {
+        name: '新的开始',
+        video: { type: 'bilibili', vid: 'av980281288' },
+      },
+      // TODO: 22-
     },
   },
   LizNoir: {
@@ -626,6 +630,10 @@ const data: Partial<
       23: {
         name: '导火索',
         video: { type: 'bilibili', vid: 'av467720270' },
+      },
+      24: {
+        name: '把笑容化作武器',
+        video: { type: 'bilibili', vid: 'av510297646' },
       },
     },
   },
@@ -787,7 +795,8 @@ const SubTitles: Partial<
       1: 'Still Live',
       6: 'on My Way',
       11: 'Glory Days',
-      // TODO: 16-
+      16: 'Last Step',
+      21: 'Pray for you',
     },
   },
   Tokyo: {
@@ -809,7 +818,7 @@ const SubTitles: Partial<
     1: {
       1: 'White Resolve',
       6: 'Shoot for the Sky',
-      // TODO: 11-
+      11: 'Goodbye to Goodbye',
     },
   },
   LizNoir: {
