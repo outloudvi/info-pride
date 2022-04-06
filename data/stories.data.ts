@@ -635,6 +635,10 @@ const data: Partial<
         name: '把笑容化作武器',
         video: { type: 'bilibili', vid: 'av510297646' },
       },
+      25: {
+        name: '最后的特训',
+        video: { type: 'bilibili', vid: 'av937943942' },
+      },
     },
   },
   Mana: {

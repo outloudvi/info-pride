@@ -815,6 +815,21 @@ const data: Partial<
         video: { type: 'bilibili', vid: 'av507684412', pid: 3 },
       },
     },
+    9: {
+      // 憧憬的演员
+      1: {
+        name: '挑战宣告',
+        video: { type: 'bilibili', vid: 'av682892551' },
+      },
+      2: {
+        name: '心中的石子与无法传达的话语',
+        video: { type: 'bilibili', vid: 'av510376431' },
+      },
+      3: {
+        name: '机会抓住了就不会让它跑掉！',
+        video: { type: 'bilibili', vid: 'av767958383' },
+      },
+    },
   },
   小美山爱: {
     3: {
