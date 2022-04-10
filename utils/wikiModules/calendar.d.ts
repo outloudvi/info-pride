@@ -32,7 +32,9 @@ export type EventType =
   | "links活动"
   | "VENUS对战"
   | "VENUS赛事活动"
-  | "联合对战";
+  | "联合对战"
+  | "摄影活动"
+  | "愚人节";
 /**
  * Each YYYY/MM in the calendar.
  */
