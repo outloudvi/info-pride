@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
+import dayjs from 'dayjs'
 
 import Typography from '@mui/material/Typography'
 import FormControl from '@mui/material/FormControl'
@@ -19,9 +20,7 @@ const diaryDates = Diary.map((x) => {
 const toShortDate = (date: string) =>
   date.split('-')[0].length === 2 ? date : date.slice(2)
 
-const ManaDiary = ({ date }: { date: string }) => {
-  const dateShort = toShortDate(date)
-
+const ManaDiary = ({ dateShort }: { dateShort: string }) => {
   if (diaries[dateShort]) {
     return (
       <>
@@ -41,10 +40,11 @@ const ManaDiary = ({ date }: { date: string }) => {
 const DiaryPage = () => {
   const router = useRouter()
 
-  const diaryDateFrom = diaryDates[0]
-  const diaryDateTo = diaryDates[diaryDates.length - 1]
+  const diaryDateShortFirst = diaryDates[0]
+  const diaryDateShortLast = diaryDates[diaryDates.length - 1]
 
-  const [currDate, setCurrDate] = useState('20' + diaryDateFrom)
+  // Should be a long date since it is sent to <input:date>
+  const [currDate, setCurrDate] = useState('20' + diaryDateShortFirst)
 
   useEffect(() => {
     if (!router.isReady) return
@@ -54,8 +54,14 @@ const DiaryPage = () => {
     if (date === undefined) return
     if (date.match(/^(\d{2}|\d{4})-\d{2}-\d{2}$/) === null) return
 
-    setCurrDate(date)
+    setCurrDate('20' + toShortDate(date))
   }, [router])
+
+  const switchToDate = (date: string) => {
+    const dateShort = toShortDate(date)
+    setCurrDate('20' + dateShort)
+    updateRoute(`/diary/${dateShort}`)
+  }
 
   return (
     <Layout>
@@ -69,7 +75,7 @@ const DiaryPage = () => {
               微博 <a href="https://weibo.com/7326542616/">@IDOLYPRIDE</a>。
             </p>
             <p className="text-gray-600">
-              目前包含的日记日期：{diaryDateFrom} 至 {diaryDateTo}
+              目前包含的日记日期：{diaryDateShortFirst} 至 {diaryDateShortLast}
             </p>
             <Box>
               <FormControl className="flex-col">
@@ -80,32 +86,48 @@ const DiaryPage = () => {
                   id="iDate"
                   type="date"
                   value={currDate}
-                  min={'20' + diaryDateFrom}
-                  max={'20' + diaryDateTo}
+                  min={'20' + diaryDateShortFirst}
+                  max={'20' + diaryDateShortLast}
                   onChange={(e) => {
-                    const date = e.target.value
-                    setCurrDate(date)
-                    updateRoute(`/diary/${date.slice(2)}`)
+                    if (e.target.value === '') return
+                    switchToDate(e.target.value)
                   }}
                 />
               </FormControl>
             </Box>
             <Box className="mt-2">
-              <FormControl>
-                <button
-                  onClick={() => {
-                    setCurrDate('20' + diaryDateTo)
-                    updateRoute(`/diary/${diaryDateTo}`)
-                  }}
-                >
-                  转到最新日期
-                </button>
-              </FormControl>
+              <button
+                className="mr-2"
+                onClick={() => {
+                  switchToDate(diaryDateShortLast)
+                }}
+              >
+                转到最新日期
+              </button>
+              <button
+                className="mr-2"
+                disabled={currDate === '20' + diaryDateShortFirst}
+                onClick={() => {
+                  const currDay = dayjs(currDate)
+                  switchToDate(currDay.subtract(1, 'day').format('YY-MM-DD'))
+                }}
+              >
+                转到前一天
+              </button>
+              <button
+                disabled={currDate === '20' + diaryDateShortLast}
+                onClick={() => {
+                  const currDay = dayjs(currDate)
+                  switchToDate(currDay.add(1, 'day').format('YY-MM-DD'))
+                }}
+              >
+                转到后一天
+              </button>
             </Box>
           </Box>
         </Grid>
         <Grid item xs={12} lg={6}>
-          <ManaDiary date={currDate} />
+          <ManaDiary dateShort={toShortDate(currDate)} />
         </Grid>
       </Grid>
     </Layout>
