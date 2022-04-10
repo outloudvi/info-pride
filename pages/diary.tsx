@@ -64,6 +64,11 @@ const DiaryPage = () => {
         <Grid item xs={12} lg={6}>
           <Box>
             <p className="text-gray-600">
+              如无特殊说明，此处内容的翻译均来自 Bilibili{' '}
+              <a href="https://space.bilibili.com/107734456">@长濑琴乃</a> /
+              微博 <a href="https://weibo.com/7326542616/">@IDOLYPRIDE</a>。
+            </p>
+            <p className="text-gray-600">
               目前包含的日记日期：{diaryDateFrom} 至 {diaryDateTo}
             </p>
             <Box>
