@@ -34,7 +34,7 @@ const StoriesItem = (props: PropType) => {
   const data = StoriesData?.[series]?.[season]?.[chapter]
   const subtitle = findSubtitle(props)
 
-  const cnTitle = (data?.name ?? 'TODO') === 'TODO' ? null : data.name
+  const cnTitle = data?.name && data.name !== 'TODO' ? data.name : null
   const jaTitle = StoriesTitle[series][season][chapter]
 
   return (
