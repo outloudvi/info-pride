@@ -2,6 +2,9 @@ import Typography from '@mui/material/Typography'
 import Link from '@mui/material/Link'
 import { Episodes, SeriesName } from '../data/stories'
 import StoriesData, { SubTitles } from '../data/stories.data'
+import { StoriesTitle } from '../utils/dataset'
+
+import Paths from '../utils/paths'
 import { toVideoLink } from './ExternalVideo'
 
 type PropType = {
@@ -31,25 +34,44 @@ const StoriesItem = (props: PropType) => {
   const data = StoriesData?.[series]?.[season]?.[chapter]
   const subtitle = findSubtitle(props)
 
+  const cnTitle = (data?.name ?? 'TODO') === 'TODO' ? null : data.name
+  const jaTitle = StoriesTitle[series][season][chapter]
+
   return (
     <>
       <Typography className="text-4xl">
         {Episodes[series][0]}
         {season}章 - {chapter}
       </Typography>
-      {data === undefined ? (
-        <p>数据尚未收录 :D</p>
-      ) : (
-        <>
-          <Typography className="text-2xl">{subtitle}</Typography>
-          <br />
-          <Typography className="text-xl">{data.name}</Typography>
-          <p>
-            <Link href={toVideoLink(data.video)} target="_blank" rel="noopener">
-              视频
-            </Link>
-          </p>
-        </>
+
+      <Typography className="text-2xl">{subtitle}</Typography>
+      <br />
+      <Typography className="text-xl">
+        {cnTitle !== null ? (
+          <>
+            <span>{cnTitle}</span> /{' '}
+            <small>
+              <span lang="ja">{jaTitle}</span>
+            </small>
+          </>
+        ) : (
+          <span lang="ja">{jaTitle}</span>
+        )}
+      </Typography>
+      {data && (
+        <p>
+          <Link href={toVideoLink(data.video)} target="_blank" rel="noopener">
+            视频
+          </Link>
+        </p>
+      )}
+
+      {(data === undefined || cnTitle === null) && (
+        <div className="mt-4 text-gray-500">
+          尚无{data === undefined ? '剧情' : '标题'}翻译信息。请添加翻译信息到{' '}
+          <a href={Paths.repo('data/stories.data.ts')}>data/stories.data.ts</a>{' '}
+          的 StoriesData[{series}][{season}][{chapter}] 。
+        </div>
       )}
     </>
   )
