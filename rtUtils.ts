@@ -6,6 +6,16 @@ export function tryToNumber(n: string | string[] | undefined): number | null {
   return Number.isNaN(Number(n)) ? null : Number(n)
 }
 
+export function tryToFirst(
+  n: string | string[] | undefined
+): string | undefined {
+  if (n === undefined) {
+    return undefined
+  }
+  if (Array.isArray(n)) return n[0]
+  return n
+}
+
 export function updateRoute(path: string) {
   window.history.replaceState(
     {

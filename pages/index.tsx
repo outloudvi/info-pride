@@ -26,6 +26,7 @@ const Pages = {
   剧情: '/stories',
   谱面: '/notemap',
   卡片: '/cards',
+  麻奈日记: '/diary',
 }
 
 const Home = () => {
