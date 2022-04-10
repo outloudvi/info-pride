@@ -612,6 +612,24 @@ const data: Partial<
         video: { type: 'bilibili', vid: 'av297715784' },
       },
     },
+    7: {
+      // 即使踮起脚尖，也无法传达
+      1: {
+        name: '二代目星降的奇寄',
+        video: { type: 'bilibili', vid: 'av255409120' },
+      },
+      2: {
+        name: '会错意、再一次',
+        video: { type: 'bilibili', vid: 'av425439100' },
+      },
+      3: {
+        name: '在沙滩上吹着夜风',
+        video: { type: 'bilibili', vid: 'av938040748' },
+      },
+      phone: {
+        video: { type: 'bilibili', vid: 'av553072510' },
+      },
+    },
   },
   天动瑠依: {
     4: {
