@@ -1,7 +1,7 @@
 #!/bin/bash
 set -eu
 
-PARTS=(wikiModules wikiPages)
+PARTS=(wikiModules wikiPages vendor)
 
 pushd $(dirname $0)
 

@@ -259,7 +259,11 @@ const data: Partial<
         name: '些许勇气',
         video: { type: 'bilibili', vid: 'av297335586', pid: 5 },
       },
-      // TODO: 36-
+      36: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av810555905', pid: 1 },
+      },
+      // TODO: 37-
     },
   },
   Tokyo: {

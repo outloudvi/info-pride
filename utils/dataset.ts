@@ -25,3 +25,9 @@ export const Cards = _cards as WikiCards
 export const Idols = _idols as WikiIdols
 export const Songs = _songs as WikiSongs
 export const WikiPagesMeta = _wikiPagesMeta
+
+// vendor
+import _storiesTitle from './vendor/storiesTitle.json'
+import type { TheRootSchema as VendorStoriesTitle } from './vendor/storiesTitle'
+
+export const StoriesTitle = _storiesTitle as VendorStoriesTitle
