@@ -21,7 +21,7 @@ export const Idols = {
   suzu: '成宫铃',
   mei: '早坂芽衣',
   rui: '天动瑠依',
-  yui: '铃村优',
+  yu: '铃村优',
   sumire: '奥山堇',
   rio: '神崎莉央',
   aoi: '井川葵',
