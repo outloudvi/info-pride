@@ -41,13 +41,18 @@
     "$defs": {
         "storiesChapter": {
             "type": "object",
+            "examples": [
+                {
+                    "1": {
+                        "1": "莉央の始まり"
+                    }
+                }
+            ],
             "additionalProperties": {
                 "type": "object",
                 "examples": [
                     {
-                        "1": {
-                            "1": "莉央の始まり"
-                        }
+                        "1": "莉央の始まり"
                     }
                 ],
                 "additionalProperties": {
