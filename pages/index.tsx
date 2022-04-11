@@ -27,6 +27,7 @@ const Pages = {
   谱面: '/notemap',
   卡片: '/cards',
   麻奈日记: '/diary',
+  系列颜色: '/colors',
 }
 
 const Home = () => {

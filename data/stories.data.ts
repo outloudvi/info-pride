@@ -643,6 +643,10 @@ const data: Partial<
         name: '最后的特训',
         video: { type: 'bilibili', vid: 'av937943942' },
       },
+      26: {
+        name: '进入新世界',
+        video: { type: 'bilibili', vid: 'av853118491' },
+      },
     },
   },
   Mana: {
