@@ -265,6 +265,12 @@ const data: Partial<
       },
       // TODO: 37-
     },
+    3: {
+      1: {
+        name: '晋级正赛名单公布',
+        video: { type: 'bilibili', vid: 'av553118965' },
+      },
+    },
   },
   Tokyo: {
     1: {
