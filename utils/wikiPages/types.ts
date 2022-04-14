@@ -16,14 +16,14 @@ type Comparer = ComparerGt | ComparerLt | ComparerEq
 type TargetPerson = TargetPersonSimple | string
 
 export enum TargetPersonSimple {
-  Self,
-  Neighbour,
-  Center,
-  Everyone,
-  Whoever,
-  HighestNOfProp,
-  SelectedN,
-  ScorerN,
+  Self = 'Self',
+  Neighbour = 'Neighbour',
+  Center = 'Center',
+  Everyone = 'Everyone',
+  Whoever = 'Whoever',
+  HighestNOfProp = 'HighestNOfProp',
+  SelectedN = 'SelectedN',
+  ScorerN = 'ScorerN',
 }
 
 type Targeted = {
@@ -33,32 +33,32 @@ type Targeted = {
 type Status = StatusSimple
 
 export enum StatusSimple {
-  Invisible,
-  Focused,
-  BadCond,
-  HighSpirits,
-  BeatScoring,
-  ScoringUp,
-  CritCoefUp,
-  CritRateUp,
-  StamDraiUp,
-  StamDraiDn,
-  SkilSuccUp,
-  CombScorUp,
-  NoBreak,
-  AScorUp,
-  VocalUp,
-  DanceUp,
-  VisualUp,
-  VocalDn,
-  DanceDn,
-  VisualDn,
+  Invisible = 'Invisible',
+  Focused = 'Focused',
+  BadCond = 'BadCond',
+  HighSpirits = 'HighSpirits',
+  BeatScoring = 'BeatScoring',
+  ScoringUp = 'ScoringUp',
+  CritCoefUp = 'CritCoefUp',
+  CritRateUp = 'CritRateUp',
+  StamDraiUp = 'StamDraiUp',
+  StamDraiDn = 'StamDraiDn',
+  SkilSuccUp = 'SkilSuccUp',
+  CombScorUp = 'CombScorUp',
+  NoBreak = 'NoBreak',
+  AScorUp = 'AScorUp',
+  VocalUp = 'VocalUp',
+  DanceUp = 'DanceUp',
+  VisualUp = 'VisualUp',
+  VocalDn = 'VocalDn',
+  DanceDn = 'DanceDn',
+  VisualDn = 'VisualDn',
 }
 
 type Property = PropertySimple
 
 export enum PropertySimple {
-  Stamina,
+  Stamina = 'Stamina',
 }
 
 type Event = EventCritical | EventCombo | string
@@ -75,9 +75,9 @@ type EventCombo = {
 type TrackType = TrackTypeSimple | string
 
 enum TrackTypeSimple {
-  Vocal,
-  Dance,
-  Visual,
+  Vocal = 'Vocal',
+  Dance = 'Dance',
+  Visual = 'Visual',
 }
 
 type Action = 'SP' | 'A'
