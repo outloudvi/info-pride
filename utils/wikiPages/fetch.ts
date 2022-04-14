@@ -1,20 +1,21 @@
-#!/usr/bin/env node
+#!/usr/bin/env ts-node
 
-import { writeFileSync } from 'fs'
-import { dirname, join } from 'path'
-import { fileURLToPath } from 'url'
+import { writeFileSync } from 'node:fs'
+import { dirname, join } from 'node:path'
+import { fileURLToPath } from 'node:url'
 import {
   fetchPrefixList,
   getPageJson,
   mapProps,
   readJson,
   sleep,
-} from './utils.mjs'
+} from './utils.js'
+import type { SitePrefConfig } from './utils.js'
 
 const IdolsJson = 'idols.json'
 const CardsJson = 'cards.json'
 const SongsJson = 'songs.json'
-const SitePref = {
+const SitePref: SitePrefConfig = {
   domain: 'wiki.biligame.com',
   path: 'idolypride/api.php',
 }
@@ -43,14 +44,14 @@ const IdolNames = [
   '赤崎心',
 ]
 
-function findFirstTemplateWithName(pageJson, templateName) {
+function findFirstTemplateWithName(pageJson: any, templateName: string) {
   return pageJson.sections
-    .map((x) => x.templates ?? [])
-    .reduce((a, b) => [...a, ...b])
-    .filter((x) => x.template === templateName)?.[0]
+    .map((x: any) => x.templates ?? [])
+    .reduce((a: any, b: any) => [...a, ...b])
+    .filter((x: any) => x.template === templateName)?.[0]
 }
 
-function parseSong(pageJson) {
+function parseSong(pageJson: any) {
   const infoTemplate = findFirstTemplateWithName(pageJson, '歌曲/主页面')
   return {
     ...mapProps(
@@ -71,7 +72,7 @@ function parseSong(pageJson) {
   }
 }
 
-function parseCard(pageJson) {
+function parseCard(pageJson: any) {
   const infoTemplate =
     findFirstTemplateWithName(pageJson, '角色/卡牌详细') ??
     findFirstTemplateWithName(pageJson, '角色/卡牌详细1')
@@ -114,7 +115,7 @@ function parseCard(pageJson) {
   }
 }
 
-function parseIdol(pageJson) {
+function parseIdol(pageJson: any) {
   const infoTemplate = findFirstTemplateWithName(pageJson, '角色/基本资料')
   return mapProps(
     {
@@ -166,7 +167,7 @@ async function main() {
         }
         console.info(`Fetching card ${cardName}`)
         const pageJson = await getPageJson(cardName, SitePref)
-        const cardMeta = parseCard(pageJson)
+        const cardMeta: Record<string, number | string> = parseCard(pageJson)
         for (const i of ['rarity', 'vocTop', 'danTop', 'staTop', 'visTop']) {
           cardMeta[i] = Number(cardMeta[i])
         }

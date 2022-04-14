@@ -1,11 +1,19 @@
 import got from 'got'
 import wtfWp from 'wtf_wikipedia'
-import { existsSync, readFileSync } from 'fs'
+import { existsSync, readFileSync } from 'node:fs'
 
-export function mapProps(mapper, options) {
+export type SitePrefConfig = {
+  domain: string
+  path: string
+}
+
+export function mapProps(
+  mapper: Record<string, string>,
+  options: { allRequired?: boolean } = {}
+) {
   const { allRequired } = options ?? {}
-  const retFn = (obj) => {
-    const ret = {}
+  const retFn = (obj: Record<string, any>) => {
+    const ret: Record<string, string> = {}
     for (const [key, val] of Object.entries(mapper)) {
       const target = obj[val]
       if (target === undefined && allRequired) {
@@ -19,7 +27,10 @@ export function mapProps(mapper, options) {
   return retFn
 }
 
-export async function fetchPrefixList(prefix, sitePref) {
+export async function fetchPrefixList(
+  prefix: string,
+  sitePref: SitePrefConfig
+) {
   const url = new URL(`https://${sitePref.domain}`)
   url.pathname = sitePref.path
   for (const [key, value] of [
@@ -36,16 +47,16 @@ export async function fetchPrefixList(prefix, sitePref) {
       responseType: 'json',
     })
     .json()
-    .then((x) => x.query.allpages.map((y) => y.title))
+    .then((x: any) => x.query.allpages.map((y: any) => y.title))
 }
 
-export async function getPageJson(pageName, sitePref) {
+export async function getPageJson(pageName: string, sitePref: SitePrefConfig) {
   return wtfWp
     .fetch(pageName, sitePref)
     .then((x) => (Array.isArray(x) ? x[0].json() : x?.json()))
 }
 
-export function readJson(jsonFilename) {
+export function readJson(jsonFilename: string) {
   if (existsSync(jsonFilename)) {
     console.log(`Reading from ${jsonFilename}`)
     try {
@@ -59,7 +70,7 @@ export function readJson(jsonFilename) {
   return {}
 }
 
-export function sleep(time) {
+export function sleep(time: number) {
   return new Promise((resolve) => {
     setTimeout(resolve, time)
   })

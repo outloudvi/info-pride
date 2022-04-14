@@ -2,6 +2,10 @@
   "name": "info-pride",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=16.0.0"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -9,7 +13,8 @@
     "lint": "next lint",
     "dataset:bv": "utils/buildAndValidate.sh",
     "dataset:type": "utils/schemaToType.sh",
-    "dataset:ajv": "ajv"
+    "dataset:ajv": "ajv",
+    "tsn": "ts-node"
   },
   "dependencies": {
     "@babel/core": "7",
@@ -38,6 +43,7 @@
     "eslint": "8.10.0",
     "eslint-config-next": "12.1.0",
     "json-schema-to-typescript": "^10.1.5",
+    "ts-node": "^10.7.0",
     "tslib": "^2.3.1",
     "typescript": "4.6.2",
     "wtf_wikipedia": "^9.1.0"

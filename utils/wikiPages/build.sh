@@ -2,6 +2,6 @@
 set -eu
 
 pushd $(dirname $0)
-node ./fetch.mjs
+npm run tsn ./fetch.ts
 
 echo "{\"updatedAt\":$(date +%s)}" >meta.json
