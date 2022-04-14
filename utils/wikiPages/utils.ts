@@ -17,9 +17,9 @@ export function mapProps(
     for (const [key, val] of Object.entries(mapper)) {
       const target = obj[val]
       if (target === undefined && allRequired) {
-        throw Error(`Property ${val} is not found`)
+        console.error(`Property ${val} is not found`)
       }
-      ret[key] = target
+      ret[key] = target ?? 'TODO'
     }
     return ret
   }
@@ -74,4 +74,9 @@ export function sleep(time: number) {
   return new Promise((resolve) => {
     setTimeout(resolve, time)
   })
+}
+
+export function isRegExp(r: any): r is RegExp {
+  // https://github.com/sindresorhus/is-regexp/blob/main/index.js
+  return Object.prototype.toString.call(r) === '[object RegExp]'
 }
