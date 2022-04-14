@@ -14,7 +14,7 @@
     "dataset:bv": "utils/buildAndValidate.sh",
     "dataset:type": "utils/schemaToType.sh",
     "dataset:ajv": "ajv",
-    "tsn": "ts-node"
+    "dataset:ts": "ts-node"
   },
   "dependencies": {
     "@babel/core": "7",
