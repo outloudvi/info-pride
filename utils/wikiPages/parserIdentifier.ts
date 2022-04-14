@@ -1,15 +1,6 @@
-export interface Ident {
-  type: string
-}
+import { Matcher, PropertySimple, StatusSimple } from './types.js'
 
-export type MatchQuery = string | RegExp
-
-export type Matcher = {
-  spec: (MatchQuery | [string, MatchQuery[]])[]
-  body: (r: Record<string, string>) => Ident
-}
-
-const __RGB = ['红', '绿', '蓝']
+const __RGB = ['红', '黄', '蓝']
 const __WHO = [
   '自身',
   '自己',
@@ -22,28 +13,36 @@ const __WHO = [
   /得分角色(?<num>\d+)人/,
 ]
 
-const __PROPS = ['剩余体力多', '粉丝核心率多', '剩余体力少', '观众数量少']
+const Props = {
+  体力: PropertySimple.Stamina,
+} as const
 
-const __STATUSES = [
-  '隐身',
-  '集目',
-  '不调',
-  '气氛高昂',
-  '节拍得分',
-  '得分提升',
-  '暴击系数提升',
-  '暴击率提升',
-  '体力消耗提升',
-  '技能成功率提升',
-  'A技能得分提升',
-  '红属性提升',
-  '黄属性提升',
-  '黄属性降低',
-  '蓝属性提升',
-  '体力消耗降低',
-  '连击得分提升',
-  '连击接续',
-]
+const __PROPS = Object.keys(Props)
+
+const __PROP_STATS = ['剩余体力多', '粉丝核心率多', '剩余体力少', '观众数量少']
+
+const Statuses = {
+  隐身: StatusSimple.Invisible,
+  集目: StatusSimple.Focused,
+  不调: StatusSimple.BadCond,
+  气氛高昂: StatusSimple.HighSpirits,
+  节拍得分: StatusSimple.BeatScoring,
+  得分提升: StatusSimple.ScoringUp,
+  暴击系数提升: StatusSimple.CritCoefUp,
+  暴击率提升: StatusSimple.CritRateUp,
+  体力消耗提升: StatusSimple.StamDraiUp,
+  体力消耗降低: StatusSimple.StamDraiDn,
+  技能成功率提升: StatusSimple.SkilSuccUp,
+  A技能得分提升: StatusSimple.AScorUp,
+  红属性提升: StatusSimple.VocalUp,
+  蓝属性提升: StatusSimple.DanceUp,
+  黄属性提升: StatusSimple.VisualUp,
+  黄属性降低: StatusSimple.VisualDn,
+  连击得分提升: StatusSimple.CombScorUp,
+  连击接续: StatusSimple.NoBreak,
+} as const
+
+const __STATUSES = Object.keys(Statuses)
 
 export const Matchers: Matcher[] = [
   // Condition
@@ -61,7 +60,7 @@ export const Matchers: Matcher[] = [
     body: ({ typ }) => ({
       type: 'when',
       when: {
-        before: typ.toUpperCase(),
+        before: typ.toUpperCase() as 'SP' | 'A',
       },
     }),
   },
@@ -71,7 +70,7 @@ export const Matchers: Matcher[] = [
       type: 'when',
       when: {
         on,
-        status: s,
+        status: Statuses[s as keyof typeof Statuses],
       },
     }),
   },
@@ -81,7 +80,7 @@ export const Matchers: Matcher[] = [
       type: 'when',
       when: {
         on,
-        prop,
+        prop: PropertySimple.Stamina,
         value: {
           $lt: Number(s),
         },
@@ -94,7 +93,7 @@ export const Matchers: Matcher[] = [
       type: 'when',
       when: {
         on,
-        prop,
+        prop: PropertySimple.Stamina,
         value: {
           $gt: Number(s),
         },
@@ -102,12 +101,12 @@ export const Matchers: Matcher[] = [
     }),
   },
   {
-    spec: ['当', ['on', __WHO], ['prop', ['体力']], '高于', ['s', [/(\d+)/]]],
+    spec: ['当', ['on', __WHO], ['prop', __PROPS], '高于', ['s', [/(\d+)/]]],
     body: ({ s, on, prop }) => ({
       type: 'when',
       when: {
         on,
-        prop,
+        prop: Props[prop as keyof typeof Props],
         value: {
           $gt: Number(s),
         },
@@ -115,12 +114,12 @@ export const Matchers: Matcher[] = [
     }),
   },
   {
-    spec: ['当', ['on', __WHO], ['prop', ['体力']], '低于', ['s', [/(\d+)/]]],
+    spec: ['当', ['on', __WHO], ['prop', __PROPS], '低于', ['s', [/(\d+)/]]],
     body: ({ s, on, prop }) => ({
       type: 'when',
       when: {
         on,
-        prop,
+        prop: Props[prop as keyof typeof Props],
         value: {
           $lt: Number(s),
         },
@@ -132,7 +131,9 @@ export const Matchers: Matcher[] = [
     body: () => ({
       type: 'when',
       when: {
-        critical: { $eq: true },
+        event: {
+          type: 'critical',
+        },
         on: 'self',
       },
     }),
@@ -142,7 +143,9 @@ export const Matchers: Matcher[] = [
     body: () => ({
       type: 'when',
       when: {
-        critical: { $eq: true },
+        event: {
+          type: 'critical',
+        },
       },
     }),
   },
@@ -151,7 +154,8 @@ export const Matchers: Matcher[] = [
     body: ({ color }) => ({
       type: 'when',
       when: {
-        track: { $eq: color },
+        on: 'self',
+        trackType: color,
       },
     }),
   },
@@ -160,7 +164,10 @@ export const Matchers: Matcher[] = [
     body: ({ s }) => ({
       type: 'when',
       when: {
-        combo: { $gt: Number(s) },
+        event: {
+          type: 'combo',
+          combo: { $gt: Number(s) },
+        },
       },
     }),
   },
@@ -169,7 +176,10 @@ export const Matchers: Matcher[] = [
     body: ({ s }) => ({
       type: 'when',
       when: {
-        combo: { $gt: Number(s) },
+        event: {
+          type: 'combo',
+          combo: { $gt: Number(s) },
+        },
       },
     }),
   },
@@ -221,74 +231,71 @@ export const Matchers: Matcher[] = [
     spec: [['on', __WHO], 'CT', '减少', ['s', [/(\d+)/]]],
     body: ({ s, on }) => ({
       type: 'ctDecrease',
-      ctDecrease: {
-        number: Number(s),
-        on,
-      },
+      ctDecrease: Number(s),
+      on,
     }),
   },
   {
     spec: [['on', __WHO], '体力回复', ['s', [/(\d+)/]]],
     body: ({ s, on }) => ({
-      type: 'staminaUp',
-      staminaUp: {
-        number: Number(s),
-        on,
-      },
+      type: 'stamRecovery',
+      stamRecovery: Number(s),
+      on,
     }),
   },
   {
     spec: [['s', [/CT[:：](\d+)/]]],
     body: ({ s }) => ({
-      type: 'colddownTime',
-      colddownTime: Number(s),
+      type: 'ct',
+      ct: Number(s),
     }),
   },
   {
     spec: ['赋予', ['on', __WHO], ['s', [/(\d+)层/]], ['color', __RGB], '提升'],
-    body: ({ s, color, on }) => ({
-      type: 'statusUp',
-      statusUp: {
-        on,
+    body: ({ s, color, on }) => {
+      const giveStatus =
+        color === '红'
+          ? StatusSimple.VocalUp
+          : color === '蓝'
+          ? StatusSimple.DanceUp
+          : StatusSimple.VisualUp
+      return {
+        type: 'giveStatus',
+        giveStatus,
         level: Number(s),
-        color,
-      },
-    }),
+        on,
+      }
+    },
   },
   {
     spec: ['赋予', ['on', __WHO], ['s', [/(\d+)层/]], ['status', __STATUSES]],
     body: ({ s, status, on }) => ({
-      type: 'statusUp',
-      statusUp: {
-        on,
-        status,
-        level: Number(s),
-      },
+      type: 'giveStatus',
+      giveStatus: Statuses[status as keyof typeof Statuses],
+      on,
+      level: Number(s),
     }),
   },
   {
     spec: ['赋予', ['on', __WHO], ['status', __STATUSES]],
     body: ({ status, on }) => ({
-      type: 'statisGive',
-      statusGive: {
-        on,
-        status,
-      },
+      type: 'giveStatus',
+      giveStatus: Statuses[status as keyof typeof Statuses],
+      on,
     }),
   },
   {
-    spec: [['prop', __PROPS], '得分提升'],
+    spec: [['prop', __PROP_STATS], '得分提升'],
     body: ({ prop }) => ({
-      type: 'scoreUpAt',
-      scoreUpAt: {
-        propPriority: prop,
-      },
+      type: 'giveStatus',
+      giveStatus: StatusSimple.ScoringUp,
     }),
   },
   {
     spec: [/^连击数得分提升$/],
     body: () => ({
-      type: 'comboScoreUp',
+      type: 'giveStatus',
+      giveStatus: StatusSimple.CombScorUp,
     }),
   },
   // Limit
@@ -302,8 +309,8 @@ export const Matchers: Matcher[] = [
   {
     spec: [['l', [/^\[(\d+)拍\]$/]]],
     body: ({ l }) => ({
-      type: 'limitLength',
-      limitLength: Number(l),
+      type: 'limit',
+      length: Number(l),
     }),
   },
 ]

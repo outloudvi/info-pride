@@ -2,9 +2,10 @@
 
 import { isRegExp } from './utils.js'
 import { Cards } from '../dataset.js'
-import { Matchers, MatchQuery } from './parserIdentifier.js'
+import { Matchers } from './parserIdentifier.js'
 import ReplaceTable from './parserReplaceTable.js'
-import type { Matcher } from './parserIdentifier.js'
+import type { Matcher, MatchQuery } from './types.js'
+
 import { writeFileSync } from 'node:fs'
 
 type keyIdols = keyof typeof Cards

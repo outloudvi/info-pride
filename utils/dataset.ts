@@ -17,14 +17,22 @@ import _cards from './wikiPages/cards.json' assert { type: 'json' }
 import _idols from './wikiPages/idols.json' assert { type: 'json' }
 import _songs from './wikiPages/songs.json' assert { type: 'json' }
 import _wikiPagesMeta from './wikiModules/meta.json' assert { type: 'json' }
+import _cardSkillsData from './wikiPages/cardSkills.json' assert { type: 'json' }
 import type { TheRootSchema as WikiCards } from './wikiPages/cards'
 import type { TheRootSchema as WikiIdols } from './wikiPages/idols'
 import type { TheRootSchema as WikiSongs } from './wikiPages/songs'
+
+import type { IdolName } from '../data/idols'
+import type { Ident } from './wikiPages/types'
 
 export const Cards = _cards as WikiCards
 export const Idols = _idols as WikiIdols
 export const Songs = _songs as WikiSongs
 export const WikiPagesMeta = _wikiPagesMeta
+export const CardSkillsData = _cardSkillsData as Record<
+  IdolName,
+  Record<string, Record<'ski1' | 'ski2' | 'ski3', Ident[]>>
+>
 
 // vendor
 import _storiesTitle from './vendor/storiesTitle.json' assert { type: 'json' }
