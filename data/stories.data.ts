@@ -260,10 +260,14 @@ const data: Partial<
         video: { type: 'bilibili', vid: 'av297335586', pid: 5 },
       },
       36: {
-        name: 'TODO',
+        name: '作为目标之人',
         video: { type: 'bilibili', vid: 'av810555905', pid: 1 },
       },
-      // TODO: 37-
+      37: {
+        name: '因为......我是姐姐',
+        video: { type: 'bilibili', vid: 'av810555905', pid: 2 },
+      },
+      // TODO: 38-
     },
     3: {
       1: {
