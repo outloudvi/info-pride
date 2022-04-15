@@ -12,24 +12,42 @@ type ComparerEq = {
 
 type Comparer = ComparerGt | ComparerLt | ComparerEq
 
-// TODO
-type TargetPerson = TargetPersonSimple | string
-
 export enum TargetPersonSimple {
   Self = 'Self',
-  Neighbour = 'Neighbour',
+  Neighbor = 'Neighbor',
   Center = 'Center',
   Everyone = 'Everyone',
-  Whoever = 'Whoever',
-  HighestNOfProp = 'HighestNOfProp',
+  Targeted = 'Targeted',
+}
+
+export enum TargetPersonNParamed {
   SelectedN = 'SelectedN',
   ScorerN = 'ScorerN',
   LeastStaminaN = 'LeastStaminaN',
 }
 
-type Targeted = {
-  on: TargetPerson
+export enum TargetPersonNColorParamed {
+  HighestNOfProp = 'HighestNOfProp',
+  NOfProp = 'NOfProp',
+  NOfTrack = 'NOfTrack',
 }
+
+type TargetedSimple = {
+  on: TargetPersonSimple
+}
+
+type TargetedNParamed = {
+  on: TargetPersonNParamed
+  n: number
+}
+
+type TargetedNColorParamed = {
+  on: TargetPersonNColorParamed
+  color: ColorTypeSimple
+  n: number
+}
+
+export type Targeted = TargetedSimple | TargetedNParamed | TargetedNColorParamed
 
 type TargetedRival = {
   on: 'sameTrack' | 'centerTrack'
@@ -95,9 +113,9 @@ type EventCombo = {
   combo: Comparer
 }
 
-type TrackType = TrackTypeSimple | string
+type TrackType = ColorTypeSimple | string
 
-enum TrackTypeSimple {
+export enum ColorTypeSimple {
   Vocal = 'Vocal',
   Dance = 'Dance',
   Visual = 'Visual',

@@ -1,22 +1,109 @@
 import {
+  ColorTypeSimple,
   Matcher,
   PropertySimple,
   StatusLinkSimple,
   StatusSimple,
+  Targeted,
+  TargetPersonNColorParamed,
+  TargetPersonNParamed,
+  TargetPersonSimple,
 } from './types.js'
+
+function colorTextToEnum(color: string) {
+  switch (color) {
+    case '红':
+      return ColorTypeSimple.Vocal
+    case '蓝':
+      return ColorTypeSimple.Dance
+    case '黄':
+      return ColorTypeSimple.Visual
+  }
+  throw Error('Unrecognized color')
+}
+
+function parseWho(data: Record<string, string>): Targeted {
+  switch (data.on) {
+    case '自己':
+      return {
+        on: TargetPersonSimple.Self,
+      }
+    case '相邻角色':
+      return {
+        on: TargetPersonSimple.Neighbor,
+      }
+    case '全员': {
+      return {
+        on: TargetPersonSimple.Everyone,
+      }
+    }
+    case '谁':
+    case '对象':
+    case '其':
+    case '该角色':
+      return {
+        on: TargetPersonSimple.Targeted,
+      }
+  }
+  if (data.wCenter) {
+    return {
+      on: TargetPersonSimple.Center,
+    }
+  }
+  if (data.wColor1) {
+    return {
+      on: TargetPersonNColorParamed.HighestNOfProp,
+      color: colorTextToEnum(data.wColor1),
+      n: Number(data.num),
+    }
+  }
+  if (data.wColor2) {
+    return {
+      on: TargetPersonNColorParamed.NOfProp,
+      color: colorTextToEnum(data.wColor2),
+      n: Number(data.num),
+    }
+  }
+  if (data.wColor3) {
+    return {
+      on: TargetPersonNColorParamed.NOfTrack,
+      color: colorTextToEnum(data.wColor3),
+      n: Number(data.num),
+    }
+  }
+  if (data.wTgtNum) {
+    return {
+      on: TargetPersonNParamed.SelectedN,
+      n: Number(data.wTgtNum),
+    }
+  }
+  if (data.wScoNum) {
+    return {
+      on: TargetPersonNParamed.ScorerN,
+      n: Number(data.wScoNum),
+    }
+  }
+  if (data.wStamNum) {
+    return {
+      on: TargetPersonNParamed.ScorerN,
+      n: Number(data.wStamNum),
+    }
+  }
+  throw Error('Unrecognized target')
+}
 
 const __RGB = ['红', '黄', '蓝']
 const __WHO = [
   '自己',
   '相邻角色',
-  /(?<on>中心(位置)?角色)/,
+  /(?<wCenter>中心(位置)?角色)/,
   '全员',
-  /(?<color1>[红黄蓝])属性值?最?高的?(?<num>\d+)人/,
-  /(?<color2>[红黄蓝])(属性)?(角色)?(?<num>\d+)人/,
-  /(?<color3>[红黄蓝])轨道角色(?<num>\d+)人/,
-  /对象(?<num>\d+)人/,
-  /得分(角色|手)(?<num>\d+)人/,
-  /体力最低的(?<num>\d+)人/,
+  /(?<wColor1>[红黄蓝])属性值?最?高的?(?<num>\d+)人/,
+  /(?<wColor2>[红黄蓝])(属性)?(角色)?(?<num>\d+)人/,
+  /(?<wColor3>[红黄蓝])轨道角色(?<num>\d+)人/,
+  /对象(?<wTgtNum>\d+)人/,
+  /得分(角色|手)(?<wScoNum>\d+)人/,
+  /体力最低的(?<wStamNum>\d+)人/,
   '谁',
   '对象',
   '其',
@@ -98,24 +185,24 @@ export const Matchers: Matcher[] = [
   },
   {
     spec: ['当', ['on', __WHO], ['s', __STATUSES], '状态时'],
-    body: ({ s, on }) => ({
+    body: (data) => ({
       type: 'when',
       when: {
-        on,
-        status: Statuses[s as keyof typeof Statuses],
+        status: Statuses[data.s as keyof typeof Statuses],
+        ...parseWho(data),
       },
     }),
   },
   {
     spec: ['当', ['on', __WHO], ['prop', ['体力']], ['s', [/(\d+)/]], '以下时'],
-    body: ({ s, on, prop }) => ({
+    body: (data) => ({
       type: 'when',
       when: {
-        on,
         prop: PropertySimple.Stamina,
         value: {
-          $lt: Number(s),
+          $lt: Number(data.s),
         },
+        ...parseWho(data),
       },
     }),
   },
@@ -130,14 +217,14 @@ export const Matchers: Matcher[] = [
   },
   {
     spec: ['当', ['on', __WHO], ['prop', ['体力']], ['s', [/(\d+)/]], '以上时'],
-    body: ({ s, on, prop }) => ({
+    body: (data) => ({
       type: 'when',
       when: {
-        on,
         prop: PropertySimple.Stamina,
         value: {
-          $gt: Number(s),
+          $gt: Number(data.s),
         },
+        ...parseWho(data),
       },
     }),
   },
@@ -146,7 +233,7 @@ export const Matchers: Matcher[] = [
     body: ({ s, on, prop }) => ({
       type: 'when',
       when: {
-        on: 'self',
+        on: TargetPersonSimple.Self,
         prop: PropertySimple.Stamina,
         value: {
           $gt: Number(s),
@@ -156,27 +243,27 @@ export const Matchers: Matcher[] = [
   },
   {
     spec: ['当', ['on', __WHO], ['prop', __PROPS], '高于', ['s', [/(\d+)/]]],
-    body: ({ s, on, prop }) => ({
+    body: (data) => ({
       type: 'when',
       when: {
-        on,
-        prop: Props[prop as keyof typeof Props],
+        prop: Props[data.prop as keyof typeof Props],
         value: {
-          $gt: Number(s),
+          $gt: Number(data.s),
         },
+        ...parseWho(data),
       },
     }),
   },
   {
     spec: ['当', ['on', __WHO], ['prop', __PROPS], '低于', ['s', [/(\d+)/]]],
-    body: ({ s, on, prop }) => ({
+    body: (data) => ({
       type: 'when',
       when: {
-        on,
-        prop: Props[prop as keyof typeof Props],
+        prop: Props[data.prop as keyof typeof Props],
         value: {
-          $lt: Number(s),
+          $lt: Number(data.s),
         },
+        ...parseWho(data),
       },
     }),
   },
@@ -188,7 +275,7 @@ export const Matchers: Matcher[] = [
         event: {
           type: 'critical',
         },
-        on: 'self',
+        on: TargetPersonSimple.Self,
       },
     }),
   },
@@ -208,7 +295,7 @@ export const Matchers: Matcher[] = [
     body: ({ color }) => ({
       type: 'when',
       when: {
-        on: 'self',
+        on: TargetPersonSimple.Self,
         trackType: color,
       },
     }),
@@ -304,34 +391,34 @@ export const Matchers: Matcher[] = [
   },
   {
     spec: [['on', __WHO], 'CT', '减少', ['s', [/(\d+)/]]],
-    body: ({ s, on }) => ({
+    body: (data) => ({
       type: 'ctDecrease',
-      ctDecrease: Number(s),
-      on,
+      ctDecrease: Number(data.s),
+      ...parseWho(data),
     }),
   },
   {
     spec: [['on', __WHO], '减少', ['s', [/(\d+)/]], 'CT'],
-    body: ({ s, on }) => ({
+    body: (data) => ({
       type: 'ctDecrease',
-      ctDecrease: Number(s),
-      on,
+      ctDecrease: Number(data.s),
+      ...parseWho(data),
     }),
   },
   {
     spec: [['on', __WHO], '回复', ['s', [/(\d+)/]], '体力'],
-    body: ({ s, on }) => ({
+    body: (data) => ({
       type: 'stamRecovery',
-      stamRecovery: Number(s),
-      on,
+      stamRecovery: Number(data.s),
+      ...parseWho(data),
     }),
   },
   {
     spec: [['on', __WHO], '回复', '体力', ['s', [/(\d+)/]]],
-    body: ({ s, on }) => ({
+    body: (data) => ({
       type: 'stamRecovery',
-      stamRecovery: Number(s),
-      on,
+      stamRecovery: Number(data.s),
+      ...parseWho(data),
     }),
   },
   {
@@ -350,10 +437,10 @@ export const Matchers: Matcher[] = [
   },
   {
     spec: [['on', __WHO], '体力回复', ['s', [/(\d+)/]]],
-    body: ({ s, on }) => ({
+    body: (data) => ({
       type: 'stamRecovery',
-      stamRecovery: Number(s),
-      on,
+      stamRecovery: Number(data.s),
+      ...parseWho(data),
     }),
   },
   {
@@ -375,37 +462,36 @@ export const Matchers: Matcher[] = [
   },
   {
     spec: ['赋予', ['on', __WHO], ['s', [/(\d+)层/]], ['color', __RGB], '提升'],
-    body: ({ s, color, on }) => {
-      const giveStatus =
-        color === '红'
-          ? StatusSimple.VocalUp
-          : color === '蓝'
-          ? StatusSimple.DanceUp
-          : StatusSimple.VisualUp
+    body: (data) => {
+      const giveStatus = {
+        [ColorTypeSimple.Vocal]: StatusSimple.VocalUp,
+        [ColorTypeSimple.Dance]: StatusSimple.DanceUp,
+        [ColorTypeSimple.Visual]: StatusSimple.VisualUp,
+      }[colorTextToEnum(data.color)]
       return {
         type: 'giveStatus',
         giveStatus,
-        level: Number(s),
-        on,
+        level: Number(data.s),
+        ...parseWho(data),
       }
     },
   },
   {
     spec: ['赋予', ['on', __WHO], ['s', [/(\d+)层/]], ['status', __STATUSES]],
-    body: ({ s, status, on }) => ({
+    body: (data) => ({
       type: 'giveStatus',
-      giveStatus: Statuses[status as keyof typeof Statuses],
-      on,
-      level: Number(s),
+      giveStatus: Statuses[data.status as keyof typeof Statuses],
+      level: Number(data.s),
+      ...parseWho(data),
     }),
   },
   {
     spec: [['on', __WHO], '强化状态延长', ['s', [/(\d+)/]]],
-    body: ({ s, on }) => ({
+    body: (data) => ({
       type: 'giveStatus',
       giveStatus: StatusSimple.EnhanceExtend,
-      on,
-      level: Number(s),
+      level: Number(data.s),
+      ...parseWho(data),
     }),
   },
   {
@@ -419,10 +505,10 @@ export const Matchers: Matcher[] = [
   },
   {
     spec: [/赋予|使/, ['on', __WHO], ['status', __STATUSES]],
-    body: ({ status, on }) => ({
+    body: (data) => ({
       type: 'giveStatus',
-      giveStatus: Statuses[status as keyof typeof Statuses],
-      on,
+      giveStatus: Statuses[data.status as keyof typeof Statuses],
+      ...parseWho(data),
     }),
   },
   {
