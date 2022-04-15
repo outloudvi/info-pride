@@ -7,6 +7,8 @@ import ReplaceTable from './parserReplaceTable.js'
 import type { Matcher, MatchQuery } from './types.js'
 
 import { writeFileSync } from 'node:fs'
+import { fileURLToPath } from 'node:url'
+import { dirname, join } from 'node:path'
 
 type keyIdols = keyof typeof Cards
 let err = 0
@@ -129,6 +131,7 @@ function parseSkill(__s: string) {
 }
 
 function main() {
+  const currDir = fileURLToPath(dirname(import.meta.url))
   // Don't get the type serious here; build the complete type in the schema
   const obj: Partial<Record<keyIdols, Record<string, Record<string, any>>>> = {}
   for (const idol of Object.keys(Cards) as keyIdols[]) {
@@ -142,7 +145,7 @@ function main() {
       ;(obj[idol] || (obj[idol] = {}))[cardSlug] = ret
     }
   }
-  writeFileSync('cardSkills.json', JSON.stringify(obj))
+  writeFileSync(join(currDir, 'cardSkills.json'), JSON.stringify(obj))
 }
 
 main()

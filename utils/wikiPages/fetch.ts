@@ -147,7 +147,7 @@ async function main() {
       const pageJson = await getPageJson(idolName, SitePref)
       idolInfo[idolName] = parseIdol(pageJson)
     }
-    writeFileSync(IdolsJson, JSON.stringify(idolInfo))
+    writeFileSync(join(currDir, IdolsJson), JSON.stringify(idolInfo))
   } catch (e) {
     console.error(`Failed to update idol data: ${e}`)
   }
@@ -173,7 +173,7 @@ async function main() {
         }
         ;(cardInfo[idolName] || (cardInfo[idolName] = {}))[cardId] = cardMeta
       }
-      writeFileSync(CardsJson, JSON.stringify(cardInfo))
+      writeFileSync(join(currDir, CardsJson), JSON.stringify(cardInfo))
       await sleep(3000)
     }
   } catch (e) {
@@ -194,7 +194,7 @@ async function main() {
       const songMeta = parseSong(pageJson)
       songInfo[songName] = songMeta
     }
-    writeFileSync(SongsJson, JSON.stringify(songInfo))
+    writeFileSync(join(currDir, SongsJson), JSON.stringify(songInfo))
   } catch (e) {
     console.error(`Failed to update song data: ${e}`)
   }
