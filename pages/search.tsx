@@ -15,6 +15,9 @@ import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
 import FormGroup from '@mui/material/FormGroup'
 import FormControlLabel from '@mui/material/FormControlLabel'
+import Tooltip from '@mui/material/Tooltip'
+import IconButton from '@mui/material/IconButton'
+import HelpIcon from '@mui/icons-material/Help'
 
 import Layout from '../components/Layout'
 import CardDesc from '../components/CardDesc'
@@ -121,7 +124,7 @@ const SkillesPage = () => {
   const [fColor, setfColor] = useState<ColorTypeSimple[]>([])
   const [fCtMin, setfCtMin] = useState(0)
   const [fCtMax, setfCtMax] = useState(0)
-  const [fShowSp, setfShowSp] = useState(true)
+  const [fShowSp, setfShowSp] = useState(false)
   const [fType, setfType] = useState<string[]>([])
   const [fSubtype, setfSubtype] = useState<string[]>([])
 
@@ -304,16 +307,20 @@ const SkillesPage = () => {
             <FormControlLabel
               control={
                 <Checkbox
-                  defaultChecked
                   value={fShowSp}
                   onChange={(e) => {
                     setfShowSp(e.target.checked)
                   }}
                 />
               }
-              label="筛选时不要跳过 SP 技能"
+              label="按 CT 值筛选时不要跳过 SP 技能"
             />
           </FormGroup>
+          <Tooltip title="选择此选项时，即使卡片的其它技能均不满足 CT 筛选要求，有 SP 技能的卡片也会被显示。如果同时附加了其它筛选条件，您可能希望勾选此项。">
+            <IconButton>
+              <HelpIcon fontSize="small" />
+            </IconButton>
+          </Tooltip>
         </div>
         <div className="flex items-center mb-2">
           <FilterSelect
