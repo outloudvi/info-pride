@@ -11,26 +11,29 @@ import Paths from '../utils/paths'
 import { toVideoLink } from './ExternalVideo'
 
 const Status = ({
+  cardType,
   vocTop,
   danTop,
   visTop,
   staTop,
-}: Pick<Card, 'vocTop' | 'danTop' | 'visTop' | 'staTop'>) => (
-  <Box>
-    <span className="mr-3" style={{ color: Colors.Vocal }}>
-      {vocTop}
-    </span>
-    <span className="mr-3" style={{ color: Colors.Dance }}>
-      {danTop}
-    </span>
-    <span className="mr-3" style={{ color: Colors.Visual }}>
-      {visTop}
-    </span>
-    <span className="mr-3" style={{ color: Colors.Stamina }}>
-      {staTop}
-    </span>
-  </Box>
-)
+}: Pick<Card, 'cardType' | 'vocTop' | 'danTop' | 'visTop' | 'staTop'>) => {
+  return (
+    <Box>
+      <span className="mr-3" style={{ color: Colors.Vocal }}>
+        {cardType === '歌唱' ? <b>{vocTop}</b> : <span>{vocTop}</span>}
+      </span>
+      <span className="mr-3" style={{ color: Colors.Dance }}>
+        {cardType === '舞蹈' ? <b>{danTop}</b> : <span>{danTop}</span>}
+      </span>
+      <span className="mr-3" style={{ color: Colors.Visual }}>
+        {cardType === '表演' ? <b>{visTop}</b> : <span>{visTop}</span>}
+      </span>
+      <span className="mr-3" style={{ color: Colors.Stamina }}>
+        {staTop}
+      </span>
+    </Box>
+  )
+}
 
 const CardStories = ({
   idolName,
@@ -128,7 +131,13 @@ const CardItem = ({
         {type} / {prop} / {rarity}★
       </div>
       <br />
-      <Status vocTop={vocTop} danTop={danTop} visTop={visTop} staTop={staTop} />
+      <Status
+        cardType={prop}
+        vocTop={vocTop}
+        danTop={danTop}
+        visTop={visTop}
+        staTop={staTop}
+      />
       <br />
 
       <CardStories idolName={idolName} cardNumber={cardNumber} />
