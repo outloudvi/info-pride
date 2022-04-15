@@ -10,7 +10,7 @@ import ButtonGroup from '@mui/material/ButtonGroup'
 import Paths from '../utils/paths'
 import { toVideoLink } from './ExternalVideo'
 
-const Status = ({
+export const Props = ({
   cardType,
   vocTop,
   danTop,
@@ -131,7 +131,7 @@ const CardItem = ({
         {type} / {prop} / {rarity}★
       </div>
       <br />
-      <Status
+      <Props
         cardType={prop}
         vocTop={vocTop}
         danTop={danTop}

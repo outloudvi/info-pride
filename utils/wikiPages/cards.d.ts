@@ -32,6 +32,26 @@ export interface CardsFromAnIdol {
   [k: string]: Card;
 }
 export interface Card {
+  ownerName:
+    | "长濑麻奈"
+    | "川咲樱"
+    | "一之濑怜"
+    | "佐伯遥子"
+    | "白石千纱"
+    | "兵藤雫"
+    | "长濑琴乃"
+    | "伊吹渚"
+    | "白石沙季"
+    | "成宫铃"
+    | "早坂芽衣"
+    | "天动瑠依"
+    | "铃村优"
+    | "奥山堇"
+    | "神崎莉央"
+    | "井川葵"
+    | "小美山爱"
+    | "赤崎心";
+  ownerId: number;
   type: "支援" | "辅助" | "得分";
   rarity: number;
   prop: "舞蹈" | "歌唱" | "表演";

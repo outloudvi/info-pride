@@ -29,6 +29,9 @@ export const Idols = {
   kokoro: '赤崎心',
 } as const
 
+export const IdolSlugList = Object.keys(Idols) as IdolSlug[]
+export const IdolNameList = Object.values(Idols) as IdolName[]
+
 export function idolSlugToName(slug: string): IdolName | null {
   // @ts-expect-error ts-7053
   return Idols[slug] ?? null

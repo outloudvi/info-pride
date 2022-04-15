@@ -20,15 +20,14 @@ import CardItem from '../components/CardItem'
 
 import { tryToNumber, updateRoute } from '../rtUtils'
 import type { TheRootSchema } from '../utils/wikiPages/cards'
-import { idolNameToSlug, idolSlugToName } from '../data/idols'
+import { IdolNameList, idolNameToSlug, idolSlugToName } from '../data/idols'
 
 type IdolName = keyof TheRootSchema
 
 const CardPage = () => {
   const router = useRouter()
 
-  const idolList = Object.keys(Cards) as IdolName[]
-  const [idol, setIdol] = useState<IdolName>(idolList[0])
+  const [idol, setIdol] = useState<IdolName>(IdolNameList[0])
   const cardList = Cards[idol]
   const [cardNumber, setCardNumber] = useState(1)
 
@@ -64,7 +63,7 @@ const CardPage = () => {
                   setIdol(i.target.value as IdolName)
                 }}
               >
-                {idolList.map((item, key) => (
+                {IdolNameList.map((item, key) => (
                   <MenuItem key={key} value={item}>
                     {item}
                   </MenuItem>
