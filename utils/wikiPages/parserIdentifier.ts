@@ -10,6 +10,9 @@ import {
   TargetPersonSimple,
 } from './types.js'
 
+const ANY_NUM_WITHOUT_PERC = /(\d+)(?![\d％%])/
+const ANY_NUM_WITH_PERC = /(\d+)[％%]/
+
 function colorTextToEnum(color: string) {
   switch (color) {
     case '红':
@@ -349,30 +352,30 @@ export const Matchers: Matcher[] = [
   {
     spec: [['prob', [/(\d+)%/]], '概率', ['s', [/(\d+)%/]], '得分'],
     body: ({ prob, s }) => ({
-      type: 'scoreMultiplier',
-      scoreMultiplyPerc: Number(s),
+      type: 'scoreMultiply',
+      scoreMultiply: Number(s),
       probabilityPerc: Number(prob),
     }),
   },
   {
     spec: [['s', [/(\d+)[％%]/]], /得分|分数/, '取得'],
     body: ({ s }) => ({
-      type: 'scoreMultiplier',
-      scoreMultiplyPerc: Number(s),
+      type: 'scoreMultiply',
+      scoreMultiply: Number(s),
     }),
   },
   {
     spec: ['取得', /得分|分数/, ['s', [/(\d+)[％%]/]]],
     body: ({ s }) => ({
-      type: 'scoreMultiplier',
-      scoreMultiplyPerc: Number(s),
+      type: 'scoreMultiply',
+      scoreMultiply: Number(s),
     }),
   },
   {
     spec: [/取得|赋予/, ['s', [/(\d+)[％%]/]], /得分|分数/],
     body: ({ s }) => ({
-      type: 'scoreMultiplier',
-      scoreMultiplyPerc: Number(s),
+      type: 'scoreMultiply',
+      scoreMultiply: Number(s),
     }),
   },
   {
@@ -406,18 +409,38 @@ export const Matchers: Matcher[] = [
     }),
   },
   {
-    spec: [['on', __WHO], '回复', ['s', [/(\d+)/]], '体力'],
+    spec: [['on', __WHO], '回复', ['s', [ANY_NUM_WITH_PERC]], '最大体力'],
     body: (data) => ({
       type: 'stamRecovery',
-      stamRecovery: Number(data.s),
+      stamRecovery: 'percent',
+      value: Number(data.s),
       ...parseWho(data),
     }),
   },
   {
-    spec: [['on', __WHO], '回复', '体力', ['s', [/(\d+)/]]],
+    spec: [['on', __WHO], '回复', '最大体力', ['s', [ANY_NUM_WITH_PERC]]],
     body: (data) => ({
       type: 'stamRecovery',
-      stamRecovery: Number(data.s),
+      stamRecovery: 'percent',
+      value: Number(data.s),
+      ...parseWho(data),
+    }),
+  },
+  {
+    spec: [['on', __WHO], '回复', ['s', [ANY_NUM_WITHOUT_PERC]], '体力'],
+    body: (data) => ({
+      type: 'stamRecovery',
+      stamRecovery: 'value',
+      value: Number(data.s),
+      ...parseWho(data),
+    }),
+  },
+  {
+    spec: [['on', __WHO], '回复', '体力', ['s', [ANY_NUM_WITHOUT_PERC]]],
+    body: (data) => ({
+      type: 'stamRecovery',
+      stamRecovery: 'value',
+      value: Number(data.s),
       ...parseWho(data),
     }),
   },
@@ -439,7 +462,8 @@ export const Matchers: Matcher[] = [
     spec: [['on', __WHO], '体力回复', ['s', [/(\d+)/]]],
     body: (data) => ({
       type: 'stamRecovery',
-      stamRecovery: Number(data.s),
+      stamRecovery: 'value',
+      value: Number(data.s),
       ...parseWho(data),
     }),
   },
@@ -530,6 +554,7 @@ export const Matchers: Matcher[] = [
     spec: [['l', [/^\[(\d+)拍\]$/]]],
     body: ({ l }) => ({
       type: 'limit',
+      limit: 'length',
       length: Number(l),
     }),
   },

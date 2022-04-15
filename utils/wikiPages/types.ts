@@ -166,9 +166,9 @@ type Condition =
   | CondOnPosition
   | CondOnMode
 
-type EffectScoreMultiplier = {
-  type: 'scoreMultiplier'
-  scoreMultiplyPerc: number
+type EffectScoreMultiply = {
+  type: 'scoreMultiply'
+  scoreMultiply: number
   probabilityPerc?: number
 }
 
@@ -179,7 +179,8 @@ type EffectCtDecrsase = {
 
 type EffectStamRecovery = {
   type: 'stamRecovery'
-  stamRecovery: number
+  stamRecovery: 'percent' | 'value'
+  value: number
 } & Targeted
 
 type EffectGiveStatus = {
@@ -205,7 +206,7 @@ type IdentEffect = EffectUs | EffectRival
 type EffectRival = EffectRivalGiveStatus
 
 type EffectUs =
-  | EffectScoreMultiplier
+  | EffectScoreMultiply
   | EffectCtDecrsase
   | EffectStamRecovery
   | EffectGiveStatus
@@ -233,6 +234,7 @@ type IdentLimitOnce = {
 
 type IdentLimitLength = {
   type: 'limit'
+  limit: 'length'
   length: number
 }
 
