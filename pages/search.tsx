@@ -2,22 +2,23 @@ import { useState, useMemo } from 'react'
 import type { Dispatch, SetStateAction } from 'react'
 
 import Typography from '@mui/material/Typography'
-import { Cards, CardSkillsData } from '../utils/dataset'
-import { ColorTypeSimple } from '../utils/wikiPages/types'
-import type { Card } from '../utils/wikiPages/cards'
 import Checkbox from '@mui/material/Checkbox'
 import Box from '@mui/material/Box'
-
-import Layout from '../components/Layout'
-import CardDesc from '../components/CardDesc'
 import FormControl from '@mui/material/FormControl'
 import InputLabel from '@mui/material/InputLabel'
 import Select from '@mui/material/Select'
-import { IdolNameList, IdolName } from '../data/idols'
 import OutlinedInput from '@mui/material/OutlinedInput'
 import MenuItem from '@mui/material/MenuItem'
 import ListItemText from '@mui/material/ListItemText'
 import TextField from '@mui/material/TextField'
+
+import Layout from '../components/Layout'
+import CardDesc from '../components/CardDesc'
+
+import { Cards, CardSkillsData } from '../utils/dataset'
+import { ColorTypeSimple, IdentCT } from '../utils/wikiPages/types'
+import type { Card } from '../utils/wikiPages/cards'
+import { IdolNameList, IdolName } from '../data/idols'
 
 const FilterSelect = <T extends string>({
   label,
@@ -86,8 +87,8 @@ const SkillesPage = () => {
       const mappedGroup = fColor.map(
         (x) =>
           ({
-            [ColorTypeSimple.Vocal]: '舞蹈',
-            [ColorTypeSimple.Dance]: '歌唱',
+            [ColorTypeSimple.Vocal]: '歌唱',
+            [ColorTypeSimple.Dance]: '舞蹈',
             [ColorTypeSimple.Visual]: '表演',
           }[x])
       )
@@ -95,52 +96,28 @@ const SkillesPage = () => {
     }
 
     // Skill-related part
-
     if (fCtMin > 0 || fCtMax > 0) {
+      const ctMin = fCtMin > 0 ? fCtMin : 0
+      const ctMax = fCtMax > 0 ? fCtMax : Infinity
+
       ret = ret.filter((x) => {
         const skillList = CardSkillsData[x.ownerName][x.ownerId]
         const skills = [skillList.ski1, skillList.ski2, skillList.ski3]
-        if (fCtMin > 0) {
-          if (
-            skills.filter(
-              (skill) =>
-                skill.filter(
-                  (ident) => ident.type === 'ct' && ident.ct < fCtMin
-                ).length > 0
-            ).length > 0
-          ) {
-            return false
-          }
-        }
-        if (fCtMax > 0) {
-          if (
-            skills.filter(
-              (skill) =>
-                skill.filter(
-                  (ident) => ident.type === 'ct' && ident.ct > fCtMax
-                ).length > 0
-            ).length > 0
-          ) {
-            return false
-          }
-        }
+        let showThisCard = false
 
-        // Filter hightlight skills
         const cardKey = `${x.ownerName}/${x.ownerId}`
         highlights[cardKey] = []
         for (const [key, idents] of skills.entries()) {
-          if (
-            idents.filter(
-              (x) =>
-                x.type === 'ct' &&
-                (fCtMin <= 0 || x.ct >= fCtMin) &&
-                (fCtMax <= 0 || x.ct <= fCtMax)
-            ).length > 0
-          ) {
-            highlights[cardKey].push(key)
+          const ctEntry = idents.filter((x) => x.type === 'ct') as IdentCT[]
+          if (ctEntry.length > 0) {
+            const ct = ctEntry[0].ct
+            if (ct >= ctMin && ct <= ctMax) {
+              showThisCard = true
+              highlights[cardKey].push(key)
+            }
           }
         }
-        return true
+        return showThisCard
       })
     }
 

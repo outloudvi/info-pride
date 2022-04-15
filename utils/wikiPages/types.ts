@@ -221,7 +221,7 @@ type IdentStaminaCost = {
   staminaCost: number
 }
 
-type IdentCT = {
+export type IdentCT = {
   type: 'ct'
   ct: number
 }
