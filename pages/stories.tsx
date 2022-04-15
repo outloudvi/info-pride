@@ -40,8 +40,6 @@ const Stories = () => {
     }
   }, [router])
 
-  console.log(series, season, chapter)
-
   const completion = useMemo(() => {
     const ret: any = {}
     for (let i = 0; i < Series.length; i++) {
