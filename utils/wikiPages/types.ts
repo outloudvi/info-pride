@@ -24,10 +24,15 @@ export enum TargetPersonSimple {
   HighestNOfProp = 'HighestNOfProp',
   SelectedN = 'SelectedN',
   ScorerN = 'ScorerN',
+  LeastStaminaN = 'LeastStaminaN',
 }
 
 type Targeted = {
   on: TargetPerson
+}
+
+type TargetedRival = {
+  on: 'sameTrack' | 'centerTrack'
 }
 
 type Status = StatusSimple
@@ -36,6 +41,10 @@ export enum StatusSimple {
   Invisible = 'Invisible',
   Focused = 'Focused',
   BadCond = 'BadCond',
+  NegRecover = 'NegRecover',
+  NoNeg = 'NoNegagive',
+  EnhanceExtend = 'EnhanceExtEnhanceExtend',
+  EnhanceStrengthen = 'EnhanceStrengthen',
   HighSpirits = 'HighSpirits',
   BeatScoring = 'BeatScoring',
   ScoringUp = 'ScoringUp',
@@ -54,6 +63,20 @@ export enum StatusSimple {
   DanceDn = 'DanceDn',
   VisualDn = 'VisualDn',
 }
+
+export enum StatusLinkSimple {
+  Critical = 'Critical',
+  EnhancedStatus = 'EnhancedStatus',
+  CostStamina = 'CostStamina',
+  SkillExecCount = 'SkillExecCount',
+
+  MostStamina = 'MostStamina',
+  MostCoreFanRate = 'MostCoreFanRate',
+  LeastStamina = 'LeastStamina',
+  LeastAudCount = 'LeastAudCount',
+}
+
+type StatusLink = StatusSimple | StatusLinkSimple
 
 type Property = PropertySimple
 
@@ -107,6 +130,14 @@ type CondOnTrack = {
   trackType: TrackType
 } & Targeted
 
+type CondOnMode = {
+  isBattle: true
+}
+
+type CondOnPosition = {
+  position: 'center'
+}
+
 type Condition =
   | CondEveryBeat
   | CondBefore
@@ -114,6 +145,8 @@ type Condition =
   | CondOnProp
   | CondOnEvent
   | CondOnTrack
+  | CondOnPosition
+  | CondOnMode
 
 type EffectScoreMultiplier = {
   type: 'scoreMultiplier'
@@ -134,14 +167,31 @@ type EffectStamRecovery = {
 type EffectGiveStatus = {
   type: 'giveStatus'
   giveStatus: Status
+  linkedTo?: StatusLink
   level?: number
 } & Partial<Targeted>
 
-type IdentEffect =
+type EffectMove = {
+  type: 'move'
+  move: 'beforeSP'
+}
+
+type EffectRivalGiveStatus = {
+  type: 'giveRivalStatus'
+  giveStatus: Status
+  level?: number
+} & Partial<TargetedRival>
+
+type IdentEffect = EffectUs | EffectRival
+
+type EffectRival = EffectRivalGiveStatus
+
+type EffectUs =
   | EffectScoreMultiplier
   | EffectCtDecrsase
   | EffectStamRecovery
   | EffectGiveStatus
+  | EffectMove
 
 type IdentCondition = {
   type: 'when'

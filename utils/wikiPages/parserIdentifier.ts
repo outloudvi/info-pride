@@ -1,16 +1,26 @@
-import { Matcher, PropertySimple, StatusSimple } from './types.js'
+import {
+  Matcher,
+  PropertySimple,
+  StatusLinkSimple,
+  StatusSimple,
+} from './types.js'
 
 const __RGB = ['红', '黄', '蓝']
 const __WHO = [
-  '自身',
   '自己',
   '相邻角色',
   /(?<on>中心(位置)?角色)/,
   '全员',
-  '谁',
-  /(?<color1>[红黄蓝])属性最?高的?(?<num>\d+)人/,
+  /(?<color1>[红黄蓝])属性值?最?高的?(?<num>\d+)人/,
+  /(?<color2>[红黄蓝])(属性)?(角色)?(?<num>\d+)人/,
+  /(?<color3>[红黄蓝])轨道角色(?<num>\d+)人/,
   /对象(?<num>\d+)人/,
-  /得分角色(?<num>\d+)人/,
+  /得分(角色|手)(?<num>\d+)人/,
+  /体力最低的(?<num>\d+)人/,
+  '谁',
+  '对象',
+  '其',
+  '该角色',
 ]
 
 const Props = {
@@ -19,15 +29,12 @@ const Props = {
 
 const __PROPS = Object.keys(Props)
 
-const __PROP_STATS = ['剩余体力多', '粉丝核心率多', '剩余体力少', '观众数量少']
-
-const Statuses = {
+const StatusesCommons = {
   隐身: StatusSimple.Invisible,
   集目: StatusSimple.Focused,
   不调: StatusSimple.BadCond,
   气氛高昂: StatusSimple.HighSpirits,
   节拍得分: StatusSimple.BeatScoring,
-  得分提升: StatusSimple.ScoringUp,
   暴击系数提升: StatusSimple.CritCoefUp,
   暴击率提升: StatusSimple.CritRateUp,
   体力消耗提升: StatusSimple.StamDraiUp,
@@ -35,14 +42,39 @@ const Statuses = {
   技能成功率提升: StatusSimple.SkilSuccUp,
   A技能得分提升: StatusSimple.AScorUp,
   红属性提升: StatusSimple.VocalUp,
+  红属性降低: StatusSimple.VocalDn,
   蓝属性提升: StatusSimple.DanceUp,
+  蓝属性降低: StatusSimple.DanceDn,
   黄属性提升: StatusSimple.VisualUp,
   黄属性降低: StatusSimple.VisualDn,
   连击得分提升: StatusSimple.CombScorUp,
   连击接续: StatusSimple.NoBreak,
+  强化状态延长: StatusSimple.EnhanceExtend,
+  强化状态增强: StatusSimple.EnhanceStrengthen,
+  低下状态回复: StatusSimple.NegRecover,
+  低下状态防止: StatusSimple.NoNeg,
 } as const
 
+const Statuses = {
+  ...StatusesCommons,
+  得分提升: StatusSimple.ScoringUp,
+}
+
 const __STATUSES = Object.keys(Statuses)
+
+const StatusLinks = {
+  暴击系数层数: StatusLinkSimple.Critical,
+  强化状态种类: StatusLinkSimple.EnhancedStatus,
+  消耗体力: StatusLinkSimple.CostStamina,
+  技能发动数: StatusLinkSimple.SkillExecCount,
+  剩余体力多: StatusLinkSimple.MostStamina,
+  粉丝核心率多: StatusLinkSimple.MostCoreFanRate,
+  剩余体力少: StatusLinkSimple.LeastStamina,
+  观众数量少: StatusLinkSimple.LeastAudCount,
+  ...StatusesCommons,
+}
+
+const __STATUS_LINKS = Object.keys(StatusLinks)
 
 export const Matchers: Matcher[] = [
   // Condition
@@ -88,11 +120,33 @@ export const Matchers: Matcher[] = [
     }),
   },
   {
+    spec: [/^当自己处于中心位置时$/],
+    body: () => ({
+      type: 'when',
+      when: {
+        position: 'center',
+      },
+    }),
+  },
+  {
     spec: ['当', ['on', __WHO], ['prop', ['体力']], ['s', [/(\d+)/]], '以上时'],
     body: ({ s, on, prop }) => ({
       type: 'when',
       when: {
         on,
+        prop: PropertySimple.Stamina,
+        value: {
+          $gt: Number(s),
+        },
+      },
+    }),
+  },
+  {
+    spec: ['当', ['prop', ['体力']], ['s', [/(\d+)/]], '以上时'],
+    body: ({ s, on, prop }) => ({
+      type: 'when',
+      when: {
+        on: 'self',
         prop: PropertySimple.Stamina,
         value: {
           $gt: Number(s),
@@ -160,7 +214,19 @@ export const Matchers: Matcher[] = [
     }),
   },
   {
-    spec: ['连击', /以上|高于/, ['s', [/(\d+)/]]],
+    spec: ['连击', '高于', ['s', [/(\d+)/]]],
+    body: ({ s }) => ({
+      type: 'when',
+      when: {
+        event: {
+          type: 'combo',
+          combo: { $gt: Number(s) },
+        },
+      },
+    }),
+  },
+  {
+    spec: ['连击', ['s', [/(\d+)/]], '以上'],
     body: ({ s }) => ({
       type: 'when',
       when: {
@@ -180,6 +246,15 @@ export const Matchers: Matcher[] = [
           type: 'combo',
           combo: { $gt: Number(s) },
         },
+      },
+    }),
+  },
+  {
+    spec: [/^对决演出(模式下|时)$/],
+    body: () => ({
+      type: 'when',
+      when: {
+        isBattle: true,
       },
     }),
   },
@@ -207,7 +282,7 @@ export const Matchers: Matcher[] = [
     }),
   },
   {
-    spec: ['取得', ['s', [/(\d+)[％%]/]], /得分|分数/],
+    spec: [/取得|赋予/, ['s', [/(\d+)[％%]/]], /得分|分数/],
     body: ({ s }) => ({
       type: 'scoreMultiplier',
       scoreMultiplyPerc: Number(s),
@@ -236,6 +311,44 @@ export const Matchers: Matcher[] = [
     }),
   },
   {
+    spec: [['on', __WHO], '减少', ['s', [/(\d+)/]], 'CT'],
+    body: ({ s, on }) => ({
+      type: 'ctDecrease',
+      ctDecrease: Number(s),
+      on,
+    }),
+  },
+  {
+    spec: [['on', __WHO], '回复', ['s', [/(\d+)/]], '体力'],
+    body: ({ s, on }) => ({
+      type: 'stamRecovery',
+      stamRecovery: Number(s),
+      on,
+    }),
+  },
+  {
+    spec: [['on', __WHO], '回复', '体力', ['s', [/(\d+)/]]],
+    body: ({ s, on }) => ({
+      type: 'stamRecovery',
+      stamRecovery: Number(s),
+      on,
+    }),
+  },
+  {
+    spec: [/所有强化效果移动到sp技能之前/],
+    body: () => ({
+      type: 'move',
+      move: 'beforeSP',
+    }),
+  },
+  {
+    spec: ['全员', '低下状态', '回复'],
+    body: () => ({
+      type: 'giveStatus',
+      giveStatus: StatusSimple.NoNeg,
+    }),
+  },
+  {
     spec: [['on', __WHO], '体力回复', ['s', [/(\d+)/]]],
     body: ({ s, on }) => ({
       type: 'stamRecovery',
@@ -249,6 +362,16 @@ export const Matchers: Matcher[] = [
       type: 'ct',
       ct: Number(s),
     }),
+  },
+  {
+    spec: [['s', __STATUS_LINKS], /得分提升$/],
+    body: ({ s }) => {
+      return {
+        type: 'giveStatus',
+        giveStatus: StatusSimple.ScoringUp,
+        linkedTo: StatusLinks[s as keyof typeof StatusLinks],
+      }
+    },
   },
   {
     spec: ['赋予', ['on', __WHO], ['s', [/(\d+)层/]], ['color', __RGB], '提升'],
@@ -277,18 +400,29 @@ export const Matchers: Matcher[] = [
     }),
   },
   {
-    spec: ['赋予', ['on', __WHO], ['status', __STATUSES]],
+    spec: [['on', __WHO], '强化状态延长', ['s', [/(\d+)/]]],
+    body: ({ s, on }) => ({
+      type: 'giveStatus',
+      giveStatus: StatusSimple.EnhanceExtend,
+      on,
+      level: Number(s),
+    }),
+  },
+  {
+    spec: ['赋予同轨的对手', ['s', [/(\d+)层/]], ['status', __STATUSES]],
+    body: ({ s, status }) => ({
+      type: 'giveRivalStatus',
+      giveStatus: Statuses[status as keyof typeof Statuses],
+      on: 'sameTrack',
+      level: Number(s),
+    }),
+  },
+  {
+    spec: [/赋予|使/, ['on', __WHO], ['status', __STATUSES]],
     body: ({ status, on }) => ({
       type: 'giveStatus',
       giveStatus: Statuses[status as keyof typeof Statuses],
       on,
-    }),
-  },
-  {
-    spec: [['prop', __PROP_STATS], '得分提升'],
-    body: ({ prop }) => ({
-      type: 'giveStatus',
-      giveStatus: StatusSimple.ScoringUp,
     }),
   },
   {

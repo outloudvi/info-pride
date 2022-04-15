@@ -92,11 +92,14 @@ function applyMatcher(
 
 function parseSkill(__s: string) {
   let _s = __s
-  for (const [fr, to] of Object.entries(ReplaceTable)) {
-    _s = _s.replace(new RegExp(fr, 'g'), to)
+  for (const [_, [fr, to]] of ReplaceTable.entries()) {
+    _s = _s.replace(isRegExp(fr) ? fr : new RegExp(fr, 'g'), to)
   }
   const s = _s
     .replace(/\[(\d+)拍\]/g, ' [$1拍]')
+    .replaceAll('[对决演出]', '对决演出时 ')
+    .replace(/在?对决演出时，?/g, '对决演出时 ')
+    // it should be at the end
     .replace(/[\n 、·]+/g, ' ')
     .split(' ')
   total += s.length
@@ -144,19 +147,3 @@ function main() {
 
 main()
 console.log(`Total ${total}, skipped ${err}`)
-
-// console.log(
-//   applyMatcher(
-//     '谁的A技能发动之前',
-//     {
-//       spec: [/谁的?/, ['typ', [/(sp)/i, /(a)/i]], '发动前'],
-//       body: ({ typ }) => ({
-//         type: 'when',
-//         when: {
-//           before: typ.toUpperCase(),
-//         },
-//       }),
-//     },
-//     true
-//   )
-// )
