@@ -60,8 +60,8 @@ export enum StatusSimple {
   Focused = 'Focused',
   BadCond = 'BadCond',
   NegRecover = 'NegRecover',
-  NoNeg = 'NoNegagive',
-  EnhanceExtend = 'EnhanceExtEnhanceExtend',
+  NoNegative = 'NoNegative',
+  EnhanceExtend = 'EnhanceExtend',
   EnhanceStrengthen = 'EnhanceStrengthen',
   HighSpirits = 'HighSpirits',
   BeatScoring = 'BeatScoring',
@@ -196,7 +196,7 @@ type EffectMove = {
 
 type EffectRivalGiveStatus = {
   type: 'giveRivalStatus'
-  giveStatus: Status
+  giveRivalStatus: Status
   level?: number
 } & Partial<TargetedRival>
 

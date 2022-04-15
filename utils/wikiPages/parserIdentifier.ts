@@ -498,7 +498,7 @@ export const Matchers: Matcher[] = [
     spec: ['赋予同轨的对手', ['s', [/(\d+)层/]], ['status', __STATUSES]],
     body: ({ s, status }) => ({
       type: 'giveRivalStatus',
-      giveStatus: Statuses[status as keyof typeof Statuses],
+      giveRivalStatus: Statuses[status as keyof typeof Statuses],
       on: 'sameTrack',
       level: Number(s),
     }),
