@@ -139,7 +139,7 @@ const StatusesCommons = {
   强化状态延长: StatusSimple.EnhanceExtend,
   强化状态增强: StatusSimple.EnhanceStrengthen,
   低下状态回复: StatusSimple.NegRecover,
-  低下状态防止: StatusSimple.NoNeg,
+  低下状态防止: StatusSimple.NoNegative,
 } as const
 
 const Statuses = {
@@ -432,7 +432,7 @@ export const Matchers: Matcher[] = [
     spec: ['全员', '低下状态', '回复'],
     body: () => ({
       type: 'giveStatus',
-      giveStatus: StatusSimple.NoNeg,
+      giveStatus: StatusSimple.NoNegative,
     }),
   },
   {
