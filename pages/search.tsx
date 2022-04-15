@@ -346,6 +346,7 @@ const SkillesPage = () => {
             multiple={false}
             listNamemap={{
               undefined: '其它',
+              once: '只发动一次',
               Invisible: '隐身',
               Focused: '集目',
               BadCond: '不调',
