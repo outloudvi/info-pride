@@ -71,7 +71,7 @@ const FilterSelect = <T extends string>({
           const value = e.target.value
           setState(
             typeof value === 'string'
-              ? (value.split(',') as unknown as T[])
+              ? (value.split(',').filter((x) => x !== '') as unknown as T[])
               : value
           )
         }}
@@ -178,7 +178,7 @@ const SkillesPage = () => {
       highlights = mergeHilights(highlights, localHighlights)
     }
 
-    if (fType.filter((x) => x).length > 0) {
+    if (fType.length > 0) {
       const currFType = fType[0]
       const localHighlights: Record<string, number[]> = {}
       ret = ret.filter((x) => {
@@ -198,7 +198,7 @@ const SkillesPage = () => {
       highlights = mergeHilights(highlights, localHighlights)
     }
 
-    if (fSubtype.filter((x) => x).length > 0) {
+    if (fSubtype.length > 0) {
       const currFType = fType[0]
       const currFSubtype = fSubtype[0]
       const localHighlights: Record<string, number[]> = {}
@@ -247,7 +247,7 @@ const SkillesPage = () => {
 
   return (
     <Layout>
-      <Typography variant="h2">搜索</Typography>
+      <Typography variant="h2">卡片搜索</Typography>
       <Box className="mt-2 rounded-md border-solid border-6 border-sky-500 p-2">
         <div className="flex items-center mb-2">
           <TextField
@@ -311,7 +311,7 @@ const SkillesPage = () => {
                   }}
                 />
               }
-              label="除了 CT 值范围外，也包括 SP 技能"
+              label="筛选时不要跳过 SP 技能"
             />
           </FormGroup>
         </div>
@@ -320,7 +320,10 @@ const SkillesPage = () => {
             className="mr-2"
             label="技能类别"
             state={fType}
-            setState={setfType}
+            setState={(v) => {
+              setfType(v)
+              setfSubtype([])
+            }}
             list={SkillTypeList}
             width={300}
             multiple={false}
@@ -397,6 +400,8 @@ const SkillesPage = () => {
       </Box>
       <div className="mt-2">
         从 {CardsFlattened.length} 张卡片中找到 {selectedCards.length} 个结果。
+        {Object.keys(highlightCards).length > 0 &&
+          '被筛选的技能已经以高亮背景标记。'}
       </div>
       <Box className="mt-2">
         {selectedCards.map((item, key) => (
