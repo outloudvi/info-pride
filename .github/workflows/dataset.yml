@@ -20,6 +20,7 @@ jobs:
       - name: Build & Validate
         run: |
           npx pnpm install
+          node to-esm.js
           bash utils/buildAndValidate.sh
 
       - name: Commit files
