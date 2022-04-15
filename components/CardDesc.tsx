@@ -9,12 +9,14 @@ const SkillDesc = ({
   name,
   desc,
   type,
+  highlight,
 }: {
   name: string
   desc: string
   type: 'A' | 'SP' | 'P'
+  highlight: boolean
 }) => (
-  <div className="basis-0 grow">
+  <div className={'basis-0 grow' + (highlight ? ' bg-yellow-200' : '')}>
     <span>
       {name} / {type}
     </span>{' '}
@@ -27,7 +29,13 @@ const SkillDesc = ({
   </div>
 )
 
-const CardItem = ({ card }: { card: Card }) => {
+const CardDesc = ({
+  card,
+  highlightSkills,
+}: {
+  card: Card
+  highlightSkills: number[]
+}) => {
   const {
     type,
     rarity,
@@ -75,17 +83,32 @@ const CardItem = ({ card }: { card: Card }) => {
       </div>
       <Grid container spacing={2}>
         <Grid item xs={12} lg={4}>
-          <SkillDesc name={ski1NameCn} type={ski1Typ} desc={ski1DescCn} />
+          <SkillDesc
+            name={ski1NameCn}
+            type={ski1Typ}
+            desc={ski1DescCn}
+            highlight={highlightSkills.includes(0)}
+          />
         </Grid>
         <Grid item xs={12} lg={4}>
-          <SkillDesc name={ski2NameCn} type={ski2Typ} desc={ski2DescCn} />
+          <SkillDesc
+            name={ski2NameCn}
+            type={ski2Typ}
+            desc={ski2DescCn}
+            highlight={highlightSkills.includes(1)}
+          />
         </Grid>
         <Grid item xs={12} lg={4}>
-          <SkillDesc name={ski3NameCn} type={ski3Typ} desc={ski3DescCn} />
+          <SkillDesc
+            name={ski3NameCn}
+            type={ski3Typ}
+            desc={ski3DescCn}
+            highlight={highlightSkills.includes(2)}
+          />
         </Grid>
       </Grid>
     </div>
   )
 }
 
-export default CardItem
+export default CardDesc

@@ -73,7 +73,8 @@ const SkillesPage = () => {
   const [fCtMin, setfCtMin] = useState(0)
   const [fCtMax, setfCtMax] = useState(-1)
 
-  const selectedCards = useMemo(() => {
+  const [selectedCards, highlightCards] = useMemo(() => {
+    const highlights: Record<string, number[]> = {}
     let ret = CardsFlattened
     if (fKeyword !== '') {
       ret = ret.filter((x) => JSON.stringify(x).includes(fKeyword))
@@ -95,101 +96,124 @@ const SkillesPage = () => {
 
     // Skill-related part
 
-    ret = ret.filter((x) => {
-      const skillList = CardSkillsData[x.ownerName][x.ownerId]
-      const skills = [skillList.ski1, skillList.ski2, skillList.ski3]
-      if (fCtMin > 0) {
-        if (
-          skills.filter(
-            (x) => x.filter((y) => y.type === 'ct' && y.ct < fCtMin).length > 0
-          ).length > 0
-        ) {
-          console.log(
+    if (fCtMin > 0 || fCtMax > 0) {
+      ret = ret.filter((x) => {
+        const skillList = CardSkillsData[x.ownerName][x.ownerId]
+        const skills = [skillList.ski1, skillList.ski2, skillList.ski3]
+        if (fCtMin > 0) {
+          if (
             skills.filter(
-              (x) =>
-                x.filter((y) => y.type === 'ct' && y.ct < fCtMin).length > 0
-            )
-          )
-          return false
+              (skill) =>
+                skill.filter(
+                  (ident) => ident.type === 'ct' && ident.ct < fCtMin
+                ).length > 0
+            ).length > 0
+          ) {
+            return false
+          }
         }
-      }
-      if (fCtMax > 0) {
-        if (
-          skills.filter(
-            (x) => x.filter((y) => y.type === 'ct' && y.ct > fCtMax).length > 0
-          ).length > 0
-        ) {
-          console.log(
+        if (fCtMax > 0) {
+          if (
             skills.filter(
-              (x) =>
-                x.filter((y) => y.type === 'ct' && y.ct < fCtMin).length > 0
-            )
-          )
-          return false
+              (skill) =>
+                skill.filter(
+                  (ident) => ident.type === 'ct' && ident.ct > fCtMax
+                ).length > 0
+            ).length > 0
+          ) {
+            return false
+          }
         }
-      }
-      return true
-    })
 
-    return ret
+        // Filter hightlight skills
+        const cardKey = `${x.ownerName}/${x.ownerId}`
+        highlights[cardKey] = []
+        for (const [key, idents] of skills.entries()) {
+          if (
+            idents.filter(
+              (x) =>
+                x.type === 'ct' &&
+                (fCtMin <= 0 || x.ct >= fCtMin) &&
+                (fCtMax <= 0 || x.ct <= fCtMax)
+            ).length > 0
+          ) {
+            highlights[cardKey].push(key)
+          }
+        }
+        return true
+      })
+    }
+
+    return [ret, highlights]
   }, [fKeyword, fIdol, fColor, fCtMin, fCtMax])
 
   return (
     <Layout>
       <Typography variant="h2">搜索</Typography>
-      <Box className="mt-2 rounded-md border-solid border-6 border-sky-500 p-2 flex items-center">
-        <TextField
-          label="关键词"
-          variant="outlined"
-          value={fKeyword}
-          onChange={(e) => {
-            setfKeyword(e.target.value)
-          }}
-        />
-        <FilterSelect
-          label="角色"
-          state={fIdol}
-          setState={setfIdol}
-          list={IdolNameList}
-          width={300}
-        />
-        <FilterSelect
-          label="类型"
-          state={fColor}
-          setState={setfColor}
-          list={['Vocal', 'Dance', 'Visual'] as ColorTypeSimple[]}
-          width={200}
-        />
-        <TextField
-          label="CT 最小值"
-          variant="outlined"
-          type="number"
-          value={fCtMin}
-          onChange={(e) => {
-            const v = Number(e.target.value)
-            if (Number.isNaN(v)) return
-            setfCtMin(v)
-          }}
-        />
-        <TextField
-          label="CT 最大值"
-          placeholder="无限制"
-          variant="outlined"
-          type="number"
-          value={fCtMax}
-          onChange={(e) => {
-            const v = Number(e.target.value)
-            if (Number.isNaN(v)) return
-            setfCtMax(v)
-          }}
-        />
+      <Box className="mt-2 rounded-md border-solid border-6 border-sky-500 p-2">
+        <div className="flex items-center mb-2">
+          <TextField
+            label="关键词"
+            variant="outlined"
+            value={fKeyword}
+            onChange={(e) => {
+              setfKeyword(e.target.value)
+            }}
+          />
+          <FilterSelect
+            label="角色"
+            state={fIdol}
+            setState={setfIdol}
+            list={IdolNameList}
+            width={300}
+          />
+          <FilterSelect
+            label="类型"
+            state={fColor}
+            setState={setfColor}
+            list={['Vocal', 'Dance', 'Visual'] as ColorTypeSimple[]}
+            width={200}
+          />
+        </div>
+        <div>
+          <TextField
+            className="mr-2"
+            label="CT 最小值"
+            variant="outlined"
+            type="number"
+            value={fCtMin}
+            onChange={(e) => {
+              const v = Number(e.target.value)
+              if (Number.isNaN(v)) return
+              setfCtMin(v)
+            }}
+          />
+          <TextField
+            label="CT 最大值"
+            placeholder="无限制"
+            variant="outlined"
+            type="number"
+            value={fCtMax}
+            onChange={(e) => {
+              const v = Number(e.target.value)
+              if (Number.isNaN(v)) return
+              setfCtMax(v)
+            }}
+          />
+        </div>
       </Box>
       <div className="mt-2">
         从 {CardsFlattened.length} 张卡片中找到 {selectedCards.length} 个结果。
       </div>
       <Box className="mt-2">
         {selectedCards.map((item, key) => (
-          <CardDesc key={key} card={item} />
+          <CardDesc
+            key={key}
+            card={item}
+            highlightSkills={
+              highlightCards[`${item.ownerName}/${item.ownerId}`] ?? []
+            }
+          />
         ))}
       </Box>
     </Layout>
