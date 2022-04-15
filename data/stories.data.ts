@@ -274,6 +274,10 @@ const data: Partial<
         name: '晋级正赛名单公布',
         video: { type: 'bilibili', vid: 'av553118965' },
       },
+      2: {
+        name: '相似的歌声',
+        video: { type: 'bilibili', vid: 'av255681920' },
+      },
     },
   },
   Tokyo: {
