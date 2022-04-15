@@ -92,6 +92,8 @@
         "card": {
             "type": "object",
             "required": [
+                "ownerName",
+                "ownerId",
                 "nameJa",
                 "nameCn",
                 "type",
@@ -118,6 +120,31 @@
                 "ski3DescCn"
             ],
             "properties": {
+                "ownerName": {
+                    "enum": [
+                        "长濑麻奈",
+                        "川咲樱",
+                        "一之濑怜",
+                        "佐伯遥子",
+                        "白石千纱",
+                        "兵藤雫",
+                        "长濑琴乃",
+                        "伊吹渚",
+                        "白石沙季",
+                        "成宫铃",
+                        "早坂芽衣",
+                        "天动瑠依",
+                        "铃村优",
+                        "奥山堇",
+                        "神崎莉央",
+                        "井川葵",
+                        "小美山爱",
+                        "赤崎心"
+                    ]
+                },
+                "ownerId": {
+                    "type": "number"
+                },
                 "type": {
                     "enum": [
                         "支援",

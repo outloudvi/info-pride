@@ -171,6 +171,8 @@ async function main() {
         for (const i of ['rarity', 'vocTop', 'danTop', 'staTop', 'visTop']) {
           cardMeta[i] = Number(cardMeta[i])
         }
+        cardMeta.ownerName = idolName
+        cardMeta.ownerId = Number(cardId)
         ;(cardInfo[idolName] || (cardInfo[idolName] = {}))[cardId] = cardMeta
       }
       writeFileSync(join(currDir, CardsJson), JSON.stringify(cardInfo))
