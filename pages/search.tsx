@@ -125,6 +125,7 @@ const SkillesPage = () => {
   const [fKeyword, setfKeyword] = useState('')
   const [fIdol, setfIdol] = useState<IdolName[]>([])
   const [fColor, setfColor] = useState<ColorTypeSimple[]>([])
+  const [fOwnedOnly, setfOwnedOnly] = useState<boolean>(false)
   const [fCtMin, setfCtMin] = useState(0)
   const [fCtMax, setfCtMax] = useState(0)
   const [fShowSp, setfShowSp] = useState(false)
@@ -152,6 +153,11 @@ const SkillesPage = () => {
           }[x])
       )
       ret = ret.filter((x) => mappedGroup.includes(x.prop))
+    }
+    if (fOwnedOnly) {
+      ret = ret.filter((x) =>
+        Boolean(localBox?.[idolNameToSlug(x.ownerName)!]?.[x.ownerId])
+      )
     }
 
     // Skill-related part
@@ -235,7 +241,18 @@ const SkillesPage = () => {
     }
 
     return [ret, highlights]
-  }, [fKeyword, fIdol, fColor, fCtMin, fCtMax, fShowSp, fType, fSubtype])
+  }, [
+    fKeyword,
+    fIdol,
+    fColor,
+    fOwnedOnly,
+    localBox,
+    fCtMin,
+    fCtMax,
+    fShowSp,
+    fType,
+    fSubtype,
+  ])
 
   const fSubTypeDesc = useMemo(() => {
     if (fType.length === 0) return []
@@ -289,6 +306,19 @@ const SkillesPage = () => {
             list={['Vocal', 'Dance', 'Visual'] as ColorTypeSimple[]}
             width={200}
           />
+          <FormGroup>
+            <FormControlLabel
+              control={
+                <Checkbox
+                  value={fOwnedOnly}
+                  onChange={(e) => {
+                    setfOwnedOnly(e.target.checked)
+                  }}
+                />
+              }
+              label="只显示已持有的卡片"
+            />
+          </FormGroup>
         </div>
         <div className="flex items-center mb-2">
           <TextField
