@@ -25,7 +25,10 @@ import CardDesc from '../components/CardDesc'
 import { Cards, CardSkillsData } from '../utils/dataset'
 import { ColorTypeSimple, IdentCT } from '../utils/wikiPages/types'
 import type { Card } from '../utils/wikiPages/cards'
-import { IdolNameList, IdolName } from '../data/idols'
+import { IdolNameList, IdolName, idolNameToSlug } from '../data/idols'
+import { LOCALSTORAGE_BOX_TAG } from './settings'
+import { tryJSONParse } from '../rtUtils'
+import Link from 'next/link'
 
 function mergeHilights(
   h1: Record<string, number[]>,
@@ -248,9 +251,15 @@ const SkillesPage = () => {
     return possibleValues.length <= 25 ? possibleValues : []
   }, [fType])
 
+  const localBox = tryJSONParse(localStorage?.getItem(LOCALSTORAGE_BOX_TAG))
+
   return (
     <Layout>
       <Typography variant="h2">卡片搜索</Typography>
+      <p>
+        如果发现自己持有的卡片没有显示为「已持有」，请
+        <Link href="/settings">更新卡片持有状态</Link>。
+      </p>
       <Box className="mt-2 rounded-md border-solid border-6 border-sky-500 p-2">
         <div className="flex items-center mb-2">
           <TextField
@@ -415,6 +424,9 @@ const SkillesPage = () => {
           <CardDesc
             key={key}
             card={item}
+            owned={Boolean(
+              localBox?.[idolNameToSlug(item.ownerName)!]?.[item.ownerId]
+            )}
             highlightSkills={
               highlightCards[`${item.ownerName}/${item.ownerId}`] ?? []
             }

@@ -36,9 +36,11 @@ const SkillDesc = ({
 const CardDesc = ({
   card,
   highlightSkills,
+  owned,
 }: {
   card: Card
   highlightSkills: number[]
+  owned: boolean
 }) => {
   const {
     type,
@@ -79,7 +81,9 @@ const CardDesc = ({
         </div>
 
         <div>
-          <b>{nameCn}</b> / <small lang="ja">{nameJa}</small> <br />
+          <b>{nameCn}</b> / <small lang="ja">{nameJa}</small>
+          {owned && <span className="bg-orange-200 ml-2 px-1">已持有</span>}
+          <br />
           {ownerName} / {type} / {prop} / {rarity}★
         </div>
         <Props

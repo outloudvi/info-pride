@@ -29,6 +29,7 @@ const Pages = {
   卡片搜索: '/search',
   麻奈日记: '/diary',
   系列颜色: '/colors',
+  设置: '/settings',
 }
 
 const Home = () => {
