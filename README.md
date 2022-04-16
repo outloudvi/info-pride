@@ -20,4 +20,4 @@ pnpm run dev
 
 ## License
 
-GPLv3 (code) / Various licenses (data)
+AGPLv3 (code) / Various licenses (data)
