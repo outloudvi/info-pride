@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import type { Dispatch, SetStateAction } from 'react'
 import { intersection, uniq } from 'lodash'
 
@@ -26,7 +26,7 @@ import { Cards, CardSkillsData } from '../utils/dataset'
 import { ColorTypeSimple, IdentCT } from '../utils/wikiPages/types'
 import type { Card } from '../utils/wikiPages/cards'
 import { IdolNameList, IdolName, idolNameToSlug } from '../data/idols'
-import { LOCALSTORAGE_BOX_TAG } from './settings'
+import { LocalBox, LOCALSTORAGE_BOX_TAG } from './settings'
 import { tryJSONParse } from '../rtUtils'
 import Link from 'next/link'
 
@@ -130,6 +130,8 @@ const SkillesPage = () => {
   const [fShowSp, setfShowSp] = useState(false)
   const [fType, setfType] = useState<string[]>([])
   const [fSubtype, setfSubtype] = useState<string[]>([])
+
+  const [localBox, setLocalBox] = useState<LocalBox>({})
 
   const [selectedCards, highlightCards] = useMemo(() => {
     let highlights: Record<string, number[]> = {}
@@ -251,7 +253,9 @@ const SkillesPage = () => {
     return possibleValues.length <= 25 ? possibleValues : []
   }, [fType])
 
-  const localBox = tryJSONParse(localStorage?.getItem(LOCALSTORAGE_BOX_TAG))
+  useEffect(() => {
+    setLocalBox(tryJSONParse(localStorage.getItem(LOCALSTORAGE_BOX_TAG)))
+  }, [])
 
   return (
     <Layout>

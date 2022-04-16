@@ -18,7 +18,7 @@ const clone = rfdc({
 })
 
 export const LOCALSTORAGE_BOX_TAG = 'localBox'
-type LocalBox = Record<string, boolean[]>
+export type LocalBox = Record<string, boolean[]>
 
 const SettingsPage = () => {
   const [localBox, setLocalBox] = useState<LocalBox>({})
