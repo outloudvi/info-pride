@@ -10,7 +10,7 @@ const AppNavBar = ({ expanded }: { expanded: boolean }) => {
         (expanded ? 'w-screen' : 'w-0') + ' sm:w-48 lg:w-64 overflow-hidden'
       }
       width={{ base: 200 }}
-      height={'100vh'}
+      height={'calc(100vh - 60px)'}
     >
       {Object.entries(Pages).map(([k, v], key) => (
         <Navbar.Section key={key}>

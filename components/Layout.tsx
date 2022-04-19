@@ -20,14 +20,16 @@ const Layout = ({ children }: { children: ReactNode }) => {
           />
         }
         classNames={{
-          main: expandedNavbar ? 'hidden' : '',
+          main: (expandedNavbar ? 'hidden' : '') + ' overflow-y-auto',
         }}
-        styles={(theme) => ({
+        sx={(theme) => ({
           main: {
             backgroundColor:
               theme.colorScheme === 'dark'
                 ? theme.colors.dark[8]
                 : theme.colors.gray[0],
+            maxHeight: 'calc(100vh - 60px)',
+            overflowY: 'scroll',
           },
         })}
       >
