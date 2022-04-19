@@ -1,17 +1,13 @@
 import { useEffect, useState } from 'react'
+import { showNotification } from '@mantine/notifications'
 import rfdc from 'rfdc'
 
-import Typography from '@mui/material/Typography'
-import Grid from '@mui/material/Grid'
-import Button from '@mui/material/Button'
-import FormGroup from '@mui/material/FormGroup'
-import FormControlLabel from '@mui/material/FormControlLabel'
-import Checkbox from '@mui/material/Checkbox'
-
-import { Cards } from '../utils/dataset'
 import Layout from '../components/Layout'
+import { Cards } from '../utils/dataset'
 import { Card } from '../utils/wikiPages/cards'
+
 import { idolNameToSlug } from '../data/idols'
+import { Button, Checkbox, Grid } from '@mantine/core'
 
 const clone = rfdc({
   proto: true,
@@ -43,57 +39,64 @@ const SettingsPage = () => {
 
   const saveLocalBox = () => {
     if (!window.localStorage) {
-      alert('此浏览器不支持 localStorage。请升级至更新的浏览器以保存设置。')
+      showNotification({
+        title: '浏览器兼容性问题',
+        message:
+          '此浏览器不支持 localStorage。请升级至更新的浏览器以保存设置。',
+        color: 'red',
+      })
+
       return
     }
     localStorage.setItem(LOCALSTORAGE_BOX_TAG, JSON.stringify(localBox))
+    showNotification({
+      title: '成功',
+      message: '你的设置已经保存。',
+      color: 'green',
+    })
   }
 
   return (
     <Layout>
-      <Typography variant="h2">设置</Typography>
+      <h2>设置</h2>
       <h3>我的 box</h3>
       <p>在此设置 box 后，搜索时将会显示卡片的持有状态。</p>
-      <Grid container rowSpacing={2} columnSpacing={2}>
+      <Grid gutter={20}>
         {Object.entries(Cards).map(([name, _], _key) => (
-          <Grid key={_key} item xs={12} lg={3} className="rounded">
+          <Grid.Col key={_key} xs={12} lg={3} className="rounded">
             <b>{name}</b>
-            <FormGroup>
+            <div>
               {Object.values(Cards[name as keyof typeof Cards]).map(
                 (card: Card, __key) => (
-                  <FormControlLabel
+                  <Checkbox
                     key={__key}
-                    control={
-                      <Checkbox
-                        checked={Boolean(
-                          localBox?.[idolNameToSlug(card.ownerName)!]?.[
-                            card.ownerId
-                          ]
-                        )}
-                        onChange={(e) => {
-                          updateLocalBox(
-                            idolNameToSlug(card.ownerName)!,
-                            card.ownerId,
-                            e.target.checked
-                          )
-                        }}
-                      />
-                    }
                     label={
-                      <>
+                      <div className="text-lg">
                         <span>{card.nameCn}</span> <br />
                         <small>{card.nameJa}</small>
-                      </>
+                      </div>
                     }
-                    className="my-1"
-                  />
+                    checked={Boolean(
+                      localBox?.[idolNameToSlug(card.ownerName)!]?.[
+                        card.ownerId
+                      ]
+                    )}
+                    onChange={(e) => {
+                      updateLocalBox(
+                        idolNameToSlug(card.ownerName)!,
+                        card.ownerId,
+                        e.target.checked
+                      )
+                    }}
+                    className="mt-2"
+                  ></Checkbox>
                 )
               )}
-            </FormGroup>
-          </Grid>
+            </div>
+          </Grid.Col>
         ))}
       </Grid>
-      <Button variant="outlined" onClick={() => saveLocalBox()}>
+      <Button variant="outline" onClick={() => saveLocalBox()}>
         保存
       </Button>
     </Layout>
