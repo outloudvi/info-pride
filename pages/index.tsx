@@ -1,4 +1,5 @@
-import { Button, Grid, Group, Stack } from '@mantine/core'
+import { Grid, Group, Stack } from '@mantine/core'
+import Button from '../components/vendor/Button'
 
 import CurrentEvents from '../components/CurrentEvents'
 import Notice from '../components/Notice'

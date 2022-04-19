@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react'
 import { showNotification } from '@mantine/notifications'
+import { Checkbox, Grid } from '@mantine/core'
+import Button from '../components/vendor/Button'
 import rfdc from 'rfdc'
 
 import Layout from '../components/Layout'
@@ -7,7 +9,6 @@ import { Cards } from '../utils/dataset'
 import { Card } from '../utils/wikiPages/cards'
 
 import { idolNameToSlug } from '../data/idols'
-import { Button, Checkbox, Grid } from '@mantine/core'
 
 const clone = rfdc({
   proto: true,
