@@ -33,7 +33,7 @@ export async function getNews() {
     .filter((x) => x.length === 2)
     .map(([title, link]) => ({
       title: title as string,
-      link: 'https://idolypride.jp' + (link as string),
+      link: String(new URL(link as string, 'https://idolypride.jp')),
     }))
 }
 
