@@ -1,19 +1,14 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useRouter } from 'next/router'
-import Typography from '@mui/material/Typography'
-import Box from '@mui/material/Box'
-import Button from '@mui/material/Button'
-import Tabs from '@mui/material/Tabs'
-import Tab from '@mui/material/Tab'
-
+import { Button, Grid, Tabs } from '@mantine/core'
 import _range from 'lodash/range'
-import Grid from '@mui/material/Grid'
+
 import Layout from '../components/Layout'
 import StoriesItem from '../components/StoriesItem'
+import { tryToNumber, updateRoute } from '../rtUtils'
 
 import { Series, Episodes } from '../data/stories'
 import StoriesData from '../data/stories.data'
-import { tryToNumber, updateRoute } from '../rtUtils'
 
 const Stories = () => {
   const router = useRouter()
@@ -21,7 +16,6 @@ const Stories = () => {
   const [series, setSeries] = useState(0)
   const [season, setSeason] = useState(1)
   const [chapter, setChapter] = useState(1)
-  const [openedSeries, setOpenedSeries] = useState(0)
 
   useEffect(() => {
     if (!router.isReady) return
@@ -34,7 +28,6 @@ const Stories = () => {
     const _chapter = tryToNumber(chapter)
     if (_series && _series !== -1 && _season && _chapter) {
       setSeries(_series)
-      setOpenedSeries(_series)
       setSeason(_season)
       setChapter(_chapter)
     }
@@ -55,38 +48,16 @@ const Stories = () => {
 
   return (
     <Layout>
-      <Typography variant="h2">剧情</Typography>
-      <Grid container spacing={2} className="my-3">
-        <Grid item xs={12} lg={6}>
-          <Tabs
-            value={openedSeries}
-            onChange={(_, value) => {
-              setOpenedSeries(value)
-            }}
-            aria-label="tabs of story chapters"
-          >
-            {Series.map((name, seriesKey) => (
-              <Tab
-                key={seriesKey}
-                id={`tab-${seriesKey}`}
-                label={Episodes[name][0]}
-                aria-controls={`tabpanel-${seriesKey}`}
-              />
-            ))}
-          </Tabs>
-          {Series.map((seriesSlug, seriesKey) => (
-            <div
-              key={seriesKey}
-              role="tabpanel"
-              hidden={openedSeries !== seriesKey}
-              id={`tabpanel-${seriesKey}`}
-              aria-labelledby={`tab-${seriesKey}`}
-            >
-              {openedSeries === seriesKey && (
-                <Box className="max-h-[60vh] overflow-y-auto">
+      <h2>剧情</h2>
+      <Grid gutter={20} className="my-3">
+        <Grid.Col xs={12} lg={6}>
+          <Tabs>
+            {Series.map((seriesSlug, seriesKey) => (
+              <Tabs.Tab label={Episodes[seriesSlug][0]} key={seriesKey}>
+                <div className="max-h-[60vh] overflow-y-auto">
                   {Episodes[seriesSlug][1].map(
                     (episodeLengthInSeason, seasonKey) => (
-                      <Box key={seasonKey}>
+                      <div key={seasonKey}>
                         <p>
                           {Episodes[seriesSlug][0]} 第{seasonKey + 1}章
                         </p>
@@ -98,14 +69,14 @@ const Stories = () => {
                               chapter === chapterNum
                             return (
                               <Button
-                                variant="text"
-                                size="small"
+                                variant="subtle"
+                                compact
                                 color={
                                   completion?.[seriesSlug]?.[seasonKey]?.[
                                     chapterKey
                                   ]
-                                    ? 'primary'
-                                    : 'secondary'
+                                    ? 'blue'
+                                    : 'teal'
                                 }
                                 key={chapterKey}
                                 onClick={() => {
@@ -125,21 +96,21 @@ const Stories = () => {
                             )
                           }
                         )}
-                      </Box>
+                      </div>
                     )
                   )}
-                </Box>
-              )}
-            </div>
-          ))}
-        </Grid>
-        <Grid item xs={12} lg={6}>
+                </div>
+              </Tabs.Tab>
+            ))}
+          </Tabs>
+        </Grid.Col>
+        <Grid.Col xs={12} lg={6}>
           <StoriesItem
             series={Series[series]}
             season={season}
             chapter={chapter}
           />
-        </Grid>
+        </Grid.Col>
       </Grid>
     </Layout>
   )
