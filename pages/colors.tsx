@@ -1,7 +1,6 @@
-import Typography from '@mui/material/Typography'
-
 import Layout from '../components/Layout'
 import Color from '../data/color'
+
 import { Idols, IdolSlug } from '../data/idols'
 
 import styles from '../styles/colors.module.css'
@@ -38,7 +37,7 @@ const ColorBlock = ({ name, color }: { name: string; color: string }) => (
 const ColorsPage = () => {
   return (
     <Layout>
-      <Typography variant="h2">系列颜色</Typography>
+      <h2>系列颜色</h2>
       <p>
         此颜色根据 idolypride.jp 网站
         <a href="https://idolypride.jp/shared/css/character.css?v=2.1">
