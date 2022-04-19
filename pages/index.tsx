@@ -1,12 +1,9 @@
-import Link from 'next/link'
-import Typography from '@mui/material/Typography'
-import Grid from '@mui/material/Grid'
-import Stack from '@mui/material/Stack'
-import Button from '@mui/material/Button'
+import { Button, Grid, Group, Stack } from '@mantine/core'
 
 import CurrentEvents from '../components/CurrentEvents'
 import Notice from '../components/Notice'
 import Layout from '../components/Layout'
+
 import Paths from '../utils/paths'
 
 const MainPageSiteData = [
@@ -25,23 +22,16 @@ const MainPageSiteData = [
 const Home = () => {
   return (
     <Layout>
-      <Grid container spacing={2} className="mt-3">
-        <Grid item xs={12} lg={6}>
-          <Typography textAlign="center" variant="h2">
-            INFO PRIDE
-          </Typography>
-          <Stack
-            spacing={2}
-            direction="column"
-            justifyContent="center"
-            paddingTop="2rem"
-          >
+      <Grid className="mt-3">
+        <Grid.Col xs={12} lg={6}>
+          <div className="text-center text-6xl mt-4">INFO PRIDE</div>
+          <Stack spacing={15} justify="center" className="mt-2">
             {MainPageSiteData.map((items, _key) => (
-              <Stack key={_key} direction="row">
+              <Group key={_key}>
                 {Object.entries(items).map(([title, link], key) => (
                   <Button
                     key={key}
-                    variant="outlined"
+                    variant="outline"
                     component="a"
                     href={link}
                     target="_blank"
@@ -51,20 +41,18 @@ const Home = () => {
                     {title}
                   </Button>
                 ))}
-              </Stack>
+              </Group>
             ))}
           </Stack>
-        </Grid>
-        <Grid item xs={12} lg={6}>
+        </Grid.Col>
+        <Grid.Col xs={12} lg={6}>
           <CurrentEvents />
-        </Grid>
+        </Grid.Col>
         {/* Line 2 */}
-        <Grid item xs={12} lg={6}>
-          <Typography variant="h4" className="mb-2">
-            新闻
-          </Typography>
+        <Grid.Col xs={12} lg={6}>
+          <div className="mb-2 text-3xl">新闻</div>
           <Notice />
-        </Grid>
+        </Grid.Col>
       </Grid>
     </Layout>
   )

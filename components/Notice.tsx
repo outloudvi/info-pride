@@ -1,12 +1,9 @@
 import { useState, useEffect } from 'react'
-import Link from '@mui/material/Link'
+import Link from 'next/link'
+import { Skeleton } from '@mantine/core'
 
 const Notice = () => {
-  const [news, setNews] = useState<{ title: string; link?: string }[]>([
-    {
-      title: '正在加载',
-    },
-  ])
+  const [news, setNews] = useState<{ title: string; link?: string }[]>([])
 
   useEffect(() => {
     fetch('/api/news')
@@ -21,7 +18,9 @@ const Notice = () => {
       })
   }, [])
 
-  return (
+  return news.length === 0 ? (
+    <Skeleton height={200} />
+  ) : (
     <ul>
       {news.map(({ title, link }, key) => (
         <li key={key}>
