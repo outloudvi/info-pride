@@ -1,19 +1,33 @@
-import '../styles/globals.css'
-import type { AppProps } from 'next/app'
-import { CssBaseline, ThemeProvider } from '@mui/material'
-import lightTheme from '../styles/theme/lightTheme'
+import { AppProps } from 'next/app'
 import Head from 'next/head'
+import { MantineProvider } from '@mantine/core'
 
-function MyApp({ Component, pageProps }: AppProps) {
+// for Tailwind CSS
+import '../styles/globals.css'
+
+export default function App(props: AppProps) {
+  const { Component, pageProps } = props
+
   return (
-    <ThemeProvider theme={lightTheme}>
+    <>
       <Head>
         <title>INFO PRIDE</title>
+        <meta
+          name="viewport"
+          content="minimum-scale=1, initial-scale=1, width=device-width"
+        />
       </Head>
-      <CssBaseline />
-      <Component {...pageProps} />
-    </ThemeProvider>
+
+      <MantineProvider
+        withGlobalStyles
+        withNormalizeCSS
+        theme={{
+          /** Put your mantine theme override here */
+          colorScheme: 'light',
+        }}
+      >
+        <Component {...pageProps} />
+      </MantineProvider>
+    </>
   )
 }
-
-export default MyApp
