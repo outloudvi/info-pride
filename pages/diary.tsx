@@ -1,15 +1,12 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
+import { DatePicker } from '@mantine/dates'
 import dayjs from 'dayjs'
-
-import Typography from '@mui/material/Typography'
-import FormControl from '@mui/material/FormControl'
-import Grid from '@mui/material/Grid'
-import { Diary } from '../utils/dataset'
-import Box from '@mui/material/Box'
 
 import Layout from '../components/Layout'
 import { tryToFirst, updateRoute } from '../rtUtils'
+import { Diary } from '../utils/dataset'
+import { Button, Grid } from '@mantine/core'
 
 const diaries: { [key: string]: string } = {}
 const diaryDates = Diary.map((x) => {
@@ -17,8 +14,10 @@ const diaryDates = Diary.map((x) => {
   return x.date
 }).sort()
 
-const toShortDate = (date: string) =>
-  date.split('-')[0].length === 2 ? date : date.slice(2)
+const toShortDate = (date: Date) =>
+  `${String(date.getFullYear()).slice(2)}-${(date.getMonth() + 1)
+    .toString()
+    .padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}`
 
 const ManaDiary = ({ dateShort }: { dateShort: string }) => {
   if (diaries[dateShort]) {
@@ -43,8 +42,7 @@ const DiaryPage = () => {
   const diaryDateShortFirst = diaryDates[0]
   const diaryDateShortLast = diaryDates[diaryDates.length - 1]
 
-  // Should be a long date since it is sent to <input:date>
-  const [currDate, setCurrDate] = useState('20' + diaryDateShortFirst)
+  const [currDate, setCurrDate] = useState(new Date('20' + diaryDateShortFirst))
 
   useEffect(() => {
     if (!router.isReady) return
@@ -54,21 +52,20 @@ const DiaryPage = () => {
     if (date === undefined) return
     if (date.match(/^(\d{2}|\d{4})-\d{2}-\d{2}$/) === null) return
 
-    setCurrDate('20' + toShortDate(date))
+    setCurrDate(new Date('20' + toShortDate(new Date(date))))
   }, [router])
 
-  const switchToDate = (date: string) => {
-    const dateShort = toShortDate(date)
-    setCurrDate('20' + dateShort)
-    updateRoute(`/diary/${dateShort}`)
+  const switchToDate = (date: Date) => {
+    setCurrDate(date)
+    updateRoute(`/diary/${toShortDate(date)}`)
   }
 
   return (
     <Layout>
-      <Typography variant="h2">麻奈日记</Typography>
-      <Grid container spacing={2} className="my-3">
-        <Grid item xs={12} lg={6}>
-          <Box>
+      <h2>麻奈日记</h2>
+      <Grid gutter={20} className="my-3">
+        <Grid.Col xs={12} lg={6}>
+          <div>
             <p className="text-gray-600">
               如无特殊说明，此处内容的翻译均来自 Bilibili{' '}
               <a href="https://space.bilibili.com/107734456">@长濑琴乃</a> /
@@ -77,58 +74,56 @@ const DiaryPage = () => {
             <p className="text-gray-600">
               目前包含的日记日期：{diaryDateShortFirst} 至 {diaryDateShortLast}
             </p>
-            <Box>
-              <FormControl className="flex-col">
-                <label htmlFor="iDate" className="text-gray-500 text-sm">
-                  日期
-                </label>
-                <input
-                  id="iDate"
-                  type="date"
+            <div>
+              <div className="flex-col">
+                <DatePicker
+                  placeholder="选择日期"
+                  label="日期"
+                  required
+                  className="w-72"
                   value={currDate}
-                  min={'20' + diaryDateShortFirst}
-                  max={'20' + diaryDateShortLast}
+                  minDate={dayjs('20' + diaryDateShortFirst).toDate()}
+                  maxDate={dayjs('20' + diaryDateShortLast).toDate()}
                   onChange={(e) => {
-                    if (e.target.value === '') return
-                    switchToDate(e.target.value)
+                    if (e) setCurrDate(e)
                   }}
                 />
-              </FormControl>
-            </Box>
-            <Box className="mt-2">
-              <button
+              </div>
+            </div>
+            <div className="mt-2">
+              <Button
                 className="mr-2"
                 onClick={() => {
-                  switchToDate(diaryDateShortLast)
+                  switchToDate(new Date('20' + diaryDateShortLast))
                 }}
               >
                 转到最新日期
-              </button>
-              <button
+              </Button>
+              <Button
                 className="mr-2"
-                disabled={currDate === '20' + diaryDateShortFirst}
+                disabled={toShortDate(currDate) === diaryDateShortFirst}
                 onClick={() => {
                   const currDay = dayjs(currDate)
-                  switchToDate(currDay.subtract(1, 'day').format('YY-MM-DD'))
+                  switchToDate(currDay.subtract(1, 'day').toDate())
                 }}
               >
                 转到前一天
-              </button>
-              <button
-                disabled={currDate === '20' + diaryDateShortLast}
+              </Button>
+              <Button
+                disabled={toShortDate(currDate) === diaryDateShortLast}
                 onClick={() => {
                   const currDay = dayjs(currDate)
-                  switchToDate(currDay.add(1, 'day').format('YY-MM-DD'))
+                  switchToDate(currDay.add(1, 'day').toDate())
                 }}
               >
                 转到后一天
-              </button>
-            </Box>
-          </Box>
-        </Grid>
-        <Grid item xs={12} lg={6}>
+              </Button>
+            </div>
+          </div>
+        </Grid.Col>
+        <Grid.Col xs={12} lg={6}>
           <ManaDiary dateShort={toShortDate(currDate)} />
-        </Grid>
+        </Grid.Col>
       </Grid>
     </Layout>
   )
