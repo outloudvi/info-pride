@@ -22,16 +22,6 @@ const MainPageSiteData = [
   },
 ]
 
-const Pages = {
-  剧情: '/stories',
-  谱面: '/notemap',
-  卡片: '/cards',
-  卡片搜索: '/search',
-  麻奈日记: '/diary',
-  系列颜色: '/colors',
-  设置: '/settings',
-}
-
 const Home = () => {
   return (
     <Layout>
@@ -74,18 +64,6 @@ const Home = () => {
             新闻
           </Typography>
           <Notice />
-        </Grid>
-        <Grid item xs={12} lg={6}>
-          <Typography variant="h4" className="mb-2">
-            功能
-          </Typography>
-          {Object.entries(Pages).map(([name, link], key) => (
-            <Link key={key} href={link} passHref>
-              <Button variant="contained" className="mr-2">
-                {name}
-              </Button>
-            </Link>
-          ))}
         </Grid>
       </Grid>
     </Layout>
