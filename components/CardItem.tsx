@@ -1,14 +1,12 @@
-import type { Card } from '../utils/wikiPages/cards'
-import type { IdolName } from '../data/idols'
-import CardStoriesData from '../data/cardStories.data'
-
-import { Colors } from '../data/colors'
-import Box from '@mui/material/Box'
-import Button from '@mui/material/Button'
-import ButtonGroup from '@mui/material/ButtonGroup'
+import { Button } from '@mantine/core'
 
 import Paths from '../utils/paths'
 import { toVideoLink } from './ExternalVideo'
+
+import type { Card } from '../utils/wikiPages/cards'
+import type { IdolName } from '../data/idols'
+import CardStoriesData from '../data/cardStories.data'
+import { Colors } from '../data/colors'
 
 export const Props = ({
   cardType,
@@ -18,7 +16,7 @@ export const Props = ({
   staTop,
 }: Pick<Card, 'cardType' | 'vocTop' | 'danTop' | 'visTop' | 'staTop'>) => {
   return (
-    <Box>
+    <div>
       <span className="mr-3" style={{ color: Colors.Vocal }}>
         {cardType === '歌唱' ? <b>{vocTop}</b> : <span>{vocTop}</span>}
       </span>
@@ -31,7 +29,7 @@ export const Props = ({
       <span className="mr-3" style={{ color: Colors.Stamina }}>
         {staTop}
       </span>
-    </Box>
+    </div>
   )
 }
 
@@ -58,40 +56,36 @@ const CardStories = ({
   }
 
   return (
-    <Box className="mb-2">
-      <ButtonGroup
-        variant="contained"
-        aria-label="outlined primary button group"
-      >
-        {[1, 2, 3].map((id) => {
-          const _id = id as unknown as 1 | 2 | 3
-          const storyName = ['', 'TODO'].includes(stories[_id].name)
-            ? `剧情第${_id}话`
-            : `${_id} - ${stories[_id].name}`
-          return (
-            <Button
-              key={id}
-              component="a"
-              href={toVideoLink(stories[_id].video)}
-              target="_blank"
-              rel="noopener"
-            >
-              {storyName}
-            </Button>
-          )
-        })}
-        {stories.phone && (
+    <div className="mb-2">
+      {[1, 2, 3].map((id) => {
+        const _id = id as unknown as 1 | 2 | 3
+        const storyName = ['', 'TODO'].includes(stories[_id].name)
+          ? `剧情第${_id}话`
+          : `${_id} - ${stories[_id].name}`
+        return (
           <Button
+            key={id}
             component="a"
-            href={toVideoLink(stories.phone.video)}
+            href={toVideoLink(stories[_id].video)}
             target="_blank"
             rel="noopener"
+            className="mr-2"
           >
-            来电
+            {storyName}
           </Button>
-        )}
-      </ButtonGroup>
-    </Box>
+        )
+      })}
+      {stories.phone && (
+        <Button
+          component="a"
+          href={toVideoLink(stories.phone.video)}
+          target="_blank"
+          rel="noopener"
+        >
+          来电
+        </Button>
+      )}
+    </div>
   )
 }
 
@@ -121,7 +115,7 @@ const CardItem = ({
 
   return (
     <>
-      <div className="text-4xl mb-2" lang="zh-CN">
+      <div className="text-3xl mb-2" lang="zh-CN">
         {nameCn}
       </div>
       <div className="text-xl mb-2" lang="ja">
@@ -143,7 +137,7 @@ const CardItem = ({
       <CardStories idolName={idolName} cardNumber={cardNumber} />
 
       <Button
-        variant="outlined"
+        variant="outline"
         component="a"
         href={Paths.wiki(`${idolName}/卡牌/${cardNumber}`)}
         target="_blank"
