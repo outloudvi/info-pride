@@ -6,7 +6,6 @@ import { toVideoLink } from './ExternalVideo'
 import type { Card } from '../utils/wikiPages/cards'
 import type { IdolName } from '../data/idols'
 import CardStoriesData from '../data/cardStories.data'
-import { Colors } from '../data/colors'
 
 export const Props = ({
   cardType,
@@ -17,18 +16,16 @@ export const Props = ({
 }: Pick<Card, 'cardType' | 'vocTop' | 'danTop' | 'visTop' | 'staTop'>) => {
   return (
     <div>
-      <span className="mr-3" style={{ color: Colors.Vocal }}>
+      <span className="mr-3 text-vocal">
         {cardType === '歌唱' ? <b>{vocTop}</b> : <span>{vocTop}</span>}
       </span>
-      <span className="mr-3" style={{ color: Colors.Dance }}>
+      <span className="mr-3 text-dance">
         {cardType === '舞蹈' ? <b>{danTop}</b> : <span>{danTop}</span>}
       </span>
-      <span className="mr-3" style={{ color: Colors.Visual }}>
+      <span className="mr-3 text-visual">
         {cardType === '表演' ? <b>{visTop}</b> : <span>{visTop}</span>}
       </span>
-      <span className="mr-3" style={{ color: Colors.Stamina }}>
-        {staTop}
-      </span>
+      <span className="mr-3 text-stamina">{staTop}</span>
     </div>
   )
 }
