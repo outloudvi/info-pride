@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { showNotification } from '@mantine/notifications'
-import { Checkbox, Grid } from '@mantine/core'
-import { Button } from '../components/vendorx/mantine'
+import { Button, Checkbox, Grid } from '@mantine/core'
 import rfdc from 'rfdc'
 
 import Layout from '../components/Layout'

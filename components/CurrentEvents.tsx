@@ -1,5 +1,4 @@
-import { Card, Group, Stack } from '@mantine/core'
-import { ActionIcon } from './vendorx/mantine'
+import { ActionIcon, Group, Stack } from '@mantine/core'
 import dayjs from 'dayjs'
 import dayjsUtc from 'dayjs/plugin/utc'
 import dayjsTz from 'dayjs/plugin/timezone'
