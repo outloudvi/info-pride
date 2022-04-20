@@ -1,23 +1,17 @@
 import { useState, useMemo, useEffect } from 'react'
 import type { Dispatch, SetStateAction } from 'react'
+import Link from 'next/link'
+import {
+  Button,
+  Checkbox,
+  MultiSelect,
+  Select,
+  TextInput,
+  Tooltip,
+} from '@mantine/core'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import { intersection, uniq } from 'lodash'
-
-import Typography from '@mui/material/Typography'
-import Checkbox from '@mui/material/Checkbox'
-import Box from '@mui/material/Box'
-import FormControl from '@mui/material/FormControl'
-import InputLabel from '@mui/material/InputLabel'
-import Select from '@mui/material/Select'
-import OutlinedInput from '@mui/material/OutlinedInput'
-import MenuItem from '@mui/material/MenuItem'
-import ListItemText from '@mui/material/ListItemText'
-import TextField from '@mui/material/TextField'
-import Button from '@mui/material/Button'
-import FormGroup from '@mui/material/FormGroup'
-import FormControlLabel from '@mui/material/FormControlLabel'
-import Tooltip from '@mui/material/Tooltip'
-import IconButton from '@mui/material/IconButton'
-import HelpIcon from '@mui/icons-material/Help'
 
 import Layout from '../components/Layout'
 import CardDesc from '../components/CardDesc'
@@ -28,7 +22,6 @@ import type { Card } from '../utils/wikiPages/cards'
 import { IdolNameList, IdolName, idolNameToSlug } from '../data/idols'
 import { LocalBox, LOCALSTORAGE_BOX_TAG } from './settings'
 import { tryJSONParse } from '../rtUtils'
-import Link from 'next/link'
 
 function mergeHilights(
   h1: Record<string, number[]>,
@@ -65,46 +58,44 @@ const FilterSelect = <T extends string>({
   className?: string
   listNamemap?: Record<string, string>
 }) => {
-  const sig = 'lbl-filter-' + Buffer.from(label).toString('hex')
-  return (
-    <FormControl sx={{ width }} className={'mr-2 ' + (className ?? '')}>
-      <InputLabel id={sig}>{label}</InputLabel>
-      <Select
-        labelId={sig}
-        {...(multiple ? { multiple: true } : {})}
+  const data = listNamemap
+    ? list.map((x) => ({
+        label: listNamemap[x] ?? x,
+        value: x,
+      }))
+    : list
+  if (multiple) {
+    return (
+      <MultiSelect
+        data={data}
+        label={label}
         value={state}
-        onChange={(e) => {
-          const value = e.target.value
-          setState(
-            typeof value === 'string'
-              ? (value.split(',').filter((x) => x !== '') as unknown as T[])
-              : value
-          )
+        width={width}
+        className={className}
+        clearable
+        onChange={(s: T[]) => {
+          setState(s)
         }}
-        input={<OutlinedInput label={label} />}
-        renderValue={(selected) =>
-          selected.map((x) => listNamemap?.[x] ?? x).join(', ')
-        }
-      >
-        {multiple === false && <MenuItem value={''}>(无)</MenuItem>}
-        {list.map((name, key) => {
-          const displayName = listNamemap?.[name] ?? name
-          return (
-            <MenuItem key={key} value={name}>
-              {multiple !== false ? (
-                <>
-                  <Checkbox checked={state.indexOf(name) > -1} />
-                  <ListItemText primary={displayName} />
-                </>
-              ) : (
-                <span>{displayName}</span>
-              )}
-            </MenuItem>
-          )
-        })}
-      </Select>
-    </FormControl>
-  )
+        classNames={{
+          wrapper: 'max-w-xl',
+        }}
+      />
+    )
+  } else {
+    return (
+      <Select
+        data={data}
+        label={label}
+        value={state[0]}
+        width={width}
+        className={className}
+        clearable
+        onChange={(s: T) => {
+          setState([s])
+        }}
+      />
+    )
+  }
 }
 
 const CardsFlattened = Object.values(Cards)
@@ -140,10 +131,10 @@ const SkillesPage = () => {
     if (fKeyword !== '') {
       ret = ret.filter((x) => JSON.stringify(x).includes(fKeyword))
     }
-    if (fIdol.length > 0) {
+    if (fIdol.filter((x) => x).length > 0) {
       ret = ret.filter((x) => fIdol.includes(x.ownerName as IdolName))
     }
-    if (fColor.length > 0) {
+    if (fColor.filter((x) => x).length > 0) {
       const mappedGroup = fColor.map(
         (x) =>
           ({
@@ -192,7 +183,7 @@ const SkillesPage = () => {
       highlights = mergeHilights(highlights, localHighlights)
     }
 
-    if (fType.length > 0) {
+    if (fType.filter((x) => x).length > 0) {
       const currFType = fType[0]
       const localHighlights: Record<string, number[]> = {}
       ret = ret.filter((x) => {
@@ -212,7 +203,7 @@ const SkillesPage = () => {
       highlights = mergeHilights(highlights, localHighlights)
     }
 
-    if (fSubtype.length > 0) {
+    if (fSubtype.filter((x) => x).length > 0) {
       const currFType = fType[0]
       const currFSubtype = fSubtype[0]
       const localHighlights: Record<string, number[]> = {}
@@ -276,55 +267,52 @@ const SkillesPage = () => {
 
   return (
     <Layout>
-      <Typography variant="h2">卡片搜索</Typography>
+      <h2>卡片搜索</h2>
       <p>
         如果发现自己持有的卡片没有显示为「已持有」，请
         <Link href="/settings">更新卡片持有状态</Link>。
       </p>
-      <Box className="mt-2 rounded-md border-solid border-6 border-sky-500 p-2">
+      <div className="mt-2 rounded-md border-solid border-6 border-sky-500 p-2">
         <div className="flex items-center mb-2">
-          <TextField
+          <TextInput
             className="mr-2"
             label="关键词"
-            variant="outlined"
             value={fKeyword}
+            multiple
             onChange={(e) => {
               setfKeyword(e.target.value)
             }}
           />
           <FilterSelect
+            className="mr-2"
             label="角色"
             state={fIdol}
             setState={setfIdol}
+            multiple
             list={IdolNameList}
             width={300}
           />
           <FilterSelect
+            className="mr-2"
             label="类型"
             state={fColor}
             setState={setfColor}
+            multiple
             list={['Vocal', 'Dance', 'Visual'] as ColorTypeSimple[]}
             width={200}
           />
-          <FormGroup>
-            <FormControlLabel
-              control={
-                <Checkbox
-                  value={fOwnedOnly}
-                  onChange={(e) => {
-                    setfOwnedOnly(e.target.checked)
-                  }}
-                />
-              }
-              label="只显示已持有的卡片"
-            />
-          </FormGroup>
+          <Checkbox
+            label="只显示已持有的卡片"
+            checked={fOwnedOnly}
+            onChange={(e) => {
+              setfOwnedOnly(e.target.checked)
+            }}
+          />
         </div>
         <div className="flex items-center mb-2">
-          <TextField
+          <TextInput
             className="mr-2"
             label="CT 最小值"
-            variant="outlined"
             type="number"
             value={fCtMin}
             onChange={(e) => {
@@ -333,11 +321,10 @@ const SkillesPage = () => {
               setfCtMin(v)
             }}
           />
-          <TextField
+          <TextInput
             className="mr-2"
             label="CT 最大值"
             placeholder="无限制"
-            variant="outlined"
             type="number"
             value={fCtMax}
             onChange={(e) => {
@@ -346,23 +333,16 @@ const SkillesPage = () => {
               setfCtMax(v)
             }}
           />
-          <FormGroup>
-            <FormControlLabel
-              control={
-                <Checkbox
-                  value={fShowSp}
-                  onChange={(e) => {
-                    setfShowSp(e.target.checked)
-                  }}
-                />
-              }
-              label="按 CT 值筛选时不要跳过 SP 技能"
-            />
-          </FormGroup>
-          <Tooltip title="选择此选项时，即使卡片的其它技能均不满足 CT 筛选要求，有 SP 技能的卡片也会被显示。如果同时附加了其它筛选条件，您可能希望勾选此项。">
-            <IconButton>
-              <HelpIcon fontSize="small" />
-            </IconButton>
+          <Checkbox
+            label="按 CT 值筛选时不要跳过 SP 技能"
+            checked={fShowSp}
+            onChange={(e) => {
+              setfShowSp(e.target.checked)
+            }}
+            className="mr-2"
+          />
+          <Tooltip label="选择此选项时，即使卡片的其它技能均不满足 CT 筛选要求，有 SP 技能的卡片也会被显示。如果同时附加了其它筛选条件，您可能希望勾选此项。">
+            <FontAwesomeIcon icon={faInfoCircle} />
           </Tooltip>
         </div>
         <div className="flex items-center mb-2">
@@ -376,7 +356,6 @@ const SkillesPage = () => {
             }}
             list={SkillTypeList}
             width={300}
-            multiple={false}
             listNamemap={{
               ct: '[属性] 所需 CT',
               staminaCost: '[属性] 所需体力',
@@ -396,7 +375,6 @@ const SkillesPage = () => {
             setState={setfSubtype}
             list={fSubTypeDesc}
             width={300}
-            multiple={false}
             listNamemap={{
               undefined: '其它',
               once: '只发动一次',
@@ -433,7 +411,6 @@ const SkillesPage = () => {
         </div>
         <div>
           <Button
-            variant="contained"
             onClick={() => {
               setfKeyword('')
               setfIdol([])
@@ -447,13 +424,13 @@ const SkillesPage = () => {
             清空条件
           </Button>
         </div>
-      </Box>
+      </div>
       <div className="mt-2">
         从 {CardsFlattened.length} 张卡片中找到 {selectedCards.length} 个结果。
         {Object.keys(highlightCards).length > 0 &&
           '被筛选的技能已经以高亮背景标记。'}
       </div>
-      <Box className="mt-2">
+      <div className="mt-2">
         {selectedCards.map((item, key) => (
           <CardDesc
             key={key}
@@ -466,7 +443,7 @@ const SkillesPage = () => {
             }
           />
         ))}
-      </Box>
+      </div>
     </Layout>
   )
 }

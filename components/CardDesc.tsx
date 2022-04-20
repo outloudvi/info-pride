@@ -1,10 +1,10 @@
-import type { Card } from '../utils/wikiPages/cards'
-
-import Grid from '@mui/material/Grid'
+import Link from 'next/link'
+import { Grid } from '@mantine/core'
 
 import Paths from '../utils/paths'
 import { Props } from './CardItem'
-import Link from 'next/link'
+
+import type { Card } from '../utils/wikiPages/cards'
 import { idolNameToSlug } from '../data/idols'
 
 const SkillDesc = ({
@@ -94,31 +94,31 @@ const CardDesc = ({
           staTop={staTop}
         />
       </div>
-      <Grid container spacing={2} className="mt-1">
-        <Grid item xs={12} lg={4}>
+      <Grid gutter={2} className="mt-1">
+        <Grid.Col xs={12} lg={4}>
           <SkillDesc
             name={ski1NameCn}
             type={ski1Typ}
             desc={ski1DescCn}
             highlight={highlightSkills.includes(0)}
           />
-        </Grid>
-        <Grid item xs={12} lg={4}>
+        </Grid.Col>
+        <Grid.Col xs={12} lg={4}>
           <SkillDesc
             name={ski2NameCn}
             type={ski2Typ}
             desc={ski2DescCn}
             highlight={highlightSkills.includes(1)}
           />
-        </Grid>
-        <Grid item xs={12} lg={4}>
+        </Grid.Col>
+        <Grid.Col xs={12} lg={4}>
           <SkillDesc
             name={ski3NameCn}
             type={ski3Typ}
             desc={ski3DescCn}
             highlight={highlightSkills.includes(2)}
           />
-        </Grid>
+        </Grid.Col>
       </Grid>
     </div>
   )

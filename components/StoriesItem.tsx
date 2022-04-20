@@ -1,10 +1,8 @@
-import Typography from '@mui/material/Typography'
-import Link from '@mui/material/Link'
+import { StoriesTitle } from '../utils/dataset'
+import Paths from '../utils/paths'
+
 import { Episodes, SeriesName } from '../data/stories'
 import StoriesData, { SubTitles } from '../data/stories.data'
-import { StoriesTitle } from '../utils/dataset'
-
-import Paths from '../utils/paths'
 import { toVideoLink } from './ExternalVideo'
 
 type PropType = {
@@ -58,14 +56,14 @@ const StoriesItem = (props: PropType) => {
 
   return (
     <>
-      <Typography className="text-4xl">
+      <div className="text-4xl">
         {Episodes[series][0]}
         {season}章 - {chapter}
-      </Typography>
+      </div>
 
-      <Typography className="text-2xl">{subtitle}</Typography>
+      <div className="text-2xl">{subtitle}</div>
       <br />
-      <Typography className="text-xl">
+      <div className="text-xl">
         {cnTitle !== null ? (
           <>
             <span>{cnTitle}</span> /{' '}
@@ -76,12 +74,12 @@ const StoriesItem = (props: PropType) => {
         ) : (
           <span lang="ja">{jaTitle}</span>
         )}
-      </Typography>
+      </div>
       {data && (
         <p>
-          <Link href={toVideoLink(data.video)} target="_blank" rel="noopener">
+          <a href={toVideoLink(data.video)} target="_blank" rel="noopener">
             视频
-          </Link>
+          </a>
         </p>
       )}
 
