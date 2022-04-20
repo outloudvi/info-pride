@@ -27,7 +27,9 @@ const NotemapPage = () => {
   const selectedNotemap = song && notemap ? Notemap[song][notemap] : undefined
 
   useEffect(() => {
+    // update notemap after switching songs
     setNotemap(notemapList[0])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [song])
 
   const [laneColors, setLaneColors] = useState<string[]>([
