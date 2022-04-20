@@ -53,56 +53,90 @@ const Stories = () => {
       <Grid gutter={20} className="my-3">
         <Grid.Col xs={12} lg={6}>
           <Tabs>
-            {Series.map((seriesSlug, seriesKey) => (
-              <Tabs.Tab label={Episodes[seriesSlug][0]} key={seriesKey}>
-                <div className="max-h-[60vh] overflow-y-auto">
-                  {Episodes[seriesSlug][1].map(
-                    (episodeLengthInSeason, seasonKey) => (
-                      <div key={seasonKey}>
-                        <p>
-                          {Episodes[seriesSlug][0]} 第{seasonKey + 1}章
-                        </p>
-                        {_range(1, episodeLengthInSeason + 1).map(
-                          (chapterNum, chapterKey) => {
-                            const currentSelection =
-                              series === seriesKey &&
-                              season === seasonKey + 1 &&
-                              chapter === chapterNum
-                            return (
-                              <Button
-                                variant="subtle"
-                                compact
-                                color={
-                                  completion?.[seriesSlug]?.[seasonKey]?.[
-                                    chapterKey
-                                  ]
-                                    ? 'blue'
-                                    : 'teal'
-                                }
-                                key={chapterKey}
-                                onClick={() => {
-                                  setSeries(seriesKey)
-                                  setSeason(seasonKey + 1)
-                                  setChapter(chapterNum)
-                                  updateRoute(
-                                    `/stories/${Series[seriesKey]}/${
-                                      seasonKey + 1
-                                    }/${chapterNum}`
-                                  )
-                                }}
-                                disabled={currentSelection}
-                              >
-                                {seasonKey + 1}-{chapterNum}
-                              </Button>
-                            )
-                          }
-                        )}
-                      </div>
+            {Series.filter((x) => x !== 'Special').map(
+              (seriesSlug, seriesKey) => (
+                <Tabs.Tab label={Episodes[seriesSlug][0]} key={seriesKey}>
+                  <div className="max-h-[60vh] overflow-y-auto">
+                    {Episodes[seriesSlug][1].map(
+                      (episodeLengthInSeason, seasonKey) => (
+                        <div key={seasonKey}>
+                          <p>
+                            {Episodes[seriesSlug][0]} 第{seasonKey + 1}章
+                          </p>
+                          {_range(1, episodeLengthInSeason + 1).map(
+                            (chapterNum, chapterKey) => {
+                              const currentSelection =
+                                series === seriesKey &&
+                                season === seasonKey + 1 &&
+                                chapter === chapterNum
+                              return (
+                                <Button
+                                  variant="subtle"
+                                  compact
+                                  color={
+                                    completion?.[seriesSlug]?.[seasonKey]?.[
+                                      chapterKey
+                                    ]
+                                      ? 'blue'
+                                      : 'teal'
+                                  }
+                                  key={chapterKey}
+                                  onClick={() => {
+                                    setSeries(seriesKey)
+                                    setSeason(seasonKey + 1)
+                                    setChapter(chapterNum)
+                                    updateRoute(
+                                      `/stories/${Series[seriesKey]}/${
+                                        seasonKey + 1
+                                      }/${chapterNum}`
+                                    )
+                                  }}
+                                  disabled={currentSelection}
+                                >
+                                  {seasonKey + 1}-{chapterNum}
+                                </Button>
+                              )
+                            }
+                          )}
+                        </div>
+                      )
+                    )}
+                  </div>
+                </Tabs.Tab>
+              )
+            )}
+            <Tabs.Tab label="其它">
+              <div className="max-h-[60vh] overflow-y-auto">
+                {Object.entries(StoriesData.Special![1]).map(
+                  ([chapterId, chapterItem], key) => {
+                    const seriesKey = Series.indexOf('Special')
+                    const chapterNum = Number(chapterId)
+                    const currentSelection =
+                      series === seriesKey &&
+                      season === 1 &&
+                      chapter === chapterNum
+                    return (
+                      <Button
+                        variant="subtle"
+                        compact
+                        key={key}
+                        onClick={() => {
+                          setSeries(seriesKey)
+                          setSeason(1)
+                          setChapter(Number(chapterId))
+                          updateRoute(
+                            `/stories/${Series[seriesKey]}/${1}/${chapterNum}`
+                          )
+                        }}
+                        disabled={currentSelection}
+                      >
+                        {chapterItem.name}
+                      </Button>
                     )
-                  )}
-                </div>
-              </Tabs.Tab>
-            ))}
+                  }
+                )}
+              </div>
+            </Tabs.Tab>
           </Tabs>
         </Grid.Col>
         <Grid.Col xs={12} lg={6}>

@@ -3,6 +3,23 @@ import type { ChapterItem, SeriesName } from './stories'
 const data: Partial<
   Record<SeriesName, Record<number, Record<number, ChapterItem>>>
 > = {
+  // 其它剧情
+  Special: {
+    1: {
+      1: {
+        name: '手游开篇剧情',
+        video: { type: 'bilibili', vid: 'av761315570' },
+      },
+      2: {
+        name: '[2022/4/1] 愚人节春斗剧情（前篇）',
+        video: { type: 'bilibili', vid: 'av980357709', pid: 1 },
+      },
+      3: {
+        name: '[2022/4/1] 愚人节春斗剧情（后篇）',
+        video: { type: 'bilibili', vid: 'av980357709', pid: 2 },
+      },
+    },
+  },
   Hoshimi: {
     1: {
       1: {
@@ -660,6 +677,10 @@ const data: Partial<
       26: {
         name: '进入新世界',
         video: { type: 'bilibili', vid: 'av853118491' },
+      },
+      27: {
+        name: '一片空白的日程表',
+        video: { type: 'bilibili', vid: 'av683139949' },
       },
     },
   },

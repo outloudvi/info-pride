@@ -8,7 +8,7 @@ import Paths from '../utils/paths'
 import { toVideoLink } from './ExternalVideo'
 
 type PropType = {
-  series: SeriesName
+  series: SeriesName | 'Special'
   season: number
   chapter: number
 }
@@ -29,8 +29,27 @@ function findSubtitle({ series, season, chapter }: PropType): string | null {
   return ret
 }
 
+const SpecialStoriesItem = (props: PropType) => {
+  const { series, season, chapter } = props
+  const data = StoriesData?.[series]?.[season]?.[chapter]!
+  return (
+    <>
+      <div className="text-4xl">{data.name}</div>
+
+      <p>
+        <a href={toVideoLink(data.video)} target="_blank" rel="noopener">
+          视频
+        </a>
+      </p>
+    </>
+  )
+}
+
 const StoriesItem = (props: PropType) => {
   const { series, season, chapter } = props
+  if (series === 'Special') {
+    return <SpecialStoriesItem {...props} />
+  }
   const data = StoriesData?.[series]?.[season]?.[chapter]
   const subtitle = findSubtitle(props)
 

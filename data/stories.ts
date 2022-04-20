@@ -6,6 +6,7 @@ export const Series = [
   'TRINITYAiLE',
   'LizNoir',
   'Mana',
+  'Special',
 ] as const
 
 export type SeriesName = typeof Series[number]
@@ -16,6 +17,7 @@ export const Episodes: Record<SeriesName, [string, number[]]> = {
   TRINITYAiLE: ['TRINITYAiLE', [30]],
   LizNoir: ['LizNoir', [30]],
   Mana: ['长濑麻奈', [15]],
+  Special: ['其它', [3]],
 }
 
 export type ChapterItem = {
