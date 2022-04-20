@@ -1,20 +1,17 @@
-import Box from '@mui/material/Box'
+import { Card, Group, Stack } from '@mantine/core'
+import { ActionIcon } from './vendorx/mantine'
 import dayjs from 'dayjs'
 import dayjsUtc from 'dayjs/plugin/utc'
 import dayjsTz from 'dayjs/plugin/timezone'
 import dayjsIsSameOrAfter from 'dayjs/plugin/isSameOrAfter'
 import dayjsIsSameOrBefore from 'dayjs/plugin/isSameOrBefore'
-import Card from '@mui/material/Card'
-import CardContent from '@mui/material/CardContent'
-import Typography from '@mui/material/Typography'
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
+
+import Paths from '../utils/paths'
 
 import { Calendar, WikiModulesMeta } from '../utils/dataset'
-import List from '@mui/material/List'
-import ListItem from '@mui/material/ListItem'
-import ListItemText from '@mui/material/ListItemText'
-import IconButton from '@mui/material/IconButton'
-import ArticleIcon from '@mui/icons-material/Article'
-import Paths from '../utils/paths'
 
 dayjs.extend(dayjsUtc)
 dayjs.extend(dayjsTz)
@@ -37,47 +34,38 @@ const CurrentEvents = () => {
 
   const eventList =
     activeEvents.length > 0 ? (
-      <List>
+      <Stack>
         {activeEvents.map((item, key) => (
-          <ListItem
-            key={key}
-            secondaryAction={
-              item.link ? (
-                <IconButton
-                  edge="end"
-                  aria-label="wiki 页面"
-                  component="a"
-                  href={Paths.wiki(item.link)}
-                >
-                  <ArticleIcon />
-                </IconButton>
-              ) : null
-            }
-          >
-            <ListItemText
-              primary={item.title}
-              secondary={`${item.type} / ${item.start} - ${item.end}`}
-            />
-          </ListItem>
+          <Group key={key} align="center">
+            {item.link && (
+              <a title="活动详细信息" href={Paths.wiki(item.link)}>
+                <ActionIcon color="blue" size="xl" variant="hover">
+                  <FontAwesomeIcon icon={faInfoCircle} />
+                </ActionIcon>
+              </a>
+            )}
+            <div className="grow">
+              <span>{item.title}</span> <br />
+              <span className="text-sm text-gray-500">
+                {item.type} / {item.start} - {item.end}
+              </span>
+            </div>
+          </Group>
         ))}
-      </List>
+      </Stack>
     ) : (
-      <Box className="text-sm text-gray-600 mt-3">
+      <div className="text-sm text-gray-600 mt-3">
         <span>数据库中没有正在进行的活动。</span>
         <br />
         <span>最后更新于： {lastUpdate.format('YYYY/MM/DD hh:mm')}</span>
-      </Box>
+      </div>
     )
 
   return (
-    <Card>
-      <CardContent>
-        <Typography className="text-gray-600 text-sm" gutterBottom>
-          当前活动
-        </Typography>
-        {eventList}
-      </CardContent>
-    </Card>
+    <>
+      <div className="text-gray-600 text-lg mb-3">当前活动</div>
+      {eventList}
+    </>
   )
 }
 
