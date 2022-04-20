@@ -1,4 +1,4 @@
-import Button from './vendor/Button'
+import { Button } from './vendorx/mantine'
 
 import Paths from '../utils/paths'
 import { toVideoLink } from './ExternalVideo'

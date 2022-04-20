@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useRouter } from 'next/router'
 import { Grid, Tabs } from '@mantine/core'
-import Button from '../components/vendor/Button'
+import { Button } from '../components/vendorx/mantine'
 import _range from 'lodash/range'
 
 import Layout from '../components/Layout'

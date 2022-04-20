@@ -1,5 +1,5 @@
 import { Grid, Group, Stack } from '@mantine/core'
-import Button from '../components/vendor/Button'
+import { Button } from '../components/vendorx/mantine'
 
 import CurrentEvents from '../components/CurrentEvents'
 import Notice from '../components/Notice'

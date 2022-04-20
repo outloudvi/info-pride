@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { DatePicker } from '@mantine/dates'
 import { Grid } from '@mantine/core'
-import Button from '../components/vendor/Button'
+import { Button } from '../components/vendorx/mantine'
 import dayjs from 'dayjs'
 
 import Layout from '../components/Layout'

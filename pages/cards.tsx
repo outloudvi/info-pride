@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import _range from 'lodash/range'
 import { Grid, NativeSelect } from '@mantine/core'
-import Button from '../components/vendor/Button'
+import { Button } from '../components/vendorx/mantine'
 
 import Layout from '../components/Layout'
 import CardItem from '../components/CardItem'
