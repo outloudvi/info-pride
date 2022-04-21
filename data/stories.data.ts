@@ -295,6 +295,14 @@ const data: Partial<
         name: '相似的歌声',
         video: { type: 'bilibili', vid: 'av255681920' },
       },
+      3: {
+        name: '继承者',
+        video: { type: 'bilibili', vid: 'av213315934' },
+      },
+      4: {
+        name: '姐姐所追求的舞台',
+        video: { type: 'bilibili', vid: 'av595839983' },
+      },
     },
   },
   Tokyo: {

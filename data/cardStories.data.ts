@@ -138,6 +138,21 @@ const data: Partial<
         video: { type: 'bilibili', vid: 'av892912195', pid: 3 },
       },
     },
+    7: {
+      // 花あかり誘う笑顔
+      1: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av298373160', pid: 1 },
+      },
+      2: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av298373160', pid: 2 },
+      },
+      3: {
+        name: 'TODO',
+        video: { type: 'bilibili', vid: 'av298373160', pid: 3 },
+      },
+    },
   },
   佐伯遥子: {
     3: {
