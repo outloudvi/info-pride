@@ -2,10 +2,9 @@ import { useRouter } from 'next/router'
 import { Button, Grid, NativeSelect } from '@mantine/core'
 import { APIMapping } from '@outloudvi/hoshimi-types'
 import useSWR from 'swr'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import type { Card } from '@outloudvi/hoshimi-types/ProtoMaster'
 import { CardType } from '@outloudvi/hoshimi-types/ProtoEnum'
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'next-i18next'
 
 import Layout from '../components/Layout'
@@ -16,6 +15,8 @@ import {
   CharacterId,
   CharacterIds,
 } from '../data/vendor/characterId'
+import { tryToFirst, updateRoute } from '../rtUtils'
+import getI18nProps from '../utils/geti18nProps'
 
 const CardPage = () => {
   const router = useRouter()
@@ -41,7 +42,22 @@ const CardPage = () => {
   const cardList = cards[idol] ?? []
   const [cardNumber, setCardNumber] = useState(0)
 
-  // FIXME: routing support
+  useEffect(() => {
+    if (!router.isReady) return
+    const { slug: _slug } = router.query
+    const cardId = tryToFirst(_slug)
+
+    if (cardId === undefined) return
+    const card = CardData?.filter((x) => x.id === cardId)?.[0]
+    if (!card) return
+
+    setIdol(card.characterId as CharacterId)
+    setCardNumber(
+      cards[card.characterId as CharacterId]!.findIndex((r) => r.id === cardId)
+    )
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [CardData, router])
 
   return (
     <Layout>
@@ -59,6 +75,7 @@ const CardPage = () => {
             placeholder="偶像..."
             label="偶像"
             required
+            value={idol}
             onChange={(e) => {
               setIdol(e.target.value as CharacterId)
             }}
@@ -71,7 +88,7 @@ const CardPage = () => {
                 fullWidth
                 onClick={() => {
                   setCardNumber(Number(cardId))
-                  // FIXME: update route
+                  updateRoute(`/cards/${card.id}`)
                 }}
                 className={
                   'h-14 mt-2 text-left ' +
@@ -106,12 +123,6 @@ const CardPage = () => {
   )
 }
 
-export async function getStaticProps({ locale }: { locale: string }) {
-  return {
-    props: {
-      ...(await serverSideTranslations(locale, ['common', 'vendor'])),
-    },
-  }
-}
+export const getStaticProps = getI18nProps
 
 export default CardPage
