@@ -1,16 +1,18 @@
-import { Button, Skeleton, Slider } from '@mantine/core'
+import { useState } from 'react'
+import { Button, Skeleton, Slider, Tooltip } from '@mantine/core'
+import useSWR from 'swr'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 
 import Paths from '../utils/paths'
 import { toVideoLink } from './ExternalVideo'
 
 import CardStoriesData from '../data/cardStories.data'
 import type { Card, CardRarity } from '@outloudvi/hoshimi-types/ProtoMaster'
-import useSWR from 'swr'
-import { UnwrapPromise } from '../utils/api'
-import { APIMapping } from '@outloudvi/hoshimi-types'
-import { useEffect, useState } from 'react'
-import { initial } from 'lodash'
+import type { APIMapping } from '@outloudvi/hoshimi-types'
 import { CardType } from '@outloudvi/hoshimi-types/ProtoEnum'
+
+import { UnwrapPromise } from '../utils/api'
 
 export const Props = ({
   level,
@@ -205,7 +207,12 @@ const CardItem = ({
           setLevel(l)
         }}
       />
-      <p>数值</p>
+      <p>
+        数值{' '}
+        <Tooltip label="实际数值可能比此数值略高。">
+          <FontAwesomeIcon icon={faInfoCircle} />
+        </Tooltip>
+      </p>
       <Props
         cardParameterId={cardParameterId}
         vocalRatioPermil={vocalRatioPermil}
