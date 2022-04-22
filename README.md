@@ -6,10 +6,15 @@ INFO PRIDE (Beta)
 <a href="https://info-pride.vercel.app">info-pride.vercel.app</a>
 </h3>
 
+| Build                                                                              | API @types                                                          |
+| ---------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| ![Build Status](https://badgen.net/github/status/outloudvi/info-pride?icon=vercel) | ![@types Version](https://info-pride-badges.deno.dev/hoshimi-types) |
+
 ## Data
 
 * Local data: [`/data/`](./data/)
 * Remote data: [`/utils/`](./utils/)
+* Vendor data from [Vibbit](https://github.com/Malitsplus) (external)
 
 ## Local Development
 
