@@ -6,8 +6,7 @@ import _range from 'lodash/range'
 import Layout from '../components/Layout'
 import StoriesItem from '../components/StoriesItem'
 import { tryToNumber, updateRoute } from '../rtUtils'
-
-import { Series, Episodes } from '../data/stories'
+import { Episodes, Series } from '../data/stories'
 import StoriesData from '../data/stories.data'
 
 const Stories = () => {

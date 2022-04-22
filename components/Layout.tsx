@@ -1,8 +1,10 @@
 import { ReactNode, useState } from 'react'
 import { AppShell } from '@mantine/core'
+
+import Footer from '../components/Footer'
+
 import AppHeader from './AppHeader'
 import AppNavBar from './AppNavBar'
-import Footer from '../components/Footer'
 
 const Layout = ({ children }: { children: ReactNode }) => {
   const [expandedNavbar, setExpandedNavbar] = useState(false)

@@ -3,8 +3,8 @@ import Head from 'next/head'
 import { SWRConfig } from 'swr'
 import { MantineProvider } from '@mantine/core'
 import { NotificationsProvider } from '@mantine/notifications'
-
 import type { ResourceMapping } from '@outloudvi/hoshimi-types'
+
 import { fetchDb } from '../utils/api'
 
 // for Tailwind CSS

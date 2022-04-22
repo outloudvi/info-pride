@@ -1,21 +1,19 @@
-import { useMemo, useState } from 'react'
 import { useRouter } from 'next/router'
-import _range from 'lodash/range'
 import { Button, Grid, NativeSelect } from '@mantine/core'
+import { APIMapping } from '@outloudvi/hoshimi-types'
+import useSWR from 'swr'
+import type { Card } from '@outloudvi/hoshimi-types/ProtoMaster'
+import { CardType } from '@outloudvi/hoshimi-types/ProtoEnum'
+import { useMemo, useState } from 'react'
 
 import Layout from '../components/Layout'
 import CardItem from '../components/CardItem'
-
-import useSWR from 'swr'
-import { APIMapping } from '@outloudvi/hoshimi-types'
 import { UnwrapPromise } from '../utils/api'
 import {
   CharacterChineseNameList,
   CharacterId,
   CharacterIds,
 } from '../data/vendor/characterId'
-import type { Card } from '@outloudvi/hoshimi-types/ProtoMaster'
-import { CardType } from '@outloudvi/hoshimi-types/ProtoEnum'
 
 const CardPage = () => {
   const router = useRouter()

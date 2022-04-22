@@ -1,8 +1,8 @@
 import { StoriesTitle } from '../utils/dataset'
 import Paths from '../utils/paths'
-
 import { Episodes, SeriesName } from '../data/stories'
 import StoriesData, { SubTitles } from '../data/stories.data'
+
 import { toVideoLink } from './ExternalVideo'
 
 type PropType = {

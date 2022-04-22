@@ -4,7 +4,6 @@ import { Grid, NativeSelect } from '@mantine/core'
 import _range from 'lodash/range'
 
 import Layout from '../components/Layout'
-
 import { Notemap, Songs } from '../utils/dataset'
 import { Colors } from '../data/colors'
 

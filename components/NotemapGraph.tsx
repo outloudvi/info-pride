@@ -1,5 +1,7 @@
 import { useEffect, useRef } from 'react'
+
 import type { MapType } from '../utils/wikiModules/notemap'
+
 import renderNotemap from './renderNotemap'
 
 const NotemapGraph = ({

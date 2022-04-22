@@ -3,7 +3,6 @@ import { Button, Grid, Group, Stack } from '@mantine/core'
 import CurrentEvents from '../components/CurrentEvents'
 import Notice from '../components/Notice'
 import Layout from '../components/Layout'
-
 import Paths from '../utils/paths'
 
 const MainPageSiteData = [

@@ -6,7 +6,6 @@ import rfdc from 'rfdc'
 import Layout from '../components/Layout'
 import { Cards } from '../utils/dataset'
 import { Card } from '../utils/wikiPages/cards'
-
 import { idolNameToSlug } from '../data/idols'
 
 const clone = rfdc({

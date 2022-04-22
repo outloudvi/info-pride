@@ -1,6 +1,28 @@
 {
-  "extends": "next/core-web-vitals",
+  "extends": ["next/core-web-vitals", "plugin:import/recommended"],
+  "parser": "@typescript-eslint/parser",
   "rules": {
-    "react/jsx-no-target-blank": "off"
+    "no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }],
+    "react/jsx-no-target-blank": "off",
+    "import/no-unresolved": "error",
+    "import/named": "off",
+    "import/no-named-as-default": "off",
+    "import/no-named-as-default-member": "off",
+    "import/order": [
+      "warn",
+      {
+        "newlines-between": "always"
+      }
+    ]
+  },
+  "settings": {
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx"]
+    },
+    "import/resolver": {
+      "typescript": {
+        "alwaysTryTypes": true
+      }
+    }
   }
 }

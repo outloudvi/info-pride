@@ -1,5 +1,6 @@
-import type { MapType } from '../utils/wikiModules/notemap'
 import * as d3 from 'd3'
+
+import type { MapType } from '../utils/wikiModules/notemap'
 
 type Config = {
   height: number

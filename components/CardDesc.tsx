@@ -2,10 +2,10 @@ import Link from 'next/link'
 import { Grid } from '@mantine/core'
 
 import Paths from '../utils/paths'
-import { Props } from './CardItem'
-
 import type { Card } from '../utils/wikiPages/cards'
 import { idolNameToSlug } from '../data/idols'
+
+import { Props } from './CardItem'
 
 const SkillDesc = ({
   name,

@@ -4,12 +4,10 @@ import dayjsUtc from 'dayjs/plugin/utc'
 import dayjsTz from 'dayjs/plugin/timezone'
 import dayjsIsSameOrAfter from 'dayjs/plugin/isSameOrAfter'
 import dayjsIsSameOrBefore from 'dayjs/plugin/isSameOrBefore'
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 
 import Paths from '../utils/paths'
-
 import { Calendar, WikiModulesMeta } from '../utils/dataset'
 
 dayjs.extend(dayjsUtc)

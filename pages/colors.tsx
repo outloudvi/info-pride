@@ -1,8 +1,6 @@
 import Layout from '../components/Layout'
 import Color from '../data/color'
-
-import { Idols, IdolSlug } from '../data/idols'
-
+import { IdolSlug, Idols } from '../data/idols'
 import styles from '../styles/colors.module.css'
 
 const ColorOrder: IdolSlug[][] = [

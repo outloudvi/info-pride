@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import type { Dispatch, SetStateAction } from 'react'
 import Link from 'next/link'
 import {
@@ -15,13 +15,13 @@ import { intersection, uniq } from 'lodash'
 
 import Layout from '../components/Layout'
 import CardDesc from '../components/CardDesc'
-
-import { Cards, CardSkillsData } from '../utils/dataset'
+import { CardSkillsData, Cards } from '../utils/dataset'
 import { ColorTypeSimple, IdentCT } from '../utils/wikiPages/types'
 import type { Card } from '../utils/wikiPages/cards'
-import { IdolNameList, IdolName, idolNameToSlug } from '../data/idols'
-import { LocalBox, LOCALSTORAGE_BOX_TAG } from './settings'
+import { IdolName, IdolNameList, idolNameToSlug } from '../data/idols'
 import { tryJSONParse } from '../rtUtils'
+
+import { LOCALSTORAGE_BOX_TAG, LocalBox } from './settings'
 
 function mergeHilights(
   h1: Record<string, number[]>,

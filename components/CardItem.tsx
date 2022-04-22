@@ -3,16 +3,15 @@ import { Button, Skeleton, Slider, Tooltip } from '@mantine/core'
 import useSWR from 'swr'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
-
-import Paths from '../utils/paths'
-import { toVideoLink } from './ExternalVideo'
-
-import CardStoriesData from '../data/cardStories.data'
 import type { Card, CardRarity } from '@outloudvi/hoshimi-types/ProtoMaster'
 import type { APIMapping } from '@outloudvi/hoshimi-types'
 import { CardType } from '@outloudvi/hoshimi-types/ProtoEnum'
 
+import CardStoriesData from '../data/cardStories.data'
+import Paths from '../utils/paths'
 import { UnwrapPromise } from '../utils/api'
+
+import { toVideoLink } from './ExternalVideo'
 
 export const Props = ({
   level,
