@@ -1,15 +1,13 @@
 import { AppProps } from 'next/app'
 import Head from 'next/head'
-import { SWRConfig } from 'swr'
 import { MantineProvider } from '@mantine/core'
 import { NotificationsProvider } from '@mantine/notifications'
-import type { ResourceMapping } from '@outloudvi/hoshimi-types'
 import { appWithTranslation } from 'next-i18next'
+import '../styles/globals.css' // for Tailwind CSS
+import { SWRConfig } from 'swr'
+import { ResourceMapping } from '@outloudvi/hoshimi-types'
 
 import { fetchDb } from '../utils/api'
-
-// for Tailwind CSS
-import '../styles/globals.css'
 
 const App = (props: AppProps) => {
   const { Component, pageProps } = props
@@ -80,6 +78,21 @@ const App = (props: AppProps) => {
               fetcher: (url: keyof ResourceMapping) => {
                 // @ts-ignore: For now all params are in URL and sent over query params
                 return fetchDb(url)({})
+              },
+              provider: () => {
+                if (typeof localStorage === 'undefined') {
+                  return new Map()
+                }
+                const cacheName = 'idoly-cache-v1'
+                const map = new Map(
+                  JSON.parse(localStorage.getItem(cacheName) || '[]')
+                )
+                window.addEventListener('beforeunload', () => {
+                  const appCache = JSON.stringify(Array.from(map.entries()))
+                  localStorage.setItem(cacheName, appCache)
+                })
+
+                return map
               },
             }}
           >
