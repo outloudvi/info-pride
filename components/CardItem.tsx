@@ -1,11 +1,15 @@
 import { useState } from 'react'
-import { Button, Skeleton, Slider, Tooltip } from '@mantine/core'
+import { Button, Grid, Skeleton, Slider, Tooltip } from '@mantine/core'
 import useSWR from 'swr'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
-import type { Card, CardRarity } from '@outloudvi/hoshimi-types/ProtoMaster'
+import type {
+  Card,
+  CardRarity,
+  Skill,
+} from '@outloudvi/hoshimi-types/ProtoMaster'
 import type { APIMapping } from '@outloudvi/hoshimi-types'
-import { CardType } from '@outloudvi/hoshimi-types/ProtoEnum'
+import { CardType, SkillCategoryType } from '@outloudvi/hoshimi-types/ProtoEnum'
 
 import CardStoriesData from '../data/cardStories.data'
 import Paths from '../utils/paths'
@@ -89,6 +93,47 @@ export const Props = ({
   )
 }
 
+const Skill = ({ skill, className }: { skill: Skill; className?: string }) => {
+  const { name, categoryType, levels } = skill
+
+  const [level, setLevel] = useState(1)
+
+  return (
+    <div className={className + ' flex flex-col'}>
+      <div className="mx-4">
+        <Slider
+          min={levels[0].level}
+          max={levels[levels.length - 1].level}
+          value={level}
+          label={(v) => `Level ${v}`}
+          onChange={setLevel}
+        />
+      </div>
+      <span>
+        <b>{name}</b> / {SkillCategoryType[categoryType]}
+      </span>
+      <br />
+      <span
+        dangerouslySetInnerHTML={{
+          __html: levels[level - 1].description.replace(/\n/g, '<br />'),
+        }}
+      ></span>
+    </div>
+  )
+}
+
+const Skills = ({ skills }: { skills: Skill[] }) => {
+  return (
+    <Grid className="max-w-full">
+      {skills.map((skill, key) => (
+        <Grid.Col span={4} key={key}>
+          <Skill className="grow" key={key} skill={skill} />
+        </Grid.Col>
+      ))}
+    </Grid>
+  )
+}
+
 // const CardStories = ({
 //   idolName,
 //   cardNumber,
@@ -168,6 +213,10 @@ const CardItem = ({
   const rarityInfo = rarityData.filter((x) => x.rarity === rarity)[0]
   const [level, setLevel] = useState(rarityInfo?.levelLimit ?? 1)
 
+  const { data: SkillData, error: SkillError } = useSWR(
+    `/Skill?ids=${card.skillId1},${card.skillId2},${card.skillId3}`
+  )
+
   if (!rarityData) {
     return <Skeleton height={300} />
   }
@@ -221,6 +270,8 @@ const CardItem = ({
         rarityInfo={rarityInfo}
         level={level}
       />
+      <p>技能</p>
+      {SkillData ? <Skills skills={SkillData} /> : <Skeleton height={200} />}
       <br />
 
       {/* <CardStories idolName={idolName} cardNumber={cardNumber} /> */}

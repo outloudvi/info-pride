@@ -44,7 +44,7 @@ const CardPage = () => {
       <h2>卡片</h2>
       {CardDataError && <p>{String(CardDataError)}</p>}
       <Grid gutter={20} className="my-3">
-        <Grid.Col xs={12} lg={6}>
+        <Grid.Col xs={12} lg={4}>
           <NativeSelect
             data={Object.entries(CharacterChineseNameList).map(
               ([id, name]) => ({
@@ -92,7 +92,7 @@ const CardPage = () => {
             ))}
           </div>
         </Grid.Col>
-        <Grid.Col xs={12} lg={6}>
+        <Grid.Col xs={12} lg={8}>
           {cardList[cardNumber] && RarityData && (
             <CardItem card={cardList[cardNumber]} rarityData={RarityData} />
           )}
