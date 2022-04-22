@@ -77,6 +77,7 @@ export default function App(props: AppProps) {
           <SWRConfig
             value={{
               fetcher: (url: keyof ResourceMapping) => {
+                // @ts-ignore: For now all params are in URL and sent over query params
                 return fetchDb(url)({})
               },
             }}
