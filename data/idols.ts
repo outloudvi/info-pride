@@ -1,3 +1,5 @@
+// TODO: deprecate this file
+
 export type IdolSlug = keyof typeof Idols
 export type IdolName = typeof Idols[IdolSlug]
 

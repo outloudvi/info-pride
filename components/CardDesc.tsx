@@ -86,13 +86,14 @@ const CardDesc = ({
           <br />
           {ownerName} / {type} / {prop} / {rarity}★
         </div>
-        <Props
+        {/* FIXME */}
+        {/* <Props
           cardType={prop}
           vocTop={vocTop}
           danTop={danTop}
           visTop={visTop}
           staTop={staTop}
-        />
+        /> */}
       </div>
       <Grid gutter={2} className="mt-1">
         <Grid.Col xs={12} lg={4}>
