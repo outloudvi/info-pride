@@ -4,13 +4,14 @@ import { SWRConfig } from 'swr'
 import { MantineProvider } from '@mantine/core'
 import { NotificationsProvider } from '@mantine/notifications'
 import type { ResourceMapping } from '@outloudvi/hoshimi-types'
+import { appWithTranslation } from 'next-i18next'
 
 import { fetchDb } from '../utils/api'
 
 // for Tailwind CSS
 import '../styles/globals.css'
 
-export default function App(props: AppProps) {
+const App = (props: AppProps) => {
   const { Component, pageProps } = props
 
   return (
@@ -89,3 +90,5 @@ export default function App(props: AppProps) {
     </>
   )
 }
+
+export default appWithTranslation(App)

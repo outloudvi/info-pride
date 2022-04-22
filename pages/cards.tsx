@@ -2,9 +2,11 @@ import { useRouter } from 'next/router'
 import { Button, Grid, NativeSelect } from '@mantine/core'
 import { APIMapping } from '@outloudvi/hoshimi-types'
 import useSWR from 'swr'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import type { Card } from '@outloudvi/hoshimi-types/ProtoMaster'
 import { CardType } from '@outloudvi/hoshimi-types/ProtoEnum'
 import { useMemo, useState } from 'react'
+import { useTranslation } from 'next-i18next'
 
 import Layout from '../components/Layout'
 import CardItem from '../components/CardItem'
@@ -17,6 +19,8 @@ import {
 
 const CardPage = () => {
   const router = useRouter()
+  const { t: $v } = useTranslation('vendor')
+
   const { data: CardData, error: CardDataError } =
     useSWR<UnwrapPromise<ReturnType<APIMapping['Card']>>>('Card')
 
@@ -81,7 +85,7 @@ const CardPage = () => {
               >
                 <div className="text-base">
                   <span lang="zh-CN">
-                    [{CardType[card.type]}] {card.name}
+                    [{$v(CardType[card.type])}] {card.name}
                   </span>{' '}
                   <br />
                   <span className="text-gray-600 text-sm" lang="ja">
@@ -100,6 +104,14 @@ const CardPage = () => {
       </Grid>
     </Layout>
   )
+}
+
+export async function getStaticProps({ locale }: { locale: string }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['common', 'vendor'])),
+    },
+  }
 }
 
 export default CardPage

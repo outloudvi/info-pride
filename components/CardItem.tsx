@@ -16,6 +16,7 @@ import Paths from '../utils/paths'
 import { UnwrapPromise } from '../utils/api'
 
 import { toVideoLink } from './ExternalVideo'
+import { useTranslation } from 'next-i18next'
 
 export const Props = ({
   level,
@@ -96,6 +97,8 @@ export const Props = ({
 const Skill = ({ skill, className }: { skill: Skill; className?: string }) => {
   const { name, categoryType, levels } = skill
 
+  const { t: $v } = useTranslation('vendor')
+
   const [level, setLevel] = useState(1)
 
   return (
@@ -110,7 +113,7 @@ const Skill = ({ skill, className }: { skill: Skill; className?: string }) => {
         />
       </div>
       <span>
-        <b>{name}</b> / {SkillCategoryType[categoryType]}
+        <b>{name}</b> / {$v(SkillCategoryType[categoryType])}
       </span>
       <br />
       <span
@@ -208,6 +211,8 @@ const CardItem = ({
     staminaRatioPermil,
   } = card
 
+  const { t: $v } = useTranslation('vendor')
+
   const maxRarity = Math.max(...rarityData.map((x) => x.rarity))
   const [rarity, setRarity] = useState(maxRarity)
   const rarityInfo = rarityData.filter((x) => x.rarity === rarity)[0]
@@ -234,10 +239,10 @@ const CardItem = ({
         {nameJa}
       </div>
       <div>
-        {CardType[type]} / 初始 {initialRarity}★
+        {$v(CardType[type])} / 初始 {initialRarity}★
       </div>
       <hr />
-      <p>稀有度 / {rarity}</p>
+      <div className="mt-2">稀有度 / {rarity}</div>
       <Slider
         min={initialRarity}
         max={maxRarity}
@@ -246,7 +251,7 @@ const CardItem = ({
           setRarity(r)
         }}
       />
-      <p>等级 / {level}</p>
+      <div className="mt-2">等级 / {level}</div>
       <Slider
         min={1}
         max={rarityInfo.levelLimit}
@@ -255,12 +260,12 @@ const CardItem = ({
           setLevel(l)
         }}
       />
-      <p>
+      <div className="mt-2">
         数值{' '}
         <Tooltip label="实际数值可能比此数值略高。">
           <FontAwesomeIcon icon={faInfoCircle} />
         </Tooltip>
-      </p>
+      </div>
       <Props
         cardParameterId={cardParameterId}
         vocalRatioPermil={vocalRatioPermil}
@@ -270,7 +275,7 @@ const CardItem = ({
         rarityInfo={rarityInfo}
         level={level}
       />
-      <p>技能</p>
+      <div className="mt-2">技能</div>
       {SkillData ? <Skills skills={SkillData} /> : <Skeleton height={200} />}
       <br />
 
