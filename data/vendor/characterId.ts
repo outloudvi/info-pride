@@ -38,7 +38,7 @@ export const CharacterChineseNameList: Record<CharacterId, string> = {
   'char-mna': '长濑麻奈',
   'char-ngs': '伊吹渚',
   'char-rei': '一之濑怜',
-  'char-rio': '神奇李央',
+  'char-rio': '神崎莉央',
   'char-rui': '天动瑠依',
   'char-ski': '白石沙季',
   'char-skr': '川咲樱',
