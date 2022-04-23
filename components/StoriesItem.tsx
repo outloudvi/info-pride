@@ -78,10 +78,10 @@ const StoriesItem = (props: PropType) => {
   >(`/Story?id=${getBackendStoryId(props)}`)
 
   const data = StoriesData?.[series]?.[season]?.[chapter]
-  const subtitle = findSubtitle(props)
+  const subtitle = StoryData?.sectionName ?? findSubtitle(props)
 
   const cnTitle = data?.name && data.name !== 'TODO' ? data.name : null
-  const jaTitle = StoriesTitle[series][season][chapter]
+  const jaTitle = StoryData?.name ?? StoriesTitle[series][season][chapter]
 
   return (
     <>
@@ -90,7 +90,7 @@ const StoriesItem = (props: PropType) => {
         {season}章 - {chapter}
       </div>
 
-      <div className="text-2xl">{subtitle ?? StoryData?.sectionName}</div>
+      <div className="text-2xl">{subtitle}</div>
       <br />
       <div className="text-xl">
         {cnTitle !== null ? (
