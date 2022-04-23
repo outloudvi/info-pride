@@ -39,3 +39,6 @@ yarn-error.log*
 
 # Project-specific
 utils/*/*.origin.json
+
+# Sentry
+.sentryclirc

@@ -1,3 +1,4 @@
+import { withSentry } from '@sentry/nextjs'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 import { Cards } from '../../utils/dataset'
@@ -8,7 +9,7 @@ const CardsArray: WikiCard[] = Object.values(Cards)
   .map(Object.values)
   .reduce((a, b) => [...a, ...b])
 
-const News = async (
+const WikiCard = async (
   req: NextApiRequest,
   res: NextApiResponse<{ card: WikiCard; stories: Stories | null } | undefined>
 ) => {
@@ -40,4 +41,4 @@ const News = async (
   })
 }
 
-export default News
+export default withSentry(WikiCard)

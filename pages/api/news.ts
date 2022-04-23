@@ -1,3 +1,4 @@
+import { withSentry } from '@sentry/nextjs'
 import type { NextApiRequest, NextApiResponse } from 'next'
 import zip from 'lodash/zip'
 import got from 'got'
@@ -43,4 +44,4 @@ const News = async (req: NextApiRequest, res: NextApiResponse<News[]>) => {
   res.status(200).json(await getNews())
 }
 
-export default News
+export default withSentry(News)
