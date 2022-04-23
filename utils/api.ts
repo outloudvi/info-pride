@@ -14,3 +14,5 @@ export function fetchDb<C extends AcceptableApiPath>(path: C): APIMapping[C] {
 }
 
 export type UnArray<T> = T extends (infer R)[] ? R : never
+
+export const feFetcher = (url: string) => fetch(url).then((r) => r.json())

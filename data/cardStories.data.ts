@@ -1,16 +1,10 @@
 import type { IdolName } from './idols'
 import type { ChapterItem } from './stories'
 
-const data: Partial<
-  Record<
-    IdolName,
-    Record<
-      number,
-      Record<1 | 2 | 3, ChapterItem> &
-        Partial<Record<'phone', Omit<ChapterItem, 'name'>>>
-    >
-  >
-> = {
+export type Stories = Record<1 | 2 | 3, ChapterItem> &
+  Partial<Record<'phone', Omit<ChapterItem, 'name'>>>
+
+const data: Partial<Record<IdolName, Record<number, Stories>>> = {
   长濑麻奈: {
     1: {
       // You're my everything

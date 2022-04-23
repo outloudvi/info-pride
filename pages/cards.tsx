@@ -17,7 +17,6 @@ import {
 } from '../data/vendor/characterId'
 import { tryToFirst, updateRoute } from '../rtUtils'
 import getI18nProps from '../utils/geti18nProps'
-import { Cards as ZhWikiCards } from '../utils/dataset'
 
 const CardPage = () => {
   const router = useRouter()
@@ -105,10 +104,11 @@ const CardPage = () => {
                   <span lang="zh-CN">
                     [{$v(CardType[card.type])}] {card.name}
                   </span>{' '}
-                  <br />
-                  <span className="text-gray-600 text-sm" lang="ja">
+                  {/* TODO: 中文卡牌名 */}
+                  {/* <br />
+                    <span className="text-gray-600 text-sm" lang="ja">
                     {card.name}
-                  </span>
+                  </span> */}
                 </div>
               </Button>
             ))}
