@@ -4,7 +4,7 @@ import { Button, Grid, Tabs } from '@mantine/core'
 import _range from 'lodash/range'
 
 import Layout from '../components/Layout'
-import StoriesItem from '../components/StoriesItem'
+import StoriesItem, { SpecialStoriesItem } from '../components/StoriesItem'
 import { tryToNumber, updateRoute } from '../rtUtils'
 import { Episodes, Series } from '../data/stories'
 import StoriesData from '../data/stories.data'
@@ -15,6 +15,7 @@ const Stories = () => {
   const [series, setSeries] = useState(0)
   const [season, setSeason] = useState(1)
   const [chapter, setChapter] = useState(1)
+  const seriesName = Series[series]
 
   useEffect(() => {
     if (!router.isReady) return
@@ -138,11 +139,19 @@ const Stories = () => {
           </Tabs>
         </Grid.Col>
         <Grid.Col xs={12} lg={6}>
-          <StoriesItem
-            series={Series[series]}
-            season={season}
-            chapter={chapter}
-          />
+          {seriesName === 'Special' ? (
+            <SpecialStoriesItem
+              series={seriesName}
+              season={season}
+              chapter={chapter}
+            />
+          ) : (
+            <StoriesItem
+              series={seriesName}
+              season={season}
+              chapter={chapter}
+            />
+          )}
         </Grid.Col>
       </Grid>
     </Layout>

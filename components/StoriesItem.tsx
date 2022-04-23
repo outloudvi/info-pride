@@ -1,3 +1,7 @@
+import useSWR from 'swr'
+import { UnwrapPromise } from '@outloudvi/hoshimi-types/helpers'
+import { APIMapping } from '@outloudvi/hoshimi-types'
+
 import { StoriesTitle } from '../utils/dataset'
 import Paths from '../utils/paths'
 import { Episodes, SeriesName } from '../data/stories'
@@ -6,9 +10,28 @@ import StoriesData, { SubTitles } from '../data/stories.data'
 import { toVideoLink } from './ExternalVideo'
 
 type PropType = {
-  series: SeriesName | 'Special'
+  // "Special" won't appear here
+  series: Exclude<SeriesName, 'Special'>
   season: number
   chapter: number
+}
+
+function getBackendStoryId(props: PropType): string {
+  const { series, season, chapter } = props
+  const Prefix: Record<SeriesName, string> = {
+    Hoshimi: 'st-original-cmn',
+    Tokyo: 'st-main-cmn',
+    TRINITYAiLE: 'st-group-tri',
+    LizNoir: 'st-group-liz',
+    Mana: 'st-group-mna',
+    Special: '',
+  }
+  return [
+    Prefix[series],
+    '01',
+    String(season).padStart(2, '0'),
+    String(chapter).padStart(2, '0'),
+  ].join('-')
 }
 
 function findSubtitle({ series, season, chapter }: PropType): string | null {
@@ -27,7 +50,11 @@ function findSubtitle({ series, season, chapter }: PropType): string | null {
   return ret
 }
 
-const SpecialStoriesItem = (props: PropType) => {
+export const SpecialStoriesItem = (props: {
+  series: 'Special'
+  season: number
+  chapter: number
+}) => {
   const { series, season, chapter } = props
   const data = StoriesData?.[series]?.[season]?.[chapter]!
   return (
@@ -45,9 +72,11 @@ const SpecialStoriesItem = (props: PropType) => {
 
 const StoriesItem = (props: PropType) => {
   const { series, season, chapter } = props
-  if (series === 'Special') {
-    return <SpecialStoriesItem {...props} />
-  }
+
+  const { data: StoryData, error: StoryError } = useSWR<
+    UnwrapPromise<ReturnType<APIMapping['Story']>>
+  >(`/Story?id=${getBackendStoryId(props)}`)
+
   const data = StoriesData?.[series]?.[season]?.[chapter]
   const subtitle = findSubtitle(props)
 
@@ -61,7 +90,7 @@ const StoriesItem = (props: PropType) => {
         {season}章 - {chapter}
       </div>
 
-      <div className="text-2xl">{subtitle}</div>
+      <div className="text-2xl">{subtitle ?? StoryData?.sectionName}</div>
       <br />
       <div className="text-xl">
         {cnTitle !== null ? (
@@ -75,6 +104,11 @@ const StoriesItem = (props: PropType) => {
           <span lang="ja">{jaTitle}</span>
         )}
       </div>
+      {StoryData && (
+        <div>
+          <p lang="ja">{StoryData.description}</p>
+        </div>
+      )}
       {data && (
         <p>
           <a href={toVideoLink(data.video)} target="_blank" rel="noopener">
