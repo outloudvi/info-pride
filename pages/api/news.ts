@@ -45,3 +45,11 @@ const News = async (req: NextApiRequest, res: NextApiResponse<News[]>) => {
 }
 
 export default withSentry(News)
+
+export const config = {
+  api: {
+    bodyParser: {
+      sizeLimit: '1mb',
+    },
+  },
+}
