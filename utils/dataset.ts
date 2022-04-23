@@ -1,16 +1,10 @@
 // wikiModules
-import _notemap from './wikiModules/notemap.json' assert { type: 'json' }
 import _diary from './wikiModules/diary.json' assert { type: 'json' }
 import _calendar from './wikiModules/calendar.json' assert { type: 'json' }
 import _wikiModulesMeta from './wikiModules/meta.json' assert { type: 'json' }
 import type { TheTable as WikiDiary } from './wikiModules/diary'
-import type { TheTable as WikiNoteMap } from './wikiModules/notemap'
 import type { TheTable as WikiCalendar } from './wikiModules/calendar'
 
-/**
- * @deprecated Please use /MusicChart and /MusicChartList instead.
- */
-export const Notemap = _notemap.tb as WikiNoteMap
 export const Diary = _diary.tb as WikiDiary
 export const Calendar = _calendar.tb as WikiCalendar
 export const WikiModulesMeta = _wikiModulesMeta
