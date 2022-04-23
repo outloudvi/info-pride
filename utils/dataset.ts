@@ -7,6 +7,9 @@ import type { TheTable as WikiDiary } from './wikiModules/diary'
 import type { TheTable as WikiNoteMap } from './wikiModules/notemap'
 import type { TheTable as WikiCalendar } from './wikiModules/calendar'
 
+/**
+ * @deprecated Please use /MusicChart and /MusicChartList instead.
+ */
 export const Notemap = _notemap.tb as WikiNoteMap
 export const Diary = _diary.tb as WikiDiary
 export const Calendar = _calendar.tb as WikiCalendar
@@ -16,7 +19,7 @@ export const WikiModulesMeta = _wikiModulesMeta
 import _cards from './wikiPages/cards.json' assert { type: 'json' }
 import _idols from './wikiPages/idols.json' assert { type: 'json' }
 import _songs from './wikiPages/songs.json' assert { type: 'json' }
-import _wikiPagesMeta from './wikiModules/meta.json' assert { type: 'json' }
+import _wikiPagesMeta from './wikiPages/meta.json' assert { type: 'json' }
 import _cardSkillsData from './wikiPages/cardSkills.json' assert { type: 'json' }
 import type { TheRootSchema as WikiCards } from './wikiPages/cards'
 import type { TheRootSchema as WikiIdols } from './wikiPages/idols'

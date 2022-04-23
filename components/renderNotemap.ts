@@ -1,6 +1,5 @@
 import * as d3 from 'd3'
-
-import type { MapType } from '../utils/wikiModules/notemap'
+import type { MusicChart } from '@outloudvi/hoshimi-types/types'
 
 type Config = {
   height: number
@@ -13,7 +12,7 @@ type Config = {
 }
 
 function renderNotemap(
-  nm: MapType,
+  nm: MusicChart,
   el: SVGSVGElement | null,
   config?: Partial<Config>
 ): SVGSVGElement {
@@ -37,8 +36,14 @@ function renderNotemap(
   }
   const widthPerColumn = width / 5
 
-  const notes = [nm['1'], nm['2'], nm['3'], nm['4'], nm['5']]
-  const beat = nm.beat
+  const notes = [
+    nm.chart[4],
+    nm.chart[2],
+    nm.chart[1],
+    nm.chart[3],
+    nm.chart[5],
+  ]
+  const beat = nm.beats
 
   const svg = d3
     .select(el)

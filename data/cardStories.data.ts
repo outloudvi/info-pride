@@ -786,6 +786,9 @@ const data: Partial<
         name: '珍贵的礼物',
         video: { type: 'bilibili', vid: 'av719530528', pid: 3 },
       },
+      phone: {
+        video: { type: 'bilibili', vid: 'av464939209' },
+      },
     },
     6: {
       // Little Lover
@@ -861,6 +864,9 @@ const data: Partial<
       3: {
         name: '机会抓住了就不会让它跑掉！',
         video: { type: 'bilibili', vid: 'av767958383' },
+      },
+      phone: {
+        video: { type: 'bilibili', vid: 'av467970608' },
       },
     },
   },

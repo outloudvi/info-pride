@@ -1,22 +1,28 @@
+import { APIMapping } from '@outloudvi/hoshimi-types'
+import { UnwrapPromise } from '@outloudvi/hoshimi-types/helpers'
 import { useEffect, useRef } from 'react'
-
-import type { MapType } from '../utils/wikiModules/notemap'
+import useSWR from 'swr'
 
 import renderNotemap from './renderNotemap'
 
 const NotemapGraph = ({
-  notemap,
+  chartId,
   laneColors,
 }: {
-  notemap: MapType
+  chartId: string
   laneColors: string[]
 }) => {
+  const { data } = useSWR<UnwrapPromise<ReturnType<APIMapping['MusicChart']>>>(
+    `/MusicChart?chartId=${chartId}`
+  )
   const svgRef = useRef<SVGSVGElement | null>(null)
 
   useEffect(() => {
-    renderNotemap(notemap, svgRef.current, {
-      laneColors,
-    })
+    if (data) {
+      renderNotemap(data, svgRef.current, {
+        laneColors,
+      })
+    }
   })
 
   return <svg ref={svgRef} />

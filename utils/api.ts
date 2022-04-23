@@ -1,6 +1,6 @@
-import type { AcceptableKey, APIMapping } from '@outloudvi/hoshimi-types'
+import type { AcceptableApiPath, APIMapping } from '@outloudvi/hoshimi-types'
 
-export function fetchDb<C extends AcceptableKey>(path: C): APIMapping[C] {
+export function fetchDb<C extends AcceptableApiPath>(path: C): APIMapping[C] {
   return (...args: any[]) => {
     const url = new URL('https://idoly-backend.outv.im/api/' + path)
 
@@ -13,4 +13,4 @@ export function fetchDb<C extends AcceptableKey>(path: C): APIMapping[C] {
   }
 }
 
-export type UnwrapPromise<T> = T extends Promise<infer U> ? U : never
+export type UnArray<T> = T extends (infer R)[] ? R : never

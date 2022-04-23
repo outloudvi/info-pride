@@ -1,33 +1,38 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { Grid, NativeSelect } from '@mantine/core'
 import _range from 'lodash/range'
+import useSWR, { SWRConfig } from 'swr'
+import { UnwrapPromise } from '@outloudvi/hoshimi-types/helpers'
+import { APIMapping } from '@outloudvi/hoshimi-types'
 
 import Layout from '../components/Layout'
-import { Notemap, Songs } from '../utils/dataset'
 import { Colors } from '../data/colors'
+import { fetchDb, UnArray } from '../utils/api'
 
 const NotemapGraph = dynamic(() => import('../components/NotemapGraph'), {
   ssr: false,
 })
 
 const NotemapPage = () => {
-  const songList = Object.keys(Notemap)
-  const songTitleList = useMemo(() => {
-    const songSlugToName: Record<string, string> = {}
-    Object.values(Songs).map((x) => {
-      songSlugToName[x.slug] = x.name
-    })
-    return songSlugToName
-  }, [])
-  const [song, setSong] = useState<string>(songList[0])
-  const notemapList = song !== undefined ? Object.keys(Notemap[song]) : []
-  const [notemap, setNotemap] = useState<string>(notemapList[0])
-  const selectedNotemap = song && notemap ? Notemap[song][notemap] : undefined
+  const { data: ChartListData } =
+    useSWR<UnwrapPromise<ReturnType<APIMapping['MusicChartList']>>>(
+      '/MusicChartList'
+    )
+
+  if (!ChartListData) {
+    throw Error('Should be already populated by getServerSideProps')
+  }
+
+  const [song, setSong] = useState<UnArray<typeof ChartListData>>(
+    ChartListData[0]
+  )
+  const chartList = song.charts
+  const [chartId, setChartId] = useState<string>(chartList[0].id)
 
   useEffect(() => {
     // update notemap after switching songs
-    setNotemap(notemapList[0])
+    setChartId(chartList[0].id)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [song])
 
@@ -47,22 +52,28 @@ const NotemapPage = () => {
           <div>
             <NativeSelect
               label="曲目"
-              data={songList.map((item) => ({
-                label: songTitleList[item],
-                value: item,
+              data={ChartListData.map(({ musicId, title }) => ({
+                value: musicId,
+                label: title,
               }))}
-              value={song}
+              value={song.musicId}
               onChange={(i) => {
-                setSong(i.target.value)
+                const chartSongItem = ChartListData.filter(
+                  (x) => x.musicId === i.target.value
+                )[0]
+                setSong(chartSongItem)
               }}
               required
             />
             <NativeSelect
               label="谱面"
-              data={notemapList}
-              value={notemap}
+              data={chartList.map(({ id, desc }) => ({
+                label: desc,
+                value: id,
+              }))}
+              value={chartId}
               onChange={(i) => {
-                setNotemap(i.target.value)
+                setChartId(i.target.value)
               }}
               required
             />
@@ -92,13 +103,28 @@ const NotemapPage = () => {
           </div>
         </Grid.Col>
         <Grid.Col xs={12} lg={6}>
-          {selectedNotemap !== undefined && (
-            <NotemapGraph notemap={selectedNotemap} laneColors={laneColors} />
-          )}
+          {<NotemapGraph chartId={chartId} laneColors={laneColors} />}
         </Grid.Col>
       </Grid>
     </Layout>
   )
 }
 
-export default NotemapPage
+export async function getServerSideProps() {
+  const musicChartList = await fetchDb('MusicChartList')()
+  return {
+    props: {
+      fallback: {
+        '/MusicChartList': musicChartList,
+      },
+    },
+  }
+}
+
+const SWRd = ({ fallback }: { fallback: any }) => (
+  <SWRConfig value={{ fallback }}>
+    <NotemapPage />
+  </SWRConfig>
+)
+
+export default SWRd

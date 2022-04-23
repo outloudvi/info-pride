@@ -6,10 +6,10 @@ import type { Card } from '@outloudvi/hoshimi-types/ProtoMaster'
 import { CardType } from '@outloudvi/hoshimi-types/ProtoEnum'
 import { useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'next-i18next'
+import { UnwrapPromise } from '@outloudvi/hoshimi-types/helpers'
 
 import Layout from '../components/Layout'
 import CardItem from '../components/CardItem'
-import { UnwrapPromise } from '../utils/api'
 import {
   CharacterChineseNameList,
   CharacterId,
@@ -17,6 +17,7 @@ import {
 } from '../data/vendor/characterId'
 import { tryToFirst, updateRoute } from '../rtUtils'
 import getI18nProps from '../utils/geti18nProps'
+import { Cards as ZhWikiCards } from '../utils/dataset'
 
 const CardPage = () => {
   const router = useRouter()

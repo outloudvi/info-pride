@@ -10,13 +10,13 @@ import type {
 } from '@outloudvi/hoshimi-types/ProtoMaster'
 import type { APIMapping } from '@outloudvi/hoshimi-types'
 import { CardType, SkillCategoryType } from '@outloudvi/hoshimi-types/ProtoEnum'
+import { UnwrapPromise } from '@outloudvi/hoshimi-types/helpers'
+import { useTranslation } from 'next-i18next'
 
 import CardStoriesData from '../data/cardStories.data'
 import Paths from '../utils/paths'
-import { UnwrapPromise } from '../utils/api'
 
 import { toVideoLink } from './ExternalVideo'
-import { useTranslation } from 'next-i18next'
 
 export const Props = ({
   level,
