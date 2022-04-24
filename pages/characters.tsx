@@ -11,6 +11,8 @@ import {
 } from '../data/vendor/characterId'
 import SWRWrapped from '../components/SWRWrapped'
 
+const toHashColor = (r: string) => (r.startsWith('#') ? r : '#' + r)
+
 const OrgName: Record<string, string> = {
   character_group_1: '月光风暴',
   character_group_2: 'SUNNY PEACE',
@@ -26,7 +28,7 @@ const SquareColor = ({ color }: { color: string }) => (
       border: '1px solid #555',
       borderRadius: '3px',
       display: 'inline-block',
-      backgroundColor: '#' + color,
+      backgroundColor: toHashColor(color),
     }}
   ></div>
 )
@@ -92,7 +94,7 @@ const CharacterItem = ({
             <li>讨厌的东西 / {unfavorite}</li>
             <li>习惯手 / {isLeftHanded ? '左手' : '右手'}</li>
             <li>
-              代表色 / #{color} <SquareColor color={color} />
+              代表色 / {toHashColor(color)} <SquareColor color={color} />
             </li>
             <li>三围 / {threeSize}</li>
           </ul>
