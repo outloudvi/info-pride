@@ -1,4 +1,4 @@
-import { Blockquote, Grid } from '@mantine/core'
+import { Blockquote, Grid, ScrollArea, Table } from '@mantine/core'
 import useSWR from 'swr'
 import { useState } from 'react'
 
@@ -60,44 +60,73 @@ const CharacterItem = ({
     catchphrase,
   } = CharacterData?.[0] ?? {}
 
+  const tableItem = [
+    ...(OrgName[characterGroupId]
+      ? [['所属团体', OrgName[characterGroupId]]]
+      : []),
+    ['年龄', age],
+    ['CV', cv],
+    ['生日', birthday],
+    ['身高', height],
+    ['体重', weight],
+    ['星座', zodiacSign],
+    ['学校', hometown],
+    ['喜欢的东西', favorite],
+    ['讨厌的东西', unfavorite],
+    ['习惯手', isLeftHanded ? '左手' : '右手'],
+    ['三围', threeSize],
+  ]
+
   return (
     <div>
-      <div>
+      <div
+        className="relative py-2"
+        style={{
+          background: `linear-gradient(-90deg, ${toHashColor(
+            color
+          )} 50%, transparent 75%)`,
+        }}
+      >
         <b className="text-4xl" lang="zh-hans">
           {CharacterChineseNameList[id as CharacterId]}
         </b>{' '}
         <span className="text-2xl ml-4" lang="ja">
           {name}
         </span>
+        <div className="uppercase text-3xl mt-1 text-gray-600 right-1 top-0 absolute">
+          {enName}
+        </div>
       </div>
-      <div className="uppercase text-2xl mt-1 text-gray-600">{enName}</div>
+
       {catchphrase && (
         <Blockquote className="text-gray-700" lang="ja">
-          {catchphrase}
+          <span
+            dangerouslySetInnerHTML={{
+              __html: catchphrase.replace(/\n/g, '<br />'),
+            }}
+          ></span>
         </Blockquote>
       )}
       {profile && <p>{profile}</p>}
       {CharacterData && (
         <div>
-          <ul>
-            {OrgName[characterGroupId] && (
-              <li>所属团体 / {OrgName[characterGroupId]}</li>
-            )}
-            <li>年龄 / {age}</li>
-            <li>CV / {cv}</li>
-            <li>生日 / {birthday}</li>
-            <li>身高 / {height}</li>
-            <li>体重 / {weight}</li>
-            <li>星座 / {zodiacSign}</li>
-            <li>学校 / {hometown}</li>
-            <li>喜爱的东西 / {favorite}</li>
-            <li>讨厌的东西 / {unfavorite}</li>
-            <li>习惯手 / {isLeftHanded ? '左手' : '右手'}</li>
-            <li>
-              代表色 / {toHashColor(color)} <SquareColor color={color} />
-            </li>
-            <li>三围 / {threeSize}</li>
-          </ul>
+          <Table className="max-w-xl text-center mx-auto">
+            {tableItem.map(([label, value], key) => (
+              <tr
+                key={key}
+                className="border-0 border-solid border-b- border-b-gray-400 even:bg-gray-100"
+              >
+                <td className="py-1 text-gray-700 w-1/4">{label}</td>
+                <td className="py-1">{value}</td>
+              </tr>
+            ))}
+            <tr>
+              <td>代表色</td>
+              <td>
+                <SquareColor color={color} /> {toHashColor(color)}
+              </td>
+            </tr>
+          </Table>
         </div>
       )}
     </div>
@@ -119,24 +148,26 @@ const CharactersPage = () => {
 
       <Grid gutter={20} className="my-3">
         <Grid.Col xs={12} lg={4}>
-          {NonNpcCharacterListData.sort((a, b) => a.order - b.order).map(
-            (item, key) => (
-              <ListButton
-                key={key}
-                selected={chrOrderId === key}
-                onClick={() => {
-                  setChrOrderId(key)
-                }}
-              >
-                <div className="text-base">
-                  <span lang="zh-CN">
-                    <SquareColor color={item.color} />{' '}
-                    {CharacterChineseNameList[item.id as CharacterId]}
-                  </span>
-                </div>
-              </ListButton>
-            )
-          )}
+          <ScrollArea style={{ height: 'min(1200px, 70vh)' }}>
+            {NonNpcCharacterListData.sort((a, b) => a.order - b.order).map(
+              (item, key) => (
+                <ListButton
+                  key={key}
+                  selected={chrOrderId === key}
+                  onClick={() => {
+                    setChrOrderId(key)
+                  }}
+                >
+                  <div className="text-base">
+                    <span lang="zh-CN">
+                      <SquareColor color={item.color} />{' '}
+                      {CharacterChineseNameList[item.id as CharacterId]}
+                    </span>
+                  </div>
+                </ListButton>
+              )
+            )}
+          </ScrollArea>
         </Grid.Col>
         <Grid.Col xs={12} lg={8}>
           {NonNpcCharacterListData?.[chrOrderId] && (
