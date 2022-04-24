@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { Button, Grid, NativeSelect } from '@mantine/core'
+import { Grid, NativeSelect } from '@mantine/core'
 import useSWR from 'swr'
 import type { Card } from '@outloudvi/hoshimi-types/ProtoMaster'
 import { CardType } from '@outloudvi/hoshimi-types/ProtoEnum'
@@ -16,6 +16,7 @@ import {
 import { tryToFirst, updateRoute } from '../rtUtils'
 import getI18nProps from '../utils/geti18nProps'
 import { APIResponseOf } from '../utils/api'
+import ListButton from '../components/ListButton'
 
 const CardPage = () => {
   const router = useRouter()
@@ -80,23 +81,13 @@ const CardPage = () => {
           />
           <div>
             {Object.entries(cardList).map(([cardId, card], key) => (
-              <Button
+              <ListButton
                 key={key}
-                variant="outline"
-                fullWidth
                 onClick={() => {
                   setCardNumber(Number(cardId))
                   updateRoute(`/cards/${card.id}`)
                 }}
-                className={
-                  'h-14 mt-2 text-left ' +
-                  (cardNumber === Number(cardId)
-                    ? 'border-none text-black'
-                    : '')
-                }
-                classNames={{
-                  inner: 'block',
-                }}
+                selected={cardNumber === Number(cardId)}
               >
                 <div className="text-base">
                   <span lang="zh-CN">
@@ -108,7 +99,7 @@ const CardPage = () => {
                     {card.name}
                   </span> */}
                 </div>
-              </Button>
+              </ListButton>
             ))}
           </div>
         </Grid.Col>
