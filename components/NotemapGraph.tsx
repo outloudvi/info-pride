@@ -25,7 +25,7 @@ const NotemapGraph = ({
     }
   })
 
-  return <svg ref={svgRef} />
+  return <svg className="block mx-auto" ref={svgRef} />
 }
 
 export default NotemapGraph
