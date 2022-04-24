@@ -1,4 +1,5 @@
 import type { AcceptableApiPath, APIMapping } from '@outloudvi/hoshimi-types'
+import { UnwrapPromise } from '@outloudvi/hoshimi-types/helpers'
 
 export function fetchDb<C extends AcceptableApiPath>(path: C): APIMapping[C] {
   return (...args: any[]) => {
@@ -16,3 +17,7 @@ export function fetchDb<C extends AcceptableApiPath>(path: C): APIMapping[C] {
 export type UnArray<T> = T extends (infer R)[] ? R : never
 
 export const feFetcher = (url: string) => fetch(url).then((r) => r.json())
+
+export type APIResponseOf<M extends keyof APIMapping> = UnwrapPromise<
+  ReturnType<APIMapping[M]>
+>

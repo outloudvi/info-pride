@@ -1,8 +1,8 @@
 import { Button, Group, Stack } from '@mantine/core'
-import { APIMapping } from '@outloudvi/hoshimi-types'
-import { UnwrapPromise } from '@outloudvi/hoshimi-types/helpers'
 import { useEffect, useRef } from 'react'
 import useSWR from 'swr'
+
+import { APIResponseOf } from '../utils/api'
 
 import renderNotemap from './renderNotemap'
 
@@ -13,7 +13,7 @@ const NotemapGraph = ({
   chartId: string
   laneColors: string[]
 }) => {
-  const { data } = useSWR<UnwrapPromise<ReturnType<APIMapping['MusicChart']>>>(
+  const { data } = useSWR<APIResponseOf<'MusicChart'>>(
     `/MusicChart?chartId=${chartId}`
   )
   const svgRef = useRef<SVGSVGElement | null>(null)

@@ -3,12 +3,10 @@ import dynamic from 'next/dynamic'
 import { Grid, NativeSelect } from '@mantine/core'
 import _range from 'lodash/range'
 import useSWR, { SWRConfig } from 'swr'
-import { UnwrapPromise } from '@outloudvi/hoshimi-types/helpers'
-import { APIMapping } from '@outloudvi/hoshimi-types'
 
 import Layout from '../components/Layout'
 import { Colors } from '../data/colors'
-import { fetchDb, UnArray } from '../utils/api'
+import { APIResponseOf, fetchDb, UnArray } from '../utils/api'
 
 const NotemapGraph = dynamic(() => import('../components/NotemapGraph'), {
   ssr: false,
@@ -16,9 +14,7 @@ const NotemapGraph = dynamic(() => import('../components/NotemapGraph'), {
 
 const NotemapPage = () => {
   const { data: ChartListData } =
-    useSWR<UnwrapPromise<ReturnType<APIMapping['MusicChartList']>>>(
-      '/MusicChartList'
-    )
+    useSWR<APIResponseOf<'MusicChartList'>>('/MusicChartList')
 
   if (!ChartListData) {
     throw Error('Should be already populated by getServerSideProps')

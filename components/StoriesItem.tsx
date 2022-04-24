@@ -1,12 +1,11 @@
 import useSWR from 'swr'
-import { UnwrapPromise } from '@outloudvi/hoshimi-types/helpers'
-import { APIMapping } from '@outloudvi/hoshimi-types'
 import * as Sentry from '@sentry/browser'
 
 import { StoriesTitle } from '../utils/dataset'
 import Paths from '../utils/paths'
 import { Episodes, SeriesName } from '../data/stories'
 import StoriesData, { SubTitles } from '../data/stories.data'
+import { APIResponseOf } from '../utils/api'
 
 import { toVideoLink } from './ExternalVideo'
 
@@ -74,9 +73,9 @@ export const SpecialStoriesItem = (props: {
 const StoriesItem = (props: PropType) => {
   const { series, season, chapter } = props
 
-  const { data: StoryData, error: StoryError } = useSWR<
-    UnwrapPromise<ReturnType<APIMapping['Story']>>
-  >(`/Story?id=${getBackendStoryId(props)}`)
+  const { data: StoryData, error: StoryError } = useSWR<APIResponseOf<'Story'>>(
+    `/Story?id=${getBackendStoryId(props)}`
+  )
 
   const data = StoriesData?.[series]?.[season]?.[chapter]
   const subtitle = StoryData?.sectionName ?? findSubtitle(props)

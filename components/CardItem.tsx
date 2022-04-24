@@ -8,15 +8,13 @@ import type {
   CardRarity,
   Skill,
 } from '@outloudvi/hoshimi-types/ProtoMaster'
-import type { APIMapping } from '@outloudvi/hoshimi-types'
 import { CardType, SkillCategoryType } from '@outloudvi/hoshimi-types/ProtoEnum'
-import { UnwrapPromise } from '@outloudvi/hoshimi-types/helpers'
 import { useTranslation } from 'next-i18next'
 
 import type { Card as WikiCard } from '../utils/wikiPages/cards'
-import CardStoriesData, { Stories } from '../data/cardStories.data'
+import { Stories } from '../data/cardStories.data'
 import Paths from '../utils/paths'
-import { feFetcher } from '../utils/api'
+import { APIResponseOf, feFetcher } from '../utils/api'
 
 import { toVideoLink } from './ExternalVideo'
 
@@ -37,9 +35,7 @@ export const Props = ({
   | 'staminaRatioPermil'
 > & { level: number; rarityInfo: CardRarity }) => {
   const { data: ParamData } =
-    useSWR<UnwrapPromise<ReturnType<APIMapping['CardParameter']>>>(
-      'CardParameter'
-    )
+    useSWR<APIResponseOf<'CardParameter'>>('CardParameter')
 
   const parameterInfo = (ParamData ?? []).filter(
     (x) => x.id === cardParameterId && x.level === level

@@ -1,12 +1,10 @@
 import { useRouter } from 'next/router'
 import { Button, Grid, NativeSelect } from '@mantine/core'
-import { APIMapping } from '@outloudvi/hoshimi-types'
 import useSWR from 'swr'
 import type { Card } from '@outloudvi/hoshimi-types/ProtoMaster'
 import { CardType } from '@outloudvi/hoshimi-types/ProtoEnum'
 import { useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'next-i18next'
-import { UnwrapPromise } from '@outloudvi/hoshimi-types/helpers'
 
 import Layout from '../components/Layout'
 import CardItem from '../components/CardItem'
@@ -17,16 +15,16 @@ import {
 } from '../data/vendor/characterId'
 import { tryToFirst, updateRoute } from '../rtUtils'
 import getI18nProps from '../utils/geti18nProps'
+import { APIResponseOf } from '../utils/api'
 
 const CardPage = () => {
   const router = useRouter()
   const { t: $v } = useTranslation('vendor')
 
   const { data: CardData, error: CardDataError } =
-    useSWR<UnwrapPromise<ReturnType<APIMapping['Card']>>>('Card')
+    useSWR<APIResponseOf<'Card'>>('Card')
 
-  const { data: RarityData } =
-    useSWR<UnwrapPromise<ReturnType<APIMapping['CardRarity']>>>('CardRarity')
+  const { data: RarityData } = useSWR<APIResponseOf<'CardRarity'>>('CardRarity')
 
   const cards: Partial<Record<CharacterId, Card[]>> = useMemo(() => {
     const ret: Partial<Record<CharacterId, Card[]>> = {}
