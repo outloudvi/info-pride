@@ -283,7 +283,14 @@ const CardItem = ({
           {nameJa}
         </div>
       )}
-      {!useCn && <div className="text-gray-600">{description}</div>}
+      {!useCn && (
+        <div
+          className="text-gray-600"
+          dangerouslySetInnerHTML={{
+            __html: description.replace(/\n/g, '<br/>'),
+          }}
+        ></div>
+      )}
       <div>
         {$v(CardType[type])} / 初始 {initialRarity}★
       </div>
