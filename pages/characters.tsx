@@ -1,5 +1,6 @@
 import { Blockquote, Grid, Skeleton } from '@mantine/core'
 import useSWR from 'swr'
+import { useState } from 'react'
 
 import Layout from '../components/Layout'
 import { APIResponseOf, UnArray } from '../utils/api'
@@ -8,7 +9,6 @@ import {
   CharacterChineseNameList,
   CharacterId,
 } from '../data/vendor/characterId'
-import { useState } from 'react'
 
 const OrgName: Record<string, string> = {
   character_group_1: '月光风暴',
@@ -60,13 +60,7 @@ const CharacterItem = ({
   return (
     <div>
       <div>
-        <b
-          className="text-4xl"
-          style={{
-            color: '#' + color,
-          }}
-          lang="zh-hans"
-        >
+        <b className="text-4xl" lang="zh-hans">
           {CharacterChineseNameList[id as CharacterId]}
         </b>{' '}
         <span className="text-2xl ml-4" lang="ja">
