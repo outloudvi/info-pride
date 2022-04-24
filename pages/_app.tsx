@@ -37,21 +37,20 @@ const App = (props: AppProps) => {
         />
       </Head>
 
-      <Global
-        styles={(theme) => ({
-          a: {
-            color:
-              theme.colorScheme === 'light'
-                ? theme.colors.blue[7]
-                : theme.colors.blue[2],
-          },
-        })}
-      />
-
       <ColorSchemeProvider
         colorScheme={colorScheme}
         toggleColorScheme={toggleColorScheme}
       >
+        <Global
+          styles={(theme) => ({
+            a: {
+              color:
+                colorScheme === 'light'
+                  ? theme.colors.blue[7]
+                  : theme.colors.blue[3],
+            },
+          })}
+        />
         <MantineProvider
           withGlobalStyles
           withNormalizeCSS
