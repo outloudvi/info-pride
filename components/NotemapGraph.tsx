@@ -1,3 +1,4 @@
+import { Button, Group, Stack } from '@mantine/core'
 import { APIMapping } from '@outloudvi/hoshimi-types'
 import { UnwrapPromise } from '@outloudvi/hoshimi-types/helpers'
 import { useEffect, useRef } from 'react'
@@ -25,7 +26,32 @@ const NotemapGraph = ({
     }
   })
 
-  return <svg className="block mx-auto" ref={svgRef} />
+  const downloadNotemapSVG = () => {
+    if (!svgRef.current) return
+    const text = '<svg>' + svgRef.current.innerHTML + '</svg>'
+    const blob = new Blob([text], {
+      type: 'image/svg',
+    })
+    downloadBlob(blob, 'notemap.svg')
+  }
+
+  return (
+    <Stack align="center">
+      <svg ref={svgRef} />
+      <Group className="mt-2">
+        <Button onClick={downloadNotemapSVG}>下载曲谱图片 (SVG)</Button>
+        {/* <Button onClick={downloadNotemapPNG}>下载曲谱图片 (PNG)</Button> */}
+      </Group>
+    </Stack>
+  )
+}
+
+function downloadBlob(blob: Blob, filename: string) {
+  const url = URL.createObjectURL(blob)
+  const a = document.createElement('a')
+  a.href = url
+  a.download = filename
+  a.click()
 }
 
 export default NotemapGraph
