@@ -6,6 +6,19 @@ const { i18n } = require('./next-i18next.config')
 const nextConfig = {
   reactStrictMode: true,
   i18n,
+  async headers() {
+    return [
+      {
+        source: '/:path*',
+        headers: [
+          {
+            key: 'Permissions-Policy',
+            value: 'interest-cohert=()',
+          },
+        ],
+      },
+    ]
+  },
 }
 
 const sentryWebpackPluginOptions = {
