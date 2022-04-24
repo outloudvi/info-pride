@@ -1,6 +1,8 @@
 import { Blockquote, Grid, ScrollArea, Table } from '@mantine/core'
 import useSWR from 'swr'
 import { useState } from 'react'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { useTranslation } from 'next-i18next'
 
 import Layout from '../components/Layout'
 import { APIResponseOf, fetchDb, UnArray } from '../utils/api'
@@ -38,11 +40,17 @@ const CharacterItem = ({
 }: {
   character: UnArray<APIResponseOf<'Character/List'>>
 }) => {
+  const { t: $t } = useTranslation('characters')
+
   const { id, characterGroupId, name, enName, color } = character
 
   const { data: CharacterData, error: CharacterDataError } = useSWR<
     APIResponseOf<'Character'>
   >(`/Character?ids=${id}`)
+
+  if (!CharacterData) {
+    return <></>
+  }
 
   const {
     cv,
@@ -58,18 +66,18 @@ const CharacterItem = ({
     isLeftHanded,
     threeSize,
     catchphrase,
-  } = CharacterData?.[0] ?? {}
+  } = CharacterData[0] ?? {}
 
   const tableItem = [
     ...(OrgName[characterGroupId]
       ? [['所属团体', OrgName[characterGroupId]]]
       : []),
-    ['年龄', age],
+    ['年龄', age.replace('歳', '岁')],
     ['CV', cv],
     ['生日', birthday],
     ['身高', height],
     ['体重', weight],
-    ['星座', zodiacSign],
+    ['星座', $t(zodiacSign)],
     ['学校', hometown],
     ['喜欢的东西', favorite],
     ['讨厌的东西', unfavorite],
@@ -179,13 +187,14 @@ const CharactersPage = () => {
   )
 }
 
-export async function getServerSideProps() {
+export async function getServerSideProps({ locale }: { locale: string }) {
   const characterList = await fetchDb('Character/List')()
   return {
     props: {
       fallback: {
         '/Character/List': characterList,
       },
+      ...(await serverSideTranslations(locale, ['common', 'characters'])),
     },
   }
 }
