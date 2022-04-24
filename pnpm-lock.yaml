@@ -15,6 +15,7 @@ specifiers:
   '@mantine/next': ^4.1.4
   '@mantine/notifications': ^4.1.4
   '@outloudvi/hoshimi-types': ^1.0.6
+  '@sentry/browser': ^6.19.6
   '@sentry/nextjs': ^6.19.6
   '@types/d3': ^7.1.0
   '@types/lodash': ^4.14.179
@@ -63,6 +64,7 @@ dependencies:
   '@mantine/next': 4.1.4_e48bf9640fc0187c64cede391e655155
   '@mantine/notifications': 4.1.4_ea9f688b0492c145e724f242e772c6b2
   '@outloudvi/hoshimi-types': 1.0.6
+  '@sentry/browser': 6.19.6
   '@sentry/nextjs': 6.19.6_next@12.1.0+react@17.0.2
   autoprefixer: 10.4.2_postcss@8.4.8
   cheerio: 1.0.0-rc.10

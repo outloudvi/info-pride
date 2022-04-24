@@ -1,6 +1,7 @@
 import useSWR from 'swr'
 import { UnwrapPromise } from '@outloudvi/hoshimi-types/helpers'
 import { APIMapping } from '@outloudvi/hoshimi-types'
+import * as Sentry from '@sentry/browser'
 
 import { StoriesTitle } from '../utils/dataset'
 import Paths from '../utils/paths'
@@ -82,6 +83,17 @@ const StoriesItem = (props: PropType) => {
 
   const cnTitle = data?.name && data.name !== 'TODO' ? data.name : null
   const jaTitle = StoryData?.name ?? StoriesTitle[series][season][chapter]
+
+  // Report data inconsistencies
+  if (
+    StoriesTitle[series][season][chapter] &&
+    StoryData?.name &&
+    StoriesTitle[series][season][chapter] !== StoryData.name
+  ) {
+    Sentry.captureMessage(
+      `[INFOP] StoriesTitle data inconsistency at StoriesTitle[${series}][${season}][${chapter}] == ${StoriesTitle[series][season][chapter]} != ${StoryData.name}`
+    )
+  }
 
   return (
     <>
