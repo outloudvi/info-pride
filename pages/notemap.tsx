@@ -2,11 +2,12 @@ import { useEffect, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { Grid, NativeSelect } from '@mantine/core'
 import _range from 'lodash/range'
-import useSWR, { SWRConfig } from 'swr'
+import useSWR from 'swr'
 
 import Layout from '../components/Layout'
 import { Colors } from '../data/colors'
 import { APIResponseOf, fetchDb, UnArray } from '../utils/api'
+import SWRWrapped from '../components/SWRWrapped'
 
 const NotemapGraph = dynamic(() => import('../components/NotemapGraph'), {
   ssr: false,
@@ -117,10 +118,4 @@ export async function getServerSideProps() {
   }
 }
 
-const SWRd = ({ fallback }: { fallback: any }) => (
-  <SWRConfig value={{ fallback }}>
-    <NotemapPage />
-  </SWRConfig>
-)
-
-export default SWRd
+export default SWRWrapped(NotemapPage)

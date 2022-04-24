@@ -1,14 +1,15 @@
-import { Blockquote, Grid, Skeleton } from '@mantine/core'
+import { Blockquote, Grid } from '@mantine/core'
 import useSWR from 'swr'
 import { useState } from 'react'
 
 import Layout from '../components/Layout'
-import { APIResponseOf, UnArray } from '../utils/api'
+import { APIResponseOf, fetchDb, UnArray } from '../utils/api'
 import ListButton from '../components/ListButton'
 import {
   CharacterChineseNameList,
   CharacterId,
 } from '../data/vendor/characterId'
+import SWRWrapped from '../components/SWRWrapped'
 
 const OrgName: Record<string, string> = {
   character_group_1: '月光风暴',
@@ -39,7 +40,7 @@ const CharacterItem = ({
 
   const { data: CharacterData, error: CharacterDataError } = useSWR<
     APIResponseOf<'Character'>
-  >(`Character?ids=${id}`)
+  >(`/Character?ids=${id}`)
 
   const {
     cv,
@@ -103,7 +104,7 @@ const CharacterItem = ({
 
 const CharactersPage = () => {
   const { data: CharacterListData, error: CharacterListDataError } =
-    useSWR<APIResponseOf<'Character/List'>>('Character/List')
+    useSWR<APIResponseOf<'Character/List'>>('/Character/List')
 
   const NonNpcCharacterListData = (CharacterListData ?? []).filter(
     (item) => CharacterChineseNameList[item.id as CharacterId]
@@ -114,37 +115,46 @@ const CharactersPage = () => {
     <Layout>
       <h2>角色</h2>
 
-      <Skeleton visible={Boolean(CharacterListData)}>
-        <Grid gutter={20} className="my-3">
-          <Grid.Col xs={12} lg={4}>
-            {NonNpcCharacterListData.sort((a, b) => a.order - b.order).map(
-              (item, key) => (
-                <ListButton
-                  key={key}
-                  selected={chrOrderId === key}
-                  onClick={() => {
-                    setChrOrderId(key)
-                  }}
-                >
-                  <div className="text-base">
-                    <span lang="zh-CN">
-                      <SquareColor color={item.color} />{' '}
-                      {CharacterChineseNameList[item.id as CharacterId]}
-                    </span>
-                  </div>
-                </ListButton>
-              )
-            )}
-          </Grid.Col>
-          <Grid.Col xs={12} lg={8}>
-            {NonNpcCharacterListData?.[chrOrderId] && (
-              <CharacterItem character={NonNpcCharacterListData[chrOrderId]} />
-            )}
-          </Grid.Col>
-        </Grid>
-      </Skeleton>
+      <Grid gutter={20} className="my-3">
+        <Grid.Col xs={12} lg={4}>
+          {NonNpcCharacterListData.sort((a, b) => a.order - b.order).map(
+            (item, key) => (
+              <ListButton
+                key={key}
+                selected={chrOrderId === key}
+                onClick={() => {
+                  setChrOrderId(key)
+                }}
+              >
+                <div className="text-base">
+                  <span lang="zh-CN">
+                    <SquareColor color={item.color} />{' '}
+                    {CharacterChineseNameList[item.id as CharacterId]}
+                  </span>
+                </div>
+              </ListButton>
+            )
+          )}
+        </Grid.Col>
+        <Grid.Col xs={12} lg={8}>
+          {NonNpcCharacterListData?.[chrOrderId] && (
+            <CharacterItem character={NonNpcCharacterListData[chrOrderId]} />
+          )}
+        </Grid.Col>
+      </Grid>
     </Layout>
   )
 }
 
-export default CharactersPage
+export async function getServerSideProps() {
+  const characterList = await fetchDb('Character/List')()
+  return {
+    props: {
+      fallback: {
+        '/Character/List': characterList,
+      },
+    },
+  }
+}
+
+export default SWRWrapped(CharactersPage)
