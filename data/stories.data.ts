@@ -577,7 +577,15 @@ const data: Partial<
         name: '新的开始',
         video: { type: 'bilibili', vid: 'av980281288' },
       },
-      // TODO: 22-
+      22: {
+        name: '我们是姐妹',
+        video: { type: 'bilibili', vid: 'av980429923' },
+      },
+      23: {
+        name: '堇的梦想',
+        video: { type: 'bilibili', vid: 'av638116460' },
+      },
+      // TODO: 24-
     },
   },
   LizNoir: {
