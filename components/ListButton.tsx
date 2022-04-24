@@ -8,7 +8,7 @@ const ListButton = (props: ButtonProps<'button'> & { selected?: boolean }) => (
     className={
       (props.className ?? '') +
       ' h-14 mt-2 text-left ' +
-      (props.selected ? 'border-none text-black' : '')
+      (props.selected ? 'border-none text-black dark:text-white' : '')
     }
     classNames={{
       inner: 'block',

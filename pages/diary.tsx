@@ -33,7 +33,11 @@ const ManaDiary = ({ dateShort }: { dateShort: string }) => {
     )
   }
 
-  return <p className="text-gray-600">没有 {dateShort} 的日记。</p>
+  return (
+    <p className="text-gray-600 dark:text-gray-300">
+      没有 {dateShort} 的日记。
+    </p>
+  )
 }
 
 const DiaryPage = () => {
@@ -66,12 +70,12 @@ const DiaryPage = () => {
       <Grid gutter={20} className="my-3">
         <Grid.Col xs={12} lg={6}>
           <div>
-            <p className="text-gray-600">
+            <p>
               如无特殊说明，此处内容的翻译均来自 Bilibili{' '}
               <a href="https://space.bilibili.com/107734456">@长濑琴乃</a> /
               微博 <a href="https://weibo.com/7326542616/">@IDOLYPRIDE</a>。
             </p>
-            <p className="text-gray-600">
+            <p>
               目前包含的日记日期：{diaryDateShortFirst} 至 {diaryDateShortLast}
             </p>
             <div>

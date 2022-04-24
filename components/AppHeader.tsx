@@ -1,6 +1,9 @@
 import * as React from 'react'
 import Link from 'next/link'
-import { Burger, Header } from '@mantine/core'
+import { Burger, Button, Header, useMantineColorScheme } from '@mantine/core'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons'
+import { useCallback, useEffect } from 'react'
 
 const AppHeader = ({
   navBarOpened,
@@ -9,6 +12,25 @@ const AppHeader = ({
   navBarOpened: boolean
   toggleNavBar: () => void
 }) => {
+  const { colorScheme, toggleColorScheme } = useMantineColorScheme()
+
+  const updateTailwindDarkMode = useCallback(() => {
+    if (colorScheme === 'dark') {
+      document.documentElement.classList.add('dark')
+    } else {
+      document.documentElement.classList.remove('dark')
+    }
+  }, [colorScheme])
+
+  useEffect(() => {
+    updateTailwindDarkMode()
+  })
+
+  const toggleColorSchemeWithTailwind = useCallback(() => {
+    updateTailwindDarkMode()
+    toggleColorScheme()
+  }, [updateTailwindDarkMode, toggleColorScheme])
+
   const title = navBarOpened ? 'Collapse navigation' : 'Expand navigation'
   return (
     <Header height={60} p="xs" className="flex items-center">
@@ -20,10 +42,18 @@ const AppHeader = ({
         className="sm:hidden"
       />
       <Link href="/">
-        <a className="text-black no-underline hover:underline ml-2">
+        <a className="text-black dark:text-white no-underline hover:underline ml-2">
           <b>INFO PRIDE</b>
         </a>
       </Link>
+      <div className="grow"></div>
+      <Button onClick={() => toggleColorSchemeWithTailwind()}>
+        <FontAwesomeIcon
+          className="mr-1"
+          icon={colorScheme === 'dark' ? faSun : faMoon}
+        />{' '}
+        切换配色
+      </Button>
     </Header>
   )
 }

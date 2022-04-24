@@ -27,7 +27,7 @@ const SquareColor = ({ color }: { color: string }) => (
     style={{
       height: '14px',
       width: '14px',
-      border: '1px solid #555',
+      border: '1px solid #7f7f7f',
       borderRadius: '3px',
       display: 'inline-block',
       backgroundColor: toHashColor(color),
@@ -107,7 +107,7 @@ const CharacterItem = ({
       </div>
 
       {catchphrase && (
-        <Blockquote className="text-gray-700" lang="ja">
+        <Blockquote className="text-gray-700 dark:text-gray-200" lang="ja">
           <span
             dangerouslySetInnerHTML={{
               __html: catchphrase.replace(/\n/g, '<br />'),
@@ -122,9 +122,9 @@ const CharacterItem = ({
             {tableItem.map(([label, value], key) => (
               <tr
                 key={key}
-                className="border-0 border-solid border-b- border-b-gray-400 even:bg-gray-100"
+                className="border-0 border-solid border-b- border-b-gray-400 even:bg-gray-100 dark:even:bg-gray-800"
               >
-                <td className="py-1 text-gray-700 w-1/4">{label}</td>
+                <td className="py-1  w-1/4">{label}</td>
                 <td className="py-1">{value}</td>
               </tr>
             ))}
