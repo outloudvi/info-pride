@@ -81,16 +81,19 @@ const StoriesItem = (props: PropType) => {
   const subtitle = StoryData?.sectionName ?? findSubtitle(props)
 
   const cnTitle = data?.name && data.name !== 'TODO' ? data.name : null
-  const jaTitle = StoryData?.name ?? StoriesTitle[series][season][chapter]
+  const jaTitle =
+    StoryData?.name.replace(/\n/g, '') ?? StoriesTitle[series][season][chapter]
 
   // Report data inconsistencies
   if (
     StoriesTitle[series][season][chapter] &&
     StoryData?.name &&
-    StoriesTitle[series][season][chapter] !== StoryData.name
+    StoriesTitle[series][season][chapter] !== StoryData.name.replace(/\n/g, '')
   ) {
     Sentry.captureMessage(
-      `[INFOP] StoriesTitle data inconsistency at StoriesTitle[${series}][${season}][${chapter}] == ${StoriesTitle[series][season][chapter]} != ${StoryData.name}`
+      `[INFOP] StoriesTitle data inconsistency at StoriesTitle[${series}][${season}][${chapter}] == ${
+        StoriesTitle[series][season][chapter]
+      } != ${StoryData.name.replace(/\n/g, '')}`
     )
   }
 
