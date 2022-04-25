@@ -3,7 +3,7 @@ INFO PRIDE (Beta)
 </h1>
 
 <h3 align=center>
-<a href="https://info-pride.vercel.app">info-pride.vercel.app</a>
+<a href="https://ip.outv.im">ip.outv.im</a>
 </h3>
 
 | Build                                                                              | API @types                                                          |
