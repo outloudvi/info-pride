@@ -1,7 +1,7 @@
 #!/bin/bash
 set -eu
 
-PAGES=(calendar diary notemap)
+PAGES=(calendar diary)
 
 pushd $(dirname $0)
 
