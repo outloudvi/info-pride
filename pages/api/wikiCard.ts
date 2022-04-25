@@ -13,8 +13,6 @@ const WikiCard = async (
   req: NextApiRequest,
   res: NextApiResponse<{ card: WikiCard; stories: Stories | null } | undefined>
 ) => {
-  res.setHeader('Cache-Control', 'max-age=86400')
-
   const q = req.query
   const nameJa = q.nameJa
     ? Array.isArray(q.nameJa)
