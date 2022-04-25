@@ -281,7 +281,7 @@ const CardItem = ({
       )}
       {!useCn && (
         <div
-          className="text-gray-600"
+          className="text-gray-600 dark:text-gray-400"
           dangerouslySetInnerHTML={{
             __html: description.replace(/\n/g, '<br/>'),
           }}

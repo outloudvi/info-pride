@@ -88,7 +88,7 @@ const CharacterItem = ({
   return (
     <div>
       <div
-        className="relative py-2"
+        className="relative py-2 rounded-r-md"
         style={{
           background: `linear-gradient(-90deg, ${toHashColor(
             color
