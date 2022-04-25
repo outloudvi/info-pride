@@ -1,6 +1,13 @@
 // TODO: deprecate this file
 
+/**
+ * @deprecated Use `CharacterId`  instead.
+ */
 export type IdolSlug = keyof typeof Idols
+
+/**
+ * @deprecated Use `CharacterChineseNameList[CharacterId]` instead.
+ */
 export type IdolName = typeof Idols[IdolSlug]
 
 /**
@@ -10,6 +17,9 @@ export type IdolName = typeof Idols[IdolSlug]
  * * utils/wikiPages/idols.schema.json
  */
 
+/**
+ * @deprecated Use `CharacterId` and `CharacterChineseNameList` instead.
+ */
 export const Idols = {
   mana: '长濑麻奈',
   sakura: '川咲樱',
@@ -31,14 +41,26 @@ export const Idols = {
   kokoro: '赤崎心',
 } as const
 
+/**
+ * @deprecated
+ */
 export const IdolSlugList = Object.keys(Idols) as IdolSlug[]
+/**
+ * @deprecated
+ */
 export const IdolNameList = Object.values(Idols) as IdolName[]
 
+/**
+ * @deprecated
+ */
 export function idolSlugToName(slug: string): IdolName | null {
   // @ts-expect-error ts-7053
   return Idols[slug] ?? null
 }
 
+/**
+ * @deprecated
+ */
 export function idolNameToSlug(name: string): IdolSlug | null {
   for (const i of Object.keys(Idols)) {
     if (Idols[i as IdolSlug] === name) return i as IdolSlug

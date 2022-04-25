@@ -1,4 +1,12 @@
-import { Blockquote, Grid, ScrollArea, Table } from '@mantine/core'
+import {
+  Blockquote,
+  Button,
+  Divider,
+  Grid,
+  Group,
+  ScrollArea,
+  Table,
+} from '@mantine/core'
 import useSWR from 'swr'
 import { useState } from 'react'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
@@ -12,6 +20,8 @@ import {
   CharacterId,
 } from '../data/vendor/characterId'
 import SWRWrapped from '../components/SWRWrapped'
+import Paths from '../utils/paths'
+import { IdolyFashionUrl, IdolyRoomUrl } from '../data/ipcmmu.data'
 
 const toHashColor = (r: string) => (r.startsWith('#') ? r : '#' + r)
 
@@ -20,6 +30,19 @@ const OrgName: Record<string, string> = {
   character_group_2: 'SUNNY PEACE',
   character_group_3: 'TRINITYAiLE',
   character_group_4: 'LizNoir',
+}
+
+const HometownIntroductionPageUrl: Record<string, string> = {
+  '私立 星見高校': Paths.ipcommu('o-009'),
+  '公立 光ヶ崎高校': Paths.ipcommu('o-010'),
+  '私立 麗葉女学院高等部': Paths.ipcommu('o-011'),
+  '私立 月出高校 芸能コース': Paths.ipcommu('o-012'),
+  '公立 紅花中学校': Paths.ipcommu('o-013'),
+}
+
+const ExtraLinks = {
+  偶像关系图: Paths.ipcommu('o-004'),
+  事务所关系图: Paths.ipcommu('o-005'),
 }
 
 const SquareColor = ({ color }: { color: string }) => (
@@ -78,7 +101,14 @@ const CharacterItem = ({
     ['身高', height],
     ['体重', weight],
     ['星座', $t(zodiacSign)],
-    ['学校', hometown],
+    [
+      '学校',
+      HometownIntroductionPageUrl[hometown] ? (
+        <a href={HometownIntroductionPageUrl[hometown]}>{$t(hometown)}</a>
+      ) : (
+        $t(hometown)
+      ),
+    ],
     ['喜欢的东西', favorite],
     ['讨厌的东西', unfavorite],
     ['习惯手', isLeftHanded ? '左手' : '右手'],
@@ -135,6 +165,19 @@ const CharacterItem = ({
               </td>
             </tr>
           </Table>
+          <Group position="center" className="mt-4">
+            <a href={Paths.mgw(CharacterChineseNameList[id as CharacterId])}>
+              <Button>萌娘百科条目</Button>
+            </a>
+            <a href={IdolyFashionUrl[id as CharacterId]}>
+              <Button>服装介绍 / IDOLY FASHION</Button>
+            </a>
+            {IdolyRoomUrl[id as CharacterId] && (
+              <a href={IdolyRoomUrl[id as CharacterId]}>
+                <Button>房间介绍 / IDOLY ROOM</Button>
+              </a>
+            )}
+          </Group>
         </div>
       )}
     </div>
@@ -183,6 +226,12 @@ const CharactersPage = () => {
           )}
         </Grid.Col>
       </Grid>
+      <Divider my="sm" />
+      {Object.entries(ExtraLinks).map(([title, link], key) => (
+        <a key={key} href={link} className="mr-3">
+          <Button>{title}</Button>
+        </a>
+      ))}
     </Layout>
   )
 }
