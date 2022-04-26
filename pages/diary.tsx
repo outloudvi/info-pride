@@ -43,7 +43,10 @@ const ManaDiary = ({ dateShort }: { dateShort: string }) => {
 
 const diaryDateShortFirst = diaryDates[0]
 const diaryDateShortLast = diaryDates[diaryDates.length - 1]
-const shortDateAtom = atomWithHash('date', fromShortDate(diaryDateShortLast))
+const shortDateAtom = atomWithHash('date', fromShortDate(diaryDateShortLast), {
+  serialize: toShortDate,
+  deserialize: fromShortDate,
+})
 
 const DiaryPage = () => {
   const [currDate, setCurrDate] = useAtom(shortDateAtom)
