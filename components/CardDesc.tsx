@@ -5,8 +5,6 @@ import Paths from '../utils/paths'
 import type { Card } from '../utils/wikiPages/cards'
 import { idolNameToSlug } from '../data/idols'
 
-import { Props } from './CardItem'
-
 const SkillDesc = ({
   name,
   desc,
@@ -55,10 +53,6 @@ const CardDesc = ({
     ski3NameCn,
     ski3DescCn,
     ski3Typ,
-    vocTop,
-    danTop,
-    visTop,
-    staTop,
     nameCn,
     nameJa,
     ownerName,

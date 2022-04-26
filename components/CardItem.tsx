@@ -237,13 +237,12 @@ const CardItem = ({
   const [level, setLevel] = useState(rarityInfo?.levelLimit ?? 1)
   const [cnTrans, setCnTrans] = useState(true)
 
-  const { data: SkillData, error: SkillError } = useSWR(
+  const { data: SkillData } = useSWR(
     `/Skill?ids=${card.skillId1},${card.skillId2},${card.skillId3}`
   )
 
   const {
     data: WikiCardData,
-    error: WikiCardError,
   }: { data?: { card: WikiCard; stories: Stories | null }; error?: any } =
     useSWR(`/api/wikiCard?nameJa=${nameJa}`, feFetcher)
 

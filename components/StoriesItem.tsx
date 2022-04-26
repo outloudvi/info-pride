@@ -73,7 +73,7 @@ export const SpecialStoriesItem = (props: {
 const StoriesItem = (props: PropType) => {
   const { series, season, chapter } = props
 
-  const { data: StoryData, error: StoryError } = useSWR<APIResponseOf<'Story'>>(
+  const { data: StoryData } = useSWR<APIResponseOf<'Story'>>(
     `/Story?id=${getBackendStoryId(props)}`
   )
 
