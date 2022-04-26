@@ -16,17 +16,6 @@ export function tryToFirst(
   return n
 }
 
-export function updateRoute(path: string) {
-  window.history.replaceState(
-    {
-      ...window.history.state,
-      as: path,
-    },
-    '',
-    path
-  )
-}
-
 export function tryJSONParse(s: any): any {
   try {
     return JSON.parse(s)

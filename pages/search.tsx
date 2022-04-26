@@ -11,7 +11,8 @@ import {
 } from '@mantine/core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
-import { intersection, uniq } from 'lodash'
+import intersection from 'lodash/intersection'
+import uniq from 'lodash/uniq'
 
 import Layout from '../components/Layout'
 import CardDesc from '../components/CardDesc'

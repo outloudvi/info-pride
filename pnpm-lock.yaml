@@ -32,6 +32,7 @@ specifiers:
   eslint-import-resolver-typescript: ^2.7.1
   eslint-plugin-import: ^2.26.0
   got: ^12.0.1
+  history: ^5.3.0
   i18next: ^21.6.16
   json-schema-to-typescript: ^10.1.5
   lodash: ^4.17.21
@@ -71,6 +72,7 @@ dependencies:
   d3: 7.3.0
   dayjs: 1.10.8
   got: 12.0.1
+  history: 5.3.0
   i18next: 21.6.16
   lodash: 4.17.21
   next: 12.1.0_33bdac975a6e334c49640fab91e2abb4
@@ -3098,6 +3100,12 @@ packages:
     engines: {node: '>= 0.4.0'}
     dependencies:
       function-bind: 1.1.1
+
+  /history/5.3.0:
+    resolution: {integrity: sha512-ZqaKwjjrAYUYfLG+htGaIIZ4nioX2L70ZUMIFysS3xvBsSG4x/n1V6TXV3N8ZYNuFGlDirFg32T7B6WOUPDYcQ==}
+    dependencies:
+      '@babel/runtime': 7.17.2
+    dev: false
 
   /hoist-non-react-statics/3.3.2:
     resolution: {integrity: sha512-/gGivxi8JPKWNm/W0jSmzcMPpfpPLc3dY/6GxhX2hQ9iGj3aDfklV4ET7NjKpSinLpJ5vafa9iiGIEZg10SfBw==}

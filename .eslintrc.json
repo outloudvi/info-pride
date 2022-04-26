@@ -1,8 +1,12 @@
 {
   "extends": ["next/core-web-vitals", "plugin:import/recommended"],
+  "plugins": ["@typescript-eslint"],
   "parser": "@typescript-eslint/parser",
   "rules": {
-    "no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }],
+    "@typescript-eslint/no-unused-vars": [
+      "warn",
+      { "argsIgnorePattern": "^_" }
+    ],
     "react/jsx-no-target-blank": "off",
     "import/no-unresolved": "error",
     "import/named": "off",

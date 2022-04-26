@@ -1,37 +1,31 @@
 import { useEffect, useMemo, useState } from 'react'
-import { useRouter } from 'next/router'
 import { Button, Grid, Tabs } from '@mantine/core'
 import _range from 'lodash/range'
 
 import Layout from '../components/Layout'
 import StoriesItem, { SpecialStoriesItem } from '../components/StoriesItem'
-import { tryToNumber, updateRoute } from '../rtUtils'
+import { tryToNumber } from '../rtUtils'
 import { Episodes, Series } from '../data/stories'
 import StoriesData from '../data/stories.data'
+import useStateWithHash from '../utils/useStateWithHash'
 
 const Stories = () => {
-  const router = useRouter()
-
-  const [series, setSeries] = useState(0)
-  const [season, setSeason] = useState(1)
-  const [chapter, setChapter] = useState(1)
+  const [series, setSeries] = useStateWithHash(0, {
+    name: 'series',
+    serialize: String,
+    deserialize: Number,
+  })
+  const [season, setSeason] = useStateWithHash(1, {
+    name: 'season',
+    serialize: String,
+    deserialize: Number,
+  })
+  const [chapter, setChapter] = useStateWithHash(1, {
+    name: 'chapter',
+    serialize: String,
+    deserialize: Number,
+  })
   const seriesName = Series[series]
-
-  useEffect(() => {
-    if (!router.isReady) return
-    const { series, season, chapter } = router.query
-    const _series =
-      series &&
-      !Array.isArray(series) &&
-      Series.map((x) => x.toLowerCase()).indexOf(series.toLowerCase())
-    const _season = tryToNumber(season)
-    const _chapter = tryToNumber(chapter)
-    if (_series && _series !== -1 && _season && _chapter) {
-      setSeries(_series)
-      setSeason(_season)
-      setChapter(_chapter)
-    }
-  }, [router])
 
   const completion = useMemo(() => {
     const ret: any = {}
@@ -84,11 +78,6 @@ const Stories = () => {
                                     setSeries(seriesKey)
                                     setSeason(seasonKey + 1)
                                     setChapter(chapterNum)
-                                    updateRoute(
-                                      `/stories/${Series[seriesKey]}/${
-                                        seasonKey + 1
-                                      }/${chapterNum}`
-                                    )
                                   }}
                                   disabled={currentSelection}
                                 >
@@ -123,9 +112,6 @@ const Stories = () => {
                           setSeries(seriesKey)
                           setSeason(1)
                           setChapter(Number(chapterId))
-                          updateRoute(
-                            `/stories/${Series[seriesKey]}/${1}/${chapterNum}`
-                          )
                         }}
                         disabled={currentSelection}
                       >

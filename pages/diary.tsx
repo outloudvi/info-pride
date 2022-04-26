@@ -1,12 +1,11 @@
-import { useEffect, useState } from 'react'
-import { useRouter } from 'next/router'
 import { DatePicker } from '@mantine/dates'
 import { Button, Grid } from '@mantine/core'
 import dayjs from 'dayjs'
 
 import Layout from '../components/Layout'
-import { tryToFirst, updateRoute } from '../rtUtils'
+import { tryToFirst } from '../rtUtils'
 import { Diary } from '../utils/dataset'
+import useStateWithHash from '../utils/useStateWithHash'
 
 const diaries: { [key: string]: string } = {}
 const diaryDates = Diary.map((x) => {
@@ -18,6 +17,8 @@ const toShortDate = (date: Date) =>
   `${String(date.getFullYear()).slice(2)}-${(date.getMonth() + 1)
     .toString()
     .padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}`
+
+const fromShortDate = (s: string) => new Date('20' + s)
 
 const ManaDiary = ({ dateShort }: { dateShort: string }) => {
   if (diaries[dateShort]) {
@@ -41,28 +42,17 @@ const ManaDiary = ({ dateShort }: { dateShort: string }) => {
 }
 
 const DiaryPage = () => {
-  const router = useRouter()
-
   const diaryDateShortFirst = diaryDates[0]
   const diaryDateShortLast = diaryDates[diaryDates.length - 1]
 
-  const [currDate, setCurrDate] = useState(new Date('20' + diaryDateShortFirst))
-
-  useEffect(() => {
-    if (!router.isReady) return
-    const { date: _date } = router.query
-    const date = tryToFirst(_date)
-
-    if (date === undefined) return
-    if (date.match(/^(\d{2}|\d{4})-\d{2}-\d{2}$/) === null) return
-
-    setCurrDate(new Date('20' + toShortDate(new Date(date))))
-  }, [router])
-
-  const switchToDate = (date: Date) => {
-    setCurrDate(date)
-    updateRoute(`/diary/${toShortDate(date)}`)
-  }
+  const [currDate, setCurrDate] = useStateWithHash(
+    fromShortDate(diaryDateShortLast),
+    {
+      name: 'date',
+      serialize: toShortDate,
+      deserialize: fromShortDate,
+    }
+  )
 
   return (
     <Layout>
@@ -98,7 +88,7 @@ const DiaryPage = () => {
               <Button
                 className="mr-2"
                 onClick={() => {
-                  switchToDate(new Date('20' + diaryDateShortLast))
+                  setCurrDate(new Date('20' + diaryDateShortLast))
                 }}
               >
                 转到最新日期
@@ -108,7 +98,7 @@ const DiaryPage = () => {
                 disabled={toShortDate(currDate) === diaryDateShortFirst}
                 onClick={() => {
                   const currDay = dayjs(currDate)
-                  switchToDate(currDay.subtract(1, 'day').toDate())
+                  setCurrDate(currDay.subtract(1, 'day').toDate())
                 }}
               >
                 转到前一天
@@ -117,7 +107,7 @@ const DiaryPage = () => {
                 disabled={toShortDate(currDate) === diaryDateShortLast}
                 onClick={() => {
                   const currDay = dayjs(currDate)
-                  switchToDate(currDay.add(1, 'day').toDate())
+                  setCurrDate(currDay.add(1, 'day').toDate())
                 }}
               >
                 转到后一天

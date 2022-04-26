@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router'
 import { Grid, NativeSelect } from '@mantine/core'
 import useSWR from 'swr'
 import type { Card } from '@outloudvi/hoshimi-types/ProtoMaster'
@@ -13,13 +12,13 @@ import {
   CharacterId,
   CharacterIds,
 } from '../data/vendor/characterId'
-import { tryToFirst, updateRoute } from '../rtUtils'
+import { tryToFirst } from '../rtUtils'
 import getI18nProps from '../utils/geti18nProps'
 import { APIResponseOf } from '../utils/api'
 import ListButton from '../components/ListButton'
+import useStateWithHash from '../utils/useStateWithHash'
 
 const CardPage = () => {
-  const router = useRouter()
   const { t: $v } = useTranslation('vendor')
 
   const { data: CardData, error: CardDataError } =
@@ -37,26 +36,18 @@ const CardPage = () => {
     return ret
   }, [CardData])
 
-  const [idol, setIdol] = useState<CharacterId>(CharacterIds[0])
+  const [idol, setIdol] = useStateWithHash<CharacterId>(CharacterIds[0], {
+    name: 'idol',
+    serialize: (x) => x,
+    deserialize: (x) =>
+      CharacterIds.includes(x as CharacterId) ? (x as CharacterId) : undefined,
+  })
   const cardList = cards[idol] ?? []
-  const [cardNumber, setCardNumber] = useState(0)
-
-  useEffect(() => {
-    if (!router.isReady) return
-    const { slug: _slug } = router.query
-    const cardId = tryToFirst(_slug)
-
-    if (cardId === undefined) return
-    const card = CardData?.filter((x) => x.id === cardId)?.[0]
-    if (!card) return
-
-    setIdol(card.characterId as CharacterId)
-    setCardNumber(
-      cards[card.characterId as CharacterId]!.findIndex((r) => r.id === cardId)
-    )
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [CardData, router])
+  const [cardNumber, setCardNumber] = useStateWithHash(0, {
+    name: 'num',
+    serialize: String,
+    deserialize: Number,
+  })
 
   return (
     <Layout>
@@ -85,7 +76,6 @@ const CardPage = () => {
                 key={key}
                 onClick={() => {
                   setCardNumber(Number(cardId))
-                  updateRoute(`/cards/${card.id}`)
                 }}
                 selected={cardNumber === Number(cardId)}
               >
