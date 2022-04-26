@@ -14,7 +14,7 @@ specifiers:
   '@mantine/hooks': ^4.1.4
   '@mantine/next': ^4.1.4
   '@mantine/notifications': ^4.1.4
-  '@outloudvi/hoshimi-types': ^1.0.7
+  '@outloudvi/hoshimi-types': ^1.0.8
   '@sentry/browser': ^6.19.6
   '@sentry/nextjs': ^6.19.6
   '@types/d3': ^7.1.0
@@ -66,7 +66,7 @@ dependencies:
   '@mantine/hooks': 4.1.4_react@17.0.2
   '@mantine/next': 4.1.4_e48bf9640fc0187c64cede391e655155
   '@mantine/notifications': 4.1.4_ea9f688b0492c145e724f242e772c6b2
-  '@outloudvi/hoshimi-types': 1.0.7
+  '@outloudvi/hoshimi-types': 1.0.8
   '@sentry/browser': 6.19.6
   '@sentry/nextjs': 6.19.6_next@12.1.0+react@17.0.2
   autoprefixer: 10.4.2_postcss@8.4.8
@@ -833,8 +833,8 @@ packages:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.13.0
 
-  /@outloudvi/hoshimi-types/1.0.7:
-    resolution: {integrity: sha512-Ou/d2ZyYjsVhPLh0RJhwdxeQJgMs3w6AFI0Qa0LlVnx9jj6Wc0WZqkvQoqXb6ROdCuBg9XgaMesXigAbpZq41g==, tarball: download/@outloudvi/hoshimi-types/1.0.7/4a1fcf67de0e32ea6280bb72706445557fe4dd06174c430a20c498b6e4de63ed}
+  /@outloudvi/hoshimi-types/1.0.8:
+    resolution: {integrity: sha512-rT+udLODeyVomG30tQbaZRwGIF/YDiQunTuEb0U8DE4+kMarD+q1DnvTS4HYy+cHSXTtXlWiroJpIFzoCW4FHw==, tarball: download/@outloudvi/hoshimi-types/1.0.8/1b6f2ddcc1979f9c9b09fa9186baa990eb0c1fe48de06992967ee2944b070f83}
     dev: false
 
   /@popperjs/core/2.11.2:
