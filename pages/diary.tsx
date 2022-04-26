@@ -3,7 +3,6 @@ import { Button, Grid } from '@mantine/core'
 import dayjs from 'dayjs'
 
 import Layout from '../components/Layout'
-import { tryToFirst } from '../rtUtils'
 import { Diary } from '../utils/dataset'
 import useStateWithHash from '../utils/useStateWithHash'
 

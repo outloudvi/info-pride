@@ -12,7 +12,6 @@ import {
   CharacterId,
   CharacterIds,
 } from '../data/vendor/characterId'
-import { tryToFirst } from '../rtUtils'
 import getI18nProps from '../utils/geti18nProps'
 import { APIResponseOf } from '../utils/api'
 import ListButton from '../components/ListButton'

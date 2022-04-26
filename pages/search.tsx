@@ -20,7 +20,7 @@ import { CardSkillsData, Cards } from '../utils/dataset'
 import { ColorTypeSimple, IdentCT } from '../utils/wikiPages/types'
 import type { Card } from '../utils/wikiPages/cards'
 import { IdolName, IdolNameList, idolNameToSlug } from '../data/idols'
-import { tryJSONParse } from '../rtUtils'
+import { tryJSONParse } from '../utils/tryJsonParse'
 
 import { LOCALSTORAGE_BOX_TAG, LocalBox } from './settings'
 
