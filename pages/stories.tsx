@@ -1,29 +1,22 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useMemo } from 'react'
 import { Button, Grid, Tabs } from '@mantine/core'
 import _range from 'lodash/range'
+import { atomWithHash } from 'jotai/utils'
+import { useAtom } from 'jotai'
 
 import Layout from '../components/Layout'
 import StoriesItem, { SpecialStoriesItem } from '../components/StoriesItem'
 import { Episodes, Series } from '../data/stories'
 import StoriesData from '../data/stories.data'
-import useStateWithHash from '../utils/useStateWithHash'
+
+const seriesAtom = atomWithHash('series', 0)
+const seasonAtom = atomWithHash('season', 1)
+const chapterAtom = atomWithHash('chapter', 1)
 
 const Stories = () => {
-  const [series, setSeries] = useStateWithHash(0, {
-    name: 'series',
-    serialize: String,
-    deserialize: Number,
-  })
-  const [season, setSeason] = useStateWithHash(1, {
-    name: 'season',
-    serialize: String,
-    deserialize: Number,
-  })
-  const [chapter, setChapter] = useStateWithHash(1, {
-    name: 'chapter',
-    serialize: String,
-    deserialize: Number,
-  })
+  const [series, setSeries] = useAtom(seriesAtom)
+  const [season, setSeason] = useAtom(seasonAtom)
+  const [chapter, setChapter] = useAtom(chapterAtom)
   const seriesName = Series[series]
 
   const completion = useMemo(() => {

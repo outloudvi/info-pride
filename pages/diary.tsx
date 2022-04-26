@@ -1,10 +1,11 @@
 import { DatePicker } from '@mantine/dates'
 import { Button, Grid } from '@mantine/core'
 import dayjs from 'dayjs'
+import { atomWithHash } from 'jotai/utils'
+import { useAtom } from 'jotai'
 
 import Layout from '../components/Layout'
 import { Diary } from '../utils/dataset'
-import useStateWithHash from '../utils/useStateWithHash'
 
 const diaries: { [key: string]: string } = {}
 const diaryDates = Diary.map((x) => {
@@ -40,18 +41,12 @@ const ManaDiary = ({ dateShort }: { dateShort: string }) => {
   )
 }
 
-const DiaryPage = () => {
-  const diaryDateShortFirst = diaryDates[0]
-  const diaryDateShortLast = diaryDates[diaryDates.length - 1]
+const diaryDateShortFirst = diaryDates[0]
+const diaryDateShortLast = diaryDates[diaryDates.length - 1]
+const shortDateAtom = atomWithHash('date', fromShortDate(diaryDateShortLast))
 
-  const [currDate, setCurrDate] = useStateWithHash(
-    fromShortDate(diaryDateShortLast),
-    {
-      name: 'date',
-      serialize: toShortDate,
-      deserialize: fromShortDate,
-    }
-  )
+const DiaryPage = () => {
+  const [currDate, setCurrDate] = useAtom(shortDateAtom)
 
   return (
     <Layout>

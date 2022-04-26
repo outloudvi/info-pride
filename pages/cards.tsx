@@ -2,8 +2,10 @@ import { Grid, NativeSelect } from '@mantine/core'
 import useSWR from 'swr'
 import type { Card } from '@outloudvi/hoshimi-types/ProtoMaster'
 import { CardType } from '@outloudvi/hoshimi-types/ProtoEnum'
-import { useEffect, useMemo, useState } from 'react'
+import { useMemo } from 'react'
 import { useTranslation } from 'next-i18next'
+import { atomWithHash } from 'jotai/utils'
+import { useAtom } from 'jotai'
 
 import Layout from '../components/Layout'
 import CardItem from '../components/CardItem'
@@ -15,7 +17,12 @@ import {
 import getI18nProps from '../utils/geti18nProps'
 import { APIResponseOf } from '../utils/api'
 import ListButton from '../components/ListButton'
-import useStateWithHash from '../utils/useStateWithHash'
+
+const idolNameAtom = atomWithHash<CharacterId>('idol', CharacterIds[0], {
+  serialize: (x) => x,
+  deserialize: (x) => x as CharacterId,
+})
+const cardNumberAtom = atomWithHash('cardId', 0)
 
 const CardPage = () => {
   const { t: $v } = useTranslation('vendor')
@@ -35,18 +42,9 @@ const CardPage = () => {
     return ret
   }, [CardData])
 
-  const [idol, setIdol] = useStateWithHash<CharacterId>(CharacterIds[0], {
-    name: 'idol',
-    serialize: (x) => x,
-    deserialize: (x) =>
-      CharacterIds.includes(x as CharacterId) ? (x as CharacterId) : undefined,
-  })
+  const [idol, setIdol] = useAtom(idolNameAtom)
   const cardList = cards[idol] ?? []
-  const [cardNumber, setCardNumber] = useStateWithHash(0, {
-    name: 'num',
-    serialize: String,
-    deserialize: Number,
-  })
+  const [cardNumber, setCardNumber] = useAtom(cardNumberAtom)
 
   return (
     <Layout>

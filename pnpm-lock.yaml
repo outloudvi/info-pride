@@ -35,6 +35,7 @@ specifiers:
   got: ^12.0.1
   history: ^5.3.0
   i18next: ^21.6.16
+  jotai: ^1.6.4
   json-schema-to-typescript: ^10.1.5
   lodash: ^4.17.21
   next: 12.1.0
@@ -75,6 +76,7 @@ dependencies:
   got: 12.0.1
   history: 5.3.0
   i18next: 21.6.16
+  jotai: 1.6.4_@babel+core@7.17.5+react@17.0.2
   lodash: 4.17.21
   next: 12.1.0_33bdac975a6e334c49640fab91e2abb4
   next-i18next: 10.5.0_caa633a00319350dbda42996613fe26c
@@ -3530,6 +3532,44 @@ packages:
     transitivePeerDependencies:
       - encoding
     dev: true
+
+  /jotai/1.6.4_@babel+core@7.17.5+react@17.0.2:
+    resolution: {integrity: sha512-XC0ExLhdE6FEBdIjKTe6kMlHaAUV/QiwN7vZond76gNr/WdcdonJOEW79+5t8u38sR41bJXi26B1dRi7cCRz9A==}
+    engines: {node: '>=12.7.0'}
+    peerDependencies:
+      '@babel/core': '*'
+      '@babel/template': '*'
+      '@urql/core': '*'
+      immer: '*'
+      optics-ts: '*'
+      react: '>=16.8'
+      react-query: '*'
+      valtio: '*'
+      wonka: '*'
+      xstate: '*'
+    peerDependenciesMeta:
+      '@babel/core':
+        optional: true
+      '@babel/template':
+        optional: true
+      '@urql/core':
+        optional: true
+      immer:
+        optional: true
+      optics-ts:
+        optional: true
+      react-query:
+        optional: true
+      valtio:
+        optional: true
+      wonka:
+        optional: true
+      xstate:
+        optional: true
+    dependencies:
+      '@babel/core': 7.17.5
+      react: 17.0.2
+    dev: false
 
   /js-tokens/4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
