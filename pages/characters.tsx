@@ -9,6 +9,7 @@ import {
 } from '@mantine/core'
 import { useState } from 'react'
 import { useTranslation } from 'next-i18next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import useIpSWR from '../utils/useIpSWR'
 import Layout from '../components/Layout'
@@ -20,7 +21,6 @@ import {
 } from '../data/vendor/characterId'
 import Paths from '../utils/paths'
 import { IdolyFashionUrl, IdolyRoomUrl } from '../data/ipcmmu.data'
-import getI18nProps from '../utils/geti18nProps'
 
 const toHashColor = (r: string) => (r.startsWith('#') ? r : '#' + r)
 
@@ -34,6 +34,7 @@ const OrgName: Record<string, string> = {
 const HometownIntroductionPageUrl: Record<string, string> = {
   '私立 星見高校': Paths.ipcommu('o-009'),
   '公立 光ヶ崎高校': Paths.ipcommu('o-010'),
+  '私立 麗葉女学院中等部': Paths.ipcommu('o-011'),
   '私立 麗葉女学院高等部': Paths.ipcommu('o-011'),
   '私立 月出高校 芸能コース': Paths.ipcommu('o-012'),
   '公立 紅花中学校': Paths.ipcommu('o-013'),
@@ -232,6 +233,12 @@ const CharactersPage = () => {
   )
 }
 
-export const getStaticProps = getI18nProps
+export const getStaticProps = async ({ locale }: { locale: string }) => {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['common', 'characters'])),
+    },
+  }
+}
 
 export default CharactersPage
