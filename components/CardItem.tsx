@@ -14,7 +14,7 @@ import { useTranslation } from 'next-i18next'
 import type { Card as WikiCard } from '../utils/wikiPages/cards'
 import { Stories } from '../data/cardStories.data'
 import Paths from '../utils/paths'
-import { APIResponseOf, feFetcher } from '../utils/api'
+import { APIResponseOf, feFetcher, UnArray } from '../utils/api'
 
 import { toVideoLink } from './ExternalVideo'
 
@@ -214,7 +214,7 @@ const CardItem = ({
   card,
   rarityData,
 }: {
-  card: Card
+  card: UnArray<APIResponseOf<'Card'>>
   rarityData: CardRarity[]
 }) => {
   const {

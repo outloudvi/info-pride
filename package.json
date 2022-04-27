@@ -33,7 +33,7 @@
     "@mantine/hooks": "^4.1.4",
     "@mantine/next": "^4.1.4",
     "@mantine/notifications": "^4.1.4",
-    "@outloudvi/hoshimi-types": "^1.0.8",
+    "@outloudvi/hoshimi-types": "^1.0.9",
     "@sentry/browser": "^6.19.6",
     "@sentry/nextjs": "^6.19.6",
     "autoprefixer": "^10",

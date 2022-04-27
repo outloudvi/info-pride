@@ -30,17 +30,16 @@ const CardPage = () => {
   const { data: CardData, error: CardDataError } =
     useSWR<APIResponseOf<'Card'>>('Card')
 
-  const { data: RarityData } = useSWR<APIResponseOf<'CardRarity'>>('CardRarity')
-
-  const cards: Partial<Record<CharacterId, Card[]>> = useMemo(() => {
-    const ret: Partial<Record<CharacterId, Card[]>> = {}
-    for (const i of CardData ?? []) {
-      // typecast-safe: CharacterId should be aligned with CardData
-      const cid = i.characterId as CharacterId
-      ;(ret[cid] ?? (ret[cid] = [])).push(i)
-    }
-    return ret
-  }, [CardData])
+  const cards: Partial<Record<CharacterId, APIResponseOf<'Card'>>> =
+    useMemo(() => {
+      const ret: Partial<Record<CharacterId, APIResponseOf<'Card'>>> = {}
+      for (const i of CardData ?? []) {
+        // typecast-safe: CharacterId should be aligned with CardData
+        const cid = i.characterId as CharacterId
+        ;(ret[cid] ?? (ret[cid] = [])).push(i)
+      }
+      return ret
+    }, [CardData])
 
   const [idol, setIdol] = useAtom(idolNameAtom)
   const cardList = cards[idol] ?? []
