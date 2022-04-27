@@ -3,7 +3,6 @@ import { showNotification } from '@mantine/notifications'
 import { Button, Checkbox, Grid } from '@mantine/core'
 import rfdc from 'rfdc'
 
-import Layout from '../components/Layout'
 import { Cards } from '../utils/dataset'
 import { Card } from '../utils/wikiPages/cards'
 import { idolNameToSlug } from '../data/idols'
@@ -56,7 +55,7 @@ const SettingsPage = () => {
   }
 
   return (
-    <Layout>
+    <>
       <h2>设置</h2>
       <h3>我的 box</h3>
       <p>在此设置 box 后，搜索时将会显示卡片的持有状态。</p>
@@ -98,7 +97,7 @@ const SettingsPage = () => {
       <Button variant="outline" onClick={() => saveLocalBox()}>
         保存
       </Button>
-    </Layout>
+    </>
   )
 }
 

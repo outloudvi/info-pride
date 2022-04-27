@@ -4,7 +4,6 @@ import { Grid, NativeSelect, Skeleton } from '@mantine/core'
 import _range from 'lodash/range'
 
 import useIpSWR from '../utils/useIpSWR'
-import Layout from '../components/Layout'
 import { Colors } from '../data/colors'
 import { APIResponseOf, UnArray } from '../utils/api'
 
@@ -38,7 +37,7 @@ const NotemapPage = ({
   ])
 
   return (
-    <Layout>
+    <>
       <h2>谱面</h2>
       <Grid gutter={20} className="my-3">
         <Grid.Col xs={12} lg={6}>
@@ -99,7 +98,7 @@ const NotemapPage = ({
           {<NotemapGraph chartId={chartId} laneColors={laneColors} />}
         </Grid.Col>
       </Grid>
-    </Layout>
+    </>
   )
 }
 

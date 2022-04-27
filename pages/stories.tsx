@@ -4,7 +4,6 @@ import _range from 'lodash/range'
 import { atomWithHash } from 'jotai/utils'
 import { useAtom } from 'jotai'
 
-import Layout from '../components/Layout'
 import StoriesItem, { SpecialStoriesItem } from '../components/StoriesItem'
 import { Episodes, Series } from '../data/stories'
 import StoriesData from '../data/stories.data'
@@ -33,7 +32,7 @@ const Stories = () => {
   }, [])
 
   return (
-    <Layout>
+    <>
       <h2>剧情</h2>
       <Grid gutter={20} className="my-3">
         <Grid.Col xs={12} lg={6}>
@@ -132,7 +131,7 @@ const Stories = () => {
           )}
         </Grid.Col>
       </Grid>
-    </Layout>
+    </>
   )
 }
 

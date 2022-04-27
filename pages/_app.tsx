@@ -14,6 +14,7 @@ import { ResourceMapping } from '@outloudvi/hoshimi-types'
 import { useColorScheme, useLocalStorage } from '@mantine/hooks'
 
 import { fetchDb } from '../utils/api'
+import Layout from '../components/Layout'
 
 const App = (props: AppProps) => {
   const { Component, pageProps } = props
@@ -130,7 +131,9 @@ const App = (props: AppProps) => {
                 },
               }}
             >
-              <Component {...pageProps} />
+              <Layout>
+                <Component {...pageProps} />
+              </Layout>
             </SWRConfig>
           </NotificationsProvider>
         </MantineProvider>

@@ -4,7 +4,6 @@ import dayjs from 'dayjs'
 import { atomWithHash } from 'jotai/utils'
 import { useAtom } from 'jotai'
 
-import Layout from '../components/Layout'
 import { Diary } from '../utils/dataset'
 
 const diaries: { [key: string]: string } = {}
@@ -52,7 +51,7 @@ const DiaryPage = () => {
   const [currDate, setCurrDate] = useAtom(shortDateAtom)
 
   return (
-    <Layout>
+    <>
       <h2>麻奈日记</h2>
       <Grid gutter={20} className="my-3">
         <Grid.Col xs={12} lg={6}>
@@ -116,7 +115,7 @@ const DiaryPage = () => {
           <ManaDiary dateShort={toShortDate(currDate)} />
         </Grid.Col>
       </Grid>
-    </Layout>
+    </>
   )
 }
 

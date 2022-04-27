@@ -14,7 +14,6 @@ import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import intersection from 'lodash/intersection'
 import uniq from 'lodash/uniq'
 
-import Layout from '../components/Layout'
 import CardDesc from '../components/CardDesc'
 import { CardSkillsData, Cards } from '../utils/dataset'
 import { ColorTypeSimple, IdentCT } from '../utils/wikiPages/types'
@@ -267,7 +266,7 @@ const SkillesPage = () => {
   }, [])
 
   return (
-    <Layout>
+    <>
       <h2>卡片搜索</h2>
       <p>
         如果发现自己持有的卡片没有显示为「已持有」，请
@@ -445,7 +444,7 @@ const SkillesPage = () => {
           />
         ))}
       </div>
-    </Layout>
+    </>
   )
 }
 

@@ -1,4 +1,3 @@
-import Layout from '../components/Layout'
 import Color from '../data/color'
 import { IdolSlug, Idols } from '../data/idols'
 import styles from '../styles/colors.module.css'
@@ -34,7 +33,7 @@ const ColorBlock = ({ name, color }: { name: string; color: string }) => (
 
 const ColorsPage = () => {
   return (
-    <Layout>
+    <>
       <h2>系列颜色</h2>
       <p>
         此颜色根据 idolypride.jp 网站
@@ -56,7 +55,7 @@ const ColorsPage = () => {
           </div>
         ))}
       </div>
-    </Layout>
+    </>
   )
 }
 

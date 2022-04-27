@@ -6,7 +6,6 @@ import { atomWithHash } from 'jotai/utils'
 import { useAtom } from 'jotai'
 
 import useIpSWR from '../utils/useIpSWR'
-import Layout from '../components/Layout'
 import CardItem from '../components/CardItem'
 import {
   CharacterChineseNameList,
@@ -45,7 +44,7 @@ const CardPage = () => {
   const [cardNumber, setCardNumber] = useAtom(cardNumberAtom)
 
   return (
-    <Layout>
+    <>
       <h2>卡片</h2>
       <Grid gutter={20} className="my-3">
         <Grid.Col xs={12} lg={4}>
@@ -93,7 +92,7 @@ const CardPage = () => {
           )}
         </Grid.Col>
       </Grid>
-    </Layout>
+    </>
   )
 }
 

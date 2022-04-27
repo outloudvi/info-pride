@@ -13,7 +13,6 @@ import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import useIpSWR from '../utils/useIpSWR'
-import Layout from '../components/Layout'
 import { APIResponseOf, UnArray } from '../utils/api'
 import ListButton from '../components/ListButton'
 import {
@@ -198,7 +197,7 @@ const CharactersPage = () => {
   const [chrOrderId, setChrOrderId] = useState(0)
 
   return (
-    <Layout>
+    <>
       <h2>角色</h2>
 
       <Grid gutter={20} className="my-3">
@@ -243,7 +242,7 @@ const CharactersPage = () => {
           <Button>{title}</Button>
         </a>
       ))}
-    </Layout>
+    </>
   )
 }
 
