@@ -55,6 +55,12 @@ const App = (props: AppProps) => {
           withGlobalStyles
           withNormalizeCSS
           theme={{
+            breakpoints: {
+              sm: 640,
+              md: 768,
+              lg: 1024,
+              xl: 1280,
+            },
             colorScheme,
             fontFamily:
               '-apple-system, system-ui, "Segoe UI", "Helvetica Neue", Arial, "Hiragino Sans GB", "PingFang SC", "Heiti SC", "Noto Sans CJK SC", "Source Han Sans SC", "Microsoft YaHei UI", "Microsoft YaHei", sans-serif',
