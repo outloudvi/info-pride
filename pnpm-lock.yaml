@@ -25,6 +25,7 @@ specifiers:
   '@typescript-eslint/parser': ^5.20.0
   ajv-cli: ^5.0.0
   autoprefixer: ^10
+  base58: ^2.0.1
   cheerio: ^1.0.0-rc.10
   d3: ^7.3.0
   dayjs: ^1.10.8
@@ -70,6 +71,7 @@ dependencies:
   '@sentry/browser': 6.19.6
   '@sentry/nextjs': 6.19.6_next@12.1.0+react@17.0.2
   autoprefixer: 10.4.2_postcss@8.4.8
+  base58: 2.0.1
   cheerio: 1.0.0-rc.10
   d3: 7.3.0
   dayjs: 1.10.8
@@ -1810,6 +1812,11 @@ packages:
   /balanced-match/1.0.2:
     resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==}
     dev: true
+
+  /base58/2.0.1:
+    resolution: {integrity: sha512-qK6gt2fMSxN2xGOi+btI5oAnXL+vEq0AsHWHhf5jfm2hE6MwmW+2414qF96utV3Xfg3En8hEA9Q4lif4lbXcgw==}
+    engines: {node: '>= 6'}
+    dev: false
 
   /binary-extensions/2.2.0:
     resolution: {integrity: sha512-jDctJ/IVQbZoJykoeHbhXpOlNBqGNcwXJKJog42E5HDPUwQTSdjCHdihjj0DlnheQ7blbT6dHOafNAiS8ooQKA==}

@@ -1,13 +1,14 @@
 import { useCallback, useMemo, useState } from 'react'
-import { Button, Grid, Modal, Select, Stack } from '@mantine/core'
+import { Button, Grid, Modal, Progress, Select, Stack } from '@mantine/core'
 
 import useIpSWR from '../utils/useIpSWR'
-import Layout from '../components/Layout'
 import type { APIResponseOf, UnArray } from '../utils/api'
 import {
   CharacterChineseNameList,
   CharacterId,
 } from '../data/vendor/characterId'
+import allFinished from '../utils/allFinished'
+import unitCodeV1 from '../utils/unitCode'
 
 type CardTiny = UnArray<APIResponseOf<'Card'>>
 
@@ -66,11 +67,13 @@ const UnitPosition = ({
   )
 }
 
-const UnitsPage = () => {
-  const { data: _CardData } = useIpSWR('Card')
-
-  const CardData = _CardData ?? []
-
+const UnitsPage = ({
+  CardData,
+  CardIdData,
+}: {
+  CardData: APIResponseOf<'Card'>
+  CardIdData: APIResponseOf<'Card/Id'>
+}) => {
   // 6 positions (0 and 1-5)
   // (unitCards[0] should be always empty)
   const [unitCards, setUnitCards] = useState<(CardTiny | undefined)[]>([
@@ -92,17 +95,16 @@ const UnitsPage = () => {
   const unitCode = useMemo(() => {
     const cardList = unitCards.slice(1)
     if (cardList.filter((x) => x).length !== 5) return ''
-    return (cardList as CardTiny[]).map((x) => x.id).join('+')
-  }, [unitCards])
+    return unitCodeV1.encode(cardList as NonNullable<any>, CardIdData)
+  }, [unitCards, CardIdData])
 
   return (
-    <Layout>
-      <h2>组队</h2>
+    <>
       <p className="text-gray-500 dark:text-gray-400">
         本页面正在设计中。任何内容均可能发生变化。
       </p>
       <p>
-        分享小队编码（在将来这当然会更短一点）：
+        小队编码：
         {unitCode || '（请先选择所有位置的卡片。）'}
       </p>
       <Grid gutter={20} className="my-3">
@@ -124,8 +126,42 @@ const UnitsPage = () => {
           {/* TODO: display notemap */}
         </Grid.Col>
       </Grid>
-    </Layout>
+    </>
   )
 }
 
-export default UnitsPage
+const SkeletonUnitsPage = () => {
+  const { data: CardData } = useIpSWR('Card')
+  const { data: CardIdData } = useIpSWR('Card/Id')
+
+  const allData = {
+    CardData,
+    CardIdData,
+  }
+
+  return (
+    <>
+      <h2>组队</h2>
+      {allFinished(allData) ? (
+        <UnitsPage {...allData} />
+      ) : (
+        <>
+          <div>
+            正在加载数据：完成{' '}
+            {Object.values(allData).filter((x) => x !== undefined).length}/
+            {Object.keys(allData).length}
+          </div>
+          <Progress
+            value={
+              (Object.values(allData).filter((x) => x !== undefined).length /
+                Object.keys(allData).length) *
+              100
+            }
+          />
+        </>
+      )}
+    </>
+  )
+}
+
+export default SkeletonUnitsPage
