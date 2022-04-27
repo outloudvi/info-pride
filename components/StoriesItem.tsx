@@ -1,11 +1,10 @@
-import useSWR from 'swr'
 import * as Sentry from '@sentry/browser'
 
+import useIpSWR from '../utils/useIpSWR'
 import { StoriesTitle } from '../utils/dataset'
 import Paths from '../utils/paths'
 import { Episodes, SeriesName } from '../data/stories'
 import StoriesData, { SubTitles } from '../data/stories.data'
-import { APIResponseOf } from '../utils/api'
 
 import { toVideoLink } from './ExternalVideo'
 
@@ -73,9 +72,9 @@ export const SpecialStoriesItem = (props: {
 const StoriesItem = (props: PropType) => {
   const { series, season, chapter } = props
 
-  const { data: StoryData } = useSWR<APIResponseOf<'Story'>>(
-    `/Story?id=${getBackendStoryId(props)}`
-  )
+  const { data: StoryData } = useIpSWR('Story', {
+    id: getBackendStoryId(props),
+  })
 
   const data = StoriesData?.[series]?.[season]?.[chapter]
   const subtitle = StoryData?.sectionName ?? findSubtitle(props)

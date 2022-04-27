@@ -1,8 +1,7 @@
 import { Button, Group, Stack } from '@mantine/core'
 import { useEffect, useRef } from 'react'
-import useSWR from 'swr'
 
-import { APIResponseOf } from '../utils/api'
+import useIpSWR from '../utils/useIpSWR'
 
 import renderNotemap from './renderNotemap'
 
@@ -13,9 +12,9 @@ const NotemapGraph = ({
   chartId: string
   laneColors: string[]
 }) => {
-  const { data } = useSWR<APIResponseOf<'MusicChart'>>(
-    `/MusicChart?chartId=${chartId}`
-  )
+  const { data } = useIpSWR('MusicChart', {
+    chartId,
+  })
   const svgRef = useRef<SVGSVGElement | null>(null)
 
   useEffect(() => {

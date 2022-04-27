@@ -7,11 +7,11 @@ import {
   ScrollArea,
   Table,
 } from '@mantine/core'
-import useSWR from 'swr'
 import { useState } from 'react'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from 'next-i18next'
 
+import useIpSWR from '../utils/useIpSWR'
 import Layout from '../components/Layout'
 import { APIResponseOf, fetchDb, UnArray } from '../utils/api'
 import ListButton from '../components/ListButton'
@@ -67,9 +67,7 @@ const CharacterItem = ({
 
   const { id, characterGroupId, name, enName, color } = character
 
-  const { data: CharacterData, error: CharacterDataError } = useSWR<
-    APIResponseOf<'Character'>
-  >(`/Character?ids=${id}`)
+  const { data: CharacterData } = useIpSWR('Character', [['ids', id]])
 
   if (!CharacterData) {
     return <></>
@@ -185,8 +183,7 @@ const CharacterItem = ({
 }
 
 const CharactersPage = () => {
-  const { data: CharacterListData, error: CharacterListDataError } =
-    useSWR<APIResponseOf<'Character/List'>>('/Character/List')
+  const { data: CharacterListData } = useIpSWR('Character/List')
 
   const NonNpcCharacterListData = (CharacterListData ?? []).filter(
     (item) => CharacterChineseNameList[item.id as CharacterId]

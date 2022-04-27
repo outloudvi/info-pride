@@ -1,12 +1,11 @@
 import { Grid, NativeSelect } from '@mantine/core'
-import useSWR from 'swr'
-import type { Card } from '@outloudvi/hoshimi-types/ProtoMaster'
 import { CardType } from '@outloudvi/hoshimi-types/ProtoEnum'
 import { useMemo } from 'react'
 import { useTranslation } from 'next-i18next'
 import { atomWithHash } from 'jotai/utils'
 import { useAtom } from 'jotai'
 
+import useIpSWR from '../utils/useIpSWR'
 import Layout from '../components/Layout'
 import CardItem from '../components/CardItem'
 import {
@@ -27,8 +26,8 @@ const cardNumberAtom = atomWithHash('cardId', 0)
 const CardPage = () => {
   const { t: $v } = useTranslation('vendor')
 
-  const { data: CardData, error: CardDataError } =
-    useSWR<APIResponseOf<'Card'>>('Card')
+  const { data: CardData } = useIpSWR('Card')
+  const { data: RarityData } = useIpSWR('CardRarity')
 
   const cards: Partial<Record<CharacterId, APIResponseOf<'Card'>>> =
     useMemo(() => {
@@ -48,7 +47,6 @@ const CardPage = () => {
   return (
     <Layout>
       <h2>卡片</h2>
-      {CardDataError && <p>{String(CardDataError)}</p>}
       <Grid gutter={20} className="my-3">
         <Grid.Col xs={12} lg={4}>
           <NativeSelect

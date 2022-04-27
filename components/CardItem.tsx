@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { Button, Grid, Skeleton, Slider, Switch, Tooltip } from '@mantine/core'
-import useSWR from 'swr'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import type {
@@ -10,7 +9,9 @@ import type {
 } from '@outloudvi/hoshimi-types/ProtoMaster'
 import { CardType, SkillCategoryType } from '@outloudvi/hoshimi-types/ProtoEnum'
 import { useTranslation } from 'next-i18next'
+import useSWR from 'swr'
 
+import useIpSWR from '../utils/useIpSWR'
 import type { Card as WikiCard } from '../utils/wikiPages/cards'
 import { Stories } from '../data/cardStories.data'
 import Paths from '../utils/paths'
@@ -34,8 +35,7 @@ export const Props = ({
   | 'visualRatioPermil'
   | 'staminaRatioPermil'
 > & { level: number; rarityInfo: CardRarity }) => {
-  const { data: ParamData } =
-    useSWR<APIResponseOf<'CardParameter'>>('CardParameter')
+  const { data: ParamData } = useIpSWR('CardParameter')
 
   const parameterInfo = (ParamData ?? []).filter(
     (x) => x.id === cardParameterId && x.level === level
@@ -237,9 +237,9 @@ const CardItem = ({
   const [level, setLevel] = useState(rarityInfo?.levelLimit ?? 1)
   const [cnTrans, setCnTrans] = useState(true)
 
-  const { data: SkillData } = useSWR(
-    `/Skill?ids=${card.skillId1},${card.skillId2},${card.skillId3}`
-  )
+  const { data: SkillData } = useIpSWR(`Skill`, [
+    ['ids', `${card.skillId1},${card.skillId2},${card.skillId3}`],
+  ])
 
   const {
     data: WikiCardData,

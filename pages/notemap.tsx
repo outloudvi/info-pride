@@ -2,11 +2,11 @@ import { useEffect, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { Grid, NativeSelect } from '@mantine/core'
 import _range from 'lodash/range'
-import useSWR from 'swr'
 
+import useIpSWR from '../utils/useIpSWR'
 import Layout from '../components/Layout'
 import { Colors } from '../data/colors'
-import { APIResponseOf, fetchDb, UnArray } from '../utils/api'
+import { fetchDb, UnArray } from '../utils/api'
 import SWRWrapped from '../components/SWRWrapped'
 
 const NotemapGraph = dynamic(() => import('../components/NotemapGraph'), {
@@ -14,8 +14,7 @@ const NotemapGraph = dynamic(() => import('../components/NotemapGraph'), {
 })
 
 const NotemapPage = () => {
-  const { data: ChartListData } =
-    useSWR<APIResponseOf<'MusicChartList'>>('/MusicChartList')
+  const { data: ChartListData } = useIpSWR('MusicChartList')
 
   if (!ChartListData) {
     throw Error('Should be already populated by getServerSideProps')

@@ -1,14 +1,15 @@
 import { useCallback, useMemo, useState } from 'react'
 import { Button, Grid, Modal, Select, Stack } from '@mantine/core'
-import useSWR from 'swr'
-import type { Card } from '@outloudvi/hoshimi-types/ProtoMaster'
 
+import useIpSWR from '../utils/useIpSWR'
 import Layout from '../components/Layout'
-import type { APIResponseOf } from '../utils/api'
+import type { APIResponseOf, UnArray } from '../utils/api'
 import {
   CharacterChineseNameList,
   CharacterId,
 } from '../data/vendor/characterId'
+
+type CardTiny = UnArray<APIResponseOf<'Card'>>
 
 const UnitPosition = ({
   position,
@@ -17,9 +18,9 @@ const UnitPosition = ({
   cardList,
 }: {
   position: number
-  card?: Card
-  setCard: (c: Card) => void
-  cardList: Card[]
+  card?: CardTiny
+  setCard: (c: CardTiny) => void
+  cardList: CardTiny[]
 }) => {
   const [modalOpened, setModalOpened] = useState(false)
 
@@ -66,14 +67,13 @@ const UnitPosition = ({
 }
 
 const UnitsPage = () => {
-  const { data: _CardData, error: CardDataError } =
-    useSWR<APIResponseOf<'Card'>>('Card')
+  const { data: _CardData } = useIpSWR('Card')
 
   const CardData = _CardData ?? []
 
   // 6 positions (0 and 1-5)
   // (unitCards[0] should be always empty)
-  const [unitCards, setUnitCards] = useState<(Card | undefined)[]>([
+  const [unitCards, setUnitCards] = useState<(CardTiny | undefined)[]>([
     ,
     ,
     ,
@@ -83,7 +83,7 @@ const UnitsPage = () => {
   ])
 
   const setPositionCard = useCallback(
-    (pos: number) => (card: Card) => {
+    (pos: number) => (card: CardTiny) => {
       setUnitCards((r) => [...r.slice(0, pos), card, ...r.slice(pos + 1)])
     },
     [setUnitCards]
@@ -92,7 +92,7 @@ const UnitsPage = () => {
   const unitCode = useMemo(() => {
     const cardList = unitCards.slice(1)
     if (cardList.filter((x) => x).length !== 5) return ''
-    return (cardList as Card[]).map((x) => x.id).join('+')
+    return (cardList as CardTiny[]).map((x) => x.id).join('+')
   }, [unitCards])
 
   return (
