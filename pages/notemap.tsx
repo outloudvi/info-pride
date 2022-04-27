@@ -1,25 +1,22 @@
 import { useEffect, useState } from 'react'
 import dynamic from 'next/dynamic'
-import { Grid, NativeSelect } from '@mantine/core'
+import { Grid, NativeSelect, Skeleton } from '@mantine/core'
 import _range from 'lodash/range'
 
 import useIpSWR from '../utils/useIpSWR'
 import Layout from '../components/Layout'
 import { Colors } from '../data/colors'
-import { fetchDb, UnArray } from '../utils/api'
-import SWRWrapped from '../components/SWRWrapped'
+import { APIResponseOf, UnArray } from '../utils/api'
 
 const NotemapGraph = dynamic(() => import('../components/NotemapGraph'), {
   ssr: false,
 })
 
-const NotemapPage = () => {
-  const { data: ChartListData } = useIpSWR('MusicChartList')
-
-  if (!ChartListData) {
-    throw Error('Should be already populated by getServerSideProps')
-  }
-
+const NotemapPage = ({
+  ChartListData,
+}: {
+  ChartListData: APIResponseOf<'MusicChartList'>
+}) => {
   const [song, setSong] = useState<UnArray<typeof ChartListData>>(
     ChartListData[0]
   )
@@ -106,15 +103,14 @@ const NotemapPage = () => {
   )
 }
 
-export async function getServerSideProps() {
-  const musicChartList = await fetchDb('MusicChartList')()
-  return {
-    props: {
-      fallback: {
-        '/MusicChartList': musicChartList,
-      },
-    },
-  }
+const SkeletonNotemapPage = () => {
+  const { data: ChartListData } = useIpSWR('MusicChartList')
+
+  return ChartListData ? (
+    <NotemapPage ChartListData={ChartListData} />
+  ) : (
+    <Skeleton height={600} />
+  )
 }
 
-export default SWRWrapped(NotemapPage)
+export default SkeletonNotemapPage

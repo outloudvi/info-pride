@@ -13,9 +13,13 @@ function useIpSWR<T extends keyof APIMapping>(
   params: Record<string, any> = {}
 ) {
   const urlsp = new URLSearchParams()
-  Object.entries(params).map(([k, v]) => urlsp.set(k, v))
+  let withParams = false
+  Object.entries(params).map(([k, v]) => {
+    withParams = true
+    urlsp.set(k, v)
+  })
   const { data, error } = useSWR<APIResponseOf<T>>(
-    key + (params.length > 0 ? '?' + urlsp.toString() : '')
+    key + (withParams ? '?' + urlsp.toString() : '')
   )
   useEffect(() => {
     if (!error) return

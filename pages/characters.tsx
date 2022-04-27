@@ -8,20 +8,19 @@ import {
   Table,
 } from '@mantine/core'
 import { useState } from 'react'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from 'next-i18next'
 
 import useIpSWR from '../utils/useIpSWR'
 import Layout from '../components/Layout'
-import { APIResponseOf, fetchDb, UnArray } from '../utils/api'
+import { APIResponseOf, UnArray } from '../utils/api'
 import ListButton from '../components/ListButton'
 import {
   CharacterChineseNameList,
   CharacterId,
 } from '../data/vendor/characterId'
-import SWRWrapped from '../components/SWRWrapped'
 import Paths from '../utils/paths'
 import { IdolyFashionUrl, IdolyRoomUrl } from '../data/ipcmmu.data'
+import getI18nProps from '../utils/geti18nProps'
 
 const toHashColor = (r: string) => (r.startsWith('#') ? r : '#' + r)
 
@@ -67,7 +66,7 @@ const CharacterItem = ({
 
   const { id, characterGroupId, name, enName, color } = character
 
-  const { data: CharacterData } = useIpSWR('Character', [['ids', id]])
+  const { data: CharacterData } = useIpSWR('Character', { ids: id })
 
   if (!CharacterData) {
     return <></>
@@ -233,16 +232,6 @@ const CharactersPage = () => {
   )
 }
 
-export async function getServerSideProps({ locale }: { locale: string }) {
-  const characterList = await fetchDb('Character/List')()
-  return {
-    props: {
-      fallback: {
-        '/Character/List': characterList,
-      },
-      ...(await serverSideTranslations(locale, ['common', 'characters'])),
-    },
-  }
-}
+export const getStaticProps = getI18nProps
 
-export default SWRWrapped(CharactersPage)
+export default CharactersPage
