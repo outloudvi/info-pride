@@ -4,6 +4,7 @@ import {
   Divider,
   Grid,
   Group,
+  MediaQuery,
   ScrollArea,
   Table,
 } from '@mantine/core'
@@ -129,10 +130,16 @@ const CharacterItem = ({
         <span className="text-2xl ml-4" lang="ja">
           {name}
         </span>
-        <div className="uppercase text-3xl mt-1 text-gray-600 right-1 top-0 absolute">
-          {enName}
-        </div>
+        <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
+          <div className="uppercase text-3xl mt-1 text-gray-600 right-1 top-0 absolute">
+            {enName}
+          </div>
+        </MediaQuery>
       </div>
+
+      <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
+        <div className="uppercase text-2xl mt-1 text-gray-500">{enName}</div>
+      </MediaQuery>
 
       {catchphrase && (
         <Blockquote className="text-gray-700 dark:text-gray-200" lang="ja">
@@ -196,26 +203,33 @@ const CharactersPage = () => {
 
       <Grid gutter={20} className="my-3">
         <Grid.Col xs={12} lg={4}>
-          <ScrollArea style={{ height: 'min(1200px, 70vh)' }}>
-            {NonNpcCharacterListData.sort((a, b) => a.order - b.order).map(
-              (item, key) => (
-                <ListButton
-                  key={key}
-                  selected={chrOrderId === key}
-                  onClick={() => {
-                    setChrOrderId(key)
-                  }}
-                >
-                  <div className="text-base">
-                    <span lang="zh-CN">
-                      <SquareColor color={item.color} />{' '}
-                      {CharacterChineseNameList[item.id as CharacterId]}
-                    </span>
-                  </div>
-                </ListButton>
-              )
-            )}
-          </ScrollArea>
+          <MediaQuery
+            smallerThan="sm"
+            styles={{
+              height: '300px !important',
+            }}
+          >
+            <ScrollArea style={{ height: 'min(1200px, 70vh)' }}>
+              {NonNpcCharacterListData.sort((a, b) => a.order - b.order).map(
+                (item, key) => (
+                  <ListButton
+                    key={key}
+                    selected={chrOrderId === key}
+                    onClick={() => {
+                      setChrOrderId(key)
+                    }}
+                  >
+                    <div className="text-base">
+                      <span lang="zh-CN">
+                        <SquareColor color={item.color} />{' '}
+                        {CharacterChineseNameList[item.id as CharacterId]}
+                      </span>
+                    </div>
+                  </ListButton>
+                )
+              )}
+            </ScrollArea>
+          </MediaQuery>
         </Grid.Col>
         <Grid.Col xs={12} lg={8}>
           {NonNpcCharacterListData?.[chrOrderId] && (
