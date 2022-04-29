@@ -2,10 +2,12 @@ import {
   Blockquote,
   Button,
   Divider,
+  Global,
   Grid,
   Group,
   MediaQuery,
   ScrollArea,
+  Stack,
   Table,
 } from '@mantine/core'
 import { useState } from 'react'
@@ -21,6 +23,7 @@ import {
 } from '../data/vendor/characterId'
 import Paths from '../utils/paths'
 import { IdolyFashionUrl, IdolyRoomUrl } from '../data/ipcmmu.data'
+import { getMoveStyle, SizeStyle } from '../data/vendor/characterAnimation'
 
 const toHashColor = (r: string) => (r.startsWith('#') ? r : '#' + r)
 
@@ -57,6 +60,43 @@ const SquareColor = ({ color }: { color: string }) => (
     }}
   ></div>
 )
+
+const CharacterAnimation = ({ charId }: { charId: CharacterId }) => {
+  const moveStyle = getMoveStyle(charId)
+  const sizeStyle = SizeStyle
+  return (
+    <>
+      <Global
+        styles={() => ({
+          '@keyframes char-anim': {
+            from: {
+              backgroundPositionX: '0%',
+            },
+            to: {
+              backgroundPositionX: '100%',
+            },
+          },
+        })}
+      />
+
+      <div
+        style={{
+          // Animation
+          animationName: 'char-anim',
+          animationDuration: String(moveStyle[0]) + 's',
+          animationTimingFunction: `steps(${moveStyle[1]})`,
+          animationIterationCount: 'infinite',
+          // Background
+          backgroundImage: `url(${Paths.assets(`sprite-idol/${charId}.png`)})`,
+          backgroundSize: 'cover',
+          // Size
+          height: SizeStyle.sm.height,
+          width: SizeStyle.sm.width,
+        }}
+      />
+    </>
+  )
+}
 
 const CharacterItem = ({
   character,
@@ -150,40 +190,49 @@ const CharacterItem = ({
         </Blockquote>
       )}
       {profile && <p>{profile}</p>}
-      {CharacterData && (
-        <div>
-          <Table className="max-w-xl text-center mx-auto">
-            {tableItem.map(([label, value], key) => (
-              <tr
-                key={key}
-                className="border-0 border-solid border-b- border-b-gray-400 even:bg-gray-100 dark:even:bg-gray-800"
-              >
-                <td className="py-1  w-1/4">{label}</td>
-                <td className="py-1">{value}</td>
-              </tr>
-            ))}
-            <tr>
-              <td>代表色</td>
-              <td>
-                <SquareColor color={color} /> {toHashColor(color)}
-              </td>
-            </tr>
-          </Table>
-          <Group position="center" className="mt-4">
-            <a href={Paths.mgw(CharacterChineseNameList[id as CharacterId])}>
-              <Button>萌娘百科条目</Button>
-            </a>
-            <a href={IdolyFashionUrl[id as CharacterId]}>
-              <Button>服装介绍 / IDOLY FASHION</Button>
-            </a>
-            {IdolyRoomUrl[id as CharacterId] && (
-              <a href={IdolyRoomUrl[id as CharacterId]}>
-                <Button>房间介绍 / IDOLY ROOM</Button>
-              </a>
-            )}
-          </Group>
-        </div>
-      )}
+      <Grid>
+        <Grid.Col xs={12} lg={8}>
+          {CharacterData && (
+            <div>
+              <Table className="max-w-xl text-center mx-auto">
+                {tableItem.map(([label, value], key) => (
+                  <tr
+                    key={key}
+                    className="border-0 border-solid border-b- border-b-gray-400 even:bg-gray-100 dark:even:bg-gray-800"
+                  >
+                    <td className="py-1  w-1/4">{label}</td>
+                    <td className="py-1">{value}</td>
+                  </tr>
+                ))}
+                <tr>
+                  <td>代表色</td>
+                  <td>
+                    <SquareColor color={color} /> {toHashColor(color)}
+                  </td>
+                </tr>
+              </Table>
+              <Group position="center" className="mt-4">
+                <a
+                  href={Paths.mgw(CharacterChineseNameList[id as CharacterId])}
+                >
+                  <Button>萌娘百科条目</Button>
+                </a>
+                <a href={IdolyFashionUrl[id as CharacterId]}>
+                  <Button>服装介绍 / IDOLY FASHION</Button>
+                </a>
+                {IdolyRoomUrl[id as CharacterId] && (
+                  <a href={IdolyRoomUrl[id as CharacterId]}>
+                    <Button>房间介绍 / IDOLY ROOM</Button>
+                  </a>
+                )}
+              </Group>
+            </div>
+          )}
+        </Grid.Col>
+        <Grid.Col xs={12} lg={4} className="flex items-center justify-center">
+          <CharacterAnimation charId={id as CharacterId} />
+        </Grid.Col>
+      </Grid>
     </div>
   )
 }

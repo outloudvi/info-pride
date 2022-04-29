@@ -6,6 +6,7 @@ const Paths = {
   mgw: (pageName: string) => `https://zh.moegirl.org.cn/${pageName}`,
   ipcommu: (postId: string) =>
     `https://community.idolypride.jp/posts/${postId}`,
+  assets: (path: string) => `https://idoly-assets.outv.im/${path}`,
 }
 
 export default Paths
