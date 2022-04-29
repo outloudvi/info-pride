@@ -81,7 +81,7 @@ const StoriesItem = (props: PropType) => {
 
   const cnTitle = data?.name && data.name !== 'TODO' ? data.name : null
   const jaTitle =
-    StoryData?.name.replace(/\n/g, '') ?? StoriesTitle[series][season][chapter]
+    StoryData?.name?.replace(/\n/g, '') ?? StoriesTitle[series][season][chapter]
 
   // Report data inconsistencies
   if (

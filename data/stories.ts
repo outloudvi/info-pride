@@ -13,7 +13,7 @@ export type SeriesName = typeof Series[number]
 
 export const Episodes: Record<SeriesName, [string, number[]]> = {
   Hoshimi: ['星见编', [28, 45, 25, 24]],
-  Tokyo: ['东京编', [25, 20]],
+  Tokyo: ['东京编', [25, 25]],
   TRINITYAiLE: ['TRINITYAiLE', [30]],
   LizNoir: ['LizNoir', [30]],
   Mana: ['长濑麻奈', [15]],

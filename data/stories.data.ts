@@ -489,6 +489,26 @@ const data: Partial<
         video: { type: 'bilibili', vid: 'av632285757', pid: 20 },
         name: 'TODO',
       },
+      21: {
+        video: { type: 'bilibili', vid: 'av632285757', pid: 21 },
+        name: 'TODO',
+      },
+      22: {
+        video: { type: 'bilibili', vid: 'av632285757', pid: 22 },
+        name: 'TODO',
+      },
+      23: {
+        video: { type: 'bilibili', vid: 'av632285757', pid: 23 },
+        name: 'TODO',
+      },
+      24: {
+        video: { type: 'bilibili', vid: 'av632285757', pid: 24 },
+        name: 'TODO',
+      },
+      25: {
+        video: { type: 'bilibili', vid: 'av632285757', pid: 25 },
+        name: 'TODO',
+      },
     },
   },
   TRINITYAiLE: {
@@ -874,6 +894,8 @@ const SubTitles: Partial<
     2: {
       1: 'Farewell and Oath',
       6: 'Struggle for IDOLs',
+      11: 'Enjoy just purely',
+      16: 'No Gray',
       // TODO: 11-
     },
   },
