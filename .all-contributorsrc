@@ -1,0 +1,24 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "outloudvi",
+      "name": "Outvi V",
+      "avatar_url": "https://avatars.githubusercontent.com/u/19144373?v=4",
+      "profile": "https://blog.outv.im",
+      "contributions": [
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "info-pride",
+  "projectOwner": "outloudvi",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}
