@@ -13,13 +13,22 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 14
+          registry-url: "https://npm.pkg.github.com"
+
       - name: Install dependencies
         run: |
           sudo apt install -y lua5.3
 
+      - run: npx pnpm install --ignore-scripts
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - run: npx pnpm rebuild && npx pnpm run prepare --if-present
+
       - name: Build & Validate
         run: |
-          npx pnpm install
           node to-esm.js
           bash utils/buildAndValidate.sh
 
