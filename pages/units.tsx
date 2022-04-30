@@ -59,6 +59,7 @@ const UnitPosition = ({
         />
       </Modal>
       <Stack align="center">
+        <Button onClick={() => setModalOpened(true)}>选择卡片</Button>
         <div>
           {card ? (
             <>
@@ -71,7 +72,6 @@ const UnitPosition = ({
             <div>未选择卡片</div>
           )}
         </div>
-        <Button onClick={() => setModalOpened(true)}>选择卡片</Button>
       </Stack>
     </>
   )
