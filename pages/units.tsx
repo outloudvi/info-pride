@@ -1,14 +1,19 @@
-import { useCallback, useMemo, useState } from 'react'
+import { HTMLAttributes, useCallback, useMemo, useState } from 'react'
 import {
+  Badge,
   Button,
   Grid,
   Group,
   Modal,
   Select,
-  Stack,
+  Skeleton,
   TextInput,
+  Tooltip,
 } from '@mantine/core'
 import { showNotification } from '@mantine/notifications'
+import type { Skill } from '@outloudvi/hoshimi-types/ProtoMaster'
+import { CardType, SkillCategoryType } from '@outloudvi/hoshimi-types/ProtoEnum'
+import { useTranslation } from 'next-i18next'
 
 import useIpSWR from '../utils/useIpSWR'
 import type { APIResponseOf, UnArray } from '../utils/api'
@@ -19,8 +24,75 @@ import {
 import allFinished from '../utils/allFinished'
 import unitCodeV1 from '../utils/unitCode'
 import PageLoading from '../components/PageLoading'
+import getI18nProps from '../utils/geti18nProps'
 
 type CardTiny = UnArray<APIResponseOf<'Card'>>
+
+const SkillInUnit = ({
+  skill,
+  className,
+  style,
+}: { skill: Skill } & HTMLAttributes<'div'>) => {
+  const { t: $v } = useTranslation('vendor')
+  return (
+    <div {...{ className, style }}>
+      {skill.name} <br />
+      <span className="text-sm">
+        {$v(SkillCategoryType[skill.categoryType])} 技
+      </span>{' '}
+      <br />
+      <Tooltip
+        label={
+          <div
+            dangerouslySetInnerHTML={{
+              __html: skill.levels[skill.levels.length - 1].description.replace(
+                /\n/g,
+                '<br/>'
+              ),
+            }}
+          ></div>
+        }
+        withArrow
+        position="right"
+      >
+        <Badge>详情</Badge>
+      </Tooltip>
+    </div>
+  )
+}
+
+const CardInUnit = ({ card }: { card: CardTiny }) => {
+  const { t: $v } = useTranslation('vendor')
+  const { data: SkillData } = useIpSWR(`Skill`, {
+    ids: `${card.skillId1},${card.skillId2},${card.skillId3}`,
+  })
+
+  return (
+    <>
+      <div style={{ gridRow: 3 }}>
+        <b>{card.name}</b>
+      </div>
+      <div style={{ gridRow: 4 }}>
+        {CharacterChineseNameList[card.characterId as CharacterId]}
+      </div>
+      <div className="mt-2 mb-3" style={{ gridRow: 5 }}>
+        {$v(CardType[card.type])}
+      </div>
+      {SkillData ? (
+        SkillData.map((x, i) => (
+          <SkillInUnit
+            key={i}
+            className="mb-2"
+            style={{ gridRow: 6 + i }}
+            skill={x}
+          />
+        ))
+      ) : (
+        <Skeleton height={300} style={{ gridRow: 6 }} />
+      )}
+    </>
+  )
+}
 
 const UnitPosition = ({
   position,
@@ -58,21 +130,20 @@ const UnitPosition = ({
           }}
         />
       </Modal>
-      <Stack align="center">
-        <Button onClick={() => setModalOpened(true)}>选择卡片</Button>
-        <div>
-          {card ? (
-            <>
-              <div>{card.name}</div>
-              <div>
-                {CharacterChineseNameList[card.characterId as CharacterId]}
-              </div>
-            </>
-          ) : (
-            <div>未选择卡片</div>
-          )}
-        </div>
-      </Stack>
+
+      <Button
+        onClick={() => setModalOpened(true)}
+        style={{
+          gridRow: 1,
+        }}
+      >
+        选择卡片
+      </Button>
+      {card ? (
+        <CardInUnit card={card} />
+      ) : (
+        <div style={{ gridRowStart: 2 }}>未选择卡片</div>
+      )}
     </>
   )
 }
@@ -176,18 +247,17 @@ const UnitsPage = ({
               导入队伍编码
             </Button>
           </Group>
-          <Grid className="mt-2" columns={5} gutter={10}>
+          <div className="grid grid-cols-5 gap-x-2 gap-y-1 mt-3">
             {[4, 2, 1, 3, 5].map((position, key) => (
-              <Grid.Col key={key} xs={1}>
-                <UnitPosition
-                  position={position}
-                  card={unitCards[position]}
-                  setCard={setPositionCard(position)}
-                  cardList={CardData}
-                />
-              </Grid.Col>
+              <UnitPosition
+                key={key}
+                position={position}
+                card={unitCards[position]}
+                setCard={setPositionCard(position)}
+                cardList={CardData}
+              />
             ))}
-          </Grid>
+          </div>
         </Grid.Col>
         <Grid.Col xs={12} lg={6}>
           {/* TODO: display notemap */}
@@ -217,5 +287,7 @@ const SkeletonUnitsPage = () => {
     </>
   )
 }
+
+export const getStaticProps = getI18nProps
 
 export default SkeletonUnitsPage
