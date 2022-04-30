@@ -1,7 +1,4 @@
 <h1 align=center>
-<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
-<!-- ALL-CONTRIBUTORS-BADGE:END -->
 INFO PRIDE (Beta)
 </h1>
 
@@ -9,9 +6,10 @@ INFO PRIDE (Beta)
 <a href="https://ip.outv.im">ip.outv.im</a>
 </h3>
 
-| Build                                                                              | API @types                                                          |
-| ---------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| ![Build Status](https://badgen.net/github/status/outloudvi/info-pride?icon=vercel) | ![@types Version](https://info-pride-badges.deno.dev/hoshimi-types) |
+![Build Status](https://badgen.net/github/status/outloudvi/info-pride?icon=vercel)
+![@types Version](https://info-pride-badges.deno.dev/hoshimi-types)<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 ## Data
 
@@ -29,6 +27,7 @@ pnpm run dev
 ## License
 
 AGPLv3 (code) / Various licenses (data)
+
 ## Contributors ✨
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
