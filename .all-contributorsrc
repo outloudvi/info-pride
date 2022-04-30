@@ -13,6 +13,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "MalitsPlus",
+      "name": "Vibbit",
+      "avatar_url": "https://avatars.githubusercontent.com/u/50281195?v=4",
+      "profile": "https://malitsplus.blogspot.com",
+      "contributions": [
+        "data"
+      ]
     }
   ],
   "contributorsPerLine": 7,
