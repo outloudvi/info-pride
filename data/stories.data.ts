@@ -605,7 +605,11 @@ const data: Partial<
         name: '堇的梦想',
         video: { type: 'bilibili', vid: 'av638116460' },
       },
-      // TODO: 24-
+      24: {
+        name: '重大的决断',
+        video: { type: 'bilibili', vid: 'av213686714' },
+      },
+      // TODO: 25-
     },
   },
   LizNoir: {
@@ -903,7 +907,10 @@ const SubTitles: Partial<
     1: {
       1: 'White Resolve',
       6: 'Shoot for the Sky',
-      11: 'Goodbye to Goodbye',
+      11: 'Light My Fire',
+      16: 'Réaliser',
+      21: 'because sisters',
+      26: 'Violette blooming proudly',
     },
   },
   LizNoir: {
@@ -913,13 +920,14 @@ const SubTitles: Partial<
       11: 'Impatience of Hollyhock',
       16: 'Love & Heart',
       21: 'Smile or Perfect Performance',
+      26: 'Brand-new LizNoir',
     },
   },
   Mana: {
     1: {
       1: 'First Step',
       6: 'Trajectory of Miracle',
-      // TODO: 11-
+      11: 'Goodbye to Goodbye',
     },
   },
 }
