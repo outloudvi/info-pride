@@ -9,6 +9,7 @@ import {
 } from '../data/vendor/characterId'
 import allFinished from '../utils/allFinished'
 import unitCodeV1 from '../utils/unitCode'
+import PageLoading from '../components/PageLoading'
 
 type CardTiny = UnArray<APIResponseOf<'Card'>>
 
@@ -145,20 +146,7 @@ const SkeletonUnitsPage = () => {
       {allFinished(allData) ? (
         <UnitsPage {...allData} />
       ) : (
-        <>
-          <div>
-            正在加载数据：完成{' '}
-            {Object.values(allData).filter((x) => x !== undefined).length}/
-            {Object.keys(allData).length}
-          </div>
-          <Progress
-            value={
-              (Object.values(allData).filter((x) => x !== undefined).length /
-                Object.keys(allData).length) *
-              100
-            }
-          />
-        </>
+        <PageLoading data={allData} />
       )}
     </>
   )
