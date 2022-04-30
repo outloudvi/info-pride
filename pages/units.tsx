@@ -61,7 +61,7 @@ const SkillInUnit = ({
   )
 }
 
-const CardInUnit = ({ card }: { card: CardTiny }) => {
+const CardInUnit = ({ card, col }: { card: CardTiny; col: number }) => {
   const { t: $v } = useTranslation('vendor')
   const { data: SkillData } = useIpSWR(`Skill`, {
     ids: `${card.skillId1},${card.skillId2},${card.skillId3}`,
@@ -69,13 +69,13 @@ const CardInUnit = ({ card }: { card: CardTiny }) => {
 
   return (
     <>
-      <div style={{ gridRow: 3 }}>
+      <div style={{ gridRow: 3, gridColumn: col }}>
         <b>{card.name}</b>
       </div>
-      <div style={{ gridRow: 4 }}>
+      <div style={{ gridRow: 4, gridColumn: col }}>
         {CharacterChineseNameList[card.characterId as CharacterId]}
       </div>
-      <div className="mt-2 mb-3" style={{ gridRow: 5 }}>
+      <div className="mt-2 mb-3" style={{ gridRow: 5, gridColumn: col }}>
         {$v(CardType[card.type])}
       </div>
       {SkillData ? (
@@ -83,12 +83,15 @@ const CardInUnit = ({ card }: { card: CardTiny }) => {
           <SkillInUnit
             key={i}
             className="mb-2"
-            style={{ gridRow: 6 + i }}
+            style={{ gridRow: 6 + i, gridColumn: col }}
             skill={x}
           />
         ))
       ) : (
-        <Skeleton height={300} style={{ gridRow: 6 }} />
+        <Skeleton
+          height={300}
+          style={{ gridRow: '6 / span 3', gridColumn: col }}
+        />
       )}
     </>
   )
@@ -99,11 +102,13 @@ const UnitPosition = ({
   card,
   setCard,
   cardList,
+  col,
 }: {
   position: number
   card?: CardTiny
   setCard: (c: CardTiny) => void
   cardList: CardTiny[]
+  col: number
 }) => {
   const [modalOpened, setModalOpened] = useState(false)
 
@@ -135,14 +140,15 @@ const UnitPosition = ({
         onClick={() => setModalOpened(true)}
         style={{
           gridRow: 1,
+          gridColumn: col,
         }}
       >
         选择卡片
       </Button>
       {card ? (
-        <CardInUnit card={card} />
+        <CardInUnit card={card} col={col} />
       ) : (
-        <div style={{ gridRowStart: 2 }}>未选择卡片</div>
+        <div style={{ gridRow: '2 / span 7', gridColumn: col }}>未选择卡片</div>
       )}
     </>
   )
@@ -251,6 +257,7 @@ const UnitsPage = ({
             {[4, 2, 1, 3, 5].map((position, key) => (
               <UnitPosition
                 key={key}
+                col={key + 1}
                 position={position}
                 card={unitCards[position]}
                 setCard={setPositionCard(position)}
