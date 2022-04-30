@@ -2,6 +2,7 @@ import { Button, Grid, Group, Stack } from '@mantine/core'
 
 import CurrentEvents from '../components/CurrentEvents'
 import Notice from '../components/Notice'
+import VersionInfo from '../components/VersionInfo'
 import Paths from '../utils/paths'
 
 const MainPageSiteData = [
@@ -49,6 +50,10 @@ const Home = () => {
       <Grid.Col xs={12} lg={6}>
         <div className="mb-2 text-3xl">新闻</div>
         <Notice />
+      </Grid.Col>
+      <Grid.Col xs={12} lg={6}>
+        <div className="mb-2 text-3xl">数据版本</div>
+        <VersionInfo />
       </Grid.Col>
     </Grid>
   )
