@@ -237,9 +237,9 @@ const CardItem = ({
   const [level, setLevel] = useState(rarityInfo?.levelLimit ?? 1)
   const [cnTrans, setCnTrans] = useState(true)
 
-  const { data: SkillData } = useIpSWR(`Skill`, [
-    ['ids', `${card.skillId1},${card.skillId2},${card.skillId3}`],
-  ])
+  const { data: SkillData } = useIpSWR(`Skill`, {
+    ids: `${card.skillId1},${card.skillId2},${card.skillId3}`,
+  })
 
   const {
     data: WikiCardData,
