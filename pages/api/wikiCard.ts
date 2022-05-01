@@ -1,8 +1,8 @@
 import { withSentry } from '@sentry/nextjs'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
-import { Cards } from '../../utils/dataset'
-import type { Card as WikiCard } from '../../utils/wikiPages/cards'
+import { Cards } from '../../data/wikiPages'
+import type { Card as WikiCard } from '../../data/wikiPages/cards'
 import CardStories, { Stories } from '../../data/cardStories.data'
 
 const CardsArray: WikiCard[] = Object.values(Cards)

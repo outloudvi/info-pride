@@ -3,6 +3,7 @@
 import { readdirSync, writeFileSync } from 'fs'
 import { fileURLToPath } from 'url'
 import { dirname, join } from 'path'
+
 import { compileFromFile } from 'json-schema-to-typescript'
 
 function main() {

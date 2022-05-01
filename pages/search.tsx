@@ -15,9 +15,9 @@ import intersection from 'lodash/intersection'
 import uniq from 'lodash/uniq'
 
 import CardDesc from '../components/CardDesc'
-import { CardSkillsData, Cards } from '../utils/dataset'
-import { ColorTypeSimple, IdentCT } from '../utils/wikiPages/types'
-import type { Card } from '../utils/wikiPages/cards'
+import { CardSkillsData, Cards } from '../data/wikiPages'
+import { ColorTypeSimple, IdentCT } from '../data/wikiPages/types'
+import type { Card } from '../data/wikiPages/cards'
 import tryJSONParse from '../utils/tryJsonParse'
 import {
   CharacterChineseNameList,

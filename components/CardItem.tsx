@@ -12,7 +12,7 @@ import { useTranslation } from 'next-i18next'
 import useSWR from 'swr'
 
 import useIpSWR from '../utils/useIpSWR'
-import type { Card as WikiCard } from '../utils/wikiPages/cards'
+import type { Card as WikiCard } from '../data/wikiPages/cards'
 import { Stories } from '../data/cardStories.data'
 import Paths from '../utils/paths'
 import { APIResponseOf, feFetcher, UnArray } from '../utils/api'

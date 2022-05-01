@@ -4,12 +4,12 @@ import { writeFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { dirname, join } from 'node:path'
 
-import { Cards } from '../dataset.js'
-
 import { isRegExp } from './utils.js'
 import { Matchers } from './parserIdentifier.js'
 import ReplaceTable from './parserReplaceTable.js'
 import type { Matcher, MatchQuery } from './types.js'
+
+import { Cards } from './index.js'
 
 type keyIdols = keyof typeof Cards
 let err = 0

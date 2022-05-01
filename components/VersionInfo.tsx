@@ -4,7 +4,8 @@ import { Badge } from '@mantine/core'
 import useIpSWR from '../utils/useIpSWR'
 import allFinished from '../utils/allFinished'
 import { APIResponseOf } from '../utils/api'
-import { WikiModulesMeta, WikiPagesMeta } from '../utils/dataset'
+import { Meta as WikiPagesMeta } from '../data/wikiPages'
+import { Meta as WikiModulesMeta } from '../data/wikiModules'
 
 import PageLoading from './PageLoading'
 

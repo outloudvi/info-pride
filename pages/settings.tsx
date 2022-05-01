@@ -3,8 +3,8 @@ import { showNotification } from '@mantine/notifications'
 import { Button, Checkbox, Grid } from '@mantine/core'
 import rfdc from 'rfdc'
 
-import { Cards } from '../utils/dataset'
-import { Card } from '../utils/wikiPages/cards'
+import { Cards } from '../data/wikiPages'
+import { Card } from '../data/wikiPages/cards'
 import {
   CharacterChineseNameList,
   CharacterId,

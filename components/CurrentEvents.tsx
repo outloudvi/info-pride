@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 
 import Paths from '../utils/paths'
-import { Calendar, WikiModulesMeta } from '../utils/dataset'
+import { Calendar, Meta as WikiModulesMeta } from '../data/wikiModules'
 
 dayjs.extend(dayjsUtc)
 dayjs.extend(dayjsTz)

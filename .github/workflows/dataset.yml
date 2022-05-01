@@ -30,7 +30,7 @@ jobs:
       - name: Build & Validate
         run: |
           node to-esm.js
-          bash utils/buildAndValidate.sh
+          bash scripts/buildAndValidate.sh
 
       - name: Commit files
         continue-on-error: true

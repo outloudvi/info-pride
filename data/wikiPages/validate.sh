@@ -1,10 +1,10 @@
 #!/bin/bash
 set -eu
 
-PARTS=(storiesTitle)
+PAGES=(songs)
 
 pushd $(dirname $0)
 
-for key in "${PARTS[@]}"; do
+for key in "${PAGES[@]}"; do
     npm run dataset:ajv -- -s $PWD/$key.schema.json -d $PWD/$key.json
 done

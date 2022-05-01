@@ -4,7 +4,7 @@ import { writeFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-import { CharacterChineseNameList } from '../../data/vendor/characterId.js'
+import { CharacterChineseNameList } from '../vendor/characterId.js'
 
 import {
   fetchPrefixList,

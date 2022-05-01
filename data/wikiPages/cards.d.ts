@@ -1,4 +1,4 @@
-import { CharacterId } from '../../data/vendor/characterId'
+import { CharacterId } from '../vendor/characterId'
 
 /**
  * Card data for wiki.biligame.com/idolypride

@@ -1,7 +1,7 @@
 import * as Sentry from '@sentry/browser'
 
 import useIpSWR from '../utils/useIpSWR'
-import { StoriesTitle } from '../utils/dataset'
+import { StoriesTitle } from '../data/vendor'
 import Paths from '../utils/paths'
 import { Episodes, SeriesName } from '../data/stories'
 import StoriesData, { SubTitles } from '../data/stories.data'
