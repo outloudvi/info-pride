@@ -5,7 +5,10 @@ import rfdc from 'rfdc'
 
 import { Cards } from '../utils/dataset'
 import { Card } from '../utils/wikiPages/cards'
-import { CharacterId } from '../data/vendor/characterId'
+import {
+  CharacterChineseNameList,
+  CharacterId,
+} from '../data/vendor/characterId'
 
 const clone = rfdc({
   proto: true,
@@ -62,7 +65,7 @@ const SettingsPage = () => {
       <Grid gutter={20}>
         {Object.entries(Cards).map(([name, _], _key) => (
           <Grid.Col key={_key} xs={12} lg={3} className="rounded">
-            <b>{name}</b>
+            <b>{CharacterChineseNameList[name as CharacterId]}</b>
             <div>
               {Object.values(Cards[name as keyof typeof Cards]).map(
                 (card: Card, __key) => (
