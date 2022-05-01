@@ -25,7 +25,7 @@ import Paths from '../utils/paths'
 import { IdolyFashionUrl, IdolyRoomUrl } from '../data/ipcmmu.data'
 import { getMoveStyle, SizeStyle } from '../data/vendor/characterAnimation'
 
-const toHashColor = (r: string) => (r.startsWith('#') ? r : '#' + r)
+export const toHashColor = (r: string) => (r.startsWith('#') ? r : '#' + r)
 
 const OrgName: Record<string, string> = {
   character_group_1: '月光风暴',

@@ -1,9 +1,11 @@
-import Color from '../data/color'
+import { Skeleton } from '@mantine/core'
 import {
   CharacterChineseNameList,
   CharacterId,
 } from '../data/vendor/characterId'
 import styles from '../styles/colors.module.css'
+import useIpSWR from '../utils/useIpSWR'
+import { toHashColor } from './characters'
 
 const ColorOrder: CharacterId[][] = [
   ['char-mna'],
@@ -35,15 +37,17 @@ const ColorBlock = ({ name, color }: { name: string; color: string }) => (
 )
 
 const ColorsPage = () => {
+  const { data: CharacterList } = useIpSWR('Character/List')
+
+  if (!CharacterList) {
+    return <Skeleton height={800} />
+  }
+
   return (
     <>
       <h2>系列颜色</h2>
       <p>
-        此颜色根据 idolypride.jp 网站
-        <a href="https://idolypride.jp/shared/css/character.css?v=2.1">
-          源代码
-        </a>
-        得到。亦可参考
+        此颜色根据游戏内部数据得到。亦可参考
         <a href="https://twitter.com/idolypride/status/1332167024433192961">
           官方 Twitter
         </a>{' '}
@@ -56,7 +60,9 @@ const ColorsPage = () => {
               <ColorBlock
                 key={_j}
                 name={CharacterChineseNameList[one]}
-                color={Color[one]}
+                color={toHashColor(
+                  CharacterList.find((x) => x.id === one)!.color
+                )}
               />
             ))}
           </div>
