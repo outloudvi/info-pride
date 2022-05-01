@@ -7,7 +7,6 @@ import {
   Group,
   MediaQuery,
   ScrollArea,
-  Stack,
   Table,
 } from '@mantine/core'
 import { useState } from 'react'
@@ -63,7 +62,6 @@ const SquareColor = ({ color }: { color: string }) => (
 
 const CharacterAnimation = ({ charId }: { charId: CharacterId }) => {
   const moveStyle = getMoveStyle(charId)
-  const sizeStyle = SizeStyle
   return (
     <>
       <Global
