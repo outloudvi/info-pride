@@ -55,4 +55,4 @@ export const CharacterChineseNameList: Record<CharacterId, string> = {
   'char-ai': '小美山爱',
   'char-kkr': '赤崎心',
   'char-mna': '长濑麻奈',
-}
+} as const
