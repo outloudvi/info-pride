@@ -12,9 +12,11 @@ import '../styles/globals.css' // for Tailwind CSS
 import { SWRConfig } from 'swr'
 import { ResourceMapping } from '@outloudvi/hoshimi-types'
 import { useColorScheme, useLocalStorage } from '@mantine/hooks'
+import { useEffect } from 'react'
 
 import { fetchDb } from '../utils/api'
 import Layout from '../components/Layout'
+import startupHook from '../utils/startupHook'
 
 const App = (props: AppProps) => {
   const { Component, pageProps } = props
@@ -28,6 +30,10 @@ const App = (props: AppProps) => {
   const toggleColorScheme = (value?: ColorScheme) =>
     setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'))
 
+  useEffect(() => {
+    startupHook()
+  }, [])
+
   return (
     <>
       <Head>
@@ -37,7 +43,6 @@ const App = (props: AppProps) => {
           content="minimum-scale=1, initial-scale=1, width=device-width"
         />
       </Head>
-
       <ColorSchemeProvider
         colorScheme={colorScheme}
         toggleColorScheme={toggleColorScheme}
