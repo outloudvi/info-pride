@@ -1,10 +1,13 @@
-import { Skeleton } from '@mantine/core'
+import PageLoading from '../components/PageLoading'
 import {
   CharacterChineseNameList,
   CharacterId,
 } from '../data/vendor/characterId'
 import styles from '../styles/colors.module.css'
+import allFinished from '../utils/allFinished'
+import { APIResponseOf } from '../utils/api'
 import useIpSWR from '../utils/useIpSWR'
+
 import { toHashColor } from './characters'
 
 const ColorOrder: CharacterId[][] = [
@@ -36,16 +39,13 @@ const ColorBlock = ({ name, color }: { name: string; color: string }) => (
   </div>
 )
 
-const ColorsPage = () => {
-  const { data: CharacterList } = useIpSWR('Character/List')
-
-  if (!CharacterList) {
-    return <Skeleton height={800} />
-  }
-
+const ColorsPage = ({
+  CharacterList,
+}: {
+  CharacterList: APIResponseOf<'Character/List'>
+}) => {
   return (
     <>
-      <h2>系列颜色</h2>
       <p>
         此颜色根据游戏内部数据得到。亦可参考
         <a href="https://twitter.com/idolypride/status/1332167024433192961">
@@ -72,4 +72,23 @@ const ColorsPage = () => {
   )
 }
 
-export default ColorsPage
+const SkeletonColorsPage = () => {
+  const { data: CharacterList } = useIpSWR('Character/List')
+
+  const allData = {
+    CharacterList,
+  }
+
+  return (
+    <>
+      <h2>系列颜色</h2>
+      {allFinished(allData) ? (
+        <ColorsPage {...allData} />
+      ) : (
+        <PageLoading data={allData} />
+      )}
+    </>
+  )
+}
+
+export default SkeletonColorsPage
