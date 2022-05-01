@@ -31,7 +31,7 @@ const WikiCard = async (
   }
 
   const targetCard = card[0]
-  const stories = CardStories?.[targetCard.ownerName]?.[targetCard.ownerId]
+  const stories = CardStories?.[targetCard.ownerSlug]?.[targetCard.ownerId]
 
   res.status(200).json({
     card: targetCard,

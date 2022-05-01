@@ -1,3 +1,13 @@
+/* eslint-disable */
+
+/**
+ * This file contains some data from bwiki.
+ *
+ * They are expected to be only used for Chinese translation.
+ */
+
+import { CharacterId } from '../data/vendor/characterId'
+
 // wikiModules
 import _diary from './wikiModules/diary.json' assert { type: 'json' }
 import _calendar from './wikiModules/calendar.json' assert { type: 'json' }
@@ -19,7 +29,6 @@ import type { TheRootSchema as WikiCards } from './wikiPages/cards'
 import type { TheRootSchema as WikiIdols } from './wikiPages/idols'
 import type { TheRootSchema as WikiSongs } from './wikiPages/songs'
 
-import type { IdolName } from '../data/idols'
 import type { Ident } from './wikiPages/types'
 
 export const Cards = _cards as WikiCards
@@ -27,7 +36,7 @@ export const Idols = _idols as WikiIdols
 export const Songs = _songs as WikiSongs
 export const WikiPagesMeta = _wikiPagesMeta
 export const CardSkillsData = _cardSkillsData as Record<
-  IdolName,
+  CharacterId,
   Record<string, Record<'ski1' | 'ski2' | 'ski3', Ident[]>>
 >
 

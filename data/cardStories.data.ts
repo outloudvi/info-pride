@@ -1,11 +1,11 @@
-import type { IdolName } from './idols'
 import type { ChapterItem } from './stories'
+import { CharacterId } from './vendor/characterId'
 
 export type Stories = Record<1 | 2 | 3, ChapterItem> &
   Partial<Record<'phone', Omit<ChapterItem, 'name'>>>
 
-const data: Partial<Record<IdolName, Record<number, Stories>>> = {
-  长濑麻奈: {
+const data: Partial<Record<CharacterId, Record<number, Stories>>> = {
+  'char-mna': {
     1: {
       // You're my everything
       1: {
@@ -38,7 +38,7 @@ const data: Partial<Record<IdolName, Record<number, Stories>>> = {
       },
     },
   },
-  川咲樱: {
+  'char-skr': {
     4: {
       // 梦的共演
       1: {
@@ -85,7 +85,7 @@ const data: Partial<Record<IdolName, Record<number, Stories>>> = {
       },
     },
   },
-  一之濑怜: {
+  'char-rei': {
     3: {
       // 高台上微风轻拂
       // dups: av931765423
@@ -148,7 +148,7 @@ const data: Partial<Record<IdolName, Record<number, Stories>>> = {
       },
     },
   },
-  佐伯遥子: {
+  'char-hrk': {
     3: {
       // 可靠的大姐姐
       1: {
@@ -213,7 +213,7 @@ const data: Partial<Record<IdolName, Record<number, Stories>>> = {
       },
     },
   },
-  长濑琴乃: {
+  'char-ktn': {
     4: {
       1: {
         name: 'TODO',
@@ -259,7 +259,7 @@ const data: Partial<Record<IdolName, Record<number, Stories>>> = {
       },
     },
   },
-  白石千纱: {
+  'char-chs': {
     3: {
       // 想要增加拍照时的自信
       1: {
@@ -306,7 +306,7 @@ const data: Partial<Record<IdolName, Record<number, Stories>>> = {
       },
     },
   },
-  兵藤雫: {
+  'char-szk': {
     3: {
       // 光之海洋
       1: {
@@ -353,7 +353,7 @@ const data: Partial<Record<IdolName, Record<number, Stories>>> = {
       },
     },
   },
-  伊吹渚: {
+  'char-ngs': {
     3: {
       // 靠在你的身后
       1: {
@@ -419,7 +419,7 @@ const data: Partial<Record<IdolName, Record<number, Stories>>> = {
       },
     },
   },
-  井川葵: {
+  'char-aoi': {
     3: {
       // 湿发低语
       1: {
@@ -466,7 +466,7 @@ const data: Partial<Record<IdolName, Record<number, Stories>>> = {
       },
     },
   },
-  白石沙季: {
+  'char-ski': {
     3: {
       // 手牵手
       1: {
@@ -513,7 +513,7 @@ const data: Partial<Record<IdolName, Record<number, Stories>>> = {
       },
     },
   },
-  成宫铃: {
+  'char-suz': {
     3: {
       // 星光满溢
       1: {
@@ -560,7 +560,7 @@ const data: Partial<Record<IdolName, Record<number, Stories>>> = {
       },
     },
   },
-  早坂芽衣: {
+  'char-mei': {
     3: {
       // 镜头下的笑容
       1: {
@@ -640,7 +640,7 @@ const data: Partial<Record<IdolName, Record<number, Stories>>> = {
       },
     },
   },
-  天动瑠依: {
+  'char-rui': {
     4: {
       // 真实的姿态
       1: {
@@ -688,7 +688,7 @@ const data: Partial<Record<IdolName, Record<number, Stories>>> = {
       },
     },
   },
-  铃村优: {
+  'char-yu': {
     3: {
       // 白色冲击
       1: {
@@ -735,7 +735,7 @@ const data: Partial<Record<IdolName, Record<number, Stories>>> = {
       },
     },
   },
-  奥山堇: {
+  'char-smr': {
     3: {
       // 小小的女主角
       1: {
@@ -800,7 +800,7 @@ const data: Partial<Record<IdolName, Record<number, Stories>>> = {
       },
     },
   },
-  神崎莉央: {
+  'char-rio': {
     4: {
       1: {
         name: 'TODO',
@@ -864,7 +864,7 @@ const data: Partial<Record<IdolName, Record<number, Stories>>> = {
       },
     },
   },
-  小美山爱: {
+  'char-ai': {
     3: {
       // 抓住梦想
       1: {
@@ -914,7 +914,7 @@ const data: Partial<Record<IdolName, Record<number, Stories>>> = {
       },
     },
   },
-  赤崎心: {
+  'char-kkr': {
     3: {
       // 新liznoir的“骄傲”
       1: {

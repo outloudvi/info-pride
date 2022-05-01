@@ -5,14 +5,14 @@ import rfdc from 'rfdc'
 
 import { Cards } from '../utils/dataset'
 import { Card } from '../utils/wikiPages/cards'
-import { idolNameToSlug } from '../data/idols'
+import { CharacterId } from '../data/vendor/characterId'
 
 const clone = rfdc({
   proto: true,
 })
 
 export const LOCALSTORAGE_BOX_TAG = 'localBox'
-export type LocalBox = Record<string, boolean[]>
+export type LocalBox = Partial<Record<CharacterId, boolean[]>>
 
 const SettingsPage = () => {
   const [localBox, setLocalBox] = useState<LocalBox>({})
@@ -28,10 +28,10 @@ const SettingsPage = () => {
     }
   }, [])
 
-  const updateLocalBox = (slug: string, id: number, have: boolean) => {
+  const updateLocalBox = (slug: CharacterId, id: number, have: boolean) => {
     const thisBox = clone(localBox)
     if (!thisBox[slug]) thisBox[slug] = []
-    thisBox[slug][id] = have
+    thisBox[slug]![id] = have
     setLocalBox(thisBox)
   }
 
@@ -75,13 +75,11 @@ const SettingsPage = () => {
                       </div>
                     }
                     checked={Boolean(
-                      localBox?.[idolNameToSlug(card.ownerName)!]?.[
-                        card.ownerId
-                      ]
+                      localBox?.[card.ownerSlug]?.[card.ownerId]
                     )}
                     onChange={(e) => {
                       updateLocalBox(
-                        idolNameToSlug(card.ownerName)!,
+                        card.ownerSlug,
                         card.ownerId,
                         e.target.checked
                       )

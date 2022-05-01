@@ -3,6 +3,9 @@
 import { writeFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
+
+import { CharacterChineseNameList } from '../../data/vendor/characterId.js'
+
 import {
   fetchPrefixList,
   getPageJson,
@@ -19,30 +22,6 @@ const SitePref: SitePrefConfig = {
   domain: 'wiki.biligame.com',
   path: 'idolypride/api.php',
 }
-const IdolNames = [
-  '长濑麻奈',
-  // SunnyP
-  '川咲樱',
-  '一之濑怜',
-  '佐伯遥子',
-  '白石千纱',
-  '兵藤雫',
-  // Tsuki
-  '长濑琴乃',
-  '伊吹渚',
-  '白石沙季',
-  '成宫铃',
-  '早坂芽衣',
-  // TRiLE
-  '天动瑠依',
-  '铃村优',
-  '奥山堇',
-  // LizNoir
-  '神崎莉央',
-  '井川葵',
-  '小美山爱',
-  '赤崎心',
-]
 
 function findFirstTemplateWithName(pageJson: any, templateName: string) {
   return pageJson.sections
@@ -138,14 +117,16 @@ async function main() {
   try {
     // Idols
     const idolInfo = readJson(join(currDir, IdolsJson))
-    for (const idolName of IdolNames) {
-      if (idolInfo?.[idolName]) {
-        console.info(`Skipping idol ${idolName}`)
+    for (const [idolId, idolCnName] of Object.entries(
+      CharacterChineseNameList
+    )) {
+      if (idolInfo?.[idolId]) {
+        console.info(`Skipping idol ${idolCnName}`)
         continue
       }
-      console.info(`Fetching idol ${idolName}`)
-      const pageJson = await getPageJson(idolName, SitePref)
-      idolInfo[idolName] = parseIdol(pageJson)
+      console.info(`Fetching idol ${idolCnName}`)
+      const pageJson = await getPageJson(idolCnName, SitePref)
+      idolInfo[idolId] = parseIdol(pageJson)
     }
     writeFileSync(join(currDir, IdolsJson), JSON.stringify(idolInfo))
   } catch (e) {
@@ -155,13 +136,15 @@ async function main() {
   try {
     // Cards
     const cardInfo = readJson(join(currDir, CardsJson))
-    for (const idolName of IdolNames) {
-      console.info(`Fetching cards for ${idolName}`)
-      const pagePrefix = `${idolName}/卡牌/`
+    for (const [idolId, idolCnName] of Object.entries(
+      CharacterChineseNameList
+    )) {
+      console.info(`Fetching cards for ${idolCnName}`)
+      const pagePrefix = `${idolCnName}/卡牌/`
       const pageNames = await fetchPrefixList(pagePrefix, SitePref)
       for (const cardName of pageNames) {
         const cardId = cardName.replace(new RegExp(`^${pagePrefix}`), '')
-        if (cardInfo?.[idolName]?.[cardId]) {
+        if (cardInfo?.[idolId]?.[cardId]) {
           console.info(`Skipping card ${cardName}`)
           continue
         }
@@ -171,9 +154,9 @@ async function main() {
         for (const i of ['rarity', 'vocTop', 'danTop', 'staTop', 'visTop']) {
           cardMeta[i] = Number(cardMeta[i])
         }
-        cardMeta.ownerName = idolName
+        cardMeta.ownerSlug = idolId
         cardMeta.ownerId = Number(cardId)
-        ;(cardInfo[idolName] || (cardInfo[idolName] = {}))[cardId] = cardMeta
+        ;(cardInfo[idolId] || (cardInfo[idolId] = {}))[cardId] = cardMeta
       }
       writeFileSync(join(currDir, CardsJson), JSON.stringify(cardInfo))
       await sleep(3000)

@@ -3,7 +3,7 @@ import { Grid } from '@mantine/core'
 
 import Paths from '../utils/paths'
 import type { Card } from '../utils/wikiPages/cards'
-import { idolNameToSlug } from '../data/idols'
+import { CharacterChineseNameList } from '../data/vendor/characterId'
 
 const SkillDesc = ({
   name,
@@ -55,7 +55,7 @@ const CardDesc = ({
     ski3Typ,
     nameCn,
     nameJa,
-    ownerName,
+    ownerSlug,
     ownerId,
   } = card
 
@@ -63,13 +63,19 @@ const CardDesc = ({
     <div className="my-1 rounded-md border-solid border-6 border-gray-400 p-2">
       <div>
         <div className="float-right text-right">
-          <Link href={Paths.wiki(`${ownerName}/卡牌/${ownerId}`)}>
+          <Link
+            href={Paths.wiki(
+              `${CharacterChineseNameList[ownerSlug]}/卡牌/${ownerId}`
+            )}
+          >
             <a target="_blank" rel="noopener">
               Wiki 页面
             </a>
           </Link>
           <br />
-          <Link href={`/cards/${idolNameToSlug(ownerName)}/${ownerId}`}>
+          <Link
+            href={`/cards/${CharacterChineseNameList[ownerSlug]}/${ownerId}`}
+          >
             <a rel="noopener">卡片页面</a>
           </Link>
         </div>
@@ -78,7 +84,7 @@ const CardDesc = ({
           <b>{nameCn}</b> / <small lang="ja">{nameJa}</small>
           {owned && <span className="bg-orange-200 ml-2 px-1">已持有</span>}
           <br />
-          {ownerName} / {type} / {prop} / {rarity}★
+          {CharacterChineseNameList[ownerSlug]} / {type} / {prop} / {rarity}★
         </div>
         {/* FIXME */}
         {/* <Props

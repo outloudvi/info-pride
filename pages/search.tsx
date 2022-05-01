@@ -18,8 +18,12 @@ import CardDesc from '../components/CardDesc'
 import { CardSkillsData, Cards } from '../utils/dataset'
 import { ColorTypeSimple, IdentCT } from '../utils/wikiPages/types'
 import type { Card } from '../utils/wikiPages/cards'
-import { IdolName, IdolNameList, idolNameToSlug } from '../data/idols'
 import tryJSONParse from '../utils/tryJsonParse'
+import {
+  CharacterChineseNameList,
+  CharacterId,
+  CharacterIds,
+} from '../data/vendor/characterId'
 
 import { LOCALSTORAGE_BOX_TAG, LocalBox } from './settings'
 
@@ -114,7 +118,7 @@ const SkillTypeList = uniq(SkillsFlattened.map((x) => x.type))
 
 const SkillesPage = () => {
   const [fKeyword, setfKeyword] = useState('')
-  const [fIdol, setfIdol] = useState<IdolName[]>([])
+  const [fIdol, setfIdol] = useState<CharacterId[]>([])
   const [fColor, setfColor] = useState<ColorTypeSimple[]>([])
   const [fOwnedOnly, setfOwnedOnly] = useState<boolean>(false)
   const [fCtMin, setfCtMin] = useState(0)
@@ -132,7 +136,7 @@ const SkillesPage = () => {
       ret = ret.filter((x) => JSON.stringify(x).includes(fKeyword))
     }
     if (fIdol.filter((x) => x).length > 0) {
-      ret = ret.filter((x) => fIdol.includes(x.ownerName as IdolName))
+      ret = ret.filter((x) => fIdol.includes(x.ownerSlug))
     }
     if (fColor.filter((x) => x).length > 0) {
       const mappedGroup = fColor.map(
@@ -146,9 +150,7 @@ const SkillesPage = () => {
       ret = ret.filter((x) => mappedGroup.includes(x.prop))
     }
     if (fOwnedOnly) {
-      ret = ret.filter((x) =>
-        Boolean(localBox?.[idolNameToSlug(x.ownerName)!]?.[x.ownerId])
-      )
+      ret = ret.filter((x) => Boolean(localBox?.[x.ownerSlug]?.[x.ownerId]))
     }
 
     // Skill-related part
@@ -158,11 +160,11 @@ const SkillesPage = () => {
       const ctMax = fCtMax > 0 ? fCtMax : Infinity
 
       ret = ret.filter((x) => {
-        const skillList = CardSkillsData[x.ownerName][x.ownerId]
+        const skillList = CardSkillsData[x.ownerSlug][x.ownerId]
         const skills = [skillList.ski1, skillList.ski2, skillList.ski3]
         let showThisCard = false
 
-        const cardKey = `${x.ownerName}/${x.ownerId}`
+        const cardKey = `${x.ownerSlug}/${x.ownerId}`
         localHighlights[cardKey] = []
         for (const [key, idents] of skills.entries()) {
           const ctEntry = idents.filter((x) => x.type === 'ct') as IdentCT[]
@@ -187,10 +189,10 @@ const SkillesPage = () => {
       const currFType = fType[0]
       const localHighlights: Record<string, number[]> = {}
       ret = ret.filter((x) => {
-        const skillList = CardSkillsData[x.ownerName][x.ownerId]
+        const skillList = CardSkillsData[x.ownerSlug][x.ownerId]
         const skills = [skillList.ski1, skillList.ski2, skillList.ski3]
         let showThisCard = false
-        const cardKey = `${x.ownerName}/${x.ownerId}`
+        const cardKey = `${x.ownerSlug}/${x.ownerId}`
         localHighlights[cardKey] = []
         for (const [key, idents] of skills.entries()) {
           if (idents.filter((x) => currFType === x.type).length > 0) {
@@ -208,10 +210,10 @@ const SkillesPage = () => {
       const currFSubtype = fSubtype[0]
       const localHighlights: Record<string, number[]> = {}
       ret = ret.filter((x) => {
-        const skillList = CardSkillsData[x.ownerName][x.ownerId]
+        const skillList = CardSkillsData[x.ownerSlug][x.ownerId]
         const skills = [skillList.ski1, skillList.ski2, skillList.ski3]
         let showThisCard = false
-        const cardKey = `${x.ownerName}/${x.ownerId}`
+        const cardKey = `${x.ownerSlug}/${x.ownerId}`
         localHighlights[cardKey] = []
         for (const [key, idents] of skills.entries()) {
           const maybeLinkedTypeIdents = idents.filter(
@@ -289,7 +291,8 @@ const SkillesPage = () => {
             state={fIdol}
             setState={setfIdol}
             multiple
-            list={IdolNameList}
+            list={[...CharacterIds]}
+            listNamemap={CharacterChineseNameList}
             width={300}
           />
           <FilterSelect
@@ -435,11 +438,9 @@ const SkillesPage = () => {
           <CardDesc
             key={key}
             card={item}
-            owned={Boolean(
-              localBox?.[idolNameToSlug(item.ownerName)!]?.[item.ownerId]
-            )}
+            owned={Boolean(localBox?.[item.ownerSlug]?.[item.ownerId])}
             highlightSkills={
-              highlightCards[`${item.ownerName}/${item.ownerId}`] ?? []
+              highlightCards[`${item.ownerSlug}/${item.ownerId}`] ?? []
             }
           />
         ))}

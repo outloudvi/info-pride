@@ -1,13 +1,16 @@
 import Color from '../data/color'
-import { IdolSlug, Idols } from '../data/idols'
+import {
+  CharacterChineseNameList,
+  CharacterId,
+} from '../data/vendor/characterId'
 import styles from '../styles/colors.module.css'
 
-const ColorOrder: IdolSlug[][] = [
-  ['mana'],
-  ['kotono', 'sakura', 'rei', 'nagisa', 'haruko'],
-  ['saki', 'chisa', 'suzu', 'mei', 'shizuku'],
-  ['rui', 'yu', 'sumire'],
-  ['rio', 'aoi', 'ai', 'kokoro'],
+const ColorOrder: CharacterId[][] = [
+  ['char-mna'],
+  ['char-ktn', 'char-skr', 'char-rei', 'char-ngs', 'char-hrk'],
+  ['char-ski', 'char-chs', 'char-suz', 'char-mei', 'char-szk'],
+  ['char-rui', 'char-yu', 'char-smr'],
+  ['char-rio', 'char-aoi', 'char-ai', 'char-kkr'],
 ]
 
 const ColorBlock = ({ name, color }: { name: string; color: string }) => (
@@ -50,7 +53,11 @@ const ColorsPage = () => {
         {ColorOrder.map((row, _i) => (
           <div key={_i} className="flex flex-row my-2">
             {row.map((one, _j) => (
-              <ColorBlock key={_j} name={Idols[one]} color={Color[one]} />
+              <ColorBlock
+                key={_j}
+                name={CharacterChineseNameList[one]}
+                color={Color[one]}
+              />
             ))}
           </div>
         ))}

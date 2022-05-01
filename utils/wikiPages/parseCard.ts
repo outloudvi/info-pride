@@ -1,14 +1,15 @@
 #!/usr/bin/env ts-node
 
-import { isRegExp } from './utils.js'
-import { Cards } from '../dataset.js'
-import { Matchers } from './parserIdentifier.js'
-import ReplaceTable from './parserReplaceTable.js'
-import type { Matcher, MatchQuery } from './types.js'
-
 import { writeFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { dirname, join } from 'node:path'
+
+import { Cards } from '../dataset.js'
+
+import { isRegExp } from './utils.js'
+import { Matchers } from './parserIdentifier.js'
+import ReplaceTable from './parserReplaceTable.js'
+import type { Matcher, MatchQuery } from './types.js'
 
 type keyIdols = keyof typeof Cards
 let err = 0
@@ -134,15 +135,15 @@ function main() {
   const currDir = fileURLToPath(dirname(import.meta.url))
   // Don't get the type serious here; build the complete type in the schema
   const obj: Partial<Record<keyIdols, Record<string, Record<string, any>>>> = {}
-  for (const idol of Object.keys(Cards) as keyIdols[]) {
-    for (const cardSlug of Object.keys(Cards[idol])) {
-      const card = Cards[idol][cardSlug]
+  for (const idolSlug of Object.keys(Cards) as keyIdols[]) {
+    for (const cardSlug of Object.keys(Cards[idolSlug])) {
+      const card = Cards[idolSlug][cardSlug as any]
       const ret: Record<string, any> = {}
 
       if (card.ski1DescCn) ret.ski1 = parseSkill(card.ski1DescCn)
       if (card.ski2DescCn) ret.ski2 = parseSkill(card.ski2DescCn)
       if (card.ski3DescCn) ret.ski3 = parseSkill(card.ski3DescCn)
-      ;(obj[idol] || (obj[idol] = {}))[cardSlug] = ret
+      ;(obj[idolSlug] || (obj[idolSlug] = {}))[cardSlug] = ret
     }
   }
   writeFileSync(join(currDir, 'cardSkills.json'), JSON.stringify(obj))

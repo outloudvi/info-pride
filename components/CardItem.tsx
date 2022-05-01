@@ -16,6 +16,7 @@ import type { Card as WikiCard } from '../utils/wikiPages/cards'
 import { Stories } from '../data/cardStories.data'
 import Paths from '../utils/paths'
 import { APIResponseOf, feFetcher, UnArray } from '../utils/api'
+import { CharacterChineseNameList } from '../data/vendor/characterId'
 
 import { toVideoLink } from './ExternalVideo'
 
@@ -154,9 +155,21 @@ const Skills = ({
             key={key}
             skill={skill}
             titleCn={
-              wikiCardData?.[`ski${key + 1}NameCn`] as string | undefined
+              wikiCardData?.[
+                `ski${key + 1}NameCn` as
+                  | 'ski1NameCn'
+                  | 'ski2NameCn'
+                  | 'ski3NameCn'
+              ]
             }
-            descCn={wikiCardData?.[`ski${key + 1}DescCn`] as string | undefined}
+            descCn={
+              wikiCardData?.[
+                `ski${key + 1}DescCn` as
+                  | 'ski1NameCn'
+                  | 'ski2NameCn'
+                  | 'ski3NameCn'
+              ] as string | undefined
+            }
           />
         </Grid.Col>
       ))}
@@ -351,7 +364,11 @@ const CardItem = ({
             className="mt-2"
             variant="outline"
             component="a"
-            href={Paths.wiki(`${wikiCard.ownerName}/卡牌/${wikiCard.ownerId}`)}
+            href={Paths.wiki(
+              `${CharacterChineseNameList[wikiCard.ownerSlug]}/卡牌/${
+                wikiCard.ownerId
+              }`
+            )}
             target="_blank"
             rel="noopener"
           >
