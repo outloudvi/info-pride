@@ -16,6 +16,7 @@ import { CardType, SkillCategoryType } from '@outloudvi/hoshimi-types/ProtoEnum'
 import { useTranslation } from 'next-i18next'
 
 import useIpSWR from '../utils/useIpSWR'
+import CardIdData from '../data/ccid.data'
 import type { APIResponseOf, UnArray } from '../utils/api'
 import {
   CharacterChineseNameList,
@@ -154,13 +155,7 @@ const UnitPosition = ({
   )
 }
 
-const UnitsPage = ({
-  CardData,
-  CardIdData,
-}: {
-  CardData: APIResponseOf<'Card'>
-  CardIdData: APIResponseOf<'Card/Id'>
-}) => {
+const UnitsPage = ({ CardData }: { CardData: APIResponseOf<'Card'> }) => {
   // 6 positions (0 and 1-5)
   // (unitCards[0] should be always empty)
   const [unitCards, setUnitCards] = useState<(CardTiny | undefined)[]>([
@@ -183,7 +178,7 @@ const UnitsPage = ({
     const cardList = unitCards.slice(1)
     if (cardList.filter((x) => x).length !== 5) return ''
     return unitCodeV1.encode(cardList as NonNullable<any>, CardIdData)
-  }, [unitCards, CardIdData])
+  }, [unitCards])
 
   const [modalImportUnit, setModalImportUnit] = useState(false)
   const [importUnitId, setImportUnitId] = useState('')
@@ -276,11 +271,9 @@ const UnitsPage = ({
 
 const SkeletonUnitsPage = () => {
   const { data: CardData } = useIpSWR('Card')
-  const { data: CardIdData } = useIpSWR('Card/Id')
 
   const allData = {
     CardData,
-    CardIdData,
   }
 
   return (

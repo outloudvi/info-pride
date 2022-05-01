@@ -1,15 +1,12 @@
 import base58 from 'base58'
 
-import { CharacterIds } from '../../data/vendor/characterId'
-import { APIResponseOf } from '../api'
+import { CharacterId, CharacterIds } from '../../data/vendor/characterId'
+import CardIdData from '../../data/ccid.data'
 
 import UnitCodeInterface, { PartialCard } from './interface'
 
-function encodeCard(
-  card: PartialCard,
-  CardIdData: APIResponseOf<'Card/Id'>
-): string {
-  const cardIdInfo = CardIdData[card.characterId].find(
+function encodeCard(card: PartialCard): string {
+  const cardIdInfo = CardIdData[card.characterId as CharacterId].find(
     (r) => r.cardId === card.id
   )
   if (!cardIdInfo) return '!!'
@@ -23,10 +20,7 @@ function encodeCard(
   return base58.encode(finalNum)
 }
 
-function decodeCard(
-  id: string,
-  CardIdData: APIResponseOf<'Card/Id'>
-): string | null {
+function decodeCard(id: string): string | null {
   const num = base58.decode(id)
   const charId = Math.floor((num - 58) / 64)
   const ccid = (num - 58) % 64
@@ -44,21 +38,21 @@ function decodeCard(
  * Position orders from 4-2-1-3-5 (as per the display order)
  */
 const UnitCodeV1: UnitCodeInterface = {
-  encode(cards, CardIdData: APIResponseOf<'Card/Id'>): string {
+  encode(cards): string {
     return (
       '1P-' +
       [cards[3], cards[1], cards[0], cards[2], cards[4]]
-        .map((x) => encodeCard(x, CardIdData))
+        .map((x) => encodeCard(x))
         .join('')
     )
   },
-  decode(id, CardIdData: APIResponseOf<'Card/Id'>): string[] | null {
+  decode(id): string[] | null {
     if (id.length !== 13) return null
     if (!id.startsWith('1P-')) return null
     const ret: string[] = []
     for (const i of [3, 5, 7, 9, 11]) {
       const cardStd = id.slice(i, i + 2)
-      const cardId = decodeCard(cardStd, CardIdData)
+      const cardId = decodeCard(cardStd)
       if (cardId === null) return null
       ret.push(cardId)
     }
