@@ -232,7 +232,7 @@ export const Matchers: Matcher[] = [
     }),
   },
   {
-    spec: ['当', ['prop', ['体力']], ['s', [/(\d+)/]], '以上时'],
+    spec: [['prop', ['体力']], ['s', [/(\d+)/]], '以上时'],
     body: ({ s, on, prop }) => ({
       type: 'when',
       when: {
