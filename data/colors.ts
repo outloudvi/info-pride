@@ -4,4 +4,4 @@ export const Colors = {
   Visual: '#fca104',
   Stamina: '#99db66',
   Default: 'blue',
-}
+} as const

@@ -964,6 +964,6 @@ const data: Partial<Record<CharacterId, Record<number, Stories>>> = {
       },
     },
   },
-}
+} as const
 
 export default data

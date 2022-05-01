@@ -21,9 +21,9 @@ export const IdolyFashionUrl: Record<CharacterId, string> = {
   'char-ai': Paths.ipcommu('fashion-16'),
   'char-kkr': Paths.ipcommu('fashion-17'),
   'char-mna': Paths.ipcommu('fashion-18'),
-}
+} as const
 
 export const IdolyRoomUrl: Partial<Record<CharacterId, string>> = {
   'char-ktn': Paths.ipcommu('room-01'),
   'char-skr': Paths.ipcommu('room-02'),
-}
+} as const

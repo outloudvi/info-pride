@@ -930,7 +930,7 @@ const SubTitles: Partial<
       11: 'Goodbye to Goodbye',
     },
   },
-}
+} as const
 
 export default data
 export { SubTitles }
