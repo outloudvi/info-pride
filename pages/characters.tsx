@@ -25,6 +25,7 @@ import { IdolyFashionUrl, IdolyRoomUrl } from '../data/ipcmmu.data'
 import { getMoveStyle, SizeStyle } from '../data/vendor/characterAnimation'
 import allFinished from '../utils/allFinished'
 import PageLoading from '../components/PageLoading'
+import { Idols } from '../data/wikiPages'
 
 export const toHashColor = (r: string) => (r.startsWith('#') ? r : '#' + r)
 
@@ -189,27 +190,29 @@ const CharacterItem = ({
           ></span>
         </Blockquote>
       )}
-      {profile && <p>{profile}</p>}
+      {Idols[id] ? <p>{Idols[id].desc}</p> : profile ? <p>{profile}</p> : null}
       <Grid>
         <Grid.Col xs={12} lg={8}>
           {CharacterData && (
             <div>
               <Table className="max-w-xl text-center mx-auto">
-                {tableItem.map(([label, value], key) => (
-                  <tr
-                    key={key}
-                    className="border-0 border-solid border-b- border-b-gray-400 even:bg-gray-100 dark:even:bg-gray-800"
-                  >
-                    <td className="py-1  w-1/4">{label}</td>
-                    <td className="py-1">{value}</td>
+                <tbody>
+                  {tableItem.map(([label, value], key) => (
+                    <tr
+                      key={key}
+                      className="border-0 border-solid border-b- border-b-gray-400 even:bg-gray-100 dark:even:bg-gray-800"
+                    >
+                      <td className="py-1  w-1/4">{label}</td>
+                      <td className="py-1">{value}</td>
+                    </tr>
+                  ))}
+                  <tr>
+                    <td>代表色</td>
+                    <td>
+                      <SquareColor color={color} /> {toHashColor(color)}
+                    </td>
                   </tr>
-                ))}
-                <tr>
-                  <td>代表色</td>
-                  <td>
-                    <SquareColor color={color} /> {toHashColor(color)}
-                  </td>
-                </tr>
+                </tbody>
               </Table>
               <Group position="center" className="mt-4">
                 <a
