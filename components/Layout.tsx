@@ -35,7 +35,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
           },
         })}
       >
-        {children}
+        {typeof window === 'undefined' ? null : children}
         <Footer />
       </AppShell>
     </>
