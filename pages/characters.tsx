@@ -23,6 +23,8 @@ import {
 import Paths from '../utils/paths'
 import { IdolyFashionUrl, IdolyRoomUrl } from '../data/ipcmmu.data'
 import { getMoveStyle, SizeStyle } from '../data/vendor/characterAnimation'
+import allFinished from '../utils/allFinished'
+import PageLoading from '../components/PageLoading'
 
 export const toHashColor = (r: string) => (r.startsWith('#') ? r : '#' + r)
 
@@ -235,18 +237,18 @@ const CharacterItem = ({
   )
 }
 
-const CharactersPage = () => {
-  const { data: CharacterListData } = useIpSWR('Character/List')
-
-  const NonNpcCharacterListData = (CharacterListData ?? []).filter(
+const CharactersPage = ({
+  CharacterListData,
+}: {
+  CharacterListData: APIResponseOf<'Character/List'>
+}) => {
+  const NonNpcCharacterListData = CharacterListData.filter(
     (item) => CharacterChineseNameList[item.id as CharacterId]
   )
   const [chrOrderId, setChrOrderId] = useState(0)
 
   return (
     <>
-      <h2>角色</h2>
-
       <Grid gutter={20} className="my-3">
         <Grid.Col xs={12} lg={4}>
           <MediaQuery
@@ -301,4 +303,23 @@ export const getStaticProps = async ({ locale }: { locale: string }) => {
   }
 }
 
-export default CharactersPage
+const SkeletonCharactersPage = () => {
+  const { data: CharacterListData } = useIpSWR('Character/List')
+
+  const allData = {
+    CharacterListData,
+  }
+
+  return (
+    <>
+      <h2>角色</h2>
+      {allFinished(allData) ? (
+        <CharactersPage {...allData} />
+      ) : (
+        <PageLoading data={allData} />
+      )}
+    </>
+  )
+}
+
+export default SkeletonCharactersPage
