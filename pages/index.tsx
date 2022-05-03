@@ -6,8 +6,14 @@ import VersionInfo from '../components/VersionInfo'
 import Paths from '../utils/paths'
 
 const MainPageSiteData = [
-  { 官方网站: 'https://idolypride.jp' },
-  { 情报站微博: 'https://weibo.com/7326542616/' },
+  {
+    官方网站: 'https://idolypride.jp',
+    '官方 Twitter': 'https://twitter.com/idolypride',
+  },
+  {
+    情报站微博: 'https://weibo.com/7326542616/',
+    星见编辑部: 'https://space.bilibili.com/1637756387',
+  },
   {
     '攻略 wiki (BWiki)': 'https://wiki.biligame.com/idolypride/',
     '攻略 wiki (AppMedia)': 'https://appmedia.jp/idolypride',
@@ -48,7 +54,7 @@ const Home = () => {
       </Grid.Col>
       {/* Line 2 */}
       <Grid.Col xs={12} lg={6}>
-        <div className="mb-2 text-3xl">新闻</div>
+        <div className="mb-2 text-3xl">网站新闻</div>
         <Notice />
       </Grid.Col>
       <Grid.Col xs={12} lg={6}>
