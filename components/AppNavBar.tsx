@@ -1,4 +1,3 @@
-import * as React from 'react'
 import Link from 'next/link'
 import { Navbar, UnstyledButton } from '@mantine/core'
 

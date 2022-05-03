@@ -14,10 +14,14 @@ import { ResourceMapping } from '@outloudvi/hoshimi-types'
 import { useColorScheme, useLocalStorage } from '@mantine/hooks'
 import { useEffect } from 'react'
 import NextNProgress from 'nextjs-progressbar'
+import { atom, useAtom } from 'jotai'
 
 import { fetchDb } from '../utils/api'
 import Layout from '../components/Layout'
 import startupHook from '../utils/startupHook'
+import Loading from '../components/Loading'
+
+const finishedAtom = atom(false)
 
 const App = (props: AppProps) => {
   const { Component, pageProps } = props
@@ -31,9 +35,12 @@ const App = (props: AppProps) => {
   const toggleColorScheme = (value?: ColorScheme) =>
     setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'))
 
+  const [finished, setFinished] = useAtom(finishedAtom)
+
   useEffect(() => {
     startupHook()
-  }, [])
+    setTimeout(() => setFinished(true), 500)
+  }, [setFinished])
 
   return (
     <>
@@ -43,6 +50,11 @@ const App = (props: AppProps) => {
           name="viewport"
           content="minimum-scale=1, initial-scale=1, width=device-width"
         />
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `#ip_loading { background-color: #fff } @media (prefers-color-scheme: dark) { #ip_loading { background-color: #1A1B1E } }`,
+          }}
+        ></style>
       </Head>
       <ColorSchemeProvider
         colorScheme={colorScheme}
@@ -123,6 +135,7 @@ const App = (props: AppProps) => {
               }}
             >
               <Layout>
+                <Loading finished={finished} />
                 <NextNProgress />
                 <Component {...pageProps} />
               </Layout>

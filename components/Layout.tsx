@@ -1,13 +1,16 @@
-import { ReactNode, useState } from 'react'
+import { ReactNode } from 'react'
 import { AppShell } from '@mantine/core'
+import { atom, useAtom } from 'jotai'
 
 import Footer from '../components/Footer'
 
 import AppHeader from './AppHeader'
 import AppNavBar from './AppNavBar'
 
+const expandedNavbarAtom = atom(false)
+
 const Layout = ({ children }: { children: ReactNode }) => {
-  const [expandedNavbar, setExpandedNavbar] = useState(false)
+  const [expandedNavbar, setExpandedNavbar] = useAtom(expandedNavbarAtom)
 
   return (
     <>
@@ -35,7 +38,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
           },
         })}
       >
-        {typeof window === 'undefined' ? null : children}
+        {children}
         <Footer />
       </AppShell>
     </>
