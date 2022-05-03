@@ -120,21 +120,6 @@ const App = (props: AppProps) => {
                   // @ts-ignore: For now all params are in URL and sent over query params
                   return fetchDb(url)({})
                 },
-                provider: () => {
-                  if (typeof localStorage === 'undefined') {
-                    return new Map()
-                  }
-                  const cacheName = 'idoly-cache-v1'
-                  const map = new Map(
-                    JSON.parse(localStorage.getItem(cacheName) || '[]')
-                  )
-                  window.addEventListener('beforeunload', () => {
-                    const appCache = JSON.stringify(Array.from(map.entries()))
-                    localStorage.setItem(cacheName, appCache)
-                  })
-
-                  return map
-                },
               }}
             >
               <Layout>
