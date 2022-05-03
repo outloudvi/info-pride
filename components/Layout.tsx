@@ -22,7 +22,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
           />
         }
         classNames={{
-          main: (expandedNavbar ? 'hidden' : '') + ' overflow-y-auto',
+          main: (expandedNavbar ? 'hidden sm:block' : '') + ' overflow-y-auto',
         }}
         sx={(theme) => ({
           main: {
@@ -41,4 +41,5 @@ const Layout = ({ children }: { children: ReactNode }) => {
     </>
   )
 }
+
 export default Layout

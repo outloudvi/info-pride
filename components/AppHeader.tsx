@@ -39,7 +39,6 @@ const AppHeader = ({
         onClick={toggleNavBar}
         title={title}
         aria-label={title}
-        className="sm:hidden"
       />
       <Link href="/">
         <a className="text-black dark:text-white no-underline hover:underline ml-2">
