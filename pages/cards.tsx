@@ -7,6 +7,7 @@ import { useAtom } from 'jotai'
 
 import useIpSWR from '../utils/useIpSWR'
 import CardItem from '../components/CardItem'
+import allFinished from '../utils/allFinished'
 import {
   CharacterChineseNameList,
   CharacterId,
@@ -15,6 +16,7 @@ import {
 import getI18nProps from '../utils/geti18nProps'
 import { APIResponseOf } from '../utils/api'
 import ListButton from '../components/ListButton'
+import PageLoading from '../components/PageLoading'
 
 const idolNameAtom = atomWithHash<CharacterId>('idol', CharacterIds[0], {
   serialize: (x) => x,
@@ -22,16 +24,19 @@ const idolNameAtom = atomWithHash<CharacterId>('idol', CharacterIds[0], {
 })
 const cardNumberAtom = atomWithHash('cardId', 0)
 
-const CardPage = () => {
+const CardsPage = ({
+  CardData,
+  RarityData,
+}: {
+  CardData: APIResponseOf<'Card'>
+  RarityData: APIResponseOf<'CardRarity'>
+}) => {
   const { t: $v } = useTranslation('vendor')
-
-  const { data: CardData } = useIpSWR('Card')
-  const { data: RarityData } = useIpSWR('CardRarity')
 
   const cards: Partial<Record<CharacterId, APIResponseOf<'Card'>>> =
     useMemo(() => {
       const ret: Partial<Record<CharacterId, APIResponseOf<'Card'>>> = {}
-      for (const i of CardData ?? []) {
+      for (const i of CardData) {
         // typecast-safe: CharacterId should be aligned with CardData
         const cid = i.characterId as CharacterId
         ;(ret[cid] ?? (ret[cid] = [])).push(i)
@@ -45,7 +50,6 @@ const CardPage = () => {
 
   return (
     <>
-      <h2>卡片</h2>
       <Grid gutter={20} className="my-3">
         <Grid.Col xs={12} lg={4}>
           <NativeSelect
@@ -87,7 +91,7 @@ const CardPage = () => {
           </div>
         </Grid.Col>
         <Grid.Col xs={12} lg={8}>
-          {cardList[cardNumber] && RarityData && (
+          {cardList[cardNumber] && (
             <CardItem card={cardList[cardNumber]} rarityData={RarityData} />
           )}
         </Grid.Col>
@@ -96,6 +100,27 @@ const CardPage = () => {
   )
 }
 
+const SkeletonCardsPage = () => {
+  const { data: CardData } = useIpSWR('Card')
+  const { data: RarityData } = useIpSWR('CardRarity')
+
+  const allData = {
+    CardData,
+    RarityData,
+  }
+
+  return (
+    <>
+      <h2>卡片</h2>
+      {allFinished(allData) ? (
+        <CardsPage {...allData} />
+      ) : (
+        <PageLoading data={allData} />
+      )}
+    </>
+  )
+}
+
 export const getStaticProps = getI18nProps
 
-export default CardPage
+export default SkeletonCardsPage
