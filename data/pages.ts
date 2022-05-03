@@ -8,6 +8,7 @@ const Pages = {
   麻奈日记: '/diary',
   系列颜色: '/colors',
   设置: '/settings',
+  关于: '/about',
 } as const
 
 export default Pages
