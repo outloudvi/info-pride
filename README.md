@@ -8,13 +8,16 @@ INFO PRIDE (Beta)
 
 ![Build Status](https://badgen.net/github/status/outloudvi/info-pride?icon=vercel)
 ![@types Version](https://info-pride-badges.deno.dev/hoshimi-types)<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
+
+## Planned features & Bug-fixes
+
+[projects/1](https://github.com/outloudvi/info-pride/projects/1)
 
 ## Data
 
-* Local data: [`/data/`](./data/)
-* Remote data: [`/utils/`](./utils/)
+* Local/Remote data: [`/data/`](./data/)
 * Vendor data from [Vibbit](https://github.com/Malitsplus) (external)
 
 ## Local Development
@@ -29,6 +32,8 @@ pnpm run dev
 AGPLv3 (code) / Various licenses (data)
 
 ## Contributors ✨
+
+(We are using contents from [bwiki/idolypride](https://wiki.biligame.com/idolypride), so feel free to [add yourself as a contributor](https://github.com/outloudvi/info-pride/issues/1) if you are a contributor of that wiki!)
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
 
