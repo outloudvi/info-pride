@@ -30,10 +30,10 @@ const VersionInfo = ({
 
   return (
     <div>
-      {Object.entries(lines).map(([k, v]) => (
-        <>
+      {Object.entries(lines).map(([k, v], key) => (
+        <div key={key}>
           {k} <Badge>{v}</Badge> <br />
-        </>
+        </div>
       ))}
     </div>
   )
