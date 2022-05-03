@@ -45,6 +45,7 @@ specifiers:
   lodash: ^4.17.21
   next: 12.1.5
   next-i18next: ~11.0.0
+  nextjs-progressbar: ^0.0.14
   postcss: ^8
   pre-commit: ^1.2.2
   react: ^17.0.2
@@ -86,6 +87,7 @@ dependencies:
   lodash: 4.17.21
   next: 12.1.5_33bdac975a6e334c49640fab91e2abb4
   next-i18next: 11.0.0_7711af82ee0d60a5c39f3f11da715b4c
+  nextjs-progressbar: 0.0.14_next@12.1.5+react@17.0.2
   postcss: 8.4.8
   react: 17.0.2
   react-dom: 17.0.2_react@17.0.2
@@ -4110,6 +4112,18 @@ packages:
       - babel-plugin-macros
     dev: false
 
+  /nextjs-progressbar/0.0.14_next@12.1.5+react@17.0.2:
+    resolution: {integrity: sha512-AXYXHDN6M52AwFnGqH/vlwyo0gbC9zM7QS/4ryOTI0RUqfze5FJl8uSrxKJMzK6hGFdDeQXcZoWsLGXeCVtTwg==}
+    peerDependencies:
+      next: '>= 6.0.0'
+      react: '>= 16.0.0'
+    dependencies:
+      next: 12.1.5_33bdac975a6e334c49640fab91e2abb4
+      nprogress: 0.2.0
+      prop-types: 15.8.1
+      react: 17.0.2
+    dev: false
+
   /node-fetch/2.6.7:
     resolution: {integrity: sha512-ZjMPFEfVx5j+y2yF35Kzx5sF7kDzxuDj6ziH4FFbOp87zKDZNx8yExJIb05OGF4Nlt9IHFIMBkRl41VdvcNdbQ==}
     engines: {node: 4.x || >=6.0.0}
@@ -4157,6 +4171,10 @@ packages:
       console-control-strings: 1.1.0
       gauge: 2.7.4
       set-blocking: 2.0.0
+    dev: false
+
+  /nprogress/0.2.0:
+    resolution: {integrity: sha1-y480xTIT2JVyP8urkH6UIq28r7E=}
     dev: false
 
   /nth-check/2.0.1:

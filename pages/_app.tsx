@@ -13,6 +13,7 @@ import { SWRConfig } from 'swr'
 import { ResourceMapping } from '@outloudvi/hoshimi-types'
 import { useColorScheme, useLocalStorage } from '@mantine/hooks'
 import { useEffect } from 'react'
+import NextNProgress from 'nextjs-progressbar'
 
 import { fetchDb } from '../utils/api'
 import Layout from '../components/Layout'
@@ -137,6 +138,7 @@ const App = (props: AppProps) => {
               }}
             >
               <Layout>
+                <NextNProgress />
                 <Component {...pageProps} />
               </Layout>
             </SWRConfig>
