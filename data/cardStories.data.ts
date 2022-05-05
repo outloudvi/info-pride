@@ -305,6 +305,21 @@ const data: Partial<Record<CharacterId, Record<number, Stories>>> = {
         video: { type: 'bilibili', vid: 'av381667896' },
       },
     },
+    7: {
+      // 羁绊至深的创作
+      1: {
+        name: '最棒的服装设计',
+        video: { type: 'bilibili', vid: 'av553566764' },
+      },
+      2: {
+        name: '二位一体的组合',
+        video: { type: 'bilibili', vid: 'av768639826' },
+      },
+      3: {
+        name: '二人所描绘的梦想',
+        video: { type: 'bilibili', vid: 'av383653813' },
+      },
+    },
   },
   'char-szk': {
     3: {
@@ -510,6 +525,21 @@ const data: Partial<Record<CharacterId, Record<number, Stories>>> = {
       3: {
         name: '真的非常，最喜欢',
         video: { type: 'bilibili', vid: 'av210788482' },
+      },
+    },
+    7: {
+      // 加深羁绊的姐妹舞台
+      1: {
+        name: '加深羁绊的姐妹舞台',
+        video: { type: 'bilibili', vid: 'av726290747' },
+      },
+      2: {
+        name: '白石沙季怎么了',
+        video: { type: 'bilibili', vid: 'av383863182' },
+      },
+      3: {
+        name: '寻找闪耀的舞台',
+        video: { type: 'bilibili', vid: 'av256269122' },
       },
     },
   },
