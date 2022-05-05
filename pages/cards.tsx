@@ -22,7 +22,7 @@ const idolNameAtom = atomWithHash<CharacterId>('idol', CharacterIds[0], {
   serialize: (x) => x,
   deserialize: (x) => x as CharacterId,
 })
-const cardNumberAtom = atomWithHash('cardId', 0)
+const cardNumberAtom = atomWithHash('cardId', 1)
 
 const CardsPage = ({
   CardData,
@@ -45,7 +45,8 @@ const CardsPage = ({
     }, [CardData])
 
   const [idol, setIdol] = useAtom(idolNameAtom)
-  const cardList = cards[idol] ?? []
+  const cardList =
+    cards[idol]?.sort((a, b) => a.releaseDate - b.releaseDate) ?? []
   const [cardNumber, setCardNumber] = useAtom(cardNumberAtom)
 
   return (
@@ -68,31 +69,34 @@ const CardsPage = ({
             }}
           />
           <div>
-            {Object.entries(cardList).map(([cardId, card], key) => (
-              <ListButton
-                key={key}
-                onClick={() => {
-                  setCardNumber(Number(cardId))
-                }}
-                selected={cardNumber === Number(cardId)}
-              >
-                <div className="text-base">
-                  <span lang="zh-CN">
-                    [{$v(CardType[card.type])}] {card.name}
-                  </span>{' '}
-                  {/* TODO: 中文卡牌名 */}
-                  {/* <br />
+            {Object.entries(cardList).map(([_cardId, card], key) => {
+              const cardId = Number(_cardId) + 1
+              return (
+                <ListButton
+                  key={key}
+                  onClick={() => {
+                    setCardNumber(cardId)
+                  }}
+                  selected={cardNumber === cardId}
+                >
+                  <div className="text-base">
+                    <span lang="zh-CN">
+                      [{$v(CardType[card.type])}] {card.name}
+                    </span>{' '}
+                    {/* TODO: 中文卡牌名 */}
+                    {/* <br />
                     <span className="text-gray-600 text-sm" lang="ja">
                     {card.name}
                   </span> */}
-                </div>
-              </ListButton>
-            ))}
+                  </div>
+                </ListButton>
+              )
+            })}
           </div>
         </Grid.Col>
         <Grid.Col xs={12} lg={8}>
-          {cardList[cardNumber] && (
-            <CardItem card={cardList[cardNumber]} rarityData={RarityData} />
+          {cardList[cardNumber - 1] && (
+            <CardItem card={cardList[cardNumber - 1]} rarityData={RarityData} />
           )}
         </Grid.Col>
       </Grid>
