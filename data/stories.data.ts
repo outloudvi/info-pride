@@ -609,7 +609,11 @@ const data: Partial<
         name: '重大的决断',
         video: { type: 'bilibili', vid: 'av213686714' },
       },
-      // TODO: 25-
+      25: {
+        name: '绝不让步的想法',
+        video: { type: 'bilibili', vid: 'av683948490' },
+      },
+      // TODO: 26-
     },
   },
   LizNoir: {
