@@ -7,7 +7,7 @@ pushd ../data/
 
 for mod in "${COMPONENTS[@]}"; do
     pushd ./$mod
-    if ["$VALIDATE_ONLY" != "y"]; then
+    if [ "${VALIDATE_ONLY:-n}" != "y" ]; then
         ./build.sh
     fi
     ./validate.sh

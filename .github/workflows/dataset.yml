@@ -27,8 +27,8 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - run: |
-          - pnpm rebuild
-          - pnpm run prepare --if-present
+          pnpm rebuild
+          pnpm run --if-present prepare
 
       - name: Build & Validate
         run: |
