@@ -303,6 +303,22 @@ const data: Partial<
         name: '姐姐所追求的舞台',
         video: { type: 'bilibili', vid: 'av595839983' },
       },
+      5: {
+        name: '生日的祝福',
+        video: { type: 'bilibili', vid: 'av213390008' },
+      },
+      6: {
+        name: '正赛开始',
+        video: { type: 'bilibili', vid: 'av938555853' },
+      },
+      7: {
+        name: '在决赛的舞台上',
+        video: { type: 'bilibili', vid: 'av298838725' },
+      },
+      8: {
+        name: '苦恼中的琴乃',
+        video: { type: 'bilibili', vid: 'av811435993' },
+      },
     },
   },
   Tokyo: {
