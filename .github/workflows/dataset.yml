@@ -21,11 +21,14 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt install -y lua5.3
+          sudo npm install -g pnpm
 
-      - run: npx pnpm install --ignore-scripts
+      - run: pnpm install --ignore-scripts
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-      - run: npx -- pnpm rebuild && npx -- pnpm run prepare --if-present
+      - run: |
+          - pnpm rebuild
+          - pnpm run prepare --if-present
 
       - name: Build & Validate
         run: |
