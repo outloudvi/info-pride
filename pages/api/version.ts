@@ -5,14 +5,14 @@ import * as cheerio from 'cheerio'
 
 const IOS_APP_PAGE = 'https://apps.apple.com/jp/app/id1535925293'
 
-type VersionInfo = {
+export type VersionInfo = {
   releaseDate: string
   releaseNotes: string
   releaseTimestamp: string
   versionDisplay: string
 }
 
-export async function getVersion(): Promise<VersionInfo | null> {
+async function getVersion(): Promise<VersionInfo | null> {
   const html = await got
     .get(IOS_APP_PAGE, {
       responseType: 'text',
@@ -38,6 +38,8 @@ const Version = async (
   req: NextApiRequest,
   res: NextApiResponse<VersionInfo | {}>
 ) => {
+  // Cache for 1d
+  res.setHeader('Cache-Control', 'max-age=43200')
   res.status(200).json((await getVersion()) ?? {})
 }
 
