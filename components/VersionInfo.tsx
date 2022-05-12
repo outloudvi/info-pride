@@ -44,10 +44,11 @@ const VersionInfo = ({
       {GameVersionData && (
         <div className="mt-2">
           <div>
-            游戏版本 <Badge>{GameVersionData.versionDisplay}</Badge>
+            游戏版本{' '}
+            <Badge color="green">{GameVersionData.versionDisplay}</Badge>
             <br />
             游戏更新日期{' '}
-            <Badge>
+            <Badge color="green">
               {day(GameVersionData.releaseDate).format('YYYY/MM/DD')}
             </Badge>
           </div>
