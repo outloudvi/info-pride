@@ -1,26 +1,13 @@
-import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { Skeleton } from '@mantine/core'
+import useSWR from 'swr'
 
 const Notice = () => {
-  const [news, setNews] = useState<{ title: string; link?: string }[]>([])
+  const { data: news } = useSWR<{ title: string; link?: string }[]>(
+    '/api/news',
+    (u) => fetch(u).then((x) => x.json())
+  )
 
-  useEffect(() => {
-    fetch('/api/news')
-      .then((x) => x.json())
-      .then((x) => setNews(x))
-      .catch(() => {
-        setNews([
-          {
-            title: '新闻加载失败',
-          },
-        ])
-      })
-  }, [])
-
-  return news.length === 0 ? (
-    <Skeleton height={200} />
-  ) : (
+  return news && news.length > 0 ? (
     <ul>
       {news.map(({ title, link }, key) => (
         <li key={key}>
@@ -28,6 +15,8 @@ const Notice = () => {
         </li>
       ))}
     </ul>
+  ) : (
+    <p className="text-gray-500">新闻加载中。</p>
   )
 }
 
