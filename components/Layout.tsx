@@ -1,6 +1,7 @@
-import { ReactNode } from 'react'
+import { ReactNode, useEffect } from 'react'
 import { AppShell } from '@mantine/core'
 import { atom, useAtom } from 'jotai'
+import { useRouter } from 'next/router'
 
 import Footer from '../components/Footer'
 
@@ -11,6 +12,21 @@ const expandedNavbarAtom = atom(false)
 
 const Layout = ({ children }: { children: ReactNode }) => {
   const [expandedNavbar, setExpandedNavbar] = useAtom(expandedNavbarAtom)
+  const router = useRouter()
+
+  useEffect(() => {
+    const maybeCollapseNavbar = () => {
+      // sm: The sidebar will go full-screen
+      if (window.innerWidth <= 640) {
+        setExpandedNavbar(false)
+      }
+    }
+    console.log('setting up route')
+    router.events.on('routeChangeComplete', maybeCollapseNavbar)
+    return () => {
+      router.events.off('routeChangeComplete', maybeCollapseNavbar)
+    }
+  })
 
   return (
     <>
