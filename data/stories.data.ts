@@ -281,10 +281,41 @@ const data: Partial<
         video: { type: 'bilibili', vid: 'av810555905', pid: 1 },
       },
       37: {
-        name: '因为......我是姐姐',
+        name: '因为……我是姐姐',
         video: { type: 'bilibili', vid: 'av810555905', pid: 2 },
       },
-      // TODO: 38-
+      38: {
+        name: '动人心弦的话语',
+        video: { type: 'bilibili', vid: 'av810555905', pid: 3 },
+      },
+      39: {
+        name: '并肩而行',
+        video: { type: 'bilibili', vid: 'av810555905', pid: 4 },
+      },
+      40: {
+        name: '冠军候补的一员',
+        video: { type: 'bilibili', vid: 'av895912697', pid: 1 },
+      },
+      41: {
+        name: '不寻常的气氛',
+        video: { type: 'bilibili', vid: 'av895912697', pid: 2 },
+      },
+      42: {
+        name: '原则、秘密',
+        video: { type: 'bilibili', vid: 'av895912697', pid: 3 },
+      },
+      43: {
+        name: '加油 party',
+        video: { type: 'bilibili', vid: 'av895912697', pid: 4 },
+      },
+      44: {
+        name: '伴着太阳的光辉',
+        video: { type: 'bilibili', vid: 'av895912697', pid: 5 },
+      },
+      45: {
+        name: '紧握月光',
+        video: { type: 'bilibili', vid: 'av895912697', pid: 6 },
+      },
     },
     3: {
       1: {
@@ -318,6 +349,10 @@ const data: Partial<
       8: {
         name: '苦恼中的琴乃',
         video: { type: 'bilibili', vid: 'av811435993' },
+      },
+      9: {
+        name: '上场的理由',
+        video: { type: 'bilibili', vid: 'av684212180' },
       },
     },
   },

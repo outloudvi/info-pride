@@ -541,6 +541,9 @@ const data: Partial<Record<CharacterId, Record<number, Stories>>> = {
         name: '寻找闪耀的舞台',
         video: { type: 'bilibili', vid: 'av256269122' },
       },
+      phone: {
+        video: { type: 'bilibili', vid: 'av553858855' },
+      },
     },
   },
   'char-suz': {
@@ -715,6 +718,24 @@ const data: Partial<Record<CharacterId, Record<number, Stories>>> = {
       3: {
         name: '已经是我的了',
         video: { type: 'bilibili', vid: 'av849532334' },
+      },
+    },
+    8: {
+      // 清风拂过的约会地点
+      1: {
+        name: '未知的体验',
+        video: { type: 'bilibili', vid: 'av811401330' },
+      },
+      2: {
+        name: '不成熟的自己',
+        video: { type: 'bilibili', vid: 'av638936980' },
+      },
+      3: {
+        name: '一生仅此一次的走秀',
+        video: { type: 'bilibili', vid: 'av469033230' },
+      },
+      phone: {
+        video: { type: 'bilibili', vid: 'av299045125' },
       },
     },
   },
