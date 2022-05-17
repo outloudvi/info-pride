@@ -3,18 +3,15 @@ import { showNotification } from '@mantine/notifications'
 import { Button, Checkbox, Grid } from '@mantine/core'
 import rfdc from 'rfdc'
 
-import { Cards } from '../data/wikiPages'
-import { Card } from '../data/wikiPages/cards'
-import {
-  CharacterChineseNameList,
-  CharacterId,
-} from '../data/vendor/characterId'
+import { Card } from '#data/wikiPages/cards'
+import { Cards } from '#data/wikiPages'
+import { CharacterChineseNameList, CharacterId } from '#data/vendor/characterId'
+import { LOCALSTORAGE_BOX_TAG } from '#utils/startupHook'
 
 const clone = rfdc({
   proto: true,
 })
 
-export const LOCALSTORAGE_BOX_TAG = 'localBox'
 export type LocalBox = Partial<Record<CharacterId, boolean[]>>
 
 const SettingsPage = () => {

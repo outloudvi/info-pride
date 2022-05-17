@@ -3,13 +3,13 @@ import dynamic from 'next/dynamic'
 import { Grid, NativeSelect } from '@mantine/core'
 import _range from 'lodash/range'
 
-import useIpSWR from '../utils/useIpSWR'
-import { Colors } from '../data/colors'
-import { APIResponseOf, UnArray } from '../utils/api'
-import allFinished from '../utils/allFinished'
-import PageLoading from '../components/PageLoading'
+import useIpSWR from '#utils/useIpSWR'
+import { Colors } from '#data/colors'
+import { APIResponseOf, UnArray } from '#utils/api'
+import allFinished from '#utils/allFinished'
+import PageLoading from '#components/PageLoading'
 
-const NotemapGraph = dynamic(() => import('../components/NotemapGraph'), {
+const NotemapGraph = dynamic(() => import('#components/notemap/NotemapGraph'), {
   ssr: false,
 })
 

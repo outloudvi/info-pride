@@ -1,14 +1,12 @@
-import PageLoading from '../components/PageLoading'
-import {
-  CharacterChineseNameList,
-  CharacterId,
-} from '../data/vendor/characterId'
 import styles from '../styles/colors.module.css'
-import allFinished from '../utils/allFinished'
-import { APIResponseOf } from '../utils/api'
-import useIpSWR from '../utils/useIpSWR'
 
 import { toHashColor } from './characters'
+
+import PageLoading from '#components/PageLoading'
+import { CharacterChineseNameList, CharacterId } from '#data/vendor/characterId'
+import allFinished from '#utils/allFinished'
+import { APIResponseOf } from '#utils/api'
+import useIpSWR from '#utils/useIpSWR'
 
 const ColorOrder: CharacterId[][] = [
   ['char-mna'],

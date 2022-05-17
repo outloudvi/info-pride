@@ -15,7 +15,14 @@
     "jsx": "preserve",
     "incremental": true,
     "importHelpers": true,
-    "typeRoots": ["types"]
+    "typeRoots": ["types"],
+    "baseUrl": ".",
+    "paths": {
+      "#data/*": ["data/*"],
+      "#components/*": ["components/*"],
+      "#utils/*": ["utils/*"],
+      "#api/*": ["pages/api/*"]
+    }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"],

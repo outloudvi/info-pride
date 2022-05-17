@@ -3,10 +3,9 @@ import { AppShell } from '@mantine/core'
 import { atom, useAtom } from 'jotai'
 import { useRouter } from 'next/router'
 
-import Footer from '../components/Footer'
-
 import AppHeader from './AppHeader'
 import AppNavBar from './AppNavBar'
+import Footer from './Footer'
 
 const expandedNavbarAtom = atom(false)
 

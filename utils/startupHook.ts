@@ -1,7 +1,6 @@
 import * as Sentry from '@sentry/browser'
 
-import { CharacterChineseNameList } from '../data/vendor/characterId'
-import { LOCALSTORAGE_BOX_TAG } from '../pages/settings'
+export const LOCALSTORAGE_BOX_TAG = 'localBox'
 
 function h_99_update_localbox() {
   const UpdateMap = {

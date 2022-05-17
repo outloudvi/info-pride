@@ -1,9 +1,9 @@
 import { Button, Group, Stack } from '@mantine/core'
 import { useEffect, useRef } from 'react'
 
-import useIpSWR from '../utils/useIpSWR'
-
 import renderNotemap from './renderNotemap'
+
+import useIpSWR from '#utils/useIpSWR'
 
 const NotemapGraph = ({
   chartId,

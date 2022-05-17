@@ -2,14 +2,13 @@ import day from 'dayjs'
 import { Badge } from '@mantine/core'
 import useSWR from 'swr'
 
-import useIpSWR from '../utils/useIpSWR'
-import allFinished from '../utils/allFinished'
-import { APIResponseOf } from '../utils/api'
-import { Meta as WikiPagesMeta } from '../data/wikiPages'
-import { Meta as WikiModulesMeta } from '../data/wikiModules'
-import { VersionInfo } from '../pages/api/version'
-
-import PageLoading from './PageLoading'
+import useIpSWR from '#utils/useIpSWR'
+import allFinished from '#utils/allFinished'
+import { APIResponseOf } from '#utils/api'
+import { Meta as WikiPagesMeta } from '#data/wikiPages'
+import { Meta as WikiModulesMeta } from '#data/wikiModules'
+import { VersionInfo } from '#api/version'
+import PageLoading from '#components/PageLoading'
 
 const VersionInfo = ({
   VersionData,

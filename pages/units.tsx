@@ -15,17 +15,14 @@ import type { Skill } from '@outloudvi/hoshimi-types/ProtoMaster'
 import { CardType, SkillCategoryType } from '@outloudvi/hoshimi-types/ProtoEnum'
 import { useTranslation } from 'next-i18next'
 
-import useIpSWR from '../utils/useIpSWR'
-import CardIdData from '../data/ccid.data'
-import type { APIResponseOf, UnArray } from '../utils/api'
-import {
-  CharacterChineseNameList,
-  CharacterId,
-} from '../data/vendor/characterId'
-import allFinished from '../utils/allFinished'
-import unitCodeV1 from '../utils/unitCode'
-import PageLoading from '../components/PageLoading'
-import getI18nProps from '../utils/geti18nProps'
+import useIpSWR from '#utils/useIpSWR'
+import CardIdData from '#data/ccid.data'
+import type { APIResponseOf, UnArray } from '#utils/api'
+import { CharacterChineseNameList, CharacterId } from '#data/vendor/characterId'
+import allFinished from '#utils/allFinished'
+import unitCodeV1 from '#utils/unitCode'
+import PageLoading from '#components/PageLoading'
+import getI18nProps from '#utils/geti18nProps'
 
 type CardTiny = UnArray<APIResponseOf<'Card'>>
 

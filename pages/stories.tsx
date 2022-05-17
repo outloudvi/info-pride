@@ -4,9 +4,11 @@ import _range from 'lodash/range'
 import { atomWithHash } from 'jotai/utils'
 import { useAtom } from 'jotai'
 
-import StoriesItem, { SpecialStoriesItem } from '../components/StoriesItem'
-import { Episodes, Series } from '../data/stories'
-import StoriesData from '../data/stories.data'
+import StoriesItem, {
+  SpecialStoriesItem,
+} from '#components/stories/StoriesItem'
+import { Episodes, Series } from '#data/stories'
+import StoriesData from '#data/stories.data'
 
 const seriesAtom = atomWithHash('series', 0)
 const seasonAtom = atomWithHash('season', 1)

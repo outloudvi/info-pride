@@ -16,10 +16,10 @@ import { useEffect } from 'react'
 import NextNProgress from 'nextjs-progressbar'
 import { atom, useAtom } from 'jotai'
 
-import { fetchDb } from '../utils/api'
-import Layout from '../components/Layout'
-import startupHook from '../utils/startupHook'
-import Loading from '../components/Loading'
+import Layout from '#components/layout/Layout'
+import Loading from '#components/layout/Loading'
+import { fetchDb } from '#utils/api'
+import startupHook from '#utils/startupHook'
 
 const finishedAtom = atom(false)
 

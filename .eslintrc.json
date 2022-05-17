@@ -15,7 +15,15 @@
     "import/order": [
       "warn",
       {
-        "newlines-between": "always"
+        "newlines-between": "always",
+        "pathGroups": [
+          {
+            "pattern": "#*/**",
+            "group": "internal",
+            "position": "after"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": ["builtin"]
       }
     ],
     "import/namespace": "off"

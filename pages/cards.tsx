@@ -5,18 +5,18 @@ import { useTranslation } from 'next-i18next'
 import { atomWithHash } from 'jotai/utils'
 import { useAtom } from 'jotai'
 
-import useIpSWR from '../utils/useIpSWR'
-import CardItem from '../components/CardItem'
-import allFinished from '../utils/allFinished'
+import useIpSWR from '#utils/useIpSWR'
+import CardItem from '#components/cards/CardItem'
+import allFinished from '#utils/allFinished'
 import {
   CharacterChineseNameList,
   CharacterId,
   CharacterIds,
-} from '../data/vendor/characterId'
-import getI18nProps from '../utils/geti18nProps'
-import { APIResponseOf } from '../utils/api'
-import ListButton from '../components/ListButton'
-import PageLoading from '../components/PageLoading'
+} from '#data/vendor/characterId'
+import getI18nProps from '#utils/geti18nProps'
+import { APIResponseOf } from '#utils/api'
+import ListButton from '#components/ListButton'
+import PageLoading from '#components/PageLoading'
 
 const idolNameAtom = atomWithHash<CharacterId>('idol', CharacterIds[0], {
   serialize: (x) => x,

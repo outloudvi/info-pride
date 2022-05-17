@@ -73,6 +73,12 @@
     "typescript": "4.6.4",
     "wtf_wikipedia": "^10.0.0"
   },
+  "imports": {
+    "#data/*": "data/*.js",
+    "#components/*": "components/*.js",
+    "#utils/*": "utils/*.js",
+    "#api/*": "pages/api/*.js"
+  },
   "resolutions": {
     "@types/react": "17.0.39",
     "@types/react-dom": "17.0.44"

@@ -1,12 +1,11 @@
 import * as Sentry from '@sentry/browser'
 
-import useIpSWR from '../utils/useIpSWR'
-import { StoriesTitle } from '../data/vendor'
-import Paths from '../utils/paths'
-import { Episodes, SeriesName } from '../data/stories'
-import StoriesData, { SubTitles } from '../data/stories.data'
-
-import { toVideoLink } from './ExternalVideo'
+import Paths from '#utils/paths'
+import { toVideoLink } from '#components/ExternalVideo'
+import useIpSWR from '#utils/useIpSWR'
+import { StoriesTitle } from '#data/vendor'
+import { Episodes, SeriesName } from '#data/stories'
+import StoriesData, { SubTitles } from '#data/stories.data'
 
 type PropType = {
   // "Special" won't appear here

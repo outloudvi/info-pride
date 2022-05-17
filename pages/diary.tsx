@@ -4,7 +4,7 @@ import dayjs from 'dayjs'
 import { atomWithHash } from 'jotai/utils'
 import { useAtom } from 'jotai'
 
-import { Diary } from '../data/wikiModules'
+import { Diary } from '#data/wikiModules'
 
 const diaries: { [key: string]: string } = {}
 const diaryDates = Diary.map((x) => {

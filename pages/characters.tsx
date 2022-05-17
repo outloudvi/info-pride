@@ -13,19 +13,16 @@ import { useState } from 'react'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
-import useIpSWR from '../utils/useIpSWR'
-import { APIResponseOf, UnArray } from '../utils/api'
-import ListButton from '../components/ListButton'
-import {
-  CharacterChineseNameList,
-  CharacterId,
-} from '../data/vendor/characterId'
-import Paths from '../utils/paths'
-import { IdolyFashionUrl, IdolyRoomUrl } from '../data/ipcmmu.data'
-import { getMoveStyle, SizeStyle } from '../data/vendor/characterAnimation'
-import allFinished from '../utils/allFinished'
-import PageLoading from '../components/PageLoading'
-import { Idols } from '../data/wikiPages'
+import useIpSWR from '#utils/useIpSWR'
+import { APIResponseOf, UnArray } from '#utils/api'
+import ListButton from '#components/ListButton'
+import { CharacterChineseNameList, CharacterId } from '#data/vendor/characterId'
+import Paths from '#utils/paths'
+import { IdolyFashionUrl, IdolyRoomUrl } from '#data/ipcmmu.data'
+import { getMoveStyle, SizeStyle } from '#data/vendor/characterAnimation'
+import allFinished from '#utils/allFinished'
+import PageLoading from '#components/PageLoading'
+import { Idols } from '#data/wikiPages'
 
 export const toHashColor = (r: string) => (r.startsWith('#') ? r : '#' + r)
 

@@ -1,4 +1,4 @@
-import type { ExternalVideo } from '../components/ExternalVideo'
+import type { ExternalVideo } from '#components/ExternalVideo'
 
 export const Series = [
   'Hoshimi',

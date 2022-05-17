@@ -1,9 +1,9 @@
 import Link from 'next/link'
 import { Grid } from '@mantine/core'
 
-import Paths from '../utils/paths'
-import type { Card } from '../data/wikiPages/cards'
-import { CharacterChineseNameList } from '../data/vendor/characterId'
+import Paths from '#utils/paths'
+import type { Card } from '#data/wikiPages/cards'
+import { CharacterChineseNameList } from '#data/vendor/characterId'
 
 const SkillDesc = ({
   name,

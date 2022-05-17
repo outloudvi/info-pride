@@ -1,4 +1,4 @@
-import { Colors } from '../data/colors'
+import { Colors } from '#data/colors'
 
 const Loading = ({ finished }: { finished: boolean }) => {
   return (

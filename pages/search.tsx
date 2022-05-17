@@ -14,18 +14,19 @@ import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import intersection from 'lodash/intersection'
 import uniq from 'lodash/uniq'
 
-import CardDesc from '../components/CardDesc'
-import { CardSkillsData, Cards } from '../data/wikiPages'
-import { ColorTypeSimple, IdentCT } from '../data/wikiPages/types'
-import type { Card } from '../data/wikiPages/cards'
-import tryJSONParse from '../utils/tryJsonParse'
+import { LocalBox } from './settings'
+
+import CardDesc from '#components/cards/CardDesc'
+import { CardSkillsData, Cards } from '#data/wikiPages'
+import { ColorTypeSimple, IdentCT } from '#data/wikiPages/types'
+import type { Card } from '#data/wikiPages/cards'
+import tryJSONParse from '#utils/tryJsonParse'
 import {
   CharacterChineseNameList,
   CharacterId,
   CharacterIds,
-} from '../data/vendor/characterId'
-
-import { LOCALSTORAGE_BOX_TAG, LocalBox } from './settings'
+} from '#data/vendor/characterId'
+import { LOCALSTORAGE_BOX_TAG } from '#utils/startupHook'
 
 function mergeHilights(
   h1: Record<string, number[]>,

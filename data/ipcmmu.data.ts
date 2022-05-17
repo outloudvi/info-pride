@@ -1,6 +1,6 @@
-import Paths from '../utils/paths'
-
 import { CharacterId } from './vendor/characterId'
+
+import Paths from '#utils/paths'
 
 export const IdolyFashionUrl: Record<CharacterId, string> = {
   'char-skr': Paths.ipcommu('fashion-02'),

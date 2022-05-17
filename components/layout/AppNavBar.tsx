@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { Navbar, UnstyledButton } from '@mantine/core'
 
-import Pages from '../data/pages'
+import Pages from '#data/pages'
 
 const AppNavBar = ({ expanded }: { expanded: boolean }) => {
   return (

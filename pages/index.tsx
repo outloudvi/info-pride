@@ -1,9 +1,9 @@
 import { Button, Grid, Group, Stack } from '@mantine/core'
 
-import CurrentEvents from '../components/CurrentEvents'
-import Notice from '../components/Notice'
-import VersionInfo from '../components/VersionInfo'
-import Paths from '../utils/paths'
+import CurrentEvents from '#components/indexPage/CurrentEvents'
+import Notice from '#components/indexPage/Notice'
+import VersionInfo from '#components/indexPage/VersionInfo'
+import Paths from '#utils/paths'
 
 const MainPageSiteData = [
   {

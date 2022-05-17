@@ -11,14 +11,13 @@ import { CardType, SkillCategoryType } from '@outloudvi/hoshimi-types/ProtoEnum'
 import { useTranslation } from 'next-i18next'
 import useSWR from 'swr'
 
-import useIpSWR from '../utils/useIpSWR'
-import type { Card as WikiCard } from '../data/wikiPages/cards'
-import { Stories } from '../data/cardStories.data'
-import Paths from '../utils/paths'
-import { APIResponseOf, feFetcher, UnArray } from '../utils/api'
-import { CharacterChineseNameList } from '../data/vendor/characterId'
-
-import { toVideoLink } from './ExternalVideo'
+import { toVideoLink } from '#components/ExternalVideo'
+import useIpSWR from '#utils/useIpSWR'
+import type { Card as WikiCard } from '#data/wikiPages/cards'
+import { Stories } from '#data/cardStories.data'
+import Paths from '#utils/paths'
+import { APIResponseOf, feFetcher, UnArray } from '#utils/api'
+import { CharacterChineseNameList } from '#data/vendor/characterId'
 
 export const Props = ({
   level,
