@@ -1,7 +1,7 @@
 {
-    "Technique": "得分",
-    "Appeal": "支援",
-    "Support": "辅助",
+    "Technique": "辅助",
+    "Appeal": "得分",
+    "Support": "支援",
     "Active": "A",
     "Passive": "P",
     "Special": "SP"
