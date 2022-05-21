@@ -302,7 +302,7 @@ const CardItem = ({
         {$v(CardType[type])} / 初始 {initialRarity}★
       </div>
       <hr />
-      <div className="mt-2">稀有度 / {rarity}</div>
+      <div className="mt-2">星级 / {rarity}</div>
       <Slider
         min={initialRarity}
         max={maxRarity}
