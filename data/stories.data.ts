@@ -354,6 +354,10 @@ const data: Partial<
         name: '上场的理由',
         video: { type: 'bilibili', vid: 'av684212180' },
       },
+      10: {
+        name: '以我们的力量',
+        video: { type: 'bilibili', vid: 'av511635726' },
+      },
     },
   },
   Tokyo: {
@@ -558,6 +562,82 @@ const data: Partial<
       },
       25: {
         video: { type: 'bilibili', vid: 'av632285757', pid: 25 },
+        name: 'TODO',
+      },
+      26: {
+        video: { type: 'bilibili', vid: 'av632285757', pid: 26 },
+        name: 'TODO',
+      },
+      27: {
+        video: { type: 'bilibili', vid: 'av632285757', pid: 27 },
+        name: 'TODO',
+      },
+      28: {
+        video: { type: 'bilibili', vid: 'av632285757', pid: 28 },
+        name: 'TODO',
+      },
+      29: {
+        video: { type: 'bilibili', vid: 'av632285757', pid: 29 },
+        name: 'TODO',
+      },
+      30: {
+        video: { type: 'bilibili', vid: 'av632285757', pid: 30 },
+        name: 'TODO',
+      },
+      31: {
+        video: { type: 'bilibili', vid: 'av632285757', pid: 31 },
+        name: 'TODO',
+      },
+      32: {
+        video: { type: 'bilibili', vid: 'av632285757', pid: 32 },
+        name: 'TODO',
+      },
+      33: {
+        video: { type: 'bilibili', vid: 'av632285757', pid: 33 },
+        name: 'TODO',
+      },
+      34: {
+        video: { type: 'bilibili', vid: 'av632285757', pid: 34 },
+        name: 'TODO',
+      },
+      35: {
+        video: { type: 'bilibili', vid: 'av632285757', pid: 35 },
+        name: 'TODO',
+      },
+      36: {
+        video: { type: 'bilibili', vid: 'av632285757', pid: 36 },
+        name: 'TODO',
+      },
+      37: {
+        video: { type: 'bilibili', vid: 'av632285757', pid: 37 },
+        name: 'TODO',
+      },
+      38: {
+        video: { type: 'bilibili', vid: 'av632285757', pid: 38 },
+        name: 'TODO',
+      },
+      39: {
+        video: { type: 'bilibili', vid: 'av632285757', pid: 39 },
+        name: 'TODO',
+      },
+      40: {
+        video: { type: 'bilibili', vid: 'av632285757', pid: 40 },
+        name: 'TODO',
+      },
+      41: {
+        video: { type: 'bilibili', vid: 'av632285757', pid: 41 },
+        name: 'TODO',
+      },
+      42: {
+        video: { type: 'bilibili', vid: 'av632285757', pid: 42 },
+        name: 'TODO',
+      },
+      43: {
+        video: { type: 'bilibili', vid: 'av632285757', pid: 43 },
+        name: 'TODO',
+      },
+      44: {
+        video: { type: 'bilibili', vid: 'av632285757', pid: 44 },
         name: 'TODO',
       },
     },
@@ -777,6 +857,11 @@ const data: Partial<
         name: '一片空白的日程表',
         video: { type: 'bilibili', vid: 'av683139949' },
       },
+      28: {
+        name: '世界之墙',
+        video: { type: 'bilibili', vid: 'av896031365' },
+      },
+      // 29-30
     },
   },
   Mana: {
@@ -948,14 +1033,17 @@ const SubTitles: Partial<
       11: 'Shiny Melody',
       16: 'Wear Feathers',
       21: 'Black Impact',
-      // TODO: 26-
     },
     2: {
       1: 'Farewell and Oath',
       6: 'Struggle for IDOLs',
       11: 'Enjoy just purely',
       16: 'No Gray',
-      // TODO: 11-
+      21: 'Cold Diamond',
+      26: 'Moonlight In Our Hands',
+      31: 'What is ”IDOL”?',
+      36: 'May the Sunshine be with you',
+      41: '[With/Beyond] the Miracle',
     },
   },
   TRINITYAiLE: {
