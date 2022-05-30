@@ -4,5 +4,8 @@
     "Support": "支援",
     "Active": "A",
     "Passive": "P",
-    "Special": "SP"
+    "Special": "SP",
+    "Vocal": "歌唱",
+    "Dance": "舞蹈",
+    "Visual": "表演"
 }

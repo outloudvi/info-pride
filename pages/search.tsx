@@ -1,276 +1,211 @@
 import { useEffect, useMemo, useState } from 'react'
-import type { Dispatch, SetStateAction } from 'react'
 import Link from 'next/link'
-import {
-  Button,
-  Checkbox,
-  MultiSelect,
-  Select,
-  TextInput,
-  Tooltip,
-} from '@mantine/core'
+import { useForm } from '@mantine/form'
+import { Checkbox, NumberInput, TextInput, Tooltip } from '@mantine/core'
+import { SkillCategoryType } from '@outloudvi/hoshimi-types/ProtoEnum'
+import { EffectWithTarget as SXEffectWithTarget } from '@outloudvi/hoshimi-types/Skillx'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
-import intersection from 'lodash/intersection'
-import uniq from 'lodash/uniq'
+import { uniq } from 'lodash'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import { LocalBox } from './settings'
 
-import CardDesc from '#components/cards/CardDesc'
-import { CardSkillsData, Cards } from '#data/wikiPages'
-import { ColorTypeSimple, IdentCT } from '#data/wikiPages/types'
-import type { Card } from '#data/wikiPages/cards'
 import tryJSONParse from '#utils/tryJsonParse'
+import { LOCALSTORAGE_BOX_TAG } from '#utils/startupHook'
+import useIpSWR from '#utils/useIpSWR'
+import allFinished from '#utils/allFinished'
+import PageLoading from '#components/PageLoading'
+import { APIResponseOf } from '#utils/api'
+import FilterSelect from '#components/search/FilterSelect'
 import {
   CharacterChineseNameList,
   CharacterId,
   CharacterIds,
 } from '#data/vendor/characterId'
-import { LOCALSTORAGE_BOX_TAG } from '#utils/startupHook'
+import {
+  skillEffectTypeNames,
+  skillTargetTypeNames,
+} from '#data/vendor/searchSkillTypes'
+import ResultList from '#components/search/ResultList'
+import CCIDTable from '#data/ccid.data'
 
-function mergeHilights(
-  h1: Record<string, number[]>,
-  h2: Record<string, number[]>
-): Record<string, number[]> {
-  if (Object.keys(h1).length === 0) {
-    // if h1 is empty: just use h2
-    return h2
-  }
-  const ret: Record<string, number[]> = {}
-  for (const i of Object.keys(h1)) {
-    if (!h2[i]) continue
-    ret[i] = intersection(h1[i], h2[i])
-  }
-  return ret
-}
-
-const FilterSelect = <T extends string>({
-  label,
-  state,
-  setState,
-  list,
-  width,
-  multiple,
-  className,
-  listNamemap,
+const SearchPage = ({
+  CardData,
+  SkillAllData,
+  SkillxData,
 }: {
-  label: string
-  state: T[]
-  setState: Dispatch<SetStateAction<T[]>>
-  list: T[]
-  width: number
-  multiple?: boolean
-  className?: string
-  listNamemap?: Record<string, string>
+  CardData: APIResponseOf<'Card'>
+  SkillAllData: APIResponseOf<'Skill/All'>
+  SkillxData: APIResponseOf<'Skill/X'>
 }) => {
-  const data = listNamemap
-    ? list.map((x) => ({
-        label: listNamemap[x] ?? x,
-        value: x,
-      }))
-    : list
-  if (multiple) {
-    return (
-      <MultiSelect
-        data={data}
-        label={label}
-        value={state}
-        width={width}
-        className={className}
-        clearable
-        onChange={(s: T[]) => {
-          setState(s)
-        }}
-        classNames={{
-          wrapper: 'max-w-xl',
-        }}
-      />
-    )
-  } else {
-    return (
-      <Select
-        data={data}
-        label={label}
-        value={state[0]}
-        width={width}
-        className={className}
-        clearable
-        onChange={(s: T) => {
-          setState([s])
-        }}
-      />
-    )
-  }
-}
-
-const CardsFlattened = Object.values(Cards)
-  .map((x) => Object.values(x))
-  .reduce((a, b) => [...a, ...b]) as Card[]
-
-const SkillsFlattened = Object.values(CardSkillsData)
-  .map((x) => Object.values(x))
-  .map((x) =>
-    x.map((y) => [y.ski1, y.ski2, y.ski3]).reduce((a, b) => [...a, ...b])
-  )
-  .reduce((a, b) => [...a, ...b])
-  .reduce((a, b) => [...a, ...b])
-
-const SkillTypeList = uniq(SkillsFlattened.map((x) => x.type))
-
-const SkillesPage = () => {
-  const [fKeyword, setfKeyword] = useState('')
-  const [fIdol, setfIdol] = useState<CharacterId[]>([])
-  const [fColor, setfColor] = useState<ColorTypeSimple[]>([])
-  const [fOwnedOnly, setfOwnedOnly] = useState<boolean>(false)
-  const [fCtMin, setfCtMin] = useState(0)
-  const [fCtMax, setfCtMax] = useState(0)
-  const [fShowSp, setfShowSp] = useState(false)
-  const [fType, setfType] = useState<string[]>([])
-  const [fSubtype, setfSubtype] = useState<string[]>([])
-
   const [localBox, setLocalBox] = useState<LocalBox>({})
-
-  const [selectedCards, highlightCards] = useMemo(() => {
-    let highlights: Record<string, number[]> = {}
-    let ret = CardsFlattened
-    if (fKeyword !== '') {
-      ret = ret.filter((x) => JSON.stringify(x).includes(fKeyword))
-    }
-    if (fIdol.filter((x) => x).length > 0) {
-      ret = ret.filter((x) => fIdol.includes(x.ownerSlug))
-    }
-    if (fColor.filter((x) => x).length > 0) {
-      const mappedGroup = fColor.map(
-        (x) =>
-          ({
-            [ColorTypeSimple.Vocal]: '歌唱',
-            [ColorTypeSimple.Dance]: '舞蹈',
-            [ColorTypeSimple.Visual]: '表演',
-          }[x])
-      )
-      ret = ret.filter((x) => mappedGroup.includes(x.prop))
-    }
-    if (fOwnedOnly) {
-      ret = ret.filter((x) => Boolean(localBox?.[x.ownerSlug]?.[x.ownerId]))
-    }
-
-    // Skill-related part
-    if (fCtMin > 0 || fCtMax > 0) {
-      const localHighlights: Record<string, number[]> = {}
-      const ctMin = fCtMin > 0 ? fCtMin : 0
-      const ctMax = fCtMax > 0 ? fCtMax : Infinity
-
-      ret = ret.filter((x) => {
-        const skillList = CardSkillsData[x.ownerSlug][x.ownerId]
-        const skills = [skillList.ski1, skillList.ski2, skillList.ski3]
-        let showThisCard = false
-
-        const cardKey = `${x.ownerSlug}/${x.ownerId}`
-        localHighlights[cardKey] = []
-        for (const [key, idents] of skills.entries()) {
-          const ctEntry = idents.filter((x) => x.type === 'ct') as IdentCT[]
-          if (ctEntry.length > 0) {
-            const ct = ctEntry[0].ct
-            if (ct >= ctMin && ct <= ctMax) {
-              showThisCard = true
-              localHighlights[cardKey].push(key)
-            }
-          } else {
-            // no cp -> a SP skill
-            // if type is selected: get it shown
-            showThisCard = fShowSp
-          }
-        }
-        return showThisCard
-      })
-      highlights = mergeHilights(highlights, localHighlights)
-    }
-
-    if (fType.filter((x) => x).length > 0) {
-      const currFType = fType[0]
-      const localHighlights: Record<string, number[]> = {}
-      ret = ret.filter((x) => {
-        const skillList = CardSkillsData[x.ownerSlug][x.ownerId]
-        const skills = [skillList.ski1, skillList.ski2, skillList.ski3]
-        let showThisCard = false
-        const cardKey = `${x.ownerSlug}/${x.ownerId}`
-        localHighlights[cardKey] = []
-        for (const [key, idents] of skills.entries()) {
-          if (idents.filter((x) => currFType === x.type).length > 0) {
-            showThisCard = true
-            localHighlights[cardKey].push(key)
-          }
-        }
-        return showThisCard
-      })
-      highlights = mergeHilights(highlights, localHighlights)
-    }
-
-    if (fSubtype.filter((x) => x).length > 0) {
-      const currFType = fType[0]
-      const currFSubtype = fSubtype[0]
-      const localHighlights: Record<string, number[]> = {}
-      ret = ret.filter((x) => {
-        const skillList = CardSkillsData[x.ownerSlug][x.ownerId]
-        const skills = [skillList.ski1, skillList.ski2, skillList.ski3]
-        let showThisCard = false
-        const cardKey = `${x.ownerSlug}/${x.ownerId}`
-        localHighlights[cardKey] = []
-        for (const [key, idents] of skills.entries()) {
-          const maybeLinkedTypeIdents = idents.filter(
-            (x) => currFType === x.type
-          )
-          if (maybeLinkedTypeIdents.length > 0) {
-            const linkedTypeIdent = maybeLinkedTypeIdents[0]
-            // @ts-expect-error
-            if (String(linkedTypeIdent[currFType]) === currFSubtype) {
-              showThisCard = true
-              localHighlights[cardKey].push(key)
-            }
-          }
-        }
-        return showThisCard
-      })
-      highlights = mergeHilights(highlights, localHighlights)
-    }
-
-    return [ret, highlights]
-  }, [
-    fKeyword,
-    fIdol,
-    fColor,
-    fOwnedOnly,
-    localBox,
-    fCtMin,
-    fCtMax,
-    fShowSp,
-    fType,
-    fSubtype,
-  ])
-
-  const fSubTypeDesc = useMemo(() => {
-    if (fType.length === 0) return []
-    const typeName = fType[0]
-
-    const possibleValues = uniq(
-      SkillsFlattened.filter((x) => x.type === typeName).map(
-        // @ts-expect-error
-        (x) => x[typeName] as string | number
-      )
-    )
-      .map(String)
-      .sort()
-
-    return possibleValues.length <= 25 ? possibleValues : []
-  }, [fType])
-
   useEffect(() => {
     setLocalBox(tryJSONParse(localStorage.getItem(LOCALSTORAGE_BOX_TAG)))
   }, [])
 
+  const {
+    values: formValues,
+    errors: formErrors,
+    getInputProps,
+  } = useForm({
+    initialValues: {
+      keyword: '',
+      selectedCharacters: [] as CharacterId[],
+      selectedCardTypes: [] as string[],
+      ownedOnly: false,
+      ctMin: '',
+      ctMax: '',
+      ctShowSp: false,
+      effectTypes: [] as SXEffectWithTarget['effect']['typ'][],
+      targetTypes: [] as SXEffectWithTarget['target']['typ'][],
+    },
+    validate: {
+      ctMin: (x) =>
+        x.trim() !== '' && Number.isNaN(Number(x)) ? 'Invalid ctMin' : null,
+      ctMax: (x) =>
+        x.trim() !== '' && Number.isNaN(Number(x)) ? 'Invalid ctMax' : null,
+    },
+  })
+
+  const skillEffectTypes = useMemo(
+    () =>
+      uniq(
+        Object.values<SXEffectWithTarget>(SkillxData)
+          .map((x) => x.effect.typ)
+          .filter((x) => x)
+      ).sort(),
+    [SkillxData]
+  )
+  const skillTargetTypes = useMemo(
+    () =>
+      uniq(
+        Object.values<SXEffectWithTarget>(SkillxData)
+          .map((x) => x.target.typ)
+          .filter((x) => x)
+      ).sort(),
+    [SkillxData]
+  )
+
+  const [selectedCards, selectedSkills] = useMemo(() => {
+    let ret = [...CardData]
+    let highlightedSkills: string[] = []
+
+    const {
+      keyword,
+      selectedCharacters,
+      selectedCardTypes,
+      ctMin,
+      ctMax,
+      ctShowSp,
+      effectTypes,
+      targetTypes,
+      ownedOnly,
+    } = formValues
+
+    const numCtMin = Number.isNaN(Number(ctMin)) ? 0 : Number(ctMin)
+    const numCtMax = Number.isNaN(Number(ctMax)) ? 0 : Number(ctMax)
+
+    if (keyword.trim() !== '') {
+      ret = ret.filter((x) => x.name.includes(keyword.trim()))
+    }
+
+    if (selectedCharacters.length > 0) {
+      ret = ret.filter((x) =>
+        selectedCharacters.includes(x.characterId as CharacterId)
+      )
+    }
+
+    if (selectedCardTypes.length > 0) {
+      console.log('rr', ret.length)
+      ret = ret.filter((x) => {
+        return selectedCardTypes.includes(String(x.type))
+      })
+    }
+
+    if (ownedOnly) {
+      ret = ret.filter((card) => {
+        const cardCcid = CCIDTable[card.characterId as CharacterId].filter(
+          (x) => x.cardId === card.id
+        )?.[0]?.ccid
+        // Card does not exist in CCIDDB
+        // TODO: find a way to improve
+        if (!cardCcid) return true
+        return localBox?.[card.characterId as CharacterId]?.[cardCcid]
+      })
+    }
+
+    ret = ret.filter((card) => {
+      const cardSkillIds = [card.skillId1, card.skillId2, card.skillId3]
+      const cardSkills = cardSkillIds
+        .map((x) => SkillAllData.filter((r) => r.id === x)?.[0])
+        .filter((x) => x)
+      if (cardSkills.length < 3) {
+        // Some skills are not found
+        // TODO: find a way to improve
+        return true
+      }
+      const hasSkillFilters =
+        numCtMin > 0 ||
+        numCtMax > 0 ||
+        effectTypes.length > 0 ||
+        targetTypes.length > 0
+      const selectedSkills = cardSkills.filter((sk) => {
+        // Only check the highest level for now
+        const skillHighestLevel = sk.levels[sk.levels.length - 1]
+        // ctMin and ctMax
+        if (numCtMin > 0) {
+          if (
+            // For SP, coolTime is 0 so we use ||
+            (skillHighestLevel.coolTime || -1) < numCtMin &&
+            !(ctShowSp && sk.categoryType === SkillCategoryType.Special)
+          )
+            return false
+        }
+        if (numCtMax > 0) {
+          if (
+            // For SP, coolTime is 0 so we use ||
+            (skillHighestLevel.coolTime || Infinity) > numCtMax &&
+            !(ctShowSp && sk.categoryType === SkillCategoryType.Special)
+          )
+            return false
+        }
+        if (effectTypes.length > 0) {
+          if (
+            skillHighestLevel.skillDetails
+              .map((r) => r.efficacyId)
+              .map((r) => SkillxData[r])
+              .filter((r) => r && effectTypes.includes(r.effect.typ)).length ===
+            0
+          )
+            return false
+        }
+        if (targetTypes.length > 0) {
+          if (
+            skillHighestLevel.skillDetails
+              .map((r) => r.efficacyId)
+              .map((r) => SkillxData[r])
+              .filter((r) => r && targetTypes.includes(r.target.typ)).length ===
+            0
+          )
+            return false
+        }
+        return true
+      })
+      if (selectedSkills.length === 0) return false
+      if (hasSkillFilters) {
+        highlightedSkills = highlightedSkills.concat(
+          selectedSkills.map((x) => x.id)
+        )
+      }
+      return true
+    })
+
+    return [ret, highlightedSkills]
+  }, [CardData, SkillAllData, SkillxData, formValues, localBox])
+
   return (
     <>
-      <h2>卡片搜索</h2>
       <p>
         如果发现自己持有的卡片没有显示为「已持有」，请
         <Link href="/settings">更新卡片持有状态</Link>。
@@ -280,70 +215,55 @@ const SkillesPage = () => {
           <TextInput
             className="mr-2"
             label="关键词"
-            value={fKeyword}
-            multiple
-            onChange={(e) => {
-              setfKeyword(e.target.value)
-            }}
+            {...getInputProps('keyword')}
           />
           <FilterSelect
             className="mr-2"
             label="角色"
-            state={fIdol}
-            setState={setfIdol}
             multiple
-            list={[...CharacterIds]}
+            list={CharacterIds}
             listNamemap={CharacterChineseNameList}
             width={300}
+            formProps={getInputProps('selectedCharacters')}
           />
           <FilterSelect
             className="mr-2"
             label="类型"
-            state={fColor}
-            setState={setfColor}
             multiple
-            list={['Vocal', 'Dance', 'Visual'] as ColorTypeSimple[]}
-            width={200}
+            list={['1', '2', '3']}
+            listNamemap={{
+              // Also check locales/vendor.json
+              1: '得分',
+              2: '辅助',
+              3: '支援',
+            }}
+            width={300}
+            formProps={getInputProps('selectedCardTypes')}
           />
           <Checkbox
             label="只显示已持有的卡片"
-            checked={fOwnedOnly}
-            onChange={(e) => {
-              setfOwnedOnly(e.target.checked)
-            }}
+            {...getInputProps('ownedOnly')}
           />
         </div>
         <div className="flex items-center mb-2">
-          <TextInput
+          <NumberInput
             className="mr-2"
             label="CT 最小值"
-            type="number"
-            value={fCtMin}
-            onChange={(e) => {
-              const v = Number(e.target.value)
-              if (Number.isNaN(v)) return
-              setfCtMin(v)
-            }}
+            placeholder="无限制"
+            min={0}
+            {...getInputProps('ctMin')}
           />
-          <TextInput
+          <NumberInput
             className="mr-2"
             label="CT 最大值"
             placeholder="无限制"
-            type="number"
-            value={fCtMax}
-            onChange={(e) => {
-              const v = Number(e.target.value)
-              if (Number.isNaN(v)) return
-              setfCtMax(v)
-            }}
+            min={0}
+            {...getInputProps('ctMax')}
           />
           <Checkbox
             label="按 CT 值筛选时不要跳过 SP 技能"
-            checked={fShowSp}
-            onChange={(e) => {
-              setfShowSp(e.target.checked)
-            }}
             className="mr-2"
+            {...getInputProps('ctShowSp')}
           />
           <Tooltip label="选择此选项时，即使卡片的其它技能均不满足 CT 筛选要求，有 SP 技能的卡片也会被显示。如果同时附加了其它筛选条件，您可能希望勾选此项。">
             <FontAwesomeIcon icon={faInfoCircle} />
@@ -352,102 +272,74 @@ const SkillesPage = () => {
         <div className="flex items-center mb-2">
           <FilterSelect
             className="mr-2"
-            label="技能类别"
-            state={fType}
-            setState={(v) => {
-              setfType(v)
-              setfSubtype([])
-            }}
-            list={SkillTypeList}
+            label="效果类型"
+            multiple
+            list={skillEffectTypes}
+            listNamemap={skillEffectTypeNames}
             width={300}
-            listNamemap={{
-              ct: '[属性] 所需 CT',
-              staminaCost: '[属性] 所需体力',
-              limit: '[属性] 限制',
-              when: '[属性] 发动时间',
-              scoreMultiply: '[效果] 分数倍数',
-              giveStatus: '[效果] 赋予状态',
-              stamRecovery: '[效果] 体力回复',
-              ctDecrease: '[效果] CT 降低',
-              giveRivalStatus: '[效果] 赋予对手状态',
-              move: '[效果] 转移发动时机',
-            }}
+            formProps={getInputProps('effectTypes')}
           />
           <FilterSelect
-            label="技能子类别"
-            state={fSubtype}
-            setState={setfSubtype}
-            list={fSubTypeDesc}
+            className="mr-2"
+            label="目标类型"
+            multiple
+            list={skillTargetTypes}
+            listNamemap={skillTargetTypeNames}
             width={300}
-            listNamemap={{
-              undefined: '其它',
-              once: '只发动一次',
-              length: '长度限制',
-              percent: '按比例',
-              value: '按值',
-              beforeSP: '到 SP 技能前',
-              Invisible: '隐身',
-              Focused: '集目',
-              BadCond: '不调',
-              NegRecover: '低下状态回复',
-              NoNegative: '低下状态防止',
-              EnhanceExtend: '强化状态延长',
-              EnhanceStrengthen: '强化状态增强',
-              HighSpirits: '气氛高昂',
-              BeatScoring: '节拍得分提升',
-              ScoringUp: '得分提升',
-              CritCoefUp: '暴击系数提升',
-              CritRateUp: '暴击率提升',
-              StamDraiUp: '体力消耗提升',
-              StamDraiDn: '体力消耗降低',
-              SkilSuccUp: '技能成功率提升',
-              CombScorUp: '连击得分提升',
-              NoBreak: '连击接续',
-              AScorUp: 'A 技能得分提升',
-              VocalUp: 'Vocal 属性提升',
-              DanceUp: 'Dance 属性提升',
-              VisualUp: 'Visual 属性提升',
-              VocalDn: 'Vocal 属性下降',
-              DanceDn: 'Dance 属性下降',
-              VisualDn: 'Visual 属性下降',
-            }}
+            formProps={getInputProps('targetTypes')}
           />
-        </div>
-        <div>
-          <Button
-            onClick={() => {
-              setfKeyword('')
-              setfIdol([])
-              setfColor([])
-              setfCtMin(0)
-              setfCtMax(0)
-              setfType([])
-              setfSubtype([])
-            }}
-          >
-            清空条件
-          </Button>
         </div>
       </div>
       <div className="mt-2">
-        从 {CardsFlattened.length} 张卡片中找到 {selectedCards.length} 个结果。
-        {Object.keys(highlightCards).length > 0 &&
-          '被筛选的技能已经以高亮背景标记。'}
+        {selectedCards.length === CardData.length ? (
+          <p>共有 {CardData.length} 张卡片。</p>
+        ) : (
+          <p>
+            从 {CardData.length} 张卡片中找到 {selectedCards.length} 个结果。
+          </p>
+        )}
       </div>
       <div className="mt-2">
-        {selectedCards.map((item, key) => (
-          <CardDesc
-            key={key}
-            card={item}
-            owned={Boolean(localBox?.[item.ownerSlug]?.[item.ownerId])}
-            highlightSkills={
-              highlightCards[`${item.ownerSlug}/${item.ownerId}`] ?? []
-            }
-          />
-        ))}
+        <ResultList
+          list={selectedCards}
+          highlightedSkills={selectedSkills}
+          SkillAllData={SkillAllData}
+          SkillxData={SkillxData}
+        />
       </div>
     </>
   )
 }
 
-export default SkillesPage
+const SkeletonSearchPage = () => {
+  const { data: CardData } = useIpSWR('Card')
+  const { data: SkillAllData } = useIpSWR('Skill/All')
+  const { data: SkillxData } = useIpSWR('Skill/X')
+
+  const allData = {
+    CardData,
+    SkillAllData,
+    SkillxData,
+  }
+
+  return (
+    <>
+      <h2>卡片搜索</h2>
+      {allFinished(allData) ? (
+        <SearchPage {...allData} />
+      ) : (
+        <PageLoading data={allData} />
+      )}
+    </>
+  )
+}
+
+export const getStaticProps = async ({ locale }: { locale: string }) => {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['common', 'vendor'])),
+    },
+  }
+}
+
+export default SkeletonSearchPage
