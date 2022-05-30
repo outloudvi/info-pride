@@ -212,6 +212,24 @@ const data: Partial<Record<CharacterId, Record<number, Stories>>> = {
         video: { type: 'bilibili', vid: 'av595085113' },
       },
     },
+    8: {
+      // 我，决定了
+      1: {
+        name: '新曲封面的拍摄',
+        video: { type: 'bilibili', vid: 'av341899779' },
+      },
+      2: {
+        name: '遥子的决心',
+        video: { type: 'bilibili', vid: 'av554376479' },
+      },
+      3: {
+        name: '让 SUNNY PEACE 成为世界第一的偶像团体',
+        video: { type: 'bilibili', vid: 'av769555664' },
+      },
+      phone: {
+        video: { type: 'bilibili', vid: 'av639603040' },
+      },
+    },
   },
   'char-ktn': {
     4: {
@@ -592,6 +610,24 @@ const data: Partial<Record<CharacterId, Record<number, Stories>>> = {
         video: { type: 'bilibili', vid: 'av550498872', pid: 3 },
       },
     },
+    7: {
+      // 即使踮起脚尖也无法传达
+      1: {
+        name: '二代目星降的奇迹',
+        video: { type: 'bilibili', vid: 'av255409120' },
+      },
+      2: {
+        name: '会错意，再一次',
+        video: { type: 'bilibili', vid: 'av425439100' },
+      },
+      3: {
+        name: '在沙滩上吹着夜风',
+        video: { type: 'bilibili', vid: 'av550498872' },
+      },
+      phone: {
+        video: { type: 'bilibili', vid: 'av553072510' },
+      },
+    },
   },
   'char-mei': {
     3: {
@@ -959,6 +995,24 @@ const data: Partial<Record<CharacterId, Record<number, Stories>>> = {
       3: {
         name: '咸味巧克力',
         video: { type: 'bilibili', vid: 'av636356378' },
+      },
+      phone: {
+        video: { type: 'bilibili', vid: 'av979531881' },
+      },
+    },
+    6: {
+      // Sexy Shooting
+      1: {
+        name: '不起眼偶像',
+        video: { type: 'bilibili', vid: 'av769250696' },
+      },
+      2: {
+        name: '全军突击',
+        video: { type: 'bilibili', vid: 'av811823258' },
+      },
+      3: {
+        name: '为了谁而努力',
+        video: { type: 'bilibili', vid: 'av341960914' },
       },
       phone: {
         video: { type: 'bilibili', vid: 'av979531881' },

@@ -358,6 +358,10 @@ const data: Partial<
         name: '以我们的力量',
         video: { type: 'bilibili', vid: 'av511635726' },
       },
+      11: {
+        name: '强敌现身',
+        video: { type: 'bilibili', vid: 'av726774388' },
+      },
     },
   },
   Tokyo: {

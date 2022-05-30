@@ -18,6 +18,7 @@ export const CCIDTableWithName: Record<
       cardId: 'card-ai-05-vlnt-00',
       nameJa: 'ちょこ～っとバレンタイン',
     },
+    { ccid: 6, cardId: 'card-ai-05-tact-00', nameJa: 'セクシーシューティング' },
   ],
   'char-aoi': [
     { ccid: 1, cardId: 'card-aoi-03-schl-00', nameJa: 'ホームグラウンド' },
@@ -41,6 +42,11 @@ export const CCIDTableWithName: Record<
     },
     { ccid: 5, cardId: 'card-chs-02-eve-01', nameJa: '賑やかなお正月' },
     { ccid: 6, cardId: 'card-chs-05-rock-00', nameJa: 'ひと握りの勇気' },
+    {
+      ccid: 7,
+      cardId: 'card-chs-05-chsk-00',
+      nameJa: '絆溢れるクリエーション',
+    },
   ],
   'char-hrk': [
     {
@@ -58,6 +64,7 @@ export const CCIDTableWithName: Record<
       nameJa: '二人きり、冬夜の打ち上げ',
     },
     { ccid: 7, cardId: 'card-hrk-05-chna-00', nameJa: '解き放たれる十七歳' },
+    { ccid: 8, cardId: 'card-hrk-05-idol-03', nameJa: '私、決めたよ' },
   ],
   'char-kkr': [
     { ccid: 1, cardId: 'card-kkr-03-schl-00', nameJa: 'たまには本気で' },
@@ -114,6 +121,7 @@ export const CCIDTableWithName: Record<
     },
     { ccid: 5, cardId: 'card-ngs-05-flow-00', nameJa: 'この瞬間の主役' },
     { ccid: 6, cardId: 'card-ngs-05-akma-00', nameJa: 'いたずら好きな小悪魔' },
+    { ccid: 7, cardId: 'card-ngs-02-eve-01', nameJa: '姉妹の活躍に染められて' },
   ],
   'char-rei': [
     { ccid: 1, cardId: 'card-rei-03-schl-00', nameJa: '夜の自主トレ' },
@@ -126,6 +134,7 @@ export const CCIDTableWithName: Record<
       cardId: 'card-rei-05-newy-00',
       nameJa: '絶対秘密のバックステージ',
     },
+    { ccid: 7, cardId: 'card-rei-05-onep-00', nameJa: '花あかり誘う笑顔' },
   ],
   'char-rio': [
     { ccid: 1, cardId: 'card-rio-01-casl-00', nameJa: '雨の中の帰路' },
@@ -162,6 +171,11 @@ export const CCIDTableWithName: Record<
       nameJa: '白息はずむホーリーナイト',
     },
     { ccid: 7, cardId: 'card-rui-02-eve-01', nameJa: '対等な関係' },
+    {
+      ccid: 8,
+      cardId: 'card-rui-05-date-00',
+      nameJa: '緑風誘うデートスポット',
+    },
   ],
   'char-ski': [
     { ccid: 1, cardId: 'card-ski-02-mizg-01', nameJa: '夏の夜に輝く星' },
@@ -170,6 +184,11 @@ export const CCIDTableWithName: Record<
     { ccid: 4, cardId: 'card-ski-05-idol-00', nameJa: '手を取り合って' },
     { ccid: 5, cardId: 'card-ski-05-kifj-00', nameJa: '涙のカーテンコール' },
     { ccid: 6, cardId: 'card-ski-05-waso-00', nameJa: '胸に秘めていた情熱' },
+    {
+      ccid: 7,
+      cardId: 'card-ski-05-chsk-00',
+      nameJa: '絆深まる姉妹のステージ',
+    },
   ],
   'char-skr': [
     { ccid: 1, cardId: 'card-skr-02-casl-00', nameJa: '夜空に咲く花' },
@@ -186,6 +205,7 @@ export const CCIDTableWithName: Record<
       cardId: 'card-skr-05-newy-00',
       nameJa: '笑う門には福来るだよ！',
     },
+    { ccid: 7, cardId: 'card-skr-05-idol-03', nameJa: 'この指とーまれ！' },
   ],
   'char-smr': [
     { ccid: 1, cardId: 'card-smr-03-schl-00', nameJa: '努力のたまもの' },
@@ -223,6 +243,7 @@ export const CCIDTableWithName: Record<
     { ccid: 4, cardId: 'card-szk-05-idol-00', nameJa: '光の波' },
     { ccid: 5, cardId: 'card-szk-05-chna-00', nameJa: '夢は、きっと叶う' },
     { ccid: 6, cardId: 'card-szk-05-yuru-00', nameJa: '一緒に歌える幸せ' },
+    { ccid: 7, cardId: 'card-szk-02-eve-01', nameJa: 'みんなのピースを' },
   ],
   'char-yu': [
     { ccid: 1, cardId: 'card-yu-03-schl-00', nameJa: '自主トレ日和' },
