@@ -3,7 +3,7 @@ import base58 from 'base58'
 import UnitCodeInterface, { PartialCard } from './interface'
 
 import { CharacterId, CharacterIds } from '#data/vendor/characterId'
-import CardIdData from '#data/ccid.data'
+import CardIdData from '#data/ccid'
 
 function encodeCard(card: PartialCard): string {
   const cardIdInfo = CardIdData[card.characterId as CharacterId].find(

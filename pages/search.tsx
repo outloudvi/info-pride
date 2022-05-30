@@ -28,7 +28,7 @@ import {
   skillTargetTypeNames,
 } from '#data/vendor/searchSkillTypes'
 import ResultList from '#components/search/ResultList'
-import CCIDTable from '#data/ccid.data'
+import CCIDTable from '#data/ccid'
 
 const SearchPage = ({
   CardData,

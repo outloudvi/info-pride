@@ -16,7 +16,7 @@ import { CardType, SkillCategoryType } from '@outloudvi/hoshimi-types/ProtoEnum'
 import { useTranslation } from 'next-i18next'
 
 import useIpSWR from '#utils/useIpSWR'
-import CardIdData from '#data/ccid.data'
+import CardIdData from '#data/ccid'
 import type { APIResponseOf, UnArray } from '#utils/api'
 import { CharacterChineseNameList, CharacterId } from '#data/vendor/characterId'
 import allFinished from '#utils/allFinished'
