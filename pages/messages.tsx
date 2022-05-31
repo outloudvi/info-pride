@@ -2,10 +2,10 @@ import MessageView from '#components/messages/MessageView'
 import PageLoading from '#components/PageLoading'
 import Title from '#components/Title'
 import allFinished from '#utils/allFinished'
-import useIpSWR from '#utils/useIpSWR'
+import useApi from '#utils/useApi'
 
 const SkeletonMessagesPage = () => {
-  const { data: MessageGroups } = useIpSWR('MessageGroup')
+  const { data: MessageGroups } = useApi('MessageGroup')
 
   const allData = {
     groups: MessageGroups,
