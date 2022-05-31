@@ -5,6 +5,6 @@ pushd $(dirname $0)
 source ../data/parts.env
 pushd ../data/
 
-for mod in "${PARTS[@]}"; do
-    node ./schemaToType.mjs $mod
+for mod in "${COMPONENTS[@]}"; do
+    node ../scripts/schemaToType.mjs $(realpath $mod)
 done

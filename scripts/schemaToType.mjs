@@ -1,14 +1,12 @@
 #!/usr/bin/env node
 
-import { readdirSync, writeFileSync } from 'fs'
-import { fileURLToPath } from 'url'
-import { dirname, join } from 'path'
+import { readdirSync, writeFileSync } from 'node:fs'
+import { join } from 'node:path'
 
 import { compileFromFile } from 'json-schema-to-typescript'
 
 function main() {
-  const currDir = fileURLToPath(dirname(import.meta.url))
-  const subPath = join(currDir, process.argv[2])
+  const subPath = process.argv[2]
   console.info(`Scanning: ${subPath}`)
   const schemaFiles = readdirSync(subPath).filter((x) =>
     x.endsWith('.schema.json')
