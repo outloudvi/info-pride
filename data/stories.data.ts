@@ -748,7 +748,15 @@ const data: Partial<
         name: '绝不让步的想法',
         video: { type: 'bilibili', vid: 'av683948490' },
       },
-      // TODO: 26-
+      26: {
+        name: '家人的心情',
+        video: { type: 'bilibili', vid: 'av726905405' },
+      },
+      27: {
+        name: '全部都要！',
+        video: { type: 'bilibili', vid: 'av554538436' },
+      },
+      // TODO: 27-
     },
   },
   LizNoir: {
