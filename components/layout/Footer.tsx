@@ -3,7 +3,7 @@ const Footer = () => (
     <a
       href="https://github.com/outloudvi/info-pride"
       target="_blank"
-      rel="noopener"
+      rel="noopener noreferrer"
     >
       源代码
     </a>
@@ -12,7 +12,7 @@ const Footer = () => (
     <a
       href="https://wiki.biligame.com/idolypride/%E9%A6%96%E9%A1%B5"
       target="_blank"
-      rel="noopener"
+      rel="noopener noreferrer"
     >
       bwiki
     </a>{' '}

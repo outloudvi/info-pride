@@ -255,8 +255,10 @@ const CardItem = ({
 
   const {
     data: WikiCardData,
-  }: { data?: { card: WikiCard; stories: Stories | null }; error?: any } =
-    useSWR(`/api/wikiCard?nameJa=${nameJa}`, feFetcher)
+  }: { data?: { card: WikiCard; stories: Stories | null } } = useSWR(
+    `/api/wikiCard?nameJa=${nameJa}`,
+    feFetcher
+  )
 
   const { card: wikiCard, stories: wikiStories } = WikiCardData ?? {
     card: undefined,

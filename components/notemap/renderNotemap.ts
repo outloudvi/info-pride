@@ -184,7 +184,11 @@ function renderNotemap(
     .attr('font-weight', 'bold')
     .text(([x]) => Math.abs(x))
 
-  return svg.node()!
+  const node = svg.node()
+  if (!node) {
+    throw Error('D3 node not found')
+  }
+  return node
 }
 
 export default renderNotemap

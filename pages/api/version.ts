@@ -36,7 +36,7 @@ async function getVersion(): Promise<VersionInfo | null> {
 
 const Version = async (
   req: NextApiRequest,
-  res: NextApiResponse<VersionInfo | {}>
+  res: NextApiResponse<VersionInfo | unknown>
 ) => {
   // Cache for 1d
   res.setHeader('Cache-Control', 'max-age=43200')

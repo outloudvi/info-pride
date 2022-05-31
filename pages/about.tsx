@@ -93,7 +93,9 @@ const AboutPage = () => {
     fetch('/api/contributors')
       .then((x) => x.json())
       .then((x) => setContribs(x))
-      .catch(() => {})
+      .catch(() => {
+        //
+      })
   }, [])
   return (
     <>

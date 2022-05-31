@@ -1,6 +1,6 @@
 import { withSentry } from '@sentry/nextjs'
 import type { NextApiRequest, NextApiResponse } from 'next'
-import got from 'got'
+import { got } from 'got'
 
 export type Contributor = {
   login: string

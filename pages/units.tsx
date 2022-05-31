@@ -156,6 +156,7 @@ const UnitPosition = ({
 const UnitsPage = ({ CardData }: { CardData: APIResponseOf<'Card'> }) => {
   // 6 positions (0 and 1-5)
   // (unitCards[0] should be always empty)
+  // eslint-disable-next-line no-sparse-arrays
   const [unitCards, setUnitCards] = useState<(CardTiny | undefined)[]>([
     ,
     ,

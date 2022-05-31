@@ -1,8 +1,6 @@
-/* eslint-disable import/namespace */
-// @ts-nocheck
-
 import NextErrorComponent from 'next/error'
 import * as Sentry from '@sentry/nextjs'
+import { NextPageContext } from 'next'
 
 const MyError = ({ statusCode, hasGetInitialPropsRun, err }) => {
   if (!hasGetInitialPropsRun && err) {
@@ -16,7 +14,7 @@ const MyError = ({ statusCode, hasGetInitialPropsRun, err }) => {
   return <NextErrorComponent statusCode={statusCode} />
 }
 
-MyError.getInitialProps = async (context) => {
+MyError.getInitialProps = async (context: NextPageContext) => {
   const errorInitialProps = await NextErrorComponent.getInitialProps(context)
 
   const { res, err, asPath } = context

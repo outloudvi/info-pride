@@ -129,6 +129,7 @@ const App = (props: AppProps) => {
             <SWRConfig
               value={{
                 fetcher: (url: keyof ResourceMapping) => {
+                  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                   // @ts-ignore: For now all params are in URL and sent over query params
                   return fetchDb(url)({})
                 },

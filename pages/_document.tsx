@@ -32,7 +32,7 @@ export default class _Document extends Document {
   static getInitialProps = getInitialProps
 
   render() {
-    let csp =
+    const csp =
       process.env.NODE_ENV === 'production'
         ? cspRules(cspHashOf(NextScript.getInlineScriptSource(this.props)))
         : cspRules(

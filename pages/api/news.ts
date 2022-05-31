@@ -1,7 +1,7 @@
 import { withSentry } from '@sentry/nextjs'
 import type { NextApiRequest, NextApiResponse } from 'next'
 import zip from 'lodash/zip'
-import got from 'got'
+import { got } from 'got'
 import * as cheerio from 'cheerio'
 
 const NEWS_PAGE = 'https://idolypride.jp/recent-news/'

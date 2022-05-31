@@ -54,13 +54,20 @@ export const SpecialStoriesItem = (props: {
   chapter: number
 }) => {
   const { series, season, chapter } = props
-  const data = StoriesData?.[series]?.[season]?.[chapter]!
+  const data = StoriesData?.[series]?.[season]?.[chapter]
+  if (!data) {
+    return <p className="text-gray-500">找不到故事章节。</p>
+  }
   return (
     <>
       <div className="text-4xl">{data.name}</div>
 
       <p>
-        <a href={toVideoLink(data.video)} target="_blank" rel="noopener">
+        <a
+          href={toVideoLink(data.video)}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           视频
         </a>
       </p>
@@ -123,7 +130,11 @@ const StoriesItem = (props: PropType) => {
       )}
       {data && (
         <p>
-          <a href={toVideoLink(data.video)} target="_blank" rel="noopener">
+          <a
+            href={toVideoLink(data.video)}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             视频
           </a>
         </p>
