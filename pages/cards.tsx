@@ -17,6 +17,7 @@ import getI18nProps from '#utils/geti18nProps'
 import { APIResponseOf } from '#utils/api'
 import ListButton from '#components/ListButton'
 import PageLoading from '#components/PageLoading'
+import Title from '#components/Title'
 
 const idolNameAtom = atomWithHash<CharacterId>('idol', CharacterIds[0], {
   serialize: (x) => x,
@@ -115,7 +116,7 @@ const SkeletonCardsPage = () => {
 
   return (
     <>
-      <h2>卡片</h2>
+      <Title title="卡片" />
       {allFinished(allData) ? (
         <CardsPage {...allData} />
       ) : (

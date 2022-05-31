@@ -23,6 +23,7 @@ import { getMoveStyle, SizeStyle } from '#data/vendor/characterAnimation'
 import allFinished from '#utils/allFinished'
 import PageLoading from '#components/PageLoading'
 import { Idols } from '#data/wikiPages'
+import Title from '#components/Title'
 
 export const toHashColor = (r: string) => (r.startsWith('#') ? r : '#' + r)
 
@@ -312,7 +313,7 @@ const SkeletonCharactersPage = () => {
 
   return (
     <>
-      <h2>角色</h2>
+      <Title title="角色" />
       {allFinished(allData) ? (
         <CharactersPage {...allData} />
       ) : (

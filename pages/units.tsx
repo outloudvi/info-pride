@@ -23,6 +23,7 @@ import allFinished from '#utils/allFinished'
 import unitCodeV1 from '#utils/unitCode'
 import PageLoading from '#components/PageLoading'
 import getI18nProps from '#utils/geti18nProps'
+import Title from '#components/Title'
 
 type CardTiny = UnArray<APIResponseOf<'Card'>>
 
@@ -275,7 +276,7 @@ const SkeletonUnitsPage = () => {
 
   return (
     <>
-      <h2>组队</h2>
+      <Title title="组队" />
       {allFinished(allData) ? (
         <UnitsPage {...allData} />
       ) : (

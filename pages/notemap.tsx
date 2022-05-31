@@ -8,6 +8,7 @@ import { Colors } from '#data/colors'
 import { APIResponseOf, UnArray } from '#utils/api'
 import allFinished from '#utils/allFinished'
 import PageLoading from '#components/PageLoading'
+import Title from '#components/Title'
 
 const NotemapGraph = dynamic(() => import('#components/notemap/NotemapGraph'), {
   ssr: false,
@@ -110,7 +111,7 @@ const SkeletonNotemapPage = () => {
 
   return (
     <>
-      <h2>谱面</h2>
+      <Title title="谱面" />
       {allFinished(allData) ? (
         <NotemapPage {...allData} />
       ) : (

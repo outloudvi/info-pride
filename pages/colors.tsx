@@ -7,6 +7,7 @@ import { CharacterChineseNameList, CharacterId } from '#data/vendor/characterId'
 import allFinished from '#utils/allFinished'
 import { APIResponseOf } from '#utils/api'
 import useIpSWR from '#utils/useIpSWR'
+import Title from '#components/Title'
 
 const ColorOrder: CharacterId[][] = [
   ['char-mna'],
@@ -79,7 +80,7 @@ const SkeletonColorsPage = () => {
 
   return (
     <>
-      <h2>系列颜色</h2>
+      <Title title="系列颜色" />
       {allFinished(allData) ? (
         <ColorsPage {...allData} />
       ) : (

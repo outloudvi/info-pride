@@ -5,6 +5,7 @@ import { atomWithHash } from 'jotai/utils'
 import { useAtom } from 'jotai'
 
 import { Diary } from '#data/wikiModules'
+import Title from '#components/Title'
 
 const diaries: { [key: string]: string } = {}
 const diaryDates = Diary.map((x) => {
@@ -52,7 +53,7 @@ const DiaryPage = () => {
 
   return (
     <>
-      <h2>麻奈日记</h2>
+      <Title title="麻奈日记" />
       <Grid gutter={20} className="my-3">
         <Grid.Col xs={12} lg={6}>
           <div>

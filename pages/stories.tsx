@@ -9,6 +9,7 @@ import StoriesItem, {
 } from '#components/stories/StoriesItem'
 import { Episodes, Series } from '#data/stories'
 import StoriesData from '#data/stories.data'
+import Title from '#components/Title'
 
 const seriesAtom = atomWithHash('series', 0)
 const seasonAtom = atomWithHash('season', 1)
@@ -35,7 +36,7 @@ const Stories = () => {
 
   return (
     <>
-      <h2>剧情</h2>
+      <Title title="剧情" />
       <Grid gutter={20} className="my-3">
         <Grid.Col xs={12} lg={6}>
           <Tabs>

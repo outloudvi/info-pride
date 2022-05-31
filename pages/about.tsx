@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react'
 
 import type { Contributor } from './api/contributors'
 
+import Title from '#components/Title'
+
 /**
  * MIT License (MIT) Copyright (c) 2016 Kent C. Dodds, 2019 Jake Bolam, 2020 Maximilian Berkmann
  * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
@@ -95,7 +97,7 @@ const AboutPage = () => {
   }, [])
   return (
     <>
-      <h2>关于</h2>
+      <Title title="关于" />
       <p>INFO PRIDE 是一个为 IDOLY PRIDE 企划同好及游戏玩家设计的信息站点。</p>
       <p>贡献者们：</p>
       <Grid>

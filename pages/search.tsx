@@ -29,6 +29,7 @@ import {
 } from '#data/vendor/searchSkillTypes'
 import ResultList from '#components/search/ResultList'
 import CCIDTable from '#data/ccid'
+import Title from '#components/Title'
 
 const SearchPage = ({
   CardData,
@@ -324,7 +325,7 @@ const SkeletonSearchPage = () => {
 
   return (
     <>
-      <h2>卡片搜索</h2>
+      <Title title="卡片搜索" />
       {allFinished(allData) ? (
         <SearchPage {...allData} />
       ) : (

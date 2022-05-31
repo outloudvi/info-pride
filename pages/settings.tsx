@@ -7,6 +7,7 @@ import { Card } from '#data/wikiPages/cards'
 import { Cards } from '#data/wikiPages'
 import { CharacterChineseNameList, CharacterId } from '#data/vendor/characterId'
 import { LOCALSTORAGE_BOX_TAG } from '#utils/startupHook'
+import Title from '#components/Title'
 
 const clone = rfdc({
   proto: true,
@@ -56,7 +57,7 @@ const SettingsPage = () => {
 
   return (
     <>
-      <h2>设置</h2>
+      <Title title="设置" />
       <h3>我的 box</h3>
       <p>在此设置 box 后，搜索时将会显示卡片的持有状态。</p>
       <Grid gutter={20}>
