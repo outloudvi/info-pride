@@ -54,7 +54,7 @@ const Home = () => {
       </Grid.Col>
       {/* Line 2 */}
       <Grid.Col xs={12} lg={6}>
-        <div className="mb-2 text-3xl">网站新闻</div>
+        <div className="mb-2 text-3xl">新闻</div>
         <Notice />
       </Grid.Col>
       <Grid.Col xs={12} lg={6}>

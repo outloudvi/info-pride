@@ -1,23 +1,23 @@
-import Link from 'next/link'
-import useSWR from 'swr'
+import { Tabs } from '@mantine/core'
 
-const Notice = () => {
-  const { data: news } = useSWR<{ title: string; link?: string }[]>(
-    '/api/news',
-    (u) => fetch(u).then((x) => x.json())
-  )
+import InGameNotice from './InGameNotice'
+import SiteNotice from './SiteNotice'
 
-  return news && news.length > 0 ? (
-    <ul>
-      {news.map(({ title, link }, key) => (
-        <li key={key}>
-          <Link href={link ? link : '#'}>{title}</Link>
-        </li>
-      ))}
-    </ul>
-  ) : (
-    <p className="text-gray-500">新闻加载中。</p>
-  )
-}
+const Notice = () => (
+  <Tabs>
+    <Tabs.Tab label="网站公告">
+      <SiteNotice />
+    </Tabs.Tab>
+    <Tabs.Tab label="游戏公告">
+      <InGameNotice type="notices" />
+    </Tabs.Tab>
+    <Tabs.Tab label="问题报告">
+      <InGameNotice type="malfunctionNotices" />
+    </Tabs.Tab>
+    <Tabs.Tab label="公关消息">
+      <InGameNotice type="prNotices" />
+    </Tabs.Tab>
+  </Tabs>
+)
 
 export default Notice
