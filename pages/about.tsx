@@ -99,14 +99,20 @@ const AboutPage = () => {
     <>
       <Title title="关于" />
       <p>INFO PRIDE 是一个为 IDOLY PRIDE 企划同好及游戏玩家设计的信息站点。</p>
-      <p>贡献者们：</p>
-      <Grid>
-        {contribs.map((one, idx) => (
-          <Grid.Col xs={12} md={6} lg={4} key={idx}>
-            <ContributorBox contrib={one} />
-          </Grid.Col>
-        ))}
-      </Grid>
+      {contribs.length === 0 ? (
+        <p className="text-gray-500">正在加载贡献列表...</p>
+      ) : (
+        <>
+          <p>贡献者们：</p>
+          <Grid>
+            {contribs.map((one, idx) => (
+              <Grid.Col xs={12} md={6} lg={4} key={idx}>
+                <ContributorBox contrib={one} />
+              </Grid.Col>
+            ))}
+          </Grid>
+        </>
+      )}
     </>
   )
 }
