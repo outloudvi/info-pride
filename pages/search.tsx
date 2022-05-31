@@ -13,7 +13,7 @@ import { LocalBox } from './settings'
 
 import tryJSONParse from '#utils/tryJsonParse'
 import { LOCALSTORAGE_BOX_TAG } from '#utils/startupHook'
-import useIpSWR from '#utils/useIpSWR'
+import useApi from '#utils/useApi'
 import allFinished from '#utils/allFinished'
 import PageLoading from '#components/PageLoading'
 import { APIResponseOf } from '#utils/api'
@@ -313,9 +313,9 @@ const SearchPage = ({
 }
 
 const SkeletonSearchPage = () => {
-  const { data: CardData } = useIpSWR('Card')
-  const { data: SkillAllData } = useIpSWR('Skill/All')
-  const { data: SkillxData } = useIpSWR('Skill/X')
+  const { data: CardData } = useApi('Card')
+  const { data: SkillAllData } = useApi('Skill/All')
+  const { data: SkillxData } = useApi('Skill/X')
 
   const allData = {
     CardData,

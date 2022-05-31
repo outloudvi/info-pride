@@ -1,11 +1,13 @@
 import Link from 'next/link'
-import useSWR from 'swr'
+import { useQuery } from 'react-query'
+
+import { frontendQueryFn } from '#utils/api'
 
 const SiteNotice = () => {
-  const { data: news } = useSWR<{ title: string; link?: string }[]>(
-    '/api/news',
-    (u) => fetch(u).then((x) => x.json())
-  )
+  const { data: news } = useQuery<{ title: string; link?: string }[]>({
+    queryKey: '/api/news',
+    queryFn: frontendQueryFn,
+  })
 
   return news && news.length > 0 ? (
     <ul>

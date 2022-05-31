@@ -3,7 +3,7 @@ import { useEffect, useRef } from 'react'
 
 import renderNotemap from './renderNotemap'
 
-import useIpSWR from '#utils/useIpSWR'
+import useApi from '#utils/useApi'
 
 const NotemapGraph = ({
   chartId,
@@ -12,7 +12,7 @@ const NotemapGraph = ({
   chartId: string
   laneColors: string[]
 }) => {
-  const { data } = useIpSWR('MusicChart', {
+  const { data } = useApi('MusicChart', {
     chartId,
   })
   const svgRef = useRef<SVGSVGElement | null>(null)

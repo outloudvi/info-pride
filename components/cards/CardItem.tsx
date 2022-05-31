@@ -9,14 +9,14 @@ import type {
 } from '@outloudvi/hoshimi-types/ProtoMaster'
 import { CardType, SkillCategoryType } from '@outloudvi/hoshimi-types/ProtoEnum'
 import { useTranslation } from 'next-i18next'
-import useSWR from 'swr'
+import { useQuery } from 'react-query'
 
 import { toVideoLink } from '#components/ExternalVideo'
-import useIpSWR from '#utils/useIpSWR'
+import useApi from '#utils/useApi'
 import type { Card as WikiCard } from '#data/wikiPages/cards'
 import { Stories } from '#data/cardStories.data'
 import Paths from '#utils/paths'
-import { APIResponseOf, feFetcher, UnArray } from '#utils/api'
+import { APIResponseOf, UnArray } from '#utils/api'
 import { CharacterChineseNameList } from '#data/vendor/characterId'
 
 export const Props = ({
@@ -35,7 +35,7 @@ export const Props = ({
   | 'visualRatioPermil'
   | 'staminaRatioPermil'
 > & { level: number; rarityInfo: CardRarity }) => {
-  const { data: ParamData } = useIpSWR('CardParameter')
+  const { data: ParamData } = useApi('CardParameter')
 
   const parameterInfo = (ParamData ?? []).filter(
     (x) => x.id === cardParameterId && x.level === level
@@ -249,15 +249,14 @@ const CardItem = ({
   const [level, setLevel] = useState(rarityInfo?.levelLimit ?? 1)
   const [cnTrans, setCnTrans] = useState(true)
 
-  const { data: SkillData } = useIpSWR(`Skill`, {
+  const { data: SkillData } = useApi(`Skill`, {
     ids: `${card.skillId1},${card.skillId2},${card.skillId3}`,
   })
 
   const {
     data: WikiCardData,
-  }: { data?: { card: WikiCard; stories: Stories | null } } = useSWR(
-    `/api/wikiCard?nameJa=${nameJa}`,
-    feFetcher
+  }: { data?: { card: WikiCard; stories: Stories | null } } = useQuery(
+    `/api/wikiCard?nameJa=${nameJa}`
   )
 
   const { card: wikiCard, stories: wikiStories } = WikiCardData ?? {

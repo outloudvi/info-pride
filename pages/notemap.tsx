@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic'
 import { Grid, NativeSelect } from '@mantine/core'
 import _range from 'lodash/range'
 
-import useIpSWR from '#utils/useIpSWR'
+import useApi from '#utils/useApi'
 import { Colors } from '#data/colors'
 import { APIResponseOf, UnArray } from '#utils/api'
 import allFinished from '#utils/allFinished'
@@ -103,7 +103,7 @@ const NotemapPage = ({
 }
 
 const SkeletonNotemapPage = () => {
-  const { data: ChartListData } = useIpSWR('MusicChartList')
+  const { data: ChartListData } = useApi('MusicChartList')
 
   const allData = {
     ChartListData,

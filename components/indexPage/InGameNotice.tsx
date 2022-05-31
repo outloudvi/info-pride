@@ -3,14 +3,14 @@ import { useState } from 'react'
 import dayjs from 'dayjs'
 import { APIMapping } from '@outloudvi/hoshimi-types'
 
-import useIpSWR from '#utils/useIpSWR'
+import useApi from '#utils/useApi'
 import { APIResponseOf } from '#utils/api'
 
 type NoticeType = Parameters<APIMapping['Notice']>[number]['type']
 
 const InGameNotice = ({ type }: { type: NoticeType }) => {
   const [limit, setLimit] = useState(5)
-  const { data: news } = useIpSWR('Notice', {
+  const { data: news } = useApi('Notice', {
     limit,
     type,
   })

@@ -2,7 +2,7 @@ import * as Sentry from '@sentry/browser'
 
 import Paths from '#utils/paths'
 import { toVideoLink } from '#components/ExternalVideo'
-import useIpSWR from '#utils/useIpSWR'
+import useApi from '#utils/useApi'
 import { StoriesTitle } from '#data/vendor'
 import { Episodes, SeriesName } from '#data/stories'
 import StoriesData, { SubTitles } from '#data/stories.data'
@@ -78,7 +78,7 @@ export const SpecialStoriesItem = (props: {
 const StoriesItem = (props: PropType) => {
   const { series, season, chapter } = props
 
-  const { data: StoryData } = useIpSWR('Story', {
+  const { data: StoryData } = useApi('Story', {
     id: getBackendStoryId(props),
   })
 

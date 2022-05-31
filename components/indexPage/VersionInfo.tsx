@@ -1,10 +1,10 @@
 import day from 'dayjs'
 import { Badge } from '@mantine/core'
-import useSWR from 'swr'
+import { useQuery } from 'react-query'
 
-import useIpSWR from '#utils/useIpSWR'
+import useApi from '#utils/useApi'
 import allFinished from '#utils/allFinished'
-import { APIResponseOf } from '#utils/api'
+import { APIResponseOf, frontendQueryFn } from '#utils/api'
 import { Meta as WikiPagesMeta } from '#data/wikiPages'
 import { Meta as WikiModulesMeta } from '#data/wikiModules'
 import { VersionInfo } from '#api/version'
@@ -58,11 +58,11 @@ const VersionInfo = ({
 }
 
 const SkeletonVersionInfo = () => {
-  const { data: VersionData } = useIpSWR('Version')
-  const { data: GameVersionData } = useSWR<VersionInfo | null>(
-    '/api/version',
-    (u) => fetch(u).then((x) => x.json())
-  )
+  const { data: VersionData } = useApi('Version')
+  const { data: GameVersionData } = useQuery({
+    queryKey: '/api/version',
+    queryFn: frontendQueryFn,
+  })
 
   const allData = {
     VersionData,

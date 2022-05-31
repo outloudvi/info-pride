@@ -13,7 +13,7 @@ import { useState } from 'react'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
-import useIpSWR from '#utils/useIpSWR'
+import useApi from '#utils/useApi'
 import { APIResponseOf, UnArray } from '#utils/api'
 import ListButton from '#components/ListButton'
 import { CharacterChineseNameList, CharacterId } from '#data/vendor/characterId'
@@ -106,7 +106,7 @@ const CharacterItem = ({
 
   const { id, characterGroupId, name, enName, color } = character
 
-  const { data: CharacterData } = useIpSWR('Character', { ids: id })
+  const { data: CharacterData } = useApi('Character', { ids: id })
 
   if (!CharacterData) {
     return <></>
@@ -305,7 +305,7 @@ export const getStaticProps = async ({ locale }: { locale: string }) => {
 }
 
 const SkeletonCharactersPage = () => {
-  const { data: CharacterListData } = useIpSWR('Character/List')
+  const { data: CharacterListData } = useApi('Character/List')
 
   const allData = {
     CharacterListData,

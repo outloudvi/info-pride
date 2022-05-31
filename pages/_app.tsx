@@ -9,16 +9,14 @@ import {
 import { NotificationsProvider } from '@mantine/notifications'
 import { appWithTranslation } from 'next-i18next'
 import '../styles/globals.css' // for Tailwind CSS
-import { SWRConfig } from 'swr'
-import { ResourceMapping } from '@outloudvi/hoshimi-types'
 import { useColorScheme, useLocalStorage } from '@mantine/hooks'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import NextNProgress from 'nextjs-progressbar'
 import { atom, useAtom } from 'jotai'
+import { QueryClient, QueryClientProvider } from 'react-query'
 
 import Layout from '#components/layout/Layout'
 import Loading from '#components/layout/Loading'
-import { fetchDb } from '#utils/api'
 import startupHook from '#utils/startupHook'
 
 const finishedAtom = atom(false)
@@ -41,6 +39,24 @@ const App = (props: AppProps) => {
     startupHook()
     setTimeout(() => setFinished(true), 500)
   }, [setFinished])
+
+  const [queryClient] = useState(
+    () =>
+      new QueryClient({
+        defaultOptions: {
+          queries: {
+            staleTime: Infinity,
+            queryFn: ({ queryKey: [path] }) => {
+              if (typeof path === 'string') {
+                const url = new URL('https://idoly-backend.outv.im/api/' + path)
+                return fetch(String(url)).then((x) => x.json())
+              }
+              throw new Error('Invalid QueryKey')
+            },
+          },
+        },
+      })
+  )
 
   return (
     <>
@@ -126,21 +142,13 @@ const App = (props: AppProps) => {
           }}
         >
           <NotificationsProvider>
-            <SWRConfig
-              value={{
-                fetcher: (url: keyof ResourceMapping) => {
-                  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                  // @ts-ignore: For now all params are in URL and sent over query params
-                  return fetchDb(url)({})
-                },
-              }}
-            >
+            <QueryClientProvider client={queryClient}>
               <Layout>
                 <Loading finished={finished} />
                 <NextNProgress />
                 <Component {...pageProps} />
               </Layout>
-            </SWRConfig>
+            </QueryClientProvider>
           </NotificationsProvider>
         </MantineProvider>
       </ColorSchemeProvider>

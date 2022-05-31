@@ -6,7 +6,7 @@ import PageLoading from '#components/PageLoading'
 import { CharacterChineseNameList, CharacterId } from '#data/vendor/characterId'
 import allFinished from '#utils/allFinished'
 import { APIResponseOf } from '#utils/api'
-import useIpSWR from '#utils/useIpSWR'
+import useApi from '#utils/useApi'
 import Title from '#components/Title'
 
 const ColorOrder: CharacterId[][] = [
@@ -72,7 +72,7 @@ const ColorsPage = ({
 }
 
 const SkeletonColorsPage = () => {
-  const { data: CharacterList } = useIpSWR('Character/List')
+  const { data: CharacterList } = useApi('Character/List')
 
   const allData = {
     CharacterList,

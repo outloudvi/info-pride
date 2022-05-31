@@ -15,7 +15,7 @@ import type { Skill } from '@outloudvi/hoshimi-types/ProtoMaster'
 import { CardType, SkillCategoryType } from '@outloudvi/hoshimi-types/ProtoEnum'
 import { useTranslation } from 'next-i18next'
 
-import useIpSWR from '#utils/useIpSWR'
+import useApi from '#utils/useApi'
 import CardIdData from '#data/ccid'
 import type { APIResponseOf, UnArray } from '#utils/api'
 import { CharacterChineseNameList, CharacterId } from '#data/vendor/characterId'
@@ -62,7 +62,7 @@ const SkillInUnit = ({
 
 const CardInUnit = ({ card, col }: { card: CardTiny; col: number }) => {
   const { t: $v } = useTranslation('vendor')
-  const { data: SkillData } = useIpSWR(`Skill`, {
+  const { data: SkillData } = useApi(`Skill`, {
     ids: `${card.skillId1},${card.skillId2},${card.skillId3}`,
   })
 
@@ -269,7 +269,7 @@ const UnitsPage = ({ CardData }: { CardData: APIResponseOf<'Card'> }) => {
 }
 
 const SkeletonUnitsPage = () => {
-  const { data: CardData } = useIpSWR('Card')
+  const { data: CardData } = useApi('Card')
 
   const allData = {
     CardData,

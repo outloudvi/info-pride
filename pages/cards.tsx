@@ -5,7 +5,7 @@ import { useTranslation } from 'next-i18next'
 import { atomWithHash } from 'jotai/utils'
 import { useAtom } from 'jotai'
 
-import useIpSWR from '#utils/useIpSWR'
+import useApi from '#utils/useApi'
 import CardItem from '#components/cards/CardItem'
 import allFinished from '#utils/allFinished'
 import {
@@ -106,8 +106,8 @@ const CardsPage = ({
 }
 
 const SkeletonCardsPage = () => {
-  const { data: CardData } = useIpSWR('Card')
-  const { data: RarityData } = useIpSWR('CardRarity')
+  const { data: CardData } = useApi('Card')
+  const { data: RarityData } = useApi('CardRarity')
 
   const allData = {
     CardData,
