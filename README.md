@@ -33,7 +33,8 @@ AGPLv3 (code) / Various licenses (data)
 
 ## Contributors ✨
 
-(We are using contents from [bwiki/idolypride](https://wiki.biligame.com/idolypride), so feel free to [add yourself as a contributor](https://github.com/outloudvi/info-pride/issues/1) if you are a contributor of that wiki!)
+* We are using contents from [bwiki/idolypride](https://wiki.biligame.com/idolypride), so feel free to [add yourself as a contributor](https://github.com/outloudvi/info-pride/issues/1) if you are a contributor of that wiki!
+* We are also using translations from subbed/translated videos on Bilibili. Please don't hesitate to [add yourself as a contributor](https://github.com/outloudvi/info-pride/issues/1) if you are contributing IDOLY PRIDE-related translation videos!
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
 
