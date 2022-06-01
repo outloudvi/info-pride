@@ -30,6 +30,7 @@ import {
 import ResultList from '#components/search/ResultList'
 import CCIDTable from '#data/ccid'
 import Title from '#components/Title'
+import Paths from '#utils/paths'
 
 const SearchPage = ({
   CardData,
@@ -273,7 +274,12 @@ const SearchPage = ({
         <div className="flex items-center mb-2">
           <FilterSelect
             className="mr-2"
-            label="效果类型"
+            label={
+              <span>
+                效果类型（
+                <Link href={Paths.wiki('技能说明')}>这些效果都是什么？</Link>）
+              </span>
+            }
             multiple
             list={skillEffectTypes}
             listNamemap={skillEffectTypeNames}

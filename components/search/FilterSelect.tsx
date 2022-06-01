@@ -1,5 +1,6 @@
 import { MultiSelect, Select } from '@mantine/core'
 import { GetInputPropsPayload } from '@mantine/form/lib/types'
+import { ReactNode } from 'react'
 
 const FilterSelect = <T extends string>({
   label,
@@ -10,7 +11,7 @@ const FilterSelect = <T extends string>({
   listNamemap,
   formProps,
 }: {
-  label: string
+  label: string | ReactNode
   list: readonly T[]
   width: number
   multiple?: boolean
