@@ -3,7 +3,8 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 
 import { Cards } from '#data/wikiPages'
 import type { Card as WikiCard } from '#data/wikiPages/cards'
-import CardStories, { Stories } from '#data/cardStories.data'
+import CardStories from '#data/cardStories.data'
+import { Stories } from '#data/types'
 
 const CardsArray: WikiCard[] = Object.values(Cards)
   .map(Object.values)

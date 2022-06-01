@@ -11,7 +11,7 @@ type NoticeType = Parameters<APIMapping['Notice']>[number]['type']
 const InGameNotice = ({ type }: { type: NoticeType }) => {
   const [limit, setLimit] = useState(5)
   const { data: news } = useApi('Notice', {
-    limit,
+    limit: String(limit),
     type,
   })
   const [modalOpened, setModalOpened] = useState(false)

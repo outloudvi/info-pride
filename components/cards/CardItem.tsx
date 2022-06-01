@@ -14,10 +14,10 @@ import { useQuery } from 'react-query'
 import { toVideoLink } from '#components/ExternalVideo'
 import useApi from '#utils/useApi'
 import type { Card as WikiCard } from '#data/wikiPages/cards'
-import { Stories } from '#data/cardStories.data'
 import Paths from '#utils/paths'
 import { APIResponseOf, UnArray } from '#utils/api'
 import { CharacterChineseNameList } from '#data/vendor/characterId'
+import { Stories } from '#data/types'
 
 export const Props = ({
   level,

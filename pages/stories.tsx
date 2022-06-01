@@ -15,7 +15,7 @@ const seriesAtom = atomWithHash('series', 0)
 const seasonAtom = atomWithHash('season', 1)
 const chapterAtom = atomWithHash('chapter', 1)
 
-const Stories = () => {
+const StoriesPage = () => {
   const [series, setSeries] = useAtom(seriesAtom)
   const [season, setSeason] = useAtom(seasonAtom)
   const [chapter, setChapter] = useAtom(chapterAtom)
@@ -138,4 +138,4 @@ const Stories = () => {
   )
 }
 
-export default Stories
+export default StoriesPage
