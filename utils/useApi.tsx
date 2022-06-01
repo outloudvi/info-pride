@@ -5,15 +5,17 @@ import * as Sentry from '@sentry/browser'
 import { APIMapping } from '@outloudvi/hoshimi-types'
 import { useQuery } from 'react-query'
 
-import { APIResponseOf } from './api'
+import { APIResponseOf, GetFirst, LengthOf } from './api'
 
 function useApi<T extends keyof APIMapping>(
   key: T,
-  params: Record<string, string | number> = {}
+  params?: LengthOf<Parameters<APIMapping[T]>> extends 0
+    ? undefined
+    : GetFirst<Parameters<APIMapping[T]>>
 ) {
   const urlsp = new URLSearchParams()
   let withParams = false
-  Object.entries(params).map(([k, v]) => {
+  Object.entries(params ?? {}).map(([k, v]) => {
     withParams = true
     urlsp.set(k, String(v))
   })
