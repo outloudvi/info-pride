@@ -362,6 +362,10 @@ const data: Partial<
         name: '强敌现身',
         video: { type: 'bilibili', vid: 'av726774388' },
       },
+      12: {
+        name: '被人称之为再世',
+        video: { type: 'bilibili', vid: 'av257100578' },
+      },
     },
   },
   Tokyo: {
