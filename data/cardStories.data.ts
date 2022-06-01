@@ -1,8 +1,5 @@
-import type { ChapterItem } from './stories'
+import { Stories } from './types'
 import { CharacterId } from './vendor/characterId'
-
-export type Stories = Record<1 | 2 | 3, ChapterItem> &
-  Partial<Record<'phone', Omit<ChapterItem, 'name'>>>
 
 const data: Partial<Record<CharacterId, Record<number, Stories>>> = {
   'char-mna': {

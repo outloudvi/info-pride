@@ -1,5 +1,6 @@
 const Pages = {
   剧情: '/stories',
+  活动剧情: '/eventstories',
   谱面: '/notemap',
   角色: '/characters',
   卡片: '/cards',

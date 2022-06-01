@@ -1,5 +1,3 @@
-import type { ExternalVideo } from '#components/ExternalVideo'
-
 export const Series = [
   'Hoshimi',
   'Tokyo',
@@ -18,9 +16,4 @@ export const Episodes: Record<SeriesName, [string, number[]]> = {
   LizNoir: ['LizNoir', [30]],
   Mana: ['长濑麻奈', [15]],
   Special: ['其它', [3]],
-}
-
-export type ChapterItem = {
-  name: string
-  video: ExternalVideo
 }

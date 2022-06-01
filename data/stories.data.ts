@@ -1,4 +1,5 @@
-import type { ChapterItem, SeriesName } from './stories'
+import type { SeriesName } from './stories'
+import { ChapterItem } from './types'
 
 const data: Partial<
   Record<SeriesName, Record<number, Record<number, ChapterItem>>>
