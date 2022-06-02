@@ -11,6 +11,12 @@ import { APIResponseOf } from '#utils/api'
 import ListButton from '#components/ListButton'
 import EventStoryView from '#components/eventstories/EventStoryView'
 
+function guessDate(id: string): string | null {
+  const yymm = id.split('-')?.[2]
+  if (!yymm) return null
+  return '20' + yymm.slice(0, 2) + '/' + yymm.slice(2, 4)
+}
+
 const EventStoriesPage = ({
   EventStoriesData,
 }: {
@@ -37,6 +43,7 @@ const EventStoriesPage = ({
                   selected={currEvent?.id === item.id}
                 >
                   {$ev(item.description)}
+                  {guessDate(item.id) ? ` (${guessDate(item.id)})` : ''}
                 </ListButton>
               )
             )}
