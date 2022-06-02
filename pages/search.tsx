@@ -70,24 +70,22 @@ const SearchPage = ({
     },
   })
 
-  const skillEffectTypes = useMemo(
-    () =>
-      uniq(
-        Object.values<SXEffectWithTarget>(SkillxData)
-          .map((x) => x.effect.typ)
-          .filter((x) => x)
-      ).sort(),
-    [SkillxData]
-  )
-  const skillTargetTypes = useMemo(
-    () =>
-      uniq(
-        Object.values<SXEffectWithTarget>(SkillxData)
-          .map((x) => x.target.typ)
-          .filter((x) => x)
-      ).sort(),
-    [SkillxData]
-  )
+  const skillEffectTypes = useMemo(() => {
+    const orders = Object.keys(skillEffectTypeNames)
+    return uniq(
+      Object.values<SXEffectWithTarget>(SkillxData)
+        .map((x) => x.effect.typ)
+        .filter((x) => x)
+    ).sort((a, b) => orders.indexOf(a) - orders.indexOf(b))
+  }, [SkillxData])
+  const skillTargetTypes = useMemo(() => {
+    const orders = Object.keys(skillTargetTypeNames)
+    return uniq(
+      Object.values<SXEffectWithTarget>(SkillxData)
+        .map((x) => x.target.typ)
+        .filter((x) => x)
+    ).sort((a, b) => orders.indexOf(a) - orders.indexOf(b))
+  }, [SkillxData])
 
   const [selectedCards, selectedSkills] = useMemo(() => {
     let ret = [...CardData]
