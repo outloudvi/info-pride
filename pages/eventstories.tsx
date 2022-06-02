@@ -10,12 +10,15 @@ import PageLoading from '#components/PageLoading'
 import { APIResponseOf } from '#utils/api'
 import ListButton from '#components/ListButton'
 import EventStoryView from '#components/eventstories/EventStoryView'
+import { EventGroupData } from '#data/eventStories.data'
 
 function guessDate(id: string): string | null {
   const yymm = id.split('-')?.[2]
   if (!yymm) return null
   return '20' + yymm.slice(0, 2) + '/' + yymm.slice(2, 4)
 }
+
+type IdentityFunction<V> = (v: V) => v is NonNullable<V>
 
 const EventStoriesPage = ({
   EventStoriesData,
@@ -34,18 +37,22 @@ const EventStoriesPage = ({
         <Grid.Col xs={12} lg={3}>
           <div className="h-[65vh] overflow-y-auto">
             {EventStoriesData.sort((a, b) => b.order - a.order).map(
-              (item, key) => (
-                <ListButton
-                  key={key}
-                  onClick={() => {
-                    setCurrEvent(item)
-                  }}
-                  selected={currEvent?.id === item.id}
-                >
-                  {$ev(item.description)}
-                  {guessDate(item.id) ? ` (${guessDate(item.id)})` : ''}
-                </ListButton>
-              )
+              (item, key) => {
+                const props = [guessDate(item.id), EventGroupData[item.id]]
+                  .filter(Boolean as unknown as IdentityFunction<string | null>)
+                  .join(', ')
+                return (
+                  <ListButton
+                    key={key}
+                    onClick={() => {
+                      setCurrEvent(item)
+                    }}
+                    selected={currEvent?.id === item.id}
+                  >
+                    {$ev(item.description)} {props && `(${props})`}
+                  </ListButton>
+                )
+              }
             )}
           </div>
         </Grid.Col>

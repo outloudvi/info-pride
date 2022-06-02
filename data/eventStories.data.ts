@@ -247,4 +247,19 @@ const data: Record<string, ChapterItem> = {
   },
 }
 
+export const EventGroupData: Record<string, string> = {
+  'st-eve-2107-tour': '遥子',
+  'st-eve-2108-tour': '芽衣',
+  'st-eve-2109-backside': 'LizNoir',
+  'st-eve-2110-marathon': '麻奈',
+  'st-eve-2111-backside': '怜',
+  'st-eve-2112-marathon': 'TRINITYAiLE',
+  'st-eve-2201-contest': 'SUNNY PEACE',
+  'st-eve-2202-marathon': 'LizNoir',
+  'st-eve-2203-race': '瑠依/雫',
+  'st-eve-2204-contest': '铃',
+  'st-eve-2205-race': '千纱/沙季',
+  'st-eve-2206-marathon': 'SUNNY PEACE',
+}
+
 export default data
