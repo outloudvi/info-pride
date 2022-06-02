@@ -1,13 +1,43 @@
 import { SkillCategoryType } from 'hoshimi-types/ProtoEnum'
-import { Skill } from 'hoshimi-types/ProtoMaster'
+import { Skill, SkillLevel } from 'hoshimi-types/ProtoMaster'
 import { useTranslation } from 'next-i18next'
+
+function buildStatusLine(
+  levelDesc: SkillLevel,
+  typ: SkillCategoryType
+): string {
+  const { stamina, limitCount, coolTime } = levelDesc
+
+  const ret = [`所需精力 ${stamina}`]
+
+  switch (typ) {
+    case SkillCategoryType.Active:
+    case SkillCategoryType.Passive: {
+      if (limitCount > 0) {
+        ret.push(`Live 中只生效 ${limitCount} 次`)
+      } else {
+        ret.push(`CT ${coolTime}`)
+      }
+      break
+    }
+    case SkillCategoryType.Special: {
+      // SP does not care about CT
+      break
+    }
+  }
+
+  return ret.join(' / ')
+}
 
 const SkillDesc = ({ skill }: { skill: Skill }) => {
   const { t: $v } = useTranslation('vendor')
 
   const { name, categoryType } = skill
   const highestLevel = skill.levels[skill.levels.length - 1]
-  const { description, stamina, coolTime } = highestLevel
+  const { description } = highestLevel
+
+  const statusLine = buildStatusLine(highestLevel, categoryType)
+
   return (
     <div>
       <span>{name}</span>
@@ -20,9 +50,7 @@ const SkillDesc = ({ skill }: { skill: Skill }) => {
         }}
       ></span>
       <br />
-      <span>
-        所需精力 {stamina} / CT {coolTime}
-      </span>
+      <span className="font-semibold">{statusLine}</span>
     </div>
   )
 }
