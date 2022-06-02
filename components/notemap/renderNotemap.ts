@@ -1,5 +1,5 @@
 import * as d3 from 'd3'
-import type { MusicChart } from '@outloudvi/hoshimi-types/types'
+import type { MusicChart } from 'hoshimi-types/types'
 
 type Config = {
   height: number

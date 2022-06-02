@@ -1,5 +1,5 @@
 import { Grid, NativeSelect } from '@mantine/core'
-import { CardType } from '@outloudvi/hoshimi-types/ProtoEnum'
+import { CardType } from 'hoshimi-types/ProtoEnum'
 import { useMemo } from 'react'
 import { useTranslation } from 'next-i18next'
 import { atomWithHash } from 'jotai/utils'

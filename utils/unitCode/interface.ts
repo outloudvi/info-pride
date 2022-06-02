@@ -1,4 +1,4 @@
-import { Card } from '@outloudvi/hoshimi-types/ProtoMaster'
+import { Card } from 'hoshimi-types/ProtoMaster'
 
 export type PartialCard = Pick<Card, 'id' | 'characterId'>
 

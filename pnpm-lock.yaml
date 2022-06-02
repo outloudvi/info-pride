@@ -18,7 +18,6 @@ specifiers:
   '@mantine/hooks': ^4.2.2
   '@mantine/next': ^4.2.2
   '@mantine/notifications': ^4.2.2
-  '@outloudvi/hoshimi-types': ^1.0.25
   '@sentry/browser': ^6.19.7
   '@sentry/nextjs': ^6.19.7
   '@types/d3': ^7.1.0
@@ -39,6 +38,7 @@ specifiers:
   eslint-plugin-import: ^2.26.0
   got: ^12.0.4
   history: ^5.3.0
+  hoshimi-types: ^1.0.26
   husky: ^8.0.1
   i18next: ^21.6.16
   jotai: ^1.6.5
@@ -95,7 +95,6 @@ dependencies:
   tailwindcss: 3.0.24_ts-node@10.7.0
 
 devDependencies:
-  '@outloudvi/hoshimi-types': 1.0.25
   '@types/d3': 7.1.0
   '@types/lodash': 4.14.182
   '@types/node': 17.0.30
@@ -107,6 +106,7 @@ devDependencies:
   eslint-config-next: 12.1.5_ldpv3uesskyaguxpaa56hbtpeu
   eslint-import-resolver-typescript: 2.7.1_myxbwluo6p3kuxjcyp342zygci
   eslint-plugin-import: 2.26.0_iqjbwfvwlbjep2xhectfqm3l6a
+  hoshimi-types: 1.0.26
   husky: 8.0.1
   json-schema-to-typescript: 10.1.5
   ts-node: 10.7.0_obw5lm6bnftkuhtgsmfxzsamfm
@@ -851,10 +851,6 @@ packages:
     dependencies:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.13.0
-
-  /@outloudvi/hoshimi-types/1.0.25:
-    resolution: {integrity: sha512-y5/CHt/xKiSSNcJAzraVZSfTZYUueG16w7Mk1o5z2TtHpTQTzBOdemKFjRnnr/gj9KYmrADyp/o46THt9NABIg==, tarball: download/@outloudvi/hoshimi-types/1.0.25/307e2f5a3113a1a2a41fb6c00742377128ace0829e96912502a7adad1a1765ae}
-    dev: true
 
   /@popperjs/core/2.11.2:
     resolution: {integrity: sha512-92FRmppjjqz29VMJ2dn+xdyXZBrMlE42AV6Kq6BwjWV7CNUW1hs2FtxSNLQE+gJhaZ6AAmYuO9y8dshhcBl7vA==}
@@ -3384,6 +3380,10 @@ packages:
     dependencies:
       react-is: 16.13.1
     dev: false
+
+  /hoshimi-types/1.0.26:
+    resolution: {integrity: sha512-aM7t0KVzjb6NHGfYwm6MYstKli5YQ422edHiu7OjQ8sMWrVIIFx9lcmeuirNQCkUL/LARs+C85QY5ot6bWMl1w==}
+    dev: true
 
   /hosted-git-info/4.1.0:
     resolution: {integrity: sha512-kyCuEOWjJqZuDbRHzL8V93NzQhwIB71oFWSyzVo+KPZI+pnQPPxucdkrOZvkLRnrf5URsQM+IJ09Dw29cRALIA==}

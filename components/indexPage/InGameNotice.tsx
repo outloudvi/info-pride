@@ -1,7 +1,7 @@
 import { Anchor, Modal } from '@mantine/core'
 import { useState } from 'react'
 import dayjs from 'dayjs'
-import { APIMapping } from '@outloudvi/hoshimi-types'
+import { APIMapping } from 'hoshimi-types'
 
 import useApi from '#utils/useApi'
 import { APIResponseOf } from '#utils/api'

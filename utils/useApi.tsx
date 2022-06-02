@@ -2,7 +2,7 @@ import { showNotification } from '@mantine/notifications'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons'
 import * as Sentry from '@sentry/browser'
-import { APIMapping } from '@outloudvi/hoshimi-types'
+import { APIMapping } from 'hoshimi-types'
 import { useQuery } from 'react-query'
 
 import { APIResponseOf, GetFirst, LengthOf } from './api'

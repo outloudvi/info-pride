@@ -1,7 +1,7 @@
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Group } from '@mantine/core'
-import { MessageGroup } from '@outloudvi/hoshimi-types/ProtoMaster'
+import { MessageGroup } from 'hoshimi-types/ProtoMaster'
 
 import ChatList from './ChatList'
 

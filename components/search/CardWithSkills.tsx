@@ -1,6 +1,6 @@
-import { Skill } from '@outloudvi/hoshimi-types/ProtoMaster'
+import { Skill } from 'hoshimi-types/ProtoMaster'
 import { Card, Grid } from '@mantine/core'
-import { CardType } from '@outloudvi/hoshimi-types/ProtoEnum'
+import { CardType } from 'hoshimi-types/ProtoEnum'
 import { useTranslation } from 'next-i18next'
 import dayjs from 'dayjs'
 import dayjsUtc from 'dayjs/plugin/utc'

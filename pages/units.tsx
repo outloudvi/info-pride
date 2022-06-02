@@ -11,8 +11,8 @@ import {
   Tooltip,
 } from '@mantine/core'
 import { showNotification } from '@mantine/notifications'
-import type { Skill } from '@outloudvi/hoshimi-types/ProtoMaster'
-import { CardType, SkillCategoryType } from '@outloudvi/hoshimi-types/ProtoEnum'
+import type { Skill } from 'hoshimi-types/ProtoMaster'
+import { CardType, SkillCategoryType } from 'hoshimi-types/ProtoEnum'
 import { useTranslation } from 'next-i18next'
 
 import useApi from '#utils/useApi'

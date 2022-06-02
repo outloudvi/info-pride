@@ -2,12 +2,8 @@ import { useState } from 'react'
 import { Button, Grid, Skeleton, Slider, Switch, Tooltip } from '@mantine/core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
-import type {
-  Card,
-  CardRarity,
-  Skill,
-} from '@outloudvi/hoshimi-types/ProtoMaster'
-import { CardType, SkillCategoryType } from '@outloudvi/hoshimi-types/ProtoEnum'
+import type { Card, CardRarity, Skill } from 'hoshimi-types/ProtoMaster'
+import { CardType, SkillCategoryType } from 'hoshimi-types/ProtoEnum'
 import { useTranslation } from 'next-i18next'
 import { useQuery } from 'react-query'
 

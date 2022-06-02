@@ -1,5 +1,5 @@
-import { SkillCategoryType } from '@outloudvi/hoshimi-types/ProtoEnum'
-import { Skill } from '@outloudvi/hoshimi-types/ProtoMaster'
+import { SkillCategoryType } from 'hoshimi-types/ProtoEnum'
+import { Skill } from 'hoshimi-types/ProtoMaster'
 import { useTranslation } from 'next-i18next'
 
 const SkillDesc = ({ skill }: { skill: Skill }) => {

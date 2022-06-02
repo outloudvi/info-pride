@@ -1,5 +1,5 @@
-import type { APIMapping } from '@outloudvi/hoshimi-types'
-import { UnwrapPromise } from '@outloudvi/hoshimi-types/helpers'
+import type { APIMapping } from 'hoshimi-types'
+import { UnwrapPromise } from 'hoshimi-types/helpers'
 import { QueryFunction } from 'react-query'
 
 export type UnArray<T> = T extends (infer R)[] ? R : never
