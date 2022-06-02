@@ -17,7 +17,10 @@ const SkillDesc = ({
   highlight: boolean
 }) => (
   <div
-    className={'basis-0 p-1 rounded grow' + (highlight ? ' bg-yellow-200' : '')}
+    className={
+      'basis-0 p-1 rounded grow' +
+      (highlight ? ' bg-yellow-200 dark:bg-yellow-800' : '')
+    }
   >
     <span>
       {name} / {type}

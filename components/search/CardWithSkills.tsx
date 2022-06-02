@@ -50,7 +50,9 @@ const CardWithSkills = ({
             lg={4}
             key={index}
             className={
-              highlightedSkills.includes(skill.id) ? 'bg-yellow-300' : ''
+              highlightedSkills.includes(skill.id)
+                ? 'bg-yellow-300 dark:bg-yellow-700'
+                : ''
             }
           >
             <SkillDesc skill={skill} />
