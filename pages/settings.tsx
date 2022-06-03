@@ -31,8 +31,7 @@ const SettingsPage = () => {
 
   const updateLocalBox = (slug: CharacterId, id: number, have: boolean) => {
     const thisBox = clone(localBox)
-    if (!thisBox[slug]) thisBox[slug] = []
-    thisBox[slug]![id] = have
+    ;(thisBox[slug] ?? (thisBox[slug] = []))[id] = have
     setLocalBox(thisBox)
   }
 
@@ -61,7 +60,7 @@ const SettingsPage = () => {
       <h3>我的 box</h3>
       <p>在此设置 box 后，搜索时将会显示卡片的持有状态。</p>
       <Grid gutter={20}>
-        {Object.entries(Cards).map(([name, _], _key) => (
+        {Object.entries(Cards).map(([name], _key) => (
           <Grid.Col key={_key} xs={12} lg={3} className="rounded">
             <b>{CharacterChineseNameList[name as CharacterId]}</b>
             <div>

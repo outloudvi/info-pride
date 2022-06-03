@@ -1,6 +1,6 @@
 import { withSentry } from '@sentry/nextjs'
 import type { NextApiRequest, NextApiResponse } from 'next'
-import got from 'got'
+import { got } from 'got'
 import * as cheerio from 'cheerio'
 
 const IOS_APP_PAGE = 'https://apps.apple.com/jp/app/id1535925293'
@@ -21,7 +21,8 @@ async function getVersion(): Promise<VersionInfo | null> {
 
   const $ = cheerio.load(html)
   const shoeboxMeta = $('#shoebox-media-api-cache-apps').html()
-  const obj = JSON.parse(shoeboxMeta!)
+  if (!shoeboxMeta) return null
+  const obj = JSON.parse(shoeboxMeta)
   for (const i of Object.values(obj)) {
     try {
       const item = JSON.parse(i as string)

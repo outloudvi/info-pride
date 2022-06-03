@@ -60,7 +60,8 @@ const ColorsPage = ({
                 key={_j}
                 name={CharacterChineseNameList[one]}
                 color={toHashColor(
-                  CharacterList.find((x) => x.id === one)!.color
+                  CharacterList.find((x) => x.id === one)?.color ??
+                    'transparent'
                 )}
               />
             ))}

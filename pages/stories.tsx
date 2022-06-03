@@ -22,7 +22,7 @@ const StoriesPage = () => {
   const seriesName = Series[series]
 
   const completion = useMemo(() => {
-    const ret: any = {}
+    const ret: Record<string, Record<number, Record<number, boolean>>> = {}
     for (let i = 0; i < Series.length; i++) {
       const seriesSlug = Series[i]
       ret[seriesSlug] = Episodes[seriesSlug][1].map((length, episodeKey) =>
@@ -89,7 +89,7 @@ const StoriesPage = () => {
             )}
             <Tabs.Tab label="其它">
               <div className="max-h-[60vh] overflow-y-auto">
-                {Object.entries(StoriesData.Special![1]).map(
+                {Object.entries(StoriesData.Special?.[1] ?? []).map(
                   ([chapterId, chapterItem], key) => {
                     const seriesKey = Series.indexOf('Special')
                     const chapterNum = Number(chapterId)

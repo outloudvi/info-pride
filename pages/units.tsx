@@ -176,7 +176,7 @@ const UnitsPage = ({ CardData }: { CardData: APIResponseOf<'Card'> }) => {
   const unitCode = useMemo(() => {
     const cardList = unitCards.slice(1)
     if (cardList.filter((x) => x).length !== 5) return ''
-    return unitCodeV1.encode(cardList as NonNullable<any>, CardIdData)
+    return unitCodeV1.encode(cardList as NonNullable<CardTiny[]>, CardIdData)
   }, [unitCards])
 
   const [modalImportUnit, setModalImportUnit] = useState(false)

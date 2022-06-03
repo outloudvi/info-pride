@@ -1,6 +1,10 @@
 import { Progress } from '@mantine/core'
 
-const PageLoading = ({ data }: { data: Record<string, any | undefined> }) => {
+const PageLoading = ({
+  data,
+}: {
+  data: Record<string, unknown | undefined>
+}) => {
   return (
     <>
       <div>
