@@ -61,6 +61,7 @@ const SearchPage = ({
       ctShowSp: false,
       effectTypes: [] as SXEffectWithTarget['effect']['typ'][],
       targetTypes: [] as SXEffectWithTarget['target']['typ'][],
+      dualA: false,
     },
     validate: {
       ctMin: (x) =>
@@ -100,6 +101,7 @@ const SearchPage = ({
       ctShowSp,
       effectTypes,
       targetTypes,
+      dualA,
       ownedOnly,
     } = formValues
 
@@ -144,6 +146,13 @@ const SearchPage = ({
         // Some skills are not found
         // TODO: find a way to improve
         return true
+      }
+      if (
+        dualA &&
+        cardSkills.filter((x) => x.categoryType === SkillCategoryType.Active)
+          .length < 2
+      ) {
+        return false
       }
       const hasSkillFilters =
         numCtMin > 0 ||
@@ -292,6 +301,11 @@ const SearchPage = ({
             listNamemap={skillTargetTypeNames}
             width={300}
             formProps={getInputProps('targetTypes')}
+          />
+          <Checkbox
+            label="双 A 技能"
+            className="mr-2"
+            {...getInputProps('dualA')}
           />
         </div>
       </div>
