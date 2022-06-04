@@ -1,4 +1,4 @@
-import { Blockquote, Button, Group, Skeleton } from '@mantine/core'
+import { Blockquote, Button, Group, Image, Skeleton } from '@mantine/core'
 import { useState } from 'react'
 
 import { APIResponseOf } from '#utils/api'
@@ -61,6 +61,14 @@ const EventStoryEpisodeList = ({
 
   return (
     <>
+      <Image
+        src={Paths.assets(`img_banner_l_${event.assetId}`)}
+        fit="contain"
+        height={150}
+        className="p-4 lg:float-right lg:clear-right"
+        alt="Album art"
+        withPlaceholder
+      />
       <Group>
         {event.episodes.map((item, key) => (
           <Button
