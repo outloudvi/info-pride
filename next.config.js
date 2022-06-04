@@ -1,6 +1,8 @@
-import { withSentryConfig } from '@sentry/nextjs'
+/* eslint-disable @typescript-eslint/no-var-requires */
 
-import { i18n } from './next-i18next.config.mjs'
+const { withSentryConfig } = require('@sentry/nextjs')
+
+const { i18n } = require('./next-i18next.config.js')
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -30,4 +32,4 @@ const sentryWebpackPluginOptions = {
   // https://github.com/getsentry/sentry-webpack-plugin#options.
 }
 
-export default withSentryConfig(nextConfig, sentryWebpackPluginOptions)
+module.exports = withSentryConfig(nextConfig, sentryWebpackPluginOptions)
