@@ -62,7 +62,7 @@ const EventStoryEpisodeList = ({
   return (
     <>
       <Image
-        src={Paths.assets(`img_banner_l_${event.assetId}`)}
+        src={Paths.assets(`img_story_event_banner_${event.assetId}`)}
         fit="contain"
         height={150}
         className="p-4 lg:float-right lg:clear-right"
