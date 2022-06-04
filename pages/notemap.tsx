@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import dynamic from 'next/dynamic'
-import { Grid, NativeSelect } from '@mantine/core'
+import { Grid, Image, NativeSelect } from '@mantine/core'
 import _range from 'lodash/range'
 
 import useApi from '#utils/useApi'
@@ -9,6 +9,7 @@ import { APIResponseOf, UnArray } from '#utils/api'
 import allFinished from '#utils/allFinished'
 import PageLoading from '#components/PageLoading'
 import Title from '#components/Title'
+import Paths from '#utils/paths'
 
 const NotemapGraph = dynamic(() => import('#components/notemap/NotemapGraph'), {
   ssr: false,
@@ -71,29 +72,42 @@ const NotemapPage = ({
             required
           />
         </div>
-        <div className="mt-4 flex justify-around">
-          {_range(0, 5).map((val, key) => {
-            const uiNumber = val + 1
-            return (
-              <NativeSelect
-                key={key}
-                label={`颜色${uiNumber}`}
-                value={laneColors[val]}
-                data={Object.entries(Colors).map(([label, value]) => ({
-                  label,
-                  value,
-                }))}
-                onChange={(i) => {
-                  setLaneColors([
-                    ...laneColors.slice(0, val),
-                    i.target.value,
-                    ...laneColors.slice(val + 1),
-                  ])
-                }}
-              />
-            )
-          })}
-        </div>
+        <Grid>
+          <Grid.Col xs={12} lg={4}>
+            <Image
+              src={Paths.assets(`img_music_jacket_${song.assetId}`)}
+              fit="contain"
+              className="p-4"
+              alt="Album art"
+              withPlaceholder
+            />
+          </Grid.Col>
+          <Grid.Col xs={12} lg={8}>
+            <div className="mt-4 flex justify-around">
+              {_range(0, 5).map((val, key) => {
+                const uiNumber = val + 1
+                return (
+                  <NativeSelect
+                    key={key}
+                    label={`颜色${uiNumber}`}
+                    value={laneColors[val]}
+                    data={Object.entries(Colors).map(([label, value]) => ({
+                      label,
+                      value,
+                    }))}
+                    onChange={(i) => {
+                      setLaneColors([
+                        ...laneColors.slice(0, val),
+                        i.target.value,
+                        ...laneColors.slice(val + 1),
+                      ])
+                    }}
+                  />
+                )
+              })}
+            </div>
+          </Grid.Col>
+        </Grid>
       </Grid.Col>
       <Grid.Col xs={12} lg={6}>
         {<NotemapGraph chartId={chartId} laneColors={laneColors} />}

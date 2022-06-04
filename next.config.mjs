@@ -19,6 +19,9 @@ const nextConfig = {
       },
     ]
   },
+  images: {
+    domains: ['idoly-assets-curator.vercel.app', 'idoly-assets.outv.im'],
+  },
 }
 
 const sentryWebpackPluginOptions = {

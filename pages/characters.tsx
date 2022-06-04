@@ -86,7 +86,7 @@ const CharacterAnimation = ({ charId }: { charId: CharacterId }) => {
           animationTimingFunction: `steps(${moveStyle[1]})`,
           animationIterationCount: 'infinite',
           // Background
-          backgroundImage: `url(${Paths.assets(`sprite-idol/${charId}.png`)})`,
+          backgroundImage: `url(${Paths.s3(`sprite-idol/${charId}.png`)})`,
           backgroundSize: 'cover',
           // Size
           height: SizeStyle.sm.height,

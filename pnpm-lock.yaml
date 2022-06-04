@@ -38,7 +38,7 @@ specifiers:
   eslint-plugin-import: ^2.26.0
   got: ^12.0.4
   history: ^5.3.0
-  hoshimi-types: ^1.0.26
+  hoshimi-types: ^1.0.27
   husky: ^8.0.1
   i18next: ^21.6.16
   jotai: ^1.6.5
@@ -106,7 +106,7 @@ devDependencies:
   eslint-config-next: 12.1.5_ldpv3uesskyaguxpaa56hbtpeu
   eslint-import-resolver-typescript: 2.7.1_myxbwluo6p3kuxjcyp342zygci
   eslint-plugin-import: 2.26.0_iqjbwfvwlbjep2xhectfqm3l6a
-  hoshimi-types: 1.0.26
+  hoshimi-types: 1.0.27
   husky: 8.0.1
   json-schema-to-typescript: 10.1.5
   ts-node: 10.7.0_obw5lm6bnftkuhtgsmfxzsamfm
@@ -3381,8 +3381,8 @@ packages:
       react-is: 16.13.1
     dev: false
 
-  /hoshimi-types/1.0.26:
-    resolution: {integrity: sha512-aM7t0KVzjb6NHGfYwm6MYstKli5YQ422edHiu7OjQ8sMWrVIIFx9lcmeuirNQCkUL/LARs+C85QY5ot6bWMl1w==}
+  /hoshimi-types/1.0.27:
+    resolution: {integrity: sha512-NIqTmGJUJ3G5nn9EHeeireXFrjalASHkxFpr1Xy7BflaGp567/WzlOZn+EXNLUsi8IyPdkyBVPsh1/gSenjGlw==}
     dev: true
 
   /hosted-git-info/4.1.0:
