@@ -47,9 +47,13 @@ const InGameNotice = ({ type }: { type: NoticeType }) => {
                   setModalNews(item)
                   setModalOpened(true)
                 }}
+                lang="ja"
               >
                 {listTitle}
-              </Anchor>
+              </Anchor>{' '}
+              <small>
+                {dayjs(Number(item.startTime)).format('YYYY-MM-DD')}
+              </small>
             </li>
           )
         })}
