@@ -1,9 +1,9 @@
-import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Group } from '@mantine/core'
 import { MessageGroup } from 'hoshimi-types/ProtoMaster'
 
 import ChatList from './ChatList'
+
+import AssetImage from '#components/AssetImage'
 
 const ChatItem = ({
   group,
@@ -22,7 +22,13 @@ const ChatItem = ({
         className={`px-2 py-3 ${active ? 'bg-blue-800' : ''}`}
         onClick={onActivate}
       >
-        <FontAwesomeIcon icon={faUserCircle} color="white" size="3x" />
+        <AssetImage
+          name={`img_message_icon_${group.assetId}`}
+          width={50}
+          ratio={1}
+          className="rounded-full"
+          alt="Chat icon"
+        />
         <div>
           <b className="text-white">{group.name}</b>
           <br />

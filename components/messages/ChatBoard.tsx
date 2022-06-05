@@ -16,8 +16,8 @@ const ChatBoard = ({ msg }: { msg: NonNullable<APIResponseOf<'Message'>> }) => {
         return line.text ? (
           <MessageItem
             key={key}
+            characterId={line.characterId}
             user={line.characterId ? 'others' : 'self'}
-            name={CharacterChineseNameList[line.characterId as CharacterId]}
           >
             {isSelection && <span className="text-gray-600">[选项] </span>}
             {line.text.replaceAll('{user}', MANAGER_NAME)}
@@ -25,8 +25,8 @@ const ChatBoard = ({ msg }: { msg: NonNullable<APIResponseOf<'Message'>> }) => {
         ) : (
           <MessageItem
             key={key}
+            characterId={line.characterId}
             user={line.characterId ? 'others' : 'self'}
-            name={CharacterChineseNameList[line.characterId as CharacterId]}
           >
             <span className="text-gray-500">[TODO: 其它类别的消息]</span>
           </MessageItem>
