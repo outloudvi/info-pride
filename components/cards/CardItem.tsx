@@ -11,7 +11,7 @@ import { toVideoLink } from '#components/ExternalVideo'
 import useApi from '#utils/useApi'
 import type { Card as WikiCard } from '#data/wikiPages/cards'
 import Paths from '#utils/paths'
-import { APIResponseOf, UnArray } from '#utils/api'
+import { APIResponseOf, frontendQueryFn, UnArray } from '#utils/api'
 import { CharacterChineseNameList } from '#data/vendor/characterId'
 import { Stories } from '#data/types'
 
@@ -251,9 +251,10 @@ const CardItem = ({
 
   const {
     data: WikiCardData,
-  }: { data?: { card: WikiCard; stories: Stories | null } } = useQuery(
-    `/api/wikiCard?nameJa=${nameJa}`
-  )
+  }: { data?: { card: WikiCard; stories: Stories | null } } = useQuery({
+    queryKey: `/api/wikiCard?nameJa=${nameJa}`,
+    queryFn: frontendQueryFn,
+  })
 
   const { card: wikiCard, stories: wikiStories } = WikiCardData ?? {
     card: undefined,
