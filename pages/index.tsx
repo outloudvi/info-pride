@@ -37,9 +37,11 @@ const Home = ({ gitCommit }: { gitCommit: string }) => {
             href={`https://github.com/outloudvi/info-pride/tree/${gitCommit}`}
             passHref
           >
-            <Badge className="lowercase cursor-pointer align-super">
-              {gitCommit.slice(0, 8)}
-            </Badge>
+            <a>
+              <Badge className="lowercase cursor-pointer align-super">
+                {gitCommit.slice(0, 8)}
+              </Badge>
+            </a>
           </Link>
         </div>
         <Stack spacing={15} justify="center" className="mt-2">
