@@ -1,17 +1,30 @@
+import { useMemo } from 'react'
 import { Image, ImageProps } from '@mantine/core'
 
 import Paths from '#utils/paths'
 
+function parseCSSValue(v: number | string): [number, string | null] {
+  if (typeof v === 'number') {
+    return [v, null]
+  }
+  const num = parseFloat(v)
+  return [num, v.replace(String(num), '')]
+}
+
 function calcHeightWidth(
-  height: number | undefined,
-  width: number | undefined,
+  height: number | string | undefined,
+  width: number | string | undefined,
   ratio: number
-): [number, number] {
+): [number | string, number | string] {
   if (!height && width) {
-    return [width * ratio, width]
+    const [_width, suffix] = parseCSSValue(width)
+    const _height = _width * ratio
+    return [suffix ? String(_height) + suffix : _height, width]
   }
   if (!width && height) {
-    return [height, height / ratio]
+    const [_height, suffix] = parseCSSValue(height)
+    const _width = _height / ratio
+    return [height, suffix ? String(_width) + suffix : _width]
   }
   throw Error('One and only one between the height and width should be given')
 }
@@ -25,12 +38,15 @@ const AssetImage = (
     name: string
     ratio: number
     alt: string
-    width?: number
-    height?: number
+    width?: number | string
+    height?: number | string
   } & ImageProps
 ) => {
   const { name, ratio, width, height, alt } = props
-  const [_height, _width] = calcHeightWidth(height, width, ratio)
+  const [_height, _width] = useMemo(
+    () => calcHeightWidth(height, width, ratio),
+    [height, width, ratio]
+  )
   return (
     <Image
       {...props}

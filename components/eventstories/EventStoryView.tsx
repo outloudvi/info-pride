@@ -1,4 +1,4 @@
-import { Blockquote, Button, Group, Image, Skeleton } from '@mantine/core'
+import { Blockquote, Button, Group, Skeleton } from '@mantine/core'
 import { useState } from 'react'
 
 import { APIResponseOf } from '#utils/api'
@@ -6,6 +6,7 @@ import useApi from '#utils/useApi'
 import EventStoriesData from '#data/eventStories.data'
 import { toVideoLink } from '#components/ExternalVideo'
 import Paths from '#utils/paths'
+import AssetImage from '#components/AssetImage'
 
 const EventEpisodeDetail = ({ story }: { story: APIResponseOf<'Story'> }) => {
   const { id, name: jaName, description } = story
@@ -61,13 +62,12 @@ const EventStoryEpisodeList = ({
 
   return (
     <>
-      <Image
-        src={Paths.assets(`img_story_event_banner_${event.assetId}`)}
-        fit="contain"
+      <AssetImage
+        name={`img_story_event_banner_${event.assetId}`}
         height={150}
+        ratio={1 / 2.95}
         className="p-4 lg:float-right lg:clear-right"
         alt="Album art"
-        withPlaceholder
       />
       <Group>
         {event.episodes.map((item, key) => (

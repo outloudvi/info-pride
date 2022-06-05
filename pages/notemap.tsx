@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import dynamic from 'next/dynamic'
-import { Grid, Image, NativeSelect } from '@mantine/core'
+import { Grid, NativeSelect } from '@mantine/core'
 import _range from 'lodash/range'
 
 import useApi from '#utils/useApi'
@@ -9,7 +9,7 @@ import { APIResponseOf, UnArray } from '#utils/api'
 import allFinished from '#utils/allFinished'
 import PageLoading from '#components/PageLoading'
 import Title from '#components/Title'
-import Paths from '#utils/paths'
+import AssetImage from '#components/AssetImage'
 
 const NotemapGraph = dynamic(() => import('#components/notemap/NotemapGraph'), {
   ssr: false,
@@ -74,12 +74,12 @@ const NotemapPage = ({
         </div>
         <Grid>
           <Grid.Col xs={12} lg={4}>
-            <Image
-              src={Paths.assets(`img_music_jacket_${song.assetId}`)}
-              fit="contain"
+            <AssetImage
+              name={`img_music_jacket_${song.assetId}`}
+              ratio={1}
+              width="100%"
               className="p-4"
               alt="Album art"
-              withPlaceholder
             />
           </Grid.Col>
           <Grid.Col xs={12} lg={8}>
