@@ -6,6 +6,7 @@ import { useAtom } from 'jotai'
 
 import { Diary } from '#data/wikiModules'
 import Title from '#components/Title'
+import AssetImage from '#components/AssetImage'
 
 const diaries: { [key: string]: string } = {}
 const diaryDates = Diary.map((x) => {
@@ -20,7 +21,7 @@ const toShortDate = (date: Date) =>
 
 const fromShortDate = (s: string) => new Date('20' + s)
 
-const ManaDiary = ({ dateShort }: { dateShort: string }) => {
+const ManaDiaryTranslated = ({ dateShort }: { dateShort: string }) => {
   if (diaries[dateShort]) {
     return (
       <>
@@ -55,7 +56,7 @@ const DiaryPage = () => {
     <>
       <Title title="麻奈日记" />
       <Grid gutter={20} className="my-3">
-        <Grid.Col xs={12} lg={6}>
+        <Grid.Col xs={12} lg={4}>
           <div>
             <p>
               如无特殊说明，此处内容的翻译均来自 Bilibili{' '}
@@ -112,8 +113,16 @@ const DiaryPage = () => {
             </div>
           </div>
         </Grid.Col>
-        <Grid.Col xs={12} lg={6}>
-          <ManaDiary dateShort={toShortDate(currDate)} />
+        <Grid.Col xs={12} lg={4}>
+          <AssetImage
+            name={`img_ui_diary_${toShortDate(currDate)}`}
+            ratio={10 / 7}
+            width={300}
+            alt="Diary image"
+          />
+        </Grid.Col>
+        <Grid.Col xs={12} lg={4}>
+          <ManaDiaryTranslated dateShort={toShortDate(currDate)} />
         </Grid.Col>
       </Grid>
     </>
