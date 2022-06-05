@@ -7,16 +7,18 @@ import allFinished from '#utils/allFinished'
 import { APIResponseOf, frontendQueryFn } from '#utils/api'
 import { Meta as WikiPagesMeta } from '#data/wikiPages'
 import { Meta as WikiModulesMeta } from '#data/wikiModules'
-import { VersionInfo } from '#api/version'
 import PageLoading from '#components/PageLoading'
 
 const VersionInfo = ({
   VersionData,
-  GameVersionData,
 }: {
   VersionData: APIResponseOf<'Version'>
-  GameVersionData: VersionInfo | null
 }) => {
+  const { data: GameVersionData } = useQuery({
+    queryKey: '/api/version',
+    queryFn: frontendQueryFn,
+  })
+
   const backendVersion = day(VersionData.version).format('YYYY/MM/DD')
   const wikiModuleVersion = day(WikiModulesMeta.updatedAt * 1000).format(
     'YYYY/MM/DD'
@@ -59,14 +61,9 @@ const VersionInfo = ({
 
 const SkeletonVersionInfo = () => {
   const { data: VersionData } = useApi('Version')
-  const { data: GameVersionData } = useQuery({
-    queryKey: '/api/version',
-    queryFn: frontendQueryFn,
-  })
 
   const allData = {
     VersionData,
-    GameVersionData,
   }
 
   return (
