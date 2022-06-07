@@ -348,30 +348,27 @@ const CardItem = ({
         checked={cnTrans}
         onChange={(e) => setCnTrans(e.target.checked)}
       />
-      {wikiCard && (
+      {wikiStories !== undefined && (
         <>
-          {wikiStories !== undefined && (
-            <>
-              <div className="mt-2">剧情</div>
-              <CardStories stories={wikiStories} />
-            </>
-          )}
-
-          <Button
-            className="mt-2"
-            variant="outline"
-            component="a"
-            href={Paths.wiki(
-              `${CharacterChineseNameList[wikiCard.ownerSlug]}/卡牌/${
-                wikiCard.ownerId
-              }`
-            )}
-            target="_blank"
-            rel="noopener"
-          >
-            Wiki 页面
-          </Button>
+          <div className="mt-2">剧情</div>
+          <CardStories stories={wikiStories} />
         </>
+      )}
+      {wikiCard && (
+        <Button
+          className="mt-2"
+          variant="outline"
+          component="a"
+          href={Paths.wiki(
+            `${CharacterChineseNameList[wikiCard.ownerSlug]}/卡牌/${
+              wikiCard.ownerId
+            }`
+          )}
+          target="_blank"
+          rel="noopener"
+        >
+          Wiki 页面
+        </Button>
       )}
     </>
   )
