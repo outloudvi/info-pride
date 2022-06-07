@@ -273,6 +273,21 @@ const data: Partial<Record<CharacterId, Record<number, Stories>>> = {
         video: { type: 'bilibili', vid: 'av295230169', pid: 3 },
       },
     },
+    8: {
+      // Perfect Bride
+      1: {
+        name: '想要你注意到',
+        video: { type: 'bilibili', vid: 'av939788926' },
+      },
+      2: {
+        name: '新娘的提示',
+        video: { type: 'bilibili', vid: 'av639849812' },
+      },
+      3: {
+        name: '黑发少女和婚纱',
+        video: { type: 'bilibili', vid: 'av939847140' },
+      },
+    },
   },
   'char-chs': {
     3: {
