@@ -7,6 +7,8 @@ import { CardType, SkillCategoryType } from 'hoshimi-types/ProtoEnum'
 import { useTranslation } from 'next-i18next'
 import { useQuery } from 'react-query'
 
+import CardAsset from './CardAsset'
+
 import { toVideoLink } from '#components/ExternalVideo'
 import useApi from '#utils/useApi'
 import type { Card as WikiCard } from '#data/wikiPages/cards'
@@ -288,6 +290,7 @@ const CardItem = ({
           {nameJa}
         </div>
       )}
+
       {!useCn && (
         <div
           className="text-gray-600 dark:text-gray-400"
@@ -333,7 +336,7 @@ const CardItem = ({
         rarityInfo={rarityInfo}
         level={level}
       />
-      <div className="mt-2">技能{useCn && '（最高技能等级下）'}</div>
+      <h3>技能{useCn && '（最高技能等级下）'}</h3>
       {SkillData ? (
         <Skills
           skills={SkillData}
@@ -350,7 +353,7 @@ const CardItem = ({
       />
       {wikiStories !== undefined && (
         <>
-          <div className="mt-2">剧情</div>
+          <h3>剧情</h3>
           <CardStories stories={wikiStories} />
         </>
       )}
@@ -370,6 +373,11 @@ const CardItem = ({
           Wiki 页面
         </Button>
       )}
+      <h3>卡面</h3>
+      <CardAsset
+        cardAssetId={card.assetId}
+        isInitiallyAwaken={card.initialRarity >= 5}
+      />
     </>
   )
 }
