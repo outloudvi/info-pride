@@ -9,14 +9,15 @@
  * Stories title for IP
  */
 export interface TheRootSchema {
-  Hoshimi: StoriesChapter;
-  Tokyo: StoriesChapter;
-  TRINITYAiLE: StoriesChapter;
-  LizNoir: StoriesChapter;
-  Mana: StoriesChapter;
+  Hoshimi: StoriesChapter
+  Tokyo: StoriesChapter
+  TRINITYAiLE: StoriesChapter
+  LizNoir: StoriesChapter
+  Mana: StoriesChapter
+  ThreeX: StoriesChapter
 }
 export interface StoriesChapter {
   [k: string]: {
-    [k: string]: string;
-  };
+    [k: string]: string
+  }
 }

@@ -1090,6 +1090,12 @@ const SubTitles: Partial<
       11: 'Goodbye to Goodbye',
     },
   },
+  ThreeX: {
+    1: {
+      1: 'Diamond Mining',
+      6: 'House of Cards',
+    },
+  },
 } as const
 
 export default data

@@ -22,6 +22,7 @@ function getBackendStoryId(props: PropType): string {
     TRINITYAiLE: 'st-group-tri',
     LizNoir: 'st-group-liz',
     Mana: 'st-group-mna',
+    ThreeX: 'st-group-thrx',
     Special: '',
   }
   return [

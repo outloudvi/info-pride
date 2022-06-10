@@ -4,6 +4,7 @@ export const Series = [
   'TRINITYAiLE',
   'LizNoir',
   'Mana',
+  'ThreeX',
   'Special',
 ] as const
 
@@ -15,5 +16,6 @@ export const Episodes: Record<SeriesName, [string, number[]]> = {
   TRINITYAiLE: ['TRINITYAiLE', [30]],
   LizNoir: ['LizNoir', [30]],
   Mana: ['长濑麻奈', [15]],
+  ThreeX: ['ⅢⅩ', [10]],
   Special: ['其它', [3]],
 }

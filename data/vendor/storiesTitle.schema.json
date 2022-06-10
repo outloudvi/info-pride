@@ -16,7 +16,8 @@
         "Tokyo",
         "TRINITYAiLE",
         "LizNoir",
-        "Mana"
+        "Mana",
+        "ThreeX"
     ],
     "title": "The root schema",
     "type": "object",
