@@ -32,6 +32,11 @@ export const CharacterIds = [
 
   // Mana
   'char-mna',
+
+  // ThreeX
+  'char-kor',
+  'char-kan',
+  'char-mhk',
 ] as const
 
 export type CharacterId = typeof CharacterIds[number]
@@ -55,4 +60,7 @@ export const CharacterChineseNameList: Record<CharacterId, string> = {
   'char-ai': '小美山爱',
   'char-kkr': '赤崎心',
   'char-mna': '长濑麻奈',
+  'char-kor': 'fran',
+  'char-kan': 'kana',
+  'char-mhk': 'miho',
 } as const
