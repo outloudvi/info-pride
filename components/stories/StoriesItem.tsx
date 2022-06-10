@@ -1,11 +1,10 @@
-import * as Sentry from '@sentry/browser'
 import { Skeleton } from '@mantine/core'
 
 import Paths from '#utils/paths'
 import { toVideoLink } from '#components/ExternalVideo'
 import useApi from '#utils/useApi'
 import { Episodes, SeriesName } from '#data/stories'
-import StoriesData, { SubTitles } from '#data/stories.data'
+import StoriesData from '#data/stories.data'
 
 type PropType = {
   // "Special" won't appear here
@@ -31,22 +30,6 @@ function getBackendStoryId(props: PropType): string {
     String(season).padStart(2, '0'),
     String(chapter).padStart(2, '0'),
   ].join('-')
-}
-
-function findSubtitle({ series, season, chapter }: PropType): string | null {
-  const subTitlesList = SubTitles?.[series]?.[season]
-  if (!subTitlesList) return null
-  let ret: string | null = null
-  for (const i of Object.keys(subTitlesList)
-    .map(Number)
-    .sort((a, b) => a - b)) {
-    if (chapter >= i) {
-      ret = subTitlesList[i]
-    } else {
-      break
-    }
-  }
-  return ret
 }
 
 export const SpecialStoriesItem = (props: {
@@ -96,7 +79,7 @@ const StoriesItem = (props: PropType) => {
   }
 
   const data = StoriesData?.[series]?.[season]?.[chapter]
-  const subtitle = StoryData?.sectionName ?? findSubtitle(props)
+  const subtitle = StoryData?.sectionName
 
   const cnTitle = data?.name && data.name !== 'TODO' ? data.name : null
   const jaTitle = StoryData?.name?.replace(/\n/g, '')
