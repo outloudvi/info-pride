@@ -1,6 +1,5 @@
 import MessageItem from './MessageItem'
 
-import { CharacterChineseNameList, CharacterId } from '#data/vendor/characterId'
 import { APIResponseOf } from '#utils/api'
 
 const MANAGER_NAME = 'マネージャー'
