@@ -1,9 +1,9 @@
 import * as Sentry from '@sentry/browser'
+import { Skeleton } from '@mantine/core'
 
 import Paths from '#utils/paths'
 import { toVideoLink } from '#components/ExternalVideo'
 import useApi from '#utils/useApi'
-import { StoriesTitle } from '#data/vendor'
 import { Episodes, SeriesName } from '#data/stories'
 import StoriesData, { SubTitles } from '#data/stories.data'
 
@@ -79,29 +79,27 @@ export const SpecialStoriesItem = (props: {
 const StoriesItem = (props: PropType) => {
   const { series, season, chapter } = props
 
-  const { data: StoryData } = useApi('Story', {
+  const { data: StoryData, isSuccess } = useApi('Story', {
     id: getBackendStoryId(props),
   })
+
+  if (!isSuccess) {
+    return (
+      <>
+        <div className="text-4xl">
+          {Episodes[series][0]}
+          {season}章 - {chapter}
+        </div>
+        <Skeleton height={200} />
+      </>
+    )
+  }
 
   const data = StoriesData?.[series]?.[season]?.[chapter]
   const subtitle = StoryData?.sectionName ?? findSubtitle(props)
 
   const cnTitle = data?.name && data.name !== 'TODO' ? data.name : null
-  const jaTitle =
-    StoryData?.name?.replace(/\n/g, '') ?? StoriesTitle[series][season][chapter]
-
-  // Report data inconsistencies
-  if (
-    StoriesTitle[series][season][chapter] &&
-    StoryData?.name &&
-    StoriesTitle[series][season][chapter] !== StoryData.name.replace(/\n/g, '')
-  ) {
-    Sentry.captureMessage(
-      `[INFOP] StoriesTitle data inconsistency at StoriesTitle[${series}][${season}][${chapter}] == ${
-        StoriesTitle[series][season][chapter]
-      } != ${StoryData.name.replace(/\n/g, '')}`
-    )
-  }
+  const jaTitle = StoryData?.name?.replace(/\n/g, '')
 
   return (
     <>

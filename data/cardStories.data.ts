@@ -767,6 +767,9 @@ const data: Partial<Record<CharacterId, Record<number, Stories>>> = {
         name: '已经是我的了',
         video: { type: 'bilibili', vid: 'av849532334' },
       },
+      phone: {
+        video: { type: 'bilibili', vid: 'av464607750' },
+      },
     },
     8: {
       // 清风拂过的约会地点
