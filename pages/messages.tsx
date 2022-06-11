@@ -1,4 +1,4 @@
-import MessageView from '#components/messages/MessageView'
+import MessageBoardView from '#components/messages/MessageBoardView'
 import PageLoading from '#components/PageLoading'
 import Title from '#components/Title'
 import allFinished from '#utils/allFinished'
@@ -16,7 +16,7 @@ const SkeletonMessagesPage = () => {
       <Title title="消息" />
       {allFinished(allData) ? (
         <>
-          <MessageView {...allData} />
+          <MessageBoardView {...allData} />
         </>
       ) : (
         <PageLoading data={allData} />

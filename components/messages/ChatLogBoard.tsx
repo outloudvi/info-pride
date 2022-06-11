@@ -15,7 +15,12 @@ const ChatBoard = ({ msg }: { msg: NonNullable<APIResponseOf<'Message'>> }) => {
   )
 
   return (
-    <div className="h-5/6 overflow-y-auto">
+    <div
+      className="overflow-y-auto"
+      style={{
+        height: 'calc(100% - 4rem)',
+      }}
+    >
       {msgs.map((line, key) => (
         <MessageItem
           key={key}
@@ -25,6 +30,7 @@ const ChatBoard = ({ msg }: { msg: NonNullable<APIResponseOf<'Message'>> }) => {
           {renderMessage(line, backlinks[line.messageDetailId])}
         </MessageItem>
       ))}
+      <div className="text-gray-300 text-center my-4">[对话结束]</div>
     </div>
   )
 }

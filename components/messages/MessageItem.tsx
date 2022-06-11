@@ -28,7 +28,9 @@ const MessageItem = ({
       <FontAwesomeIcon icon={faUserCircle} color="white" size="2x" />
     )
   return (
-    <Group className={`p-2 ${isSelf ? 'flex-row-reverse' : 'flex-row'}`}>
+    <Group
+      className={`p-2 items-end ${isSelf ? 'flex-row-reverse' : 'flex-row'}`}
+    >
       {userIcon}
       <div>
         <div className="text-white mb-1">
