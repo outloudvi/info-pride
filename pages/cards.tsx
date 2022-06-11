@@ -47,7 +47,9 @@ const CardsPage = ({
 
   const [idol, setIdol] = useAtom(idolNameAtom)
   const cardList =
-    cards[idol]?.sort((a, b) => a.releaseDate - b.releaseDate) ?? []
+    cards[idol]?.sort(
+      (a, b) => Number(a.releaseDate) - Number(b.releaseDate)
+    ) ?? []
   const [cardNumber, setCardNumber] = useAtom(cardNumberAtom)
 
   return (

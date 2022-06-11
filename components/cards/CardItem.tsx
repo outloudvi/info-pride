@@ -51,13 +51,15 @@ export const Props = ({
 
   const calc = (base: number) =>
     Math.floor(
-      (Math.floor((parameterInfo.value * base) / 1000) *
+      (Math.floor((Number(parameterInfo.value) * base) / 1000) *
         rarityInfo.parameterBonusPermil) /
         1000
     )
 
   const stamina = Math.floor(
-    (Math.floor((parameterInfo.staminaValue * staminaRatioPermil) / 1000) *
+    (Math.floor(
+      (Number(parameterInfo.staminaValue) * staminaRatioPermil) / 1000
+    ) *
       rarityInfo.parameterBonusPermil) /
       1000
   )
