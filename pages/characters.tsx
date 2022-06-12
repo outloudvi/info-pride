@@ -133,7 +133,7 @@ const CharacterItem = ({
       ? [['所属团体', OrgName[characterGroupId]]]
       : []),
     ['年龄', age.replace('歳', '岁')],
-    ['CV', cv],
+    ['CV', $t(cv)],
     ['生日', birthday],
     ['身高', height],
     ['体重', weight],
@@ -146,8 +146,8 @@ const CharacterItem = ({
         $t(hometown)
       ),
     ],
-    ['喜欢的东西', favorite],
-    ['讨厌的东西', unfavorite],
+    ['喜欢的东西', $t(favorite)],
+    ['讨厌的东西', $t(unfavorite)],
     ['习惯手', isLeftHanded ? '左手' : '右手'],
     ['三围', threeSize],
   ]
