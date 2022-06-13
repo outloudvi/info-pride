@@ -5,6 +5,7 @@ import { toVideoLink } from '#components/ExternalVideo'
 import useApi from '#utils/useApi'
 import { Episodes, SeriesName } from '#data/stories'
 import StoriesData from '#data/stories.data'
+import AssetImage from '#components/AssetImage'
 
 type PropType = {
   // "Special" won't appear here
@@ -129,6 +130,14 @@ const StoriesItem = (props: PropType) => {
           的 StoriesData[{series}][{season}][{chapter}] 。
         </div>
       )}
+
+      <AssetImage
+        name={`img_story_thumb_${StoryData.advAssetId}`}
+        ratio={9 / 16}
+        width="100%"
+        alt="Story thumb image"
+        className="my-2 mx-3"
+      />
     </>
   )
 }
