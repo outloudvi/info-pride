@@ -1,10 +1,15 @@
 import { Grid } from '@mantine/core'
 import { useEffect, useRef, useState } from 'react'
+import dynamic from 'next/dynamic'
 
 import ChatItem from './ChatItem'
 import ChatView from './ChatView'
 
 import { APIResponseOf } from '#utils/api'
+
+const FullScreenButton = dynamic(() => import('#components/FullScreenButton'), {
+  ssr: false,
+})
 
 const MessageBoardView = ({
   groups,
@@ -19,14 +24,19 @@ const MessageBoardView = ({
   const outer = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
-    if (!outer.current) return
-    const elem = outer.current
-    console.log(window.innerHeight, elem.offsetHeight)
-    elem.style.height = String(window.innerHeight - elem.offsetTop - 100) + 'px'
-  }, [outer])
+    const callback = () => {
+      if (!outer.current) return
+      const elem = outer.current
+      elem.style.height =
+        String(window.innerHeight - elem.offsetTop - 140) + 'px'
+    }
+    callback()
+    window.addEventListener('resize', callback)
+    return () => window.removeEventListener('resize', callback)
+  }, [])
 
   return (
-    <div ref={outer}>
+    <div ref={outer} className="p-[8px]">
       <Grid className="h-full bg-[#4c4c4c] mb-2">
         <Grid.Col
           xs={12}
@@ -35,6 +45,9 @@ const MessageBoardView = ({
             mdShowSidebar ? '' : 'hidden lg:block'
           }`}
         >
+          <div className="flex justify-center my-2">
+            <FullScreenButton target={outer} />
+          </div>
           {groups.map((group, key) => (
             <ChatItem
               key={key}

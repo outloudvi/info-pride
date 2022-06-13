@@ -52,6 +52,7 @@ specifiers:
   react-dom: ^17.0.2
   react-query: ^3.39.1
   rfdc: ^1.3.0
+  screenfull: ^6.0.1
   tailwindcss: ^3.0.24
   ts-node: ^10.7.0
   tslib: ^2.4.0
@@ -92,6 +93,7 @@ dependencies:
   react-dom: 17.0.2_react@17.0.2
   react-query: 3.39.1_sfoxds7t5ydpegc3knd667wn6m
   rfdc: 1.3.0
+  screenfull: 6.0.1
   tailwindcss: 3.0.24_ts-node@10.7.0
 
 devDependencies:
@@ -4805,6 +4807,11 @@ packages:
     dependencies:
       loose-envify: 1.4.0
       object-assign: 4.1.1
+
+  /screenfull/6.0.1:
+    resolution: {integrity: sha512-yzQW+j4zMUBQC51xxWaoDYjxOtl8Kn+xvue3p6v/fv2pIi1jH4AldgVLU8TBfFVgH2x3VXlf3+YiA/AYIPlaew==}
+    engines: {node: ^14.13.1 || >=16.0.0}
+    dev: false
 
   /semver/6.3.0:
     resolution: {integrity: sha512-b39TBaTSfV6yBrapU89p5fKekE2m/NwnDocOVruQFS1/veMgdzuPcnOM34M6CwxW8jH/lxEa5rBoDeUwu5HHTw==}

@@ -29,7 +29,9 @@ const MessageItem = ({
     )
   return (
     <Group
-      className={`p-2 items-end ${isSelf ? 'flex-row-reverse' : 'flex-row'}`}
+      className={`p-2 items-end flex-nowrap ${
+        isSelf ? 'flex-row-reverse' : 'flex-row'
+      }`}
     >
       {userIcon}
       <div>

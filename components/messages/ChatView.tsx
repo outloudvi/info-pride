@@ -1,6 +1,6 @@
 import { faArrowLeft, faMessage } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Group } from '@mantine/core'
+import { Button, Group } from '@mantine/core'
 
 import ChatBoard from './ChatLogBoard'
 
@@ -19,8 +19,16 @@ const ChatView = ({
 
   if (!msg) {
     return (
-      <div className="flex h-full justify-center items-center">
+      <div className="flex h-full justify-center items-center flex-col">
         <div className="text-white">正在加载。</div>
+        <Button
+          className="mt-2"
+          onClick={() => {
+            mdBackToSidebar()
+          }}
+        >
+          返回
+        </Button>
       </div>
     )
   }
