@@ -8,7 +8,9 @@ import type { Card as WikiCard } from '#data/wikiPages/cards'
 import type { Stories } from '#data/types'
 
 const frontendQueryFn: QueryFunction = ({ queryKey: [path] }) =>
-  fetch(('/api/' + path) as string).then((x) => x.json())
+  fetch(('/api/' + path) as string).then((x) =>
+    x.status === 200 ? x.json() : undefined
+  )
 
 export type FrontendAPIResponseMapping = {
   cardStories: Stories | undefined
