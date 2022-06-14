@@ -64,6 +64,9 @@ const dataKotono: D = {
       name: '黑发少女和婚纱',
       video: { type: 'bilibili', vid: 'av939847140' },
     },
+    phone: {
+      video: { type: 'bilibili', vid: 'av299927963' },
+    },
   },
 }
 
@@ -343,6 +346,21 @@ const dataSakura: D = {
     3: {
       name: '新年快乐！',
       video: { type: 'bilibili', vid: 'av765411385', pid: 3 },
+    },
+  },
+  'card-skr-05-idol-03': {
+    // この指とーまれ！
+    1: {
+      name: 'TODO',
+      video: { type: 'bilibili', vid: 'av511967603' },
+    },
+    2: {
+      name: 'TODO',
+      video: { type: 'bilibili', vid: 'av639444558' },
+    },
+    3: {
+      name: 'TODO',
+      video: { type: 'bilibili', vid: 'av727077660' },
     },
   },
 }
