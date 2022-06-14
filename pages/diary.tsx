@@ -116,8 +116,8 @@ const DiaryPage = () => {
         <Grid.Col xs={12} lg={4}>
           <AssetImage
             name={`img_ui_diary_${toShortDate(currDate)}`}
-            ratio={10 / 7}
-            width={300}
+            ratio={0.7}
+            width="100%"
             alt="Diary image"
           />
         </Grid.Col>

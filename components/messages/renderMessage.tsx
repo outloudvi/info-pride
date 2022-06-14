@@ -33,7 +33,7 @@ export default function renderMessage(
       <AssetImage
         name={`img_message_picture_${msg.imageAssetId}`}
         ratio={1}
-        width={150}
+        height="9rem"
         alt={`Image: ${msg.imageAssetId}`}
       />
     )
@@ -45,7 +45,7 @@ export default function renderMessage(
       <AssetImage
         name={`img_message_stamp_${msg.stampAssetId}`}
         ratio={1}
-        width={150}
+        height="9rem"
         alt={`Stamp: ${msg.stampAssetId}`}
       />
     )

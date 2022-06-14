@@ -24,11 +24,12 @@ const ChatItem = ({
       >
         <AssetImage
           name={`img_message_icon_${group.assetId}`}
-          width={50}
           ratio={1}
+          height="3rem"
           className="rounded-full"
           alt="Chat icon"
         />
+
         <div>
           <b className="text-white">{group.name}</b>
           <br />

@@ -1,63 +1,50 @@
-import { useMemo } from 'react'
-import { Image, ImageProps } from '@mantine/core'
+import Image, { ImageProps } from 'next/image'
 
 import Paths from '#utils/paths'
 
-function parseCSSValue(v: number | string): [number, string | null] {
-  if (typeof v === 'number') {
-    return [v, null]
-  }
-  const num = parseFloat(v)
-  return [num, v.replace(String(num), '')]
-}
-
-function calcHeightWidth(
-  height: number | string | undefined,
-  width: number | string | undefined,
-  ratio: number
-): [number | string, number | string] {
-  if (!height && width) {
-    const [_width, suffix] = parseCSSValue(width)
-    const _height = _width * ratio
-    return [suffix ? String(_height) + suffix : _height, width]
-  }
-  if (!width && height) {
-    const [_height, suffix] = parseCSSValue(height)
-    const _width = _height / ratio
-    return [height, suffix ? String(_width) + suffix : _width]
-  }
-  throw Error('One and only one between the height and width should be given')
-}
+/**
+ <?xml version="1.0" encoding="UTF-8"?>
+ <svg width="40" height="40" version="1.1" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg">
+  <rect transform="rotate(45)" x="5" y="-2.5" width="5" height="5" fill="none" stroke="#1428ff" stroke-linecap="round" stroke-linejoin="round" stroke-width=".6" style="paint-order:stroke fill markers"/>
+</svg>
+ */
+// TODO: placeholder doesn't work
+const PLACEHOLDER_SVG =
+  'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48c3ZnIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmVyc2lvbj0iMS4xIiB2aWV3Qm94PSIwIDAgMTAgMTAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3QgdHJhbnNmb3JtPSJyb3RhdGUoNDUpIiB4PSI1IiB5PSItMi41IiB3aWR0aD0iNSIgaGVpZ2h0PSI1IiBmaWxsPSJub25lIiBzdHJva2U9IiMxNDI4ZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSIuNiIgc3R5bGU9InBhaW50LW9yZGVyOnN0cm9rZSBmaWxsIG1hcmtlcnMiLz48L3N2Zz4K'
 
 /**
  * Component for image from assets.
- * @param {number} ratio height / width
+ * @param {number} ratio width / height
  */
 const AssetImage = (
   props: {
     name: string
-    ratio: number
+    ratio: number | string
     alt: string
-    width?: number | string
-    height?: number | string
-  } & ImageProps
+  } & Partial<ImageProps>
 ) => {
-  const { name, ratio, width, height, alt } = props
-  const [_height, _width] = useMemo(
-    () => calcHeightWidth(height, width, ratio),
-    [height, width, ratio]
-  )
+  const { name, ratio, alt, height, width } = props
+
   return (
-    <Image
-      {...props}
-      src={Paths.assets(name)}
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      fit={'fill' as any}
-      height={_height}
-      width={_width}
-      withPlaceholder
-      alt={alt}
-    />
+    <div
+      className="relative"
+      style={{
+        aspectRatio: String(ratio),
+        height,
+        width,
+      }}
+    >
+      <Image
+        src={Paths.assets(name)}
+        layout="fill"
+        objectFit="fill"
+        loading="lazy"
+        placeholder="blur"
+        blurDataURL={PLACEHOLDER_SVG}
+        {...props}
+        alt={alt}
+      />
+    </div>
   )
 }
 

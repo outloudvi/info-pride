@@ -74,13 +74,13 @@ const NotemapPage = ({
         </div>
         <Grid>
           <Grid.Col xs={12} lg={4}>
-            <AssetImage
-              name={`img_music_jacket_${song.assetId}`}
-              ratio={1}
-              width="100%"
-              className="p-4"
-              alt="Album art"
-            />
+            <div className="m-2">
+              <AssetImage
+                name={`img_music_jacket_${song.assetId}`}
+                ratio={1}
+                alt="Album art"
+              />
+            </div>
           </Grid.Col>
           <Grid.Col xs={12} lg={8}>
             <div className="mt-4 flex justify-around">

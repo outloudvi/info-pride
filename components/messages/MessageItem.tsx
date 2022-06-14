@@ -20,8 +20,8 @@ const MessageItem = ({
     user === 'others' ? (
       <AssetImage
         name={`img_message_icon_${characterId.split('-')[1]}`}
-        height={40}
         ratio={1}
+        height="3rem"
         alt="Contact icon"
       />
     ) : (

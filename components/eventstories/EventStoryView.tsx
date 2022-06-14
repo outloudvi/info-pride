@@ -62,13 +62,14 @@ const EventStoryEpisodeList = ({
 
   return (
     <>
-      <AssetImage
-        name={`img_story_event_banner_${event.assetId}`}
-        height={150}
-        ratio={1 / 2.95}
-        className="p-4 lg:float-right lg:clear-right"
-        alt="Album art"
-      />
+      <div className="p-4 lg:float-right lg:clear-right">
+        <AssetImage
+          name={`img_story_event_banner_${event.assetId}`}
+          ratio={2.95}
+          height={120}
+          alt="Album art"
+        />
+      </div>
       <Group>
         {event.episodes.map((item, key) => (
           <Button
