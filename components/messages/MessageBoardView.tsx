@@ -36,8 +36,8 @@ const MessageBoardView = ({
   }, [])
 
   return (
-    <div ref={outer} className="p-[8px]">
-      <Grid className="h-full bg-[#4c4c4c] mb-2">
+    <div ref={outer}>
+      <Grid className="h-full bg-[#4c4c4c] m-0">
         <Grid.Col
           xs={12}
           lg={3}
