@@ -65,9 +65,12 @@ const CardItem = ({
   const { data: WikiCardData } = useFrontendApi('wikiCard', {
     nameJa,
   })
-  const { data: WikiStories } = useFrontendApi('cardStories', {
-    id: card.id,
-  })
+  const { data: WikiStories, isFetched: isWikiStoriesFetched } = useFrontendApi(
+    'cardStories',
+    {
+      id: card.id,
+    }
+  )
 
   const useCn = cnTrans && (WikiCardData?.length ?? 0) > 0
 
@@ -173,11 +176,26 @@ const CardItem = ({
             cardAssetId={card.assetId}
             isInitiallyAwaken={card.initialRarity >= 5}
           />
-          {WikiStories && (
-            <>
-              <h3>剧情</h3>
-              <CardStories stories={WikiStories} />
-            </>
+          {isWikiStoriesFetched ? (
+            WikiStories ? (
+              <>
+                <h3>剧情</h3>
+                <CardStories stories={WikiStories} />
+              </>
+            ) : (
+              <>
+                <h3>剧情</h3>
+                <p className="text-gray-500">
+                  暂无剧情翻译。请更新至{' '}
+                  <a href={Paths.repo('data/cardStories.data.ts')}>
+                    `cardStories.data.ts`
+                  </a>{' '}
+                  的 <code>{card.id}</code> 。
+                </p>
+              </>
+            )
+          ) : (
+            <Skeleton height={200} className="my-2" />
           )}
           {wikiCard && (
             <Button
