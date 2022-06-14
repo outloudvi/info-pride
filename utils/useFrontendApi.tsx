@@ -5,11 +5,13 @@ import { showNotification } from '@mantine/notifications'
 import { QueryFunction, useQuery } from 'react-query'
 
 import type { Card as WikiCard } from '#data/wikiPages/cards'
+import type { Stories } from '#data/types'
 
 const frontendQueryFn: QueryFunction = ({ queryKey: [path] }) =>
   fetch(('/api/' + path) as string).then((x) => x.json())
 
 export type FrontendAPIResponseMapping = {
+  cardStories: Stories | undefined
   news: { title: string; link?: string }[]
   version:
     | {
