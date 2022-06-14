@@ -46,6 +46,6 @@ const SkeletonCardInfoPage = () => {
   )
 }
 
-export const getServerSideProps = getI18nProps
+// export const getServerSideProps = getI18nProps
 
 export default SkeletonCardInfoPage
