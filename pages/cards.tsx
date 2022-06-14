@@ -77,7 +77,7 @@ const CardsPage = ({
   return (
     <>
       <div className="mt-2 mb-4 rounded-md border-solid border-6 border-sky-500 p-2">
-        <div className="flex items-center mb-2">
+        <div className="flex items-center mb-2 flex-wrap">
           <FilterSelect
             className="mr-2"
             label="角色"
