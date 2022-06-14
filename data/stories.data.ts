@@ -367,6 +367,30 @@ const data: Partial<
         name: '被人称之为再世',
         video: { type: 'bilibili', vid: 'av257100578' },
       },
+      13: {
+        name: '真正的我',
+        video: { type: 'bilibili', vid: 'av597179964' },
+      },
+      14: {
+        name: '为了自己',
+        video: { type: 'bilibili', vid: 'av384773985' },
+      },
+      15: {
+        name: '樱的困惑',
+        video: { type: 'bilibili', vid: 'av684780998' },
+      },
+      16: {
+        name: '琴乃的任性',
+        video: { type: 'bilibili', vid: 'av512416058' },
+      },
+      17: {
+        name: '麻奈遗留下来的歌',
+        video: { type: 'bilibili', vid: 'av684924896' },
+      },
+      18: {
+        name: '悄悄靠近的忧虑',
+        video: { type: 'bilibili', vid: 'av214950482' },
+      },
     },
   },
   Tokyo: {
