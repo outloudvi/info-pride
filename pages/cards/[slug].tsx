@@ -1,6 +1,4 @@
 import { useRouter } from 'next/router'
-import { Anchor, Breadcrumbs } from '@mantine/core'
-import Link from 'next/link'
 
 import PageLoading from '#components/PageLoading'
 import Title from '#components/Title'
