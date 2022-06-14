@@ -1,119 +1,167 @@
-import { Grid, NativeSelect } from '@mantine/core'
-import { CardType } from 'hoshimi-types/ProtoEnum'
 import { useMemo } from 'react'
+import { Checkbox, SimpleGrid } from '@mantine/core'
 import { useTranslation } from 'next-i18next'
-import { atomWithHash } from 'jotai/utils'
-import { useAtom } from 'jotai'
+import { useQuery } from 'react-query'
+import { useForm } from '@mantine/form'
 
 import useApi from '#utils/useApi'
-import CardItem from '#components/cards/CardItem'
 import allFinished from '#utils/allFinished'
+import getI18nProps from '#utils/geti18nProps'
+import { APIResponseOf, frontendQueryFn, UnArray } from '#utils/api'
+import PageLoading from '#components/PageLoading'
+import Title from '#components/Title'
+import CardCard from '#components/cards/CardCard'
 import {
   CharacterChineseNameList,
   CharacterId,
   CharacterIds,
 } from '#data/vendor/characterId'
-import getI18nProps from '#utils/geti18nProps'
-import { APIResponseOf } from '#utils/api'
-import ListButton from '#components/ListButton'
-import PageLoading from '#components/PageLoading'
-import Title from '#components/Title'
+import getCardColor from '#utils/getCardColor'
+import FilterSelect from '#components/search/FilterSelect'
 
-const idolNameAtom = atomWithHash<CharacterId>('idol', CharacterIds[0], {
-  serialize: (x) => x,
-  deserialize: (x) => x as CharacterId,
-})
-const cardNumberAtom = atomWithHash('cardId', 1)
+type CardNameDataType = { nameCn: string; nameJa: string }[]
 
 const CardsPage = ({
   CardData,
-  RarityData,
+
+  CardNameData,
 }: {
   CardData: APIResponseOf<'Card'>
-  RarityData: APIResponseOf<'CardRarity'>
+
+  CardNameData: CardNameDataType
 }) => {
   const { t: $v } = useTranslation('vendor')
+  const {
+    values: formValues,
+    errors: formErrors,
+    getInputProps,
+  } = useForm({
+    initialValues: {
+      selectedCharacters: [] as CharacterId[],
+      selectedCardTypes: [] as string[],
+      selectedCardColors: [] as string[],
+      orderBy: 'releaseDate' as keyof UnArray<APIResponseOf<'Card'>>,
+      orderReversed: true,
+    },
+  })
 
-  const cards: Partial<Record<CharacterId, APIResponseOf<'Card'>>> =
-    useMemo(() => {
-      const ret: Partial<Record<CharacterId, APIResponseOf<'Card'>>> = {}
-      for (const i of CardData) {
-        // typecast-safe: CharacterId should be aligned with CardData
-        const cid = i.characterId as CharacterId
-        ;(ret[cid] ?? (ret[cid] = [])).push(i)
-      }
-      return ret
-    }, [CardData])
+  const cards = useMemo(() => {
+    const {
+      selectedCharacters,
+      selectedCardTypes,
+      selectedCardColors,
+      orderBy,
+      orderReversed,
+    } = formValues
 
-  const [idol, setIdol] = useAtom(idolNameAtom)
-  const cardList =
-    cards[idol]?.sort(
-      (a, b) => Number(a.releaseDate) - Number(b.releaseDate)
-    ) ?? []
-  const [cardNumber, setCardNumber] = useAtom(cardNumberAtom)
+    return CardData.filter((x) =>
+      selectedCharacters.length === 0
+        ? true
+        : selectedCharacters.includes(x.characterId as CharacterId)
+    )
+      .filter((x) =>
+        selectedCardTypes.length === 0
+          ? true
+          : selectedCardTypes.includes(String(x.type))
+      )
+      .filter((x) =>
+        selectedCardColors.length === 0
+          ? true
+          : selectedCardColors.includes(getCardColor(x))
+      )
+      .sort(
+        (a, b) => (a[orderBy] > b[orderBy] ? -1 : 1) * (orderReversed ? 1 : -1)
+      )
+  }, [formValues, CardData])
 
   return (
     <>
-      <Grid gutter={20} className="my-3">
-        <Grid.Col xs={12} lg={4}>
-          <NativeSelect
-            data={Object.entries(CharacterChineseNameList).map(
-              ([id, name]) => ({
-                label: name,
-                value: id,
-              })
-            )}
-            placeholder="偶像..."
-            label="偶像"
-            required
-            value={idol}
-            onChange={(e) => {
-              setIdol(e.target.value as CharacterId)
-            }}
+      <div className="mt-2 mb-4 rounded-md border-solid border-6 border-sky-500 p-2">
+        <div className="flex items-center mb-2">
+          <FilterSelect
+            className="mr-2"
+            label="角色"
+            multiple
+            list={CharacterIds}
+            listNamemap={CharacterChineseNameList}
+            width={300}
+            formProps={getInputProps('selectedCharacters')}
           />
-          <div>
-            {Object.entries(cardList).map(([_cardId, card], key) => {
-              const cardId = Number(_cardId) + 1
-              return (
-                <ListButton
-                  key={key}
-                  onClick={() => {
-                    setCardNumber(cardId)
-                  }}
-                  selected={cardNumber === cardId}
-                >
-                  <div className="text-base">
-                    <span lang="zh-CN">
-                      [{$v(CardType[card.type])}] {card.name}
-                    </span>{' '}
-                    {/* TODO: 中文卡牌名 */}
-                    {/* <br />
-                    <span className="text-gray-600 text-sm" lang="ja">
-                    {card.name}
-                  </span> */}
-                  </div>
-                </ListButton>
-              )
-            })}
-          </div>
-        </Grid.Col>
-        <Grid.Col xs={12} lg={8}>
-          {cardList[cardNumber - 1] && (
-            <CardItem card={cardList[cardNumber - 1]} rarityData={RarityData} />
-          )}
-        </Grid.Col>
-      </Grid>
+          <FilterSelect
+            className="mr-2"
+            label="类型"
+            multiple
+            list={['1', '2', '3']}
+            listNamemap={{
+              // Also check locales/vendor.json
+              1: '得分',
+              2: '辅助',
+              3: '支援',
+            }}
+            width={300}
+            formProps={getInputProps('selectedCardTypes')}
+          />
+          <FilterSelect
+            className="mr-2"
+            label="属性"
+            multiple
+            list={['Dance', 'Vocal', 'Visual']}
+            listNamemap={{
+              Dance: $v('Dance'),
+              Vocal: $v('Vocal'),
+              Visual: $v('Visual'),
+            }}
+            width={300}
+            formProps={getInputProps('selectedCardColors')}
+          />
+          <FilterSelect
+            className="mr-2"
+            label="排序方式"
+            list={['releaseDate', 'idol']}
+            listNamemap={{
+              releaseDate: '发布日期',
+              idol: '偶像',
+            }}
+            width={300}
+            formProps={getInputProps('orderBy')}
+          />
+          <Checkbox label="倒序" {...getInputProps('orderReversed')} />
+        </div>
+      </div>
+      <SimpleGrid
+        className="max-w-7xl mx-auto"
+        cols={4}
+        spacing="lg"
+        breakpoints={[
+          { maxWidth: 980, cols: 3, spacing: 'md' },
+          { maxWidth: 755, cols: 2, spacing: 'sm' },
+          { maxWidth: 600, cols: 1, spacing: 'sm' },
+        ]}
+      >
+        {cards.map((item, key) => (
+          <CardCard
+            key={key}
+            card={item}
+            nameCn={
+              CardNameData.filter((x) => x.nameJa === item.name)?.[0]?.nameCn
+            }
+          />
+        ))}
+      </SimpleGrid>
     </>
   )
 }
 
 const SkeletonCardsPage = () => {
   const { data: CardData } = useApi('Card')
-  const { data: RarityData } = useApi('CardRarity')
+  const { data: CardNameData } = useQuery<CardNameDataType>({
+    queryKey: `/api/wikiCard?fields=nameCn,nameJa`,
+    queryFn: frontendQueryFn,
+  })
 
   const allData = {
     CardData,
-    RarityData,
+    CardNameData,
   }
 
   return (

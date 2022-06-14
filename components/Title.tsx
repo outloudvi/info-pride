@@ -1,6 +1,6 @@
 import Head from 'next/head'
 
-const Title = ({ title }: { title: string }) => (
+const Title = ({ title, noh2 }: { title: string; noh2?: boolean }) => (
   <>
     <Head>
       <title>{title} | INFO PRIDE</title>

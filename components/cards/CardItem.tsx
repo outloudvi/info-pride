@@ -1,11 +1,21 @@
 import { useState } from 'react'
-import { Button, Grid, Skeleton, Slider, Switch, Tooltip } from '@mantine/core'
+import {
+  Anchor,
+  Breadcrumbs,
+  Button,
+  Grid,
+  Skeleton,
+  Slider,
+  Switch,
+  Tooltip,
+} from '@mantine/core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import type { Card, CardRarity, Skill } from 'hoshimi-types/ProtoMaster'
 import { CardType, SkillCategoryType } from 'hoshimi-types/ProtoEnum'
 import { useTranslation } from 'next-i18next'
 import { useQuery } from 'react-query'
+import Link from 'next/link'
 
 import CardAsset from './CardAsset'
 
@@ -13,6 +23,7 @@ import { toVideoLink } from '#components/ExternalVideo'
 import useApi from '#utils/useApi'
 import type { Card as WikiCard } from '#data/wikiPages/cards'
 import Paths from '#utils/paths'
+import getCardColor from '#utils/getCardColor'
 import { APIResponseOf, frontendQueryFn, UnArray } from '#utils/api'
 import { CharacterChineseNameList } from '#data/vendor/characterId'
 import { Stories } from '#data/types'
@@ -277,109 +288,124 @@ const CardItem = ({
 
   return (
     <>
-      {useCn ? (
-        <>
-          {' '}
+      <Breadcrumbs className="mb-2">
+        <Link href="/cards" passHref>
+          <Anchor>卡片列表</Anchor>
+        </Link>
+        <Link href="#" passHref>
+          <Anchor>{nameJa}</Anchor>
+        </Link>
+      </Breadcrumbs>
+      <div>
+        {useCn ? (
+          <>
+            {' '}
+            <div className="text-3xl mb-2" lang="zh-CN">
+              {wikiCard?.nameCn}
+            </div>
+            <div className="text-xl mb-2" lang="ja">
+              {nameJa}
+            </div>
+          </>
+        ) : (
           <div className="text-3xl mb-2" lang="zh-CN">
-            {wikiCard?.nameCn}
-          </div>
-          <div className="text-xl mb-2" lang="ja">
             {nameJa}
           </div>
-        </>
-      ) : (
-        <div className="text-3xl mb-2" lang="zh-CN">
-          {nameJa}
-        </div>
-      )}
-
-      {!useCn && (
-        <div
-          className="text-gray-600 dark:text-gray-400"
-          dangerouslySetInnerHTML={{
-            __html: description.replace(/\n/g, '<br/>'),
-          }}
-        ></div>
-      )}
-      <div>
-        {$v(CardType[type])} / 初始 {initialRarity}★
+        )}
       </div>
-      <hr />
-      <div className="mt-2">星级 / {rarity}</div>
-      <Slider
-        min={initialRarity}
-        max={maxRarity}
-        value={rarity}
-        onChange={(r) => {
-          setRarity(r)
-        }}
-      />
-      <div className="mt-2">等级 / {level}</div>
-      <Slider
-        min={1}
-        max={rarityInfo.levelLimit}
-        value={level}
-        onChange={(l) => {
-          setLevel(l)
-        }}
-      />
-      <div className="mt-2">
-        数值{' '}
-        <Tooltip label="实际数值可能比此数值略高。">
-          <FontAwesomeIcon icon={faInfoCircle} />
-        </Tooltip>
-      </div>
-      <Props
-        cardParameterId={cardParameterId}
-        vocalRatioPermil={vocalRatioPermil}
-        danceRatioPermil={danceRatioPermil}
-        visualRatioPermil={visualRatioPermil}
-        staminaRatioPermil={staminaRatioPermil}
-        rarityInfo={rarityInfo}
-        level={level}
-      />
-      <h3>技能{useCn && '（最高技能等级下）'}</h3>
-      {SkillData ? (
-        <Skills
-          skills={SkillData}
-          wikiCardData={useCn ? wikiCard : undefined}
-        />
-      ) : (
-        <Skeleton height={200} />
-      )}
-      <br />
-      <Switch
-        label="切换中文翻译"
-        checked={cnTrans}
-        onChange={(e) => setCnTrans(e.target.checked)}
-      />
-      {wikiStories !== undefined && (
-        <>
-          <h3>剧情</h3>
-          <CardStories stories={wikiStories} />
-        </>
-      )}
-      {wikiCard && (
-        <Button
-          className="mt-2"
-          variant="outline"
-          component="a"
-          href={Paths.wiki(
-            `${CharacterChineseNameList[wikiCard.ownerSlug]}/卡牌/${
-              wikiCard.ownerId
-            }`
+      <Grid gutter={20}>
+        <Grid.Col xs={12} lg={6}>
+          {!useCn && (
+            <div
+              className="text-gray-600 dark:text-gray-400"
+              dangerouslySetInnerHTML={{
+                __html: description.replace(/\n/g, '<br/>'),
+              }}
+            ></div>
           )}
-          target="_blank"
-          rel="noopener"
-        >
-          Wiki 页面
-        </Button>
-      )}
-      <h3>卡面</h3>
-      <CardAsset
-        cardAssetId={card.assetId}
-        isInitiallyAwaken={card.initialRarity >= 5}
-      />
+          <div>
+            {$v(CardType[type])} / {$v(getCardColor(card))} / 初始{' '}
+            {initialRarity}★
+          </div>
+          <div className="mt-2">星级 / {rarity}</div>
+          <Slider
+            min={initialRarity}
+            max={maxRarity}
+            value={rarity}
+            onChange={(r) => {
+              setRarity(r)
+            }}
+          />
+          <div className="mt-2">等级 / {level}</div>
+          <Slider
+            min={1}
+            max={rarityInfo.levelLimit}
+            value={level}
+            onChange={(l) => {
+              setLevel(l)
+            }}
+          />
+          <div className="mt-2">
+            数值{' '}
+            <Tooltip label="实际数值可能比此数值略高。">
+              <FontAwesomeIcon icon={faInfoCircle} />
+            </Tooltip>
+          </div>
+          <Props
+            cardParameterId={cardParameterId}
+            vocalRatioPermil={vocalRatioPermil}
+            danceRatioPermil={danceRatioPermil}
+            visualRatioPermil={visualRatioPermil}
+            staminaRatioPermil={staminaRatioPermil}
+            rarityInfo={rarityInfo}
+            level={level}
+          />
+          <h3>技能{useCn && '（最高技能等级下）'}</h3>
+          {SkillData ? (
+            <Skills
+              skills={SkillData}
+              wikiCardData={useCn ? wikiCard : undefined}
+            />
+          ) : (
+            <Skeleton height={200} />
+          )}
+          <br />
+          <Switch
+            label="切换中文翻译"
+            checked={cnTrans}
+            onChange={(e) => setCnTrans(e.target.checked)}
+          />
+        </Grid.Col>
+        <Grid.Col xs={12} lg={6}>
+          <h3>卡面</h3>
+          <CardAsset
+            cardAssetId={card.assetId}
+            isInitiallyAwaken={card.initialRarity >= 5}
+          />
+          {wikiStories !== undefined && (
+            <>
+              <h3>剧情</h3>
+              <CardStories stories={wikiStories} />
+            </>
+          )}
+          {wikiCard && (
+            <Button
+              className="mt-2"
+              variant="outline"
+              component="a"
+              href={Paths.wiki(
+                `${CharacterChineseNameList[wikiCard.ownerSlug]}/卡牌/${
+                  wikiCard.ownerId
+                }`
+              )}
+              target="_blank"
+              rel="noopener"
+            >
+              Wiki 页面
+            </Button>
+          )}
+        </Grid.Col>
+      </Grid>
     </>
   )
 }

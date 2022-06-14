@@ -29,7 +29,7 @@ type CardImageType = 'thumb' | 'rect' | 'upper' | 'full'
  * @param {boolean} isAwaken Whether to pick the awaken version. Note that some cards only have awaken variants.
  * @returns {string} Asset ID.
  */
-function getAssetSlug(
+export function getAssetSlug(
   cardAssetId: string,
   type: CardImageType,
   isAwaken: boolean
@@ -43,9 +43,9 @@ const CONF: {
 } = {
   r: {
     thumb: 1,
-    full: 0.56 / 1,
-    rect: 0.56 / 1,
-    upper: 2,
+    full: 1 / 0.56,
+    rect: 1 / 0.56,
+    upper: 0.5,
   },
   h: {
     thumb: 150,
@@ -89,6 +89,7 @@ const CardAsset = ({
         onChange={(event) => setIsAwaken(event.currentTarget.checked)}
       />
       <AssetImage
+        // TODO
         name={assetSlug}
         ratio={CONF['r'][imageType]}
         height={CONF['h'][imageType]}

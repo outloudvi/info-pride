@@ -1,27 +1,24 @@
 import { withSentry } from '@sentry/nextjs'
 import type { NextApiRequest, NextApiResponse } from 'next'
+import { pick } from 'lodash'
 
 import { Cards } from '#data/wikiPages'
 import type { Card as WikiCard } from '#data/wikiPages/cards'
 import CardStories from '#data/cardStories.data'
-import { Stories } from '#data/types'
+import pickFirstOrOne from '#utils/pickFirstOrOne'
 
 const CardsArray: WikiCard[] = Object.values(Cards)
   .map(Object.values)
   .reduce((a, b) => [...a, ...b])
 
-const WikiCard = async (
-  req: NextApiRequest,
-  res: NextApiResponse<{ card: WikiCard; stories: Stories | null } | undefined>
-) => {
+const WikiCard = async (req: NextApiRequest, res: NextApiResponse) => {
   const q = req.query
-  const nameJa = q.nameJa
-    ? Array.isArray(q.nameJa)
-      ? q.nameJa[0]
-      : q.nameJa
-    : null
+  const fields = q.fields ? pickFirstOrOne(q.fields) : null
+  const nameJa = q.nameJa ? pickFirstOrOne(q.nameJa) : null
   if (nameJa === null) {
-    res.status(500).end()
+    res
+      .status(200)
+      .json(CardsArray.map((x) => (fields ? pick(x, fields.split(',')) : x)))
     return
   }
 
