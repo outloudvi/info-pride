@@ -6,7 +6,7 @@ import { SkillCategoryType } from 'hoshimi-types/ProtoEnum'
 import { EffectWithTarget as SXEffectWithTarget } from 'hoshimi-types/Skillx'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
-import { uniq } from 'lodash'
+import uniq from 'lodash/uniq'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import { LocalBox } from './settings'
