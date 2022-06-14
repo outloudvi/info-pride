@@ -3,16 +3,13 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import { got } from 'got'
 import * as cheerio from 'cheerio'
 
+import { FrontendAPIResponseMapping } from '#utils/useFrontendApi'
+
 const IOS_APP_PAGE = 'https://apps.apple.com/jp/app/id1535925293'
 
-export type VersionInfo = {
-  releaseDate: string
-  releaseNotes: string
-  releaseTimestamp: string
-  versionDisplay: string
-}
-
-async function getVersion(): Promise<VersionInfo | null> {
+async function getVersion(): Promise<
+  FrontendAPIResponseMapping['version'] | null
+> {
   const html = await got
     .get(IOS_APP_PAGE, {
       responseType: 'text',
@@ -36,12 +33,19 @@ async function getVersion(): Promise<VersionInfo | null> {
 }
 
 const Version = async (
-  req: NextApiRequest,
-  res: NextApiResponse<VersionInfo | unknown>
+  _req: NextApiRequest,
+  res: NextApiResponse<FrontendAPIResponseMapping['version']>
 ) => {
+  const ver = await getVersion()
+
+  if (!ver) {
+    res.status(404).end()
+    return
+  }
+
   // Cache for 1d
   res.setHeader('Cache-Control', 'max-age=43200')
-  res.status(200).json((await getVersion()) ?? {})
+  res.status(200).json(ver)
 }
 
 export default withSentry(Version)

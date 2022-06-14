@@ -1,6 +1,5 @@
 import type { APIMapping } from 'hoshimi-types'
 import { UnwrapPromise } from 'hoshimi-types/helpers'
-import { QueryFunction } from 'react-query'
 
 export type UnArray<T> = T extends (infer R)[] ? R : never
 
@@ -11,6 +10,3 @@ export type LengthOf<T extends unknown[]> = T['length']
 export type APIResponseOf<M extends keyof APIMapping> = UnwrapPromise<
   ReturnType<APIMapping[M]>
 >
-
-export const frontendQueryFn: QueryFunction<any> = ({ queryKey: [path] }) =>
-  fetch(path as string).then((x) => x.json())

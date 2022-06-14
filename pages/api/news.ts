@@ -4,12 +4,9 @@ import zip from 'lodash/zip'
 import { got } from 'got'
 import * as cheerio from 'cheerio'
 
-const NEWS_PAGE = 'https://idolypride.jp/recent-news/'
+import { FrontendAPIResponseMapping } from '#utils/useFrontendApi'
 
-type News = {
-  title: string
-  link: string
-}
+const NEWS_PAGE = 'https://idolypride.jp/recent-news/'
 
 export async function getNews() {
   const html = await got
@@ -38,13 +35,16 @@ export async function getNews() {
     }))
 }
 
-const News = async (req: NextApiRequest, res: NextApiResponse<News[]>) => {
+const news = async (
+  _req: NextApiRequest,
+  res: NextApiResponse<FrontendAPIResponseMapping['news']>
+) => {
   // Cache for 1d
   res.setHeader('Cache-Control', 'max-age=86400')
   res.status(200).json(await getNews())
 }
 
-export default withSentry(News)
+export default withSentry(news)
 
 export const config = {
   api: {

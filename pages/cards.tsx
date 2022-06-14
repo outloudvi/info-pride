@@ -1,13 +1,12 @@
 import { useMemo } from 'react'
 import { Checkbox, SimpleGrid } from '@mantine/core'
 import { useTranslation } from 'next-i18next'
-import { useQuery } from 'react-query'
 import { useForm } from '@mantine/form'
 
 import useApi from '#utils/useApi'
 import allFinished from '#utils/allFinished'
 import getI18nProps from '#utils/geti18nProps'
-import { APIResponseOf, frontendQueryFn, UnArray } from '#utils/api'
+import { APIResponseOf, UnArray } from '#utils/api'
 import PageLoading from '#components/PageLoading'
 import Title from '#components/Title'
 import CardCard from '#components/cards/CardCard'
@@ -18,6 +17,8 @@ import {
 } from '#data/vendor/characterId'
 import getCardColor from '#utils/getCardColor'
 import FilterSelect from '#components/search/FilterSelect'
+import type { Card as WikiCard } from '#data/wikiPages/cards'
+import useFrontendApi from '#utils/useFrontendApi'
 
 type CardNameDataType = { nameCn: string; nameJa: string }[]
 
@@ -154,14 +155,15 @@ const CardsPage = ({
 
 const SkeletonCardsPage = () => {
   const { data: CardData } = useApi('Card')
-  const { data: CardNameData } = useQuery<CardNameDataType>({
-    queryKey: `/api/wikiCard?fields=nameCn,nameJa`,
-    queryFn: frontendQueryFn,
+  const { data: CardNameData } = useFrontendApi('wikiCard', {
+    fields: 'nameCn,nameJa',
   })
 
   const allData = {
     CardData,
-    CardNameData,
+    CardNameData: CardNameData as
+      | Pick<WikiCard, 'nameCn' | 'nameJa'>[]
+      | undefined,
   }
 
   return (

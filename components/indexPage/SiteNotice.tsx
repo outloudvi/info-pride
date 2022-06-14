@@ -1,13 +1,9 @@
 import Link from 'next/link'
-import { useQuery } from 'react-query'
 
-import { frontendQueryFn } from '#utils/api'
+import useFrontendApi from '#utils/useFrontendApi'
 
 const SiteNotice = () => {
-  const { data: news } = useQuery<{ title: string; link?: string }[]>({
-    queryKey: '/api/news',
-    queryFn: frontendQueryFn,
-  })
+  const { data: news } = useFrontendApi('news')
 
   return news && news.length > 0 ? (
     <ul>

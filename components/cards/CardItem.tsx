@@ -14,7 +14,6 @@ import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import type { CardRarity } from 'hoshimi-types/ProtoMaster'
 import { CardType } from 'hoshimi-types/ProtoEnum'
 import { useTranslation } from 'next-i18next'
-import { useQuery } from 'react-query'
 import Link from 'next/link'
 
 import CardAsset from './CardAsset'
@@ -22,13 +21,13 @@ import Props from './Props'
 import Skills from './Skills'
 import CardStories from './CardStories'
 
-import useApi from '#utils/useApi'
 import type { Card as WikiCard } from '#data/wikiPages/cards'
+import useApi from '#utils/useApi'
 import Paths from '#utils/paths'
 import getCardColor from '#utils/getCardColor'
-import { APIResponseOf, frontendQueryFn, UnArray } from '#utils/api'
+import { APIResponseOf, UnArray } from '#utils/api'
 import { CharacterChineseNameList } from '#data/vendor/characterId'
-import { Stories } from '#data/types'
+import useFrontendApi from '#utils/useFrontendApi'
 
 const MAX_LEVEL = 180
 
@@ -63,23 +62,20 @@ const CardItem = ({
     ids: `${card.skillId1},${card.skillId2},${card.skillId3}`,
   })
 
-  const {
-    data: WikiCardData,
-  }: { data?: { card: WikiCard; stories: Stories | null } } = useQuery({
-    queryKey: `/api/wikiCard?nameJa=${nameJa}`,
-    queryFn: frontendQueryFn,
+  const { data: WikiCardData } = useFrontendApi('wikiCard', {
+    nameJa,
+  })
+  const { data: WikiStories } = useFrontendApi('cardStories', {
+    id: card.id,
   })
 
-  const { card: wikiCard, stories: wikiStories } = WikiCardData ?? {
-    card: undefined,
-    stories: undefined,
-  }
-
-  const useCn = cnTrans && Boolean(wikiCard)
+  const useCn = cnTrans && (WikiCardData?.length ?? 0) > 0
 
   if (!rarityData) {
     return <Skeleton height={300} />
   }
+
+  const wikiCard = WikiCardData?.[0] as WikiCard | undefined
 
   return (
     <>
@@ -177,10 +173,10 @@ const CardItem = ({
             cardAssetId={card.assetId}
             isInitiallyAwaken={card.initialRarity >= 5}
           />
-          {wikiStories !== undefined && (
+          {WikiStories && (
             <>
               <h3>剧情</h3>
-              <CardStories stories={wikiStories} />
+              <CardStories stories={WikiStories} />
             </>
           )}
           {wikiCard && (

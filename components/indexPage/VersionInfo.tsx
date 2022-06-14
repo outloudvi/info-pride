@@ -1,23 +1,20 @@
 import day from 'dayjs'
 import { Badge } from '@mantine/core'
-import { useQuery } from 'react-query'
 
 import useApi from '#utils/useApi'
 import allFinished from '#utils/allFinished'
-import { APIResponseOf, frontendQueryFn } from '#utils/api'
+import { APIResponseOf } from '#utils/api'
 import { Meta as WikiPagesMeta } from '#data/wikiPages'
 import { Meta as WikiModulesMeta } from '#data/wikiModules'
 import PageLoading from '#components/PageLoading'
+import useFrontendApi from '#utils/useFrontendApi'
 
 const VersionInfo = ({
   VersionData,
 }: {
   VersionData: APIResponseOf<'Version'>
 }) => {
-  const { data: GameVersionData } = useQuery({
-    queryKey: '/api/version',
-    queryFn: frontendQueryFn,
-  })
+  const { data: GameVersionData } = useFrontendApi('version')
 
   const backendVersion = day(VersionData.version).format('YYYY/MM/DD')
   const wikiModuleVersion = day(WikiModulesMeta.updatedAt * 1000).format(
