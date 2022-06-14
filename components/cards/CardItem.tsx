@@ -30,6 +30,8 @@ import { APIResponseOf, frontendQueryFn, UnArray } from '#utils/api'
 import { CharacterChineseNameList } from '#data/vendor/characterId'
 import { Stories } from '#data/types'
 
+const MAX_LEVEL = 180
+
 const CardItem = ({
   card,
   rarityData,
@@ -77,10 +79,6 @@ const CardItem = ({
 
   if (!rarityData) {
     return <Skeleton height={300} />
-  }
-
-  if (level > rarityInfo.levelLimit) {
-    setLevel(rarityInfo.levelLimit)
   }
 
   return (
@@ -136,7 +134,7 @@ const CardItem = ({
           <div className="mt-2">等级 / {level}</div>
           <Slider
             min={1}
-            max={rarityInfo.levelLimit}
+            max={MAX_LEVEL}
             value={level}
             onChange={(l) => {
               setLevel(l)
