@@ -154,18 +154,24 @@ const CardItem = ({
             rarityInfo={rarityInfo}
             level={level}
           />
-          <h3>技能{useCn && '（最高技能等级下）'}</h3>
+          <h3>
+            技能{useCn && '（最高技能等级下）'}
+            <br />
+            <small className="font-normal text-gray-500">
+              技能图标显示功能正在实装中。欢迎
+              <a href={Paths.repoIssue()}>报告</a>
+              遇到的任何问题。
+            </small>
+          </h3>
+
           {SkillData ? (
-            <Skills
-              skills={SkillData}
-              wikiCardData={useCn ? wikiCard : undefined}
-            />
+            <Skills skills={SkillData} useCn={useCn} wikiCardData={wikiCard} />
           ) : (
             <Skeleton height={200} />
           )}
           <br />
           <Switch
-            label="切换中文翻译"
+            label="使用中文翻译"
             checked={cnTrans}
             onChange={(e) => setCnTrans(e.target.checked)}
           />
