@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import dynamic from 'next/dynamic'
 import { Grid, NativeSelect } from '@mantine/core'
 import _range from 'lodash/range'
 
@@ -10,10 +9,7 @@ import allFinished from '#utils/allFinished'
 import PageLoading from '#components/PageLoading'
 import Title from '#components/Title'
 import AssetImage from '#components/AssetImage'
-
-const NotemapGraph = dynamic(() => import('#components/notemap/NotemapGraph'), {
-  ssr: false,
-})
+import NotemapView from '#components/notemap/NotemapView'
 
 const NotemapPage = ({
   ChartListData,
@@ -110,7 +106,7 @@ const NotemapPage = ({
         </Grid>
       </Grid.Col>
       <Grid.Col xs={12} lg={6}>
-        {<NotemapGraph chartId={chartId} laneColors={laneColors} />}
+        <NotemapView chartId={chartId} laneColors={laneColors} />
       </Grid.Col>
     </Grid>
   )

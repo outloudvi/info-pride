@@ -1,5 +1,13 @@
 import { useCallback, useMemo, useState } from 'react'
-import { Button, Grid, Group, Modal, TextInput } from '@mantine/core'
+import {
+  Button,
+  Collapse,
+  Grid,
+  Group,
+  Modal,
+  NativeSelect,
+  TextInput,
+} from '@mantine/core'
 import { showNotification } from '@mantine/notifications'
 
 import useApi from '#utils/useApi'
@@ -10,20 +18,38 @@ import unitCodeV1 from '#utils/unitCode'
 import PageLoading from '#components/PageLoading'
 import getI18nProps from '#utils/geti18nProps'
 import Title from '#components/Title'
-import { CardTiny } from '#components/units/types'
+import type { CardTiny, MusicChartItem } from '#components/units/types'
 import UnitPosition from '#components/units/UnitPosition'
+import UnitAnalyzer from '#components/units/UnitAnalyzer'
+import NotemapView from '#components/notemap/NotemapView'
 
-const UnitsPage = ({ CardData }: { CardData: APIResponseOf<'Card'> }) => {
+const UnitsPage = ({
+  CardData,
+  ChartListData,
+}: {
+  CardData: APIResponseOf<'Card'>
+  ChartListData: APIResponseOf<'MusicChartList'>
+}) => {
+  const musicChartList: MusicChartItem[] = ChartListData.map((x) =>
+    x.charts.map((r) => ({
+      ...r,
+      songTitle: x.title,
+    }))
+  ).reduce((a, b) => [...a, ...b])
+
+  const [selectedMusicChart, setSelectedMusicChart] = useState<MusicChartItem>(
+    musicChartList[0]
+  )
+
   // 6 positions (0 and 1-5)
   // (unitCards[0] should be always empty)
-  // eslint-disable-next-line no-sparse-arrays
-  const [unitCards, setUnitCards] = useState<(CardTiny | undefined)[]>([
-    ,
-    ,
-    ,
-    ,
-    ,
-    ,
+  const [unitCards, setUnitCards] = useState<(CardTiny | null)[]>([
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
   ])
 
   const setPositionCard = useCallback(
@@ -41,6 +67,7 @@ const UnitsPage = ({ CardData }: { CardData: APIResponseOf<'Card'> }) => {
 
   const [modalImportUnit, setModalImportUnit] = useState(false)
   const [importUnitId, setImportUnitId] = useState('')
+  const [showNotemap, setShowNotemap] = useState(false)
 
   return (
     <>
@@ -75,8 +102,8 @@ const UnitsPage = ({ CardData }: { CardData: APIResponseOf<'Card'> }) => {
               return
             }
             setUnitCards([
-              undefined,
-              ...result.map((x) => CardData.find((y) => y.id === x)),
+              null,
+              ...result.map((x) => CardData.find((y) => y.id === x) ?? null),
             ])
             showNotification({
               title: '导入了队伍。',
@@ -92,8 +119,30 @@ const UnitsPage = ({ CardData }: { CardData: APIResponseOf<'Card'> }) => {
       <p className="text-gray-500 dark:text-gray-400">
         本页面正在设计中。任何内容均可能发生变化。
       </p>
+
       <Grid gutter={20} className="my-3">
         <Grid.Col xs={12} lg={6}>
+          <div className="mb-2">
+            <NativeSelect
+              label="选择谱面"
+              data={musicChartList.map(
+                (x, index) => `[#${index + 1}] ${x.songTitle} - ${x.desc}`
+              )}
+              onChange={(e) => {
+                const value = e.currentTarget.value.match(/^\[#(\d+)\]/)?.[1]
+                if (!value) {
+                  showNotification({
+                    title: '无效的谱面',
+                    message: '请重新选择谱面。',
+                    color: 'red',
+                  })
+                  return
+                }
+                setSelectedMusicChart(musicChartList[Number(value)])
+              }}
+              required
+            />
+          </div>
           <Group>
             <div className="grow">
               队伍编码：
@@ -121,7 +170,21 @@ const UnitsPage = ({ CardData }: { CardData: APIResponseOf<'Card'> }) => {
           </div>
         </Grid.Col>
         <Grid.Col xs={12} lg={6}>
-          {/* TODO: display notemap */}
+          <UnitAnalyzer unitCards={unitCards} musicChart={selectedMusicChart} />
+          <Button
+            className="my-2"
+            onClick={() => {
+              setShowNotemap((x) => !x)
+            }}
+          >
+            {showNotemap ? '隐藏曲谱' : '显示曲谱'}
+          </Button>
+          <Collapse in={showNotemap}>
+            <NotemapView
+              chartId={selectedMusicChart.id}
+              laneColors={['blue', 'blue', 'blue', 'blue', 'blue']}
+            />
+          </Collapse>
         </Grid.Col>
       </Grid>
     </>
@@ -130,9 +193,11 @@ const UnitsPage = ({ CardData }: { CardData: APIResponseOf<'Card'> }) => {
 
 const SkeletonUnitsPage = () => {
   const { data: CardData } = useApi('Card')
+  const { data: ChartListData } = useApi('MusicChartList')
 
   const allData = {
     CardData,
+    ChartListData,
   }
 
   return (

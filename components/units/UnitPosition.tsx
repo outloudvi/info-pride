@@ -14,7 +14,7 @@ const UnitPosition = ({
   col,
 }: {
   position: number
-  card?: CardTiny
+  card: CardTiny | null
   setCard: (c: CardTiny) => void
   cardList: CardTiny[]
   col: number

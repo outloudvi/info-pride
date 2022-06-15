@@ -1,28 +1,22 @@
 import { Button, Group, Stack } from '@mantine/core'
 import { useEffect, useRef } from 'react'
+import { MusicChart } from 'hoshimi-types/types'
 
 import renderNotemap from './renderNotemap'
 
-import useApi from '#utils/useApi'
-
 const NotemapGraph = ({
-  chartId,
+  chart,
   laneColors,
 }: {
-  chartId: string
+  chart: MusicChart
   laneColors: string[]
 }) => {
-  const { data } = useApi('MusicChart', {
-    chartId,
-  })
   const svgRef = useRef<SVGSVGElement | null>(null)
 
   useEffect(() => {
-    if (data) {
-      renderNotemap(data, svgRef.current, {
-        laneColors,
-      })
-    }
+    renderNotemap(chart, svgRef.current, {
+      laneColors,
+    })
   })
 
   const downloadNotemapSVG = () => {
