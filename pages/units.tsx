@@ -138,7 +138,7 @@ const UnitsPage = ({
                   })
                   return
                 }
-                setSelectedMusicChart(musicChartList[Number(value)])
+                setSelectedMusicChart(musicChartList[Number(value) - 1])
               }}
               required
             />
