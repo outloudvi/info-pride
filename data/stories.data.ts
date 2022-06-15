@@ -1029,6 +1029,14 @@ const data: Partial<
       },
     },
   },
+  ThreeX: {
+    1: {
+      1: {
+        name: 'ⅢⅩ的从零开始的物语',
+        video: { type: 'bilibili', vid: 'av385022619' },
+      },
+    },
+  },
 }
 
 export default data
