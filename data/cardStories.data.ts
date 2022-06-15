@@ -362,6 +362,9 @@ const dataSakura: D = {
       name: 'TODO',
       video: { type: 'bilibili', vid: 'av727077660' },
     },
+    phone: {
+      video: { type: 'bilibili', vid: 'av554879758' },
+    },
   },
 }
 
