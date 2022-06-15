@@ -1,0 +1,40 @@
+import { HTMLAttributes } from 'react'
+import { Badge, Tooltip } from '@mantine/core'
+import type { Skill } from 'hoshimi-types/ProtoMaster'
+import { SkillCategoryType } from 'hoshimi-types/ProtoEnum'
+import { useTranslation } from 'next-i18next'
+
+const SkillInUnit = ({
+  skill,
+  className,
+  style,
+}: { skill: Skill } & HTMLAttributes<'div'>) => {
+  const { t: $v } = useTranslation('vendor')
+  return (
+    <div {...{ className, style }}>
+      {skill.name} <br />
+      <span className="text-sm">
+        {$v(SkillCategoryType[skill.categoryType])} 技
+      </span>{' '}
+      <br />
+      <Tooltip
+        label={
+          <div
+            dangerouslySetInnerHTML={{
+              __html: skill.levels[skill.levels.length - 1].description.replace(
+                /\n/g,
+                '<br/>'
+              ),
+            }}
+          ></div>
+        }
+        withArrow
+        position="right"
+      >
+        <Badge>详情</Badge>
+      </Tooltip>
+    </div>
+  )
+}
+
+export default SkillInUnit
