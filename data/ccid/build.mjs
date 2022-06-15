@@ -9,9 +9,9 @@ async function main() {
     for (const i of ccidItems) {
       // for new charId, accept ccid from remote
       if (
-        currentCcid[charId].filter((x) => x.charId === i.charId).length === 0
+        currentCcid[charId].filter((x) => x.cardId === i.cardId).length === 0
       ) {
-        console.log(`Adding ${i.nameJa} to ${i.charId}/${i.ccid}`)
+        console.log(`Adding ${i.nameJa} to ${charId}/${i.ccid}`)
         currentCcid[charId].push(i)
       }
     }
