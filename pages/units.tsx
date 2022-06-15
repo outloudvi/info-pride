@@ -146,7 +146,11 @@ const UnitsPage = ({
           <Group>
             <div className="grow">
               队伍编码：
-              {unitCode || '（请先选择所有位置的卡片。）'}
+              {unitCode
+                ? unitCode.includes('!')
+                  ? '（部分新卡片在 ccid 数据库中不存在，暂时无法生成编码。）'
+                  : unitCode
+                : '（请先选择所有位置的卡片。）'}
             </div>
             <Button
               onClick={() => {
