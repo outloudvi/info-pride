@@ -693,6 +693,24 @@ const dataYu: D = {
     2: { name: 'TODO', video: { type: 'bilibili', vid: 'av294899075' } },
     3: { name: 'TODO', video: { type: 'bilibili', vid: 'av294899075' } },
   },
+  'card-yu-05-wedd-01': {
+    // 心恋、京ツアー
+    1: {
+      name: '我就喜欢说话爽快的人了',
+      video: { type: 'bilibili', vid: 'av384986939' },
+    },
+    2: {
+      name: '请重视女孩子的梦想',
+      video: { type: 'bilibili', vid: 'av642525031' },
+    },
+    3: {
+      name: '我这宛如水面般澄清的双眸',
+      video: { type: 'bilibili', vid: 'av470123832' },
+    },
+    phone: {
+      video: { type: 'bilibili', vid: 'av215108612' },
+    },
+  },
 }
 
 // 奥山堇
