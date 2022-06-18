@@ -1035,6 +1035,10 @@ const data: Partial<
         name: 'ⅢⅩ的从零开始的物语',
         video: { type: 'bilibili', vid: 'av385022619' },
       },
+      2: {
+        name: '像魔法少女一样',
+        video: { type: 'bilibili', vid: 'av257513188' },
+      },
     },
   },
 }

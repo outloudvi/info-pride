@@ -515,6 +515,9 @@ const dataRei: D = {
       name: 'TODO',
       video: { type: 'bilibili', vid: 'av298373160', pid: 3 },
     },
+    phone: {
+      video: { type: 'bilibili', vid: 'av810995913' },
+    },
   },
 }
 
