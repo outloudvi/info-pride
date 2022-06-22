@@ -1,5 +1,5 @@
 import { Blockquote, Button, Group, Skeleton } from '@mantine/core'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { APIResponseOf } from '#utils/api'
 import useApi from '#utils/useApi'
@@ -59,6 +59,10 @@ const EventStoryEpisodeList = ({
   const { data: StoryData } = useApi('Story', {
     id: selectedStoryId,
   })
+
+  useEffect(() => {
+    setSelectedStoryId(event.episodes[0].storyId)
+  }, [event])
 
   return (
     <>
