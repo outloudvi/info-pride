@@ -148,7 +148,9 @@ function effectToString(
     case 'vocal_down':
     case 'dance_down':
     case 'visual_down': {
-      return `赋予${n}${skillEffectTypeNames[e.typ]}状态[${e.len}拍]`
+      return `赋予${n}${e.lvl}阶段${skillEffectTypeNames[e.typ]}状态[${
+        e.len
+      }拍]`
     }
 
     // EffectCharacterLevelOnlyTyp

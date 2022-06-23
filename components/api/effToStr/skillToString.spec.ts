@@ -199,7 +199,7 @@ describe('effects', function () {
             cnt: 1,
           },
         })
-      ).to.eq('赋予红属性高1人演唱（红）属性提升状态[13拍]')
+      ).to.eq('赋予红属性高1人5阶段演唱（红）属性提升状态[13拍]')
     })
 
     it('active_skill_score_up', function () {
@@ -216,7 +216,7 @@ describe('effects', function () {
             cnt: 1,
           },
         })
-      ).to.eq('赋予全员A技能得分提升状态[38拍]')
+      ).to.eq('赋予全员7阶段A技能得分提升状态[38拍]')
     })
 
     it('tension_up', function () {
@@ -234,7 +234,7 @@ describe('effects', function () {
             cnt: 2,
           },
         })
-      ).to.eq('赋予[得分]属性2人集目状态[35拍]')
+      ).to.eq('赋予[得分]属性2人4阶段集目状态[35拍]')
     })
 
     it('critical_bonus_permil_up', function () {
@@ -252,7 +252,7 @@ describe('effects', function () {
             cnt: 2,
           },
         })
-      ).to.eq('赋予[得分]属性2人暴击系数提升状态[37拍]')
+      ).to.eq('赋予[得分]属性2人4阶段暴击系数提升状态[37拍]')
     })
   })
 
@@ -479,7 +479,7 @@ describe('targets', function () {
           cnt: 1,
         },
       })
-    ).to.eq('赋予对手中心舞蹈（蓝）属性下降状态[28拍]')
+    ).to.eq('赋予对手中心6阶段舞蹈（蓝）属性下降状态[28拍]')
   })
 
   it('vocal', function () {
@@ -496,7 +496,7 @@ describe('targets', function () {
           cnt: 2,
         },
       })
-    ).to.eq('赋予红属性2人连击得分提升状态[18拍]')
+    ).to.eq('赋予红属性2人6阶段连击得分提升状态[18拍]')
   })
 
   it('position_attribute_visual', function () {
@@ -513,7 +513,7 @@ describe('targets', function () {
           cnt: 2,
         },
       })
-    ).to.eq('赋予黄轨道2人技能成功率提升状态[24拍]')
+    ).to.eq('赋予黄轨道2人3阶段技能成功率提升状态[24拍]')
   })
 
   it('opponent_character_type', function () {
@@ -550,7 +550,7 @@ describe('targets', function () {
         },
         'tg-before_active_skill_by_someone'
       )
-    ).to.eq('[某人A技能发动前]赋予暴击率提升状态[20拍]')
+    ).to.eq('[某人A技能发动前]赋予3阶段暴击率提升状态[20拍]')
   })
 
   it('status', function () {
