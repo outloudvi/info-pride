@@ -243,5 +243,5 @@ export default function skillxToString(
   const ret =
     (trigger ? `[${triggerToString(trigger) ?? '触发条件'}]` : '') +
     effectToString(sk.effect, targetToString(sk.target))
-  return ret.replaceAll(' ', '')
+  return ret.replace(/ +/g, '')
 }

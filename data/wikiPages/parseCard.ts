@@ -100,7 +100,7 @@ function parseSkill(__s: string) {
   }
   const s = _s
     .replace(/\[(\d+)拍\]/g, ' [$1拍]')
-    .replaceAll('[对决演出]', '对决演出时 ')
+    .replace(/\[对决演出\]/g, '对决演出时 ')
     .replace(/在?对决演出时，?/g, '对决演出时 ')
     // it should be at the end
     .replace(/[\n 、·]+/g, ' ')

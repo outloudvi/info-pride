@@ -63,7 +63,7 @@ const SkillExplainer = ({ level }: { level: SkillLevel }) => {
           <div
             className="text-gray-800 dark:text-gray-200 p-2 border border-solid rounded-md"
             dangerouslySetInnerHTML={{
-              __html: translation.replaceAll('\n', '<br/>'),
+              __html: translation.replace(/\n/g, '<br/>'),
             }}
           ></div>
         </>

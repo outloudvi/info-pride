@@ -22,7 +22,7 @@ export default function renderMessage(
               : `选项 ${choiceId}`
           }] `}</span>
         )}
-        {msg.text.replaceAll('{user}', MANAGER_NAME)}
+        {msg.text.replace(/\{user\}/g, MANAGER_NAME)}
       </>
     )
   }
