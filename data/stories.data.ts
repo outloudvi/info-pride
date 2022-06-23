@@ -391,6 +391,14 @@ const data: Partial<
         name: '悄悄靠近的忧虑',
         video: { type: 'bilibili', vid: 'av214950482' },
       },
+      19: {
+        name: '不请自来的客人',
+        video: { type: 'bilibili', vid: 'av982680518' },
+      },
+      20: {
+        name: '就在那里',
+        video: { type: 'bilibili', vid: 'av555161301' },
+      },
     },
   },
   Tokyo: {
@@ -1038,6 +1046,10 @@ const data: Partial<
       2: {
         name: '像魔法少女一样',
         video: { type: 'bilibili', vid: 'av257513188' },
+      },
+      3: {
+        name: '偶像只不过是人生中的一个小插曲而已',
+        video: { type: 'bilibili', vid: 'av685217154' },
       },
     },
   },
