@@ -1,8 +1,8 @@
-function tryJSONParse(s: any): any {
+function tryJSONParse(s: any): any | null {
   try {
     return JSON.parse(s)
   } catch (_) {
-    return {}
+    return null
   }
 }
 

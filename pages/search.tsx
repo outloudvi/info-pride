@@ -43,7 +43,7 @@ const SearchPage = ({
 }) => {
   const [localBox, setLocalBox] = useState<LocalBox>({})
   useEffect(() => {
-    setLocalBox(tryJSONParse(localStorage.getItem(LOCALSTORAGE_BOX_TAG)))
+    setLocalBox(tryJSONParse(localStorage.getItem(LOCALSTORAGE_BOX_TAG)) ?? {})
   }, [])
 
   const {

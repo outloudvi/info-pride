@@ -27,6 +27,12 @@
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"],
   "ts-node": {
-    "esm": true
+    "compilerOptions": {
+      "module": "CommonJS",
+      "paths": {
+        "#data/*": ["data/*"]
+      }
+    },
+    "require": ["tsconfig-paths/register"]
   }
 }

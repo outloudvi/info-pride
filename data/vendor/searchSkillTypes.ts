@@ -39,9 +39,10 @@ export const skillEffectTypeNames = {
   target_stamina_recovery: '体力回复（按比率）',
   stamina_consumption_increase: '体力消耗提升',
   stamina_consumption_reduction: '体力消耗降低',
+  stamina_consumption: '消耗体力',
 
   strength_effect_value_increase: '强化效果增强',
-  strength_effect_count_increase: '强化效果延迟',
+  strength_effect_count_increase: '强化效果延长',
   strength_effect_migration_before_special_skill: '强化效果移动至 SP 技能前',
   strength_effect_migration_before_active_skill: '强化效果移动至 A 技能前',
 
