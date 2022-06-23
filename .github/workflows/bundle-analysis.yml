@@ -34,6 +34,8 @@ jobs:
           key: ${{ runner.os }}-build-${{ env.cache-name }}
 
       - name: Build next.js app
+        env:
+          DISABLE_SENTRY: yes
         # change this if your site requires a custom build command
         run: ./node_modules/.bin/next build
 
