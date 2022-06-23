@@ -2,13 +2,15 @@ import { SkillCategoryType } from 'hoshimi-types/ProtoEnum'
 import { Skill, SkillLevel } from 'hoshimi-types/ProtoMaster'
 import { useTranslation } from 'next-i18next'
 
+import SkillExplainer from '#components/cards/SkillExplainer'
+
 function buildStatusLine(
   levelDesc: SkillLevel,
   typ: SkillCategoryType
 ): string {
   const { stamina, limitCount, coolTime } = levelDesc
 
-  const ret = [`所需精力 ${stamina}`]
+  const ret = [`所需体力 ${stamina}`]
 
   switch (typ) {
     case SkillCategoryType.Active:
@@ -51,6 +53,8 @@ const SkillDesc = ({ skill }: { skill: Skill }) => {
       ></span>
       <br />
       <span className="font-semibold">{statusLine}</span>
+      <br />
+      <SkillExplainer level={skill.levels[skill.levels.length - 1]} />
     </div>
   )
 }

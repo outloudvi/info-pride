@@ -18,6 +18,7 @@ import { QueryClient, QueryClientProvider } from 'react-query'
 import Layout from '#components/layout/Layout'
 import Loading from '#components/layout/Loading'
 import startupHook from '#utils/startupHook'
+import Paths from '#utils/paths'
 
 const finishedAtom = atom(false)
 
@@ -48,7 +49,7 @@ const App = (props: AppProps) => {
             staleTime: Infinity,
             queryFn: ({ queryKey: [path] }) => {
               if (typeof path === 'string') {
-                const url = new URL('https://idoly-backend.outv.im/api/' + path)
+                const url = new URL(Paths.api(path))
                 return fetch(String(url)).then((x) => x.json())
               }
               throw new Error('Invalid QueryKey')

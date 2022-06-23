@@ -5,6 +5,7 @@ import { SkillCategoryType } from 'hoshimi-types/ProtoEnum'
 import { useTranslation } from 'next-i18next'
 
 import SkillImage from './SkillImage'
+import SkillExplainer from './SkillExplainer'
 
 import type { Card as WikiCard } from '#data/wikiPages/cards'
 
@@ -58,6 +59,8 @@ const Skill = ({
             ).replace(/\n+/g, '<br />'),
           }}
         ></span>
+        <br />
+        {!useCn && <SkillExplainer level={levels[level - 1]} />}
       </div>
     </>
   )

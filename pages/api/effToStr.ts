@@ -9,12 +9,13 @@ const EffToStr = async (
   req: NextApiRequest,
   res: NextApiResponse<string[]>
 ) => {
-  const body: EffectWithTarget[] = tryJSONParse(req.body)
+  const body: (Omit<EffectWithTarget, 'owner'> & { trigger?: string })[] =
+    tryJSONParse(req.body)
   if (body === null || !Array.isArray(body)) {
     res.status(400).end()
     return
   }
-  res.status(200).json(body.map(skillxToString))
+  res.status(200).json(body.map((x) => skillxToString(x, x.trigger)))
 }
 
 export default withSentry(EffToStr)
