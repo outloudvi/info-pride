@@ -29,7 +29,7 @@ import { APIResponseOf, UnArray } from '#utils/api'
 import { CharacterChineseNameList } from '#data/vendor/characterId'
 import useFrontendApi from '#utils/useFrontendApi'
 
-const MAX_LEVEL = 180
+const MAX_LEVEL = 200
 
 const CardItem = ({
   card,
