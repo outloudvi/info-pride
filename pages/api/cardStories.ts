@@ -17,12 +17,14 @@ const cardStories = async (
     return
   }
 
-  if (!CardStories[id]) {
+  if (CardStories[id] === undefined) {
     res.status(404).end()
     return
   }
 
-  res.status(200).json(CardStories[id])
+  res.status(200).json({
+    stories: CardStories[id],
+  })
 }
 
 export default withSentry(cardStories)

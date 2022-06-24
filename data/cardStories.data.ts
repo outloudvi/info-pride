@@ -1,6 +1,6 @@
 import { Stories } from './types'
 
-type D = Record<string, Stories>
+type D = Record<string, Stories | null>
 
 // ---- 月光风暴 ----
 // 长濑琴乃
@@ -1009,6 +1009,8 @@ const dataMana: D = {
       video: { type: 'bilibili', vid: 'av595197954', pid: 3 },
     },
   },
+  // Premium cards do NOT have stories
+  'card-mna-05-prem-00': null,
 }
 
 const data: D = {

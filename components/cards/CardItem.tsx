@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import {
   Anchor,
   Breadcrumbs,
@@ -73,6 +73,46 @@ const CardItem = ({
   )
 
   const useCn = cnTrans && (WikiCardData?.length ?? 0) > 0
+
+  const storiesDisplay = useMemo(() => {
+    // Not fetched
+    if (!isWikiStoriesFetched) {
+      return <Skeleton height={200} className="my-2" />
+    }
+
+    // Translation does not exist
+    if (WikiStories === undefined) {
+      return (
+        <>
+          <h3>剧情</h3>
+          <p className="text-gray-500">
+            暂无剧情翻译。请更新至{' '}
+            <a href={Paths.repo('data/cardStories.data.ts')}>
+              `cardStories.data.ts`
+            </a>{' '}
+            的 <code>{card.id}</code> 。
+          </p>
+        </>
+      )
+    }
+
+    // Stories do not exist
+    if (WikiStories.stories === null) {
+      return (
+        <>
+          <h3>剧情</h3>
+          <p className="text-gray-500">此卡片无剧情。</p>
+        </>
+      )
+    }
+
+    return (
+      <>
+        <h3>剧情</h3>
+        <CardStories stories={WikiStories.stories} />
+      </>
+    )
+  }, [WikiStories, isWikiStoriesFetched, card.id])
 
   if (!rarityData) {
     return <Skeleton height={300} />
@@ -182,27 +222,7 @@ const CardItem = ({
             cardAssetId={card.assetId}
             isInitiallyAwaken={card.initialRarity >= 5}
           />
-          {isWikiStoriesFetched ? (
-            WikiStories ? (
-              <>
-                <h3>剧情</h3>
-                <CardStories stories={WikiStories} />
-              </>
-            ) : (
-              <>
-                <h3>剧情</h3>
-                <p className="text-gray-500">
-                  暂无剧情翻译。请更新至{' '}
-                  <a href={Paths.repo('data/cardStories.data.ts')}>
-                    `cardStories.data.ts`
-                  </a>{' '}
-                  的 <code>{card.id}</code> 。
-                </p>
-              </>
-            )
-          ) : (
-            <Skeleton height={200} className="my-2" />
-          )}
+          {storiesDisplay}
           {wikiCard && (
             <Button
               className="mt-2"

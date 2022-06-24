@@ -13,7 +13,11 @@ const frontendQueryFn: QueryFunction = ({ queryKey: [path] }) =>
   )
 
 export type FrontendAPIResponseMapping = {
-  cardStories: Stories | undefined
+  cardStories:
+    | {
+        stories: Stories | null
+      }
+    | undefined
   news: { title: string; link?: string }[]
   version:
     | {
