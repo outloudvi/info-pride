@@ -31,6 +31,8 @@ export const skillEffectTypeNames = {
   score_get_by_status_effect_type_grade: '得分提升（提升状态）',
   score_get_by_strength_effect_count: '得分提升（强化效果）',
   score_get_by_trigger: '得分提升（特殊条件）',
+  score_get_and_stamina_consumption_by_more_stamina_use:
+    '得分提升（技能消耗体力多）',
 
   skill_score_up: '技能得分提升',
   skill_success_rate_up: '技能成功率提升',

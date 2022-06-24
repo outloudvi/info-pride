@@ -23,6 +23,7 @@ function getSkillImageBgPrefix(typ: string): SkillImageBgType {
     case 'score_get_by_trigger':
     case 'score_get_by_status_effect_type_grade':
     case 'score_get_by_more_stamina':
+    case 'score_get_and_stamina_consumption_by_more_stamina_use':
       return 'score'
     case 'cool_time_reduction':
     case 'stamina_consumption':

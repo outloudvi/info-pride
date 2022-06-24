@@ -31,6 +31,8 @@ export const EFFECT_SPECIAL = {
   score_get_by_more_stamina_use: '消耗体力越多效果越好',
   score_get_by_more_stamina: '剩余体力越多效果越好',
   score_get_by_less_stamina: '剩余体力越少效果越好',
+  score_get_and_stamina_consumption_by_more_stamina_use:
+    '技能消耗体力越多效果越好',
   score_get: '',
 } as const
 

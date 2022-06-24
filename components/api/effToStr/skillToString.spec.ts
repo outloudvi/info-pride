@@ -142,6 +142,19 @@ describe('effects', function () {
         })
       ).to.eq('取得990%得分（剩余体力越少效果越好）')
     })
+
+    it('score_get_and_stamina_consumption_by_more_stamina_use', function () {
+      expect(
+        // sk-mna-05-prem-00-1
+        skillxToString({
+          effect: {
+            typ: 'score_get_and_stamina_consumption_by_more_stamina_use',
+            typ2: 10500,
+          },
+          target: { typ: 'chart_dependence' },
+        })
+      ).to.eq('取得1050%得分（技能消耗体力越多效果越好）')
+    })
   })
 
   describe('score_get_by_status_effect_type_grade', function () {

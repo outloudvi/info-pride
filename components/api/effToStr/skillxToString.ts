@@ -93,6 +93,13 @@ function triggerToString(s: string): string | null {
   return null
 }
 
+/**
+ * When this file is called for updates, please also update:
+ *  * components/api/effToStr/skillxToString.const.ts: Detailed description
+ *  * components/api/effToStr/skillToString.spec.ts: A test case
+ *  * data/vendor/searchSkillTypes.ts: Short description
+ *  * components/cards/SkillImage.tsx: Skill image type
+ */
 function effectToString(
   e: EffectChart | EffectCharacterWithLength | EffectCharacterWithoutLength,
   n: string
@@ -107,6 +114,7 @@ function effectToString(
     case 'score_get_by_more_stamina_use':
     case 'score_get_by_more_stamina':
     case 'score_get_by_less_stamina':
+    case 'score_get_and_stamina_consumption_by_more_stamina_use':
     case 'score_get': {
       return `取得${e.typ2 / 10}%得分${
         EFFECT_SPECIAL[e.typ] ? `（${EFFECT_SPECIAL[e.typ]}）` : ''
