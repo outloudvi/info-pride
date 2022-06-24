@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router'
+import { Skeleton } from '@mantine/core'
 
 import PageLoading from '#components/PageLoading'
 import Title from '#components/Title'
@@ -46,6 +47,12 @@ const SkeletonCardInfoPage = () => {
   )
 }
 
+const PreloadedCardInfoPage = () => {
+  const router = useRouter()
+
+  return router.isReady ? <SkeletonCardInfoPage /> : <Skeleton height={300} />
+}
+
 // export const getServerSideProps = getI18nProps
 
-export default SkeletonCardInfoPage
+export default PreloadedCardInfoPage
