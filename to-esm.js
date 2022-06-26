@@ -1,5 +1,28 @@
 const fs = require('fs')
 
-const pak = JSON.parse(fs.readFileSync('./package.json', 'utf-8'))
-pak.type = 'module'
-fs.writeFileSync('./package.json', JSON.stringify(pak))
+function writeTo(obj, file) {
+  const pak = JSON.parse(fs.readFileSync(file, 'utf-8'))
+  fs.writeFileSync(
+    file,
+    JSON.stringify({
+      ...pak,
+      ...obj,
+    })
+  )
+}
+
+writeTo(
+  {
+    type: 'module',
+  },
+  './package.json'
+)
+
+writeTo(
+  {
+    'ts-node': {
+      esm: true,
+    },
+  },
+  './tsconfig.json'
+)
