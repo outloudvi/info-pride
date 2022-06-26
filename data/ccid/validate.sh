@@ -3,4 +3,4 @@ set -eu
 
 pushd $(dirname $0)
 
-node ./validate.mjs
+node ./validate.js

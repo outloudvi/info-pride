@@ -1,6 +1,9 @@
-import WikiCards from '../wikiPages/cards.json' assert { type: 'json' }
+import { createRequire } from 'module'
+const require = createRequire(import.meta.url)
 
-import ccid from './ccid.json' assert { type: 'json' }
+const WikiCards = require('../wikiPages/cards.json')
+
+const ccid = require('./ccid.json')
 
 function main() {
   let ok = true
