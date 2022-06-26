@@ -2,7 +2,7 @@ import { CharacterId } from './vendor/characterId'
 
 import Paths from '#utils/paths'
 
-export const IdolyFashionUrl: Record<CharacterId, string> = {
+export const IdolyFashionUrl: Partial<Record<CharacterId, string>> = {
   'char-skr': Paths.ipcommu('fashion-02'),
   'char-rei': Paths.ipcommu('fashion-03'),
   'char-hrk': Paths.ipcommu('fashion-05'),

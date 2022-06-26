@@ -218,9 +218,11 @@ const CharacterItem = ({
                 >
                   <Button>萌娘百科条目</Button>
                 </a>
-                <a href={IdolyFashionUrl[id as CharacterId]}>
-                  <Button>服装介绍 / IDOLY FASHION</Button>
-                </a>
+                {IdolyFashionUrl[id as CharacterId] && (
+                  <a href={IdolyFashionUrl[id as CharacterId]}>
+                    <Button>服装介绍 / IDOLY FASHION</Button>
+                  </a>
+                )}
                 {IdolyRoomUrl[id as CharacterId] && (
                   <a href={IdolyRoomUrl[id as CharacterId]}>
                     <Button>房间介绍 / IDOLY ROOM</Button>
