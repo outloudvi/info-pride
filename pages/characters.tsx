@@ -231,7 +231,9 @@ const CharacterItem = ({
           )}
         </Grid.Col>
         <Grid.Col xs={12} lg={4} className="flex items-center justify-center">
-          <CharacterAnimation charId={id as CharacterId} />
+          {!['char-kor', 'char-kan', 'char-mhk'].includes(id) && (
+            <CharacterAnimation charId={id as CharacterId} />
+          )}
         </Grid.Col>
       </Grid>
     </div>
