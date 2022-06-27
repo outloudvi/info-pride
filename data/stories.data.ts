@@ -806,7 +806,14 @@ const data: Partial<
         name: '为了朋友',
         video: { type: 'bilibili', vid: 'av639941313' },
       },
-      // TODO: 29-30
+      29: {
+        name: '梦的共演',
+        video: { type: 'bilibili', vid: 'av940346740' },
+      },
+      30: {
+        name: '兄妹的约定',
+        video: { type: 'bilibili', vid: 'av215267335' },
+      },
     },
   },
   LizNoir: {
@@ -1067,6 +1074,14 @@ const data: Partial<
       3: {
         name: '偶像只不过是人生中的一个小插曲而已',
         video: { type: 'bilibili', vid: 'av685217154' },
+      },
+    },
+  },
+  Big4: {
+    1: {
+      1: {
+        name: '再会',
+        video: { type: 'bilibili', vid: 'av770256819' },
       },
     },
   },
