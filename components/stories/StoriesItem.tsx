@@ -17,17 +17,17 @@ type PropType = {
 function getBackendStoryId(props: PropType): string {
   const { series, season, chapter } = props
   const Prefix: Record<SeriesName, string> = {
-    Hoshimi: 'st-original-cmn',
-    Tokyo: 'st-main-cmn',
-    TRINITYAiLE: 'st-group-tri',
-    LizNoir: 'st-group-liz',
-    Mana: 'st-group-mna',
-    ThreeX: 'st-group-thrx',
+    Hoshimi: 'st-original-cmn-01',
+    Tokyo: 'st-main-cmn-01',
+    Big4: 'st-main-cmn-02',
+    TRINITYAiLE: 'st-group-tri-01',
+    LizNoir: 'st-group-liz-01',
+    Mana: 'st-group-mna-01',
+    ThreeX: 'st-group-thrx-01',
     Special: '',
   }
   return [
     Prefix[series],
-    '01',
     String(season).padStart(2, '0'),
     String(chapter).padStart(2, '0'),
   ].join('-')
