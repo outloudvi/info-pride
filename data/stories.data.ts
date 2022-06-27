@@ -399,6 +399,15 @@ const data: Partial<
         name: '就在那里',
         video: { type: 'bilibili', vid: 'av555161301' },
       },
+      21: {
+        name: '唱自己的歌',
+        video: { type: 'bilibili', vid: 'av427874029' },
+      },
+      22: {
+        name: '我的歌是',
+        video: { type: 'bilibili', vid: 'av855364218' },
+      },
+      // TODO: 23-25
     },
   },
   Tokyo: {
@@ -793,7 +802,11 @@ const data: Partial<
         name: '全部都要！',
         video: { type: 'bilibili', vid: 'av554538436' },
       },
-      // TODO: 27-
+      28: {
+        name: '为了朋友',
+        video: { type: 'bilibili', vid: 'av639941313' },
+      },
+      // TODO: 29-30
     },
   },
   LizNoir: {
@@ -910,7 +923,11 @@ const data: Partial<
         name: '世界之墙',
         video: { type: 'bilibili', vid: 'av896031365' },
       },
-      // 29-30
+      29: {
+        name: '后辈的想法',
+        video: { type: 'bilibili', vid: 'av642765842' },
+      },
+      // 30
     },
   },
   Mana: {
