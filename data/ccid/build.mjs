@@ -7,6 +7,9 @@ async function main() {
   const ccid = await got('https://idoly-backend.outv.im/api/Card/Id').json()
   for (const [charId, ccidItems] of Object.entries(ccid)) {
     for (const i of ccidItems) {
+      if (!currentCcid[charId]) {
+        currentCcid[charId] = []
+      }
       // for new charId, accept ccid from remote
       if (
         currentCcid[charId].filter((x) => x.cardId === i.cardId).length === 0
