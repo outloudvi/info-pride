@@ -2,6 +2,7 @@ import { useMemo } from 'react'
 import { Checkbox, SimpleGrid } from '@mantine/core'
 import { useTranslation } from 'next-i18next'
 import { useForm } from '@mantine/form'
+import uniq from 'lodash/uniq'
 
 import useApi from '#utils/useApi'
 import allFinished from '#utils/allFinished'
@@ -22,6 +23,21 @@ import useFrontendApi from '#utils/useFrontendApi'
 
 type CardNameDataType = { nameCn: string; nameJa: string }[]
 
+const CardFaceTypeListNamemap = {
+  schl: '训练服 (schl)',
+  casl: '常服 (casl)',
+  idol: '偶像服 (idol)',
+  vlnt: '情人节 (vlnt)',
+  eve: '活动 (eve)',
+  chna: '汉服 (chna)',
+  mizg: '泳装 (mizg)',
+  xmas: '圣诞 (xmas)',
+  fest: 'fest 卡 (fest)',
+  wedd: '婚纱 (wedd)',
+  prem: 'Premium Gacha (prem)',
+  newy: '新年活动 (newy)',
+}
+
 const CardsPage = ({
   CardData,
 
@@ -41,15 +57,27 @@ const CardsPage = ({
       selectedCharacters: [] as CharacterId[],
       selectedCardTypes: [] as string[],
       selectedCardColors: [] as string[],
+      selectedCardFaceTypes: [] as string[],
       orderBy: 'releaseDate' as keyof UnArray<APIResponseOf<'Card'>>,
       orderReversed: true,
     },
   })
 
+  const cardFaceTypeList = useMemo(
+    () =>
+      uniq(
+        CardData.map((x) => x.id.split('-')?.[3])
+          .filter((x) => Object.keys(CardFaceTypeListNamemap).includes(x))
+          .sort((a, b) => (a < b ? -1 : 1))
+      ),
+    [CardData]
+  )
+
   const cards = useMemo(() => {
     const {
       selectedCharacters,
       selectedCardTypes,
+      selectedCardFaceTypes,
       selectedCardColors,
       orderBy,
       orderReversed,
@@ -66,10 +94,16 @@ const CardsPage = ({
           : selectedCardTypes.includes(String(x.type))
       )
       .filter((x) =>
+        selectedCardFaceTypes.length === 0
+          ? true
+          : selectedCardFaceTypes.includes(x.id.split('-')?.[3])
+      )
+      .filter((x) =>
         selectedCardColors.length === 0
           ? true
           : selectedCardColors.includes(getCardColor(x))
       )
+
       .sort(
         (a, b) => (a[orderBy] > b[orderBy] ? -1 : 1) * (orderReversed ? 1 : -1)
       )
@@ -114,6 +148,15 @@ const CardsPage = ({
             }}
             width={300}
             formProps={getInputProps('selectedCardColors')}
+          />
+          <FilterSelect
+            className="mr-2"
+            label="卡片主题 "
+            multiple
+            list={cardFaceTypeList}
+            listNamemap={CardFaceTypeListNamemap}
+            width={300}
+            formProps={getInputProps('selectedCardFaceTypes')}
           />
           <FilterSelect
             className="mr-2"
