@@ -26,8 +26,9 @@ import useApi from '#utils/useApi'
 import Paths from '#utils/paths'
 import getCardColor from '#utils/getCardColor'
 import { APIResponseOf, UnArray } from '#utils/api'
-import { CharacterChineseNameList } from '#data/vendor/characterId'
+import { CharacterChineseNameList, CharacterId } from '#data/vendor/characterId'
 import useFrontendApi from '#utils/useFrontendApi'
+import CCIDTable from '#data/ccid'
 
 const MAX_LEVEL = 200
 
@@ -119,6 +120,9 @@ const CardItem = ({
   }
 
   const wikiCard = WikiCardData?.[0] as WikiCard | undefined
+  const cardCcidInfo = CCIDTable?.[card.characterId as CharacterId]?.find(
+    (x) => x.cardId === card.id
+  )
 
   return (
     <>
@@ -223,15 +227,15 @@ const CardItem = ({
             isInitiallyAwaken={card.initialRarity >= 5}
           />
           {storiesDisplay}
-          {wikiCard && (
+          {cardCcidInfo && (
             <Button
               className="mt-2"
               variant="outline"
               component="a"
               href={Paths.wiki(
-                `${CharacterChineseNameList[wikiCard.ownerSlug]}/卡牌/${
-                  wikiCard.ownerId
-                }`
+                `${
+                  CharacterChineseNameList[card.characterId as CharacterId]
+                }/卡牌/${cardCcidInfo.ccid}`
               )}
               target="_blank"
               rel="noopener"
