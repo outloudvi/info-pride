@@ -126,7 +126,11 @@ const CardsPage = ({
             width={300}
             formProps={getInputProps('orderBy')}
           />
-          <Checkbox label="倒序" {...getInputProps('orderReversed')} />
+          <Checkbox
+            label="倒序"
+            {...getInputProps('orderReversed')}
+            checked={formValues.orderReversed}
+          />
         </div>
       </div>
       <SimpleGrid
