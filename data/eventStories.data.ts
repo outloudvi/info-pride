@@ -260,6 +260,7 @@ export const EventGroupData: Record<string, string> = {
   'st-eve-2204-contest': '铃',
   'st-eve-2205-race': '千纱/沙季',
   'st-eve-2206-marathon': 'SUNNY PEACE',
+  'st-eve-2206-marathon-001': 'ⅢX',
 }
 
 export default data
