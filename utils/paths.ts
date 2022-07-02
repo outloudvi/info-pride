@@ -8,6 +8,8 @@ const Paths = {
     `https://community.idolypride.jp/posts/${postId}`,
   assets: (assetId: string) =>
     `http://idoly-assets-curator.vercel.app/api/img/${assetId}`,
+  assetsSud: (assetId: string) =>
+    `https://idoly-assets.azurewebsites.net/api/sud/${assetId}`,
   s3: (path: string) => `https://idoly-assets.outv.im/${path}`,
   sprite: (id: string) => Paths.s3(`sprite/${id}.png`),
   repoIssue: (id?: number) =>

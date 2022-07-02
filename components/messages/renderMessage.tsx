@@ -1,6 +1,8 @@
 import { ReactNode } from 'react'
 import { MessageDetail } from 'hoshimi-types/ProtoMaster'
 
+import TelephoneMessage from './TelephoneMessage'
+
 import AssetImage from '#components/AssetImage'
 
 const MANAGER_NAME = 'マネージャー'
@@ -53,7 +55,7 @@ export default function renderMessage(
 
   // Telephone
   if (msg.telephoneId) {
-    return <span className="text-gray-500">[此卡片的语音通信。]</span>
+    return <TelephoneMessage id={msg.telephoneId} />
   }
 
   return <span className="text-gray-500">[TODO: 其它类别的消息]</span>
