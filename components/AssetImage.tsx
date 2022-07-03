@@ -35,7 +35,7 @@ const AssetImage = (
       }}
     >
       <Image
-        src={Paths.assets(name)}
+        src={Paths.assets('img')(name)}
         layout="fill"
         objectFit="fill"
         loading="lazy"

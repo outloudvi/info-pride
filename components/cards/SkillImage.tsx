@@ -5,6 +5,8 @@ import { SkillCategoryType } from 'hoshimi-types/ProtoEnum'
 
 import Paths from '#utils/paths'
 
+const pathAssetsForImg = Paths.assets('img')
+
 type SkillImageBgType = 'score' | 'strength' | 'support' | 'yell' | ''
 
 // Background for non-SP skills
@@ -103,7 +105,7 @@ const SkillImage = ({
     // Use assetId as foreground
     parts.push(
       <img
-        src={Paths.assets(`img_icon_skill_${skill.assetId}`)}
+        src={pathAssetsForImg(`img_icon_skill_${skill.assetId}`)}
         alt="Skill icon"
         className="absolute h-16 w-16 invert"
         style={{
@@ -127,7 +129,7 @@ const SkillImage = ({
   if (skillIcons.length === 1) {
     parts.push(
       <img
-        src={Paths.assets(skillIcons[0])}
+        src={pathAssetsForImg(skillIcons[0])}
         alt="Skill icon"
         height={64}
         width={64}
@@ -144,7 +146,7 @@ const SkillImage = ({
   // https://wiki.biligame.com/idolypride/模板:技能图标
   parts.push(
     <img
-      src={Paths.assets(skillIcons[1])}
+      src={pathAssetsForImg(skillIcons[1])}
       loading="lazy"
       height={54.4}
       width={54.4}
@@ -157,7 +159,7 @@ const SkillImage = ({
   )
   parts.push(
     <img
-      src={Paths.assets(skillIcons[0])}
+      src={pathAssetsForImg(skillIcons[0])}
       loading="lazy"
       height={32}
       width={32}

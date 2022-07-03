@@ -34,11 +34,11 @@ const TelephoneMessage = ({ id }: { id: string }) => {
       )}
       <audio controls={playReady !== 0} ref={aud} onError={errorCb}>
         <source
-          src={Paths.assetsSud(`sud_vo_phone_${id}.opus`)}
+          src={Paths.assets('sud')(`sud_vo_phone_${id}.opus`)}
           type="audio/ogg"
         ></source>
         <source
-          src={Paths.assetsSud(`sud_vo_phone_${id}.mp3`)}
+          src={Paths.assets('sud')(`sud_vo_phone_${id}.mp3`)}
           type="audio/mpeg"
         ></source>
       </audio>
