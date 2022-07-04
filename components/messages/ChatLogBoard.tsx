@@ -9,7 +9,7 @@ import { APIResponseOf } from '#utils/api'
 const ChatBoard = ({ msg }: { msg: NonNullable<APIResponseOf<'Message'>> }) => {
   const { details } = msg
 
-  const { msgs, backlinks } = useMemo(
+  const { msgs, branchSrc } = useMemo(
     () => buildMessageTree(details),
     [details]
   )
@@ -27,7 +27,7 @@ const ChatBoard = ({ msg }: { msg: NonNullable<APIResponseOf<'Message'>> }) => {
           characterId={line.characterId}
           user={line.characterId ? 'others' : 'self'}
         >
-          {renderMessage(line, backlinks[line.messageDetailId])}
+          {renderMessage(line, branchSrc[line.messageDetailId])}
         </MessageItem>
       ))}
       <div className="text-gray-300 text-center my-4">[对话结束]</div>

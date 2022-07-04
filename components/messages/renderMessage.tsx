@@ -9,7 +9,7 @@ const MANAGER_NAME = 'マネージャー'
 
 export default function renderMessage(
   msg: MessageDetail,
-  sources: string[] | undefined
+  branchSrc?: string
 ): ReactNode {
   // Text
   if (msg.text) {
@@ -19,9 +19,7 @@ export default function renderMessage(
       <>
         {isSelection && (
           <span className="text-gray-600">{`[${
-            msg.characterId
-              ? `选项回应 ${(sources ?? []).join('/')}`
-              : `选项 ${choiceId}`
+            msg.characterId ? `选项回应 ${branchSrc}` : `选项 ${choiceId}`
           }] `}</span>
         )}
         {msg.text.replace(/\{user\}/g, MANAGER_NAME)}
