@@ -1,4 +1,6 @@
-export const skillEffectTypeNames = {
+import type { EffectTypeName } from '#utils/typeSlug'
+
+export const skillEffectTypeNames: Record<EffectTypeName, string> = {
   active_skill_score_up: 'A 技能得分提升',
   passive_skill_score_up: 'P 技能得分提升',
   special_skill_score_up: 'SP 技能得分提升',

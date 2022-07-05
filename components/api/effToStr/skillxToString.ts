@@ -95,10 +95,10 @@ function triggerToString(s: string): string | null {
 
 /**
  * When this file is called for updates, please also update:
- *  * components/api/effToStr/skillxToString.const.ts: Detailed description
+ *  * components/api/effToStr/skillxToString.const.ts: Detailed description (TS will check it)
  *  * components/api/effToStr/skillToString.spec.ts: A test case
- *  * data/vendor/searchSkillTypes.ts: Short description
- *  * components/cards/SkillImage.tsx: Skill image type
+ *  * data/vendor/searchSkillTypes.ts: Short description (TS will check it)
+ *  * components/cards/SkillImage.tsx: Skill image type (TS will check it)
  */
 function effectToString(
   e: EffectChart | EffectCharacterWithLength | EffectCharacterWithoutLength,

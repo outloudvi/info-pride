@@ -1,4 +1,11 @@
-export const TARGET_SPECIAL = {
+import { EffectScoreGetTyp } from 'hoshimi-types/Skillx'
+
+import type { TargetTypeName } from '#utils/typeSlug'
+
+export const TARGET_SPECIAL: Record<
+  Exclude<TargetTypeName, 'chart_dependence' | 'trigger'>,
+  string
+> = {
   self: '自身',
   all: '全员',
   center: '中心',
@@ -22,7 +29,7 @@ export const TARGET_SPECIAL = {
   status: '处于状态',
 } as const
 
-export const EFFECT_SPECIAL = {
+export const EFFECT_SPECIAL: Record<EffectScoreGetTyp, string> = {
   score_get_by_less_fan_amount: '观众数越少效果越好',
   score_get_by_more_fan_engage: '核心粉丝率越高效果越好',
   score_get_by_more_combo_count: '连击数越高效果越好',

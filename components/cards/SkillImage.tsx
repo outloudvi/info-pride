@@ -4,13 +4,14 @@ import { Skill } from 'hoshimi-types/ProtoMaster'
 import { SkillCategoryType } from 'hoshimi-types/ProtoEnum'
 
 import Paths from '#utils/paths'
+import type { EffectTypeName } from '#utils/typeSlug'
 
 const pathAssetsForImg = Paths.assets('img')
 
 type SkillImageBgType = 'score' | 'strength' | 'support' | 'yell' | ''
 
 // Background for non-SP skills
-function getSkillImageBgPrefix(typ: string): SkillImageBgType {
+function getSkillImageBgPrefix(typ: EffectTypeName): SkillImageBgType {
   switch (typ) {
     case 'combo_continuation':
       return 'strength'
@@ -89,9 +90,9 @@ const SkillImage = ({
   const skillImageBg =
     skill.categoryType === SkillCategoryType.Special
       ? `bg_special_${skillImgLevel >= 6 ? 3 : skillImgLevel >= 4 ? 2 : 1}`
-      : `bg_${getSkillImageBgPrefix(keySkillEfficacyId.split('-')[1])}_${
-          skillImgLevel >= 6 ? 3 : skillImgLevel >= 4 ? 2 : 1
-        }`
+      : `bg_${getSkillImageBgPrefix(
+          keySkillEfficacyId.split('-')[1] as EffectTypeName
+        )}_${skillImgLevel >= 6 ? 3 : skillImgLevel >= 4 ? 2 : 1}`
 
   parts.push(
     <img
