@@ -215,6 +215,23 @@ describe('effects', function () {
       ).to.eq('赋予红属性高1人5阶段演唱（红）属性提升状态[13拍]')
     })
 
+    it('vocal_boost', function () {
+      expect(
+        // sk-mhk-05-idol-00-1
+        skillxToString({
+          effect: {
+            typ: 'visual_boost',
+            lvl: 6,
+            len: 31,
+          },
+          target: {
+            typ: 'visual',
+            cnt: 2,
+          },
+        })
+      ).to.eq('赋予黄属性2人6阶段表演（黄）属性增幅状态[31拍]')
+    })
+
     it('active_skill_score_up', function () {
       expect(
         // sk-ai-05-kait-00-2
@@ -458,6 +475,21 @@ describe('effects', function () {
           },
         })
       ).to.eq('相邻位置强化效果移动至A技能前')
+    })
+
+    it('strength_effect_erasing_all', function () {
+      expect(
+        // sk-kan-05-idol-00-1
+        skillxToString({
+          effect: {
+            typ: 'strength_effect_erasing_all',
+          },
+          target: {
+            typ: 'opponent_center',
+            cnt: 1,
+          },
+        })
+      ).to.eq('对手中心强化效果消除')
     })
   })
 })

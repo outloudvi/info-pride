@@ -42,6 +42,7 @@ function getSkillImageBgPrefix(typ: EffectTypeName): SkillImageBgType {
     case 'vocal_up':
     case 'dance_up':
     case 'visual_up':
+    case 'visual_boost':
     case 'combo_score_up':
     case 'tension_up':
     case 'score_up':
@@ -52,10 +53,21 @@ function getSkillImageBgPrefix(typ: EffectTypeName): SkillImageBgType {
     case 'skill_success_rate_up':
     case 'special_skill_score_up':
       return 'strength'
-
-    default: {
+    // Undecided
+    case 'dance_down':
+    case 'visual_down':
+    case 'vocal_down':
+    case 'skill_impossible':
+    case 'audience_amount_reduction':
+    case 'stamina_consumption_increase':
+    case 'stamina_continuous_recovery':
+    case 'weakness_effect_inversion':
+    case 'weakness_effect_prevention':
+    case 'weakness_effect_recovery':
+    case 'strength_effect_erasing_all':
+    case 'strength_effect_migration_before_active_skill':
+    case 'strength_effect_migration_before_special_skill':
       return ''
-    }
   }
 }
 

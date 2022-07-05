@@ -72,7 +72,7 @@
         "eslint-config-next": "12.1.5",
         "eslint-import-resolver-typescript": "^2.7.1",
         "eslint-plugin-import": "^2.26.0",
-        "hoshimi-types": "^1.0.38",
+        "hoshimi-types": "^1.0.39",
         "husky": "^8.0.1",
         "json-schema-to-typescript": "^10.1.5",
         "mocha": "^10.0.0",

@@ -21,6 +21,7 @@ export const TARGET_SPECIAL: Record<
   vocal: '红属性',
   dance: '蓝属性',
   visual: '黄属性',
+  position_attribute_vocal: '红轨道',
   position_attribute_visual: '黄轨道',
 
   character_type: '卡片类型',

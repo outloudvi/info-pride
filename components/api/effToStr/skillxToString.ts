@@ -18,6 +18,7 @@ import {
 
 import { skillEffectTypeNames } from '#data/vendor/searchSkillTypes'
 import { CharacterChineseNameList } from '#data/vendor/characterId'
+import { EffectTypeName } from '#utils/typeSlug'
 
 // jq '[.[].levels[].triggerId] | unique' Skill.json
 function triggerToString(s: string): string | null {
@@ -38,13 +39,11 @@ function triggerToString(s: string): string | null {
     }
     // tg-someone_status-audience_amount_reduction
     case 'someone_status': {
-      // @ts-expect-error Unconstricted key
-      return `某人${skillEffectTypeNames[parts[2]]}状态时`
+      return `某人${skillEffectTypeNames[parts[2] as EffectTypeName]}状态时`
     }
     // tg-status-critical_rate_up
     case 'status': {
-      // @ts-expect-error Unconstricted key
-      return `${skillEffectTypeNames[parts[2]]}状态时`
+      return `${skillEffectTypeNames[parts[2] as EffectTypeName]}状态时`
     }
     // tg-before_special_skill_by_someone
     case 'before_special_skill_by_someone': {
@@ -137,6 +136,7 @@ function effectToString(
     case 'vocal_up':
     case 'dance_up':
     case 'visual_up':
+    case 'visual_boost':
     case 'skill_score_up':
     case 'active_skill_score_up':
     case 'passive_skill_score_up':
@@ -150,6 +150,7 @@ function effectToString(
     case 'critical_bonus_permil_up':
     case 'stamina_consumption_reduction':
     case 'stamina_consumption_increase':
+    case 'stamina_continuous_recovery':
     case 'audience_amount_reduction':
     case 'audience_amount_increase':
     case 'weakness_effect_prevention':
@@ -190,6 +191,7 @@ function effectToString(
     // EffectCharacterSimpleTyp
     case 'weakness_effect_recovery':
     case 'weakness_effect_inversion':
+    case 'strength_effect_erasing_all':
     case 'strength_effect_migration_before_special_skill':
     case 'strength_effect_migration_before_active_skill': {
       return `${n}${skillEffectTypeNames[e.typ]}`
@@ -221,6 +223,7 @@ function targetToString(t: TargetChart | TargetCharacterWithCount): string {
     case 'vocal':
     case 'dance':
     case 'visual':
+    case 'position_attribute_vocal':
     case 'position_attribute_visual':
     case 'stamina_lower': {
       return `${TARGET_SPECIAL[t.typ]}${t.cnt}人`

@@ -30,7 +30,8 @@
     "compilerOptions": {
       "module": "CommonJS",
       "paths": {
-        "#data/*": ["data/*"]
+        "#data/*": ["data/*"],
+        "#utils/*": ["utils/*"]
       }
     },
     "require": ["tsconfig-paths/register"]

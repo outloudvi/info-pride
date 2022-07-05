@@ -11,6 +11,8 @@ export const skillEffectTypeNames: Record<EffectTypeName, string> = {
   visual_down: '表演（黄）属性下降',
   visual_up: '表演（黄）属性提升',
 
+  visual_boost: '表演（黄）属性增幅',
+
   audience_amount_increase: '观众数增加',
   audience_amount_reduction: '观众数减少',
 
@@ -44,11 +46,13 @@ export const skillEffectTypeNames: Record<EffectTypeName, string> = {
   stamina_consumption_increase: '体力消耗提升',
   stamina_consumption_reduction: '体力消耗降低',
   stamina_consumption: '消耗体力',
+  stamina_continuous_recovery: '连续体力回复',
 
   strength_effect_value_increase: '强化效果增强',
   strength_effect_count_increase: '强化效果延长',
   strength_effect_migration_before_special_skill: '强化效果移动至 SP 技能前',
   strength_effect_migration_before_active_skill: '强化效果移动至 A 技能前',
+  strength_effect_erasing_all: '强化效果消除',
 
   skill_impossible: '不调',
   tension_up: '集目',
