@@ -125,6 +125,12 @@ const dataNagisa: D = {
     3: { name: 'TODO', video: { type: 'bilibili', vid: 'av466939788' } },
     phone: { video: { type: 'bilibili', vid: 'av767558058' } },
   },
+  'card-ngs-05-mizg-02': {
+    // 夏空シェイプアップ
+    1: { name: 'TODO', video: { type: 'bilibili', vid: 'av300619646' } },
+    2: { name: 'TODO', video: { type: 'bilibili', vid: 'av598043818' } },
+    3: { name: 'TODO', video: { type: 'bilibili', vid: 'av600547275' } },
+  },
 }
 
 // 白石沙季
