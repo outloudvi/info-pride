@@ -1075,6 +1075,10 @@ const data: Partial<
         name: '偶像只不过是人生中的一个小插曲而已',
         video: { type: 'bilibili', vid: 'av685217154' },
       },
+      4: {
+        name: '团队的队长',
+        video: { type: 'bilibili', vid: 'av643013020' },
+      },
     },
   },
   Big4: {

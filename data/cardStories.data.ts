@@ -996,6 +996,30 @@ const dataKokoro: D = {
   },
 }
 
+// ---- 3X ----
+// kana
+
+const dataKana: D = {
+  'card-kan-05-idol-00': {
+    // a piece of cake
+    1: {
+      name: '把那群家伙都干掉不就好了',
+      video: { type: 'bilibili', vid: 'av428103451' },
+    },
+    2: {
+      name: '原BIG4的从容',
+      video: { type: 'bilibili', vid: 'av898108586' },
+    },
+    3: {
+      name: '干净利落的胜出',
+      video: { type: 'bilibili', vid: 'av258143297' },
+    },
+    phone: {
+      video: { type: 'bilibili', vid: 'av300684870' },
+    },
+  },
+}
+
 // ---- 个人偶像 ----
 // 长濑麻奈
 const dataMana: D = {
@@ -1057,6 +1081,8 @@ const data: D = {
   ...dataKokoro,
 
   ...dataMana,
+
+  ...dataKana,
 } as const
 
 export default data
