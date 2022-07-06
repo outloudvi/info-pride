@@ -525,6 +525,21 @@ const dataRei: D = {
       video: { type: 'bilibili', vid: 'av810995913' },
     },
   },
+  'card-rei-05-mizg-02': {
+    // 大胆なのは夏のせい
+    1: {
+      name: 'TODO',
+      video: { type: 'bilibili', vid: 'av300504148', pid: 1 },
+    },
+    2: {
+      name: 'TODO',
+      video: { type: 'bilibili', vid: 'av300504148', pid: 2 },
+    },
+    3: {
+      name: 'TODO',
+      video: { type: 'bilibili', vid: 'av300504148', pid: 3 },
+    },
+  },
 }
 
 // 佐伯遥子
