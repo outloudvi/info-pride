@@ -62,6 +62,12 @@ export const skillEffectTypeNames: Record<EffectTypeName, string> = {
   weakness_effect_inversion: '低下状态反转',
 }
 
+export const triggerEffectTypeNames: Record<string, string> = {
+  ...skillEffectTypeNames,
+  // this typo is from QA
+  weekness: '低下状态',
+}
+
 export const skillTargetTypeNames = {
   chart_dependence: '全图（一般得分技能）',
 

@@ -16,11 +16,14 @@ import {
   TRIGGER_TYPE_NAME,
 } from './skillxToString.const'
 
-import { skillEffectTypeNames } from '#data/vendor/searchSkillTypes'
+import {
+  skillEffectTypeNames,
+  triggerEffectTypeNames,
+} from '#data/vendor/searchSkillTypes'
 import { CharacterChineseNameList } from '#data/vendor/characterId'
 import { EffectTypeName } from '#utils/typeSlug'
 
-// jq '[.[].levels[].triggerId] | unique' Skill.json
+// jq '[.[].levels[].skillDetails[].triggerId, .[].levels[].triggerId] | unique | sort' Skill.json
 function triggerToString(s: string): string | null {
   const parts = s.split('-')
   if (parts[0] !== 'tg') return null
@@ -28,26 +31,6 @@ function triggerToString(s: string): string | null {
     // tg-beat
     case 'beat': {
       return '每拍'
-    }
-    // tg-critical
-    case 'critical': {
-      return '暴击时'
-    }
-    // tg-combo-100
-    case 'combo': {
-      return `${parts[2]}连击时`
-    }
-    // tg-someone_status-audience_amount_reduction
-    case 'someone_status': {
-      return `某人${skillEffectTypeNames[parts[2] as EffectTypeName]}状态时`
-    }
-    // tg-status-critical_rate_up
-    case 'status': {
-      return `${skillEffectTypeNames[parts[2] as EffectTypeName]}状态时`
-    }
-    // tg-before_special_skill_by_someone
-    case 'before_special_skill_by_someone': {
-      return '某人 SP 技能发动前'
     }
     // tg-before_active_skill_by_someone
     case 'before_active_skill_by_someone': {
@@ -57,25 +40,29 @@ function triggerToString(s: string): string | null {
     case 'before_critical_by_someone': {
       return '某人暴击发动前'
     }
-    // tg-stamina_higher-60
-    case 'stamina_higher': {
-      return `体力高于${parts[2]}%时`
+    // tg-before_special_skill
+    case 'before_special_skill': {
+      return 'SP 技能发动前'
     }
-    // tg-stamina_lower-70
-    case 'stamina_lower': {
-      return `体力低于${parts[2]}%时`
+    // tg-before_special_skill_by_someone
+    case 'before_special_skill_by_someone': {
+      return '某人 SP 技能发动前'
     }
-    // tg-someone_stamina_lower-70
-    case 'someone_stamina_lower': {
-      return `某人体力低于${parts[2]}%时`
+    // tg-center
+    case 'center': {
+      return '中心位置时'
     }
-    // tg-someone_recovered
-    case 'someone_recovered': {
-      return '某人体力被回复时'
+    // tg-combo-100
+    case 'combo': {
+      return `${parts[2]}连击以上时`
     }
-    // tg-position_attribute_vocal
-    case 'position_attribute_vocal': {
-      return '红轨道时'
+    // tg-combo_less_equal-100
+    case 'combo_less_equal': {
+      return `${parts[2]}连击以下时`
+    }
+    // tg-critical
+    case 'critical': {
+      return '暴击时'
     }
     // tg-more_than_character_count-mei-1
     case 'more_than_character_count': {
@@ -84,12 +71,48 @@ function triggerToString(s: string): string | null {
         parts[3]
       }人时`
     }
+    // tg-position_attribute_dance
+    case 'position_attribute_dance': {
+      return '蓝轨道时'
+    }
+    // tg-position_attribute_visual
+    case 'position_attribute_visual': {
+      return '黄轨道时'
+    }
+    // tg-position_attribute_vocal
+    case 'position_attribute_vocal': {
+      return '红轨道时'
+    }
+    // tg-someone_recovered
+    case 'someone_recovered': {
+      return '某人体力被回复时'
+    }
+    // tg-someone_stamina_lower-70
+    case 'someone_stamina_lower': {
+      return `某人体力低于${parts[2]}%时`
+    }
+    // tg-someone_status-audience_amount_reduction
+    case 'someone_status': {
+      return `某人${triggerEffectTypeNames[parts[2]]}状态时`
+    }
     // tg-someone_status_group-weekness
     case 'someone_status_group': {
-      return null
+      return `某人${triggerEffectTypeNames[parts[2]]}状态时`
+    }
+    // tg-stamina_higher-60
+    case 'stamina_higher': {
+      return `体力高于${parts[2]}%时`
+    }
+    // tg-stamina_lower-70
+    case 'stamina_lower': {
+      return `体力低于${parts[2]}%时`
+    }
+    // tg-status-critical_rate_up
+    case 'status': {
+      return `${skillEffectTypeNames[parts[2] as EffectTypeName]}状态时`
     }
   }
-  return null
+  return `(未识别的条件)时`
 }
 
 /**

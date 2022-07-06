@@ -27,7 +27,7 @@ const SkillExplainer = ({ level }: { level: SkillLevel }) => {
       body: JSON.stringify(
         Object.values(effects).map((x, index) => ({
           ...x,
-          trigger: level.skillDetails[index].triggerId ?? level.triggerId,
+          trigger: level.triggerId || level.skillDetails[index].triggerId,
         }))
       ),
     })
