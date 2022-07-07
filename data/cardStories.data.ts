@@ -997,8 +997,26 @@ const dataKokoro: D = {
 }
 
 // ---- 3X ----
-// kana
+// fran
+const dataFran: D = {
+  'card-kor-05-idol-00': {
+    // snake in the grass
+    1: {
+      name: 'TODO',
+      video: { type: 'bilibili', vid: 'av258078013', pid: 1 },
+    },
+    2: {
+      name: 'TODO',
+      video: { type: 'bilibili', vid: 'av258078013', pid: 2 },
+    },
+    3: {
+      name: 'TODO',
+      video: { type: 'bilibili', vid: 'av258078013', pid: 3 },
+    },
+  },
+}
 
+// kana
 const dataKana: D = {
   'card-kan-05-idol-00': {
     // a piece of cake
@@ -1082,6 +1100,7 @@ const data: D = {
 
   ...dataMana,
 
+  ...dataFran,
   ...dataKana,
 } as const
 
