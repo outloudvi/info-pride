@@ -21,12 +21,13 @@ jobs:
 
       - name: Build & Validate
         run: |
-          node to-esm.js
+          node scripts/to-esm.mjs mjs
           bash scripts/buildAndValidate.sh
 
       - name: Commit files
         continue-on-error: true
         run: |
+          node scripts/to-esm.mjs cjs
           git config --local user.email "noreply@outv.im"
           git config --local user.name "GitHub Actions"
           git add -A
