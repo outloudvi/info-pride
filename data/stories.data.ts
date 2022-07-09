@@ -407,7 +407,18 @@ const data: Partial<
         name: '我的歌是',
         video: { type: 'bilibili', vid: 'av855364218' },
       },
-      // TODO: 23-25
+      23: {
+        name: '请让我、去聆听',
+        video: { type: 'bilibili', vid: 'av342769749' },
+      },
+      24: {
+        name: '那颗心脏是属于谁的东西',
+        video: { type: 'bilibili', vid: 'av512880354' },
+      },
+      25: {
+        name: '为了，这颗心脏',
+        video: { type: 'bilibili', vid: 'av385712987' },
+      },
     },
   },
   Tokyo: {
