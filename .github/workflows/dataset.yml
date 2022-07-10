@@ -30,7 +30,7 @@ jobs:
           node scripts/to-esm.mjs cjs
           git config --local user.email "noreply@outv.im"
           git config --local user.name "GitHub Actions"
-          git add -A
+          git add data/
           git commit -m "feat: update dataset"
 
       - name: Push changes

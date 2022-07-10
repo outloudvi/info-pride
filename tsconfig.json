@@ -1,1 +1,39 @@
-{"compilerOptions":{"target":"es2020","lib":["dom","dom.iterable","esnext"],"allowJs":true,"skipLibCheck":true,"strict":true,"forceConsistentCasingInFileNames":true,"noEmit":true,"esModuleInterop":true,"module":"esnext","moduleResolution":"node","resolveJsonModule":true,"isolatedModules":true,"jsx":"preserve","incremental":true,"importHelpers":true,"typeRoots":["types"],"baseUrl":".","paths":{"#data/*":["data/*"],"#components/*":["components/*"],"#utils/*":["utils/*"],"#api/*":["pages/api/*"]}},"include":["next-env.d.ts","**/*.ts","**/*.tsx"],"exclude":["node_modules"],"ts-node":{"esm":true}}
+{
+  "compilerOptions": {
+    "target": "es2020",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "importHelpers": true,
+    "typeRoots": ["types"],
+    "baseUrl": ".",
+    "paths": {
+      "#data/*": ["data/*"],
+      "#components/*": ["components/*"],
+      "#utils/*": ["utils/*"],
+      "#api/*": ["pages/api/*"]
+    }
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules"],
+  "ts-node": {
+    "compilerOptions": {
+      "module": "CommonJS",
+      "paths": {
+        "#data/*": ["data/*"],
+        "#utils/*": ["utils/*"]
+      }
+    },
+    "require": ["tsconfig-paths/register"]
+  }
+}
