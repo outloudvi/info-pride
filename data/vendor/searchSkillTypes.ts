@@ -11,6 +11,8 @@ export const skillEffectTypeNames: Record<EffectTypeName, string> = {
   visual_down: '表演（黄）属性下降',
   visual_up: '表演（黄）属性提升',
 
+  vocal_boost: '演唱（红）属性增幅',
+  dance_boost: '舞蹈（蓝）属性增幅',
   visual_boost: '表演（黄）属性增幅',
 
   audience_amount_increase: '观众数增加',

@@ -159,6 +159,8 @@ function effectToString(
     case 'vocal_up':
     case 'dance_up':
     case 'visual_up':
+    case 'vocal_boost':
+    case 'dance_boost':
     case 'visual_boost':
     case 'skill_score_up':
     case 'active_skill_score_up':
