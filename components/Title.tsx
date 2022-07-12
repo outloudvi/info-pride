@@ -5,7 +5,7 @@ const Title = ({ title, noh2 }: { title: string; noh2?: boolean }) => (
     <Head>
       <title>{title} | INFO PRIDE</title>
     </Head>
-    <h2>{title}</h2>
+    {!noh2 && <h2>{title}</h2>}
   </>
 )
 
