@@ -7,6 +7,7 @@ import { CardTiny } from './types'
 
 import useApi from '#utils/useApi'
 import { CharacterChineseNameList, CharacterId } from '#data/vendor/characterId'
+import AssetImage from '#components/AssetImage'
 
 const CardInUnit = ({ card, col }: { card: CardTiny; col: number }) => {
   const { t: $v } = useTranslation('vendor')
@@ -16,13 +17,20 @@ const CardInUnit = ({ card, col }: { card: CardTiny; col: number }) => {
 
   return (
     <>
-      <div style={{ gridRow: 3, gridColumn: col }}>
-        <b>{card.name}</b>
+      <div style={{ gridRow: 3, gridColumn: col }} className="w-3/4 mx-auto">
+        <AssetImage
+          name={`img_card_thumb_1_${card.assetId}`}
+          ratio={1}
+          alt={'Small square image'}
+        />
       </div>
       <div style={{ gridRow: 4, gridColumn: col }}>
+        <b>{card.name}</b>
+      </div>
+      <div style={{ gridRow: 5, gridColumn: col }}>
         {CharacterChineseNameList[card.characterId as CharacterId]}
       </div>
-      <div className="mt-2 mb-3" style={{ gridRow: 5, gridColumn: col }}>
+      <div className="mt-2 mb-3" style={{ gridRow: 6, gridColumn: col }}>
         {$v(CardType[card.type])}
       </div>
       {SkillData ? (
@@ -30,14 +38,14 @@ const CardInUnit = ({ card, col }: { card: CardTiny; col: number }) => {
           <SkillInUnit
             key={i}
             className="mb-2"
-            style={{ gridRow: 6 + i, gridColumn: col }}
+            style={{ gridRow: 7 + i, gridColumn: col }}
             skill={x}
           />
         ))
       ) : (
         <Skeleton
           height={300}
-          style={{ gridRow: '6 / span 3', gridColumn: col }}
+          style={{ gridRow: '7 / span 3', gridColumn: col }}
         />
       )}
     </>
