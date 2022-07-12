@@ -1,6 +1,7 @@
 import { Skeleton } from '@mantine/core'
 import { CardType } from 'hoshimi-types/ProtoEnum'
 import { useTranslation } from 'next-i18next'
+import Link from 'next/link'
 
 import SkillInUnit from './SkillInUnit'
 import { CardTiny } from './types'
@@ -18,14 +19,22 @@ const CardInUnit = ({ card, col }: { card: CardTiny; col: number }) => {
   return (
     <>
       <div style={{ gridRow: 3, gridColumn: col }} className="w-3/4 mx-auto">
-        <AssetImage
-          name={`img_card_thumb_1_${card.assetId}`}
-          ratio={1}
-          alt={'Small square image'}
-        />
+        <Link href={`/cards/${card.id}`}>
+          <a target="_blank">
+            <AssetImage
+              name={`img_card_thumb_1_${card.assetId}`}
+              ratio={1}
+              alt={'Small square image'}
+            />
+          </a>
+        </Link>
       </div>
       <div style={{ gridRow: 4, gridColumn: col }}>
-        <b>{card.name}</b>
+        <Link href={`/cards/${card.id}`}>
+          <a target="_blank">
+            <b>{card.name}</b>
+          </a>
+        </Link>
       </div>
       <div style={{ gridRow: 5, gridColumn: col }}>
         {CharacterChineseNameList[card.characterId as CharacterId]}
