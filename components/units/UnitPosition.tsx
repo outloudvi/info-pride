@@ -57,7 +57,12 @@ const UnitPosition = ({
       {card ? (
         <CardInUnit card={card} col={col} />
       ) : (
-        <div style={{ gridRow: '2 / span 7', gridColumn: col }}>未选择卡片</div>
+        <div
+          className="text-center text-gray-500 mt-3"
+          style={{ gridRow: '2 / span 7', gridColumn: col }}
+        >
+          未选择卡片
+        </div>
       )}
     </>
   )
