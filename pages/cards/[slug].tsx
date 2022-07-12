@@ -19,7 +19,12 @@ const CardInfoPage = ({
 }) => {
   const Card = CardData[0]
 
-  return <CardItem card={Card} rarityData={RarityData} />
+  return (
+    <>
+      <Title title={Card.name} noh2 />
+      <CardItem card={Card} rarityData={RarityData} />
+    </>
+  )
 }
 
 const SkeletonCardInfoPage = () => {
@@ -37,7 +42,7 @@ const SkeletonCardInfoPage = () => {
 
   return (
     <>
-      <Title title="卡片" />
+      <h2>卡片</h2>
       {allFinished(allData) ? (
         <CardInfoPage {...allData} />
       ) : (
