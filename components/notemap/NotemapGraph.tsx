@@ -25,7 +25,26 @@ const NotemapGraph = ({
     const blob = new Blob([text], {
       type: 'image/svg',
     })
-    downloadBlob(blob, 'notemap.svg')
+    downloadUrl(URL.createObjectURL(blob), 'notemap.svg')
+  }
+
+  // https://stackoverflow.com/a/33227005
+  const downloadNotemapPNG = () => {
+    if (!svgRef.current) return
+    const svgElement = svgRef.current
+    const svgUrl = new XMLSerializer().serializeToString(svgElement)
+    const img = new Image()
+    img.addEventListener('load', () => {
+      const canvas = document.createElement('canvas')
+      canvas.height = svgElement.clientHeight
+      canvas.width = svgElement.clientWidth
+      const ctx = canvas.getContext('2d')
+      if (!ctx) return
+      ctx.drawImage(img, 0, 0)
+      const pngUrl = canvas.toDataURL()
+      downloadUrl(pngUrl, 'notemap.png')
+    })
+    img.src = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svgUrl)}`
   }
 
   return (
@@ -33,14 +52,13 @@ const NotemapGraph = ({
       <svg ref={svgRef} />
       <Group className="mt-2">
         <Button onClick={downloadNotemapSVG}>下载曲谱图片 (SVG)</Button>
-        {/* <Button onClick={downloadNotemapPNG}>下载曲谱图片 (PNG)</Button> */}
+        <Button onClick={downloadNotemapPNG}>下载曲谱图片 (PNG)</Button>
       </Group>
     </Stack>
   )
 }
 
-function downloadBlob(blob: Blob, filename: string) {
-  const url = URL.createObjectURL(blob)
+function downloadUrl(url: string, filename: string) {
   const a = document.createElement('a')
   a.href = url
   a.download = filename
