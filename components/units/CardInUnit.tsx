@@ -6,15 +6,31 @@ import Link from 'next/link'
 import SkillInUnit from './SkillInUnit'
 import { CardTiny } from './types'
 
+import type { Card as WikiCard } from '#data/wikiPages/cards'
 import useApi from '#utils/useApi'
 import { CharacterChineseNameList, CharacterId } from '#data/vendor/characterId'
 import AssetImage from '#components/AssetImage'
+import useFrontendApi from '#utils/useFrontendApi'
 
-const CardInUnit = ({ card, col }: { card: CardTiny; col: number }) => {
+const CardInUnit = ({
+  card,
+  col,
+  useCnTrans,
+}: {
+  card: CardTiny
+  col: number
+  useCnTrans: boolean
+}) => {
   const { t: $v } = useTranslation('vendor')
   const { data: SkillData } = useApi(`Skill`, {
     ids: `${card.skillId1},${card.skillId2},${card.skillId3}`,
   })
+  const { data: WikiCardData } = useFrontendApi('wikiCard', {
+    nameJa: card.name,
+  })
+
+  const useCn = useCnTrans && (WikiCardData?.length ?? 0) > 0
+  const wikiCard = WikiCardData?.[0] as WikiCard | undefined
 
   return (
     <>
@@ -32,7 +48,7 @@ const CardInUnit = ({ card, col }: { card: CardTiny; col: number }) => {
       <div style={{ gridRow: 4, gridColumn: col }}>
         <Link href={`/cards/${card.id}`}>
           <a target="_blank">
-            <b>{card.name}</b>
+            <b>{useCn ? wikiCard?.nameCn : card.name}</b>
           </a>
         </Link>
       </div>
@@ -49,6 +65,12 @@ const CardInUnit = ({ card, col }: { card: CardTiny; col: number }) => {
             className="mb-2"
             style={{ gridRow: 7 + i, gridColumn: col }}
             skill={x}
+            skillName={
+              useCn ? wikiCard?.[`ski${(i + 1) as 1 | 2 | 3}NameCn`] : undefined
+            }
+            skillDesc={
+              useCn ? wikiCard?.[`ski${(i + 1) as 1 | 2 | 3}DescCn`] : undefined
+            }
           />
         ))
       ) : (

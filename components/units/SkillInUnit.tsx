@@ -8,11 +8,17 @@ const SkillInUnit = ({
   skill,
   className,
   style,
-}: { skill: Skill } & HTMLAttributes<'div'>) => {
+  skillName,
+  skillDesc,
+}: {
+  skill: Skill
+  skillName?: string
+  skillDesc?: string
+} & HTMLAttributes<'div'>) => {
   const { t: $v } = useTranslation('vendor')
   return (
     <div {...{ className, style }}>
-      {skill.name} <br />
+      {skillName ?? skill.name} <br />
       <span className="text-sm">
         {$v(SkillCategoryType[skill.categoryType])} 技
       </span>{' '}
@@ -21,10 +27,9 @@ const SkillInUnit = ({
         label={
           <div
             dangerouslySetInnerHTML={{
-              __html: skill.levels[skill.levels.length - 1].description.replace(
-                /\n/g,
-                '<br/>'
-              ),
+              __html: (
+                skillDesc ?? skill.levels[skill.levels.length - 1].description
+              ).replace(/\n+/g, '<br/>'),
             }}
           ></div>
         }

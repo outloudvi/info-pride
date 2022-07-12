@@ -2,13 +2,18 @@ import { useCallback, useMemo, useState } from 'react'
 import {
   Button,
   Collapse,
+  Divider,
   Grid,
   Group,
   Modal,
   NativeSelect,
+  Switch,
   TextInput,
+  Tooltip,
 } from '@mantine/core'
 import { showNotification } from '@mantine/notifications'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 
 import useApi from '#utils/useApi'
 import CardIdData from '#data/ccid'
@@ -68,6 +73,7 @@ const UnitsPage = ({
   const [modalImportUnit, setModalImportUnit] = useState(false)
   const [importUnitId, setImportUnitId] = useState('')
   const [showNotemap, setShowNotemap] = useState(false)
+  const [cnTrans, setCnTrans] = useState(true)
 
   return (
     <>
@@ -165,9 +171,26 @@ const UnitsPage = ({
                 card={unitCards[position]}
                 setCard={setPositionCard(position)}
                 cardList={CardData}
+                useCnTrans={cnTrans}
               />
             ))}
           </div>
+          <Divider className="my-2" />
+          <Switch
+            label={
+              <span>
+                使用中文翻译
+                <Tooltip
+                  className="ml-2"
+                  label="请注意中文翻译的技能描述细节数据所对应的等级可能不符。"
+                >
+                  <FontAwesomeIcon icon={faInfoCircle} />
+                </Tooltip>
+              </span>
+            }
+            checked={cnTrans}
+            onChange={(e) => setCnTrans(e.target.checked)}
+          />
         </Grid.Col>
         <Grid.Col xs={12} lg={6}>
           <UnitAnalyzer unitCards={unitCards} musicChart={selectedMusicChart} />
