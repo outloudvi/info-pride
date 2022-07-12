@@ -116,11 +116,7 @@ const UnitsPage = ({
           导入
         </Button>
       </Modal>
-      <p className="text-gray-500 dark:text-gray-400">
-        本页面正在设计中。任何内容均可能发生变化。
-      </p>
-
-      <Grid gutter={20} className="my-3">
+      <Grid gutter={20}>
         <Grid.Col xs={12} lg={6}>
           <div className="mb-2">
             <NativeSelect
