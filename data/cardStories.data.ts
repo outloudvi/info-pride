@@ -130,6 +130,7 @@ const dataNagisa: D = {
     1: { name: 'TODO', video: { type: 'bilibili', vid: 'av300619646' } },
     2: { name: 'TODO', video: { type: 'bilibili', vid: 'av598043818' } },
     3: { name: 'TODO', video: { type: 'bilibili', vid: 'av600547275' } },
+    phone: { video: { type: 'bilibili', vid: 'av940813838' } },
   },
 }
 
