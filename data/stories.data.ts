@@ -19,6 +19,18 @@ const data: Partial<
         name: '[2022/4/1] 愚人节春斗剧情（后篇）',
         video: { type: 'bilibili', vid: 'av980357709', pid: 2 },
       },
+      4: {
+        name: '[2022/6/30] 三得利售货机限定慰问来电（瑠依）',
+        video: { type: 'bilibili', vid: 'av812917702' },
+      },
+      5: {
+        name: '[2022/6/30] 三得利售货机限定慰问来电（堇）',
+        video: { type: 'bilibili', vid: 'av813293495' },
+      },
+      6: {
+        name: '[2022/6/30] 三得利售货机限定慰问来电（优）',
+        video: { type: 'bilibili', vid: 'av343290005' },
+      },
     },
   },
   Hoshimi: {
