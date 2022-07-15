@@ -39,8 +39,9 @@ const VersionInfo = ({
           </div>
         ))}
       </div>
-      {GameVersionData && (
-        <div className="mt-2">
+
+      <div className="mt-2">
+        {GameVersionData ? (
           <div>
             游戏版本{' '}
             <Badge color="green">{GameVersionData.versionDisplay}</Badge>
@@ -50,8 +51,10 @@ const VersionInfo = ({
               {day(GameVersionData.releaseDate).format('YYYY/MM/DD')}
             </Badge>
           </div>
-        </div>
-      )}
+        ) : (
+          <div className="text-gray-500">正在加载游戏版本信息。</div>
+        )}
+      </div>
     </>
   )
 }
