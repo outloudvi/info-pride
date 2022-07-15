@@ -62,6 +62,8 @@ export const skillEffectTypeNames: Record<EffectTypeName, string> = {
   weakness_effect_prevention: '低下状态防止',
   weakness_effect_recovery: '低下状态回复',
   weakness_effect_inversion: '低下状态反转',
+
+  active_score_multiplier_add: 'A 技能得分追加',
 }
 
 export const triggerEffectTypeNames: Record<string, string> = {

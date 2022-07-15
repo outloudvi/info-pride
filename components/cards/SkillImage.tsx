@@ -54,6 +54,7 @@ function getSkillImageBgPrefix(typ: EffectTypeName): SkillImageBgType {
     case 'skill_score_up':
     case 'skill_success_rate_up':
     case 'special_skill_score_up':
+    case 'active_score_multiplier_add':
       return 'strength'
     // Undecided
     case 'dance_down':

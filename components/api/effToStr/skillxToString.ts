@@ -181,7 +181,8 @@ function effectToString(
     case 'weakness_effect_prevention':
     case 'vocal_down':
     case 'dance_down':
-    case 'visual_down': {
+    case 'visual_down':
+    case 'active_score_multiplier_add': {
       return `赋予${n}${e.lvl}阶段${skillEffectTypeNames[e.typ]}状态[${
         e.len
       }拍]`
