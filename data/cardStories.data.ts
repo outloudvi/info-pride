@@ -314,6 +314,12 @@ const dataMei: D = {
     2: { name: 'TODO', video: { type: 'bilibili', vid: 'av937704335' } },
     3: { name: 'TODO', video: { type: 'bilibili', vid: 'av297715784' } },
   },
+  'card-mei-05-mizg-02': {
+    // 隠しきれない顔の火照り
+    1: { name: 'TODO', video: { type: 'bilibili', vid: 'av513491981' } },
+    2: { name: 'TODO', video: { type: 'bilibili', vid: 'av600893737' } },
+    3: { name: 'TODO', video: { type: 'bilibili', vid: 'av600931569' } },
+  },
 }
 
 // ---- SUNNY PEACE ----
@@ -539,6 +545,9 @@ const dataRei: D = {
     3: {
       name: 'TODO',
       video: { type: 'bilibili', vid: 'av300504148', pid: 3 },
+    },
+    phone: {
+      video: { type: 'bilibili', vid: 'av940855465' },
     },
   },
 }
