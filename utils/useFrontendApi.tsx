@@ -6,6 +6,8 @@ import { QueryFunction, useQuery } from 'react-query'
 
 import type { Card as WikiCard } from '#data/wikiPages/cards'
 import type { Stories } from '#data/types'
+import type { SkillChart, SkillLaunchItem } from '#components/notemap/types'
+import { useMemo } from 'react'
 
 const frontendQueryFn: QueryFunction = ({ queryKey: [path] }) =>
   fetch(('/api/' + path) as string).then((x) =>
@@ -19,6 +21,7 @@ export type FrontendAPIResponseMapping = {
       }
     | undefined
   news: { title: string; link?: string }[]
+  skillRunner: SkillLaunchItem[]
   version:
     | {
         releaseDate: string
@@ -34,12 +37,16 @@ function useFrontendApi<T extends keyof FrontendAPIResponseMapping>(
   key: T,
   params?: Record<string, string | string[]>
 ) {
-  const urlsp = new URLSearchParams()
-  let withParams = false
-  Object.entries(params ?? {}).map(([k, v]) => {
-    withParams = true
-    urlsp.set(k, String(v))
-  })
+  const [urlsp, withParams] = useMemo(() => {
+    const _urlsp = new URLSearchParams()
+    let _withParams = false
+    Object.entries(params ?? {}).map(([k, v]) => {
+      _withParams = true
+      _urlsp.set(k, String(v))
+    })
+
+    return [_urlsp, _withParams]
+  }, [params])
   const rq = useQuery<FrontendAPIResponseMapping[T]>({
     queryKey: key + (withParams ? '?' + urlsp.toString() : ''),
     queryFn: frontendQueryFn as QueryFunction<FrontendAPIResponseMapping[T]>,

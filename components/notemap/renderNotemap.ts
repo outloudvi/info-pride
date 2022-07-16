@@ -1,14 +1,46 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import * as d3 from 'd3'
+import { SkillCategoryType } from 'hoshimi-types/ProtoEnum'
 import type { MusicChart } from 'hoshimi-types/types'
+
+import type { SkillChart } from './types'
 
 type Config = {
   height: number
   width: number
   textHeight: number
   startHeight: number
+  skillLineOffset: number
   titleColorEven: string
   titleColor: string
   laneColors: string[]
+  landingSkillChart?: SkillChart
+}
+
+type D3LandingSkill = [
+  string, // name
+  number, // start beat
+  number, // end beat
+  boolean // success?
+]
+
+type D3LandingSkills = D3LandingSkill[][]
+
+function processSkills(landingSkillChart: SkillChart): D3LandingSkills {
+  return [
+    landingSkillChart[4],
+    landingSkillChart[2],
+    landingSkillChart[1],
+    landingSkillChart[3],
+    landingSkillChart[5],
+  ].map((r) =>
+    r.map(({ type, success, start, end }) => [
+      SkillCategoryType[type],
+      start,
+      end ?? start,
+      success,
+    ])
+  )
 }
 
 function renderNotemap(
@@ -21,14 +53,17 @@ function renderNotemap(
     width,
     textHeight,
     startHeight,
+    skillLineOffset,
     titleColor,
     titleColorEven,
     laneColors,
+    landingSkillChart,
   } = {
     height: 600,
     width: 450,
     textHeight: 30,
     startHeight: 40,
+    skillLineOffset: 35,
     titleColorEven: '#32323d',
     titleColor: '#484750',
     laneColors: ['blue', 'blue', 'blue', 'blue', 'blue'],
@@ -43,6 +78,7 @@ function renderNotemap(
     nm.chart[3],
     nm.chart[5],
   ]
+  const skills = landingSkillChart && processSkills(landingSkillChart)
   const beat = nm.beats
 
   const svg = d3
@@ -183,6 +219,83 @@ function renderNotemap(
     .attr('dominant-baseline', 'middle')
     .attr('font-weight', 'bold')
     .text(([x]) => Math.abs(x))
+
+  if (skills) {
+    const columnSkills = svg
+      .append('g')
+      .selectAll('g')
+      .data(skills)
+      .enter()
+      .append('g')
+
+    // Skill lines
+    columnSkills
+      .append('g')
+      .selectAll('line')
+      .data((x, i) => x.map((y) => [y, i] as [D3LandingSkill, number]))
+      .enter()
+      .append('line')
+      .attr('x1', ([_, i], __b) => (i + 0.5) * widthPerColumn - skillLineOffset)
+      .attr('x2', ([_, i], __b) => (i + 0.5) * widthPerColumn - skillLineOffset)
+      .attr(
+        'y1',
+        ([[typ, from, to], __a], __b) =>
+          (from / beat) * height + textHeight + startHeight
+      )
+      .attr(
+        'y2',
+        ([[typ, from, to], __a], __b) =>
+          (to / beat) * height + textHeight + startHeight
+      )
+      .attr('stroke', '#6cf')
+      .attr('stroke-width', ([[typ, from, to], __a], __b) =>
+        typ === 'SP' ? 20 : typ === 'A' ? 15 : 10
+      )
+
+    // Skill start notation
+    columnSkills
+      .append('g')
+      .selectAll('text')
+      .data((x, i) => x.map((y) => [y, i] as [D3LandingSkill, number]))
+      .enter()
+      .append('text')
+      .attr(
+        'x',
+        ([__a, i], __b) => (i + 0.5) * widthPerColumn - skillLineOffset
+      )
+      .attr(
+        'y',
+        ([[typ, from, to], __a], __b) =>
+          (from / beat) * height + textHeight + startHeight
+      )
+      .attr('fill', 'white')
+      .attr('text-anchor', 'left')
+      .attr('dominant-baseline', 'middle')
+      .style('font-size', '0.9rem')
+      .text(([[typ, from, to, success]]) => (success ? '✅' : '❌'))
+
+    // Skill end notation
+    columnSkills
+      .append('g')
+      .selectAll('text')
+      .data((x, i) => x.map((y) => [y, i] as [D3LandingSkill, number]))
+      .enter()
+      .append('text')
+      .attr(
+        'x',
+        ([__a, i], __b) => (i + 0.5) * widthPerColumn - skillLineOffset
+      )
+      .attr(
+        'y',
+        ([[typ, from, to], __a], __b) =>
+          (to / beat) * height + textHeight + startHeight
+      )
+      .attr('fill', 'white')
+      .attr('text-anchor', 'left')
+      .attr('dominant-baseline', 'middle')
+      .style('font-size', '0.9rem')
+      .text(([[typ, from, to]]) => (from === to ? '' : String(to)))
+  }
 
   const node = svg.node()
   if (!node) {

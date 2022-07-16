@@ -122,7 +122,6 @@ const UnitAnalyzerWrapper = ({
     return (
       <Alert title="队伍不完整" color="red">
         请先选择完整队伍或导入队伍编码。
-        {console.log('1', unitCards)}
       </Alert>
     )
   }

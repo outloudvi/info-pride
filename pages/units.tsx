@@ -7,6 +7,7 @@ import {
   Group,
   Modal,
   NativeSelect,
+  Skeleton,
   Switch,
   TextInput,
   Tooltip,
@@ -26,7 +27,7 @@ import Title from '#components/Title'
 import type { CardTiny, MusicChartItem } from '#components/units/types'
 import UnitPosition from '#components/units/UnitPosition'
 import UnitAnalyzer from '#components/units/UnitAnalyzer'
-import NotemapView from '#components/notemap/NotemapView'
+import UnitNotemap from '#components/units/UnitNotemap'
 
 const UnitsPage = ({
   CardData,
@@ -45,6 +46,10 @@ const UnitsPage = ({
   const [selectedMusicChart, setSelectedMusicChart] = useState<MusicChartItem>(
     musicChartList[0]
   )
+
+  const { data: ChartData } = useApi('MusicChart', {
+    chartId: selectedMusicChart.id,
+  })
 
   // 6 positions (0 and 1-5)
   // (unitCards[0] should be always empty)
@@ -202,12 +207,13 @@ const UnitsPage = ({
           >
             {showNotemap ? '隐藏曲谱' : '显示曲谱'}
           </Button>
-          <Collapse in={showNotemap}>
-            <NotemapView
-              chartId={selectedMusicChart.id}
-              laneColors={['blue', 'blue', 'blue', 'blue', 'blue']}
-            />
-          </Collapse>
+          {ChartData ? (
+            <Collapse in={showNotemap}>
+              <UnitNotemap chart={ChartData} unitCards={unitCards} />
+            </Collapse>
+          ) : (
+            <Skeleton height={200} />
+          )}
         </Grid.Col>
       </Grid>
     </>
