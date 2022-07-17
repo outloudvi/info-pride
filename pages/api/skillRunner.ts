@@ -38,7 +38,17 @@ const SkillRunner = async (
     .json()
 
   const skillxData: APIResponseOf<'Skill/X'> = await got
-    .get(Paths.api('Skill/X'))
+    .get(
+      Paths.api('Skill/X') +
+        `?ids=${
+          // TODO: allow specifying the level
+          skillData
+            .map((x) =>
+              x.levels[0].skillDetails.map((r) => r.efficacyId).join(',')
+            )
+            .join(',')
+        }`
+    )
     .json()
 
   const chartData: APIResponseOf<'MusicChart'> = await got

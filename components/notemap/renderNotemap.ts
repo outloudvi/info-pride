@@ -94,6 +94,8 @@ function renderNotemap(
     x.filter((r) => r < 0).length > 0 ? 'SP' : x.length >= 3 ? '多' : '少'
   )
 
+  const skillLineStrokeWidth = 10
+
   // Background part 1
   svg
     .append('g')
@@ -245,11 +247,15 @@ function renderNotemap(
       .attr(
         'y2',
         ([[typ, from, to], __a], __b) =>
-          (to / beat) * height + textHeight + startHeight
+          Math.min(to / beat, 1) * height + textHeight + startHeight
       )
       .attr('stroke', '#6cf')
-      .attr('stroke-width', ([[typ, from, to], __a], __b) =>
-        typ === 'SP' ? 20 : typ === 'A' ? 15 : 10
+      .attr('stroke-linecap', ([[, from, to, success], __a], __b) =>
+        success && from !== Math.min(to, beat) ? 'round' : 'butt'
+      )
+      .attr(
+        'stroke-width',
+        ([[typ, from, to], __a], __b) => skillLineStrokeWidth
       )
 
     // Skill start notation
@@ -283,7 +289,10 @@ function renderNotemap(
       .append('text')
       .attr(
         'x',
-        ([__a, i], __b) => (i + 0.5) * widthPerColumn - skillLineOffset
+        ([__a, i], __b) =>
+          (i + 0.5) * widthPerColumn -
+          skillLineOffset +
+          0.8 * skillLineStrokeWidth
       )
       .attr(
         'y',

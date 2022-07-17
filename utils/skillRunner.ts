@@ -11,6 +11,20 @@ type RequestBody = {
   chartLine: readonly number[]
 }
 
+function skillToLength(
+  sk: PartialSkill,
+  skillxData: APIResponseOf<'Skill/X'>
+): number {
+  return sk.levels[0].skillDetails
+    .map((x) => x.efficacyId)
+    .map((x) => {
+      const sk = skillxData[x]
+      if (!sk) return 0
+      return 'len' in sk.effect ? sk.effect.len : 0
+    })
+    .reduce((a, b) => Math.max(a, b))
+}
+
 export default function skillRunner(
   { skills, chartLine }: RequestBody,
   // TODO: definitely doesn't need the whole set
@@ -43,35 +57,38 @@ export default function skillRunner(
       success: ok,
       start: tick,
       ...(skillxData && {
-        end:
-          tick +
-          (okSkill
-            ? okSkill.levels[0].skillDetails
-                .map((x) => x.efficacyId)
-                .map((x) => {
-                  const sk = skillxData[x]
-                  if (!sk) return 0
-                  return 'len' in sk.effect ? sk.effect.len : 0
-                })
-                .reduce((a, b) => Math.max(a, b))
-            : 0),
+        end: tick + (okSkill ? skillToLength(okSkill, skillxData) : 0),
       }),
     })
   }
 
-  // Assumption: Maximum 1 SP skill
-  const spSkill = skills.filter(
-    (x) => x.categoryType === SkillCategoryType.Special
-  )?.[0]
+  const spSkillTimes = chartLine.filter((x) => x < 0).map((x) => -x)
+  if (spSkillTimes.length > 0) {
+    // Assumption: Maximum 1 SP skill
+    const spSkill = skills.filter(
+      (x) => x.categoryType === SkillCategoryType.Special
+    )?.[0]
 
-  if (spSkill) {
-    for (const i of chartLine.filter((x) => x < 0)) {
-      ret.push({
-        type: SkillCategoryType.Special,
-        success: true,
-        start: -1 * i,
-        end: -1 * i,
-      })
+    if (spSkill) {
+      for (const tick of spSkillTimes) {
+        ret.push({
+          type: SkillCategoryType.Special,
+          success: true,
+          start: tick,
+          ...(skillxData && {
+            end: tick + skillToLength(spSkill, skillxData),
+          }),
+        })
+      }
+    } else {
+      // No SP skill available
+      for (const tick of spSkillTimes) {
+        ret.push({
+          type: SkillCategoryType.Special,
+          success: false,
+          start: tick,
+        })
+      }
     }
   }
 
