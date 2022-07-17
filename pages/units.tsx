@@ -196,6 +196,7 @@ const UnitsPage = ({
             checked={cnTrans}
             onChange={(e) => setCnTrans(e.target.checked)}
           />
+          <p>请注意角色头像在下载曲谱图片时可能不会被一并载入。</p>
         </Grid.Col>
         <Grid.Col xs={12} lg={6}>
           <UnitAnalyzer unitCards={unitCards} musicChart={selectedMusicChart} />

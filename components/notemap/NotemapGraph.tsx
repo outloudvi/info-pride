@@ -3,16 +3,18 @@ import { useEffect, useRef } from 'react'
 import { MusicChart } from 'hoshimi-types/types'
 
 import renderNotemap from './renderNotemap'
-import type { SkillChart } from './types'
+import type { ImageChart, SkillChart } from './types'
 
 const NotemapGraph = ({
   chart,
   laneColors,
   landingSkillChart,
+  imageChart,
 }: {
   chart: MusicChart
   laneColors: string[]
   landingSkillChart?: SkillChart
+  imageChart?: ImageChart
 }) => {
   const svgRef = useRef<SVGSVGElement | null>(null)
 
@@ -20,6 +22,7 @@ const NotemapGraph = ({
     renderNotemap(chart, svgRef.current, {
       laneColors,
       landingSkillChart,
+      imageChart,
     })
   })
 

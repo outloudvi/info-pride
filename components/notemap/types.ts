@@ -8,3 +8,5 @@ export type SkillLaunchItem = {
 }
 
 export type SkillChart = Record<1 | 2 | 3 | 4 | 5, SkillLaunchItem[]>
+
+export type ImageChart = Partial<Record<1 | 2 | 3 | 4 | 5, string>>

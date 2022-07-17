@@ -4,6 +4,12 @@ import { CardTiny } from './types'
 
 import NotemapView from '#components/notemap/NotemapView'
 import useFrontendApi from '#utils/useFrontendApi'
+import Paths from '#utils/paths'
+
+const cardTinyToAssetUrl = (u: CardTiny | null) => {
+  if (!u) return undefined
+  return Paths.assets('img')(`img_card_thumb_1_${u.assetId}`)
+}
 
 const UnitNotemap = ({
   chart,
@@ -41,6 +47,13 @@ const UnitNotemap = ({
         3: skillResult3 ?? [],
         4: skillResult4 ?? [],
         5: skillResult5 ?? [],
+      }}
+      imageChart={{
+        1: cardTinyToAssetUrl(unitCards[1]),
+        2: cardTinyToAssetUrl(unitCards[2]),
+        3: cardTinyToAssetUrl(unitCards[3]),
+        4: cardTinyToAssetUrl(unitCards[4]),
+        5: cardTinyToAssetUrl(unitCards[5]),
       }}
     />
   )

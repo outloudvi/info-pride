@@ -3,7 +3,7 @@ import * as d3 from 'd3'
 import { SkillCategoryType } from 'hoshimi-types/ProtoEnum'
 import type { MusicChart } from 'hoshimi-types/types'
 
-import type { SkillChart } from './types'
+import type { ImageChart, SkillChart } from './types'
 
 type Config = {
   height: number
@@ -14,6 +14,7 @@ type Config = {
   titleColorEven: string
   titleColor: string
   laneColors: string[]
+  imageChart?: ImageChart
   landingSkillChart?: SkillChart
 }
 
@@ -25,6 +26,16 @@ type D3LandingSkill = [
 ]
 
 type D3LandingSkills = D3LandingSkill[][]
+
+function processImages(imageChart: ImageChart): (string | undefined)[] {
+  return [
+    imageChart[4],
+    imageChart[2],
+    imageChart[1],
+    imageChart[3],
+    imageChart[5],
+  ]
+}
 
 function processSkills(landingSkillChart: SkillChart): D3LandingSkills {
   return [
@@ -53,16 +64,21 @@ function renderNotemap(
     width,
     textHeight,
     startHeight,
+    iconHeight,
+    iconHeightMargin,
     skillLineOffset,
     titleColor,
     titleColorEven,
     laneColors,
+    imageChart,
     landingSkillChart,
   } = {
     height: 600,
     width: 450,
     textHeight: 30,
     startHeight: 40,
+    iconHeight: 80,
+    iconHeightMargin: 5, // margin*2+height=width/5
     skillLineOffset: 35,
     titleColorEven: '#32323d',
     titleColor: '#484750',
@@ -79,16 +95,50 @@ function renderNotemap(
     nm.chart[5],
   ]
   const skills = landingSkillChart && processSkills(landingSkillChart)
+  const images = imageChart ? processImages(imageChart) : []
   const beat = nm.beats
+
+  const ifRenderImages = imageChart !== undefined
+  const baseHeight = ifRenderImages ? iconHeight + 2 * iconHeightMargin : 0
 
   const svg = d3
     .select(el)
     .attr('width', width)
     .attr(
       'height',
-      height + textHeight + startHeight + 0.25 * widthPerColumn + 15
+      height +
+        baseHeight +
+        textHeight +
+        startHeight +
+        0.25 * widthPerColumn +
+        15
     )
     .attr('font-family', 'sans-serif')
+
+  const svgPartsForImage = svg.append('g')
+
+  if (ifRenderImages) {
+    svgPartsForImage
+      .append('rect')
+      .attr('x', 0)
+      .attr('y', 0)
+      .attr('width', width)
+      .attr('height', baseHeight)
+      .attr('fill', titleColor)
+
+    svgPartsForImage
+      .selectAll('image')
+      .data(
+        images.map((x, i) => [x, i]).filter((x) => x[0]) as [string, number][]
+      )
+      .enter()
+      .append('image')
+      .attr('x', ([url, i]) => i * widthPerColumn + iconHeightMargin)
+      .attr('y', 0 + iconHeightMargin)
+      .attr('height', iconHeight)
+      .attr('width', iconHeight)
+      .attr('href', ([url, i]) => url)
+  }
 
   const noteTypes = notes.map((x) =>
     x.filter((r) => r < 0).length > 0 ? 'SP' : x.length >= 3 ? '多' : '少'
@@ -104,7 +154,7 @@ function renderNotemap(
     .enter()
     .append('rect')
     .attr('x', (_, i) => i * widthPerColumn)
-    .attr('y', 0)
+    .attr('y', baseHeight)
     .attr('width', widthPerColumn)
     .attr('height', textHeight)
     .attr('fill', (_, i) => (i % 2 === 0 ? titleColor : titleColorEven))
@@ -113,7 +163,7 @@ function renderNotemap(
   svg
     .append('rect')
     .attr('x', 0)
-    .attr('y', textHeight)
+    .attr('y', baseHeight + textHeight)
     .attr('height', startHeight)
     .attr('width', width)
     .attr('fill', titleColor)
@@ -122,7 +172,7 @@ function renderNotemap(
   svg
     .append('text')
     .attr('x', width / 2)
-    .attr('y', textHeight + startHeight / 2)
+    .attr('y', baseHeight + textHeight + startHeight / 2)
     .attr('fill', 'white')
     .attr('text-anchor', 'middle')
     .attr('dominant-baseline', 'middle')
@@ -138,7 +188,7 @@ function renderNotemap(
     .enter()
     .append('text')
     .attr('x', (_, i) => (i + 0.5) * widthPerColumn)
-    .attr('y', textHeight / 2)
+    .attr('y', baseHeight + textHeight / 2)
     .attr('fill', 'white')
     .attr('text-anchor', 'middle')
     .attr('dominant-baseline', 'middle')
@@ -154,7 +204,7 @@ function renderNotemap(
     .enter()
     .append('rect')
     .attr('x', (_, i) => i * widthPerColumn)
-    .attr('y', textHeight + startHeight)
+    .attr('y', baseHeight + textHeight + startHeight)
     .attr('width', widthPerColumn)
     .attr('height', height + 0.25 * widthPerColumn)
     .attr('fill', titleColor)
@@ -167,12 +217,17 @@ function renderNotemap(
     .enter()
     .append('line')
     .attr('x1', (_, i) => (i + 1) * widthPerColumn)
-    .attr('y1', textHeight + startHeight)
+    .attr('y1', baseHeight + textHeight + startHeight)
     .attr('x2', (_, i) => (i + 1) * widthPerColumn)
-    .attr('y2', textHeight + startHeight + height + 0.25 * widthPerColumn)
+    .attr(
+      'y2',
+      baseHeight + textHeight + startHeight + height + 0.25 * widthPerColumn
+    )
     .attr('stroke', 'white')
 
   const columns = svg.append('g').selectAll('g').data(notes).enter().append('g')
+
+  const heightBeforeLanes = textHeight + startHeight + baseHeight
 
   // SP/A circles
   columns
@@ -182,10 +237,7 @@ function renderNotemap(
     .enter()
     .append('circle')
     .attr('cx', ([, i]) => (i + 0.5) * widthPerColumn)
-    .attr(
-      'cy',
-      ([x]) => (Math.abs(x) / beat) * height + textHeight + startHeight
-    )
+    .attr('cy', ([x]) => (Math.abs(x) / beat) * height + heightBeforeLanes)
     .attr('r', ([x]) => (x < 0 ? 0.25 : 0.15) * widthPerColumn)
     .attr('fill', ([, i]) => laneColors[i])
 
@@ -197,10 +249,7 @@ function renderNotemap(
     .enter()
     .append('circle')
     .attr('cx', ([, i]) => (i + 0.5) * widthPerColumn)
-    .attr(
-      'cy',
-      ([x]) => (Math.abs(x) / beat) * height + textHeight + startHeight
-    )
+    .attr('cy', ([x]) => (Math.abs(x) / beat) * height + heightBeforeLanes)
     .attr('r', 0.15 * widthPerColumn)
     .attr('fill', 'white')
     .attr('fill-opacity', 0.2)
@@ -212,10 +261,7 @@ function renderNotemap(
     .enter()
     .append('text')
     .attr('x', ([, i]) => (i + 0.5) * widthPerColumn)
-    .attr(
-      'y',
-      ([x]) => (Math.abs(x) / beat) * height + textHeight + startHeight
-    )
+    .attr('y', ([x]) => (Math.abs(x) / beat) * height + heightBeforeLanes)
     .attr('fill', 'white')
     .attr('text-anchor', 'middle')
     .attr('dominant-baseline', 'middle')
@@ -242,12 +288,15 @@ function renderNotemap(
       .attr(
         'y1',
         ([[typ, from, to], __a], __b) =>
-          (from / beat) * height + textHeight + startHeight
+          (from / beat) * height + heightBeforeLanes
       )
       .attr(
         'y2',
         ([[typ, from, to], __a], __b) =>
-          Math.min(to / beat, 1) * height + textHeight + startHeight
+          Math.min(to / beat, 1) * height +
+          textHeight +
+          startHeight +
+          baseHeight
       )
       .attr('stroke', '#6cf')
       .attr('stroke-linecap', ([[, from, to, success], __a], __b) =>
@@ -272,7 +321,7 @@ function renderNotemap(
       .attr(
         'y',
         ([[typ, from, to], __a], __b) =>
-          (from / beat) * height + textHeight + startHeight
+          (from / beat) * height + heightBeforeLanes
       )
       .attr('fill', 'white')
       .attr('text-anchor', 'left')
@@ -297,7 +346,7 @@ function renderNotemap(
       .attr(
         'y',
         ([[typ, from, to], __a], __b) =>
-          (to / beat) * height + textHeight + startHeight
+          (to / beat) * height + heightBeforeLanes
       )
       .attr('fill', 'white')
       .attr('text-anchor', 'left')

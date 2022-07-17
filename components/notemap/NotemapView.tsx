@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic'
 import { MusicChart } from 'hoshimi-types/types'
 
-import { SkillChart } from './types'
+import { ImageChart, SkillChart } from './types'
 
 import useApi from '#utils/useApi'
 
@@ -13,10 +13,12 @@ const NotemapGraphToDownload = ({
   chartId,
   laneColors,
   landingSkillChart,
+  imageChart,
 }: {
   chartId: string
   laneColors: string[]
   landingSkillChart?: SkillChart
+  imageChart?: ImageChart
 }) => {
   const { data } = useApi('MusicChart', {
     chartId,
@@ -27,6 +29,7 @@ const NotemapGraphToDownload = ({
       chart={data}
       laneColors={laneColors}
       landingSkillChart={landingSkillChart}
+      imageChart={imageChart}
     />
   ) : (
     <div className="text-center text-gray-500">正在下载曲谱信息。</div>
@@ -38,11 +41,13 @@ const NotemapView = ({
   chart,
   laneColors,
   landingSkillChart,
+  imageChart,
 }: {
   chartId?: string
   chart?: MusicChart
   laneColors: string[]
   landingSkillChart?: SkillChart
+  imageChart?: ImageChart
 }) => {
   if (chart) {
     return (
@@ -50,6 +55,7 @@ const NotemapView = ({
         chart={chart}
         laneColors={laneColors}
         landingSkillChart={landingSkillChart}
+        imageChart={imageChart}
       />
     )
   }
@@ -60,6 +66,7 @@ const NotemapView = ({
         chartId={chartId}
         laneColors={laneColors}
         landingSkillChart={landingSkillChart}
+        imageChart={imageChart}
       />
     )
   }
