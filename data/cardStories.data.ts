@@ -1048,6 +1048,25 @@ const dataKana: D = {
   },
 }
 
+// miho
+const dataMiho: D = {
+  'card-mhk-05-idol-00': {
+    // make a comeback
+    1: {
+      name: '名义上的经纪人',
+      video: { type: 'bilibili', vid: 'av728325862' },
+    },
+    2: {
+      name: '花有重开日',
+      video: { type: 'bilibili', vid: 'av301056597' },
+    },
+    3: {
+      name: '出其不意',
+      video: { type: 'bilibili', vid: 'av941058524' },
+    },
+  },
+}
+
 // ---- 个人偶像 ----
 // 长濑麻奈
 const dataMana: D = {
@@ -1112,6 +1131,7 @@ const data: D = {
 
   ...dataFran,
   ...dataKana,
+  ...dataMiho,
 } as const
 
 export default data

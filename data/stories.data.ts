@@ -1102,6 +1102,10 @@ const data: Partial<
         name: '团队的队长',
         video: { type: 'bilibili', vid: 'av643013020' },
       },
+      5: {
+        name: '为胜而赢',
+        video: { type: 'bilibili', vid: 'av686107541' },
+      },
     },
   },
   Big4: {
