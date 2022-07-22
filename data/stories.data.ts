@@ -957,7 +957,10 @@ const data: Partial<
         name: '后辈的想法',
         video: { type: 'bilibili', vid: 'av642765842' },
       },
-      // 30
+      30: {
+        name: '通往顶点的序曲',
+        video: { type: 'bilibili', vid: 'av301175777' },
+      },
     },
   },
   Mana: {
