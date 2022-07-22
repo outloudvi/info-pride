@@ -1,6 +1,7 @@
 import { Button, Group, Stack } from '@mantine/core'
 import { useEffect, useRef } from 'react'
 import { MusicChart } from 'hoshimi-types/types'
+import _range from 'lodash/range'
 
 import renderNotemap from './renderNotemap'
 import type { ImageChart, SkillChart } from './types'
@@ -50,26 +51,28 @@ const NotemapGraph = ({
       if (!ctx) return
       ctx.drawImage(img, 0, 0)
       await Promise.allSettled(
-        [1, 2, 3, 4, 5].map((i) => {
-          const svgImageElement = document.querySelector(
-            `#${notemapColumnId(i)}`
-          )
-          const leftColumnImageElement = document.querySelector(
-            `#${unitColumnId(i)} img`
-          )
-          if (!svgImageElement) return Promise.resolve()
-          return createImageBitmap(
-            leftColumnImageElement as HTMLImageElement
-          ).then((x) => {
-            ctx.drawImage(
-              x,
-              Number(svgImageElement.getAttribute('x')),
-              Number(svgImageElement.getAttribute('y')),
-              Number(svgImageElement.getAttribute('width')),
-              Number(svgImageElement.getAttribute('height'))
+        _range(5)
+          .map((x) => x + 1)
+          .map((i) => {
+            const svgImageElement = document.querySelector(
+              `#${notemapColumnId(i)}`
             )
+            const leftColumnImageElement = document.querySelector(
+              `#${unitColumnId(i)} img`
+            )
+            if (!svgImageElement) return Promise.resolve()
+            return createImageBitmap(
+              leftColumnImageElement as HTMLImageElement
+            ).then((x) => {
+              ctx.drawImage(
+                x,
+                Number(svgImageElement.getAttribute('x')),
+                Number(svgImageElement.getAttribute('y')),
+                Number(svgImageElement.getAttribute('width')),
+                Number(svgImageElement.getAttribute('height'))
+              )
+            })
           })
-        })
       )
       const pngUrl = canvas.toDataURL()
       downloadUrl(pngUrl, 'notemap.png')

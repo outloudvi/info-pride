@@ -1,6 +1,7 @@
 import { Alert } from '@mantine/core'
 import { Skill } from 'hoshimi-types/ProtoMaster'
 import { MusicChart } from 'hoshimi-types/types'
+import _range from 'lodash/range'
 
 import { CardTiny, MusicChartItem } from './types'
 import lint from './lint'
@@ -22,39 +23,45 @@ const UnitAnalyzer = ({
 }) => {
   return (
     <>
-      {[1, 2, 3, 4, 5].map((_key) => {
-        const card = unitCards[_key - 1]
-        const lintResult = lint(
-          [card.skillId1, card.skillId2, card.skillId3]
-            .map((x) => skills.find((sk) => sk.id === x))
-            .filter(notUndefined),
-          chart.chart[_key as 1 | 2 | 3 | 4 | 5]
-        )
+      {_range(5)
+        .map((x) => x + 1)
+        .map((_key) => {
+          const card = unitCards[_key - 1]
+          const lintResult = lint(
+            [card.skillId1, card.skillId2, card.skillId3]
+              .map((x) => skills.find((sk) => sk.id === x))
+              .filter(notUndefined),
+            chart.chart[_key as 1 | 2 | 3 | 4 | 5]
+          )
 
-        const maxSeverity = Math.max(0, ...lintResult.map((x) => x.severity))
+          const maxSeverity = Math.max(0, ...lintResult.map((x) => x.severity))
 
-        return (
-          <Alert
-            title={`${_key} 轨道（${TRACK_DESC[_key]}）的验证结果（${card.name}）`}
-            color={
-              maxSeverity === 3 ? 'red' : maxSeverity === 2 ? 'yellow' : 'blue'
-            }
-            className="my-1"
-            key={_key}
-          >
-            <ul>
-              {lintResult.map((msg, __key) => (
-                <li
-                  key={__key}
-                  className={msg.severity === 3 ? 'font-bold' : ''}
-                >
-                  {msg.text}
-                </li>
-              ))}
-            </ul>
-          </Alert>
-        )
-      })}
+          return (
+            <Alert
+              title={`${_key} 轨道（${TRACK_DESC[_key]}）的验证结果（${card.name}）`}
+              color={
+                maxSeverity === 3
+                  ? 'red'
+                  : maxSeverity === 2
+                  ? 'yellow'
+                  : 'blue'
+              }
+              className="my-1"
+              key={_key}
+            >
+              <ul>
+                {lintResult.map((msg, __key) => (
+                  <li
+                    key={__key}
+                    className={msg.severity === 3 ? 'font-bold' : ''}
+                  >
+                    {msg.text}
+                  </li>
+                ))}
+              </ul>
+            </Alert>
+          )
+        })}
     </>
   )
 }
