@@ -107,12 +107,7 @@ function renderNotemap(
     .attr('width', width)
     .attr(
       'height',
-      height +
-        baseHeight +
-        textHeight +
-        startHeight +
-        0.25 * widthPerColumn +
-        15
+      height + baseHeight + textHeight + startHeight + 0.25 * widthPerColumn
     )
     .attr('font-family', 'sans-serif')
 
