@@ -28,6 +28,7 @@ import type { CardTiny, MusicChartItem } from '#components/units/types'
 import UnitPosition from '#components/units/UnitPosition'
 import UnitAnalyzer from '#components/units/UnitAnalyzer'
 import UnitNotemap from '#components/units/UnitNotemap'
+import TrackColorSelect from '#components/notemap/TrackColorSelect'
 
 const UnitsPage = ({
   CardData,
@@ -79,6 +80,14 @@ const UnitsPage = ({
   const [importUnitId, setImportUnitId] = useState('')
   const [showNotemap, setShowNotemap] = useState(false)
   const [cnTrans, setCnTrans] = useState(true)
+
+  const [laneColors, setLaneColors] = useState<string[]>([
+    'blue',
+    'blue',
+    'blue',
+    'blue',
+    'blue',
+  ])
 
   return (
     <>
@@ -180,6 +189,12 @@ const UnitsPage = ({
               />
             ))}
           </div>
+          <div className="mt-2">
+            <TrackColorSelect
+              laneColors={laneColors}
+              setLaneColors={setLaneColors}
+            />
+          </div>
           <Divider className="my-2" />
           <Switch
             label={
@@ -209,7 +224,11 @@ const UnitsPage = ({
           </Button>
           {ChartData ? (
             <Collapse in={showNotemap}>
-              <UnitNotemap chart={ChartData} unitCards={unitCards} />
+              <UnitNotemap
+                chart={ChartData}
+                unitCards={unitCards}
+                laneColors={laneColors}
+              />
             </Collapse>
           ) : (
             <Skeleton height={200} />

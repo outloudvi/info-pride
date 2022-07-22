@@ -14,9 +14,11 @@ const cardTinyToAssetUrl = (u: CardTiny | null) => {
 const UnitNotemap = ({
   chart,
   unitCards,
+  laneColors,
 }: {
   chart: MusicChart
   unitCards: (CardTiny | null)[]
+  laneColors: string[]
 }) => {
   const useSkillRunner = (id: number) => {
     const unitCardSlot = unitCards[id]
@@ -40,7 +42,7 @@ const UnitNotemap = ({
     <NotemapView
       chart={chart}
       // TODO: changable lane colors
-      laneColors={['blue', 'blue', 'blue', 'blue', 'blue']}
+      laneColors={laneColors}
       landingSkillChart={{
         1: skillResult1 ?? [],
         2: skillResult2 ?? [],

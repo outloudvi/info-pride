@@ -1,15 +1,14 @@
 import { useEffect, useState } from 'react'
 import { Grid, NativeSelect } from '@mantine/core'
-import _range from 'lodash/range'
 
 import useApi from '#utils/useApi'
-import { Colors } from '#data/colors'
 import { APIResponseOf, UnArray } from '#utils/api'
 import allFinished from '#utils/allFinished'
 import PageLoading from '#components/PageLoading'
 import Title from '#components/Title'
 import AssetImage from '#components/AssetImage'
 import NotemapView from '#components/notemap/NotemapView'
+import TrackColorSelect from '#components/notemap/TrackColorSelect'
 
 const NotemapPage = ({
   ChartListData,
@@ -79,28 +78,11 @@ const NotemapPage = ({
             </div>
           </Grid.Col>
           <Grid.Col xs={12} lg={8}>
-            <div className="mt-4 flex justify-around">
-              {_range(0, 5).map((val, key) => {
-                const uiNumber = val + 1
-                return (
-                  <NativeSelect
-                    key={key}
-                    label={`颜色${uiNumber}`}
-                    value={laneColors[val]}
-                    data={Object.entries(Colors).map(([label, value]) => ({
-                      label,
-                      value,
-                    }))}
-                    onChange={(i) => {
-                      setLaneColors([
-                        ...laneColors.slice(0, val),
-                        i.target.value,
-                        ...laneColors.slice(val + 1),
-                      ])
-                    }}
-                  />
-                )
-              })}
+            <div className="mt-4">
+              <TrackColorSelect
+                laneColors={laneColors}
+                setLaneColors={setLaneColors}
+              />
             </div>
           </Grid.Col>
         </Grid>
