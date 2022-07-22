@@ -89,10 +89,10 @@ const UnitAnalyzerDownloader = ({
     return (
       <Alert title="正在获取数据..." color="yellow">
         正在下载...
-        <div>
+        <ul>
           <li>谱面数据 {ChartDataFetched ? '✅' : '⌛'}</li>
           <li>技能数据 {SkillDataFetched ? '✅' : '⌛'}</li>
-        </div>
+        </ul>
       </Alert>
     )
   }
