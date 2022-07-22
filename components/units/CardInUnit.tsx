@@ -11,6 +11,7 @@ import useApi from '#utils/useApi'
 import { CharacterChineseNameList, CharacterId } from '#data/vendor/characterId'
 import AssetImage from '#components/AssetImage'
 import useFrontendApi from '#utils/useFrontendApi'
+import { unitColumnId } from '#components/notemap/const'
 
 const CardInUnit = ({
   card,
@@ -34,7 +35,11 @@ const CardInUnit = ({
 
   return (
     <>
-      <div style={{ gridRow: 3, gridColumn: col }} className="w-3/4 mx-auto">
+      <div
+        id={unitColumnId(col)}
+        style={{ gridRow: 3, gridColumn: col }}
+        className="w-3/4 mx-auto"
+      >
         <Link href={`/cards/${card.id}`}>
           <a target="_blank">
             <AssetImage

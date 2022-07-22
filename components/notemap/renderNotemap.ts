@@ -3,6 +3,7 @@ import * as d3 from 'd3'
 import { SkillCategoryType } from 'hoshimi-types/ProtoEnum'
 import type { MusicChart } from 'hoshimi-types/types'
 
+import { notemapColumnId } from './const'
 import type { ImageChart, SkillChart } from './types'
 
 type Config = {
@@ -126,13 +127,16 @@ function renderNotemap(
       .attr('height', baseHeight)
       .attr('fill', titleColor)
 
+    const imageData = images.map((x, i) => [x, i]).filter((x) => x[0]) as [
+      string,
+      number
+    ][]
     svgPartsForImage
       .selectAll('image')
-      .data(
-        images.map((x, i) => [x, i]).filter((x) => x[0]) as [string, number][]
-      )
+      .data(imageData)
       .enter()
       .append('image')
+      .attr('id', ([url, i]) => notemapColumnId(i + 1))
       .attr('x', ([url, i]) => i * widthPerColumn + iconHeightMargin)
       .attr('y', 0 + iconHeightMargin)
       .attr('height', iconHeight)

@@ -14,6 +14,9 @@ const allowedConnectionDomains = [
   'vitals.vercel-insights.com',
   // Sentry's reporting & performance measurement
   'o421264.ingest.sentry.io',
+  // Asset server
+  'idoly-assets-curator.vercel.app',
+  'res.cloudinary.com',
 ]
 
 const cspRules = (scriptOthers: string) =>

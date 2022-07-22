@@ -4,6 +4,7 @@ import { MusicChart } from 'hoshimi-types/types'
 
 import renderNotemap from './renderNotemap'
 import type { ImageChart, SkillChart } from './types'
+import { notemapColumnId, unitColumnId } from './const'
 
 const NotemapGraph = ({
   chart,
@@ -41,13 +42,35 @@ const NotemapGraph = ({
     const svgElement = svgRef.current
     const svgUrl = new XMLSerializer().serializeToString(svgElement)
     const img = new Image()
-    img.addEventListener('load', () => {
+    img.addEventListener('load', async () => {
       const canvas = document.createElement('canvas')
       canvas.height = svgElement.clientHeight
       canvas.width = svgElement.clientWidth
       const ctx = canvas.getContext('2d')
       if (!ctx) return
       ctx.drawImage(img, 0, 0)
+      await Promise.allSettled(
+        [1, 2, 3, 4, 5].map((i) => {
+          const svgImageElement = document.querySelector(
+            `#${notemapColumnId(i)}`
+          )
+          const leftColumnImageElement = document.querySelector(
+            `#${unitColumnId(i)} img`
+          )
+          if (!svgImageElement) return Promise.resolve()
+          return createImageBitmap(
+            leftColumnImageElement as HTMLImageElement
+          ).then((x) => {
+            ctx.drawImage(
+              x,
+              Number(svgImageElement.getAttribute('x')),
+              Number(svgImageElement.getAttribute('y')),
+              Number(svgImageElement.getAttribute('width')),
+              Number(svgImageElement.getAttribute('height'))
+            )
+          })
+        })
+      )
       const pngUrl = canvas.toDataURL()
       downloadUrl(pngUrl, 'notemap.png')
     })
