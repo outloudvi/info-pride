@@ -19,6 +19,10 @@ const allowedConnectionDomains = [
   'res.cloudinary.com',
 ]
 
+const META_TITLE = 'INFO PRIDE'
+const META_DESCRIPTION =
+  'An informational website for Project IDOLY PRIDE fans.'
+
 const cspRules = (scriptOthers: string) =>
   [
     `script-src 'self' ${scriptOthers}`,
@@ -47,6 +51,14 @@ export default class _Document extends Document {
       <Html>
         <Head>
           <meta httpEquiv="Content-Security-Policy" content={csp} />
+          <meta property="og:title" content={META_TITLE} />
+          <meta property="twitter:title" content={META_TITLE} />
+          <meta property="og:url" content="https://ip.outv.im/" />
+          <meta property="twitter:url" content="https://ip.outv.im/" />
+          <meta name="description" content={META_DESCRIPTION} />
+          <meta property="og:description" content={META_DESCRIPTION} />
+          <meta property="twitter:description" content={META_DESCRIPTION} />
+          <meta property="og:type" content="website" />
         </Head>
         <body>
           <Main />
