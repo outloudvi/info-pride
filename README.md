@@ -13,7 +13,7 @@ INFO PRIDE (Beta)
 
 ## Planned features & Bug-fixes
 
-[projects/1](https://github.com/outloudvi/info-pride/projects/1)
+[INFO PRIDE Maintenance](https://github.com/users/outloudvi/projects/2)
 
 ## Data
 
