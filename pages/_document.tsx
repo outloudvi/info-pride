@@ -9,7 +9,7 @@ const allowedConnectionDomains = [
   // Scripts from Next.js
   "'self'",
   // Backend for INFO PRIDE
-  'idoly-backend.outv.im',
+  'idoly-backend-deno.outv.im',
   // Vercel's Analytics
   'vitals.vercel-insights.com',
   // Sentry's reporting & performance measurement

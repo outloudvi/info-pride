@@ -12,7 +12,7 @@ const Paths = {
   sprite: (id: string) => Paths.s3(`sprite/${id}.png`),
   repoIssue: (id?: number) =>
     `https://github.com/outloudvi/info-pride/issues/${id ?? ''}`,
-  api: (path: string) => `https://idoly-backend.outv.im/api/${path}`,
+  api: (path: string) => `https://idoly-backend-deno.outv.im/api/${path}`,
 }
 
 export default Paths
