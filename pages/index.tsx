@@ -7,6 +7,7 @@ import CurrentEvents from '#components/indexPage/CurrentEvents'
 import Notice from '#components/indexPage/Notice'
 import VersionInfo from '#components/indexPage/VersionInfo'
 import Paths from '#utils/paths'
+import NoticeTop from '#components/indexPage/NoticeTop'
 
 const MainPageSiteData = [
   {
@@ -29,54 +30,57 @@ const MainPageSiteData = [
 
 const Home = ({ gitCommit }: { gitCommit: string }) => {
   return (
-    <Grid className="mt-3">
-      <Grid.Col xs={12} lg={6}>
-        <div className="text-center text-6xl mt-4">
-          INFO PRIDE{' '}
-          <Link
-            href={`https://github.com/outloudvi/info-pride/tree/${gitCommit}`}
-            passHref
-          >
-            <a>
-              <Badge className="lowercase cursor-pointer align-super">
-                {gitCommit.slice(0, 8)}
-              </Badge>
-            </a>
-          </Link>
-        </div>
-        <Stack spacing={15} justify="center" className="mt-2">
-          {MainPageSiteData.map((items, _key) => (
-            <Group key={_key}>
-              {Object.entries(items).map(([title, link], key) => (
-                <Button
-                  key={key}
-                  variant="outline"
-                  component="a"
-                  href={link}
-                  target="_blank"
-                  rel="noopener"
-                  className="basis-0 grow mx-2"
-                >
-                  {title}
-                </Button>
-              ))}
-            </Group>
-          ))}
-        </Stack>
-      </Grid.Col>
-      <Grid.Col xs={12} lg={6}>
-        <CurrentEvents />
-      </Grid.Col>
-      {/* Line 2 */}
-      <Grid.Col xs={12} lg={6}>
-        <div className="mb-2 text-3xl">新闻</div>
-        <Notice />
-      </Grid.Col>
-      <Grid.Col xs={12} lg={6}>
-        <div className="mb-2 text-3xl">数据版本</div>
-        <VersionInfo />
-      </Grid.Col>
-    </Grid>
+    <>
+      <NoticeTop />
+      <Grid className="mt-3">
+        <Grid.Col xs={12} lg={6}>
+          <div className="text-center text-6xl mt-4">
+            INFO PRIDE{' '}
+            <Link
+              href={`https://github.com/outloudvi/info-pride/tree/${gitCommit}`}
+              passHref
+            >
+              <a>
+                <Badge className="lowercase cursor-pointer align-super">
+                  {gitCommit.slice(0, 8)}
+                </Badge>
+              </a>
+            </Link>
+          </div>
+          <Stack spacing={15} justify="center" className="mt-2">
+            {MainPageSiteData.map((items, _key) => (
+              <Group key={_key}>
+                {Object.entries(items).map(([title, link], key) => (
+                  <Button
+                    key={key}
+                    variant="outline"
+                    component="a"
+                    href={link}
+                    target="_blank"
+                    rel="noopener"
+                    className="basis-0 grow mx-2"
+                  >
+                    {title}
+                  </Button>
+                ))}
+              </Group>
+            ))}
+          </Stack>
+        </Grid.Col>
+        <Grid.Col xs={12} lg={6}>
+          <CurrentEvents />
+        </Grid.Col>
+        {/* Line 2 */}
+        <Grid.Col xs={12} lg={6}>
+          <div className="mb-2 text-3xl">新闻</div>
+          <Notice />
+        </Grid.Col>
+        <Grid.Col xs={12} lg={6}>
+          <div className="mb-2 text-3xl">数据版本</div>
+          <VersionInfo />
+        </Grid.Col>
+      </Grid>
+    </>
   )
 }
 
