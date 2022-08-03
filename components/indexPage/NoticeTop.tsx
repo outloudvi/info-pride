@@ -35,7 +35,9 @@ const NoticeTop = () => {
         或任何其它方式告知我们。
         <br />
         如果希望回到使用旧 API 服务的版本，请访问
-        <a href="https://info-pride-qwbztg3t2-outloudvi.vercel.app/">此站点</a>
+        <a href="https://info-pride-git-feat-workers-outloudvi.vercel.app/">
+          此站点
+        </a>
         。请注意旧 API 服务的数据目前处于停止更新的状态。
         <br />
         此公告在手动关闭后不会再显示。
@@ -52,8 +54,10 @@ const NoticeTop = () => {
           <a href="https://github.com/outloudvi/info-pride/issues">Issues</a> or
           other channels.
           <br />
-          If you wish to use the site with the old API service, please check
-          <a href="https://info-pride-qwbztg3t2-outloudvi.vercel.app/">here</a>
+          If you wish to use the site with the old API service, please check{' '}
+          <a href="https://info-pride-git-feat-workers-outloudvi.vercel.app/">
+            here
+          </a>
           . Please be noted that updates for the old API service are currently
           paused.
           <br />
