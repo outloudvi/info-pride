@@ -4,9 +4,7 @@ import got from 'got'
 
 async function main() {
   const currentCcid = JSON.parse(readFileSync('./ccid.json'))
-  const ccid = await got(
-    'https://idoly-backend-deno.outv.im/api/Card/Id'
-  ).json()
+  const ccid = await got('https://idoly-backend-cf.outv.im/api/Card/Id').json()
   for (const [charId, ccidItems] of Object.entries(ccid)) {
     for (const i of ccidItems) {
       if (!currentCcid[charId]) {
