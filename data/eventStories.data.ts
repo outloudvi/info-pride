@@ -245,6 +245,22 @@ const data: Record<string, ChapterItem> = {
     name: '只要是我们的话，就没有问题',
     video: { type: 'bilibili', vid: 'av553882116' },
   },
+  'st-eve-2208-backside-001': {
+    name: '想和前辈一起玩',
+    video: { type: 'bilibili', vid: 'av301706967' },
+  },
+  'st-eve-2208-backside-002': {
+    name: '没有什么比得上夏天',
+    video: { type: 'bilibili', vid: 'av984150422' },
+  },
+  'st-eve-2208-backside-003': {
+    name: '海蓝色的忧郁',
+    video: { type: 'bilibili', vid: 'av429131742' },
+  },
+  'st-eve-2208-backside-004': {
+    name: '搭讪的处理方法',
+    video: { type: 'bilibili', vid: '686632759' },
+  },
 }
 
 export const EventGroupData: Record<string, string> = {
@@ -260,7 +276,8 @@ export const EventGroupData: Record<string, string> = {
   'st-eve-2204-contest': '铃',
   'st-eve-2205-race': '千纱/沙季',
   'st-eve-2206-marathon': 'SUNNY PEACE',
-  'st-eve-2206-marathon-001': 'ⅢX',
+  'st-eve-2207-contest': 'ⅢX',
+  'st-eve-2208-backside': 'LizNoir',
 }
 
 export default data
