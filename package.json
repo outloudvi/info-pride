@@ -13,8 +13,8 @@
         "lint:fix": "next lint --fix",
         "test": "mocha",
         "test:watch": "mocha -w",
-        "dataset:bv": "utils/buildAndValidate.sh",
-        "dataset:type": "utils/schemaToType.sh",
+        "dataset:bv": "scripts/buildAndValidate.sh",
+        "dataset:type": "scripts/schemaToType.sh",
         "dataset:ajv": "ajv",
         "dataset:ts": "ts-node-esm",
         "prepare": "husky install"
