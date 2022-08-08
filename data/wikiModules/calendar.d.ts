@@ -35,7 +35,8 @@ export type EventType =
   | "联合对战"
   | "摄影活动"
   | "愚人节"
-  | "私信任务活动";
+  | "私信任务活动"
+  | "合宿活动";
 /**
  * Each YYYY/MM in the calendar.
  */
