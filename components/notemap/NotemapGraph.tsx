@@ -40,13 +40,26 @@ const NotemapGraph = ({
   // https://stackoverflow.com/a/33227005
   const downloadNotemapPNG = () => {
     if (!svgRef.current) return
-    const svgElement = svgRef.current
+    const originalSvgElement = svgRef.current
+    const svgElement = originalSvgElement.cloneNode(true) as SVGSVGElement
+    svgElement.removeAttribute('style')
+    const [, , viewBoxWidth, viewBoxHeight] =
+      svgElement.getAttribute('viewBox')?.split(' ') ?? []
+    // override original values with viewBox
+    svgElement.setAttribute('width', viewBoxWidth)
+    svgElement.setAttribute('height', viewBoxHeight)
     const svgUrl = new XMLSerializer().serializeToString(svgElement)
+    console.log(svgElement)
     const img = new Image()
     img.addEventListener('load', async () => {
       const canvas = document.createElement('canvas')
-      canvas.height = svgElement.clientHeight
-      canvas.width = svgElement.clientWidth
+      // use viewBox values unless there aren't
+      canvas.height = viewBoxHeight
+        ? Number(viewBoxHeight)
+        : originalSvgElement.clientHeight
+      canvas.width = viewBoxWidth
+        ? Number(viewBoxWidth)
+        : originalSvgElement.clientWidth
       const ctx = canvas.getContext('2d')
       if (!ctx) return
       ctx.drawImage(img, 0, 0)
@@ -82,7 +95,12 @@ const NotemapGraph = ({
 
   return (
     <Stack align="center">
-      <svg ref={svgRef} />
+      <svg
+        ref={svgRef}
+        style={{
+          width: 'min(450px, 100%)',
+        }}
+      />
       <Group className="mt-2">
         <Button onClick={downloadNotemapSVG}>下载曲谱图片 (SVG)</Button>
         <Button onClick={downloadNotemapPNG}>下载曲谱图片 (PNG)</Button>

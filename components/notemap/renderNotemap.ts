@@ -102,13 +102,12 @@ function renderNotemap(
   const ifRenderImages = imageChart !== undefined
   const baseHeight = ifRenderImages ? iconHeight + 2 * iconHeightMargin : 0
 
+  const elemWidth = width
+  const elemHeight =
+    height + baseHeight + textHeight + startHeight + 0.25 * widthPerColumn
   const svg = d3
     .select(el)
-    .attr('width', width)
-    .attr(
-      'height',
-      height + baseHeight + textHeight + startHeight + 0.25 * widthPerColumn
-    )
+    .attr('viewBox', `0 0 ${elemWidth} ${elemHeight}`)
     .attr('font-family', 'sans-serif')
 
   const svgPartsForImage = svg.append('g')
