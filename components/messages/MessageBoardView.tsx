@@ -1,6 +1,7 @@
 import { Grid } from '@mantine/core'
 import { useEffect, useRef, useState } from 'react'
 import dynamic from 'next/dynamic'
+import { useViewportSize } from '@mantine/hooks'
 
 import ChatItem from './ChatItem'
 import ChatView from './ChatView'
@@ -22,18 +23,13 @@ const MessageBoardView = ({
   )
   const [mdShowSidebar, setMdShowSidebar] = useState(true)
   const outer = useRef<HTMLDivElement | null>(null)
+  const { height } = useViewportSize()
 
   useEffect(() => {
-    const callback = () => {
-      if (!outer.current) return
-      const elem = outer.current
-      elem.style.height =
-        String(window.innerHeight - elem.offsetTop - 140) + 'px'
-    }
-    callback()
-    window.addEventListener('resize', callback)
-    return () => window.removeEventListener('resize', callback)
-  }, [])
+    if (!outer.current) return
+    const elem = outer.current
+    elem.style.height = String(height - elem.offsetTop - 140) + 'px'
+  }, [height])
 
   return (
     <div ref={outer}>
