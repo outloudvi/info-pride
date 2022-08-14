@@ -962,6 +962,21 @@ const dataAi: D = {
     },
     phone: { video: { type: 'bilibili', vid: 'av979531881' } },
   },
+  'card-ai-05-mizg-01': {
+    // ネオン煌めくナイトプール
+    1: {
+      name: '只有一人是零回',
+      video: { type: 'bilibili', vid: 'av216618108' },
+    },
+    2: {
+      name: '单独的工作',
+      video: { type: 'bilibili', vid: 'av856574801' },
+    },
+    3: {
+      name: '想搭讪吗？',
+      video: { type: 'bilibili', vid: 'av301824157' },
+    },
+  },
 }
 
 // 赤崎心
