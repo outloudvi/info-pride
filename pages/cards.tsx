@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 import { Checkbox, SimpleGrid } from '@mantine/core'
-import { useTranslation } from 'next-i18next'
+import { useTranslations } from 'next-intl'
 import { useForm } from '@mantine/form'
 import uniq from 'lodash/uniq'
 
@@ -47,7 +47,7 @@ const CardsPage = ({
 
   CardNameData: CardNameDataType
 }) => {
-  const { t: $v } = useTranslation('vendor')
+  const $v = useTranslations('vendor')
   const {
     values: formValues,
     errors: formErrors,
@@ -225,6 +225,6 @@ const SkeletonCardsPage = () => {
   )
 }
 
-export const getStaticProps = getI18nProps
+export const getStaticProps = getI18nProps(['vendor'])
 
 export default SkeletonCardsPage

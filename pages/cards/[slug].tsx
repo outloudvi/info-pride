@@ -58,6 +58,6 @@ const PreloadedCardInfoPage = () => {
   return router.isReady ? <SkeletonCardInfoPage /> : <Skeleton height={300} />
 }
 
-// export const getServerSideProps = getI18nProps
+export const getServerSideProps = getI18nProps(['vendor'])
 
 export default PreloadedCardInfoPage

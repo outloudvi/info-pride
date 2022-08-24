@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { Grid } from '@mantine/core'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { useTranslation } from 'next-i18next'
+import { useTranslations } from 'next-intl'
 
 import Title from '#components/Title'
 import useApi from '#utils/useApi'
@@ -11,6 +10,7 @@ import { APIResponseOf } from '#utils/api'
 import ListButton from '#components/ListButton'
 import EventStoryView from '#components/eventstories/EventStoryView'
 import { EventGroupData } from '#data/eventStories.data'
+import getI18nProps from '#utils/geti18nProps'
 
 function guessDate(id: string): string | null {
   const yymm = id.split('-')?.[2]
@@ -25,7 +25,7 @@ const EventStoriesPage = ({
 }: {
   EventStoriesData: APIResponseOf<'EventStory/List'>
 }) => {
-  const { t: $ev } = useTranslation('events')
+  const $ev = useTranslations('events')
 
   const [currEvent, setCurrEvent] = useState<
     APIResponseOf<'EventStory/List'>[number] | null
@@ -64,13 +64,7 @@ const EventStoriesPage = ({
   )
 }
 
-export const getStaticProps = async ({ locale }: { locale: string }) => {
-  return {
-    props: {
-      ...(await serverSideTranslations(locale, ['events'])),
-    },
-  }
-}
+export const getStaticProps = getI18nProps(['events'])
 
 const SkeletonEventStoriesPage = () => {
   const { data: EventStoriesData } = useApi('EventStory/List')

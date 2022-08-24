@@ -1,6 +1,6 @@
 import { SkillCategoryType } from 'hoshimi-types/ProtoEnum'
 import { Skill, SkillLevel } from 'hoshimi-types/ProtoMaster'
-import { useTranslation } from 'next-i18next'
+import { useTranslations } from 'next-intl'
 
 import SkillExplainer from '#components/cards/SkillExplainer'
 
@@ -32,7 +32,7 @@ function buildStatusLine(
 }
 
 const SkillDesc = ({ skill }: { skill: Skill }) => {
-  const { t: $v } = useTranslation('vendor')
+  const $v = useTranslations('vendor')
 
   const { name, categoryType } = skill
   const highestLevel = skill.levels[skill.levels.length - 1]

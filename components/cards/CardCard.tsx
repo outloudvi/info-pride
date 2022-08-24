@@ -1,6 +1,6 @@
 import { Card } from '@mantine/core'
 import { CardType } from 'hoshimi-types/ProtoEnum'
-import { useTranslation } from 'next-i18next'
+import { useTranslations } from 'next-intl'
 import Link from 'next/link'
 
 import { getAssetSlug } from './CardAsset'
@@ -17,7 +17,7 @@ const CardCard = ({
   card: UnArray<APIResponseOf<'Card'>>
   nameCn?: string
 }) => {
-  const { t: $v } = useTranslation('vendor')
+  const $v = useTranslations('vendor')
   const { id, name, characterId, assetId, type, initialRarity } = card
 
   const assetImage =

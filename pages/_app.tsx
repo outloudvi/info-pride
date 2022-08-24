@@ -7,7 +7,7 @@ import {
   MantineProvider,
 } from '@mantine/core'
 import { NotificationsProvider } from '@mantine/notifications'
-import { appWithTranslation } from 'next-i18next'
+import { NextIntlProvider } from 'next-intl'
 import '../styles/globals.css' // for Tailwind CSS
 import { useColorScheme, useLocalStorage } from '@mantine/hooks'
 import { useEffect, useState } from 'react'
@@ -147,7 +147,9 @@ const App = (props: AppProps) => {
               <Layout>
                 <Loading finished={finished} />
                 <NextNProgress />
-                <Component {...pageProps} />
+                <NextIntlProvider locale="zh-Hans" messages={pageProps._m}>
+                  <Component {...pageProps} />
+                </NextIntlProvider>
               </Layout>
             </QueryClientProvider>
           </NotificationsProvider>
@@ -157,4 +159,4 @@ const App = (props: AppProps) => {
   )
 }
 
-export default appWithTranslation(App)
+export default App

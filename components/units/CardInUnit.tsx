@@ -1,6 +1,6 @@
 import { Skeleton } from '@mantine/core'
 import { CardType } from 'hoshimi-types/ProtoEnum'
-import { useTranslation } from 'next-i18next'
+import { useTranslations } from 'next-intl'
 import Link from 'next/link'
 
 import SkillInUnit from './SkillInUnit'
@@ -22,7 +22,7 @@ const CardInUnit = ({
   col: number
   useCnTrans: boolean
 }) => {
-  const { t: $v } = useTranslation('vendor')
+  const $v = useTranslations('vendor')
   const { data: SkillData } = useApi(`Skill`, {
     ids: `${card.skillId1},${card.skillId2},${card.skillId3}`,
   })

@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Slider, Stack } from '@mantine/core'
 import type { Skill } from 'hoshimi-types/ProtoMaster'
 import { SkillCategoryType } from 'hoshimi-types/ProtoEnum'
-import { useTranslation } from 'next-i18next'
+import { useTranslations } from 'next-intl'
 
 import SkillImage from './SkillImage'
 import SkillExplainer from './SkillExplainer'
@@ -26,7 +26,7 @@ const Skill = ({
 }) => {
   const { name, categoryType, levels } = skill
 
-  const { t: $v } = useTranslation('vendor')
+  const $v = useTranslations('vendor')
 
   const [level, setLevel] = useState(1)
 
