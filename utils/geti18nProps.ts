@@ -1,11 +1,15 @@
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-
-const getI18nProps = async ({ locale }: { locale: string }) => {
-  return {
-    props: {
-      ...(await serverSideTranslations(locale, ['common', 'vendor'])),
-    },
+const getI18nProps =
+  (sources: string[] = []) =>
+  async () => {
+    const _m: Record<string, Record<string, string>> = {}
+    for (const i of [...sources, 'common']) {
+      _m[i] = (await import(`../locales/zh-Hans/${i}.json`)).default
+    }
+    return {
+      props: {
+        _m,
+      },
+    }
   }
-}
 
 export default getI18nProps

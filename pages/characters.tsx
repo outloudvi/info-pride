@@ -10,8 +10,7 @@ import {
   Table,
 } from '@mantine/core'
 import { useState } from 'react'
-import { useTranslation } from 'next-i18next'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { useTranslations } from 'next-intl'
 
 import useApi from '#utils/useApi'
 import { APIResponseOf, UnArray } from '#utils/api'
@@ -24,6 +23,7 @@ import allFinished from '#utils/allFinished'
 import PageLoading from '#components/PageLoading'
 import { Idols } from '#data/wikiPages'
 import Title from '#components/Title'
+import getI18nProps from '#utils/geti18nProps'
 
 export const toHashColor = (r: string) => (r.startsWith('#') ? r : '#' + r)
 
@@ -102,7 +102,7 @@ const CharacterItem = ({
 }: {
   character: UnArray<APIResponseOf<'Character/List'>>
 }) => {
-  const { t: $t } = useTranslation('characters')
+  const $t = useTranslations('characters')
 
   const { id, characterGroupId, name, enName, color } = character
 
@@ -300,13 +300,7 @@ const CharactersPage = ({
   )
 }
 
-export const getStaticProps = async ({ locale }: { locale: string }) => {
-  return {
-    props: {
-      ...(await serverSideTranslations(locale, ['common', 'characters'])),
-    },
-  }
-}
+export const getStaticProps = getI18nProps(['characters'])
 
 const SkeletonCharactersPage = () => {
   const { data: CharacterListData } = useApi('Character/List')

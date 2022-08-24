@@ -1,7 +1,7 @@
 import { Skill } from 'hoshimi-types/ProtoMaster'
 import { Card, Grid } from '@mantine/core'
 import { CardType } from 'hoshimi-types/ProtoEnum'
-import { useTranslation } from 'next-i18next'
+import { useTranslations } from 'next-intl'
 import dayjs from 'dayjs'
 import dayjsUtc from 'dayjs/plugin/utc'
 import dayjsTz from 'dayjs/plugin/timezone'
@@ -28,7 +28,7 @@ const CardWithSkills = ({
   skillData: Skill[]
   skillxData: APIResponseOf<'Skill/X'>
 }) => {
-  const { t: $v } = useTranslation('vendor')
+  const $v = useTranslations('vendor')
 
   const { name, characterId, type, initialRarity, releaseDate } = card
   const cardColor = getCardColor(card)

@@ -13,7 +13,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import type { CardRarity } from 'hoshimi-types/ProtoMaster'
 import { CardType } from 'hoshimi-types/ProtoEnum'
-import { useTranslation } from 'next-i18next'
+import { useTranslations } from 'next-intl'
 import Link from 'next/link'
 
 import CardAsset from './CardAsset'
@@ -51,7 +51,7 @@ const CardItem = ({
     staminaRatioPermil,
   } = card
 
-  const { t: $v } = useTranslation('vendor')
+  const $v = useTranslations('vendor')
 
   const maxRarity = Math.max(...rarityData.map((x) => x.rarity))
   const [rarity, setRarity] = useState(maxRarity)

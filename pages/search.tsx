@@ -7,7 +7,6 @@ import { EffectWithTarget as SXEffectWithTarget } from 'hoshimi-types/Skillx'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import uniq from 'lodash/uniq'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import { LocalBox } from './settings'
 
@@ -31,6 +30,7 @@ import ResultList from '#components/search/ResultList'
 import CCIDTable from '#data/ccid'
 import Title from '#components/Title'
 import Paths from '#utils/paths'
+import getI18nProps from '#utils/geti18nProps'
 
 const SearchPage = ({
   CardData,
@@ -353,12 +353,6 @@ const SkeletonSearchPage = () => {
   )
 }
 
-export const getStaticProps = async ({ locale }: { locale: string }) => {
-  return {
-    props: {
-      ...(await serverSideTranslations(locale, ['common', 'vendor'])),
-    },
-  }
-}
+export const getStaticProps = getI18nProps(['vendor'])
 
 export default SkeletonSearchPage

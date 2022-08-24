@@ -260,6 +260,6 @@ const SkeletonUnitsPage = () => {
   )
 }
 
-export const getStaticProps = getI18nProps
+export const getStaticProps = getI18nProps()
 
 export default SkeletonUnitsPage

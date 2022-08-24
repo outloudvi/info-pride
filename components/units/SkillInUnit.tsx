@@ -2,7 +2,7 @@ import { HTMLAttributes } from 'react'
 import { Badge, Tooltip } from '@mantine/core'
 import type { Skill } from 'hoshimi-types/ProtoMaster'
 import { SkillCategoryType } from 'hoshimi-types/ProtoEnum'
-import { useTranslation } from 'next-i18next'
+import { useTranslations } from 'next-intl'
 
 const SkillInUnit = ({
   skill,
@@ -15,7 +15,7 @@ const SkillInUnit = ({
   skillName?: string
   skillDesc?: string
 } & HTMLAttributes<'div'>) => {
-  const { t: $v } = useTranslation('vendor')
+  const $v = useTranslations('vendor')
   return (
     <div {...{ className, style }}>
       {skillName ?? skill.name} <br />
