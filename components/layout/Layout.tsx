@@ -7,6 +7,8 @@ import AppHeader from './AppHeader'
 import AppNavBar from './AppNavBar'
 import Footer from './Footer'
 
+import Paths from '#utils/paths'
+
 const expandedNavbarAtom = atom(false)
 
 const Layout = ({ children }: { children: ReactNode }) => {
@@ -52,6 +54,23 @@ const Layout = ({ children }: { children: ReactNode }) => {
                                 : theme.colors.gray[0],
                         maxHeight: 'calc(100vh - 60px)',
                         overflowY: 'scroll',
+
+                        backgroundImage: `linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url('${Paths.sprite(
+                            'ip_bg'
+                        )}')`,
+                        backgroundSize: '122px 177px', // half
+                        animationName: 'bg-anim',
+                        animationDuration: '10s',
+                        animationTimingFunction: 'linear',
+                        animationIterationCount: 'infinite',
+                        '@keyframes bg-anim': {
+                            from: {
+                                backgroundPosition: '0 0',
+                            },
+                            to: {
+                                backgroundPosition: '244px 354px',
+                            },
+                        },
                     },
                 })}
             >
