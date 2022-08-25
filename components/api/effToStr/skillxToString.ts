@@ -66,8 +66,8 @@ function triggerToString(s: string): string | null {
         }
         // tg-more_than_character_count-mei-1
         case 'more_than_character_count': {
-            // @ts-expect-error Unconstricted key
             return `${
+                // @ts-expect-error Unconstricted key
                 CharacterChineseNameList['char-' + parts[2]]
             }在编组中达到${parts[3]}人时`
         }
