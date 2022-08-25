@@ -9,16 +9,16 @@
  * Song data for wiki.biligame.com/idolypride
  */
 export interface TheRootSchema {
-  [k: string]: SongInfo;
+    [k: string]: SongInfo
 }
 export interface SongInfo {
-  name: string;
-  slug: string;
-  lyricist: string;
-  composer: string;
-  arranger: string;
-  lyrics?: string;
-  bvid?: string;
-  pid?: string;
-  [k: string]: unknown;
+    name: string
+    slug: string
+    lyricist: string
+    composer: string
+    arranger: string
+    lyrics?: string
+    bvid?: string
+    pid?: string
+    [k: string]: unknown
 }

@@ -8,5 +8,5 @@ export type GetFirst<T extends unknown[]> = T[0]
 export type LengthOf<T extends unknown[]> = T['length']
 
 export type APIResponseOf<M extends keyof APIMapping> = UnwrapPromise<
-  ReturnType<APIMapping[M]>
+    ReturnType<APIMapping[M]>
 >

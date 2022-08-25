@@ -1,38 +1,38 @@
 {
-  "parserOptions": {
-    "ecmaFeatures": {
-      "jsx": true
-    }
-  },
-  "plugins": ["@typescript-eslint"],
-  "parser": "@typescript-eslint/parser",
-  "extends": [
-    "next/core-web-vitals",
-    "eslint:recommended",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:import/recommended",
-    "plugin:import/typescript",
-    "plugin:react/recommended",
-    "plugin:react-hooks/recommended"
-  ],
-  "rules": {
-    "import/order": [
-      "warn",
-      {
-        "newlines-between": "always",
-        "pathGroups": [
-          {
-            "pattern": "#*/**",
-            "group": "internal",
-            "position": "after"
-          }
-        ],
-        "pathGroupsExcludedImportTypes": ["builtin"]
-      }
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        }
+    },
+    "plugins": ["@typescript-eslint"],
+    "parser": "@typescript-eslint/parser",
+    "extends": [
+        "next/core-web-vitals",
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:import/recommended",
+        "plugin:import/typescript",
+        "plugin:react/recommended",
+        "plugin:react-hooks/recommended"
     ],
-    "react/jsx-uses-react": "off",
-    "react/react-in-jsx-scope": "off",
-    "import/namespace": "off"
-  },
-  "ignorePatterns": ["pages/_error.tsx"]
+    "rules": {
+        "import/order": [
+            "warn",
+            {
+                "newlines-between": "always",
+                "pathGroups": [
+                    {
+                        "pattern": "#*/**",
+                        "group": "internal",
+                        "position": "after"
+                    }
+                ],
+                "pathGroupsExcludedImportTypes": ["builtin"]
+            }
+        ],
+        "react/jsx-uses-react": "off",
+        "react/react-in-jsx-scope": "off",
+        "import/namespace": "off"
+    },
+    "ignorePatterns": ["pages/_error.tsx"]
 }

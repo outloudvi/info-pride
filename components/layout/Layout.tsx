@@ -10,54 +10,56 @@ import Footer from './Footer'
 const expandedNavbarAtom = atom(false)
 
 const Layout = ({ children }: { children: ReactNode }) => {
-  const [expandedNavbar, setExpandedNavbar] = useAtom(expandedNavbarAtom)
-  const router = useRouter()
+    const [expandedNavbar, setExpandedNavbar] = useAtom(expandedNavbarAtom)
+    const router = useRouter()
 
-  useEffect(() => {
-    const maybeCollapseNavbar = () => {
-      // sm: The sidebar will go full-screen
-      if (window.innerWidth <= 640) {
-        setExpandedNavbar(false)
-      }
-    }
-    console.log('setting up route')
-    router.events.on('routeChangeComplete', maybeCollapseNavbar)
-    return () => {
-      router.events.off('routeChangeComplete', maybeCollapseNavbar)
-    }
-  })
-
-  return (
-    <>
-      <AppShell
-        navbar={<AppNavBar expanded={expandedNavbar} />}
-        header={
-          <AppHeader
-            navBarOpened={expandedNavbar}
-            toggleNavBar={() => {
-              setExpandedNavbar(!expandedNavbar)
-            }}
-          />
+    useEffect(() => {
+        const maybeCollapseNavbar = () => {
+            // sm: The sidebar will go full-screen
+            if (window.innerWidth <= 640) {
+                setExpandedNavbar(false)
+            }
         }
-        classNames={{
-          main: (expandedNavbar ? 'hidden sm:block' : '') + ' overflow-y-auto',
-        }}
-        sx={(theme) => ({
-          main: {
-            backgroundColor:
-              theme.colorScheme === 'dark'
-                ? theme.colors.dark[8]
-                : theme.colors.gray[0],
-            maxHeight: 'calc(100vh - 60px)',
-            overflowY: 'scroll',
-          },
-        })}
-      >
-        {children}
-        <Footer />
-      </AppShell>
-    </>
-  )
+        console.log('setting up route')
+        router.events.on('routeChangeComplete', maybeCollapseNavbar)
+        return () => {
+            router.events.off('routeChangeComplete', maybeCollapseNavbar)
+        }
+    })
+
+    return (
+        <>
+            <AppShell
+                navbar={<AppNavBar expanded={expandedNavbar} />}
+                header={
+                    <AppHeader
+                        navBarOpened={expandedNavbar}
+                        toggleNavBar={() => {
+                            setExpandedNavbar(!expandedNavbar)
+                        }}
+                    />
+                }
+                classNames={{
+                    main:
+                        (expandedNavbar ? 'hidden sm:block' : '') +
+                        ' overflow-y-auto',
+                }}
+                sx={(theme) => ({
+                    main: {
+                        backgroundColor:
+                            theme.colorScheme === 'dark'
+                                ? theme.colors.dark[8]
+                                : theme.colors.gray[0],
+                        maxHeight: 'calc(100vh - 60px)',
+                        overflowY: 'scroll',
+                    },
+                })}
+            >
+                {children}
+                <Footer />
+            </AppShell>
+        </>
+    )
 }
 
 export default Layout

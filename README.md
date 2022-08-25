@@ -7,8 +7,11 @@ INFO PRIDE (Beta)
 </h3>
 
 ![Build Status](https://badgen.net/github/status/outloudvi/info-pride?icon=vercel)
+
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+
 [![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg)](#contributors-)
+
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 ## Planned features & Bug-fixes
@@ -17,8 +20,8 @@ INFO PRIDE (Beta)
 
 ## Data
 
-* Local/Remote data: [`/data/`](./data/)
-* Vendor data from [Vibbit](https://github.com/Malitsplus) (external)
+-   Local/Remote data: [`/data/`](./data/)
+-   Vendor data from [Vibbit](https://github.com/Malitsplus) (external)
 
 ## Local Development
 
@@ -33,8 +36,8 @@ AGPLv3 (code) / Various licenses (data)
 
 ## Contributors ✨
 
-* We are using contents from [bwiki/idolypride](https://wiki.biligame.com/idolypride), so feel free to [add yourself as a contributor](https://github.com/outloudvi/info-pride/issues/1) if you are a contributor of that wiki!
-* We are also using translations from subbed/translated videos on Bilibili. Please don't hesitate to [add yourself as a contributor](https://github.com/outloudvi/info-pride/issues/1) if you are contributing IDOLY PRIDE-related translation videos!
+-   We are using contents from [bwiki/idolypride](https://wiki.biligame.com/idolypride), so feel free to [add yourself as a contributor](https://github.com/outloudvi/info-pride/issues/1) if you are a contributor of that wiki!
+-   We are also using translations from subbed/translated videos on Bilibili. Please don't hesitate to [add yourself as a contributor](https://github.com/outloudvi/info-pride/issues/1) if you are contributing IDOLY PRIDE-related translation videos!
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
 

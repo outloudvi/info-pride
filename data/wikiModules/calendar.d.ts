@@ -8,59 +8,59 @@
 /**
  * Event ending date, in YYYY/M/DD
  */
-export type EndingDate = string;
+export type EndingDate = string
 /**
  * A page in wiki that illustrates the event
  */
-export type WikiLink = string;
+export type WikiLink = string
 /**
  * Event starting date, in YYYY/M/DD
  */
-export type StartingDate = string;
+export type StartingDate = string
 /**
  * The title of this event
  */
-export type EventTitle = string;
+export type EventTitle = string
 /**
  * The type of this event
  */
 export type EventType =
-  | "通常卡池"
-  | "限定卡池"
-  | "复刻卡池"
-  | "定例活动"
-  | "links活动"
-  | "VENUS对战"
-  | "VENUS赛事活动"
-  | "联合对战"
-  | "摄影活动"
-  | "愚人节"
-  | "私信任务活动"
-  | "合宿活动";
+    | '通常卡池'
+    | '限定卡池'
+    | '复刻卡池'
+    | '定例活动'
+    | 'links活动'
+    | 'VENUS对战'
+    | 'VENUS赛事活动'
+    | '联合对战'
+    | '摄影活动'
+    | '愚人节'
+    | '私信任务活动'
+    | '合宿活动'
 /**
  * Each YYYY/MM in the calendar.
  */
-export type CalendarMonth = CalendarItem[];
+export type CalendarMonth = CalendarItem[]
 
 /**
  * Calendar data for wiki.biligame.com/idolypride
  */
 export interface TheRootSchema {
-  tb: TheTable;
+    tb: TheTable
 }
 /**
  * The container of the data.
  */
 export interface TheTable {
-  [k: string]: CalendarMonth;
+    [k: string]: CalendarMonth
 }
 /**
  * An calendar item
  */
 export interface CalendarItem {
-  end: EndingDate;
-  link?: WikiLink;
-  start: StartingDate;
-  title: EventTitle;
-  type: EventType;
+    end: EndingDate
+    link?: WikiLink
+    start: StartingDate
+    title: EventTitle
+    type: EventType
 }

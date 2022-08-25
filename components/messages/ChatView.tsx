@@ -7,51 +7,51 @@ import ChatBoard from './ChatLogBoard'
 import useApi from '#utils/useApi'
 
 const ChatView = ({
-  messageId,
-  mdBackToSidebar,
+    messageId,
+    mdBackToSidebar,
 }: {
-  messageId: string
-  mdBackToSidebar: () => void
+    messageId: string
+    mdBackToSidebar: () => void
 }) => {
-  const { data: msg } = useApi('Message', {
-    id: messageId,
-  })
+    const { data: msg } = useApi('Message', {
+        id: messageId,
+    })
 
-  if (!msg) {
+    if (!msg) {
+        return (
+            <div className="flex h-full justify-center items-center flex-col">
+                <div className="text-white">正在加载。</div>
+                <Button
+                    className="mt-2"
+                    onClick={() => {
+                        mdBackToSidebar()
+                    }}
+                >
+                    返回
+                </Button>
+            </div>
+        )
+    }
+
     return (
-      <div className="flex h-full justify-center items-center flex-col">
-        <div className="text-white">正在加载。</div>
-        <Button
-          className="mt-2"
-          onClick={() => {
-            mdBackToSidebar()
-          }}
-        >
-          返回
-        </Button>
-      </div>
+        <>
+            <Group
+                className="h-[4rem] text-white bg-neutral-800 py-3 pl-3 flex-nowrap"
+                align="center"
+            >
+                <FontAwesomeIcon
+                    icon={faArrowLeft}
+                    color="white"
+                    size="2x"
+                    onClick={mdBackToSidebar}
+                    className="lg:hidden"
+                />
+                <FontAwesomeIcon icon={faMessage} color="white" size="2x" />
+                <span className="text-2xl">{msg.name}</span>
+            </Group>
+            <ChatBoard msg={msg} />
+        </>
     )
-  }
-
-  return (
-    <>
-      <Group
-        className="h-[4rem] text-white bg-neutral-800 py-3 pl-3 flex-nowrap"
-        align="center"
-      >
-        <FontAwesomeIcon
-          icon={faArrowLeft}
-          color="white"
-          size="2x"
-          onClick={mdBackToSidebar}
-          className="lg:hidden"
-        />
-        <FontAwesomeIcon icon={faMessage} color="white" size="2x" />
-        <span className="text-2xl">{msg.name}</span>
-      </Group>
-      <ChatBoard msg={msg} />
-    </>
-  )
 }
 
 export default ChatView

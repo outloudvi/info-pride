@@ -9,77 +9,81 @@ import ChatView from './ChatView'
 import { APIResponseOf } from '#utils/api'
 
 const FullScreenButton = dynamic(() => import('#components/FullScreenButton'), {
-  ssr: false,
+    ssr: false,
 })
 
 const MessageBoardView = ({
-  groups,
+    groups,
 }: {
-  groups: APIResponseOf<'MessageGroup'>
+    groups: APIResponseOf<'MessageGroup'>
 }) => {
-  const [activeGroup, setActiveGroup] = useState<undefined | string>(undefined)
-  const [activeMessageId, setActiveMessageId] = useState<undefined | string>(
-    undefined
-  )
-  const [mdShowSidebar, setMdShowSidebar] = useState(true)
-  const outer = useRef<HTMLDivElement | null>(null)
-  const { height } = useViewportSize()
+    const [activeGroup, setActiveGroup] = useState<undefined | string>(
+        undefined
+    )
+    const [activeMessageId, setActiveMessageId] = useState<undefined | string>(
+        undefined
+    )
+    const [mdShowSidebar, setMdShowSidebar] = useState(true)
+    const outer = useRef<HTMLDivElement | null>(null)
+    const { height } = useViewportSize()
 
-  useEffect(() => {
-    if (!outer.current) return
-    const elem = outer.current
-    elem.style.height = String(height - elem.offsetTop - 140) + 'px'
-  }, [height])
+    useEffect(() => {
+        if (!outer.current) return
+        const elem = outer.current
+        elem.style.height = String(height - elem.offsetTop - 140) + 'px'
+    }, [height])
 
-  return (
-    <div ref={outer}>
-      <Grid className="h-full bg-[#4c4c4c] m-0">
-        <Grid.Col
-          xs={12}
-          lg={3}
-          className={`p-0 h-full overflow-y-auto ${
-            mdShowSidebar ? '' : 'hidden lg:block'
-          }`}
-        >
-          <div className="flex justify-center my-2">
-            <FullScreenButton target={outer} />
-          </div>
-          {groups.map((group, key) => (
-            <ChatItem
-              key={key}
-              group={group}
-              active={group.id === activeGroup}
-              onActivate={() => {
-                setActiveGroup(group.id)
-              }}
-              setActiveMessageId={(a) => {
-                setMdShowSidebar(false)
-                setActiveMessageId(a)
-              }}
-            />
-          ))}
-        </Grid.Col>
-        <Grid.Col
-          xs={12}
-          lg={9}
-          className={`p-0 h-full ${mdShowSidebar ? 'hidden lg:block' : ''}`}
-        >
-          {activeMessageId ? (
-            <ChatView
-              messageId={activeMessageId}
-              mdBackToSidebar={() => {
-                setMdShowSidebar(true)
-              }}
-            />
-          ) : (
-            <div className="flex h-full justify-center items-center">
-              <div className="text-white">选择消息。</div>
-            </div>
-          )}
-        </Grid.Col>
-      </Grid>
-    </div>
-  )
+    return (
+        <div ref={outer}>
+            <Grid className="h-full bg-[#4c4c4c] m-0">
+                <Grid.Col
+                    xs={12}
+                    lg={3}
+                    className={`p-0 h-full overflow-y-auto ${
+                        mdShowSidebar ? '' : 'hidden lg:block'
+                    }`}
+                >
+                    <div className="flex justify-center my-2">
+                        <FullScreenButton target={outer} />
+                    </div>
+                    {groups.map((group, key) => (
+                        <ChatItem
+                            key={key}
+                            group={group}
+                            active={group.id === activeGroup}
+                            onActivate={() => {
+                                setActiveGroup(group.id)
+                            }}
+                            setActiveMessageId={(a) => {
+                                setMdShowSidebar(false)
+                                setActiveMessageId(a)
+                            }}
+                        />
+                    ))}
+                </Grid.Col>
+                <Grid.Col
+                    xs={12}
+                    lg={9}
+                    className={`p-0 h-full ${
+                        mdShowSidebar ? 'hidden lg:block' : ''
+                    }`}
+                >
+                    {activeMessageId ? (
+                        <ChatView
+                            messageId={activeMessageId}
+                            mdBackToSidebar={() => {
+                                setMdShowSidebar(true)
+                            }}
+                        />
+                    ) : (
+                        <div className="flex h-full justify-center items-center">
+                            <div className="text-white">选择消息。</div>
+                        </div>
+                    )}
+                </Grid.Col>
+            </Grid>
+        </div>
+    )
 }
 
 export default MessageBoardView

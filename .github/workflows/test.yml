@@ -1,22 +1,22 @@
 name: Tests
 on:
-  push:
-    branches:
-      - master
-  pull_request:
+    push:
+        branches:
+            - master
+    pull_request:
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 14
+    test:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/setup-node@v1
+              with:
+                  node-version: 14
 
-      - uses: actions/checkout@v2
+            - uses: actions/checkout@v2
 
-      - name: Install Dependencies
-        run: npx pnpm install
+            - name: Install Dependencies
+              run: npx pnpm install
 
-      - name: Run All Node.js Tests
-        run: npm run test
+            - name: Run All Node.js Tests
+              run: npm run test

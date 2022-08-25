@@ -30,73 +30,77 @@ type CardImageType = 'thumb' | 'rect' | 'upper' | 'full'
  * @returns {string} Asset ID.
  */
 export function getAssetSlug(
-  cardAssetId: string,
-  type: CardImageType,
-  isAwaken: boolean
+    cardAssetId: string,
+    type: CardImageType,
+    isAwaken: boolean
 ): string {
-  return `img_card_${type}_${isAwaken ? 1 : 0}_${cardAssetId}`
+    return `img_card_${type}_${isAwaken ? 1 : 0}_${cardAssetId}`
 }
 
 const CONF: {
-  r: Record<CardImageType, number>
-  h: Record<CardImageType, string | number>
+    r: Record<CardImageType, number>
+    h: Record<CardImageType, string | number>
 } = {
-  r: {
-    thumb: 1,
-    full: 1 / 0.56,
-    rect: 1 / 0.56,
-    upper: 0.5,
-  },
-  h: {
-    thumb: 150,
-    full: 512,
-    rect: 256,
-    upper: 360,
-  },
+    r: {
+        thumb: 1,
+        full: 1 / 0.56,
+        rect: 1 / 0.56,
+        upper: 0.5,
+    },
+    h: {
+        thumb: 150,
+        full: 512,
+        rect: 256,
+        upper: 360,
+    },
 }
 
 const CardAsset = ({
-  cardAssetId,
-  isInitiallyAwaken,
+    cardAssetId,
+    isInitiallyAwaken,
 }: {
-  cardAssetId: string
-  isInitiallyAwaken: boolean
+    cardAssetId: string
+    isInitiallyAwaken: boolean
 }) => {
-  const [isAwaken, setIsAwaken] = useState(true)
-  const [imageType, setImageType] = useState<CardImageType>('thumb')
+    const [isAwaken, setIsAwaken] = useState(true)
+    const [imageType, setImageType] = useState<CardImageType>('thumb')
 
-  const assetSlug = getAssetSlug(cardAssetId, imageType, isAwaken)
+    const assetSlug = getAssetSlug(cardAssetId, imageType, isAwaken)
 
-  return (
-    <div>
-      <RadioGroup
-        className="mb-3"
-        label="选择卡面类型"
-        value={imageType}
-        onChange={setImageType as Dispatch<SetStateAction<string>>}
-        required
-      >
-        <Radio value="thumb" label="缩略图" />
-        <Radio value="upper" label="纵向" />
-        <Radio value="rect" label="横向" />
-        <Radio value="full" label="横向（大图）" />
-      </RadioGroup>
-      <Switch
-        className="mb-3"
-        checked={isAwaken}
-        label={isInitiallyAwaken ? '此卡片只有觉醒后卡面' : '显示觉醒后卡面'}
-        disabled={isInitiallyAwaken}
-        onChange={(event) => setIsAwaken(event.currentTarget.checked)}
-      />
-      <AssetImage
-        // TODO
-        name={assetSlug}
-        ratio={CONF['r'][imageType]}
-        height={CONF['h'][imageType]}
-        alt={'Asset image'}
-      />
-    </div>
-  )
+    return (
+        <div>
+            <RadioGroup
+                className="mb-3"
+                label="选择卡面类型"
+                value={imageType}
+                onChange={setImageType as Dispatch<SetStateAction<string>>}
+                required
+            >
+                <Radio value="thumb" label="缩略图" />
+                <Radio value="upper" label="纵向" />
+                <Radio value="rect" label="横向" />
+                <Radio value="full" label="横向（大图）" />
+            </RadioGroup>
+            <Switch
+                className="mb-3"
+                checked={isAwaken}
+                label={
+                    isInitiallyAwaken
+                        ? '此卡片只有觉醒后卡面'
+                        : '显示觉醒后卡面'
+                }
+                disabled={isInitiallyAwaken}
+                onChange={(event) => setIsAwaken(event.currentTarget.checked)}
+            />
+            <AssetImage
+                // TODO
+                name={assetSlug}
+                ratio={CONF['r'][imageType]}
+                height={CONF['h'][imageType]}
+                alt={'Asset image'}
+            />
+        </div>
+    )
 }
 
 export default CardAsset

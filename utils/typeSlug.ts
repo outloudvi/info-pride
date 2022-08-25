@@ -1,15 +1,15 @@
 import type {
-  EffectChart,
-  EffectCharacterWithLength,
-  EffectCharacterWithoutLength,
-  TargetChart,
-  TargetCharacterWithCount,
+    EffectChart,
+    EffectCharacterWithLength,
+    EffectCharacterWithoutLength,
+    TargetChart,
+    TargetCharacterWithCount,
 } from 'hoshimi-types/Skillx'
 
 export type EffectItem =
-  | EffectChart
-  | EffectCharacterWithLength
-  | EffectCharacterWithoutLength
+    | EffectChart
+    | EffectCharacterWithLength
+    | EffectCharacterWithoutLength
 
 export type EffectTypeName = EffectItem['typ']
 

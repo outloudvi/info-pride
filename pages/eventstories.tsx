@@ -13,76 +13,84 @@ import { EventGroupData } from '#data/eventStories.data'
 import getI18nProps from '#utils/geti18nProps'
 
 function guessDate(id: string): string | null {
-  const yymm = id.split('-')?.[2]
-  if (!yymm) return null
-  return '20' + yymm.slice(0, 2) + '/' + yymm.slice(2, 4)
+    const yymm = id.split('-')?.[2]
+    if (!yymm) return null
+    return '20' + yymm.slice(0, 2) + '/' + yymm.slice(2, 4)
 }
 
 type IdentityFunction<V> = (v: V) => v is NonNullable<V>
 
 const EventStoriesPage = ({
-  EventStoriesData,
+    EventStoriesData,
 }: {
-  EventStoriesData: APIResponseOf<'EventStory/List'>
+    EventStoriesData: APIResponseOf<'EventStory/List'>
 }) => {
-  const $ev = useTranslations('events')
+    const $ev = useTranslations('events')
 
-  const [currEvent, setCurrEvent] = useState<
-    APIResponseOf<'EventStory/List'>[number] | null
-  >(null)
-  return (
-    <>
-      <p>活动剧情从新到老排列。</p>
-      <Grid gutter={20} className="my-3">
-        <Grid.Col xs={12} lg={3}>
-          <div className="h-[65vh] overflow-y-auto">
-            {EventStoriesData.sort((a, b) => b.order - a.order).map(
-              (item, key) => {
-                const props = [guessDate(item.id), EventGroupData[item.id]]
-                  .filter(Boolean as unknown as IdentityFunction<string | null>)
-                  .join(', ')
-                return (
-                  <ListButton
-                    key={key}
-                    onClick={() => {
-                      setCurrEvent(item)
-                    }}
-                    selected={currEvent?.id === item.id}
-                  >
-                    {$ev(item.description)} {props && `(${props})`}
-                  </ListButton>
-                )
-              }
-            )}
-          </div>
-        </Grid.Col>
-        <Grid.Col xs={12} lg={9}>
-          {currEvent && <EventStoryView currEvent={currEvent} />}
-        </Grid.Col>
-      </Grid>
-    </>
-  )
+    const [currEvent, setCurrEvent] = useState<
+        APIResponseOf<'EventStory/List'>[number] | null
+    >(null)
+    return (
+        <>
+            <p>活动剧情从新到老排列。</p>
+            <Grid gutter={20} className="my-3">
+                <Grid.Col xs={12} lg={3}>
+                    <div className="h-[65vh] overflow-y-auto">
+                        {EventStoriesData.sort((a, b) => b.order - a.order).map(
+                            (item, key) => {
+                                const props = [
+                                    guessDate(item.id),
+                                    EventGroupData[item.id],
+                                ]
+                                    .filter(
+                                        Boolean as unknown as IdentityFunction<
+                                            string | null
+                                        >
+                                    )
+                                    .join(', ')
+                                return (
+                                    <ListButton
+                                        key={key}
+                                        onClick={() => {
+                                            setCurrEvent(item)
+                                        }}
+                                        selected={currEvent?.id === item.id}
+                                    >
+                                        {$ev(item.description)}{' '}
+                                        {props && `(${props})`}
+                                    </ListButton>
+                                )
+                            }
+                        )}
+                    </div>
+                </Grid.Col>
+                <Grid.Col xs={12} lg={9}>
+                    {currEvent && <EventStoryView currEvent={currEvent} />}
+                </Grid.Col>
+            </Grid>
+        </>
+    )
 }
 
 export const getStaticProps = getI18nProps(['events'])
 
 const SkeletonEventStoriesPage = () => {
-  const { data: EventStoriesData } = useApi('EventStory/List')
+    const { data: EventStoriesData } = useApi('EventStory/List')
 
-  const allData = {
-    EventStoriesData,
-  }
+    const allData = {
+        EventStoriesData,
+    }
 
-  return (
-    <>
-      <Title title="活动剧情" />
-      {allFinished(allData) ? (
-        <EventStoriesPage {...allData} />
-      ) : (
-        <PageLoading data={allData} />
-      )}
-    </>
-  )
+    return (
+        <>
+            <Title title="活动剧情" />
+            {allFinished(allData) ? (
+                <EventStoriesPage {...allData} />
+            ) : (
+                <PageLoading data={allData} />
+            )}
+        </>
+    )
 }
 
 export default SkeletonEventStoriesPage

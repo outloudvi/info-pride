@@ -8,28 +8,28 @@
 /**
  * Translated diary text, in HTML
  */
-export type DiaryText = string;
+export type DiaryText = string
 /**
  * Diary in-game date in YY-MM-DD
  */
-export type DiaryDate = string;
+export type DiaryDate = string
 /**
  * The container of the data.
  */
-export type TheTable = DiaryItem[];
+export type TheTable = DiaryItem[]
 
 /**
  * Diary data for wiki.biligame.com/idolypride
  */
 export interface TheRootSchema {
-  tb: TheTable;
-  additionalProperties?: false;
-  [k: string]: unknown;
+    tb: TheTable
+    additionalProperties?: false
+    [k: string]: unknown
 }
 /**
  * An diary item
  */
 export interface DiaryItem {
-  diary: DiaryText;
-  date: DiaryDate;
+    diary: DiaryText
+    date: DiaryDate
 }

@@ -10,42 +10,42 @@ import Paths from '#utils/paths'
  */
 // TODO: placeholder doesn't work
 const PLACEHOLDER_SVG =
-  'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48c3ZnIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmVyc2lvbj0iMS4xIiB2aWV3Qm94PSIwIDAgMTAgMTAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3QgdHJhbnNmb3JtPSJyb3RhdGUoNDUpIiB4PSI1IiB5PSItMi41IiB3aWR0aD0iNSIgaGVpZ2h0PSI1IiBmaWxsPSJub25lIiBzdHJva2U9IiMxNDI4ZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSIuNiIgc3R5bGU9InBhaW50LW9yZGVyOnN0cm9rZSBmaWxsIG1hcmtlcnMiLz48L3N2Zz4K'
+    'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48c3ZnIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmVyc2lvbj0iMS4xIiB2aWV3Qm94PSIwIDAgMTAgMTAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3QgdHJhbnNmb3JtPSJyb3RhdGUoNDUpIiB4PSI1IiB5PSItMi41IiB3aWR0aD0iNSIgaGVpZ2h0PSI1IiBmaWxsPSJub25lIiBzdHJva2U9IiMxNDI4ZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSIuNiIgc3R5bGU9InBhaW50LW9yZGVyOnN0cm9rZSBmaWxsIG1hcmtlcnMiLz48L3N2Zz4K'
 
 /**
  * Component for image from assets.
  * @param {number} ratio width / height
  */
 const AssetImage = (
-  props: {
-    name: string
-    ratio: number | string
-    alt: string
-  } & Partial<ImageProps>
+    props: {
+        name: string
+        ratio: number | string
+        alt: string
+    } & Partial<ImageProps>
 ) => {
-  const { name, ratio, alt, height, width } = props
+    const { name, ratio, alt, height, width } = props
 
-  return (
-    <div
-      className="relative"
-      style={{
-        aspectRatio: String(ratio),
-        height,
-        width,
-      }}
-    >
-      <Image
-        src={Paths.assets('img')(name)}
-        layout="fill"
-        objectFit="fill"
-        loading="lazy"
-        placeholder="blur"
-        blurDataURL={PLACEHOLDER_SVG}
-        {...props}
-        alt={alt}
-      />
-    </div>
-  )
+    return (
+        <div
+            className="relative"
+            style={{
+                aspectRatio: String(ratio),
+                height,
+                width,
+            }}
+        >
+            <Image
+                src={Paths.assets('img')(name)}
+                layout="fill"
+                objectFit="fill"
+                loading="lazy"
+                placeholder="blur"
+                blurDataURL={PLACEHOLDER_SVG}
+                {...props}
+                alt={alt}
+            />
+        </div>
+    )
 }
 
 export default AssetImage
