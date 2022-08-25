@@ -1119,6 +1119,18 @@ const data: Partial<
       },
     },
   },
+    Tsuki: {
+        1: {
+            1: {
+                name: 'TODO',
+                video: { type: 'bilibili', vid: 'av217282190' },
+            },
+            2: {
+                name: 'TODO',
+                video: { type: 'bilibili', vid: 'av514854241' },
+            },
+        },
+    },
 }
 
 export default data

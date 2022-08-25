@@ -194,6 +194,21 @@ const dataSaki: D = {
     },
     phone: { video: { type: 'bilibili', vid: 'av553858855' } },
   },
+    'card-ski-05-mizg-02': {
+        // サンライト照らす眼差し
+        1: {
+            name: 'TODO',
+            video: { type: 'bilibili', vid: 'av599764215' },
+        },
+        2: {
+            name: 'TODO',
+            video: { type: 'bilibili', vid: 'av599764215' },
+        },
+        3: {
+            name: 'TODO',
+            video: { type: 'bilibili', vid: 'av599764215' },
+        },
+    },
 }
 
 // 成宫铃
