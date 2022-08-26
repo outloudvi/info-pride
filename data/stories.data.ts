@@ -1115,7 +1115,23 @@ const data: Partial<
         1: {
             1: {
                 name: '再会',
-                video: { type: 'bilibili', vid: 'av770256819' },
+                video: { type: 'bilibili', vid: 'av770256819', pid: 1 },
+            },
+            2: {
+                name: '补偿',
+                video: { type: 'bilibili', vid: 'av770256819', pid: 2 },
+            },
+            3: {
+                name: '距离冰释还很遥远',
+                video: { type: 'bilibili', vid: 'av770256819', pid: 3 },
+            },
+            4: {
+                name: '现在对我们的评价',
+                video: { type: 'bilibili', vid: 'av770256819', pid: 4 },
+            },
+            5: {
+                name: '新的誓言',
+                video: { type: 'bilibili', vid: 'av770256819', pid: 5 },
             },
         },
     },
