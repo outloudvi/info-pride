@@ -1043,6 +1043,21 @@ const dataKokoro: D = {
         },
         phone: { video: { type: 'bilibili', vid: 'av679608767' } },
     },
+    'card-kkr-05-mizg-01': {
+        // 忘れられない夏の味
+        1: {
+            name: '偷偷跟着',
+            video: { type: 'bilibili', vid: 'av217086497' },
+        },
+        2: {
+            name: '完美的计划',
+            video: { type: 'bilibili', vid: 'av514693119' },
+        },
+        3: {
+            name: '请张嘴~',
+            video: { type: 'bilibili', vid: 'av984739543' },
+        },
+    }
 }
 
 // ---- 3X ----
