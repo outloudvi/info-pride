@@ -211,6 +211,9 @@ const dataSaki: D = {
             name: 'TODO',
             video: { type: 'bilibili', vid: 'av599764215' },
         },
+        phone: {
+            video: { type: 'bilibili', vid: 'av687413499' },
+        },
     },
 }
 
@@ -1057,7 +1060,7 @@ const dataKokoro: D = {
             name: '请张嘴~',
             video: { type: 'bilibili', vid: 'av984739543' },
         },
-    }
+    },
 }
 
 // ---- 3X ----
