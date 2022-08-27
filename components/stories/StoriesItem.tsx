@@ -75,7 +75,7 @@ const StoriesItem = (props: PropType) => {
                     {Episodes[series][0]}
                     {season}章 - {chapter}
                 </div>
-                <Skeleton height={200} />
+                <Skeleton height={200} className="mt-2" />
             </>
         )
     }
