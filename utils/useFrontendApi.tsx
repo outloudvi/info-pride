@@ -3,11 +3,12 @@ import { faCircleXmark } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { showNotification } from '@mantine/notifications'
 import { QueryFunction, useQuery } from 'react-query'
+import { useMemo } from 'react'
 
 import type { Card as WikiCard } from '#data/wikiPages/cards'
 import type { Stories } from '#data/types'
-import type { SkillChart, SkillLaunchItem } from '#components/notemap/types'
-import { useMemo } from 'react'
+import type { SkillLaunchItem } from '#components/notemap/types'
+import type { BirthdayCommuList } from '#data/birthday.data'
 
 const frontendQueryFn: QueryFunction = ({ queryKey: [path] }) =>
     fetch(('/api/' + path) as string).then((x) =>
@@ -15,6 +16,7 @@ const frontendQueryFn: QueryFunction = ({ queryKey: [path] }) =>
     )
 
 export type FrontendAPIResponseMapping = {
+    birthdayCommu: BirthdayCommuList
     cardStories:
         | {
               stories: Stories | null

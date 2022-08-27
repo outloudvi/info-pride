@@ -1,7 +1,6 @@
 import styles from '../styles/colors.module.css'
 
-import { toHashColor } from './characters'
-
+import { toHashColor } from '#utils/toHashColor'
 import PageLoading from '#components/PageLoading'
 import { CharacterChineseNameList, CharacterId } from '#data/vendor/characterId'
 import allFinished from '#utils/allFinished'
