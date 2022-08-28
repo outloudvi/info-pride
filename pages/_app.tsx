@@ -150,6 +150,7 @@ const App = (props: AppProps) => {
                                 <NextIntlProvider
                                     locale="zh-Hans"
                                     messages={pageProps._m}
+                                    getMessageFallback={({ key }) => key}
                                 >
                                     <Component {...pageProps} />
                                 </NextIntlProvider>
