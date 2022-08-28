@@ -261,6 +261,10 @@ const data: Record<string, ChapterItem> = {
         name: '搭讪的处理方法',
         video: { type: 'bilibili', vid: '686632759' },
     },
+    'st-eve-2208-backside-005': {
+        name: '比夏天更炎热的恋爱体验',
+        video: { type: 'bilibili', vid: 'av344304719' },
+    },
 }
 
 export const EventGroupData: Record<string, string> = {
