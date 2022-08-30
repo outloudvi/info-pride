@@ -9,7 +9,7 @@
         "dev": "next dev",
         "build": "next build",
         "start": "next start",
-        "format": "prettier --write .",
+        "format": "prettier --write **/*.ts{,x}",
         "lint": "next lint",
         "lint:fix": "next lint --fix",
         "test": "mocha",
