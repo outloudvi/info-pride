@@ -1,5 +1,5 @@
 import { MultiSelect, Select } from '@mantine/core'
-import { GetInputPropsPayload } from '@mantine/form/lib/types'
+import type { MultiSelectProps, SelectProps } from '@mantine/core'
 import { ReactNode } from 'react'
 
 const FilterSelect = <T extends string>({
@@ -17,7 +17,7 @@ const FilterSelect = <T extends string>({
     multiple?: boolean
     className?: string
     listNamemap?: Record<string, string>
-    formProps: GetInputPropsPayload
+    formProps: Omit<SelectProps, 'data'> & Omit<MultiSelectProps, 'data'>
 }) => {
     const data = listNamemap
         ? list.map((x) => ({

@@ -1,6 +1,10 @@
 import { Button, ButtonProps } from '@mantine/core'
+import { HTMLAttributes } from 'react'
 
-const ListButton = (props: ButtonProps<'button'> & { selected?: boolean }) => (
+const ListButton = (
+    props: HTMLAttributes<HTMLButtonElement> &
+        ButtonProps & { selected?: boolean }
+) => (
     <Button
         {...props}
         variant="outline"

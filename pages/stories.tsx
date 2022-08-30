@@ -44,13 +44,23 @@ const StoriesPage = () => {
             <Title title="剧情" />
             <Grid gutter={20} className="my-3">
                 <Grid.Col xs={12} lg={6}>
-                    <Tabs>
+                    <Tabs defaultValue="Hoshimi">
+                        <Tabs.List>
+                            {Series.filter((x) => x !== 'Special').map(
+                                (seriesSlug, seriesKey) => (
+                                    <Tabs.Tab
+                                        value={seriesSlug}
+                                        key={seriesKey}
+                                    >
+                                        {Episodes[seriesSlug][0]}
+                                    </Tabs.Tab>
+                                )
+                            )}
+                            <Tabs.Tab value="others">其它</Tabs.Tab>
+                        </Tabs.List>
                         {Series.filter((x) => x !== 'Special').map(
                             (seriesSlug, seriesKey) => (
-                                <Tabs.Tab
-                                    label={Episodes[seriesSlug][0]}
-                                    key={seriesKey}
-                                >
+                                <Tabs.Panel value={seriesSlug} key={seriesKey}>
                                     <div className="max-h-[60vh] overflow-y-auto">
                                         {Episodes[seriesSlug][1].map(
                                             (
@@ -129,10 +139,10 @@ const StoriesPage = () => {
                                             )
                                         )}
                                     </div>
-                                </Tabs.Tab>
+                                </Tabs.Panel>
                             )
                         )}
-                        <Tabs.Tab label="其它">
+                        <Tabs.Panel value="others">
                             <div className="max-h-[60vh] overflow-y-auto">
                                 {Object.entries(
                                     StoriesData.Special?.[1] ?? []
@@ -160,7 +170,7 @@ const StoriesPage = () => {
                                     )
                                 })}
                             </div>
-                        </Tabs.Tab>
+                        </Tabs.Panel>
                     </Tabs>
                 </Grid.Col>
                 <Grid.Col xs={12} lg={6}>

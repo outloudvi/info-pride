@@ -42,7 +42,7 @@ const CurrentEvents = () => {
                                 <ActionIcon
                                     color="blue"
                                     size="xl"
-                                    variant="hover"
+                                    variant="outline"
                                 >
                                     <FontAwesomeIcon icon={faInfoCircle} />
                                 </ActionIcon>
