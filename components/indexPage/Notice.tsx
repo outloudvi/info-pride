@@ -4,19 +4,25 @@ import InGameNotice from './InGameNotice'
 import SiteNotice from './SiteNotice'
 
 const Notice = () => (
-    <Tabs>
-        <Tabs.Tab label="网站公告">
+    <Tabs defaultValue="announcement">
+        <Tabs.List>
+            <Tabs.Tab value="announcement">网站公告</Tabs.Tab>
+            <Tabs.Tab value="ingame">游戏公告</Tabs.Tab>
+            <Tabs.Tab value="bugs">问题报告</Tabs.Tab>
+            <Tabs.Tab value="pr">公关消息</Tabs.Tab>
+        </Tabs.List>
+        <Tabs.Panel value="announcement">
             <SiteNotice />
-        </Tabs.Tab>
-        <Tabs.Tab label="游戏公告">
+        </Tabs.Panel>
+        <Tabs.Panel value="ingame">
             <InGameNotice type="notices" />
-        </Tabs.Tab>
-        <Tabs.Tab label="问题报告">
+        </Tabs.Panel>
+        <Tabs.Panel value="bugs">
             <InGameNotice type="malfunctionNotices" />
-        </Tabs.Tab>
-        <Tabs.Tab label="公关消息">
+        </Tabs.Panel>
+        <Tabs.Panel value="pr">
             <InGameNotice type="prNotices" />
-        </Tabs.Tab>
+        </Tabs.Panel>
     </Tabs>
 )
 

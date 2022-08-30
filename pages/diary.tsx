@@ -19,7 +19,8 @@ const toShortDate = (date: Date) =>
         .toString()
         .padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}`
 
-const fromShortDate = (s: string) => new Date('20' + s)
+const fromShortDate = (s: string | null) =>
+    s === null ? new Date(0) : new Date('20' + s)
 
 const ManaDiaryTranslated = ({ dateShort }: { dateShort: string }) => {
     if (diaries[dateShort]) {

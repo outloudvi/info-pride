@@ -100,45 +100,56 @@ const App = (props: AppProps) => {
                         colorScheme,
                         fontFamily:
                             '-apple-system, system-ui, "Segoe UI", "Helvetica Neue", Arial, "Hiragino Sans GB", "PingFang SC", "Heiti SC", "Noto Sans CJK SC", "Source Han Sans SC", "Microsoft YaHei UI", "Microsoft YaHei", sans-serif',
-                    }}
-                    styles={{
-                        ActionIcon: (theme, params) => {
-                            const color = params.color ?? theme.primaryColor
-                            return {
-                                root: {
-                                    '&:not(:disabled):active': {
-                                        transform: 'none',
-                                    },
+                        components: {
+                            ActionIcon: {
+                                styles: (theme) => {
+                                    {
+                                        return {
+                                            root: {
+                                                '&:not(:disabled):active': {
+                                                    transform: 'none',
+                                                },
+                                            },
+                                            default: {
+                                                '&:not(:disabled):active': {
+                                                    backgroundColor:
+                                                        theme.colors[
+                                                            theme.primaryColor
+                                                        ][8],
+                                                },
+                                            },
+                                        }
+                                    }
                                 },
-                                default: {
-                                    '&:not(:disabled):active': {
-                                        backgroundColor: theme.colors[color][8],
-                                    },
+                            },
+                            Button: {
+                                styles: (theme) => {
+                                    const color = theme.primaryColor
+                                    return {
+                                        root: {
+                                            '&:not(:disabled):active': {
+                                                transform: 'none',
+                                            },
+                                        },
+                                        outline: {
+                                            '&:not(:disabled):active': {
+                                                backgroundColor:
+                                                    theme.colors[color][2],
+                                            },
+                                        },
+                                        filled: {
+                                            '&:not(:disabled):hover': {
+                                                backgroundColor:
+                                                    theme.colors[color][4],
+                                            },
+                                            '&:not(:disabled):active': {
+                                                backgroundColor:
+                                                    theme.colors[color][8],
+                                            },
+                                        },
+                                    }
                                 },
-                            }
-                        },
-                        Button: (theme, params) => {
-                            const color = params.color ?? theme.primaryColor
-                            return {
-                                root: {
-                                    '&:not(:disabled):active': {
-                                        transform: 'none',
-                                    },
-                                },
-                                outline: {
-                                    '&:not(:disabled):active': {
-                                        backgroundColor: theme.colors[color][2],
-                                    },
-                                },
-                                filled: {
-                                    '&:not(:disabled):hover': {
-                                        backgroundColor: theme.colors[color][4],
-                                    },
-                                    '&:not(:disabled):active': {
-                                        backgroundColor: theme.colors[color][8],
-                                    },
-                                },
-                            }
+                            },
                         },
                     }}
                 >

@@ -30,6 +30,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
     return (
         <>
             <AppShell
+                fixed={false}
                 navbar={<AppNavBar expanded={expandedNavbar} />}
                 header={
                     <AppHeader

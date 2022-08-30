@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction, useState } from 'react'
-import { Radio, RadioGroup, Switch } from '@mantine/core'
+import { Radio, Switch } from '@mantine/core'
 
 import AssetImage from '#components/AssetImage'
 
@@ -69,7 +69,7 @@ const CardAsset = ({
 
     return (
         <div>
-            <RadioGroup
+            <Radio.Group
                 className="mb-3"
                 label="选择卡面类型"
                 value={imageType}
@@ -80,7 +80,7 @@ const CardAsset = ({
                 <Radio value="upper" label="纵向" />
                 <Radio value="rect" label="横向" />
                 <Radio value="full" label="横向（大图）" />
-            </RadioGroup>
+            </Radio.Group>
             <Switch
                 className="mb-3"
                 checked={isAwaken}
