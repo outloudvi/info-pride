@@ -13,7 +13,8 @@ const GlobalNotices: Record<string, NoticeUnit> = {
             title="初音ミク联动活动开始！"
         >
             由烏屋茶房作词，八王子P 与 kz 作曲，TRINITYAiLE
-            与初音ミク演唱的新曲《Magical Melody》正在活动中出现！
+            与初音ミク演唱的新曲《Magical Melody》正在活动中出现！（8/31 12:00-
+            JST）
             <a
                 href="https://www.bilibili.com/video/av472450564"
                 target="_blank"
