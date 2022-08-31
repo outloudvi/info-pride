@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Pagination } from '@mantine/core'
 
 import CardWithSkills from './CardWithSkills'
@@ -19,6 +19,10 @@ const ResultList = ({
     SkillxData: APIResponseOf<'Skill/X'>
 }) => {
     const [activePage, setPage] = useState(1)
+
+    useEffect(() => {
+        setPage(1)
+    }, [list])
 
     return (
         <>
