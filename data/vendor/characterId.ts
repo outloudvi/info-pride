@@ -4,7 +4,7 @@
  * * vendor:Character.json
  */
 
-export const CharacterIds = [
+export const PrimaryCharacterIds = [
     // Tsuki
     'char-ktn',
     'char-ngs',
@@ -32,11 +32,18 @@ export const CharacterIds = [
 
     // Mana
     'char-mna',
+]
+
+export const CharacterIds = [
+    ...PrimaryCharacterIds,
 
     // ThreeX
     'char-kor',
     'char-kan',
     'char-mhk',
+
+    // Collab
+    'char-mku',
 ] as const
 
 export type CharacterId = typeof CharacterIds[number]
@@ -63,4 +70,5 @@ export const CharacterChineseNameList: Record<CharacterId, string> = {
     'char-kor': 'fran',
     'char-kan': 'kana',
     'char-mhk': 'miho',
+    'char-mku': '初音未来',
 } as const

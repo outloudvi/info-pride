@@ -15,7 +15,11 @@ import CharacterAnimation from './CharacterAnimation'
 
 import useApi from '#utils/useApi'
 import { APIResponseOf, UnArray } from '#utils/api'
-import { CharacterChineseNameList, CharacterId } from '#data/vendor/characterId'
+import {
+    CharacterChineseNameList,
+    CharacterId,
+    PrimaryCharacterIds,
+} from '#data/vendor/characterId'
 import Paths from '#utils/paths'
 import { IdolyFashionUrl, IdolyRoomUrl } from '#data/ipcmmu.data'
 import { Idols } from '#data/wikiPages'
@@ -186,7 +190,7 @@ const CharacterItem = ({
                     lg={4}
                     className="flex items-center justify-center"
                 >
-                    {!['char-kor', 'char-kan', 'char-mhk'].includes(id) && (
+                    {PrimaryCharacterIds.includes(id) && (
                         <CharacterAnimation charId={id as CharacterId} />
                     )}
                 </Grid.Col>
