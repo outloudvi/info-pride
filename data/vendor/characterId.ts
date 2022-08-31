@@ -34,6 +34,7 @@ export const PrimaryCharacterIds = [
     'char-mna',
 ]
 
+// Note that the order of existing items MUST NOT change, or old unitCodes will be broken!
 export const CharacterIds = [
     ...PrimaryCharacterIds,
 
