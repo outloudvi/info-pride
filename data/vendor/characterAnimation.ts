@@ -41,9 +41,7 @@ export function getMoveStyle(ch: CharacterId): [number, number] {
             return [1.8, 26]
         case 'char-aoi':
             return [2.73, 40]
-        case 'char-kor':
-        case 'char-kan':
-        case 'char-mhk':
+        default:
             return [0, 0]
     }
 }
