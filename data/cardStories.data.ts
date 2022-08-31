@@ -1060,6 +1060,9 @@ const dataKokoro: D = {
             name: '请张嘴~',
             video: { type: 'bilibili', vid: 'av984739543' },
         },
+        phone: {
+            video: { type: 'bilibili', vid: 'av430021035' },
+        },
     },
 }
 
@@ -1165,6 +1168,23 @@ const dataMana: D = {
     'card-mna-05-prem-00': null,
 }
 
+const dataMikuCollab: D = {
+    'card-mku-05-miku-00': {
+        1: {
+            name: '教教我经纪人',
+            video: { type: 'bilibili', vid: 'av730055527' },
+        },
+        2: {
+            name: 'TRINITYAiLE 的大家',
+            video: { type: 'bilibili', vid: 'av900051090' },
+        },
+        3: {
+            name: '音乐的三要素',
+            video: { type: 'bilibili', vid: 'av217526570' },
+        },
+    },
+}
+
 const data: D = {
     ...dataKotono,
     ...dataNagisa,
@@ -1192,6 +1212,8 @@ const data: D = {
     ...dataFran,
     ...dataKana,
     ...dataMiho,
+
+    ...dataMikuCollab,
 } as const
 
 export default data

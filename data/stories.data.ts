@@ -1109,6 +1109,14 @@ const data: Partial<
                 name: '为胜而赢',
                 video: { type: 'bilibili', vid: 'av686107541' },
             },
+            6: {
+                name: '在一起的意义',
+                video: { type: 'bilibili', vid: 'av259000518' },
+            },
+            7: {
+                name: 'fran 的梦想',
+                video: { type: 'bilibili', vid: 'av430004771' },
+            },
         },
     },
     Big4: {
