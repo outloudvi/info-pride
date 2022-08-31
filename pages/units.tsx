@@ -114,10 +114,12 @@ const UnitsPage = ({
                 <Button
                     className="mt-2"
                     onClick={() => {
-                        const result = unitCodeV1.decode(
-                            importUnitId,
-                            CardIdData
-                        )
+                        let result = null
+                        try {
+                            result = unitCodeV1.decode(importUnitId, CardIdData)
+                        } catch (e) {
+                            //
+                        }
                         if (result === null) {
                             showNotification({
                                 title: `错误的队伍编码：${importUnitId}`,
