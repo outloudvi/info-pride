@@ -64,6 +64,7 @@ const SearchPage = ({
             effectTypes: [] as SXEffectWithTarget['effect']['typ'][],
             targetTypes: [] as SXEffectWithTarget['target']['typ'][],
             dualA: false,
+            initial5Only: false,
         },
         validate: {
             ctMin: (x) =>
@@ -109,6 +110,7 @@ const SearchPage = ({
             targetTypes,
             dualA,
             ownedOnly,
+            initial5Only,
         } = formValues
 
         const numCtMin = Number.isNaN(Number(ctMin)) ? 0 : Number(ctMin)
@@ -129,6 +131,10 @@ const SearchPage = ({
             ret = ret.filter((x) => {
                 return selectedCardTypes.includes(String(x.type))
             })
+        }
+
+        if (initial5Only) {
+            ret = ret.filter((card) => card.initialRarity === 5)
         }
 
         if (ownedOnly) {
@@ -265,8 +271,13 @@ const SearchPage = ({
                         formProps={getInputProps('selectedCardTypes')}
                     />
                     <Checkbox
+                        className="mr-2"
                         label="只显示已持有的卡片"
                         {...getInputProps('ownedOnly')}
+                    />
+                    <Checkbox
+                        label="只显示初始星级 5 的卡片"
+                        {...getInputProps('initial5Only')}
                     />
                 </div>
                 <div className="flex items-center mb-2">
