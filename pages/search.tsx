@@ -133,9 +133,9 @@ const SearchPage = ({
 
         if (ownedOnly) {
             ret = ret.filter((card) => {
-                const cardCcid = CCIDTable[
-                    card.characterId as CharacterId
-                ].filter((x) => x.cardId === card.id)?.[0]?.ccid
+                const cardCcid = (
+                    CCIDTable[card.characterId as CharacterId] ?? []
+                ).filter((x) => x.cardId === card.id)?.[0]?.ccid
                 // Card does not exist in CCIDDB
                 // TODO: find a way to improve
                 if (!cardCcid) return true
