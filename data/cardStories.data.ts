@@ -340,6 +340,7 @@ const dataMei: D = {
         1: { name: 'TODO', video: { type: 'bilibili', vid: 'av513491981' } },
         2: { name: 'TODO', video: { type: 'bilibili', vid: 'av600893737' } },
         3: { name: 'TODO', video: { type: 'bilibili', vid: 'av600931569' } },
+        phone: { video: { type: 'bilibili', vid: 'av900030006' } },
     },
 }
 
