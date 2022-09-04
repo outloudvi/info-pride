@@ -24,6 +24,17 @@ const GlobalNotices: Record<string, NoticeUnit> = {
                     试听曲目！
                 </Button>
             </a>
+            <br />
+            （还有八王子P/kz 新曲
+            <a
+                href="https://www.youtube.com/watch?v=JdQf_ac0fNk"
+                target="_blank"
+                rel="noreferrer noopener"
+                className="ml-2"
+            >
+                《Glimmer》
+            </a>
+            ，这个有完整版）
         </Alert>
     ),
     '220803-Notice-Closed': (close) => (
