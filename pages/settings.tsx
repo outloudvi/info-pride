@@ -3,11 +3,12 @@ import { showNotification } from '@mantine/notifications'
 import { Button, Checkbox, Grid } from '@mantine/core'
 import rfdc from 'rfdc'
 
-import { Card } from '#data/wikiPages/cards'
-import { Cards } from '#data/wikiPages'
+import type { Card } from '#data/wikiPages/cards'
+
 import { CharacterChineseNameList, CharacterId } from '#data/vendor/characterId'
 import { LOCALSTORAGE_BOX_TAG } from '#utils/startupHook'
 import Title from '#components/Title'
+import useFrontendApi from '#utils/useFrontendApi'
 
 const clone = rfdc({
     proto: true,
@@ -17,6 +18,7 @@ export type LocalBox = Partial<Record<CharacterId, boolean[]>>
 
 const SettingsPage = () => {
     const [localBox, setLocalBox] = useState<LocalBox>({})
+    const { data: Cards } = useFrontendApi('cards')
 
     useEffect(() => {
         try {
@@ -59,41 +61,48 @@ const SettingsPage = () => {
             <Title title="设置" />
             <h3>我的 box</h3>
             <p>在此设置 box 后，搜索时将会显示卡片的持有状态。</p>
-            <Grid gutter={20}>
-                {Object.entries(Cards).map(([name], _key) => (
-                    <Grid.Col key={_key} xs={12} lg={3} className="rounded">
-                        <b>{CharacterChineseNameList[name as CharacterId]}</b>
-                        <div>
-                            {Object.values(
-                                Cards[name as keyof typeof Cards]
-                            ).map((card: Card, __key) => (
-                                <Checkbox
-                                    key={__key}
-                                    label={
-                                        <div className="text-lg">
-                                            <span>{card.nameCn}</span> <br />
-                                            <small>{card.nameJa}</small>
-                                        </div>
-                                    }
-                                    checked={Boolean(
-                                        localBox?.[card.ownerSlug]?.[
-                                            card.ownerId
-                                        ]
-                                    )}
-                                    onChange={(e) => {
-                                        updateLocalBox(
-                                            card.ownerSlug,
-                                            card.ownerId,
-                                            e.target.checked
-                                        )
-                                    }}
-                                    className="mt-2"
-                                ></Checkbox>
-                            ))}
-                        </div>
-                    </Grid.Col>
-                ))}
-            </Grid>
+            {Cards ? (
+                <Grid gutter={20}>
+                    {Object.entries(Cards).map(([name], _key) => (
+                        <Grid.Col key={_key} xs={12} lg={3} className="rounded">
+                            <b>
+                                {CharacterChineseNameList[name as CharacterId]}
+                            </b>
+                            <div>
+                                {Object.values(
+                                    Cards[name as keyof typeof Cards]
+                                ).map((card: Card, __key) => (
+                                    <Checkbox
+                                        key={__key}
+                                        label={
+                                            <div className="text-lg">
+                                                <span>{card.nameCn}</span>{' '}
+                                                <br />
+                                                <small>{card.nameJa}</small>
+                                            </div>
+                                        }
+                                        checked={Boolean(
+                                            localBox?.[card.ownerSlug]?.[
+                                                card.ownerId
+                                            ]
+                                        )}
+                                        onChange={(e) => {
+                                            updateLocalBox(
+                                                card.ownerSlug,
+                                                card.ownerId,
+                                                e.target.checked
+                                            )
+                                        }}
+                                        className="mt-2"
+                                    ></Checkbox>
+                                ))}
+                            </div>
+                        </Grid.Col>
+                    ))}
+                </Grid>
+            ) : (
+                <p>正在加载卡片列表。</p>
+            )}
             <Button variant="outline" onClick={() => saveLocalBox()}>
                 保存
             </Button>
