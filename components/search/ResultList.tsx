@@ -11,12 +11,10 @@ const ResultList = ({
     list,
     highlightedSkills,
     SkillAllData,
-    SkillxData,
 }: {
     list: APIResponseOf<'Card'>
     highlightedSkills: string[]
     SkillAllData: APIResponseOf<'Skill/All'>
-    SkillxData: APIResponseOf<'Skill/X'>
 }) => {
     const [activePage, setPage] = useState(1)
 
@@ -46,7 +44,6 @@ const ResultList = ({
                         ].map(
                             (x) => SkillAllData.filter((r) => r.id === x)?.[0]
                         )}
-                        skillxData={SkillxData}
                     />
                 ))}
             <Pagination

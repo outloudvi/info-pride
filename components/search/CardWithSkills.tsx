@@ -21,12 +21,10 @@ const CardWithSkills = ({
     card,
     highlightedSkills,
     skillData,
-    skillxData,
 }: {
     card: APIResponseOf<'Card'>[number]
     highlightedSkills: string[]
     skillData: Skill[]
-    skillxData: APIResponseOf<'Skill/X'>
 }) => {
     const $v = useTranslations('vendor')
 
