@@ -10,6 +10,7 @@ import type { Stories } from '#data/types'
 import type { SkillLaunchItem } from '#components/notemap/types'
 import type { BirthdayCommuList } from '#data/birthday.data'
 import type { Contributor } from '#components/api/contributors/types'
+import { DiaryItem } from '#data/wikiModules/diary'
 
 const frontendQueryFn: QueryFunction = ({ queryKey: [path] }) =>
     fetch(('/api/' + path) as string).then((x) =>
@@ -24,6 +25,7 @@ export type FrontendAPIResponseMapping = {
           }
         | undefined
     contributors: Contributor[]
+    diary: DiaryItem | undefined
     news: { title: string; link?: string }[]
     skillRunner: SkillLaunchItem[]
     version:

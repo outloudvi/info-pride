@@ -3,33 +3,33 @@ import { Button, Grid } from '@mantine/core'
 import dayjs from 'dayjs'
 import { atomWithHash } from 'jotai/utils'
 import { useAtom } from 'jotai'
+import { useLayoutEffect } from 'react'
 
-import { Diary } from '#data/wikiModules'
 import Title from '#components/Title'
 import AssetImage from '#components/AssetImage'
+import useFrontendApi from '#utils/useFrontendApi'
+import {
+    fromShortDate,
+    getDiaryRangePair,
+    toShortDate,
+} from '#components/api/diary'
 
-const diaries: { [key: string]: string } = {}
-const diaryDates = Diary.map((x) => {
-    diaries[x.date] = x.diary
-    return x.date
-}).sort()
+const ManaDiaryTranslated = ({ date }: { date: string }) => {
+    const { data, isSuccess } = useFrontendApi('diary', {
+        date,
+    })
 
-const toShortDate = (date: Date) =>
-    `${String(date.getFullYear()).slice(2)}-${(date.getMonth() + 1)
-        .toString()
-        .padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}`
+    if (!isSuccess) {
+        return <p>正在加载中。</p>
+    }
 
-const fromShortDate = (s: string | null) =>
-    s === null ? new Date(0) : new Date('20' + s)
-
-const ManaDiaryTranslated = ({ dateShort }: { dateShort: string }) => {
-    if (diaries[dateShort]) {
+    if (data) {
         return (
             <>
-                <p>{dateShort}</p>
+                <p>{data.date}</p>
                 <p
                     dangerouslySetInnerHTML={{
-                        __html: diaries[dateShort],
+                        __html: data.diary,
                     }}
                 ></p>
             </>
@@ -37,21 +37,21 @@ const ManaDiaryTranslated = ({ dateShort }: { dateShort: string }) => {
     }
 
     return (
-        <p className="text-gray-600 dark:text-gray-300">
-            没有 {dateShort} 的日记。
-        </p>
+        <p className="text-gray-600 dark:text-gray-300">没有 {date} 的日记。</p>
     )
 }
 
-const diaryDateShortFirst = diaryDates[0]
-const diaryDateShortLast = diaryDates[diaryDates.length - 1]
-const shortDateAtom = atomWithHash('date', fromShortDate(diaryDateShortLast), {
+const shortDateAtom = atomWithHash('date', new Date(0), {
     serialize: toShortDate,
     deserialize: fromShortDate,
 })
 
-const DiaryPage = () => {
+const DiaryPage = ({ first, last }: { first: string; last: string }) => {
     const [currDate, setCurrDate] = useAtom(shortDateAtom)
+
+    useLayoutEffect(() => {
+        setCurrDate(fromShortDate(last))
+    }, [last, setCurrDate])
 
     return (
         <>
@@ -71,8 +71,7 @@ const DiaryPage = () => {
                             。
                         </p>
                         <p>
-                            目前包含的日记日期：{diaryDateShortFirst} 至{' '}
-                            {diaryDateShortLast}
+                            目前包含的日记日期：{first} 至 {last}
                         </p>
                         <div>
                             <div className="flex-col">
@@ -82,12 +81,8 @@ const DiaryPage = () => {
                                     required
                                     className="w-72"
                                     value={currDate}
-                                    minDate={dayjs(
-                                        '20' + diaryDateShortFirst
-                                    ).toDate()}
-                                    maxDate={dayjs(
-                                        '20' + diaryDateShortLast
-                                    ).toDate()}
+                                    minDate={dayjs('20' + first).toDate()}
+                                    maxDate={dayjs('20' + last).toDate()}
                                     onChange={(e) => {
                                         if (e) setCurrDate(e)
                                     }}
@@ -98,19 +93,14 @@ const DiaryPage = () => {
                             <Button
                                 className="mr-2"
                                 onClick={() => {
-                                    setCurrDate(
-                                        new Date('20' + diaryDateShortLast)
-                                    )
+                                    setCurrDate(new Date('20' + last))
                                 }}
                             >
                                 转到最新日期
                             </Button>
                             <Button
                                 className="mr-2"
-                                disabled={
-                                    toShortDate(currDate) ===
-                                    diaryDateShortFirst
-                                }
+                                disabled={toShortDate(currDate) === first}
                                 onClick={() => {
                                     const currDay = dayjs(currDate)
                                     setCurrDate(
@@ -121,9 +111,7 @@ const DiaryPage = () => {
                                 转到前一天
                             </Button>
                             <Button
-                                disabled={
-                                    toShortDate(currDate) === diaryDateShortLast
-                                }
+                                disabled={toShortDate(currDate) === last}
                                 onClick={() => {
                                     const currDay = dayjs(currDate)
                                     setCurrDate(currDay.add(1, 'day').toDate())
@@ -143,11 +131,21 @@ const DiaryPage = () => {
                     />
                 </Grid.Col>
                 <Grid.Col xs={12} lg={4}>
-                    <ManaDiaryTranslated dateShort={toShortDate(currDate)} />
+                    <ManaDiaryTranslated date={toShortDate(currDate)} />
                 </Grid.Col>
             </Grid>
         </>
     )
+}
+
+export function getStaticProps() {
+    const { first, last } = getDiaryRangePair()
+    return {
+        props: {
+            first,
+            last,
+        },
+    }
 }
 
 export default DiaryPage
