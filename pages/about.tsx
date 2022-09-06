@@ -1,8 +1,7 @@
 import { Avatar, Card, Grid } from '@mantine/core'
 import { useEffect, useState } from 'react'
 
-import type { Contributor } from './api/contributors'
-
+import type { Contributor } from '#components/api/contributors/types'
 import Title from '#components/Title'
 
 /**

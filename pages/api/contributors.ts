@@ -2,17 +2,11 @@ import { withSentry } from '@sentry/nextjs'
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { got } from 'got'
 
-export type Contributor = {
-    login: string
-    name: string
-    avatar_url: string
-    profile: string
-    contributions: string[]
-}
+import { FrontendAPIResponseMapping } from '#utils/useFrontendApi'
 
-const Contributors = async (
+const contributors = async (
     _: NextApiRequest,
-    res: NextApiResponse<Contributor[]>
+    res: NextApiResponse<FrontendAPIResponseMapping['contributors']>
 ) => {
     res.setHeader('Cache-Control', 'max-age=86400')
     const text = await got(
@@ -24,7 +18,7 @@ const Contributors = async (
     res.status(200).json(JSON.parse(text)?.contributors ?? [])
 }
 
-export default withSentry(Contributors)
+export default withSentry(contributors)
 
 export const config = {
     api: {
