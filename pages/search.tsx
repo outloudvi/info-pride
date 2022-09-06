@@ -342,7 +342,6 @@ const SearchPage = ({
                     list={selectedCards}
                     highlightedSkills={selectedSkills}
                     SkillAllData={SkillAllData}
-                    SkillxData={SkillxData}
                 />
             </div>
         </>
