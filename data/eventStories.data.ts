@@ -265,6 +265,26 @@ const data: Record<string, ChapterItem> = {
         name: '比夏天更炎热的恋爱体验',
         video: { type: 'bilibili', vid: 'av344304719' },
     },
+    'st-eve-2209-contest-001': {
+        name: '虚拟歌手',
+        video: { type: 'bilibili', vid: 'av260183330' },
+    },
+    'st-eve-2209-contest-002': {
+        name: '初音的纪念日',
+        video: { type: 'bilibili', vid: 'av772740283' },
+    },
+    'st-eve-2209-contest-003': {
+        name: '真实的想法',
+        video: { type: 'bilibili', vid: 'av942670175' },
+    },
+    'st-eve-2209-contest-004': {
+        name: '初次的握手会',
+        video: { type: 'bilibili', vid: 'av900132399' },
+    },
+    'st-eve-2209-contest-005': {
+        name: 'with. 初音未来',
+        video: { type: 'bilibili', vid: 'av857781292' },
+    },
 }
 
 export const EventGroupData: Record<string, string> = {

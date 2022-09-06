@@ -718,6 +718,24 @@ const dataRui: D = {
         },
         phone: { video: { type: 'bilibili', vid: 'av299045125' } },
     },
+    'card-rui-05-miku-00': {
+        // 歌に乗せて届ける想い
+        1: {
+            name: '站在同一舞台上',
+            video: { type: 'bilibili', vid: 'av645077100' },
+        },
+        2: {
+            name: '不无道理的烦恼',
+            video: { type: 'bilibili', vid: 'av815199352' },
+        },
+        3: {
+            name: '我要保持我的风格',
+            video: { type: 'bilibili', vid: 'av645142990' },
+        },
+        phone: {
+            video: { type: 'bilibili', vid: 'av217753165' },
+        },
+    },
 }
 
 // 铃村优
