@@ -9,6 +9,7 @@ import type { Card as WikiCard } from '#data/wikiPages/cards'
 import type { Stories } from '#data/types'
 import type { SkillLaunchItem } from '#components/notemap/types'
 import type { BirthdayCommuList } from '#data/birthday.data'
+import type { Contributor } from '#components/api/contributors/types'
 
 const frontendQueryFn: QueryFunction = ({ queryKey: [path] }) =>
     fetch(('/api/' + path) as string).then((x) =>
@@ -22,6 +23,7 @@ export type FrontendAPIResponseMapping = {
               stories: Stories | null
           }
         | undefined
+    contributors: Contributor[]
     news: { title: string; link?: string }[]
     skillRunner: SkillLaunchItem[]
     version:
