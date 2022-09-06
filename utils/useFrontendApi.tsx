@@ -11,6 +11,7 @@ import type { SkillLaunchItem } from '#components/notemap/types'
 import type { BirthdayCommuList } from '#data/birthday.data'
 import type { Contributor } from '#components/api/contributors/types'
 import { DiaryItem } from '#data/wikiModules/diary'
+import type { TheRootSchema as WikiCards } from '#data/wikiPages/cards'
 
 const frontendQueryFn: QueryFunction = ({ queryKey: [path] }) =>
     fetch(('/api/' + path) as string).then((x) =>
@@ -19,6 +20,7 @@ const frontendQueryFn: QueryFunction = ({ queryKey: [path] }) =>
 
 export type FrontendAPIResponseMapping = {
     birthdayCommu: BirthdayCommuList
+    cards: WikiCards
     cardStories:
         | {
               stories: Stories | null
