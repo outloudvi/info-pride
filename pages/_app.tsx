@@ -22,7 +22,7 @@ import Paths from '#utils/paths'
 
 const finishedAtom = atom(false)
 
-const App = (props: AppProps) => {
+const App = (props: AppProps<{ _m: Record<string, string> }>) => {
     const { Component, pageProps } = props
 
     const preferredColorScheme = useColorScheme()
