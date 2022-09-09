@@ -10,7 +10,7 @@ import { APIResponseOf } from '#utils/api'
 import ListButton from '#components/ListButton'
 import EventStoryView from '#components/eventstories/EventStoryView'
 import { EventGroupData } from '#data/eventStories.data'
-import getI18nProps from '#utils/geti18nProps'
+import getI18nProps from '#utils/getI18nProps'
 
 function guessDate(id: string): string | null {
     const yymm = id.split('-')?.[2]
@@ -72,8 +72,6 @@ const EventStoriesPage = ({
     )
 }
 
-export const getStaticProps = getI18nProps(['events'])
-
 const SkeletonEventStoriesPage = () => {
     const { data: EventStoriesData } = useApi('EventStory/List')
 
@@ -92,5 +90,7 @@ const SkeletonEventStoriesPage = () => {
         </>
     )
 }
+
+export const getStaticProps = getI18nProps(['events'])
 
 export default SkeletonEventStoriesPage

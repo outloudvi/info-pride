@@ -3,6 +3,7 @@ import Title from '#components/Title'
 import allFinished from '#utils/allFinished'
 import useApi from '#utils/useApi'
 import MessageBoardView from '#components/messages/MessageBoardView'
+import getI18nProps from '#utils/getI18nProps'
 
 const SkeletonMessagesPage = () => {
     const { data: MessageGroups } = useApi('MessageGroup')
@@ -25,5 +26,7 @@ const SkeletonMessagesPage = () => {
         </>
     )
 }
+
+export const getStaticProps = getI18nProps()
 
 export default SkeletonMessagesPage

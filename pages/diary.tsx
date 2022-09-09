@@ -13,6 +13,7 @@ import {
     getDiaryRangePair,
     toShortDate,
 } from '#components/api/diary'
+import { addI18nMessages } from '#utils/getI18nProps'
 
 const ManaDiaryTranslated = ({ date }: { date: string }) => {
     const { data, isSuccess } = useFrontendApi('diary', {
@@ -138,12 +139,13 @@ const DiaryPage = ({ first, last }: { first: string; last: string }) => {
     )
 }
 
-export function getStaticProps() {
+export const getStaticProps = async () => {
     const { first, last } = getDiaryRangePair()
     return {
         props: {
             first,
             last,
+            ...(await addI18nMessages()),
         },
     }
 }

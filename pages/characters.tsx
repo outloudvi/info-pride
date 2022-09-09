@@ -8,7 +8,7 @@ import { CharacterChineseNameList, CharacterId } from '#data/vendor/characterId'
 import allFinished from '#utils/allFinished'
 import PageLoading from '#components/PageLoading'
 import Title from '#components/Title'
-import getI18nProps from '#utils/geti18nProps'
+import getI18nProps from '#utils/getI18nProps'
 import SquareColor from '#components/characters/SquareColor'
 import CharacterItem from '#components/characters/CharacterItem'
 import { ExtraLinks } from '#components/characters/const'
@@ -77,8 +77,6 @@ const CharactersPage = ({
     )
 }
 
-export const getStaticProps = getI18nProps(['characters'])
-
 const SkeletonCharactersPage = () => {
     const { data: CharacterListData } = useApi('Character/List')
 
@@ -97,5 +95,7 @@ const SkeletonCharactersPage = () => {
         </>
     )
 }
+
+export const getStaticProps = getI18nProps(['characters'])
 
 export default SkeletonCharactersPage

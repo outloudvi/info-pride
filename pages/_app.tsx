@@ -19,6 +19,7 @@ import Layout from '#components/layout/Layout'
 import Loading from '#components/layout/Loading'
 import startupHook from '#utils/startupHook'
 import Paths from '#utils/paths'
+import LanguageContext from '#components/LanguageContext'
 
 const finishedAtom = atom(false)
 
@@ -29,12 +30,15 @@ const App = (props: AppProps<{ _m: Record<string, string> }>) => {
     const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
         key: 'mantine-color-scheme',
         defaultValue: preferredColorScheme,
-        getInitialValueInEffect: true,
     })
     const toggleColorScheme = (value?: ColorScheme) =>
         setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'))
 
     const [finished, setFinished] = useAtom(finishedAtom)
+    const [lang, setLang] = useLocalStorage({
+        key: 'infop-language',
+        defaultValue: 'zh-Hans',
+    })
 
     useEffect(() => {
         startupHook()
@@ -155,17 +159,20 @@ const App = (props: AppProps<{ _m: Record<string, string> }>) => {
                 >
                     <NotificationsProvider>
                         <QueryClientProvider client={queryClient}>
-                            <Layout>
-                                <Loading finished={finished} />
-                                <NextNProgress />
+                            <LanguageContext.Provider value={setLang}>
                                 <NextIntlProvider
-                                    locale="zh-Hans"
+                                    locale={lang}
                                     messages={pageProps._m}
                                     getMessageFallback={({ key }) => key}
                                 >
-                                    <Component {...pageProps} />
+                                    <Layout>
+                                        <Loading finished={finished} />
+                                        <NextNProgress />
+
+                                        <Component {...pageProps} />
+                                    </Layout>
                                 </NextIntlProvider>
-                            </Layout>
+                            </LanguageContext.Provider>
                         </QueryClientProvider>
                     </NotificationsProvider>
                 </MantineProvider>

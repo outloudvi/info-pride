@@ -30,7 +30,7 @@ import ResultList from '#components/search/ResultList'
 import CCIDTable from '#data/ccid'
 import Title from '#components/Title'
 import Paths from '#utils/paths'
-import getI18nProps from '#utils/geti18nProps'
+import getI18nProps from '#utils/getI18nProps'
 
 const SearchPage = ({
     CardData,

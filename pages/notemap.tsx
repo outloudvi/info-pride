@@ -9,6 +9,7 @@ import Title from '#components/Title'
 import AssetImage from '#components/AssetImage'
 import NotemapView from '#components/notemap/NotemapView'
 import TrackColorSelect from '#components/notemap/TrackColorSelect'
+import getI18nProps from '#utils/getI18nProps'
 
 const NotemapPage = ({
     ChartListData,
@@ -112,5 +113,7 @@ const SkeletonNotemapPage = () => {
         </>
     )
 }
+
+export const getStaticProps = getI18nProps()
 
 export default SkeletonNotemapPage

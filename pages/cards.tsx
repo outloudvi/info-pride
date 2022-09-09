@@ -6,7 +6,7 @@ import uniq from 'lodash/uniq'
 
 import useApi from '#utils/useApi'
 import allFinished from '#utils/allFinished'
-import getI18nProps from '#utils/geti18nProps'
+import getI18nProps from '#utils/getI18nProps'
 import { APIResponseOf, UnArray } from '#utils/api'
 import PageLoading from '#components/PageLoading'
 import Title from '#components/Title'
@@ -40,7 +40,6 @@ const CardFaceTypeListNamemap = {
 
 const CardsPage = ({
     CardData,
-
     CardNameData,
 }: {
     CardData: APIResponseOf<'Card'>

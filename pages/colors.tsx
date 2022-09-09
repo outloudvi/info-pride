@@ -7,6 +7,7 @@ import allFinished from '#utils/allFinished'
 import { APIResponseOf } from '#utils/api'
 import useApi from '#utils/useApi'
 import Title from '#components/Title'
+import getI18nProps from '#utils/getI18nProps'
 
 const ColorOrder: CharacterId[][] = [
     ['char-mna'],
@@ -91,5 +92,7 @@ const SkeletonColorsPage = () => {
         </>
     )
 }
+
+export const getStaticProps = getI18nProps(['vendor'])
 
 export default SkeletonColorsPage

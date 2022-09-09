@@ -2,8 +2,10 @@ import Link from 'next/link'
 import { Navbar, UnstyledButton } from '@mantine/core'
 
 import Pages from '#data/pages'
+import useTrx from '#utils/useTrx'
 
 const AppNavBar = ({ expanded }: { expanded: boolean }) => {
+    const $t = useTrx('common.sidebar')
     return (
         <Navbar
             className={
@@ -21,7 +23,7 @@ const AppNavBar = ({ expanded }: { expanded: boolean }) => {
                     <Link href={v} passHref>
                         <a>
                             <UnstyledButton className="hover:bg-gray-200 dark:hover:bg-gray-700 rounded w-full px-2 py-2 whitespace-nowrap">
-                                {k}
+                                {$t(k)}
                             </UnstyledButton>
                         </a>
                     </Link>

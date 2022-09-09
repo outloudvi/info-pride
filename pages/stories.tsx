@@ -10,6 +10,7 @@ import StoriesItem, {
 import { Episodes, Series } from '#data/stories'
 import StoriesData from '#data/stories.data'
 import Title from '#components/Title'
+import getI18nProps from '#utils/getI18nProps'
 
 const seriesAtom = atomWithHash('series', 0)
 const seasonAtom = atomWithHash('season', 1)
@@ -192,5 +193,7 @@ const StoriesPage = () => {
         </>
     )
 }
+
+export const getStaticProps = getI18nProps()
 
 export default StoriesPage

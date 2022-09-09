@@ -1,3 +1,16 @@
 {
-    "r": "3"
+    "sidebar": {
+        "Stories": "剧情",
+        "Event Stories": "活动剧情",
+        "Notemaps": "谱面",
+        "Characters": "角色",
+        "Cards": "卡片",
+        "Units": "组队",
+        "Messages": "消息",
+        "Card Search": "卡片搜索",
+        "Mana Diary": "麻奈日记",
+        "Colors": "系列颜色",
+        "Settings": "设置",
+        "About": "关于"
+    }
 }

@@ -1,5 +1,7 @@
 import Link from 'next/link'
 
+import getI18nProps from '#utils/getI18nProps'
+
 export default function Custom404() {
     return (
         <div className="text-center">
@@ -16,3 +18,5 @@ export default function Custom404() {
         </div>
     )
 }
+
+export const getStaticProps = getI18nProps()

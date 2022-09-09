@@ -3,7 +3,7 @@ import { Skeleton } from '@mantine/core'
 
 import PageLoading from '#components/PageLoading'
 import Title from '#components/Title'
-import getI18nProps from '#utils/geti18nProps'
+import getI18nProps from '#utils/getI18nProps'
 import useApi from '#utils/useApi'
 import allFinished from '#utils/allFinished'
 import { APIResponseOf } from '#utils/api'

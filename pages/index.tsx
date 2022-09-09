@@ -8,6 +8,8 @@ import Notice from '#components/indexPage/Notice'
 import VersionInfo from '#components/indexPage/VersionInfo'
 import Paths from '#utils/paths'
 import NoticeTop from '#components/indexPage/NoticeTop'
+import useTrx from '#utils/useTrx'
+import { addI18nMessages } from '#utils/getI18nProps'
 
 const MainPageSiteData = [
     {
@@ -29,6 +31,7 @@ const MainPageSiteData = [
 ]
 
 const Home = ({ gitCommit }: { gitCommit: string }) => {
+    const $t = useTrx('index')
     return (
         <>
             <NoticeTop />
@@ -74,7 +77,7 @@ const Home = ({ gitCommit }: { gitCommit: string }) => {
                 </Grid.Col>
                 {/* Line 2 */}
                 <Grid.Col xs={12} lg={6}>
-                    <div className="mb-2 text-3xl">新闻</div>
+                    <div className="mb-2 text-3xl">{$t('News')}</div>
                     <Notice />
                 </Grid.Col>
                 <Grid.Col xs={12} lg={6}>
@@ -91,6 +94,7 @@ export async function getStaticProps() {
     return {
         props: {
             gitCommit,
+            ...(await addI18nMessages(['index'])),
         },
     }
 }

@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 
 import type { Contributor } from '#components/api/contributors/types'
 import Title from '#components/Title'
+import getI18nProps from '#utils/getI18nProps'
 
 /**
  * MIT License (MIT) Copyright (c) 2016 Kent C. Dodds, 2019 Jake Bolam, 2020 Maximilian Berkmann
@@ -120,5 +121,7 @@ const AboutPage = () => {
         </>
     )
 }
+
+export const getStaticProps = getI18nProps()
 
 export default AboutPage
