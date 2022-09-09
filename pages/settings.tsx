@@ -4,7 +4,6 @@ import { Button, Checkbox, Grid } from '@mantine/core'
 import rfdc from 'rfdc'
 
 import type { Card } from '#data/wikiPages/cards'
-
 import { CharacterChineseNameList, CharacterId } from '#data/vendor/characterId'
 import { LOCALSTORAGE_BOX_TAG } from '#utils/startupHook'
 import Title from '#components/Title'

@@ -6,7 +6,7 @@ import { useLocalStorage } from '@mantine/hooks'
 type NoticeUnit = (x: () => void) => JSX.Element
 
 const GlobalNotices: Record<string, NoticeUnit> = {
-    '220831-Miku': (_) => (
+    '220831-Miku': () => (
         <Alert
             icon={<FontAwesomeIcon icon={faFeather} />}
             color="cyan"
