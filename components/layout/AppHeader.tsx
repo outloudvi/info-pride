@@ -5,6 +5,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons'
 import { useCallback, useEffect } from 'react'
 
+import useTrx from '#utils/useTrx'
+
 const AppHeader = ({
     navBarOpened,
     toggleNavBar,
@@ -12,6 +14,7 @@ const AppHeader = ({
     navBarOpened: boolean
     toggleNavBar: () => void
 }) => {
+    const $t = useTrx('common')
     const { colorScheme, toggleColorScheme } = useMantineColorScheme()
 
     const updateTailwindDarkMode = useCallback(() => {
@@ -51,7 +54,7 @@ const AppHeader = ({
                     className="mr-1"
                     icon={colorScheme === 'dark' ? faSun : faMoon}
                 />{' '}
-                切换配色
+                {$t('Switch theme')}
             </Button>
         </Header>
     )

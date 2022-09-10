@@ -12,5 +12,13 @@
         "Colors": "Colors",
         "Settings": "Settings",
         "About": "About"
+    },
+    "footer": {
+        "bwiki": {
+            "prefix": "Contents from ",
+            "bwikilinktitle": "biliwiki",
+            "middle": " are licensed under ",
+            "suffix": ""
+        }
     }
 }

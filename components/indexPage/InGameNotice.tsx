@@ -5,10 +5,12 @@ import { APIMapping } from 'hoshimi-types'
 
 import useApi from '#utils/useApi'
 import { APIResponseOf } from '#utils/api'
+import useTrx from '#utils/useTrx'
 
 type NoticeType = Parameters<APIMapping['Notice']>[number]['type']
 
 const InGameNotice = ({ type }: { type: NoticeType }) => {
+    const $t = useTrx('index')
     const [limit, setLimit] = useState(5)
     const { data: news } = useApi('Notice', {
         limit: String(limit),
@@ -32,7 +34,7 @@ const InGameNotice = ({ type }: { type: NoticeType }) => {
                     src={modalNews?.linkDetail}
                 ></iframe>
                 <div className="text-center">
-                    发布时间：{' '}
+                    {$t('Published: ')}{' '}
                     {modalNews &&
                         dayjs(new Date(Number(modalNews.startTime))).format(
                             'YYYY-MM-DD'
@@ -68,12 +70,12 @@ const InGameNotice = ({ type }: { type: NoticeType }) => {
                         setLimit((x) => x + 5)
                     }}
                 >
-                    更多...
+                    {$t('More')}
                 </Anchor>
             )}
         </>
     ) : (
-        <p className="text-gray-500">新闻加载中。</p>
+        <p className="text-gray-500">{$t('Loading news.')}</p>
     )
 }
 

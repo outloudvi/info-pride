@@ -11,27 +11,37 @@ import NoticeTop from '#components/indexPage/NoticeTop'
 import useTrx from '#utils/useTrx'
 import { addI18nMessages } from '#utils/getI18nProps'
 
-const MainPageSiteData = [
-    {
-        官方网站: 'https://idolypride.jp',
-        '官方 Twitter': 'https://twitter.com/idolypride',
-    },
-    {
-        情报站微博: 'https://weibo.com/7326542616/',
-        星见编辑部: 'https://space.bilibili.com/1637756387',
-    },
-    {
-        '攻略 wiki (BWiki)': 'https://wiki.biligame.com/idolypride/',
-        '攻略 wiki (AppMedia)': 'https://appmedia.jp/idolypride',
-    },
-    {
-        'Telegram 群组': 'https://t.me/hayasaka_mei',
-        'QQ 群组': Paths.wiki('更多群组'),
-    },
-]
-
 const Home = ({ gitCommit }: { gitCommit: string }) => {
     const $t = useTrx('index')
+
+    const MainPageSiteData = [
+        {
+            [$t('Official website')]: 'https://idolypride.jp',
+            [$t('Official Twitter')]: 'https://twitter.com/idolypride',
+        },
+        {
+            // For l10n: these websites/accounts are in Chinese
+            // A fan-run information publishing account
+            [$t('情报站微博')]: 'https://weibo.com/7326542616/',
+            // A group publishing podcasts by Chinese i-pri gamers
+            [$t('星见编辑部')]: 'https://space.bilibili.com/1637756387',
+        },
+        {
+            [$t('Game wiki (Bilibili)')]:
+                'https://wiki.biligame.com/idolypride/',
+            [$t('Game wiki (AppMedia)')]: 'https://appmedia.jp/idolypride',
+        },
+        {
+            [$t('Telegram Group')]: 'https://t.me/hayasaka_mei',
+            [$t('QQ Group')]: Paths.wiki('更多群组'),
+        },
+        {
+            [$t('Discord Group (English)')]: 'https://discord.gg/XPXBvxGS96',
+            [$t('Discord Group (Chinese)')]:
+                'https://discord.com/invite/66j2jQJSc2',
+        },
+    ]
+
     return (
         <>
             <NoticeTop />
@@ -81,7 +91,7 @@ const Home = ({ gitCommit }: { gitCommit: string }) => {
                     <Notice />
                 </Grid.Col>
                 <Grid.Col xs={12} lg={6}>
-                    <div className="mb-2 text-3xl">数据版本</div>
+                    <div className="mb-2 text-3xl">{$t('Data revision')}</div>
                     <VersionInfo />
                 </Grid.Col>
             </Grid>

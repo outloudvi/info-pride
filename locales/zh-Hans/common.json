@@ -12,5 +12,16 @@
         "Colors": "系列颜色",
         "Settings": "设置",
         "About": "关于"
+    },
+    "Switch theme": "切换配色",
+    "footer": {
+        "Source code": "源代码",
+        "Game data © QualiArts and associates": "游戏数据 © QualiArts 及相关实体",
+        "bwiki": {
+            "prefix": "来自 ",
+            "bwikilinktitle": "bwiki",
+            "middle": " 的内容以 ",
+            "suffix": " 授权"
+        }
     }
 }

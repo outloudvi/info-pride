@@ -8,6 +8,7 @@ import { Meta as WikiPagesMeta } from '#data/wikiPages'
 import { Meta as WikiModulesMeta } from '#data/wikiModules'
 import PageLoading from '#components/PageLoading'
 import useFrontendApi from '#utils/useFrontendApi'
+import useTrx from '#utils/useTrx'
 
 const VersionInfo = ({
     VersionData,
@@ -15,6 +16,7 @@ const VersionInfo = ({
     VersionData: APIResponseOf<'Version'>
 }) => {
     const { data: GameVersionData } = useFrontendApi('version')
+    const $t = useTrx('index')
 
     const backendVersion = day(VersionData.version).format('YYYY/MM/DD')
     const wikiModuleVersion = day(WikiModulesMeta.updatedAt * 1000).format(
@@ -25,9 +27,9 @@ const VersionInfo = ({
     )
 
     const lines = {
-        后端数据: backendVersion,
-        'Wiki 模块数据': wikiModuleVersion,
-        'Wiki 页面数据': wikiPageVersion,
+        [$t('Backend')]: backendVersion,
+        [$t('Bwiki modules')]: wikiModuleVersion,
+        [$t('Bwiki pages')]: wikiPageVersion,
     }
 
     return (
@@ -43,12 +45,12 @@ const VersionInfo = ({
             <div className="mt-2">
                 {GameVersionData ? (
                     <div>
-                        游戏版本{' '}
+                        {$t('Game version')}{' '}
                         <Badge color="green">
                             {GameVersionData.versionDisplay}
                         </Badge>
                         <br />
-                        游戏更新日期{' '}
+                        {$t('Update date')}{' '}
                         <Badge color="green">
                             {day(GameVersionData.releaseDate).format(
                                 'YYYY/MM/DD'
@@ -56,7 +58,9 @@ const VersionInfo = ({
                         </Badge>
                     </div>
                 ) : (
-                    <div className="text-gray-500">正在加载游戏版本信息。</div>
+                    <div className="text-gray-500">
+                        {$t('Loading game version info.')}
+                    </div>
                 )}
             </div>
         </>

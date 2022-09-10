@@ -9,6 +9,7 @@ import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 
 import Paths from '#utils/paths'
 import { Calendar, Meta as WikiModulesMeta } from '#data/wikiModules'
+import useTrx from '#utils/useTrx'
 
 dayjs.extend(dayjsUtc)
 dayjs.extend(dayjsTz)
@@ -16,6 +17,7 @@ dayjs.extend(dayjsIsSameOrAfter)
 dayjs.extend(dayjsIsSameOrBefore)
 
 const CurrentEvents = () => {
+    const $t = useTrx('index')
     dayjs.tz.setDefault('Asia/Tokyo')
 
     const today = dayjs()
@@ -36,7 +38,7 @@ const CurrentEvents = () => {
                     <Group key={key} align="center">
                         {item.link && (
                             <a
-                                title="活动详细信息"
+                                title={$t('Event info (Chinese)')}
                                 href={Paths.wiki(item.link)}
                             >
                                 <ActionIcon
@@ -51,7 +53,7 @@ const CurrentEvents = () => {
                         <div className="grow">
                             <span>{item.title}</span> <br />
                             <span className="text-sm text-gray-500">
-                                {item.type} / {item.start} - {item.end}
+                                {$t(item.type)} / {item.start} - {item.end}
                             </span>
                         </div>
                     </Group>
@@ -69,7 +71,9 @@ const CurrentEvents = () => {
 
     return (
         <>
-            <div className="text-gray-600 text-lg mb-3">当前活动</div>
+            <div className="text-gray-600 text-lg mb-3">
+                {$t('Current events')}
+            </div>
             {eventList}
         </>
     )

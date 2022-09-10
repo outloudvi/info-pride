@@ -10,7 +10,7 @@ import { NotificationsProvider } from '@mantine/notifications'
 import { NextIntlProvider } from 'next-intl'
 import '../styles/globals.css' // for Tailwind CSS
 import { useColorScheme, useLocalStorage } from '@mantine/hooks'
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import NextNProgress from 'nextjs-progressbar'
 import { atom, useAtom } from 'jotai'
 import { QueryClient, QueryClientProvider } from 'react-query'
@@ -38,6 +38,14 @@ const App = (props: AppProps<{ _m: Record<string, string> }>) => {
     const [lang, setLang] = useLocalStorage({
         key: 'infop-language',
         defaultValue: 'zh-Hans',
+    })
+
+    useEffect(() => {
+        const location = new URL(String(document.location))
+        const useLang = location.searchParams.get('uselang')
+        if (useLang) {
+            setLang(useLang)
+        }
     })
 
     useEffect(() => {
