@@ -12,6 +12,7 @@ import { useTranslations } from 'next-intl'
 import { HometownIntroductionPageUrl, OrgName } from './const'
 import SquareColor from './SquareColor'
 import CharacterAnimation from './CharacterAnimation'
+import InGameVoice from './InGameVoice'
 
 import useApi from '#utils/useApi'
 import { APIResponseOf, UnArray } from '#utils/api'
@@ -25,6 +26,9 @@ import { IdolyFashionUrl, IdolyRoomUrl } from '#data/ipcmmu.data'
 import { Idols } from '#data/wikiPages'
 import BirthdayCommu from '#components/characters/BirthdayCommu'
 import { toHashColor } from '#utils/toHashColor'
+
+const BirthdayCommuException: CharacterId[] = ['char-mna']
+const VoiceException: CharacterId[] = ['char-mku']
 
 const CharacterItem = ({
     character,
@@ -195,10 +199,16 @@ const CharacterItem = ({
                     )}
                 </Grid.Col>
             </Grid>
-            {id !== 'char-mna' && (
+            {!BirthdayCommuException.includes(id) && (
                 <>
                     <h2>生日剧情</h2>
                     <BirthdayCommu charaId={id} />
+                </>
+            )}
+            {!VoiceException.includes(id) && (
+                <>
+                    <h2>语音</h2>
+                    <InGameVoice charaId={id} />
                 </>
             )}
         </div>
