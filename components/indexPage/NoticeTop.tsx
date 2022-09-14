@@ -2,90 +2,50 @@ import { faFeather, faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Alert, Button } from '@mantine/core'
 import { useLocalStorage } from '@mantine/hooks'
+import { useEffect } from 'react'
 
 type NoticeUnit = (x: () => void) => JSX.Element
 
 const GlobalNotices: Record<string, NoticeUnit> = {
-    '220831-Miku': () => (
-        <Alert
-            icon={<FontAwesomeIcon icon={faFeather} />}
-            color="cyan"
-            title="初音ミク联动活动开始！"
-        >
-            由烏屋茶房作词，八王子P 与 kz 作曲，TRINITYAiLE
-            与初音ミク演唱的新曲《Magical Melody》正在活动中出现！（8/31 12:00-
-            JST）
-            <a
-                href="https://www.bilibili.com/video/av472450564"
-                target="_blank"
-                rel="noreferrer noopener"
-            >
-                <Button size="xs" color="cyan" variant="gradient">
-                    试听曲目！
-                </Button>
-            </a>
-            <br />
-            （还有八王子P/kz 新曲
-            <a
-                href="https://www.youtube.com/watch?v=JdQf_ac0fNk"
-                target="_blank"
-                rel="noreferrer noopener"
-                className="ml-2"
-            >
-                《Glimmer》
-            </a>
-            ，这个有完整版）
-        </Alert>
-    ),
-    '220803-Notice-Closed': (close) => (
+    '220914-boltrend': () => (
         <Alert
             icon={<FontAwesomeIcon icon={faInfoCircle} />}
             color="orange"
-            title="我们正在更新网站架构 / We're updating the website infrastructure"
-            onClose={close}
-            withCloseButton
-            className="mt-2"
+            title="IDOLY PRIDE 的其它地区版本 / IDOLY PRIDE versions for other regions"
         >
-            我们正在将 API 服务器
-            <a href="https://github.com/MalitsPlus/IDOLY-Backend/pull/2">
-                从 Cloudflare Workers 迁移到 Deno
+            由 Boltrend Games 运营的 IDOLY PRIDE 国际版本
+            <a
+                href="https://twitter.com/idolypride_en/status/1569936518722060288"
+                rel="nofollow noopener"
+            >
+                正在内测
             </a>
-            。因此，新的 API
-            服务可能出现可用性或数据完整性问题。如果怀疑发生了任何问题，欢迎通过{' '}
-            <a href="https://github.com/outloudvi/info-pride/issues">Issues</a>{' '}
-            或任何其它方式告知我们。
-            <br />
-            如果希望回到使用旧 API 服务的版本，请访问
-            <a href="https://info-pride-git-feat-workers-outloudvi.vercel.app/">
-                此站点
+            ，而 Neowiz 也在运营
+            <a href="https://idolypride.pmang.cloud/" rel="noopener nofollow">
+                一个韩国版本
             </a>
-            。请注意旧 API 服务的数据目前处于停止更新的状态。
-            <br />
-            此公告在手动关闭后不会再显示。
-            <br />
+            。请注意 info-pride
+            目前的信息只跟随日本服务器更新，因此内容可能和国际版本或韩国版本不一致。
             <details>
-                <summary>(English Version)</summary>
-                We are shifting our API service{' '}
-                <a href="https://github.com/MalitsPlus/IDOLY-Backend/pull/2">
-                    from Cloudflare Workers to Deno
+                <summary>(English version)</summary>
+                The global version of IDOLY PRIDE, published by Boltrend Games
+                is{' '}
+                <a
+                    href="https://twitter.com/idolypride_en/status/1569936518722060288"
+                    rel="nofollow noopener"
+                >
+                    currently in Closed Beta Test
                 </a>
-                . Therefore, the new service might suffer from useability or
-                data integrity problems. If there are any problems suspected,
-                please don&apos;t hesitate to contact us via{' '}
-                <a href="https://github.com/outloudvi/info-pride/issues">
-                    Issues
-                </a>{' '}
-                or other channels.
-                <br />
-                If you wish to use the site with the old API service, please
-                check{' '}
-                <a href="https://info-pride-git-feat-workers-outloudvi.vercel.app/">
-                    here
+                . Also, Neowiz has published{' '}
+                <a
+                    href="https://idolypride.pmang.cloud/"
+                    rel="noopener nofollow"
+                >
+                    a Korean version of IDOLY PRIDE
                 </a>
-                . Please be noted that updates for the old API service are
-                currently paused.
-                <br />
-                This notice will not be shown again after closing it.
+                . Please note that data of info-pride is currently only
+                following the Japanese server. Therefore, contents may differ
+                with the global or the Korean version.
             </details>
         </Alert>
     ),
@@ -99,6 +59,11 @@ const NoticeItem = ({ nKey, unit }: { nKey: string; unit: NoticeUnit }) => {
         deserialize: (v) => v,
     })
     const doNotShow = showKey === 'true'
+
+    useEffect(() => {
+        if (!window.localStorage) return
+        window.localStorage.removeItem('220803-Notice-Closed')
+    }, [])
 
     return !doNotShow ? (
         <div>
