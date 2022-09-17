@@ -1,6 +1,6 @@
-import { faFeather, faInfoCircle } from '@fortawesome/free-solid-svg-icons'
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Alert, Button } from '@mantine/core'
+import { Alert } from '@mantine/core'
 import { useLocalStorage } from '@mantine/hooks'
 import { useEffect } from 'react'
 

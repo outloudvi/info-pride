@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { showNotification } from '@mantine/notifications'
-import { Button, Checkbox, Grid, Select } from '@mantine/core'
+import { Button, Checkbox, Grid } from '@mantine/core'
 import rfdc from 'rfdc'
 
 import type { Card } from '#data/wikiPages/cards'
@@ -8,7 +8,7 @@ import { CharacterChineseNameList, CharacterId } from '#data/vendor/characterId'
 import { LOCALSTORAGE_BOX_TAG } from '#utils/startupHook'
 import Title from '#components/Title'
 import useFrontendApi from '#utils/useFrontendApi'
-import getI18nProps, { addI18nMessages } from '#utils/getI18nProps'
+import getI18nProps from '#utils/getI18nProps'
 
 const clone = rfdc({
     proto: true,
@@ -16,11 +16,7 @@ const clone = rfdc({
 
 export type LocalBox = Partial<Record<CharacterId, boolean[]>>
 
-const SettingsPage = ({
-    localeList,
-}: {
-    localeList: { slug: string; name: string }[]
-}) => {
+const SettingsPage = () => {
     const [localBox, setLocalBox] = useState<LocalBox>({})
     const { data: Cards } = useFrontendApi('cards')
 
