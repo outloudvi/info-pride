@@ -1,0 +1,14 @@
+{
+    "series": {
+        "Hoshimi": "Hoshimi Series",
+        "Tokyo": "Tokyo Series",
+        "Big4": "BIG4 Series",
+        "TRINITYAiLE": "TRINITYAiLE",
+        "LizNoir": "LizNoir",
+        "Mana": "Mana",
+        "ThreeX": "ⅢⅩ",
+        "Tsuki": "Tsuki no Tempest",
+        "Special": "Others"
+    },
+    "season": "Season {s}"
+}

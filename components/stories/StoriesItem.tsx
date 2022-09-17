@@ -1,9 +1,10 @@
 import { Skeleton } from '@mantine/core'
+import { useTranslations } from 'next-intl'
 
 import Paths from '#utils/paths'
 import { toVideoLink } from '#components/ExternalVideo'
 import useApi from '#utils/useApi'
-import { Episodes, SeriesName } from '#data/stories'
+import { SeriesName } from '#data/stories'
 import StoriesData from '#data/stories.data'
 import AssetImage from '#components/AssetImage'
 
@@ -39,6 +40,7 @@ export const SpecialStoriesItem = (props: {
     season: number
     chapter: number
 }) => {
+    const $t = useTranslations('storie')
     const { series, season, chapter } = props
     const data = StoriesData?.[series]?.[season]?.[chapter]
     if (!data) {
@@ -54,7 +56,7 @@ export const SpecialStoriesItem = (props: {
                     target="_blank"
                     rel="noopener noreferrer"
                 >
-                    视频
+                    {$t('Video')}
                 </a>
             </p>
         </>
@@ -63,6 +65,7 @@ export const SpecialStoriesItem = (props: {
 
 const StoriesItem = (props: PropType) => {
     const { series, season, chapter } = props
+    const $t = useTranslations('stories')
 
     const { data: StoryData, isSuccess } = useApi('Story', {
         id: getBackendStoryId(props),
@@ -72,8 +75,8 @@ const StoriesItem = (props: PropType) => {
         return (
             <>
                 <div className="text-4xl">
-                    {Episodes[series][0]}
-                    {season}章 - {chapter}
+                    {$t(`series.${series}`)} {$t('season', { season })} -{' '}
+                    {chapter}
                 </div>
                 <Skeleton height={200} className="mt-2" />
             </>
@@ -89,8 +92,8 @@ const StoriesItem = (props: PropType) => {
     return (
         <>
             <div className="text-4xl">
-                {Episodes[series][0]}
-                {season}章 - {chapter}
+                {$t(`series.${series}`)} {$t('season', { s: season })} -{' '}
+                {chapter}
             </div>
 
             <div className="text-2xl">{subtitle}</div>
@@ -119,7 +122,7 @@ const StoriesItem = (props: PropType) => {
                         target="_blank"
                         rel="noopener noreferrer"
                     >
-                        视频
+                        {$t('Video')}
                     </a>
                 </p>
             )}

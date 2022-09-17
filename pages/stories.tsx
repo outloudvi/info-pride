@@ -3,6 +3,7 @@ import { Button, Grid, Tabs } from '@mantine/core'
 import _range from 'lodash/range'
 import { atomWithHash } from 'jotai/utils'
 import { useAtom } from 'jotai'
+import { useTranslations } from 'next-intl'
 
 import StoriesItem, {
     SpecialStoriesItem,
@@ -17,6 +18,7 @@ const seasonAtom = atomWithHash('season', 1)
 const chapterAtom = atomWithHash('chapter', 1)
 
 const StoriesPage = () => {
+    const $t = useTranslations('stories')
     const [series, setSeries] = useAtom(seriesAtom)
     const [season, setSeason] = useAtom(seasonAtom)
     const [chapter, setChapter] = useAtom(chapterAtom)
@@ -26,15 +28,12 @@ const StoriesPage = () => {
         const ret: Record<string, Record<number, Record<number, boolean>>> = {}
         for (let i = 0; i < Series.length; i++) {
             const seriesSlug = Series[i]
-            ret[seriesSlug] = Episodes[seriesSlug][1].map(
-                (length, episodeKey) =>
-                    _range(1, length + 1).map((chapterId) =>
-                        Boolean(
-                            StoriesData?.[seriesSlug]?.[episodeKey + 1]?.[
-                                chapterId
-                            ]
-                        )
+            ret[seriesSlug] = Episodes[seriesSlug].map((length, episodeKey) =>
+                _range(1, length + 1).map((chapterId) =>
+                    Boolean(
+                        StoriesData?.[seriesSlug]?.[episodeKey + 1]?.[chapterId]
                     )
+                )
             )
         }
         return ret
@@ -42,7 +41,7 @@ const StoriesPage = () => {
 
     return (
         <>
-            <Title title="剧情" />
+            <Title title={$t('Stories')} />
             <Grid gutter={20} className="my-3">
                 <Grid.Col xs={12} lg={6}>
                     <Tabs defaultValue="Hoshimi">
@@ -53,29 +52,29 @@ const StoriesPage = () => {
                                         value={seriesSlug}
                                         key={seriesKey}
                                     >
-                                        {Episodes[seriesSlug][0]}
+                                        {$t(`series.${seriesSlug}`)}
                                     </Tabs.Tab>
                                 )
                             )}
-                            <Tabs.Tab value="others">其它</Tabs.Tab>
+                            <Tabs.Tab value="others">{$t('Others')}</Tabs.Tab>
                         </Tabs.List>
                         {Series.filter((x) => x !== 'Special').map(
                             (seriesSlug, seriesKey) => (
                                 <Tabs.Panel value={seriesSlug} key={seriesKey}>
                                     <div className="max-h-[60vh] overflow-y-auto">
-                                        {Episodes[seriesSlug][1].map(
+                                        {Episodes[seriesSlug].map(
                                             (
                                                 episodeLengthInSeason,
                                                 seasonKey
                                             ) => (
                                                 <div key={seasonKey}>
                                                     <p>
-                                                        {
-                                                            Episodes[
-                                                                seriesSlug
-                                                            ][0]
-                                                        }{' '}
-                                                        第{seasonKey + 1}章
+                                                        {$t(
+                                                            `series.${seriesSlug}`
+                                                        )}{' '}
+                                                        {$t('season', {
+                                                            s: seasonKey + 1,
+                                                        })}
                                                     </p>
                                                     {_range(
                                                         1,
@@ -194,6 +193,6 @@ const StoriesPage = () => {
     )
 }
 
-export const getStaticProps = getI18nProps()
+export const getStaticProps = getI18nProps(['stories'])
 
 export default StoriesPage
