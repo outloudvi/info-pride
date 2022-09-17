@@ -2,6 +2,8 @@ import Link from 'next/link'
 import { Navbar, UnstyledButton } from '@mantine/core'
 import { useTranslations } from 'next-intl'
 
+import LanguageSelection from './LanguageSelection'
+
 import Pages from '#data/pages'
 
 const AppNavBar = ({ expanded }: { expanded: boolean }) => {
@@ -29,6 +31,9 @@ const AppNavBar = ({ expanded }: { expanded: boolean }) => {
                     </Link>
                 </Navbar.Section>
             ))}
+            <Navbar.Section className="mt-2 mx-2 md:hidden">
+                <LanguageSelection />
+            </Navbar.Section>
         </Navbar>
     )
 }

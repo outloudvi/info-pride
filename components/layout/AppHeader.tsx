@@ -6,6 +6,8 @@ import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons'
 import { useCallback, useEffect } from 'react'
 import { useTranslations } from 'next-intl'
 
+import LanguageSelection from './LanguageSelection'
+
 const AppHeader = ({
     navBarOpened,
     toggleNavBar,
@@ -48,6 +50,7 @@ const AppHeader = ({
                 </a>
             </Link>
             <div className="grow"></div>
+            <LanguageSelection className="hidden md:block" />
             <Button onClick={() => toggleColorSchemeWithTailwind()}>
                 <FontAwesomeIcon
                     className="mr-1"
