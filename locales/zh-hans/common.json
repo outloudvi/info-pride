@@ -23,5 +23,8 @@
             "middle": " 的内容以 ",
             "suffix": " 授权"
         }
-    }
+    },
+    "Video": "视频",
+    "Loading...": "加载中。",
+    "no_trans": "尚无剧情翻译信息。请添加翻译信息到 {file} 的 {field} 。"
 }

@@ -1,14 +1,15 @@
 import { Blockquote, Button, Group, Skeleton } from '@mantine/core'
 import { useEffect, useState } from 'react'
+import { useTranslations } from 'next-intl'
 
 import { APIResponseOf } from '#utils/api'
 import useApi from '#utils/useApi'
 import EventStoriesData from '#data/eventStories.data'
 import { toVideoLink } from '#components/ExternalVideo'
-import Paths from '#utils/paths'
 import AssetImage from '#components/AssetImage'
 
 const EventEpisodeDetail = ({ story }: { story: APIResponseOf<'Story'> }) => {
+    const $c = useTranslations('common')
     const { id, name: jaName, description } = story
     const zhData = EventStoriesData[id]
 
@@ -32,16 +33,15 @@ const EventEpisodeDetail = ({ story }: { story: APIResponseOf<'Story'> }) => {
                         target="_blank"
                         rel="noopener noreferrer"
                     >
-                        视频
+                        {$c('Video')}
                     </a>
                 </div>
             ) : (
                 <div className="mt-4 text-gray-500">
-                    尚无剧情翻译信息。请添加翻译信息到{' '}
-                    <a href={Paths.repo('data/eventStories.data.ts')}>
-                        data/eventStories.data.ts
-                    </a>{' '}
-                    的 data[{id}] 。
+                    {$c('no_trans', {
+                        field: `data[{id}]`,
+                        file: 'data/eventStories.data.ts',
+                    })}
                 </div>
             )}
         </>
@@ -53,6 +53,8 @@ const EventStoryEpisodeList = ({
 }: {
     event: NonNullable<APIResponseOf<'EventStory'>>
 }) => {
+    const $t = useTranslations('eventstories')
+    const $c = useTranslations('common')
     const [selectedStoryId, setSelectedStoryId] = useState(
         event.episodes[0].storyId
     )
@@ -71,7 +73,7 @@ const EventStoryEpisodeList = ({
                     name={`img_story_event_banner_${event.assetId}`}
                     ratio={2.95}
                     height={120}
-                    alt="Album art"
+                    alt={$t('Event banner')}
                 />
             </div>
             <Group>
@@ -85,14 +87,16 @@ const EventStoryEpisodeList = ({
                             setSelectedStoryId(item.storyId)
                         }}
                     >
-                        第 {item.episode} 章
+                        {$t('episode', { ep: item.episode })}
                     </Button>
                 ))}
             </Group>
             {StoryData ? (
                 <EventEpisodeDetail story={StoryData} />
             ) : (
-                <div className="text-gray-500 text-center">加载中。</div>
+                <div className="text-gray-500 text-center">
+                    {$c('Loading...')}
+                </div>
             )}
         </>
     )

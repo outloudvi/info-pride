@@ -26,13 +26,14 @@ const EventStoriesPage = ({
     EventStoriesData: APIResponseOf<'EventStory/List'>
 }) => {
     const $ev = useTranslations('events')
+    const $t = useTranslations('eventstories')
 
     const [currEvent, setCurrEvent] = useState<
         APIResponseOf<'EventStory/List'>[number] | null
     >(null)
     return (
         <>
-            <p>活动剧情从新到老排列。</p>
+            <p>{$t('stories_ordering')}</p>
             <Grid gutter={20} className="my-3">
                 <Grid.Col xs={12} lg={3}>
                     <div className="h-[65vh] overflow-y-auto">
@@ -74,6 +75,7 @@ const EventStoriesPage = ({
 
 const SkeletonEventStoriesPage = () => {
     const { data: EventStoriesData } = useApi('EventStory/List')
+    const $t = useTranslations('eventstories')
 
     const allData = {
         EventStoriesData,
@@ -81,7 +83,7 @@ const SkeletonEventStoriesPage = () => {
 
     return (
         <>
-            <Title title="活动剧情" />
+            <Title title={$t('Event Stories')} />
             {allFinished(allData) ? (
                 <EventStoriesPage {...allData} />
             ) : (
@@ -91,6 +93,6 @@ const SkeletonEventStoriesPage = () => {
     )
 }
 
-export const getStaticProps = getI18nProps(['events'])
+export const getStaticProps = getI18nProps(['events', 'eventstories'])
 
 export default SkeletonEventStoriesPage

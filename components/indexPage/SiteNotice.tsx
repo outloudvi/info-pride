@@ -1,8 +1,10 @@
 import Link from 'next/link'
+import { useTranslations } from 'next-intl'
 
 import useFrontendApi from '#utils/useFrontendApi'
 
 const SiteNotice = () => {
+    const $c = useTranslations('common')
     const { data: news } = useFrontendApi('news')
 
     return news && news.length > 0 ? (
@@ -14,7 +16,7 @@ const SiteNotice = () => {
             ))}
         </ul>
     ) : (
-        <p className="text-gray-500">新闻加载中。</p>
+        <p className="text-gray-500">{$c('Loading...')}</p>
     )
 }
 

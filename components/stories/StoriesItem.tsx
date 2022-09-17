@@ -40,7 +40,8 @@ export const SpecialStoriesItem = (props: {
     season: number
     chapter: number
 }) => {
-    const $t = useTranslations('storie')
+    const $t = useTranslations('stories')
+    const $c = useTranslations('common')
     const { series, season, chapter } = props
     const data = StoriesData?.[series]?.[season]?.[chapter]
     if (!data) {
@@ -56,7 +57,7 @@ export const SpecialStoriesItem = (props: {
                     target="_blank"
                     rel="noopener noreferrer"
                 >
-                    {$t('Video')}
+                    {$c('Video')}
                 </a>
             </p>
         </>

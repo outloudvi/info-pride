@@ -20,5 +20,8 @@
             "middle": " are licensed under ",
             "suffix": ""
         }
-    }
+    },
+    "Video": "Video",
+    "Loading...": "Loading...",
+    "no_trans": "Translationed subbed video is not found. Please add them to {field} at {file}."
 }
