@@ -22,8 +22,8 @@ const nextConfig = {
         domains: ['idoly-assets-curator.vercel.app', 'idoly-assets.outv.im'],
     },
     i18n: {
-        locales: ['zh-Hans', 'en'],
-        defaultLocale: 'zh-Hans',
+        locales: ['zh-hans', 'en'],
+        defaultLocale: 'zh-hans',
     },
 }
 
