@@ -5,13 +5,15 @@ import { showNotification } from '@mantine/notifications'
 import { QueryFunction, useQuery } from 'react-query'
 import { useMemo } from 'react'
 
-import type { Card as WikiCard } from '#data/wikiPages/cards'
+import type {
+    Card as WikiCard,
+    TheRootSchema as WikiCards,
+} from '#data/wikiPages/cards'
 import type { Stories } from '#data/types'
 import type { SkillLaunchItem } from '#components/notemap/types'
 import type { BirthdayCommuList } from '#data/birthday.data'
 import type { Contributor } from '#components/api/contributors/types'
 import { DiaryItem } from '#data/wikiModules/diary'
-import type { TheRootSchema as WikiCards } from '#data/wikiPages/cards'
 
 const frontendQueryFn: QueryFunction = ({ queryKey: [path] }) =>
     fetch(('/api/' + path) as string).then((x) =>
