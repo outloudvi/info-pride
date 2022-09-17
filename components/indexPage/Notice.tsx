@@ -1,12 +1,11 @@
 import { Tabs } from '@mantine/core'
+import { useTranslations } from 'next-intl'
 
 import InGameNotice from './InGameNotice'
 import SiteNotice from './SiteNotice'
 
-import useTrx from '#utils/useTrx'
-
 const Notice = () => {
-    const $t = useTrx('index')
+    const $t = useTranslations('index')
 
     return (
         <Tabs defaultValue="announcement">

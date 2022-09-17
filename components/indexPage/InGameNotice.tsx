@@ -2,15 +2,15 @@ import { Anchor, Modal } from '@mantine/core'
 import { useState } from 'react'
 import dayjs from 'dayjs'
 import { APIMapping } from 'hoshimi-types'
+import { useTranslations } from 'next-intl'
 
 import useApi from '#utils/useApi'
 import { APIResponseOf } from '#utils/api'
-import useTrx from '#utils/useTrx'
 
 type NoticeType = Parameters<APIMapping['Notice']>[number]['type']
 
 const InGameNotice = ({ type }: { type: NoticeType }) => {
-    const $t = useTrx('index')
+    const $t = useTranslations('index')
     const [limit, setLimit] = useState(5)
     const { data: news } = useApi('Notice', {
         limit: String(limit),

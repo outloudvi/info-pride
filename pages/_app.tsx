@@ -10,7 +10,7 @@ import { NotificationsProvider } from '@mantine/notifications'
 import { NextIntlProvider } from 'next-intl'
 import '../styles/globals.css' // for Tailwind CSS
 import { useColorScheme, useLocalStorage } from '@mantine/hooks'
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
 import NextNProgress from 'nextjs-progressbar'
 import { atom, useAtom } from 'jotai'
 import { QueryClient, QueryClientProvider } from 'react-query'
@@ -19,7 +19,6 @@ import Layout from '#components/layout/Layout'
 import Loading from '#components/layout/Loading'
 import startupHook from '#utils/startupHook'
 import Paths from '#utils/paths'
-import LanguageContext from '#components/LanguageContext'
 
 const finishedAtom = atom(false)
 
@@ -35,18 +34,6 @@ const App = (props: AppProps<{ _m: Record<string, string> }>) => {
         setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'))
 
     const [finished, setFinished] = useAtom(finishedAtom)
-    const [lang, setLang] = useLocalStorage({
-        key: 'infop-language',
-        defaultValue: 'zh-Hans',
-    })
-
-    useEffect(() => {
-        const location = new URL(String(document.location))
-        const useLang = location.searchParams.get('uselang')
-        if (useLang) {
-            setLang(useLang)
-        }
-    })
 
     useEffect(() => {
         startupHook()
@@ -167,20 +154,17 @@ const App = (props: AppProps<{ _m: Record<string, string> }>) => {
                 >
                     <NotificationsProvider>
                         <QueryClientProvider client={queryClient}>
-                            <LanguageContext.Provider value={setLang}>
-                                <NextIntlProvider
-                                    locale={lang}
-                                    messages={pageProps._m}
-                                    getMessageFallback={({ key }) => key}
-                                >
-                                    <Layout>
-                                        <Loading finished={finished} />
-                                        <NextNProgress />
+                            <NextIntlProvider
+                                messages={pageProps._m}
+                                getMessageFallback={({ key }) => key}
+                            >
+                                <Layout>
+                                    <Loading finished={finished} />
+                                    <NextNProgress />
 
-                                        <Component {...pageProps} />
-                                    </Layout>
-                                </NextIntlProvider>
-                            </LanguageContext.Provider>
+                                    <Component {...pageProps} />
+                                </Layout>
+                            </NextIntlProvider>
                         </QueryClientProvider>
                     </NotificationsProvider>
                 </MantineProvider>

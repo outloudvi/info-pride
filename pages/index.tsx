@@ -2,17 +2,17 @@ import { execSync } from 'node:child_process'
 
 import { Badge, Button, Grid, Group, Stack } from '@mantine/core'
 import Link from 'next/link'
+import { useTranslations } from 'next-intl'
 
 import CurrentEvents from '#components/indexPage/CurrentEvents'
 import Notice from '#components/indexPage/Notice'
 import VersionInfo from '#components/indexPage/VersionInfo'
 import Paths from '#utils/paths'
 import NoticeTop from '#components/indexPage/NoticeTop'
-import useTrx from '#utils/useTrx'
 import { addI18nMessages } from '#utils/getI18nProps'
 
 const Home = ({ gitCommit }: { gitCommit: string }) => {
-    const $t = useTrx('index')
+    const $t = useTranslations('index')
 
     const MainPageSiteData = [
         {
@@ -99,12 +99,12 @@ const Home = ({ gitCommit }: { gitCommit: string }) => {
     )
 }
 
-export async function getStaticProps() {
+export async function getStaticProps({ locale }: { locale: string }) {
     const gitCommit = execSync('git rev-parse HEAD').toString().trim()
     return {
         props: {
             gitCommit,
-            ...(await addI18nMessages(['index'])),
+            ...(await addI18nMessages(locale, ['index'])),
         },
     }
 }

@@ -139,13 +139,13 @@ const DiaryPage = ({ first, last }: { first: string; last: string }) => {
     )
 }
 
-export const getStaticProps = async () => {
+export const getStaticProps = async ({ locale }: { locale: string }) => {
     const { first, last } = getDiaryRangePair()
     return {
         props: {
             first,
             last,
-            ...(await addI18nMessages()),
+            ...(await addI18nMessages(locale)),
         },
     }
 }

@@ -1,11 +1,11 @@
 import Link from 'next/link'
 import { Navbar, UnstyledButton } from '@mantine/core'
+import { useTranslations } from 'next-intl'
 
 import Pages from '#data/pages'
-import useTrx from '#utils/useTrx'
 
 const AppNavBar = ({ expanded }: { expanded: boolean }) => {
-    const $t = useTrx('common.sidebar')
+    const $t = useTranslations('common.sidebar')
     return (
         <Navbar
             className={

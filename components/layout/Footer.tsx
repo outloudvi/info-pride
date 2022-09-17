@@ -1,7 +1,7 @@
-import useTrx from '#utils/useTrx'
+import { useTranslations } from 'next-intl'
 
 const Footer = () => {
-    const $t = useTrx('common.footer')
+    const $t = useTranslations('common.footer')
     return (
         <footer className="text-center text-gray-500">
             <a

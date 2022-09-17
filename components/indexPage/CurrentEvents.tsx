@@ -6,10 +6,10 @@ import dayjsIsSameOrAfter from 'dayjs/plugin/isSameOrAfter'
 import dayjsIsSameOrBefore from 'dayjs/plugin/isSameOrBefore'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
+import { useTranslations } from 'next-intl'
 
 import Paths from '#utils/paths'
 import { Calendar, Meta as WikiModulesMeta } from '#data/wikiModules'
-import useTrx from '#utils/useTrx'
 
 dayjs.extend(dayjsUtc)
 dayjs.extend(dayjsTz)
@@ -17,7 +17,7 @@ dayjs.extend(dayjsIsSameOrAfter)
 dayjs.extend(dayjsIsSameOrBefore)
 
 const CurrentEvents = () => {
-    const $t = useTrx('index')
+    const $t = useTranslations('index')
     dayjs.tz.setDefault('Asia/Tokyo')
 
     const today = dayjs()

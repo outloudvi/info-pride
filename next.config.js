@@ -21,6 +21,10 @@ const nextConfig = {
     images: {
         domains: ['idoly-assets-curator.vercel.app', 'idoly-assets.outv.im'],
     },
+    i18n: {
+        locales: ['zh-Hans', 'en'],
+        defaultLocale: 'zh-Hans',
+    },
 }
 
 const sentryWebpackPluginOptions = {

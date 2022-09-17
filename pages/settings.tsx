@@ -1,18 +1,14 @@
-import { useContext, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { showNotification } from '@mantine/notifications'
 import { Button, Checkbox, Grid, Select } from '@mantine/core'
 import rfdc from 'rfdc'
-import { useLocale } from 'next-intl'
-
-import localeList from 'locales/locales'
 
 import type { Card } from '#data/wikiPages/cards'
 import { CharacterChineseNameList, CharacterId } from '#data/vendor/characterId'
 import { LOCALSTORAGE_BOX_TAG } from '#utils/startupHook'
 import Title from '#components/Title'
 import useFrontendApi from '#utils/useFrontendApi'
-import LanguageContext from '#components/LanguageContext'
-import { addI18nMessages } from '#utils/getI18nProps'
+import getI18nProps, { addI18nMessages } from '#utils/getI18nProps'
 
 const clone = rfdc({
     proto: true,
@@ -27,9 +23,6 @@ const SettingsPage = ({
 }) => {
     const [localBox, setLocalBox] = useState<LocalBox>({})
     const { data: Cards } = useFrontendApi('cards')
-
-    const lang = useLocale()
-    const setLang = useContext(LanguageContext)
 
     useEffect(() => {
         try {
@@ -70,18 +63,6 @@ const SettingsPage = ({
     return (
         <>
             <Title title="设置" />
-            <h3>语言 / Language</h3>
-            <div>
-                <Select
-                    className="max-w-fit"
-                    value={lang}
-                    data={localeList.map(({ name, slug }) => ({
-                        value: slug,
-                        label: name,
-                    }))}
-                    onChange={setLang}
-                />
-            </div>
             <h3>我的 box</h3>
             <p>在此设置 box 后，搜索时将会显示卡片的持有状态。</p>
             {Cards ? (
@@ -133,11 +114,6 @@ const SettingsPage = ({
     )
 }
 
-export const getStaticProps = async () => ({
-    props: {
-        localeList,
-        ...(await addI18nMessages()),
-    },
-})
+export const getStaticProps = getI18nProps()
 
 export default SettingsPage
