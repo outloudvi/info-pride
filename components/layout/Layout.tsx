@@ -20,7 +20,6 @@ const Layout = ({ children }: { children: ReactNode }) => {
                 setExpandedNavbar(false)
             }
         }
-        console.log('setting up route')
         router.events.on('routeChangeComplete', maybeCollapseNavbar)
         return () => {
             router.events.off('routeChangeComplete', maybeCollapseNavbar)
