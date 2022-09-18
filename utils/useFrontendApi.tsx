@@ -9,7 +9,7 @@ import type {
     Card as WikiCard,
     TheRootSchema as WikiCards,
 } from '#data/wikiPages/cards'
-import type { Stories } from '#data/types'
+import type { ChapterItem, Stories } from '#data/types'
 import type { SkillLaunchItem } from '#components/notemap/types'
 import type { BirthdayCommuList } from '#data/birthday.data'
 import type { Contributor } from '#components/api/contributors/types'
@@ -28,6 +28,7 @@ export type FrontendAPIResponseMapping = {
               stories: Stories | null
           }
         | undefined
+    eventStories: ChapterItem | null
     contributors: Contributor[]
     diary: DiaryItem | undefined
     news: { title: string; link?: string }[]
@@ -45,7 +46,8 @@ export type FrontendAPIResponseMapping = {
 
 function useFrontendApi<T extends keyof FrontendAPIResponseMapping>(
     key: T,
-    params?: Record<string, string | string[]>
+    params?: Record<string, string | string[]>,
+    enabled?: boolean
 ) {
     const [urlsp, withParams] = useMemo(() => {
         const _urlsp = new URLSearchParams()
@@ -72,6 +74,7 @@ function useFrontendApi<T extends keyof FrontendAPIResponseMapping>(
             console.error(error)
             Sentry.captureException(error)
         },
+        enabled,
     })
 
     return rq

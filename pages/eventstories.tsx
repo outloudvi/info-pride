@@ -9,8 +9,9 @@ import PageLoading from '#components/PageLoading'
 import { APIResponseOf } from '#utils/api'
 import ListButton from '#components/ListButton'
 import EventStoryView from '#components/eventstories/EventStoryView'
-import { EventGroupData } from '#data/eventStories.data'
-import getI18nProps from '#utils/getI18nProps'
+import { addI18nMessages } from '#utils/getI18nProps'
+import eventStoriesData from '#data/videos/eventStories.data'
+import type { EventGroupData } from '#data/videos/eventStories.data/types'
 
 function guessDate(id: string): string | null {
     const yymm = id.split('-')?.[2]
@@ -22,8 +23,10 @@ type IdentityFunction<V> = (v: V) => v is NonNullable<V>
 
 const EventStoriesPage = ({
     EventStoriesData,
+    eventGroup,
 }: {
     EventStoriesData: APIResponseOf<'EventStory/List'>
+    eventGroup: EventGroupData
 }) => {
     const $ev = useTranslations('events')
     const $t = useTranslations('eventstories')
@@ -41,7 +44,7 @@ const EventStoriesPage = ({
                             (item, key) => {
                                 const props = [
                                     guessDate(item.id),
-                                    EventGroupData[item.id],
+                                    eventGroup[item.id],
                                 ]
                                     .filter(
                                         Boolean as unknown as IdentityFunction<
@@ -73,12 +76,17 @@ const EventStoriesPage = ({
     )
 }
 
-const SkeletonEventStoriesPage = () => {
+const SkeletonEventStoriesPage = ({
+    eventGroup,
+}: {
+    eventGroup: EventGroupData
+}) => {
     const { data: EventStoriesData } = useApi('EventStory/List')
     const $t = useTranslations('eventstories')
 
     const allData = {
         EventStoriesData,
+        eventGroup,
     }
 
     return (
@@ -93,6 +101,13 @@ const SkeletonEventStoriesPage = () => {
     )
 }
 
-export const getStaticProps = getI18nProps(['events', 'eventstories'])
+export const getStaticProps = async ({ locale }: { locale: string }) => {
+    return {
+        props: {
+            eventGroup: eventStoriesData[locale]?.eventGroup,
+            ...(await addI18nMessages(locale, ['events', 'eventstories'])),
+        },
+    }
+}
 
 export default SkeletonEventStoriesPage

@@ -1,4 +1,4 @@
-import { ChapterItem } from './types'
+import { ChapterItem } from '#data/types'
 
 const data: Record<string, ChapterItem> = {
     // 雨上がりの太陽と共に
@@ -287,7 +287,7 @@ const data: Record<string, ChapterItem> = {
     },
 }
 
-export const EventGroupData: Record<string, string> = {
+export const eventGroup: Record<string, string> = {
     'st-eve-2107-tour': '遥子',
     'st-eve-2108-tour': '芽衣',
     'st-eve-2109-backside': 'LizNoir',
@@ -304,4 +304,9 @@ export const EventGroupData: Record<string, string> = {
     'st-eve-2208-backside': 'LizNoir',
 }
 
-export default data
+const _ = {
+    data,
+    eventGroup,
+}
+
+export default _

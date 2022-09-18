@@ -1,23 +1,31 @@
 import { Blockquote, Button, Group, Skeleton } from '@mantine/core'
 import { useEffect, useState } from 'react'
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 
 import { APIResponseOf } from '#utils/api'
 import useApi from '#utils/useApi'
-import EventStoriesData from '#data/eventStories.data'
 import { toVideoLink } from '#components/ExternalVideo'
 import AssetImage from '#components/AssetImage'
+import useFrontendApi from '#utils/useFrontendApi'
 
 const EventEpisodeDetail = ({ story }: { story: APIResponseOf<'Story'> }) => {
     const $c = useTranslations('common')
     const { id, name: jaName, description } = story
-    const zhData = EventStoriesData[id]
+    const locale = useLocale()
+    const { data: VideoInfoData, isSuccess } = useFrontendApi(
+        'eventStories',
+        {
+            id,
+            locale,
+        },
+        !!locale
+    )
 
     return (
         <>
-            {zhData ? (
+            {isSuccess && VideoInfoData ? (
                 <h3 lang="zh">
-                    {zhData.name} /{' '}
+                    {VideoInfoData.name} /{' '}
                     <small lang="ja" className="">
                         {jaName}
                     </small>
@@ -26,23 +34,27 @@ const EventEpisodeDetail = ({ story }: { story: APIResponseOf<'Story'> }) => {
                 <h3 lang="ja">{jaName}</h3>
             )}
             <Blockquote>{description}</Blockquote>
-            {zhData ? (
-                <div>
-                    <a
-                        href={toVideoLink(zhData.video)}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        {$c('Video')}
-                    </a>
-                </div>
+            {isSuccess ? (
+                VideoInfoData ? (
+                    <div>
+                        <a
+                            href={toVideoLink(VideoInfoData.video)}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            {$c('Video')}
+                        </a>
+                    </div>
+                ) : (
+                    <div className="mt-4 text-gray-500">
+                        {$c('no_trans', {
+                            field: `data[{id}]`,
+                            file: 'data/eventStories.data.ts',
+                        })}
+                    </div>
+                )
             ) : (
-                <div className="mt-4 text-gray-500">
-                    {$c('no_trans', {
-                        field: `data[{id}]`,
-                        file: 'data/eventStories.data.ts',
-                    })}
-                </div>
+                <Skeleton height={120} />
             )}
         </>
     )
