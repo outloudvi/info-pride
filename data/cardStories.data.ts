@@ -280,6 +280,21 @@ const dataSuzu: D = {
         },
         phone: { video: { type: 'bilibili', vid: 'av553072510' } },
     },
+    'card-suz-05-seik-00': {
+        // 乙女のメソッド
+        1: {
+            name: '终于女演员出道！',
+            video: { type: 'bilibili', vid: 'av558062949' },
+        },
+        2: {
+            name: '史上最棒的少女 A',
+            video: { type: 'bilibili', vid: 'av218140669' },
+        },
+        3: {
+            name: '大女演员传说的开始',
+            video: { type: 'bilibili', vid: 'av900799515' },
+        },
+    },
 }
 
 // 早坂芽衣
