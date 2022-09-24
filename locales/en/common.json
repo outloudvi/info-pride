@@ -14,6 +14,8 @@
         "About": "About"
     },
     "footer": {
+        "Source code": "Source code",
+        "copy": "Game data © QualiArts and associates",
         "bwiki": {
             "prefix": "Contents from ",
             "bwikilinktitle": "biliwiki",

@@ -27,7 +27,7 @@ const Footer = () => {
             {$t('bwiki.suffix')}
 
             <br />
-            {$t('Game data © QualiArts and associates')}
+            {$t('copy')}
         </footer>
     )
 }
