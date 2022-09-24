@@ -13,13 +13,21 @@ export const Series = [
 export type SeriesName = typeof Series[number]
 
 export const Episodes: Record<SeriesName, number[]> = {
+    // adv_main_01_
     Hoshimi: [28, 45, 25, 24],
+    // adv_main_02_
     Tokyo: [25, 44],
-    Big4: [5],
+    // adv_main_03_
+    Big4: [10],
+    // adv_group_tri_
     TRINITYAiLE: [30],
+    // adv_group_liz_
     LizNoir: [30],
+    // adv_group_mna_
     Mana: [15],
+    // adv_group_thrx_
     ThreeX: [20],
-    Tsuki: [5],
+    // adv_group_moon_
+    Tsuki: [10],
     Special: [3],
 }
