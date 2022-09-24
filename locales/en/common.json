@@ -25,5 +25,6 @@
     },
     "Video": "Video",
     "Loading...": "Loading...",
-    "no_trans": "Translationed subbed video is not found. Please add them to {field} at {file}."
+    "no_trans": "Translationed subbed video is not found. Please add them to {field} at {file}.",
+    "load_progress": "Loading data... [{cur}/{total}]"
 }

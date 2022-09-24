@@ -1,16 +1,20 @@
 import { Progress } from '@mantine/core'
+import { useTranslations } from 'next-intl'
 
 const PageLoading = ({
     data,
 }: {
     data: Record<string, unknown | undefined>
 }) => {
+    const $t = useTranslations('common')
     return (
         <>
             <div>
-                正在加载数据：完成{' '}
-                {Object.values(data).filter((x) => x !== undefined).length}/
-                {Object.keys(data).length}
+                {$t('load_progress', {
+                    cur: Object.values(data).filter((x) => x !== undefined)
+                        .length,
+                    total: Object.keys(data).length,
+                })}
             </div>
             <Progress
                 value={
