@@ -2,11 +2,11 @@ import { Button, Group, Stack } from '@mantine/core'
 import { useEffect, useRef } from 'react'
 import { MusicChart } from 'hoshimi-types/types'
 import _range from 'lodash/range'
+import { useTranslations } from 'next-intl'
 
 import renderNotemap from './renderNotemap'
 import type { ImageChart, SkillChart } from './types'
 import { notemapColumnId, unitColumnId } from './const'
-import { useTranslations } from 'next-intl'
 
 const NotemapGraph = ({
     chart,

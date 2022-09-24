@@ -20,7 +20,6 @@ import {
     skillEffectTypeNames,
     triggerEffectTypeNames,
 } from '#data/vendor/searchSkillTypes'
-import { CharacterChineseNameList } from '#data/vendor/characterId'
 import { EffectTypeName } from '#utils/typeSlug'
 
 // jq '[.[].levels[].skillDetails[].triggerId, .[].levels[].triggerId] | unique | sort' Skill.json
@@ -66,9 +65,8 @@ function triggerToString(s: string): string | null {
         }
         // tg-more_than_character_count-mei-1
         case 'more_than_character_count': {
-            return `${
-                CharacterChineseNameList['char-' + parts[2]]
-            }在编组中达到${parts[3]}人时`
+            // TODO: translate
+            return `char-${parts[2]}在编组中达到${parts[3]}人时`
         }
         // tg-position_attribute_dance
         case 'position_attribute_dance': {

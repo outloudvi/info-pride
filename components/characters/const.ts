@@ -1,12 +1,5 @@
 import Paths from '#utils/paths'
 
-export const OrgName: Record<string, string> = {
-    character_group_1: '月光风暴',
-    character_group_2: 'SUNNY PEACE',
-    character_group_3: 'TRINITYAiLE',
-    character_group_4: 'LizNoir',
-}
-
 export const HometownIntroductionPageUrl: Record<string, string> = {
     '私立 星見高校': Paths.ipcommu('o-009'),
     '公立 光ヶ崎高校': Paths.ipcommu('o-010'),

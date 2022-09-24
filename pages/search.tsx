@@ -7,6 +7,7 @@ import { EffectWithTarget as SXEffectWithTarget } from 'hoshimi-types/Skillx'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import uniq from 'lodash/uniq'
+import { useTranslations } from 'next-intl'
 
 import { LocalBox } from './settings'
 
@@ -17,11 +18,7 @@ import allFinished from '#utils/allFinished'
 import PageLoading from '#components/PageLoading'
 import { APIResponseOf } from '#utils/api'
 import FilterSelect from '#components/search/FilterSelect'
-import {
-    CharacterChineseNameList,
-    CharacterId,
-    CharacterIds,
-} from '#data/vendor/characterId'
+import { CharacterId, CharacterIds } from '#data/vendor/characterId'
 import {
     skillEffectTypeNames,
     skillTargetTypeNames,
@@ -41,6 +38,8 @@ const SearchPage = ({
     SkillAllData: APIResponseOf<'Skill/All'>
     SkillxData: APIResponseOf<'Skill/X'>
 }) => {
+    const $vc = useTranslations('v-chr')
+
     const [localBox, setLocalBox] = useState<LocalBox>({})
     useEffect(() => {
         setLocalBox(
@@ -252,7 +251,7 @@ const SearchPage = ({
                         label="角色"
                         multiple
                         list={CharacterIds}
-                        listNamemap={CharacterChineseNameList}
+                        displayAs={$vc}
                         width={300}
                         formProps={getInputProps('selectedCharacters')}
                     />
@@ -382,6 +381,6 @@ const SkeletonSearchPage = () => {
     )
 }
 
-export const getStaticProps = getI18nProps(['vendor'])
+export const getStaticProps = getI18nProps(['vendor', 'v-chr'])
 
 export default SkeletonSearchPage

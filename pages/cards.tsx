@@ -11,11 +11,7 @@ import { APIResponseOf, UnArray } from '#utils/api'
 import PageLoading from '#components/PageLoading'
 import Title from '#components/Title'
 import CardCard from '#components/cards/CardCard'
-import {
-    CharacterChineseNameList,
-    CharacterId,
-    CharacterIds,
-} from '#data/vendor/characterId'
+import { CharacterId, CharacterIds } from '#data/vendor/characterId'
 import getCardColor from '#utils/getCardColor'
 import FilterSelect from '#components/search/FilterSelect'
 import type { Card as WikiCard } from '#data/wikiPages/cards'
@@ -47,6 +43,8 @@ const CardsPage = ({
     CardNameData: CardNameDataType
 }) => {
     const $v = useTranslations('vendor')
+    const $vc = useTranslations('v-chr')
+
     const {
         values: formValues,
         errors: formErrors,
@@ -121,7 +119,7 @@ const CardsPage = ({
                         label="角色"
                         multiple
                         list={CharacterIds}
-                        listNamemap={CharacterChineseNameList}
+                        displayAs={$vc}
                         width={300}
                         formProps={getInputProps('selectedCharacters')}
                     />
@@ -230,6 +228,6 @@ const SkeletonCardsPage = () => {
     )
 }
 
-export const getStaticProps = getI18nProps(['vendor'])
+export const getStaticProps = getI18nProps(['vendor', 'v-chr'])
 
 export default SkeletonCardsPage

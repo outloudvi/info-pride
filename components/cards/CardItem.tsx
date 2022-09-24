@@ -26,7 +26,7 @@ import useApi from '#utils/useApi'
 import Paths from '#utils/paths'
 import getCardColor from '#utils/getCardColor'
 import { APIResponseOf, UnArray } from '#utils/api'
-import { CharacterChineseNameList, CharacterId } from '#data/vendor/characterId'
+import { CharacterId } from '#data/vendor/characterId'
 import useFrontendApi from '#utils/useFrontendApi'
 import CCIDTable from '#data/ccid'
 
@@ -52,6 +52,7 @@ const CardItem = ({
     } = card
 
     const $v = useTranslations('vendor')
+    const $vc = useTranslations('v-chr')
 
     const maxRarity = Math.max(...rarityData.map((x) => x.rarity))
     const [rarity, setRarity] = useState(maxRarity)
@@ -235,11 +236,9 @@ const CardItem = ({
                             variant="outline"
                             component="a"
                             href={Paths.wiki(
-                                `${
-                                    CharacterChineseNameList[
-                                        card.characterId as CharacterId
-                                    ]
-                                }/卡牌/${cardCcidInfo.ccid}`
+                                `${$vc(card.characterId)}/卡牌/${
+                                    cardCcidInfo.ccid
+                                }`
                             )}
                             target="_blank"
                             rel="noopener"

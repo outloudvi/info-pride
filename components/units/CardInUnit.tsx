@@ -8,7 +8,6 @@ import { CardTiny } from './types'
 
 import type { Card as WikiCard } from '#data/wikiPages/cards'
 import useApi from '#utils/useApi'
-import { CharacterChineseNameList, CharacterId } from '#data/vendor/characterId'
 import AssetImage from '#components/AssetImage'
 import useFrontendApi from '#utils/useFrontendApi'
 import { unitColumnId } from '#components/notemap/const'
@@ -23,6 +22,8 @@ const CardInUnit = ({
     useCnTrans: boolean
 }) => {
     const $v = useTranslations('vendor')
+    const $vc = useTranslations('v-chr')
+
     const { data: SkillData } = useApi(`Skill`, {
         ids: `${card.skillId1},${card.skillId2},${card.skillId3}`,
     })
@@ -58,7 +59,7 @@ const CardInUnit = ({
                 </Link>
             </div>
             <div style={{ gridRow: 5, gridColumn: col }}>
-                {CharacterChineseNameList[card.characterId as CharacterId]}
+                {$vc(card.characterId)}
             </div>
             <div className="mt-2 mb-3" style={{ gridRow: 6, gridColumn: col }}>
                 {$v(CardType[card.type])}

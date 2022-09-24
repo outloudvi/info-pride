@@ -1,22 +1,23 @@
 import { Button, Grid, Group, NativeSelect, Skeleton } from '@mantine/core'
 import { useEffect, useState } from 'react'
+import { useTranslations } from 'next-intl'
 
 import useFrontendApi from '#utils/useFrontendApi'
-import Paths from '#utils/paths'
 import { toVideoLink } from '#components/ExternalVideo'
 import type { BirthdayStoryData } from '#data/birthday.data'
 
-const CommuTypes: Record<keyof BirthdayStoryData, string> = {
-    opening: '开场剧情',
-    phone: '电话剧情',
-    others: '全员祝福',
-}
-
 const BirthdayCommu = ({ charaId }: { charaId: string }) => {
+    const $t = useTranslations('characters')
     const { data, isSuccess } = useFrontendApi('birthdayCommu', {
         charaId,
     })
     const [selectedYear, setSelectedYear] = useState('')
+
+    const CommuTypes: Record<keyof BirthdayStoryData, string> = {
+        opening: $t('bday-opening'),
+        phone: $t('bday-phone'),
+        others: $t('bday-others'),
+    }
 
     const yearList = Object.keys(data ?? {})
 
@@ -35,11 +36,9 @@ const BirthdayCommu = ({ charaId }: { charaId: string }) => {
     if (yearList.length === 0) {
         return (
             <div>
-                暂无生日剧情翻译信息。请添加到翻译信息到{' '}
-                <a href={Paths.repo('data/birthday.data.ts')}>
-                    data/birthday.data.ts
-                </a>{' '}
-                的 BirthdayCommu[{charaId}] 。
+                {$t('no-bday-traslation', {
+                    charaId,
+                })}
             </div>
         )
     }
@@ -56,7 +55,7 @@ const BirthdayCommu = ({ charaId }: { charaId: string }) => {
                         onChange={(event) =>
                             setSelectedYear(event.currentTarget.value)
                         }
-                        label="选择年份"
+                        label={$t('Year')}
                     />
                 </span>
             </Grid.Col>

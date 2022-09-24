@@ -2,9 +2,10 @@ import { useEffect, useState } from 'react'
 import { showNotification } from '@mantine/notifications'
 import { Button, Checkbox, Grid } from '@mantine/core'
 import rfdc from 'rfdc'
+import { useTranslations } from 'next-intl'
 
 import type { Card } from '#data/wikiPages/cards'
-import { CharacterChineseNameList, CharacterId } from '#data/vendor/characterId'
+import { CharacterId } from '#data/vendor/characterId'
 import { LOCALSTORAGE_BOX_TAG } from '#utils/startupHook'
 import Title from '#components/Title'
 import useFrontendApi from '#utils/useFrontendApi'
@@ -17,6 +18,8 @@ const clone = rfdc({
 export type LocalBox = Partial<Record<CharacterId, boolean[]>>
 
 const SettingsPage = () => {
+    const $vc = useTranslations('v-chr')
+
     const [localBox, setLocalBox] = useState<LocalBox>({})
     const { data: Cards } = useFrontendApi('cards')
 
@@ -65,9 +68,7 @@ const SettingsPage = () => {
                 <Grid gutter={20}>
                     {Object.entries(Cards).map(([name], _key) => (
                         <Grid.Col key={_key} xs={12} lg={3} className="rounded">
-                            <b>
-                                {CharacterChineseNameList[name as CharacterId]}
-                            </b>
+                            <b>{$vc(name)}</b>
                             <div>
                                 {Object.values(
                                     Cards[name as keyof typeof Cards]
@@ -110,6 +111,6 @@ const SettingsPage = () => {
     )
 }
 
-export const getStaticProps = getI18nProps()
+export const getStaticProps = getI18nProps(['v-chr'])
 
 export default SettingsPage

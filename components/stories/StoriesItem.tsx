@@ -40,7 +40,6 @@ export const SpecialStoriesItem = (props: {
     season: number
     chapter: number
 }) => {
-    const $t = useTranslations('stories')
     const $c = useTranslations('common')
     const { series, season, chapter } = props
     const data = StoriesData?.[series]?.[season]?.[chapter]

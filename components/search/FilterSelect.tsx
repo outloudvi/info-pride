@@ -8,6 +8,7 @@ const FilterSelect = <T extends string>({
     width,
     multiple,
     className,
+    displayAs,
     listNamemap,
     formProps,
 }: {
@@ -16,12 +17,13 @@ const FilterSelect = <T extends string>({
     width: number
     multiple?: boolean
     className?: string
+    displayAs?: (s: string) => string
     listNamemap?: Record<string, string>
     formProps: Omit<SelectProps, 'data'> & Omit<MultiSelectProps, 'data'>
 }) => {
     const data = listNamemap
         ? list.map((x) => ({
-              label: listNamemap[x] ?? x,
+              label: (displayAs ? displayAs(x) : listNamemap[x]) ?? x,
               value: x,
           }))
         : [...list]

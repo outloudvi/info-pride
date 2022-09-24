@@ -279,6 +279,6 @@ const SkeletonUnitsPage = () => {
     )
 }
 
-export const getStaticProps = getI18nProps()
+export const getStaticProps = getI18nProps(['v-chr'])
 
 export default SkeletonUnitsPage

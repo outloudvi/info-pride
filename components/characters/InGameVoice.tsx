@@ -1,18 +1,20 @@
 import { Grid, NativeSelect } from '@mantine/core'
 import { useState } from 'react'
+import { useTranslations } from 'next-intl'
 
 import AssetAudio from '#components/AssetAudio'
 
-const VoiceSlugs: [string, string][] = [
-    ['QualiArts', 'sud_vo_cmn_%s_corp-01'],
-    ['标题', 'sud_vo_other_%s_title-01'],
-    ['标题后半', 'sud_vo_other_%s_title-shout-01'],
-    ['礼物', 'sud_vo_cmn_%s_transit-gift-top'],
-    ['商店', 'sud_vo_cmn_%s_transit-shop-top'],
-]
-
 const InGameVoice = ({ charaId }: { charaId: string }) => {
+    const $t = useTranslations('characters')
     const charaShortId = charaId.replace(/^char-/, '')
+
+    const VoiceSlugs: [string, string][] = [
+        [$t('QualiArts'), 'sud_vo_cmn_%s_corp-01'],
+        [$t('Title'), 'sud_vo_other_%s_title-01'],
+        [$t('After title'), 'sud_vo_other_%s_title-shout-01'],
+        [$t('Gifts'), 'sud_vo_cmn_%s_transit-gift-top'],
+        [$t('Store'), 'sud_vo_cmn_%s_transit-shop-top'],
+    ]
     const [selectedVoice, setSelectedVoice] = useState(VoiceSlugs[0][0])
 
     const [, voiceSlugSuffix] =
@@ -32,7 +34,7 @@ const InGameVoice = ({ charaId }: { charaId: string }) => {
                         onChange={(event) =>
                             setSelectedVoice(event.currentTarget.value)
                         }
-                        label="选择音频"
+                        label={$t('Audio type')}
                     />
                 </span>
             </Grid.Col>

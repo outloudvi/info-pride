@@ -2,8 +2,9 @@ import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Group } from '@mantine/core'
 import { ReactNode } from 'react'
+import { useTranslations } from 'next-intl'
 
-import { CharacterChineseNameList, CharacterId } from '#data/vendor/characterId'
+import { CharacterId } from '#data/vendor/characterId'
 import AssetImage from '#components/AssetImage'
 
 const MessageItem = ({
@@ -15,6 +16,8 @@ const MessageItem = ({
     characterId: CharacterId | string
     user: 'self' | 'others'
 }) => {
+    const $vc = useTranslations('v-chr')
+
     const isSelf = user === 'self'
     const userIcon =
         user === 'others' ? (
@@ -35,9 +38,7 @@ const MessageItem = ({
         >
             {userIcon}
             <div>
-                <div className="text-white mb-1">
-                    {CharacterChineseNameList[characterId as CharacterId]}
-                </div>
+                <div className="text-white mb-1">{$vc(characterId)}</div>
                 <div
                     className={`text-black p-2 rounded-2xl ${
                         isSelf

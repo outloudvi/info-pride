@@ -1,10 +1,9 @@
 import { useState } from 'react'
 import { Button, Modal, Select } from '@mantine/core'
+import { useTranslations } from 'next-intl'
 
 import { CardTiny } from './types'
 import CardInUnit from './CardInUnit'
-
-import { CharacterChineseNameList, CharacterId } from '#data/vendor/characterId'
 
 const UnitPosition = ({
     position,
@@ -21,6 +20,8 @@ const UnitPosition = ({
     col: number
     useCnTrans: boolean
 }) => {
+    const $vc = useTranslations('v-chr')
+
     const [modalOpened, setModalOpened] = useState(false)
 
     return (
@@ -33,11 +34,7 @@ const UnitPosition = ({
                 <Select
                     label="选择一张卡片"
                     data={cardList.map((x) => ({
-                        label: `${x.name} / ${
-                            CharacterChineseNameList[
-                                x.characterId as CharacterId
-                            ]
-                        }`,
+                        label: `${x.name} / ${$vc(x.characterId)}`,
                         value: x.id,
                     }))}
                     searchable

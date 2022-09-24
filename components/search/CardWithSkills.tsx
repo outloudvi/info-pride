@@ -11,7 +11,7 @@ import SkillDesc from './SkillDesc'
 import CCIDTable from '#data/ccid'
 import { APIResponseOf } from '#utils/api'
 import getCardColor from '#utils/getCardColor'
-import { CharacterChineseNameList, CharacterId } from '#data/vendor/characterId'
+import { CharacterId } from '#data/vendor/characterId'
 import Paths from '#utils/paths'
 
 dayjs.extend(dayjsUtc)
@@ -27,6 +27,7 @@ const CardWithSkills = ({
     skillData: Skill[]
 }) => {
     const $v = useTranslations('vendor')
+    const $vc = useTranslations('v-chr')
 
     const { name, characterId, type, initialRarity, releaseDate } = card
     const cardColor = getCardColor(card)
@@ -47,11 +48,7 @@ const CardWithSkills = ({
                     <a
                         className="lg:float-right"
                         href={Paths.wiki(
-                            `${
-                                CharacterChineseNameList[
-                                    characterId as CharacterId
-                                ]
-                            }/卡牌/${cardCcid.ccid}`
+                            `${$vc(characterId)}/卡牌/${cardCcid.ccid}`
                         )}
                     >
                         Wiki 页面
@@ -60,9 +57,8 @@ const CardWithSkills = ({
             )}
             <br />
             <span>
-                {CharacterChineseNameList[characterId as CharacterId]} /{' '}
-                {$v(CardType[type])} / {$v(cardColor)} / {initialRarity}★ /
-                发布于 {releaseDateFmt}
+                {$vc(characterId)} / {$v(CardType[type])} / {$v(cardColor)} /{' '}
+                {initialRarity}★ / 发布于 {releaseDateFmt}
             </span>
 
             <Grid className="mt-1">

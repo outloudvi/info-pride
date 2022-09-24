@@ -1,10 +1,10 @@
 import { Button, Divider, Grid, MediaQuery, ScrollArea } from '@mantine/core'
 import { useState } from 'react'
+import { useTranslations } from 'next-intl'
 
 import useApi from '#utils/useApi'
 import { APIResponseOf } from '#utils/api'
 import ListButton from '#components/ListButton'
-import { CharacterChineseNameList, CharacterId } from '#data/vendor/characterId'
 import allFinished from '#utils/allFinished'
 import PageLoading from '#components/PageLoading'
 import Title from '#components/Title'
@@ -18,10 +18,12 @@ const CharactersPage = ({
 }: {
     CharacterListData: APIResponseOf<'Character/List'>
 }) => {
-    const NonNpcCharacterListData = CharacterListData.filter(
-        (item) => CharacterChineseNameList[item.id as CharacterId]
-    )
+    const $t = useTranslations('characters')
+    const $vc = useTranslations('v-chr')
     const [chrOrderId, setChrOrderId] = useState(0)
+    const supportedCharacters = CharacterListData.filter(
+        (x) => $vc(x.id) !== x.id
+    )
 
     return (
         <>
@@ -34,35 +36,33 @@ const CharactersPage = ({
                         }}
                     >
                         <ScrollArea style={{ height: 'min(1200px, 70vh)' }}>
-                            {NonNpcCharacterListData.sort(
-                                (a, b) => a.order - b.order
-                            ).map((item, key) => (
-                                <ListButton
-                                    key={key}
-                                    selected={chrOrderId === key}
-                                    onClick={() => {
-                                        setChrOrderId(key)
-                                    }}
-                                >
-                                    <div className="text-base">
-                                        <span lang="zh-CN">
-                                            <SquareColor color={item.color} />{' '}
-                                            {
-                                                CharacterChineseNameList[
-                                                    item.id as CharacterId
-                                                ]
-                                            }
-                                        </span>
-                                    </div>
-                                </ListButton>
-                            ))}
+                            {supportedCharacters
+                                .sort((a, b) => a.order - b.order)
+                                .map((item, key) => (
+                                    <ListButton
+                                        key={key}
+                                        selected={chrOrderId === key}
+                                        onClick={() => {
+                                            setChrOrderId(key)
+                                        }}
+                                    >
+                                        <div className="text-base">
+                                            <span lang="zh-CN">
+                                                <SquareColor
+                                                    color={item.color}
+                                                />{' '}
+                                                {$vc(item.id)}
+                                            </span>
+                                        </div>
+                                    </ListButton>
+                                ))}
                         </ScrollArea>
                     </MediaQuery>
                 </Grid.Col>
                 <Grid.Col xs={12} lg={8}>
-                    {NonNpcCharacterListData?.[chrOrderId] && (
+                    {supportedCharacters[chrOrderId] && (
                         <CharacterItem
-                            character={NonNpcCharacterListData[chrOrderId]}
+                            character={supportedCharacters[chrOrderId]}
                         />
                     )}
                 </Grid.Col>
@@ -70,7 +70,7 @@ const CharactersPage = ({
             <Divider my="sm" />
             {Object.entries(ExtraLinks).map(([title, link], key) => (
                 <a key={key} href={link} className="mr-3">
-                    <Button>{title}</Button>
+                    <Button>{$t(title)}</Button>
                 </a>
             ))}
         </>
@@ -78,6 +78,7 @@ const CharactersPage = ({
 }
 
 const SkeletonCharactersPage = () => {
+    const $t = useTranslations('character')
     const { data: CharacterListData } = useApi('Character/List')
 
     const allData = {
@@ -86,7 +87,7 @@ const SkeletonCharactersPage = () => {
 
     return (
         <>
-            <Title title="角色" />
+            <Title title={$t('Characters')} />
             {allFinished(allData) ? (
                 <CharactersPage {...allData} />
             ) : (
@@ -96,6 +97,6 @@ const SkeletonCharactersPage = () => {
     )
 }
 
-export const getStaticProps = getI18nProps(['characters'])
+export const getStaticProps = getI18nProps(['characters', 'v-chr', 'v-group'])
 
 export default SkeletonCharactersPage

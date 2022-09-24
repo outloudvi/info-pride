@@ -8,7 +8,6 @@ import { getAssetSlug } from './CardAsset'
 import getCardColor from '#utils/getCardColor'
 import { APIResponseOf, UnArray } from '#utils/api'
 import AssetImage from '#components/AssetImage'
-import { CharacterChineseNameList, CharacterId } from '#data/vendor/characterId'
 
 const CardCard = ({
     card,
@@ -18,6 +17,7 @@ const CardCard = ({
     nameCn?: string
 }) => {
     const $v = useTranslations('vendor')
+    const $vc = useTranslations('v-chr')
     const { id, name, characterId, assetId, type, initialRarity } = card
 
     const assetImage =
@@ -65,9 +65,8 @@ const CardCard = ({
                     </div>
 
                     <p>
-                        {CharacterChineseNameList[characterId as CharacterId]} /{' '}
-                        {$v(CardType[type])} / {$v(getCardColor(card))} / 初始{' '}
-                        {initialRarity}★
+                        {$vc(characterId)} / {$v(CardType[type])} /{' '}
+                        {$v(getCardColor(card))} / 初始 {initialRarity}★
                     </p>
                 </Card>
             </a>

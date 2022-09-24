@@ -1,8 +1,10 @@
+import { useTranslations } from 'next-intl'
+
 import styles from '../styles/colors.module.css'
 
 import { toHashColor } from '#utils/toHashColor'
 import PageLoading from '#components/PageLoading'
-import { CharacterChineseNameList, CharacterId } from '#data/vendor/characterId'
+import { CharacterId } from '#data/vendor/characterId'
 import allFinished from '#utils/allFinished'
 import { APIResponseOf } from '#utils/api'
 import useApi from '#utils/useApi'
@@ -45,6 +47,7 @@ const ColorsPage = ({
 }: {
     CharacterList: APIResponseOf<'Character/List'>
 }) => {
+    const $vc = useTranslations('v-chr')
     return (
         <>
             <p>
@@ -60,7 +63,7 @@ const ColorsPage = ({
                         {row.map((one, _j) => (
                             <ColorBlock
                                 key={_j}
-                                name={CharacterChineseNameList[one]}
+                                name={$vc(one)}
                                 color={toHashColor(
                                     CharacterList.find((x) => x.id === one)
                                         ?.color ?? 'transparent'
@@ -93,6 +96,6 @@ const SkeletonColorsPage = () => {
     )
 }
 
-export const getStaticProps = getI18nProps(['vendor'])
+export const getStaticProps = getI18nProps(['vendor', 'v-chr'])
 
 export default SkeletonColorsPage

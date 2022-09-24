@@ -7,20 +7,16 @@ import {
     Skeleton,
     Table,
 } from '@mantine/core'
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 
-import { HometownIntroductionPageUrl, OrgName } from './const'
+import { HometownIntroductionPageUrl } from './const'
 import SquareColor from './SquareColor'
 import CharacterAnimation from './CharacterAnimation'
 import InGameVoice from './InGameVoice'
 
 import useApi from '#utils/useApi'
 import { APIResponseOf, UnArray } from '#utils/api'
-import {
-    CharacterChineseNameList,
-    CharacterId,
-    PrimaryCharacterIds,
-} from '#data/vendor/characterId'
+import { CharacterId, PrimaryCharacterIds } from '#data/vendor/characterId'
 import Paths from '#utils/paths'
 import { IdolyFashionUrl, IdolyRoomUrl } from '#data/ipcmmu.data'
 import { Idols } from '#data/wikiPages'
@@ -36,6 +32,9 @@ const CharacterItem = ({
     character: UnArray<APIResponseOf<'Character/List'>>
 }) => {
     const $t = useTranslations('characters')
+    const $vc = useTranslations('v-chr')
+    const $vg = useTranslations('v-group')
+    const locale = useLocale()
 
     const { id, characterGroupId, name, enName, color } = character
 
@@ -62,17 +61,15 @@ const CharacterItem = ({
     } = CharacterData[0] ?? {}
 
     const tableItem = [
-        ...(OrgName[characterGroupId]
-            ? [['所属团体', OrgName[characterGroupId]]]
-            : []),
-        ['年龄', age.replace('歳', '岁')],
-        ['CV', $t(cv)],
-        ['生日', birthday],
-        ['身高', height],
-        ['体重', weight],
-        ['星座', $t(zodiacSign)],
+        [$t('Group'), $vg(characterGroupId)],
+        [$t('Age'), $t('age', { age: age.replace('歳', '') })],
+        [$t('CV'), $t(cv)],
+        [$t('Birthday'), birthday],
+        [$t('Height'), height],
+        [$t('Weight'), weight],
+        [$t('Zodiac sign'), $t(zodiacSign)],
         [
-            '学校',
+            $t('School'),
             HometownIntroductionPageUrl[hometown] ? (
                 <a href={HometownIntroductionPageUrl[hometown]}>
                     {$t(hometown)}
@@ -81,10 +78,10 @@ const CharacterItem = ({
                 $t(hometown)
             ),
         ],
-        ['喜欢的东西', $t(favorite)],
-        ['讨厌的东西', $t(unfavorite)],
-        ['习惯手', isLeftHanded ? '左手' : '右手'],
-        ['三围', threeSize],
+        [$t('Like'), $t(favorite)],
+        [$t('Hate'), $t(unfavorite)],
+        [$t('Accustomed hand'), isLeftHanded ? $t('Left') : $t('Right')],
+        [$t('Three size'), threeSize],
     ]
 
     return (
@@ -98,23 +95,28 @@ const CharacterItem = ({
                 }}
             >
                 <b className="text-4xl" lang="zh-hans">
-                    {CharacterChineseNameList[id as CharacterId]}
+                    {$vc(id)}
                 </b>{' '}
                 <span className="text-2xl ml-4" lang="ja">
                     {name}
                 </span>
-                <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
-                    <div className="uppercase text-3xl mt-1 text-gray-600 right-1 top-0 absolute">
+                {/* Hidden for en */}
+                {locale !== 'en' && (
+                    <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
+                        <div className="uppercase text-3xl mt-1 text-gray-600 right-1 top-0 absolute">
+                            {enName}
+                        </div>
+                    </MediaQuery>
+                )}
+            </div>
+            {/* Hidden for en */}
+            {locale !== 'en' && (
+                <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
+                    <div className="uppercase text-2xl mt-1 text-gray-500">
                         {enName}
                     </div>
                 </MediaQuery>
-            </div>
-
-            <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
-                <div className="uppercase text-2xl mt-1 text-gray-500">
-                    {enName}
-                </div>
-            </MediaQuery>
+            )}
 
             {catchphrase && (
                 <Blockquote
@@ -151,7 +153,7 @@ const CharacterItem = ({
                                         </tr>
                                     ))}
                                     <tr>
-                                        <td>代表色</td>
+                                        <td>{$t('Theme color')}</td>
                                         <td>
                                             <SquareColor color={color} />{' '}
                                             {toHashColor(color)}
@@ -160,29 +162,24 @@ const CharacterItem = ({
                                 </tbody>
                             </Table>
                             <Group position="center" className="mt-4">
-                                <a
-                                    href={Paths.mgw(
-                                        CharacterChineseNameList[
-                                            id as CharacterId
-                                        ]
-                                    )}
-                                >
-                                    <Button>萌娘百科条目</Button>
-                                </a>
+                                {/* Chinese only */}
+                                {locale === 'zh-hans' && (
+                                    <a href={Paths.mgw($vc(id))}>
+                                        <Button>萌娘百科条目</Button>
+                                    </a>
+                                )}
                                 {IdolyFashionUrl[id as CharacterId] && (
                                     <a
                                         href={
                                             IdolyFashionUrl[id as CharacterId]
                                         }
                                     >
-                                        <Button>
-                                            服装介绍 / IDOLY FASHION
-                                        </Button>
+                                        <Button>{$t('IDOLY FASHION')}</Button>
                                     </a>
                                 )}
                                 {IdolyRoomUrl[id as CharacterId] && (
                                     <a href={IdolyRoomUrl[id as CharacterId]}>
-                                        <Button>房间介绍 / IDOLY ROOM</Button>
+                                        <Button>{$t('IDOLY ROOM')}</Button>
                                     </a>
                                 )}
                             </Group>
@@ -201,13 +198,13 @@ const CharacterItem = ({
             </Grid>
             {!BirthdayCommuException.includes(id) && (
                 <>
-                    <h2>生日剧情</h2>
+                    <h2>{$t('Birthday stories')}</h2>
                     <BirthdayCommu charaId={id} />
                 </>
             )}
             {!VoiceException.includes(id) && (
                 <>
-                    <h2>语音</h2>
+                    <h2>{$t('In-game voices')}</h2>
                     <InGameVoice charaId={id} />
                 </>
             )}
