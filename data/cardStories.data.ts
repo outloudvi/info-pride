@@ -276,7 +276,7 @@ const dataSuzu: D = {
         },
         3: {
             name: '在沙滩上吹着夜风',
-            video: { type: 'bilibili', vid: 'av550498872' },
+            video: { type: 'bilibili', vid: 'av938040748' },
         },
         phone: { video: { type: 'bilibili', vid: 'av553072510' } },
     },
