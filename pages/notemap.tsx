@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Grid, NativeSelect } from '@mantine/core'
+import { useTranslations } from 'next-intl'
 
 import useApi from '#utils/useApi'
 import { APIResponseOf, UnArray } from '#utils/api'
@@ -16,6 +17,7 @@ const NotemapPage = ({
 }: {
     ChartListData: APIResponseOf<'MusicChartList'>
 }) => {
+    const $t = useTranslations('notemap')
     const [song, setSong] = useState<UnArray<typeof ChartListData>>(
         ChartListData[0]
     )
@@ -41,7 +43,7 @@ const NotemapPage = ({
             <Grid.Col xs={12} lg={6}>
                 <div>
                     <NativeSelect
-                        label="曲目"
+                        label={$t('Song')}
                         data={ChartListData.map(({ musicId, title }) => ({
                             value: musicId,
                             label: title,
@@ -56,7 +58,7 @@ const NotemapPage = ({
                         required
                     />
                     <NativeSelect
-                        label="谱面"
+                        label={$t('Notemap')}
                         data={chartList.map(({ id, desc }) => ({
                             label: desc,
                             value: id,
@@ -96,6 +98,7 @@ const NotemapPage = ({
 }
 
 const SkeletonNotemapPage = () => {
+    const $t = useTranslations('notemap')
     const { data: ChartListData } = useApi('MusicChartList')
 
     const allData = {
@@ -104,7 +107,7 @@ const SkeletonNotemapPage = () => {
 
     return (
         <>
-            <Title title="谱面" />
+            <Title title={$t('Notemaps')} />
             {allFinished(allData) ? (
                 <NotemapPage {...allData} />
             ) : (
@@ -114,6 +117,6 @@ const SkeletonNotemapPage = () => {
     )
 }
 
-export const getStaticProps = getI18nProps()
+export const getStaticProps = getI18nProps(['notemap'])
 
 export default SkeletonNotemapPage

@@ -1,6 +1,7 @@
 import { NativeSelect } from '@mantine/core'
 import _range from 'lodash/range'
 import { Dispatch, SetStateAction } from 'react'
+import { useTranslations } from 'next-intl'
 
 import { Colors } from '#data/colors'
 
@@ -11,6 +12,7 @@ const TrackColorSelect = ({
     laneColors: string[]
     setLaneColors: Dispatch<SetStateAction<string[]>>
 }) => {
+    const $t = useTranslations('common')
     return (
         <div className="flex justify-around">
             {_range(0, 5).map((val, key) => {
@@ -18,7 +20,7 @@ const TrackColorSelect = ({
                 return (
                     <NativeSelect
                         key={key}
-                        label={`颜色${uiNumber}`}
+                        label={`${$t('Color')} ${uiNumber}`}
                         value={laneColors[val]}
                         data={Object.entries(Colors).map(([label, value]) => ({
                             label,

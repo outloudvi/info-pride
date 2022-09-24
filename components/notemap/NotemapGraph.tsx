@@ -6,6 +6,7 @@ import _range from 'lodash/range'
 import renderNotemap from './renderNotemap'
 import type { ImageChart, SkillChart } from './types'
 import { notemapColumnId, unitColumnId } from './const'
+import { useTranslations } from 'next-intl'
 
 const NotemapGraph = ({
     chart,
@@ -18,6 +19,7 @@ const NotemapGraph = ({
     landingSkillChart?: SkillChart
     imageChart?: ImageChart
 }) => {
+    const $t = useTranslations('common')
     const svgRef = useRef<SVGSVGElement | null>(null)
 
     useEffect(() => {
@@ -104,8 +106,12 @@ const NotemapGraph = ({
                 }}
             />
             <Group className="mt-2">
-                <Button onClick={downloadNotemapSVG}>下载曲谱图片 (SVG)</Button>
-                <Button onClick={downloadNotemapPNG}>下载曲谱图片 (PNG)</Button>
+                <Button onClick={downloadNotemapSVG}>
+                    {$t('Export as image')} (SVG)
+                </Button>
+                <Button onClick={downloadNotemapPNG}>
+                    {$t('Export as image')} (PNG)
+                </Button>
             </Group>
         </Stack>
     )
