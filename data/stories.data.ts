@@ -1141,6 +1141,18 @@ const data: Partial<
                 name: '新的誓言',
                 video: { type: 'bilibili', vid: 'av770256819', pid: 5 },
             },
+            6: {
+                name: '复活的迹象',
+                video: { type: 'bilibili', vid: 'av858440503', pid: 1 },
+            },
+            7: {
+                name: 'ⅢX众人的鼓励',
+                video: { type: 'bilibili', vid: 'av858440503', pid: 2 },
+            },
+            8: {
+                name: '无尽的低谷',
+                video: { type: 'bilibili', vid: 'av858440503', pid: 3 },
+            },
         },
     },
     Tsuki: {
