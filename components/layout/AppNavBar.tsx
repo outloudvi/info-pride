@@ -8,14 +8,16 @@ import Pages from '#data/pages'
 
 const AppNavBar = ({ expanded }: { expanded: boolean }) => {
     const $t = useTranslations('common.sidebar')
+
     return (
         <Navbar
             className={
-                (expanded ? 'w-screen sm:w-48 lg:w-64' : 'w-0') +
-                ' overflow-hidden'
+                (expanded ? 'w-screen sm:w-48 lg:w-64' : '') +
+                ' overflow-hidden '
             }
             style={{
                 transition: 'width 0.2s ease-out',
+                ...(!expanded ? { width: 0 } : {}),
             }}
             width={{ base: 200 }}
             height={'calc(100vh - 60px)'}
