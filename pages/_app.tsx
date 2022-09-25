@@ -9,36 +9,39 @@ import {
 import { NotificationsProvider } from '@mantine/notifications'
 import { NextIntlProvider } from 'next-intl'
 import '../styles/globals.css' // for Tailwind CSS
-import { useColorScheme, useLocalStorage } from '@mantine/hooks'
 import { useEffect, useState } from 'react'
 import NextNProgress from 'nextjs-progressbar'
-import { atom, useAtom } from 'jotai'
 import { QueryClient, QueryClientProvider } from 'react-query'
+import { GetServerSidePropsContext } from 'next'
+import { getCookie, setCookie } from 'cookies-next'
 
 import Layout from '#components/layout/Layout'
-import Loading from '#components/layout/Loading'
 import startupHook from '#utils/startupHook'
 import Paths from '#utils/paths'
 
-const finishedAtom = atom(false)
-
-const App = (props: AppProps<{ _m: Record<string, string> }>) => {
+const App = (
+    props: AppProps<{ _m: Record<string, string> }> & {
+        colorScheme: ColorScheme
+    }
+) => {
     const { Component, pageProps } = props
 
-    const preferredColorScheme = useColorScheme()
-    const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
-        key: 'mantine-color-scheme',
-        defaultValue: preferredColorScheme,
-    })
-    const toggleColorScheme = (value?: ColorScheme) =>
-        setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'))
+    const [colorScheme, setColorScheme] = useState<ColorScheme>(
+        props.colorScheme
+    )
 
-    const [finished, setFinished] = useAtom(finishedAtom)
+    const toggleColorScheme = (value?: ColorScheme) => {
+        const nextColorScheme =
+            value || (colorScheme === 'dark' ? 'light' : 'dark')
+        setColorScheme(nextColorScheme)
+        setCookie('mantine-color-scheme', nextColorScheme, {
+            maxAge: 60 * 60 * 24 * 30,
+        })
+    }
 
     useEffect(() => {
         startupHook()
-        setTimeout(() => setFinished(true), 500)
-    }, [setFinished])
+    }, [])
 
     const [queryClient] = useState(
         () =>
@@ -66,11 +69,6 @@ const App = (props: AppProps<{ _m: Record<string, string> }>) => {
                     name="viewport"
                     content="minimum-scale=1, initial-scale=1, width=device-width"
                 />
-                <style
-                    dangerouslySetInnerHTML={{
-                        __html: `#ip_loading { background-color: #fff } @media (prefers-color-scheme: dark) { #ip_loading { background-color: #1A1B1E } }`,
-                    }}
-                ></style>
             </Head>
             <ColorSchemeProvider
                 colorScheme={colorScheme}
@@ -159,9 +157,7 @@ const App = (props: AppProps<{ _m: Record<string, string> }>) => {
                                 getMessageFallback={({ key }) => key}
                             >
                                 <Layout>
-                                    <Loading finished={finished} />
                                     <NextNProgress />
-
                                     <Component {...pageProps} />
                                 </Layout>
                             </NextIntlProvider>
@@ -172,5 +168,9 @@ const App = (props: AppProps<{ _m: Record<string, string> }>) => {
         </>
     )
 }
+
+App.getInitialProps = ({ ctx }: { ctx: GetServerSidePropsContext }) => ({
+    colorScheme: getCookie('mantine-color-scheme', ctx) || 'light',
+})
 
 export default App

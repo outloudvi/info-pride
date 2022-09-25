@@ -1,4 +1,5 @@
 import * as Sentry from '@sentry/browser'
+import { setCookie } from 'cookies-next'
 
 export const LOCALSTORAGE_BOX_TAG = 'localBox'
 
@@ -45,8 +46,23 @@ function h_99_update_localbox() {
     }
 }
 
+function h_99_migrate_colorScheme_to_cookie() {
+    const colorScheme = localStorage.getItem('mantine-color-scheme')
+    if (colorScheme === null) return
+    setCookie(
+        'mantine-color-scheme',
+        colorScheme.includes('dark') ? 'dark' : 'light',
+        {
+            maxAge: 60 * 60 * 24 * 30,
+        }
+    )
+    localStorage.removeItem('mantine-color-scheme')
+}
+
 async function startupHook() {
     // Migrate localbox to latest version
     h_99_update_localbox()
+    // Migrate colorScheme settings from localStorage to cookie
+    h_99_migrate_colorScheme_to_cookie()
 }
 export default startupHook
