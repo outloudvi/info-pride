@@ -19,20 +19,20 @@ import useFrontendApi from '#utils/useFrontendApi'
 
 type CardNameDataType = { nameCn: string; nameJa: string }[]
 
-const CardFaceTypeListNamemap = {
-    schl: '训练服 (schl)',
-    casl: '常服 (casl)',
-    idol: '偶像服 (idol)',
-    vlnt: '情人节 (vlnt)',
-    eve: '活动 (eve)',
-    chna: '汉服 (chna)',
-    mizg: '泳装 (mizg)',
-    xmas: '圣诞 (xmas)',
-    fest: 'fest 卡 (fest)',
-    wedd: '婚纱 (wedd)',
-    prem: 'Premium Gacha (prem)',
-    newy: '新年活动 (newy)',
-}
+const CardFaceTypes = [
+    'schl',
+    'casl',
+    'idol',
+    'vlnt',
+    'eve',
+    'chna',
+    'mizg',
+    'xmas',
+    'fest',
+    'wedd',
+    'prem',
+    'newy',
+]
 
 const CardsPage = ({
     CardData,
@@ -44,6 +44,7 @@ const CardsPage = ({
 }) => {
     const $v = useTranslations('vendor')
     const $vc = useTranslations('v-chr')
+    const $t = useTranslations('cards')
 
     const {
         values: formValues,
@@ -64,9 +65,7 @@ const CardsPage = ({
         () =>
             uniq(
                 CardData.map((x) => x.id.split('-')?.[3])
-                    .filter((x) =>
-                        Object.keys(CardFaceTypeListNamemap).includes(x)
-                    )
+                    .filter((x) => CardFaceTypes.includes(x))
                     .sort((a, b) => (a < b ? -1 : 1))
             ),
         [CardData]
@@ -116,7 +115,7 @@ const CardsPage = ({
                 <div className="flex items-center mb-2 flex-wrap">
                     <FilterSelect
                         className="mr-2"
-                        label="角色"
+                        label={$t('Character')}
                         multiple
                         list={CharacterIds}
                         displayAs={$vc}
@@ -125,21 +124,21 @@ const CardsPage = ({
                     />
                     <FilterSelect
                         className="mr-2"
-                        label="类型"
+                        label={$t('Type')}
                         multiple
                         list={['1', '2', '3']}
                         listNamemap={{
                             // Also check locales/vendor.json
-                            1: '得分',
-                            2: '辅助',
-                            3: '支援',
+                            1: $v('Appeal'),
+                            2: $v('Technique'),
+                            3: $v('Support'),
                         }}
                         width={300}
                         formProps={getInputProps('selectedCardTypes')}
                     />
                     <FilterSelect
                         className="mr-2"
-                        label="属性"
+                        label={$t('Property')}
                         multiple
                         list={['Dance', 'Vocal', 'Visual']}
                         listNamemap={{
@@ -152,26 +151,23 @@ const CardsPage = ({
                     />
                     <FilterSelect
                         className="mr-2"
-                        label="卡片主题 "
+                        label={$t('Theme')}
                         multiple
                         list={cardFaceTypeList}
-                        listNamemap={CardFaceTypeListNamemap}
+                        displayAs={(x) => $t(`cardface_${x}`)}
                         width={300}
                         formProps={getInputProps('selectedCardFaceTypes')}
                     />
                     <FilterSelect
                         className="mr-2"
-                        label="排序方式"
+                        label={$t('Sort')}
                         list={['releaseDate', 'idol']}
-                        listNamemap={{
-                            releaseDate: '发布日期',
-                            idol: '偶像',
-                        }}
+                        displayAs={$t}
                         width={300}
                         formProps={getInputProps('orderBy')}
                     />
                     <Checkbox
-                        label="倒序"
+                        label={$t('Descending')}
                         {...getInputProps('orderReversed')}
                         checked={formValues.orderReversed}
                     />
@@ -204,6 +200,7 @@ const CardsPage = ({
 }
 
 const SkeletonCardsPage = () => {
+    const $t = useTranslations('cards')
     const { data: CardData } = useApi('Card')
     const { data: CardNameData } = useFrontendApi('wikiCard', {
         fields: 'nameCn,nameJa',
@@ -218,7 +215,7 @@ const SkeletonCardsPage = () => {
 
     return (
         <>
-            <Title title="卡片" />
+            <Title title={$t('Cards')} />
             {allFinished(allData) ? (
                 <CardsPage {...allData} />
             ) : (
@@ -228,6 +225,6 @@ const SkeletonCardsPage = () => {
     )
 }
 
-export const getStaticProps = getI18nProps(['vendor', 'v-chr'])
+export const getStaticProps = getI18nProps(['cards', 'vendor', 'v-chr'])
 
 export default SkeletonCardsPage

@@ -18,6 +18,7 @@ const CardCard = ({
 }) => {
     const $v = useTranslations('vendor')
     const $vc = useTranslations('v-chr')
+    const $t = useTranslations('cards')
     const { id, name, characterId, assetId, type, initialRarity } = card
 
     const assetImage =
@@ -66,7 +67,8 @@ const CardCard = ({
 
                     <p>
                         {$vc(characterId)} / {$v(CardType[type])} /{' '}
-                        {$v(getCardColor(card))} / 初始 {initialRarity}★
+                        {$v(getCardColor(card))} / {$t('Initially')}{' '}
+                        {initialRarity}★
                     </p>
                 </Card>
             </a>
