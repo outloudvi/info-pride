@@ -1,4 +1,5 @@
 import { useMemo } from 'react'
+import { useTranslations } from 'next-intl'
 
 import MessageItem from './MessageItem'
 import renderMessage from './renderMessage'
@@ -7,6 +8,8 @@ import buildMessageTree from './buildMessageTree'
 import { APIResponseOf } from '#utils/api'
 
 const ChatBoard = ({ msg }: { msg: NonNullable<APIResponseOf<'Message'>> }) => {
+    const $t = useTranslations('messages')
+
     const { details } = msg
 
     const { msgs, branchSrc } = useMemo(
@@ -27,10 +30,12 @@ const ChatBoard = ({ msg }: { msg: NonNullable<APIResponseOf<'Message'>> }) => {
                     characterId={line.characterId}
                     user={line.characterId ? 'others' : 'self'}
                 >
-                    {renderMessage(line, branchSrc[line.messageDetailId])}
+                    {renderMessage(line, $t, branchSrc[line.messageDetailId])}
                 </MessageItem>
             ))}
-            <div className="text-gray-300 text-center my-4">[对话结束]</div>
+            <div className="text-gray-300 text-center my-4">
+                [{$t('Communication ended.')}]
+            </div>
         </div>
     )
 }

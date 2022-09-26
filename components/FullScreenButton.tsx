@@ -1,4 +1,5 @@
 import { Button } from '@mantine/core'
+import { useTranslations } from 'next-intl'
 import { MutableRefObject, useEffect, useState } from 'react'
 import screenfull from 'screenfull'
 
@@ -7,6 +8,7 @@ const FullScreenButton = ({
 }: {
     target: MutableRefObject<HTMLElement | null>
 }) => {
+    const $t = useTranslations('messages')
     const [isFullScreen, setFullScreen] = useState(
         typeof window !== 'undefined' && document.fullscreenElement !== null
     )
@@ -23,7 +25,7 @@ const FullScreenButton = ({
     }, [])
 
     if (typeof window === 'undefined' || !screenfull.isEnabled) {
-        return <Button disabled={true}>设备不支持全屏模式</Button>
+        return <Button disabled={true}>{$t('full_screen_unsupported')}</Button>
     }
 
     return (
@@ -38,7 +40,7 @@ const FullScreenButton = ({
                 }
             }}
         >
-            {isFullScreen ? '退出全屏' : '全屏'}
+            {isFullScreen ? $t('Exit fullscreen') : $t('Fullscreen')}
         </Button>
     )
 }

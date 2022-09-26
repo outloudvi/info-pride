@@ -1,6 +1,7 @@
 import { faArrowLeft, faMessage } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Button, Group } from '@mantine/core'
+import { useTranslations } from 'next-intl'
 
 import ChatBoard from './ChatLogBoard'
 
@@ -13,6 +14,7 @@ const ChatView = ({
     messageId: string
     mdBackToSidebar: () => void
 }) => {
+    const $c = useTranslations('common')
     const { data: msg } = useApi('Message', {
         id: messageId,
     })
@@ -20,14 +22,14 @@ const ChatView = ({
     if (!msg) {
         return (
             <div className="flex h-full justify-center items-center flex-col">
-                <div className="text-white">正在加载。</div>
+                <div className="text-white">{$c('Loading...')}</div>
                 <Button
                     className="mt-2"
                     onClick={() => {
                         mdBackToSidebar()
                     }}
                 >
-                    返回
+                    {$c('Back')}
                 </Button>
             </div>
         )

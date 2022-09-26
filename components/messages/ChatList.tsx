@@ -1,4 +1,5 @@
 import { Button, Stack } from '@mantine/core'
+import { useTranslations } from 'next-intl'
 
 import useApi from '#utils/useApi'
 
@@ -9,6 +10,7 @@ const ChatList = ({
     groupId: string
     setActiveMessageId: (s: string) => void
 }) => {
+    const $c = useTranslations('common')
     const { data: dialogues } = useApi('Message/Group', {
         messageGroupId: groupId,
     })
@@ -29,7 +31,7 @@ const ChatList = ({
                     ))}
                 </Stack>
             ) : (
-                <div className="text-white text-center">加载中。</div>
+                <div className="text-white text-center">{$c('Loading...')}</div>
             )}
         </div>
     )

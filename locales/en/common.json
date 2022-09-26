@@ -25,6 +25,7 @@
     },
     "Video": "Video",
     "Loading...": "Loading...",
+    "Back": "Back",
     "Color": "Color",
     "audio_loading": "Audio is loading - note that the first load may be longer.",
     "audio_load_failed": "Failed to load audio {id}.",

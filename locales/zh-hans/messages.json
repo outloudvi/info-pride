@@ -1,0 +1,12 @@
+{
+    "Messages": "消息",
+    "Fullscreen": "全屏",
+    "Exit fullscreen": "退出全屏",
+    "Select a communication.": "选择消息。",
+    "Communication ended.": "消息结束。",
+    "Manager": "マネージャー",
+    "line_response": "选项回应 {src}",
+    "line_choice": "选项 {src}",
+    "full_screen_advised": "建议使用全屏模式查看本页。",
+    "full_screen_unsupported": "设备不支持全屏模式"
+}

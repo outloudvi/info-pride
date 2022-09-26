@@ -5,10 +5,9 @@ import TelephoneMessage from './TelephoneMessage'
 
 import AssetImage from '#components/AssetImage'
 
-const MANAGER_NAME = 'マネージャー'
-
 export default function renderMessage(
     msg: MessageDetail,
+    $t: (s: string, r?: Record<string, string>) => string,
     branchSrc?: string
 ): ReactNode {
     // Text
@@ -20,11 +19,11 @@ export default function renderMessage(
                 {isSelection && (
                     <span className="text-gray-600">{`[${
                         msg.characterId
-                            ? `选项回应 ${branchSrc}`
-                            : `选项 ${choiceId}`
+                            ? $t('line_response', { src: branchSrc ?? '' })
+                            : $t('line_choice', { src: choiceId ?? '' })
                     }] `}</span>
                 )}
-                {msg.text.replace(/\{user\}/g, MANAGER_NAME)}
+                {msg.text.replace(/\{user\}/g, $t('Manager'))}
             </>
         )
     }

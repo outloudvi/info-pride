@@ -2,6 +2,7 @@ import { Grid } from '@mantine/core'
 import { useEffect, useRef, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { useViewportSize } from '@mantine/hooks'
+import { useTranslations } from 'next-intl'
 
 import ChatItem from './ChatItem'
 import ChatView from './ChatView'
@@ -17,6 +18,7 @@ const MessageBoardView = ({
 }: {
     groups: APIResponseOf<'MessageGroup'>
 }) => {
+    const $t = useTranslations('messages')
     const [activeGroup, setActiveGroup] = useState<undefined | string>(
         undefined
     )
@@ -77,7 +79,9 @@ const MessageBoardView = ({
                         />
                     ) : (
                         <div className="flex h-full justify-center items-center">
-                            <div className="text-white">选择消息。</div>
+                            <div className="text-white">
+                                {$t('Select a communication.')}
+                            </div>
                         </div>
                     )}
                 </Grid.Col>
