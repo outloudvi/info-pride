@@ -21,12 +21,13 @@ const FilterSelect = <T extends string>({
     listNamemap?: Record<string, string>
     formProps: Omit<SelectProps, 'data'> & Omit<MultiSelectProps, 'data'>
 }) => {
-    const data = listNamemap
-        ? list.map((x) => ({
-              label: (displayAs ? displayAs(x) : listNamemap[x]) ?? x,
-              value: x,
-          }))
-        : [...list]
+    const data =
+        displayAs || listNamemap
+            ? list.map((x) => ({
+                  label: (displayAs ? displayAs(x) : listNamemap?.[x]) ?? x,
+                  value: x,
+              }))
+            : [...list]
     if (multiple) {
         return (
             <MultiSelect
