@@ -1,8 +1,10 @@
 import { useEffect, useRef, useState } from 'react'
+import { useTranslations } from 'next-intl'
 
 import Paths from '#utils/paths'
 
 const AssetAudio = ({ id }: { id: string }) => {
+    const $t = useTranslations('common')
     const aud = useRef<HTMLAudioElement | null>(null)
     const [playReady, setPlayReady] = useState(0)
 
@@ -32,12 +34,10 @@ const AssetAudio = ({ id }: { id: string }) => {
     return (
         <div className="text-gray-500">
             {playReady === 0 && (
-                <div className="mb-1">
-                    [正在加载音频。首次加载可能需要较长时间。]
-                </div>
+                <div className="mb-1">[{$t('audio_loading')}]</div>
             )}
             {playReady === -1 && (
-                <div className="mb-1">[未能加载音频 {id} 。]</div>
+                <div className="mb-1">[{$t('audio_load_failed', { id })}]</div>
             )}
             <audio controls={playReady !== 0} ref={aud} onError={errorCb}>
                 <source
