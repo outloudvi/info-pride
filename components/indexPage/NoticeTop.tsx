@@ -18,7 +18,7 @@ const GlobalNotices: Record<string, NoticeUnit> = {
                 href="https://twitter.com/idolypride_en/status/1569936518722060288"
                 rel="nofollow noopener"
             >
-                正在内测
+                曾经进行过内测
             </a>
             ，而 Neowiz 也在运营
             <a href="https://idolypride.pmang.cloud/" rel="noopener nofollow">
@@ -28,13 +28,12 @@ const GlobalNotices: Record<string, NoticeUnit> = {
             目前的信息只跟随日本服务器更新，因此内容可能和国际版本或韩国版本不一致。
             <details>
                 <summary>(English version)</summary>
-                The global version of IDOLY PRIDE, published by Boltrend Games
-                is{' '}
+                The global version of IDOLY PRIDE, published by Boltrend Games{' '}
                 <a
                     href="https://twitter.com/idolypride_en/status/1569936518722060288"
                     rel="nofollow noopener"
                 >
-                    currently in Closed Beta Test
+                    was in Closed Beta Test
                 </a>
                 . Also, Neowiz has published{' '}
                 <a
