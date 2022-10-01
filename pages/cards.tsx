@@ -39,7 +39,6 @@ const CardsPage = ({
     CardNameData,
 }: {
     CardData: APIResponseOf<'Card'>
-
     CardNameData: CardNameDataType
 }) => {
     const $v = useTranslations('vendor')
@@ -58,6 +57,7 @@ const CardsPage = ({
             selectedCardFaceTypes: [] as string[],
             orderBy: 'releaseDate' as keyof UnArray<APIResponseOf<'Card'>>,
             orderReversed: true,
+            displayMaxValue: true,
         },
     })
 
@@ -161,7 +161,7 @@ const CardsPage = ({
                     <FilterSelect
                         className="mr-2"
                         label={$t('Sort')}
-                        list={['releaseDate', 'idol']}
+                        list={['releaseDate', 'idol', 'maxRatioPermil']}
                         displayAs={$t}
                         width={300}
                         formProps={getInputProps('orderBy')}
@@ -170,6 +170,12 @@ const CardsPage = ({
                         label={$t('Descending')}
                         {...getInputProps('orderReversed')}
                         checked={formValues.orderReversed}
+                    />
+                    <Checkbox
+                        className="ml-3"
+                        label={$t('Display max property value')}
+                        {...getInputProps('displayMaxValue')}
+                        checked={formValues.displayMaxValue}
                     />
                 </div>
             </div>
@@ -192,6 +198,7 @@ const CardsPage = ({
                                 (x) => x.nameJa === item.name
                             )?.[0]?.nameCn
                         }
+                        displayMaxValue={formValues.displayMaxValue}
                     />
                 ))}
             </SimpleGrid>

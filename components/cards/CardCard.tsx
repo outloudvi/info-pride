@@ -4,22 +4,27 @@ import { useTranslations } from 'next-intl'
 import Link from 'next/link'
 
 import { getAssetSlug } from './CardAsset'
+import PropValueBg from './PropValueBg'
 
 import getCardColor from '#utils/getCardColor'
 import { APIResponseOf, UnArray } from '#utils/api'
 import AssetImage from '#components/AssetImage'
+import getCardColorClassName from '#utils/getCardColorClassName'
 
 const CardCard = ({
     card,
     nameCn,
+    displayMaxValue,
 }: {
     card: UnArray<APIResponseOf<'Card'>>
+    displayMaxValue: boolean
     nameCn?: string
 }) => {
     const $v = useTranslations('vendor')
     const $vc = useTranslations('v-chr')
     const $t = useTranslations('cards')
-    const { id, name, characterId, assetId, type, initialRarity } = card
+    const { id, name, characterId, assetId, type, initialRarity, maxValue } =
+        card
 
     const assetImage =
         initialRarity < 5 ? (
@@ -47,6 +52,8 @@ const CardCard = ({
             />
         )
 
+    const cardColorClassName = getCardColorClassName(card)
+
     return (
         <Link href={`/cards/${id}`} passHref>
             <a className="no-underline">
@@ -65,11 +72,18 @@ const CardCard = ({
                         )}
                     </div>
 
-                    <p>
+                    <div className="my-2">
                         {$vc(characterId)} / {$v(CardType[type])} /{' '}
                         {$v(getCardColor(card))} / {$t('Initially')}{' '}
                         {initialRarity}★
-                    </p>
+                    </div>
+
+                    {displayMaxValue && (
+                        <PropValueBg
+                            className={cardColorClassName}
+                            maxValue={maxValue}
+                        />
+                    )}
                 </Card>
             </a>
         </Link>

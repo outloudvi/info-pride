@@ -30,6 +30,7 @@ import { CharacterId } from '#data/vendor/characterId'
 import useFrontendApi from '#utils/useFrontendApi'
 import CCIDTable from '#data/ccid'
 
+// See also: backend:denoland/backend/utils/const.ts
 const MAX_LEVEL = 200
 
 const CardItem = ({

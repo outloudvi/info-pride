@@ -4,6 +4,7 @@ import type { Card, CardRarity } from 'hoshimi-types/ProtoMaster'
 
 import useApi from '#utils/useApi'
 import Paths from '#utils/paths'
+import getCardColorClassName from '#utils/getCardColorClassName'
 
 const Props = ({
     level,
@@ -37,6 +38,7 @@ const Props = ({
         return <Skeleton height={100} />
     }
 
+    // See also: backend:denoland/backend/routes/api/Card.ts
     const calc = (base: number) =>
         Math.floor(
             (Math.floor((Number(parameterInfo.value) * base) / 1000) *
@@ -64,14 +66,11 @@ const Props = ({
         mental * 2 +
         critical * 3
 
-    const cardColorClassName =
-        vocalRatioPermil === valueAtMaxType
-            ? 'text-vocal'
-            : danceRatioPermil === valueAtMaxType
-            ? 'text-dance'
-            : visualRatioPermil === valueAtMaxType
-            ? 'text-visual'
-            : ''
+    const cardColorClassName = getCardColorClassName({
+        vocalRatioPermil,
+        danceRatioPermil,
+        visualRatioPermil,
+    })
 
     return (
         <Grid className="text-lg">
