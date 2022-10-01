@@ -1117,6 +1117,10 @@ const data: Partial<
                 name: 'fran 的梦想',
                 video: { type: 'bilibili', vid: 'av430004771' },
             },
+            8: {
+                name: '无法实现的梦想',
+                video: { type: 'bilibili', vid: 'av388621284' },
+            },
         },
     },
     Big4: {
