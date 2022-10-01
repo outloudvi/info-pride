@@ -161,7 +161,7 @@ const CardsPage = ({
                     <FilterSelect
                         className="mr-2"
                         label={$t('Sort')}
-                        list={['releaseDate', 'idol', 'maxRatioPermil']}
+                        list={['releaseDate', 'idol', 'maxValue']}
                         displayAs={$t}
                         width={300}
                         formProps={getInputProps('orderBy')}

@@ -17,7 +17,7 @@ const PropValueBg = ({
     return (
         <div
             className={`text-right text-3xl opacity-70 ${className ?? ''}`}
-            aria-label={$t('maxRatioPermil')}
+            aria-label={$t('maxValue')}
         >
             {formatNumber(maxValue)}
         </div>
