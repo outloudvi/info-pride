@@ -9,7 +9,6 @@ import PropValueBg from './PropValueBg'
 import getCardColor from '#utils/getCardColor'
 import { APIResponseOf, UnArray } from '#utils/api'
 import AssetImage from '#components/AssetImage'
-import getCardColorClassName from '#utils/getCardColorClassName'
 
 const CardCard = ({
     card,
@@ -66,7 +65,6 @@ const CardCard = ({
         danceRatioPermil: dancePt,
         visualRatioPermil: visualPt,
     })
-    const cardColorClassName = getCardColorClassName(cardColor)
 
     return (
         <Link href={`/cards/${id}`} passHref>
@@ -92,33 +90,25 @@ const CardCard = ({
                         {initialRarity}★
                     </div>
 
-                    <Group>
+                    <Group className="gap-1">
                         <PropValueBg
-                            className={`text-vocal ${
-                                cardColorClassName === 'text-vocal'
-                                    ? 'font-bold'
-                                    : ''
-                            }`}
+                            type={AttributeType.Vocal}
+                            bold={cardColor === AttributeType.Vocal}
                             value={vocalPt}
                         />
                         <PropValueBg
-                            className={`text-dance ${
-                                cardColorClassName === 'text-dance'
-                                    ? 'font-bold'
-                                    : ''
-                            }`}
+                            type={AttributeType.Dance}
+                            bold={cardColor === AttributeType.Dance}
                             value={dancePt}
                         />
                         <PropValueBg
-                            className={`text-visual ${
-                                cardColorClassName === 'text-visual'
-                                    ? 'font-bold'
-                                    : ''
-                            }`}
+                            type={AttributeType.Visual}
+                            bold={cardColor === AttributeType.Visual}
                             value={visualPt}
                         />
                         <PropValueBg
-                            className={'text-stamina'}
+                            type={'stamina'}
+                            bold={false}
                             value={staminaPt}
                         />
                     </Group>

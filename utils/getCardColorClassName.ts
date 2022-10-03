@@ -1,13 +1,16 @@
 import { AttributeType } from 'hoshimi-types/ProtoEnum'
 
-export default function getCardColorClassName(color: AttributeType): string {
+export default function getCardColorClassName(
+    color: AttributeType,
+    prefix = 'text-'
+): string {
     switch (color) {
         case AttributeType.Vocal:
-            return 'text-vocal'
+            return prefix + 'vocal'
         case AttributeType.Dance:
-            return 'text-dance'
+            return prefix + 'dance'
         case AttributeType.Visual:
-            return 'text-visual'
+            return prefix + 'visual'
         default:
             return ''
     }
