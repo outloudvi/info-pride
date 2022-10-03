@@ -23,7 +23,11 @@ const PropValueBg = ({
             className={`text-lg px-1 border-solid border-0 border-b-4 rounded ${
                 getCardColorClassName(type as AttributeType, 'border-') ||
                 'border-stamina'
-            } ${bold ? 'font-bold' : ''}`}
+            } ${bold ? 'font-bold' : ''}${
+                // generate their CSS
+                // eslint-disable-next-line no-constant-condition
+                0 ? 'border-vocal border-dance border-visual' : ''
+            }`}
             aria-label={$v(AttributeType[type as AttributeType] || 'Stamina')}
         >
             {formatNumber(value)}
