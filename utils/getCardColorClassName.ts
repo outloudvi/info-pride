@@ -1,22 +1,12 @@
 import { AttributeType } from 'hoshimi-types/ProtoEnum'
-import type { Card } from 'hoshimi-types/ProtoMaster'
 
-import getCardColor from './getCardColor'
-
-export default function getCardColorClassName(
-    card: Pick<
-        Card,
-        'vocalRatioPermil' | 'danceRatioPermil' | 'visualRatioPermil'
-    >
-): string {
-    const cardColor = getCardColor(card)
-
-    switch (cardColor) {
-        case AttributeType[AttributeType.Vocal]:
+export default function getCardColorClassName(color: AttributeType): string {
+    switch (color) {
+        case AttributeType.Vocal:
             return 'text-vocal'
-        case AttributeType[AttributeType.Dance]:
+        case AttributeType.Dance:
             return 'text-dance'
-        case AttributeType[AttributeType.Visual]:
+        case AttributeType.Visual:
             return 'text-visual'
         default:
             return ''

@@ -7,20 +7,20 @@ function formatNumber(n: number) {
 
 const PropValueBg = ({
     className,
-    maxValue,
+    value,
 }: {
     className?: string
-    maxValue: number
+    value: number
 }) => {
     const $t = useTranslations('cards')
 
     return (
-        <div
-            className={`text-right text-3xl opacity-70 ${className ?? ''}`}
-            aria-label={$t('maxValue')}
+        <span
+            className={`text-lg opacity-70 ${className ?? ''}`}
+            aria-label={$t('maxRatioPermil')}
         >
-            {formatNumber(maxValue)}
-        </div>
+            {formatNumber(value)}
+        </span>
     )
 }
 

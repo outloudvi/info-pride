@@ -3,8 +3,10 @@ import { Grid, Skeleton } from '@mantine/core'
 import type { Card, CardRarity } from 'hoshimi-types/ProtoMaster'
 
 import useApi from '#utils/useApi'
+import getCardColor from '#utils/getCardColor'
 import Paths from '#utils/paths'
 import getCardColorClassName from '#utils/getCardColorClassName'
+import calcPropValue from '#utils/calcPropValue'
 
 const Props = ({
     level,
@@ -28,30 +30,21 @@ const Props = ({
         (x) => x.id === cardParameterId && x.level === level
     )?.[0]
 
-    const valueAtMaxType = Math.max(
-        vocalRatioPermil,
-        danceRatioPermil,
-        visualRatioPermil
-    )
-
     if (!parameterInfo) {
         return <Skeleton height={100} />
     }
 
-    // See also: backend:denoland/backend/routes/api/Card.ts
     const calc = (base: number) =>
-        Math.floor(
-            (Math.floor((Number(parameterInfo.value) * base) / 1000) *
-                rarityInfo.parameterBonusPermil) /
-                1000
+        calcPropValue(
+            base,
+            Number(parameterInfo.value),
+            rarityInfo.parameterBonusPermil
         )
 
-    const stamina = Math.floor(
-        (Math.floor(
-            (Number(parameterInfo.staminaValue) * staminaRatioPermil) / 1000
-        ) *
-            rarityInfo.parameterBonusPermil) /
-            1000
+    const stamina = calcPropValue(
+        staminaRatioPermil,
+        Number(parameterInfo.staminaValue),
+        rarityInfo.parameterBonusPermil
     )
 
     const mental = 100
@@ -66,11 +59,9 @@ const Props = ({
         mental * 2 +
         critical * 3
 
-    const cardColorClassName = getCardColorClassName({
-        vocalRatioPermil,
-        danceRatioPermil,
-        visualRatioPermil,
-    })
+    const cardColorClassName = getCardColorClassName(
+        getCardColor({ vocalRatioPermil, danceRatioPermil, visualRatioPermil })
+    )
 
     return (
         <Grid className="text-lg">
