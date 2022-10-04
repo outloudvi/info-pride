@@ -68,6 +68,21 @@ const dataKotono: D = {
             video: { type: 'bilibili', vid: 'av299927963' },
         },
     },
+    'card-ktn-05-kiok-00': {
+        // 泡沫の悲しみ、思いは胸に
+        1: {
+            name: '作为嘉宾的那个人',
+            video: { type: 'bilibili', vid: 'av561192387' },
+        },
+        2: {
+            name: '志同道合的人',
+            video: { type: 'bilibili', vid: 'av558644549' },
+        },
+        3: {
+            name: '胸中的记忆',
+            video: { type: 'bilibili', vid: 'av473715057' },
+        },
+    },
 }
 
 // 伊吹渚
