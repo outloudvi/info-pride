@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { ReactNode, useEffect, useMemo, useState } from 'react'
 import Link from 'next/link'
 import { useForm } from '@mantine/form'
 import { Checkbox, NumberInput, TextInput, Tooltip } from '@mantine/core'
@@ -38,7 +38,9 @@ const SearchPage = ({
     SkillAllData: APIResponseOf<'Skill/All'>
     SkillxData: APIResponseOf<'Skill/X'>
 }) => {
+    const $t = useTranslations('search')
     const $vc = useTranslations('v-chr')
+    const $v = useTranslations('vendor')
 
     const [localBox, setLocalBox] = useState<LocalBox>({})
     useEffect(() => {
@@ -126,7 +128,6 @@ const SearchPage = ({
         }
 
         if (selectedCardTypes.length > 0) {
-            console.log('rr', ret.length)
             ret = ret.filter((x) => {
                 return selectedCardTypes.includes(String(x.type))
             })
@@ -236,19 +237,22 @@ const SearchPage = ({
     return (
         <>
             <p>
-                如果发现自己持有的卡片没有显示为「已持有」，请
-                <Link href="/settings">更新卡片持有状态</Link>。
+                {$t.rich('notice_mybox', {
+                    link: (c) => (
+                        <Link href="/settings">{(c as ReactNode[])[0]}</Link>
+                    ),
+                })}
             </p>
             <div className="mt-2 rounded-md border-solid border-6 border-sky-500 p-2">
                 <div className="flex items-center mb-2">
                     <TextInput
                         className="mr-2"
-                        label="关键词"
+                        label={$t('Keyword')}
                         {...getInputProps('keyword')}
                     />
                     <FilterSelect
                         className="mr-2"
-                        label="角色"
+                        label={$t('Character')}
                         multiple
                         list={CharacterIds}
                         displayAs={$vc}
@@ -257,49 +261,48 @@ const SearchPage = ({
                     />
                     <FilterSelect
                         className="mr-2"
-                        label="类型"
+                        label={$t('Type')}
                         multiple
                         list={['1', '2', '3']}
                         listNamemap={{
-                            // Also check locales/vendor.json
-                            1: '得分',
-                            2: '辅助',
-                            3: '支援',
+                            1: $v('Appeal'),
+                            2: $v('Technique'),
+                            3: $v('Support'),
                         }}
                         width={300}
                         formProps={getInputProps('selectedCardTypes')}
                     />
                     <Checkbox
                         className="mr-2"
-                        label="只显示已持有的卡片"
+                        label={$t('show_only_owned')}
                         {...getInputProps('ownedOnly')}
                     />
                     <Checkbox
-                        label="只显示初始星级 5 的卡片"
+                        label={$t('show_only_rare')}
                         {...getInputProps('initial5Only')}
                     />
                 </div>
                 <div className="flex items-center mb-2">
                     <NumberInput
                         className="mr-2"
-                        label="CT 最小值"
-                        placeholder="无限制"
+                        label={$t('Minimum CT')}
+                        placeholder={$t('Unlimited')}
                         min={0}
                         {...getInputProps('ctMin')}
                     />
                     <NumberInput
                         className="mr-2"
-                        label="CT 最大值"
-                        placeholder="无限制"
+                        label={$t('Maximum CT')}
+                        placeholder={$t('Unlimited')}
                         min={0}
                         {...getInputProps('ctMax')}
                     />
                     <Checkbox
-                        label="按 CT 值筛选时不要跳过 SP 技能"
+                        label={$t('no_skip_sp_on_ctfilter')}
                         className="mr-2"
                         {...getInputProps('ctShowSp')}
                     />
-                    <Tooltip label="选择此选项时，即使卡片的其它技能均不满足 CT 筛选要求，有 SP 技能的卡片也会被显示。如果同时附加了其它筛选条件，您可能希望勾选此项。">
+                    <Tooltip label={$t('no_skip_sp_on_ctfilter_desc')}>
                         <FontAwesomeIcon icon={faInfoCircle} />
                     </Tooltip>
                 </div>
@@ -308,11 +311,10 @@ const SearchPage = ({
                         className="mr-2"
                         label={
                             <span>
-                                效果类型（
+                                {$t('Skill type')}{' '}
                                 <Link href={Paths.wiki('技能说明')}>
-                                    这些效果都是什么？
+                                    {$t('skill_type_desc')}
                                 </Link>
-                                ）
                             </span>
                         }
                         multiple
@@ -323,7 +325,7 @@ const SearchPage = ({
                     />
                     <FilterSelect
                         className="mr-2"
-                        label="目标类型"
+                        label={$t('Target type')}
                         multiple
                         list={skillTargetTypes}
                         listNamemap={skillTargetTypeNames}
@@ -331,7 +333,7 @@ const SearchPage = ({
                         formProps={getInputProps('targetTypes')}
                     />
                     <Checkbox
-                        label="双 A 技能"
+                        label={$t('Dual A skills')}
                         className="mr-2"
                         {...getInputProps('dualA')}
                     />
@@ -339,11 +341,13 @@ const SearchPage = ({
             </div>
             <div className="mt-2">
                 {selectedCards.length === CardData.length ? (
-                    <p>共有 {CardData.length} 张卡片。</p>
+                    <p>{$t('card_total', { num: CardData.length })}</p>
                 ) : (
                     <p>
-                        从 {CardData.length} 张卡片中找到 {selectedCards.length}{' '}
-                        个结果。
+                        {$t('card_filtered', {
+                            total: CardData.length,
+                            num: selectedCards.length,
+                        })}
                     </p>
                 )}
             </div>
@@ -359,6 +363,8 @@ const SearchPage = ({
 }
 
 const SkeletonSearchPage = () => {
+    const $t = useTranslations('search')
+
     const { data: CardData } = useApi('Card')
     const { data: SkillAllData } = useApi('Skill/All')
     const { data: SkillxData } = useApi('Skill/X')
@@ -371,7 +377,7 @@ const SkeletonSearchPage = () => {
 
     return (
         <>
-            <Title title="卡片搜索" />
+            <Title title={$t('Card search')} />
             {allFinished(allData) ? (
                 <SearchPage {...allData} />
             ) : (
@@ -381,6 +387,6 @@ const SkeletonSearchPage = () => {
     )
 }
 
-export const getStaticProps = getI18nProps(['vendor', 'v-chr'])
+export const getStaticProps = getI18nProps(['search', 'vendor', 'v-chr'])
 
 export default SkeletonSearchPage

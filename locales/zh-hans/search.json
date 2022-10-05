@@ -1,0 +1,22 @@
+{
+    "Card search": "卡片搜索",
+    "notice_mybox": "如果发现自己持有的卡片没有显示为「已持有」，请<link>更新卡片持有状态</link>。",
+    "Keyword": "关键词",
+    "Character": "角色",
+    "Type": "类型",
+    "show_only_owned": "只显示已持有的卡片",
+    "show_only_rare": "只显示初始星级 5 的卡片",
+    "Minimum CT": "CT 最小值",
+    "Maximum CT": "CT 最大值",
+    "Unlimited": "无限制",
+    "Skill type": "技能类型",
+    "Target type": "目标类型",
+    "Dual A skills": "双 A 技能",
+    "Wiki Page (Chinese)": "Wiki 页面",
+    "Released": "发布于",
+    "no_skip_sp_on_ctfilter": "按 CT 值筛选时不要跳过 SP 技能",
+    "no_skip_sp_on_ctfilter_desc": "选择此选项时，即使卡片的其它技能均不满足 CT 筛选要求，有 SP 技能的卡片也会被显示。如果同时附加了其它筛选条件，您可能希望勾选此项。",
+    "skill_type_desc": "这是什么？",
+    "card_total": "共有 {num} 张卡片。",
+    "card_filtered": "从 {total} 张卡片中找到 {num} 张卡片。"
+}
