@@ -18,7 +18,9 @@ const clone = rfdc({
 export type LocalBox = Partial<Record<CharacterId, boolean[]>>
 
 const SettingsPage = () => {
+    const $t = useTranslations('settings')
     const $vc = useTranslations('v-chr')
+    const $c = useTranslations('common')
 
     const [localBox, setLocalBox] = useState<LocalBox>({})
     const { data: Cards } = useFrontendApi('cards')
@@ -43,9 +45,8 @@ const SettingsPage = () => {
     const saveLocalBox = () => {
         if (!window.localStorage) {
             showNotification({
-                title: '浏览器兼容性问题',
-                message:
-                    '此浏览器不支持 localStorage。请升级至更新的浏览器以保存设置。',
+                title: $t('Browser compatiblity problem'),
+                message: $t('localstorage_unsupported'),
                 color: 'red',
             })
 
@@ -53,17 +54,17 @@ const SettingsPage = () => {
         }
         localStorage.setItem(LOCALSTORAGE_BOX_TAG, JSON.stringify(localBox))
         showNotification({
-            title: '成功',
-            message: '你的设置已经保存。',
+            title: $t('Success'),
+            message: $t('Your settings have been saved.'),
             color: 'green',
         })
     }
 
     return (
         <>
-            <Title title="设置" />
-            <h3>我的 box</h3>
-            <p>在此设置 box 后，搜索时将会显示卡片的持有状态。</p>
+            <Title title={$t('Settings')} />
+            <h3>{$t('My box')}</h3>
+            <p>{$t('mybox_header')}</p>
             {Cards ? (
                 <Grid gutter={20}>
                     {Object.entries(Cards).map(([name], _key) => (
@@ -102,15 +103,15 @@ const SettingsPage = () => {
                     ))}
                 </Grid>
             ) : (
-                <p>正在加载卡片列表。</p>
+                <p>{$c('Loading...')}</p>
             )}
             <Button variant="outline" onClick={() => saveLocalBox()}>
-                保存
+                {$t('Save')}
             </Button>
         </>
     )
 }
 
-export const getStaticProps = getI18nProps(['v-chr'])
+export const getStaticProps = getI18nProps(['settings', 'v-chr'])
 
 export default SettingsPage
