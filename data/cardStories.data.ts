@@ -829,6 +829,9 @@ const dataYu: D = {
             name: '被温柔对待了',
             video: { type: 'bilibili', vid: 'av473573795' },
         },
+        phone: {
+            video: { type: 'bilibili', vid: 'av261082054' },
+        },
     },
 }
 
