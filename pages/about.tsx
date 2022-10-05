@@ -1,5 +1,6 @@
 import { Avatar, Card, Grid } from '@mantine/core'
 import { useEffect, useState } from 'react'
+import { useTranslations } from 'next-intl'
 
 import type { Contributor } from '#components/api/contributors/types'
 import Title from '#components/Title'
@@ -12,50 +13,22 @@ import getI18nProps from '#utils/getI18nProps'
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 // Adopted from https://github.com/all-contributors/cli/blob/e9c1f55beb2c18391a5d5f0c9e8243dc3f89ebe3/src/util/contribution-types.js
-const EmojiTypes = {
-    a11y: {
-        symbol: '️️️️♿️',
-        description: '可访问性',
-    },
-    audio: {
-        symbol: '🔊',
-        description: '音频',
-    },
-    blog: {
-        symbol: '📝',
-        description: '文章',
-    },
-    bug: {
-        symbol: '🐛',
-        description: '问题报告',
-    },
-    code: {
-        symbol: '💻',
-        description: '代码',
-    },
-    content: {
-        symbol: '🖋',
-        description: '内容',
-    },
-    data: {
-        symbol: '🔣',
-        description: '数据',
-    },
-    design: {
-        symbol: '🎨',
-        description: '设计',
-    },
-    doc: {
-        symbol: '📖',
-        description: '文档',
-    },
-    translation: {
-        symbol: '🌍',
-        description: '翻译',
-    },
+const EmojiTypes: Record<string, string> = {
+    a11y: '️️️️♿️',
+    audio: '🔊',
+    blog: '📝',
+    bug: '🐛',
+    code: '💻',
+    content: '🖋',
+    data: '🔣',
+    design: '🎨',
+    doc: '📖',
+    translation: '🌍',
 }
 
 const ContributorBox = ({ contrib }: { contrib: Contributor }) => {
+    const $t = useTranslations('about')
+
     const { name, login, avatar_url, profile, contributions } = contrib
     return (
         <Card shadow="sm" p="sm" radius="md" className="flex items-center">
@@ -71,11 +44,11 @@ const ContributorBox = ({ contrib }: { contrib: Contributor }) => {
                 </a>
                 <br />
                 {contributions.map((c, key) => {
-                    const typ = EmojiTypes[c as keyof typeof EmojiTypes]
+                    const typ = EmojiTypes[c]
                     if (typ) {
                         return (
-                            <a key={key} href="#" title={typ.description}>
-                                {typ.symbol}
+                            <a key={key} href="#" title={$t(`emoji_${c}`)}>
+                                {typ}
                             </a>
                         )
                     }
@@ -87,6 +60,8 @@ const ContributorBox = ({ contrib }: { contrib: Contributor }) => {
 }
 
 const AboutPage = () => {
+    const $t = useTranslations('about')
+
     const [contribs, setContribs] = useState<Contributor[]>([])
 
     useEffect(() => {
@@ -99,16 +74,13 @@ const AboutPage = () => {
     }, [])
     return (
         <>
-            <Title title="关于" />
-            <p>
-                INFO PRIDE 是一个为 IDOLY PRIDE
-                企划同好及游戏玩家设计的信息站点。
-            </p>
+            <Title title={$t('About')} />
+            <p>{$t('site_desc')}</p>
             {contribs.length === 0 ? (
-                <p className="text-gray-500">正在加载贡献列表...</p>
+                <p className="text-gray-500">{$t('loading_contribs')}</p>
             ) : (
                 <>
-                    <p>贡献者们：</p>
+                    <p>{$t('Contributors:')}</p>
                     <Grid>
                         {contribs.map((one, idx) => (
                             <Grid.Col xs={12} md={6} lg={4} key={idx}>
@@ -122,6 +94,6 @@ const AboutPage = () => {
     )
 }
 
-export const getStaticProps = getI18nProps()
+export const getStaticProps = getI18nProps(['about'])
 
 export default AboutPage
