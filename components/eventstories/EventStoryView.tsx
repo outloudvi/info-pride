@@ -8,9 +8,15 @@ import { toVideoLink } from '#components/ExternalVideo'
 import AssetImage from '#components/AssetImage'
 import useFrontendApi from '#utils/useFrontendApi'
 
-const EventEpisodeDetail = ({ story }: { story: APIResponseOf<'Story'> }) => {
+const EventEpisodeDetail = ({
+    id,
+    story,
+}: {
+    id: string
+    story: APIResponseOf<'Story'>
+}) => {
     const $c = useTranslations('common')
-    const { id, name: jaName, description } = story
+    const { name: jaName, description } = story
     const locale = useLocale()
     const { data: VideoInfoData, isSuccess } = useFrontendApi(
         'eventStories',
@@ -48,7 +54,7 @@ const EventEpisodeDetail = ({ story }: { story: APIResponseOf<'Story'> }) => {
                 ) : (
                     <div className="mt-4 text-gray-500">
                         {$c('no_trans', {
-                            field: `data[{id}]`,
+                            field: `data[${id}]`,
                             file: 'data/eventStories.data.ts',
                         })}
                     </div>
@@ -104,7 +110,7 @@ const EventStoryEpisodeList = ({
                 ))}
             </Group>
             {StoryData ? (
-                <EventEpisodeDetail story={StoryData} />
+                <EventEpisodeDetail id={selectedStoryId} story={StoryData} />
             ) : (
                 <div className="text-gray-500 text-center">
                     {$c('Loading...')}
