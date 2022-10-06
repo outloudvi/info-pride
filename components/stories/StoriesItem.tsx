@@ -7,7 +7,6 @@ import useApi from '#utils/useApi'
 import { SeriesName } from '#data/stories'
 import AssetImage from '#components/AssetImage'
 import useFrontendApi from '#utils/useFrontendApi'
-import { ChapterItem } from '#data/types'
 
 type PropType = {
     // "Special" won't appear here
@@ -33,26 +32,6 @@ function getBackendStoryId(props: PropType): string {
         String(season).padStart(2, '0'),
         String(chapter).padStart(2, '0'),
     ].join('-')
-}
-
-export const SpecialStoriesItem = ({ item }: { item: ChapterItem }) => {
-    const $c = useTranslations('common')
-    const { name, video } = item
-
-    return (
-        <>
-            <div className="text-4xl">{name}</div>
-            <p>
-                <a
-                    href={toVideoLink(video)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    {$c('Video')}
-                </a>
-            </p>
-        </>
-    )
 }
 
 const StoriesItem = (props: PropType) => {

@@ -4,9 +4,8 @@ import { atomWithHash } from 'jotai/utils'
 import { useAtom } from 'jotai'
 import { useTranslations } from 'next-intl'
 
-import StoriesItem, {
-    SpecialStoriesItem,
-} from '#components/stories/StoriesItem'
+import StoriesItem from '#components/stories/StoriesItem'
+import SpecialStoriesItem from '#components/stories/SpecialStoriesItem'
 import { Episodes, Series, SeriesName } from '#data/stories'
 import Title from '#components/Title'
 import { addI18nMessages } from '#utils/getI18nProps'
