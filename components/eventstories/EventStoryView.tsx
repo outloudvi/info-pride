@@ -112,9 +112,7 @@ const EventStoryEpisodeList = ({
             {StoryData ? (
                 <EventEpisodeDetail id={selectedStoryId} story={StoryData} />
             ) : (
-                <div className="text-gray-500 text-center">
-                    {$c('Loading...')}
-                </div>
+                <div className="text-gray-500 text-center">{$c('loading')}</div>
             )}
         </>
     )

@@ -16,7 +16,7 @@ const SiteNotice = () => {
             ))}
         </ul>
     ) : (
-        <p className="text-gray-500">{$c('Loading...')}</p>
+        <p className="text-gray-500">{$c('loading')}</p>
     )
 }
 

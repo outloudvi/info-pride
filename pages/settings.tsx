@@ -103,7 +103,7 @@ const SettingsPage = () => {
                     ))}
                 </Grid>
             ) : (
-                <p>{$c('Loading...')}</p>
+                <p>{$c('loading')}</p>
             )}
             <Button variant="outline" onClick={() => saveLocalBox()}>
                 {$t('Save')}
