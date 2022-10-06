@@ -1,7 +1,6 @@
 import { Skeleton } from '@mantine/core'
 import { useLocale, useTranslations } from 'next-intl'
 
-import Paths from '#utils/paths'
 import { toVideoLink } from '#components/ExternalVideo'
 import useApi from '#utils/useApi'
 import { SeriesName } from '#data/stories'
