@@ -37,6 +37,7 @@ function getBackendStoryId(props: PropType): string {
 const StoriesItem = (props: PropType) => {
     const { series, season, chapter } = props
     const $t = useTranslations('stories')
+    const $c = useTranslations('common')
     const locale = useLocale()
 
     const { data: StoryData, isSuccess } = useApi('Story', {
@@ -108,13 +109,11 @@ const StoriesItem = (props: PropType) => {
             )}
 
             {(StoryTrnData === undefined || localTitle === null) && (
-                <div className="mt-4 text-gray-500">
-                    尚无{StoryTrnData === undefined ? '剧情' : '标题'}
-                    翻译信息。请添加翻译信息到{' '}
-                    <a href={Paths.repo('data/stories.data.ts')}>
-                        data/stories.data.ts
-                    </a>{' '}
-                    的 StoriesData[{series}][{season}][{chapter}] 。
+                <div className="mt-4 mb-2 text-gray-500">
+                    {$c.rich('no_trans', {
+                        field: `StoriesData[${series}][${season}][${chapter}]`,
+                        file: 'data/stories.data.ts',
+                    })}
                 </div>
             )}
 
