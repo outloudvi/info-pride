@@ -78,7 +78,7 @@ const CharactersPage = ({
 }
 
 const SkeletonCharactersPage = () => {
-    const $t = useTranslations('character')
+    const $t = useTranslations('characters')
     const { data: CharacterListData } = useApi('Character/List')
 
     const allData = {

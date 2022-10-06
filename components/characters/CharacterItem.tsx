@@ -19,7 +19,6 @@ import { APIResponseOf, UnArray } from '#utils/api'
 import { CharacterId, PrimaryCharacterIds } from '#data/vendor/characterId'
 import Paths from '#utils/paths'
 import { IdolyFashionUrl, IdolyRoomUrl } from '#data/ipcmmu.data'
-import { Idols } from '#data/wikiPages'
 import BirthdayCommu from '#components/characters/BirthdayCommu'
 import { toHashColor } from '#utils/toHashColor'
 
@@ -84,6 +83,8 @@ const CharacterItem = ({
         [$t('Three size'), threeSize],
     ]
 
+    console.log(`profile.${id}`, $t(`profile.${id}`))
+
     return (
         <div>
             <div
@@ -130,10 +131,12 @@ const CharacterItem = ({
                     ></span>
                 </Blockquote>
             )}
-            {Idols[id] ? (
-                <p>{Idols[id].desc}</p>
-            ) : profile ? (
-                <p>{profile}</p>
+            {profile ? (
+                <p>
+                    {$t(`profile.${id}`) !== `profile.${id}`
+                        ? $t(`profile.${id}`)
+                        : profile}
+                </p>
             ) : null}
             <Grid>
                 <Grid.Col xs={12} lg={8}>
