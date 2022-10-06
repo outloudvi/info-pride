@@ -33,6 +33,7 @@ export type FrontendAPIResponseMapping = {
     diary: DiaryItem | undefined
     news: { title: string; link?: string }[]
     skillRunner: SkillLaunchItem[]
+    stories: ChapterItem | null
     version:
         | {
               releaseDate: string

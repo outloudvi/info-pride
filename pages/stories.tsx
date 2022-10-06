@@ -1,4 +1,3 @@
-import { useMemo } from 'react'
 import { Button, Grid, Tabs } from '@mantine/core'
 import _range from 'lodash/range'
 import { atomWithHash } from 'jotai/utils'
@@ -8,36 +7,33 @@ import { useTranslations } from 'next-intl'
 import StoriesItem, {
     SpecialStoriesItem,
 } from '#components/stories/StoriesItem'
-import { Episodes, Series } from '#data/stories'
-import StoriesData from '#data/stories.data'
+import { Episodes, Series, SeriesName } from '#data/stories'
 import Title from '#components/Title'
-import getI18nProps from '#utils/getI18nProps'
+import { addI18nMessages } from '#utils/getI18nProps'
+import storiesData from '#data/videos/stories.data'
+import { IStoriesData } from '#data/videos/stories.data/types'
+import SeasonChapterList from '#components/stories/SeasonChapterList'
+import getSpecialStories from '#components/stories/getSpecialStories'
+import { ChapterItem } from '#data/types'
+
+const SPECIAL_SERIES_TAG = 99
 
 const seriesAtom = atomWithHash('series', 0)
 const seasonAtom = atomWithHash('season', 1)
 const chapterAtom = atomWithHash('chapter', 1)
 
-const StoriesPage = () => {
+const StoriesPage = ({
+    completion,
+    special,
+}: {
+    completion: IStoriesData<0 | 1>
+    special: ChapterItem[]
+}) => {
     const $t = useTranslations('stories')
-    const [series, setSeries] = useAtom(seriesAtom)
-    const [season, setSeason] = useAtom(seasonAtom)
-    const [chapter, setChapter] = useAtom(chapterAtom)
-    const seriesName = Series[series]
-
-    const completion = useMemo(() => {
-        const ret: Record<string, Record<number, Record<number, boolean>>> = {}
-        for (let i = 0; i < Series.length; i++) {
-            const seriesSlug = Series[i]
-            ret[seriesSlug] = Episodes[seriesSlug].map((length, episodeKey) =>
-                _range(1, length + 1).map((chapterId) =>
-                    Boolean(
-                        StoriesData?.[seriesSlug]?.[episodeKey + 1]?.[chapterId]
-                    )
-                )
-            )
-        }
-        return ret
-    }, [])
+    const [curSeries, setSeries] = useAtom(seriesAtom)
+    const [curSeason, setSeason] = useAtom(seasonAtom)
+    const [curChapter, setChapter] = useAtom(chapterAtom)
+    const seriesName = Series[curSeries]
 
     return (
         <>
@@ -46,126 +42,78 @@ const StoriesPage = () => {
                 <Grid.Col xs={12} lg={6}>
                     <Tabs defaultValue="Hoshimi">
                         <Tabs.List>
-                            {Series.filter((x) => x !== 'Special').map(
-                                (seriesSlug, seriesKey) => (
-                                    <Tabs.Tab
-                                        value={seriesSlug}
-                                        key={seriesKey}
-                                    >
-                                        {$t(`series.${seriesSlug}`)}
-                                    </Tabs.Tab>
-                                )
-                            )}
-                            <Tabs.Tab value="others">{$t('Others')}</Tabs.Tab>
+                            {Series.map((seriesSlug, seriesKey) => (
+                                <Tabs.Tab value={seriesSlug} key={seriesKey}>
+                                    {$t(`series.${seriesSlug}`)}
+                                </Tabs.Tab>
+                            ))}
+                            <Tabs.Tab value="special">{$t('Others')}</Tabs.Tab>
                         </Tabs.List>
-                        {Series.filter((x) => x !== 'Special').map(
-                            (seriesSlug, seriesKey) => (
+                        {Series.map((seriesSlug, seriesKey) => {
+                            return (
                                 <Tabs.Panel value={seriesSlug} key={seriesKey}>
                                     <div className="max-h-[60vh] overflow-y-auto">
                                         {Episodes[seriesSlug].map(
                                             (
                                                 episodeLengthInSeason,
                                                 seasonKey
-                                            ) => (
-                                                <div key={seasonKey}>
-                                                    <p>
-                                                        {$t(
-                                                            `series.${seriesSlug}`
-                                                        )}{' '}
-                                                        {$t('season', {
-                                                            s: seasonKey + 1,
-                                                        })}
-                                                    </p>
-                                                    {_range(
-                                                        1,
-                                                        episodeLengthInSeason +
-                                                            1
-                                                    ).map(
-                                                        (
-                                                            chapterNum,
-                                                            chapterKey
-                                                        ) => {
-                                                            const currentSelection =
-                                                                series ===
-                                                                    seriesKey &&
-                                                                season ===
-                                                                    seasonKey +
-                                                                        1 &&
-                                                                chapter ===
-                                                                    chapterNum
-                                                            return (
-                                                                <Button
-                                                                    variant="subtle"
-                                                                    compact
-                                                                    color={
-                                                                        completion?.[
-                                                                            seriesSlug
-                                                                        ]?.[
-                                                                            seasonKey
-                                                                        ]?.[
-                                                                            chapterKey
-                                                                        ]
-                                                                            ? 'blue'
-                                                                            : 'teal'
-                                                                    }
-                                                                    key={
-                                                                        chapterKey
-                                                                    }
-                                                                    onClick={() => {
-                                                                        setSeries(
-                                                                            seriesKey
-                                                                        )
-                                                                        setSeason(
-                                                                            seasonKey +
-                                                                                1
-                                                                        )
-                                                                        setChapter(
-                                                                            chapterNum
-                                                                        )
-                                                                    }}
-                                                                    disabled={
-                                                                        currentSelection
-                                                                    }
-                                                                >
-                                                                    {seasonKey +
-                                                                        1}
-                                                                    -
-                                                                    {chapterNum}
-                                                                </Button>
-                                                            )
+                                            ) => {
+                                                const season = seasonKey + 1
+                                                return (
+                                                    <SeasonChapterList
+                                                        key={season}
+                                                        series={seriesSlug}
+                                                        season={season}
+                                                        length={
+                                                            episodeLengthInSeason
                                                         }
-                                                    )}
-                                                </div>
-                                            )
+                                                        completion={
+                                                            completion?.[
+                                                                seriesSlug
+                                                            ][season] ?? {}
+                                                        }
+                                                        selected={
+                                                            curSeries ===
+                                                                seriesKey &&
+                                                            curSeason === season
+                                                                ? curChapter
+                                                                : null
+                                                        }
+                                                        onClick={(chapter) => {
+                                                            setSeries(seriesKey)
+                                                            setSeason(season)
+                                                            setChapter(chapter)
+                                                        }}
+                                                    />
+                                                )
+                                            }
                                         )}
                                     </div>
                                 </Tabs.Panel>
                             )
-                        )}
-                        <Tabs.Panel value="others">
-                            <div className="max-h-[60vh] overflow-y-auto">
-                                {Object.entries(
-                                    StoriesData.Special?.[1] ?? []
-                                ).map(([chapterId, chapterItem], key) => {
-                                    const seriesKey = Series.indexOf('Special')
-                                    const chapterNum = Number(chapterId)
-                                    const currentSelection =
-                                        series === seriesKey &&
-                                        season === 1 &&
-                                        chapter === chapterNum
+                        })}
+                        <Tabs.Panel value="special">
+                            <div>
+                                <p>{$t('Others')}</p>
+                                {(special ?? []).map((item, key) => {
                                     return (
                                         <Button
                                             variant="subtle"
                                             compact
+                                            color="blue"
                                             key={key}
                                             onClick={() => {
-                                                setSeries(seriesKey)
+                                                setSeries(SPECIAL_SERIES_TAG)
                                                 setSeason(1)
-                                                setChapter(Number(chapterId))
+                                                setChapter(key)
                                             }}
-                                            disabled={currentSelection}
+                                            disabled={
+                                                curSeries ===
+                                                    SPECIAL_SERIES_TAG &&
+                                                curChapter === key
+                                            }
                                         >
-                                            {chapterItem.name}
+                                            {item.name}
                                         </Button>
                                     )
                                 })}
@@ -174,17 +122,13 @@ const StoriesPage = () => {
                     </Tabs>
                 </Grid.Col>
                 <Grid.Col xs={12} lg={6}>
-                    {seriesName === 'Special' ? (
-                        <SpecialStoriesItem
-                            series={seriesName}
-                            season={season}
-                            chapter={chapter}
-                        />
+                    {curSeries === SPECIAL_SERIES_TAG ? (
+                        <SpecialStoriesItem item={special[curChapter]} />
                     ) : (
                         <StoriesItem
                             series={seriesName}
-                            season={season}
-                            chapter={chapter}
+                            season={curSeason}
+                            chapter={curChapter}
                         />
                     )}
                 </Grid.Col>
@@ -193,6 +137,35 @@ const StoriesPage = () => {
     )
 }
 
-export const getStaticProps = getI18nProps(['stories'])
+export const getStaticProps = async ({ locale }: { locale: string }) => {
+    const completion = (() => {
+        const ret: Partial<IStoriesData<0 | 1>> = {}
+        for (let i = 0; i < Series.length; i++) {
+            const seriesSlug = Series[i]
+            ret[seriesSlug] = [
+                // skip index 0
+                [],
+                ...Episodes[seriesSlug].map((length, episodeKey) =>
+                    _range(1, length + 1).map((chapterId) =>
+                        storiesData?.[locale]?.data?.[
+                            seriesSlug as SeriesName
+                        ]?.[episodeKey + 1]?.[chapterId]
+                            ? 1
+                            : 0
+                    )
+                ),
+            ]
+        }
+        return ret
+    })()
+
+    return {
+        props: {
+            ...(await addI18nMessages(locale, ['stories'])),
+            completion,
+            special: getSpecialStories(locale),
+        },
+    }
+}
 
 export default StoriesPage
