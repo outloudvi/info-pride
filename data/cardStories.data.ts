@@ -968,6 +968,21 @@ const dataRio: D = {
         },
         phone: { video: { type: 'bilibili', vid: 'av467970608' } },
     },
+    'card-rio-05-kiok-00': {
+        // 心に刻む星月夜
+        1: {
+            name: '回忆的巡游',
+            video: { type: 'bilibili', vid: 'av943673121' },
+        },
+        2: {
+            name: '想知道你的事',
+            video: { type: 'bilibili', vid: 'av388827513' },
+        },
+        3: {
+            name: '在星的海洋之中',
+            video: { type: 'bilibili', vid: 'av431366423' },
+        },
+    },
 }
 
 // 井川葵
