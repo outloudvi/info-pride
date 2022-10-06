@@ -1,8 +1,7 @@
 import { Button, Grid, Tabs } from '@mantine/core'
 import _range from 'lodash/range'
-import { atomWithHash } from 'jotai/utils'
-import { useAtom } from 'jotai'
 import { useTranslations } from 'next-intl'
+import { NumberParam, useQueryParams, withDefault } from 'use-query-params'
 
 import StoriesItem from '#components/stories/StoriesItem'
 import SpecialStoriesItem from '#components/stories/SpecialStoriesItem'
@@ -14,12 +13,9 @@ import { IStoriesData } from '#data/videos/stories.data/types'
 import SeasonChapterList from '#components/stories/SeasonChapterList'
 import getSpecialStories from '#components/stories/getSpecialStories'
 import { ChapterItem } from '#data/types'
+import withQueryParam from '#utils/withQueryParam'
 
 const SPECIAL_SERIES_TAG = 99
-
-const seriesAtom = atomWithHash('series', 0)
-const seasonAtom = atomWithHash('season', 1)
-const chapterAtom = atomWithHash('chapter', 1)
 
 const StoriesPage = ({
     completion,
@@ -29,9 +25,14 @@ const StoriesPage = ({
     special: ChapterItem[]
 }) => {
     const $t = useTranslations('stories')
-    const [curSeries, setSeries] = useAtom(seriesAtom)
-    const [curSeason, setSeason] = useAtom(seasonAtom)
-    const [curChapter, setChapter] = useAtom(chapterAtom)
+
+    const [query, setQuery] = useQueryParams({
+        series: withDefault(NumberParam, 0),
+        s: withDefault(NumberParam, 1),
+        c: withDefault(NumberParam, 1),
+    })
+    const { series: curSeries, s: curSeason, c: curChapter } = query
+
     const seriesName = Series[curSeries]
 
     return (
@@ -79,9 +80,11 @@ const StoriesPage = ({
                                                                 : null
                                                         }
                                                         onClick={(chapter) => {
-                                                            setSeries(seriesKey)
-                                                            setSeason(season)
-                                                            setChapter(chapter)
+                                                            setQuery({
+                                                                series: seriesKey,
+                                                                s: season,
+                                                                c: chapter,
+                                                            })
                                                         }}
                                                     />
                                                 )
@@ -102,9 +105,11 @@ const StoriesPage = ({
                                             color="blue"
                                             key={key}
                                             onClick={() => {
-                                                setSeries(SPECIAL_SERIES_TAG)
-                                                setSeason(1)
-                                                setChapter(key)
+                                                setQuery({
+                                                    series: SPECIAL_SERIES_TAG,
+                                                    s: 1,
+                                                    c: key,
+                                                })
                                             }}
                                             disabled={
                                                 curSeries ===
@@ -136,7 +141,7 @@ const StoriesPage = ({
     )
 }
 
-export const getStaticProps = async ({ locale }: { locale: string }) => {
+export const getServerSideProps = async ({ locale }: { locale: string }) => {
     const completion = (() => {
         const ret: Partial<IStoriesData<0 | 1>> = {}
         for (let i = 0; i < Series.length; i++) {
@@ -167,4 +172,4 @@ export const getStaticProps = async ({ locale }: { locale: string }) => {
     }
 }
 
-export default StoriesPage
+export default withQueryParam(StoriesPage)
