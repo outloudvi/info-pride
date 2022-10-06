@@ -6,25 +6,25 @@ export default function getCardColor(
         Card,
         'vocalRatioPermil' | 'danceRatioPermil' | 'visualRatioPermil'
     >
-): typeof AttributeType[number] {
+): AttributeType {
     const { vocalRatioPermil, danceRatioPermil, visualRatioPermil } = card
     if (
         vocalRatioPermil > danceRatioPermil &&
         vocalRatioPermil > visualRatioPermil
     ) {
-        return AttributeType[AttributeType.Vocal]
+        return AttributeType.Vocal
     }
     if (
         danceRatioPermil > vocalRatioPermil &&
         danceRatioPermil > visualRatioPermil
     ) {
-        return AttributeType[AttributeType.Dance]
+        return AttributeType.Dance
     }
     if (
         visualRatioPermil > vocalRatioPermil &&
         visualRatioPermil > danceRatioPermil
     ) {
-        return AttributeType[AttributeType.Visual]
+        return AttributeType.Visual
     }
-    return AttributeType[AttributeType.Unknown]
+    return AttributeType.Unknown
 }

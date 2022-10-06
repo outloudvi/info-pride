@@ -26,6 +26,7 @@ const CardWithSkills = ({
     highlightedSkills: string[]
     skillData: Skill[]
 }) => {
+    const $t = useTranslations('search')
     const $v = useTranslations('vendor')
     const $vc = useTranslations('v-chr')
 
@@ -51,14 +52,14 @@ const CardWithSkills = ({
                             `${$vc(characterId)}/卡牌/${cardCcid.ccid}`
                         )}
                     >
-                        Wiki 页面
+                        {$t('Wiki Page (Chinese)')}
                     </a>
                 </>
             )}
             <br />
             <span>
                 {$vc(characterId)} / {$v(CardType[type])} / {$v(cardColor)} /{' '}
-                {initialRarity}★ / 发布于 {releaseDateFmt}
+                {initialRarity}★ / {$t('Released')} {releaseDateFmt}
             </span>
 
             <Grid className="mt-1">

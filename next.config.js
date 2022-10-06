@@ -2,6 +2,8 @@
 
 const { withSentryConfig } = require('@sentry/nextjs')
 
+const locales = require('./locales/locales.json')
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     reactStrictMode: true,
@@ -22,7 +24,7 @@ const nextConfig = {
         domains: ['idoly-assets-curator.vercel.app', 'idoly-assets.outv.im'],
     },
     i18n: {
-        locales: ['zh-hans', 'en'],
+        locales,
         defaultLocale: 'zh-hans',
     },
 }

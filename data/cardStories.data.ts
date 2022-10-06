@@ -68,6 +68,21 @@ const dataKotono: D = {
             video: { type: 'bilibili', vid: 'av299927963' },
         },
     },
+    'card-ktn-05-kiok-00': {
+        // 泡沫の悲しみ、思いは胸に
+        1: {
+            name: '作为嘉宾的那个人',
+            video: { type: 'bilibili', vid: 'av561192387' },
+        },
+        2: {
+            name: '志同道合的人',
+            video: { type: 'bilibili', vid: 'av558644549' },
+        },
+        3: {
+            name: '胸中的记忆',
+            video: { type: 'bilibili', vid: 'av473715057' },
+        },
+    },
 }
 
 // 伊吹渚
@@ -800,6 +815,24 @@ const dataYu: D = {
             video: { type: 'bilibili', vid: 'av215108612' },
         },
     },
+    'card-yu-05-fest-00': {
+        // 甘えん坊の鈴村さん
+        1: {
+            name: '感冒了呢',
+            video: { type: 'bilibili', vid: 'av303469442' },
+        },
+        2: {
+            name: '我的、第一次的人',
+            video: { type: 'bilibili', vid: 'av431099060' },
+        },
+        3: {
+            name: '被温柔对待了',
+            video: { type: 'bilibili', vid: 'av473573795' },
+        },
+        phone: {
+            video: { type: 'bilibili', vid: 'av261082054' },
+        },
+    },
 }
 
 // 奥山堇
@@ -861,6 +894,21 @@ const dataSumire: D = {
             video: { type: 'bilibili', vid: 'av339799350' },
         },
         3: { name: 'TODO', video: { type: 'bilibili', vid: 'av594759853' } },
+    },
+    'card-smr-05-fest-00': {
+        // 歌詠み花
+        1: {
+            name: '全部都忘记拿了！？',
+            video: { type: 'bilibili', vid: 'av431081244' },
+        },
+        2: {
+            name: '加油努力学习吧——！',
+            video: { type: 'bilibili', vid: 'av388570805' },
+        },
+        3: {
+            name: '哥哥欺负人～！',
+            video: { type: 'bilibili', vid: 'av688554744' },
+        },
     },
 }
 

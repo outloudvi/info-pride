@@ -29,8 +29,7 @@ import { APIResponseOf, UnArray } from '#utils/api'
 import { CharacterId } from '#data/vendor/characterId'
 import useFrontendApi from '#utils/useFrontendApi'
 import CCIDTable from '#data/ccid'
-
-const MAX_LEVEL = 200
+import { MAX_LEVEL } from '#utils/constants'
 
 const CardItem = ({
     card,

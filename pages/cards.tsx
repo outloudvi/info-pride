@@ -3,10 +3,13 @@ import { Checkbox, SimpleGrid } from '@mantine/core'
 import { useTranslations } from 'next-intl'
 import { useForm } from '@mantine/form'
 import uniq from 'lodash/uniq'
+import { got } from 'got'
+import { CardRarity } from 'hoshimi-types/ProtoMaster'
+import { AttributeType } from 'hoshimi-types/ProtoEnum'
 
 import useApi from '#utils/useApi'
 import allFinished from '#utils/allFinished'
-import getI18nProps from '#utils/getI18nProps'
+import { addI18nMessages } from '#utils/getI18nProps'
 import { APIResponseOf, UnArray } from '#utils/api'
 import PageLoading from '#components/PageLoading'
 import Title from '#components/Title'
@@ -16,6 +19,8 @@ import getCardColor from '#utils/getCardColor'
 import FilterSelect from '#components/search/FilterSelect'
 import type { Card as WikiCard } from '#data/wikiPages/cards'
 import useFrontendApi from '#utils/useFrontendApi'
+import { MAX_LEVEL } from '#utils/constants'
+import Paths from '#utils/paths'
 
 type CardNameDataType = { nameCn: string; nameJa: string }[]
 
@@ -35,11 +40,10 @@ const CardFaceTypes = [
 ]
 
 const CardsPage = ({
-    CardData,
+    CardListData,
     CardNameData,
 }: {
-    CardData: APIResponseOf<'Card'>
-
+    CardListData: APIResponseOf<'Card/List'>
     CardNameData: CardNameDataType
 }) => {
     const $v = useTranslations('vendor')
@@ -56,7 +60,7 @@ const CardsPage = ({
             selectedCardTypes: [] as string[],
             selectedCardColors: [] as string[],
             selectedCardFaceTypes: [] as string[],
-            orderBy: 'releaseDate' as keyof UnArray<APIResponseOf<'Card'>>,
+            orderBy: 'releaseDate' as keyof UnArray<APIResponseOf<'Card/List'>>,
             orderReversed: true,
         },
     })
@@ -64,11 +68,11 @@ const CardsPage = ({
     const cardFaceTypeList = useMemo(
         () =>
             uniq(
-                CardData.map((x) => x.id.split('-')?.[3])
+                CardListData.map((x) => x.id.split('-')?.[3])
                     .filter((x) => CardFaceTypes.includes(x))
                     .sort((a, b) => (a < b ? -1 : 1))
             ),
-        [CardData]
+        [CardListData]
     )
 
     const cards = useMemo(() => {
@@ -81,7 +85,7 @@ const CardsPage = ({
             orderReversed,
         } = formValues
 
-        return CardData.filter((x) =>
+        return CardListData.filter((x) =>
             selectedCharacters.length === 0
                 ? true
                 : selectedCharacters.includes(x.characterId as CharacterId)
@@ -99,15 +103,23 @@ const CardsPage = ({
             .filter((x) =>
                 selectedCardColors.length === 0
                     ? true
-                    : selectedCardColors.includes(getCardColor(x))
+                    : selectedCardColors.includes(
+                          AttributeType[
+                              getCardColor({
+                                  // shall be safe since large RatioPermil gives larger Pt
+                                  vocalRatioPermil: x.vocalPt,
+                                  danceRatioPermil: x.dancePt,
+                                  visualRatioPermil: x.visualPt,
+                              })
+                          ]
+                      )
             )
-
             .sort(
                 (a, b) =>
                     (a[orderBy] > b[orderBy] ? -1 : 1) *
                     (orderReversed ? 1 : -1)
             )
-    }, [formValues, CardData])
+    }, [formValues, CardListData])
 
     return (
         <>
@@ -161,7 +173,13 @@ const CardsPage = ({
                     <FilterSelect
                         className="mr-2"
                         label={$t('Sort')}
-                        list={['releaseDate', 'idol']}
+                        list={[
+                            'releaseDate',
+                            'idol',
+                            'vocalPt',
+                            'dancePt',
+                            'visualPt',
+                        ]}
                         displayAs={$t}
                         width={300}
                         formProps={getInputProps('orderBy')}
@@ -199,15 +217,18 @@ const CardsPage = ({
     )
 }
 
-const SkeletonCardsPage = () => {
+const SkeletonCardsPage = ({ maxRarity }: { maxRarity: number }) => {
     const $t = useTranslations('cards')
-    const { data: CardData } = useApi('Card')
+    const { data: CardListData } = useApi('Card/List', {
+        level: String(MAX_LEVEL),
+        rarity: String(maxRarity),
+    })
     const { data: CardNameData } = useFrontendApi('wikiCard', {
         fields: 'nameCn,nameJa',
     })
 
     const allData = {
-        CardData,
+        CardListData,
         CardNameData: CardNameData as
             | Pick<WikiCard, 'nameCn' | 'nameJa'>[]
             | undefined,
@@ -217,7 +238,15 @@ const SkeletonCardsPage = () => {
         <>
             <Title title={$t('Cards')} />
             {allFinished(allData) ? (
-                <CardsPage {...allData} />
+                <>
+                    <p>
+                        {$t('page_header', {
+                            rarity: maxRarity,
+                            level: MAX_LEVEL,
+                        })}
+                    </p>
+                    <CardsPage {...allData} />
+                </>
             ) : (
                 <PageLoading data={allData} />
             )}
@@ -225,6 +254,18 @@ const SkeletonCardsPage = () => {
     )
 }
 
-export const getStaticProps = getI18nProps(['cards', 'vendor', 'v-chr'])
+export const getServerSideProps = async ({ locale }: { locale: string }) => {
+    const CardRarity: CardRarity[] = await got
+        .get(Paths.api('CardRarity'))
+        .json()
+    return {
+        props: {
+            ...(await addI18nMessages(locale, ['cards', 'vendor', 'v-chr'])),
+            maxRarity: CardRarity.reduce((a, b) =>
+                a.rarity > b.rarity ? a : b
+            ).rarity,
+        },
+    }
+}
 
 export default SkeletonCardsPage
