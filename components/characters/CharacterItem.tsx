@@ -21,6 +21,7 @@ import Paths from '#utils/paths'
 import { IdolyFashionUrl, IdolyRoomUrl } from '#data/ipcmmu.data'
 import BirthdayCommu from '#components/characters/BirthdayCommu'
 import { toHashColor } from '#utils/toHashColor'
+import useFrontendApi from '#utils/useFrontendApi'
 
 const BirthdayCommuException: CharacterId[] = ['char-mna']
 const VoiceException: CharacterId[] = ['char-mku']
@@ -38,6 +39,10 @@ const CharacterItem = ({
     const { id, characterGroupId, name, enName, color } = character
 
     const { data: CharacterData, isSuccess } = useApi('Character', { ids: id })
+    const { data: ProfileData } = useFrontendApi('characters/profile', {
+        id,
+        locale,
+    })
 
     if (!isSuccess) {
         return <Skeleton height={700} />
@@ -82,8 +87,6 @@ const CharacterItem = ({
         [$t('Accustomed hand'), isLeftHanded ? $t('Left') : $t('Right')],
         [$t('Three size'), threeSize],
     ]
-
-    console.log(`profile.${id}`, $t(`profile.${id}`))
 
     return (
         <div>
@@ -131,13 +134,7 @@ const CharacterItem = ({
                     ></span>
                 </Blockquote>
             )}
-            {profile ? (
-                <p>
-                    {$t(`profile.${id}`) !== `profile.${id}`
-                        ? $t(`profile.${id}`)
-                        : profile}
-                </p>
-            ) : null}
+            <p>{ProfileData?.profile ?? profile}</p>
             <Grid>
                 <Grid.Col xs={12} lg={8}>
                     {CharacterData && (
