@@ -22,7 +22,7 @@ const ChatView = ({
     if (!msg) {
         return (
             <div className="flex h-full justify-center items-center flex-col">
-                <div className="text-white">{$c('Loading...')}</div>
+                <div className="text-white">{$c('loading')}</div>
                 <Button
                     className="mt-2"
                     onClick={() => {

@@ -40,7 +40,6 @@ const CharacterChineseNameList: Record<CharacterId, string> = {
     'char-mku': '初音未来',
 } as const
 
-const IdolsJson = 'idols.json'
 const CardsJson = 'cards.json'
 const SongsJson = 'songs.json'
 const SitePref: SitePrefConfig = {
@@ -138,25 +137,6 @@ function parseIdol(pageJson: any) {
 
 async function main() {
     const currDir = fileURLToPath(dirname(import.meta.url))
-
-    try {
-        // Idols
-        const idolInfo = readJson(join(currDir, IdolsJson))
-        for (const [idolId, idolCnName] of Object.entries(
-            CharacterChineseNameList
-        )) {
-            if (idolInfo?.[idolId]) {
-                console.info(`Skipping idol ${idolCnName}`)
-                continue
-            }
-            console.info(`Fetching idol ${idolCnName}`)
-            const pageJson = await getPageJson(idolCnName, SitePref)
-            idolInfo[idolId] = parseIdol(pageJson)
-        }
-        writeFileSync(join(currDir, IdolsJson), JSON.stringify(idolInfo))
-    } catch (e) {
-        console.error(`Failed to update idol data: ${e}`)
-    }
 
     try {
         // Cards

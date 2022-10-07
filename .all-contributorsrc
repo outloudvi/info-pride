@@ -22,6 +22,15 @@
       "contributions": [
         "data"
       ]
+    },
+    {
+      "login": "tokanada",
+      "name": "David T",
+      "avatar_url": "https://avatars.githubusercontent.com/u/9441423?v=4",
+      "profile": "https://github.com/tokanada",
+      "contributions": [
+        "translation"
+      ]
     }
   ],
   "contributorsPerLine": 7,

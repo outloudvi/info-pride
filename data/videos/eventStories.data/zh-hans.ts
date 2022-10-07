@@ -245,6 +245,7 @@ const data: Record<string, ChapterItem> = {
         name: '只要是我们的话，就没有问题',
         video: { type: 'bilibili', vid: 'av553882116' },
     },
+    // 熱中☆ハプニングサマー
     'st-eve-2208-backside-001': {
         name: '想和前辈一起玩',
         video: { type: 'bilibili', vid: 'av301706967' },
@@ -265,6 +266,7 @@ const data: Record<string, ChapterItem> = {
         name: '比夏天更炎热的恋爱体验',
         video: { type: 'bilibili', vid: 'av344304719' },
     },
+    // 未来とつながるマジカルメロディ
     'st-eve-2209-contest-001': {
         name: '虚拟歌手',
         video: { type: 'bilibili', vid: 'av260183330' },
@@ -284,6 +286,27 @@ const data: Record<string, ChapterItem> = {
     'st-eve-2209-contest-005': {
         name: 'with. 初音未来',
         video: { type: 'bilibili', vid: 'av857781292' },
+    },
+    // 運命繋ぐ流星の軌跡
+    'st-eve-2210-race-001': {
+        name: '追忆的天空',
+        video: { type: 'bilibili', vid: 'av688850892', pid: 1 },
+    },
+    'st-eve-2210-race-002': {
+        name: '琴乃的请求',
+        video: { type: 'bilibili', vid: 'av688850892', pid: 2 },
+    },
+    'st-eve-2210-race-003': {
+        name: '星见的惊喜',
+        video: { type: 'bilibili', vid: 'av688850892', pid: 3 },
+    },
+    'st-eve-2210-race-004': {
+        name: '交汇的命运',
+        video: { type: 'bilibili', vid: 'av688850892', pid: 4 },
+    },
+    'st-eve-2210-race-005': {
+        name: '星之海的记忆',
+        video: { type: 'bilibili', vid: 'av688850892', pid: 5 },
     },
 }
 

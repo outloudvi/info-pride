@@ -1,38 +1,34 @@
-import type { SeriesName } from './stories'
-import { ChapterItem } from './types'
+import type { StoriesData } from './types'
 
-const data: Partial<
-    Record<SeriesName, Record<number, Record<number, ChapterItem>>>
-> = {
-    // 其它剧情
-    Special: {
-        1: {
-            1: {
-                name: '手游开篇剧情',
-                video: { type: 'bilibili', vid: 'av761315570' },
-            },
-            2: {
-                name: '[2022/4/1] 愚人节春斗剧情（前篇）',
-                video: { type: 'bilibili', vid: 'av980357709', pid: 1 },
-            },
-            3: {
-                name: '[2022/4/1] 愚人节春斗剧情（后篇）',
-                video: { type: 'bilibili', vid: 'av980357709', pid: 2 },
-            },
-            4: {
-                name: '[2022/6/30] 三得利售货机限定慰问来电（瑠依）',
-                video: { type: 'bilibili', vid: 'av812917702' },
-            },
-            5: {
-                name: '[2022/6/30] 三得利售货机限定慰问来电（堇）',
-                video: { type: 'bilibili', vid: 'av813293495' },
-            },
-            6: {
-                name: '[2022/6/30] 三得利售货机限定慰问来电（优）',
-                video: { type: 'bilibili', vid: 'av343290005' },
-            },
-        },
+// 其它剧情
+const special: StoriesData['special'] = [
+    {
+        name: '手游开篇剧情',
+        video: { type: 'bilibili', vid: 'av761315570' },
     },
+    {
+        name: '[2022/4/1] 愚人节春斗剧情（前篇）',
+        video: { type: 'bilibili', vid: 'av980357709', pid: 1 },
+    },
+    {
+        name: '[2022/4/1] 愚人节春斗剧情（后篇）',
+        video: { type: 'bilibili', vid: 'av980357709', pid: 2 },
+    },
+    {
+        name: '[2022/6/30] 三得利售货机限定慰问来电（瑠依）',
+        video: { type: 'bilibili', vid: 'av812917702' },
+    },
+    {
+        name: '[2022/6/30] 三得利售货机限定慰问来电（堇）',
+        video: { type: 'bilibili', vid: 'av813293495' },
+    },
+    {
+        name: '[2022/6/30] 三得利售货机限定慰问来电（优）',
+        video: { type: 'bilibili', vid: 'av343290005' },
+    },
+]
+
+const data: StoriesData['data'] = {
     Hoshimi: {
         1: {
             1: {
@@ -1185,4 +1181,6 @@ const data: Partial<
     },
 }
 
-export default data
+const _ = { data, special }
+
+export default _

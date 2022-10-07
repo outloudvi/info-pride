@@ -19,9 +19,9 @@ import { APIResponseOf, UnArray } from '#utils/api'
 import { CharacterId, PrimaryCharacterIds } from '#data/vendor/characterId'
 import Paths from '#utils/paths'
 import { IdolyFashionUrl, IdolyRoomUrl } from '#data/ipcmmu.data'
-import { Idols } from '#data/wikiPages'
 import BirthdayCommu from '#components/characters/BirthdayCommu'
 import { toHashColor } from '#utils/toHashColor'
+import useFrontendApi from '#utils/useFrontendApi'
 
 const BirthdayCommuException: CharacterId[] = ['char-mna']
 const VoiceException: CharacterId[] = ['char-mku']
@@ -39,6 +39,10 @@ const CharacterItem = ({
     const { id, characterGroupId, name, enName, color } = character
 
     const { data: CharacterData, isSuccess } = useApi('Character', { ids: id })
+    const { data: ProfileData } = useFrontendApi('characters/profile', {
+        id,
+        locale,
+    })
 
     if (!isSuccess) {
         return <Skeleton height={700} />
@@ -130,11 +134,7 @@ const CharacterItem = ({
                     ></span>
                 </Blockquote>
             )}
-            {Idols[id] ? (
-                <p>{Idols[id].desc}</p>
-            ) : profile ? (
-                <p>{profile}</p>
-            ) : null}
+            <p>{ProfileData?.profile ?? profile}</p>
             <Grid>
                 <Grid.Col xs={12} lg={8}>
                     {CharacterData && (

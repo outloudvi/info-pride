@@ -1,6 +1,8 @@
 {
     "Stories": "剧情",
     "Others": "其它",
+    "Video": "视频",
+    "season": "{s} 章",
     "series": {
         "Hoshimi": "星见编",
         "Tokyo": "东京编",

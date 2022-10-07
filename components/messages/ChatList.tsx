@@ -31,7 +31,7 @@ const ChatList = ({
                     ))}
                 </Stack>
             ) : (
-                <div className="text-white text-center">{$c('Loading...')}</div>
+                <div className="text-white text-center">{$c('loading')}</div>
             )}
         </div>
     )

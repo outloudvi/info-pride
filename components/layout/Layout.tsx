@@ -24,7 +24,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
         return () => {
             router.events.off('routeChangeComplete', maybeCollapseNavbar)
         }
-    })
+    }, [router.events, setExpandedNavbar])
 
     return (
         <>
