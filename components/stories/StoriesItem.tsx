@@ -1,12 +1,11 @@
 import { Skeleton } from '@mantine/core'
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 
-import Paths from '#utils/paths'
 import { toVideoLink } from '#components/ExternalVideo'
 import useApi from '#utils/useApi'
 import { SeriesName } from '#data/stories'
-import StoriesData from '#data/stories.data'
 import AssetImage from '#components/AssetImage'
+import useFrontendApi from '#utils/useFrontendApi'
 
 type PropType = {
     // "Special" won't appear here
@@ -26,7 +25,6 @@ function getBackendStoryId(props: PropType): string {
         Mana: 'st-group-mna-01',
         ThreeX: 'st-group-thrx-01',
         Tsuki: 'st-group-moon-01',
-        Special: '',
     }
     return [
         Prefix[series],
@@ -35,47 +33,27 @@ function getBackendStoryId(props: PropType): string {
     ].join('-')
 }
 
-export const SpecialStoriesItem = (props: {
-    series: 'Special'
-    season: number
-    chapter: number
-}) => {
-    const $c = useTranslations('common')
-    const { series, season, chapter } = props
-    const data = StoriesData?.[series]?.[season]?.[chapter]
-    if (!data) {
-        return <p className="text-gray-500">找不到故事章节。</p>
-    }
-    return (
-        <>
-            <div className="text-4xl">{data.name}</div>
-
-            <p>
-                <a
-                    href={toVideoLink(data.video)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    {$c('Video')}
-                </a>
-            </p>
-        </>
-    )
-}
-
 const StoriesItem = (props: PropType) => {
     const { series, season, chapter } = props
     const $t = useTranslations('stories')
+    const $c = useTranslations('common')
+    const locale = useLocale()
 
     const { data: StoryData, isSuccess } = useApi('Story', {
         id: getBackendStoryId(props),
+    })
+    const { data: StoryTrnData } = useFrontendApi('stories', {
+        locale,
+        series,
+        season: String(season),
+        chapter: String(chapter),
     })
 
     if (!isSuccess) {
         return (
             <>
                 <div className="text-4xl">
-                    {$t(`series.${series}`)} {$t('season', { season })} -{' '}
+                    {$t(`series.${series}`)} {$t('season', { s: season })} -{' '}
                     {chapter}
                 </div>
                 <Skeleton height={200} className="mt-2" />
@@ -83,10 +61,12 @@ const StoriesItem = (props: PropType) => {
         )
     }
 
-    const data = StoriesData?.[series]?.[season]?.[chapter]
     const subtitle = StoryData?.sectionName
 
-    const cnTitle = data?.name && data.name !== 'TODO' ? data.name : null
+    const localTitle =
+        StoryTrnData?.name && StoryTrnData.name !== 'TODO'
+            ? StoryTrnData.name
+            : null
     const jaTitle = StoryData?.name?.replace(/\n/g, '')
 
     return (
@@ -99,9 +79,9 @@ const StoriesItem = (props: PropType) => {
             <div className="text-2xl">{subtitle}</div>
             <br />
             <div className="text-xl">
-                {cnTitle !== null ? (
+                {localTitle !== null ? (
                     <>
-                        <span>{cnTitle}</span> /{' '}
+                        <span>{localTitle}</span> /{' '}
                         <small>
                             <span lang="ja">{jaTitle}</span>
                         </small>
@@ -115,10 +95,10 @@ const StoriesItem = (props: PropType) => {
                     <p lang="ja">{StoryData.description}</p>
                 </div>
             )}
-            {data && (
+            {StoryTrnData && (
                 <p>
                     <a
-                        href={toVideoLink(data.video)}
+                        href={toVideoLink(StoryTrnData.video)}
                         target="_blank"
                         rel="noopener noreferrer"
                     >
@@ -127,14 +107,12 @@ const StoriesItem = (props: PropType) => {
                 </p>
             )}
 
-            {(data === undefined || cnTitle === null) && (
-                <div className="mt-4 text-gray-500">
-                    尚无{data === undefined ? '剧情' : '标题'}
-                    翻译信息。请添加翻译信息到{' '}
-                    <a href={Paths.repo('data/stories.data.ts')}>
-                        data/stories.data.ts
-                    </a>{' '}
-                    的 StoriesData[{series}][{season}][{chapter}] 。
+            {(StoryTrnData === undefined || localTitle === null) && (
+                <div className="mt-4 mb-2 text-gray-500">
+                    {$c.rich('no_trans', {
+                        field: `StoriesData[${series}][${season}][${chapter}]`,
+                        file: 'data/stories.data.ts',
+                    })}
                 </div>
             )}
 

@@ -25,12 +25,12 @@
         }
     },
     "Video": "视频",
-    "Loading...": "加载中。",
     "Back": "返回",
     "Color": "颜色",
     "Export as image": "导出为图片",
+    "loading": "加载中。",
     "audio_loading": "正在加载音频。首次加载可能需要较长时间。",
     "audio_load_failed": "未能加载音频 {id} 。",
-    "no_trans": "尚无剧情翻译信息。请添加翻译信息到 {file} 的 {field} 。",
+    "no_trans": "尚无翻译信息。请添加翻译信息到 {file} 的 {field} 。",
     "load_progress": "正在加载数据：完成 {cur}/{total}"
 }

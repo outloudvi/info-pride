@@ -48,14 +48,18 @@ const ColorsPage = ({
     CharacterList: APIResponseOf<'Character/List'>
 }) => {
     const $vc = useTranslations('v-chr')
+    const $t = useTranslations('colors')
+
     return (
         <>
             <p>
-                此颜色根据游戏内部数据得到。亦可参考
-                <a href="https://twitter.com/idolypride/status/1332167024433192961">
-                    官方 Twitter
-                </a>{' '}
-                提供的图片。
+                {$t.rich('colors_header', {
+                    a: (c) => (
+                        <a href="https://twitter.com/idolypride/status/1332167024433192961">
+                            {c}
+                        </a>
+                    ),
+                })}
             </p>
             <div className="flex flex-col">
                 {ColorOrder.map((row, _i) => (
@@ -79,6 +83,7 @@ const ColorsPage = ({
 
 const SkeletonColorsPage = () => {
     const { data: CharacterList } = useApi('Character/List')
+    const $t = useTranslations('colors')
 
     const allData = {
         CharacterList,
@@ -86,7 +91,7 @@ const SkeletonColorsPage = () => {
 
     return (
         <>
-            <Title title="系列颜色" />
+            <Title title={$t('Colors')} />
             {allFinished(allData) ? (
                 <ColorsPage {...allData} />
             ) : (
@@ -96,6 +101,6 @@ const SkeletonColorsPage = () => {
     )
 }
 
-export const getStaticProps = getI18nProps(['vendor', 'v-chr'])
+export const getStaticProps = getI18nProps(['colors', 'vendor', 'v-chr'])
 
 export default SkeletonColorsPage

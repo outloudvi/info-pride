@@ -1,4 +1,8 @@
 {
+    "Stories": "Stories",
+    "Others": "Others",
+    "Video": "Video",
+    "season": "Season {s}",
     "series": {
         "Hoshimi": "Hoshimi Series",
         "Tokyo": "Tokyo Series",
@@ -9,6 +13,5 @@
         "ThreeX": "ⅢⅩ",
         "Tsuki": "Tsuki no Tempest",
         "Special": "Others"
-    },
-    "season": "Season {s}"
+    }
 }

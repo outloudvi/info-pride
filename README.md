@@ -9,9 +9,7 @@ INFO PRIDE (Beta)
 ![Build Status](https://badgen.net/github/status/outloudvi/info-pride?icon=vercel)
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-
-[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg)](#contributors-)
-
+[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 ## Planned features & Bug-fixes
@@ -45,10 +43,16 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
 <table>
-  <tr>
-    <td align="center"><a href="https://blog.outv.im"><img src="https://avatars.githubusercontent.com/u/19144373?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Outvi V</b></sub></a><br /><a href="https://github.com/outloudvi/info-pride/commits?author=outloudvi" title="Code">💻</a></td>
-    <td align="center"><a href="https://malitsplus.blogspot.com"><img src="https://avatars.githubusercontent.com/u/50281195?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Vibbit</b></sub></a><br /><a href="#data-MalitsPlus" title="Data">🔣</a></td>
-  </tr>
+  <tbody>
+    <tr>
+      <td align="center"><a href="https://blog.outv.im"><img src="https://avatars.githubusercontent.com/u/19144373?v=4?s=100" width="100px;" alt="Outvi V"/><br /><sub><b>Outvi V</b></sub></a><br /><a href="https://github.com/outloudvi/info-pride/commits?author=outloudvi" title="Code">💻</a></td>
+      <td align="center"><a href="https://malitsplus.blogspot.com"><img src="https://avatars.githubusercontent.com/u/50281195?v=4?s=100" width="100px;" alt="Vibbit"/><br /><sub><b>Vibbit</b></sub></a><br /><a href="#data-MalitsPlus" title="Data">🔣</a></td>
+      <td align="center"><a href="https://github.com/tokanada"><img src="https://avatars.githubusercontent.com/u/9441423?v=4?s=100" width="100px;" alt="David T"/><br /><sub><b>David T</b></sub></a><br /><a href="#translation-tokanada" title="Translation">🌍</a></td>
+    </tr>
+  </tbody>
+  <tfoot>
+    
+  </tfoot>
 </table>
 
 <!-- markdownlint-restore -->

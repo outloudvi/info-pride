@@ -28,11 +28,15 @@ export type FrontendAPIResponseMapping = {
               stories: Stories | null
           }
         | undefined
-    eventStories: ChapterItem | null
+    'characters/profile': {
+        profile: string
+    }
     contributors: Contributor[]
+    eventStories: ChapterItem | null
     diary: DiaryItem | undefined
     news: { title: string; link?: string }[]
     skillRunner: SkillLaunchItem[]
+    stories: ChapterItem | null
     version:
         | {
               releaseDate: string
