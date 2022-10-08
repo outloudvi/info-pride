@@ -982,6 +982,9 @@ const dataRio: D = {
             name: '在星的海洋之中',
             video: { type: 'bilibili', vid: 'av431366423' },
         },
+        phone: {
+            video: { type: 'bilibili', vid: 'av346319550' },
+        },
     },
 }
 
