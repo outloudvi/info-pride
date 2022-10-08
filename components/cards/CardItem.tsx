@@ -13,7 +13,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import type { CardRarity } from 'hoshimi-types/ProtoMaster'
 import { CardType } from 'hoshimi-types/ProtoEnum'
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import Link from 'next/link'
 
 import CardAsset from './CardAsset'
@@ -58,6 +58,7 @@ const CardItem = ({
     const rarityInfo = rarityData.filter((x) => x.rarity === rarity)[0]
     const [level, setLevel] = useState(rarityInfo?.levelLimit ?? 1)
     const [cnTrans, setCnTrans] = useState(true)
+    const locale = useLocale()
 
     const { data: SkillData } = useApi(`Skill`, {
         ids: `${card.skillId1},${card.skillId2},${card.skillId3}`,
@@ -69,6 +70,7 @@ const CardItem = ({
     const { data: WikiStories, isFetched: isWikiStoriesFetched } =
         useFrontendApi('cardStories', {
             id: card.id,
+            locale,
         })
 
     const useCn = cnTrans && (WikiCardData?.length ?? 0) > 0

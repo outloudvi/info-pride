@@ -2,7 +2,7 @@ import { Button } from '@mantine/core'
 import _range from 'lodash/range'
 
 import { toVideoLink } from '#components/ExternalVideo'
-import { Stories } from '#data/types'
+import type { Stories } from '#data/videos/cardStories.data/types'
 
 const CardStories = ({ stories }: { stories: Stories }) => (
     <div className="mb-2">

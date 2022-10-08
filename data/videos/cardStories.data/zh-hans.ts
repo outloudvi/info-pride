@@ -1,10 +1,8 @@
-import { Stories } from './types'
-
-type D = Record<string, Stories | null>
+import type { StoriesData } from './types'
 
 // ---- 月光风暴 ----
 // 长濑琴乃
-const dataKotono: D = {
+const dataKotono: StoriesData = {
     'card-ktn-05-idol-00': {
         // イノセントステージ
         1: {
@@ -86,7 +84,7 @@ const dataKotono: D = {
 }
 
 // 伊吹渚
-const dataNagisa: D = {
+const dataNagisa: StoriesData = {
     'card-ngs-05-idol-00': {
         // 背中をあずけて
         1: {
@@ -150,7 +148,7 @@ const dataNagisa: D = {
 }
 
 // 白石沙季
-const dataSaki: D = {
+const dataSaki: StoriesData = {
     'card-ski-05-idol-00': {
         // 手を取り合って
         1: {
@@ -233,7 +231,7 @@ const dataSaki: D = {
 }
 
 // 成宫铃
-const dataSuzu: D = {
+const dataSuzu: StoriesData = {
     'card-suz-05-idol-00': {
         // パワフルガール
         1: {
@@ -313,7 +311,7 @@ const dataSuzu: D = {
 }
 
 // 早坂芽衣
-const dataMei: D = {
+const dataMei: StoriesData = {
     'card-mei-05-idol-00': {
         // カメラ越しの笑顔
         1: {
@@ -376,7 +374,7 @@ const dataMei: D = {
 
 // ---- SUNNY PEACE ----
 // 川咲樱
-const dataSakura: D = {
+const dataSakura: StoriesData = {
     'card-skr-05-fest-00': {
         // あなたの光になれるように
         1: {
@@ -434,7 +432,7 @@ const dataSakura: D = {
 }
 
 // 兵藤雫
-const dataShizuku: D = {
+const dataShizuku: StoriesData = {
     'card-szk-05-idol-00': {
         // 光の波
         1: { name: 'TODO', video: { type: 'bilibili', vid: 'av546767588' } },
@@ -474,7 +472,7 @@ const dataShizuku: D = {
 }
 
 // 白石千纱
-const dataChisa: D = {
+const dataChisa: StoriesData = {
     'card-chs-05-idol-00': {
         // 照度を増す自信
         1: {
@@ -529,7 +527,7 @@ const dataChisa: D = {
 }
 
 // 一之濑怜
-const dataRei: D = {
+const dataRei: StoriesData = {
     'card-rei-05-idol-00': {
         // 高台をかける薫風
         1: { name: 'TODO', video: { type: 'bilibili', vid: 'av804212174' } },
@@ -605,7 +603,7 @@ const dataRei: D = {
 }
 
 // 佐伯遥子
-const dataHaruka: D = {
+const dataHaruka: StoriesData = {
     'card-hrk-05-idol-00': {
         // とても頼れるお姉さん
         1: {
@@ -684,7 +682,7 @@ const dataHaruka: D = {
 
 // ---- TRINITYAiLE ----
 // 天动瑠依
-const dataRui: D = {
+const dataRui: StoriesData = {
     'card-rui-05-idol-00': {
         // ありのままの姿で
         1: {
@@ -769,7 +767,7 @@ const dataRui: D = {
 }
 
 // 铃村优
-const dataYu: D = {
+const dataYu: StoriesData = {
     'card-yu-05-idol-00': {
         // 白の衝撃
         1: {
@@ -836,7 +834,7 @@ const dataYu: D = {
 }
 
 // 奥山堇
-const dataSumire: D = {
+const dataSumire: StoriesData = {
     'card-smr-05-idol-00': {
         // 小さなヒロイン
         1: {
@@ -915,7 +913,7 @@ const dataSumire: D = {
 // ---- LizNoir ----
 // 神崎莉央
 // 卡出得多但逃脱不了老女人（22 岁）的宿命
-const dataRio: D = {
+const dataRio: StoriesData = {
     'card-rio-05-halw-00': {
         // その魅力、モンスター級
         1: {
@@ -989,7 +987,7 @@ const dataRio: D = {
 }
 
 // 井川葵
-const dataAoi: D = {
+const dataAoi: StoriesData = {
     'card-aoi-05-idol-00': {
         // 濡れた髪は何を語る
         1: { name: 'TODO', video: { type: 'bilibili', vid: 'av206705615' } },
@@ -1029,7 +1027,7 @@ const dataAoi: D = {
 }
 
 // 小美山爱
-const dataAi: D = {
+const dataAi: StoriesData = {
     'card-ai-05-idol-00': {
         // 掴みとる夢
         1: {
@@ -1108,7 +1106,7 @@ const dataAi: D = {
 
 // 赤崎心
 // 又称赤崎·皮皮·心
-const dataKokoro: D = {
+const dataKokoro: StoriesData = {
     'card-kkr-05-idol-00': {
         // 新生リズノワの誇り
         1: {
@@ -1168,7 +1166,7 @@ const dataKokoro: D = {
 
 // ---- 3X ----
 // fran
-const dataFran: D = {
+const dataFran: StoriesData = {
     'card-kor-05-idol-00': {
         // snake in the grass
         1: {
@@ -1187,7 +1185,7 @@ const dataFran: D = {
 }
 
 // kana
-const dataKana: D = {
+const dataKana: StoriesData = {
     'card-kan-05-idol-00': {
         // a piece of cake
         1: {
@@ -1209,7 +1207,7 @@ const dataKana: D = {
 }
 
 // miho
-const dataMiho: D = {
+const dataMiho: StoriesData = {
     'card-mhk-05-idol-00': {
         // make a comeback
         1: {
@@ -1232,7 +1230,7 @@ const dataMiho: D = {
 
 // ---- 个人偶像 ----
 // 长濑麻奈
-const dataMana: D = {
+const dataMana: StoriesData = {
     'card-mna-05-idol-00': {
         // You're my everything
         1: {
@@ -1268,7 +1266,7 @@ const dataMana: D = {
     'card-mna-05-prem-00': null,
 }
 
-const dataMikuCollab: D = {
+const dataMikuCollab: StoriesData = {
     'card-mku-05-miku-00': {
         1: {
             name: '教教我经纪人',
@@ -1285,7 +1283,7 @@ const dataMikuCollab: D = {
     },
 }
 
-const data: D = {
+const data: StoriesData = {
     ...dataKotono,
     ...dataNagisa,
     ...dataSaki,
@@ -1314,6 +1312,6 @@ const data: D = {
     ...dataMiho,
 
     ...dataMikuCollab,
-} as const
+}
 
 export default data
