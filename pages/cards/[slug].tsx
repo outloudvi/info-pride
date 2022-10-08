@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router'
 import { Skeleton } from '@mantine/core'
+import { useTranslations } from 'next-intl'
 
 import PageLoading from '#components/PageLoading'
 import Title from '#components/Title'
@@ -28,6 +29,8 @@ const CardInfoPage = ({
 }
 
 const SkeletonCardInfoPage = () => {
+    const $t = useTranslations('cards_slug')
+
     const router = useRouter()
     const slug = pickFirstOrOne(router.query.slug ?? '')
     const { data: CardData } = useApi('Card', {
@@ -42,7 +45,7 @@ const SkeletonCardInfoPage = () => {
 
     return (
         <>
-            <h2>卡片</h2>
+            <h2>{$t('Cards')}</h2>
             {allFinished(allData) ? (
                 <CardInfoPage {...allData} />
             ) : (
@@ -58,6 +61,6 @@ const PreloadedCardInfoPage = () => {
     return router.isReady ? <SkeletonCardInfoPage /> : <Skeleton height={300} />
 }
 
-export const getServerSideProps = getI18nProps(['vendor'])
+export const getServerSideProps = getI18nProps(['cards_slug', 'vendor'])
 
 export default PreloadedCardInfoPage

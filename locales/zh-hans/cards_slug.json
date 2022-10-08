@@ -1,0 +1,23 @@
+{
+    "Cards": "卡片",
+    "Stories": "剧情",
+    "Card list": "卡片列表",
+    "Rarity": "星级",
+    "Level": "等级",
+    "Props": "数值",
+    "Images": "卡面",
+    "Select card type": "选择卡面类型",
+    "Thumbnail": "缩略图",
+    "Vertical": "纵向",
+    "Landscape": "横向",
+    "Landscape (large)": "横向（大图）",
+    "Use biliwiki translations": "使用 bwiki 翻译",
+    "Skills": "技能",
+    "Initially": "初始",
+    "no_stories": "此卡片无剧情。",
+    "props_toolkit": "实际数值可能比此数值略高。",
+    "awakened_only": "此卡片只有觉醒后卡面。",
+    "show_awakened": "显示觉醒后卡面",
+    "skills_bwiki": "（技能最高等级下）",
+    "skill_icons_beta": "技能图标显示功能正在实装中。欢迎<a>报告</a>遇到的任何问题。"
+}

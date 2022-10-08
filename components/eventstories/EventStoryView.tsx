@@ -53,7 +53,7 @@ const EventEpisodeDetail = ({
                     </div>
                 ) : (
                     <div className="mt-4 text-gray-500">
-                        {$c('no_trans', {
+                        {$c.rich('no_trans', {
                             field: `data[${id}]`,
                             file: 'data/eventStories.data.ts',
                         })}

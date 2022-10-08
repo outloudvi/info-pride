@@ -38,6 +38,11 @@ const CardItem = ({
     card: UnArray<APIResponseOf<'Card'>>
     rarityData: CardRarity[]
 }) => {
+    const $t = useTranslations('cards_slug')
+    const $c = useTranslations('common')
+    const $v = useTranslations('vendor')
+    const $vc = useTranslations('v-chr')
+
     const {
         name: nameJa,
         description,
@@ -49,9 +54,6 @@ const CardItem = ({
         visualRatioPermil,
         staminaRatioPermil,
     } = card
-
-    const $v = useTranslations('vendor')
-    const $vc = useTranslations('v-chr')
 
     const maxRarity = Math.max(...rarityData.map((x) => x.rarity))
     const [rarity, setRarity] = useState(maxRarity)
@@ -85,13 +87,12 @@ const CardItem = ({
         if (WikiStories === undefined) {
             return (
                 <>
-                    <h3>剧情</h3>
+                    <h3>{$t('Stories')}</h3>
                     <p className="text-gray-500">
-                        暂无剧情翻译。请更新至{' '}
-                        <a href={Paths.repo('data/cardStories.data.ts')}>
-                            `cardStories.data.ts`
-                        </a>{' '}
-                        的 <code>{card.id}</code> 。
+                        {$c.rich('no_trans', {
+                            field: card.id,
+                            file: `data/videos/cardStories.data/${locale}.ts`,
+                        })}
                     </p>
                 </>
             )
@@ -101,19 +102,19 @@ const CardItem = ({
         if (WikiStories.stories === null) {
             return (
                 <>
-                    <h3>剧情</h3>
-                    <p className="text-gray-500">此卡片无剧情。</p>
+                    <h3>{$t('Stories')}</h3>
+                    <p className="text-gray-500">{$t('no_stories')}</p>
                 </>
             )
         }
 
         return (
             <>
-                <h3>剧情</h3>
+                <h3>{$t('Stories')}</h3>
                 <CardStories stories={WikiStories.stories} />
             </>
         )
-    }, [WikiStories, isWikiStoriesFetched, card.id])
+    }, [WikiStories, isWikiStoriesFetched, card.id, $t])
 
     if (!rarityData) {
         return <Skeleton height={300} />
@@ -128,7 +129,7 @@ const CardItem = ({
         <>
             <Breadcrumbs className="mb-2">
                 <Link href="/cards" passHref>
-                    <Anchor>卡片列表</Anchor>
+                    <Anchor>{$t('Card list')}</Anchor>
                 </Link>
                 <Link href="#" passHref>
                     <Anchor>{nameJa}</Anchor>
@@ -162,10 +163,12 @@ const CardItem = ({
                         ></div>
                     )}
                     <div>
-                        {$v(CardType[type])} / {$v(getCardColor(card))} / 初始{' '}
-                        {initialRarity}★
+                        {$v(CardType[type])} / {$v(getCardColor(card))} /{' '}
+                        {$t('Initially')} {initialRarity}★
                     </div>
-                    <div className="mt-2">星级 / {rarity}</div>
+                    <div className="mt-2">
+                        {$t('Rarity')} / {rarity}
+                    </div>
                     <Slider
                         min={initialRarity}
                         max={maxRarity}
@@ -174,7 +177,9 @@ const CardItem = ({
                             setRarity(r)
                         }}
                     />
-                    <div className="mt-2">等级 / {level}</div>
+                    <div className="mt-2">
+                        {$t('Level')} / {level}
+                    </div>
                     <Slider
                         min={1}
                         max={MAX_LEVEL}
@@ -184,8 +189,8 @@ const CardItem = ({
                         }}
                     />
                     <div className="mt-2">
-                        数值{' '}
-                        <Tooltip label="实际数值可能比此数值略高。">
+                        {$t('Props')}{' '}
+                        <Tooltip label={$t('props_tooltip')}>
                             <FontAwesomeIcon icon={faInfoCircle} />
                         </Tooltip>
                     </div>
@@ -199,12 +204,14 @@ const CardItem = ({
                         level={level}
                     />
                     <h3>
-                        技能{useCn && '（最高技能等级下）'}
+                        {$t('Skills')} {useCn && $t('skills_bwiki')}
                         <br />
                         <small className="font-normal text-gray-500">
-                            技能图标显示功能正在实装中。欢迎
-                            <a href={Paths.repoIssue()}>报告</a>
-                            遇到的任何问题。
+                            {$t.rich('skill_icons_beta', {
+                                a: (children) => (
+                                    <a href={Paths.repoIssue()}>{children}</a>
+                                ),
+                            })}
                         </small>
                     </h3>
 
@@ -219,19 +226,19 @@ const CardItem = ({
                     )}
                     <br />
                     <Switch
-                        label="使用中文翻译"
+                        label={$t('Use biliwiki translations')}
                         checked={cnTrans}
                         onChange={(e) => setCnTrans(e.target.checked)}
                     />
                 </Grid.Col>
                 <Grid.Col xs={12} lg={6}>
-                    <h3>卡面</h3>
+                    <h3>{$t('Images')}</h3>
                     <CardAsset
                         cardAssetId={card.assetId}
                         isInitiallyAwaken={card.initialRarity >= 5}
                     />
                     {storiesDisplay}
-                    {cardCcidInfo && (
+                    {locale === 'zh-hans' && cardCcidInfo && (
                         <Button
                             className="mt-2"
                             variant="outline"

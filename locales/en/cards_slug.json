@@ -1,0 +1,23 @@
+{
+    "Cards": "Cards",
+    "Stories": "Stories",
+    "Card list": "Card list",
+    "Rarity": "Rarity",
+    "Level": "Level",
+    "Props": "Props",
+    "Images": "Images",
+    "Select card type": "Select card type",
+    "Thumbnail": "Thumbnail",
+    "Vertical": "Vertical",
+    "Landscape": "Landscape",
+    "Landscape (large)": "Landscape (large)",
+    "Use biliwiki translations": "Use biliwiki translations",
+    "Skills": "Skills",
+    "Initially": "Initial",
+    "no_stories": "No stories for this card.",
+    "props_toolkit": "Actual props might be higher.",
+    "awakened_only": "Only awakened available",
+    "show_awakened": "Show awakened",
+    "skills_bwiki": "(At the highest skill level)",
+    "skill_icons_beta": "Skill icon display is in beta. Please <a>report</a> any encountered issues."
+}

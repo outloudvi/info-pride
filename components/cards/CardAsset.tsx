@@ -1,5 +1,6 @@
 import { Dispatch, SetStateAction, useState } from 'react'
 import { Radio, Switch } from '@mantine/core'
+import { useTranslations } from 'next-intl'
 
 import AssetImage from '#components/AssetImage'
 
@@ -62,6 +63,8 @@ const CardAsset = ({
     cardAssetId: string
     isInitiallyAwaken: boolean
 }) => {
+    const $t = useTranslations('cards_slug')
+
     const [isAwaken, setIsAwaken] = useState(true)
     const [imageType, setImageType] = useState<CardImageType>('thumb')
 
@@ -71,23 +74,23 @@ const CardAsset = ({
         <div>
             <Radio.Group
                 className="mb-3"
-                label="选择卡面类型"
+                label={$t('Select card type')}
                 value={imageType}
                 onChange={setImageType as Dispatch<SetStateAction<string>>}
                 required
             >
-                <Radio value="thumb" label="缩略图" />
-                <Radio value="upper" label="纵向" />
-                <Radio value="rect" label="横向" />
-                <Radio value="full" label="横向（大图）" />
+                <Radio value="thumb" label={$t('Thumbnail')} />
+                <Radio value="upper" label={$t('Vertical')} />
+                <Radio value="rect" label={$t('Landscape')} />
+                <Radio value="full" label={$t('Landscape (large)')} />
             </Radio.Group>
             <Switch
                 className="mb-3"
                 checked={isAwaken}
                 label={
                     isInitiallyAwaken
-                        ? '此卡片只有觉醒后卡面'
-                        : '显示觉醒后卡面'
+                        ? $t('awakened_only')
+                        : $t('show_awakened')
                 }
                 disabled={isInitiallyAwaken}
                 onChange={(event) => setIsAwaken(event.currentTarget.checked)}
