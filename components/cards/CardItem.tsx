@@ -114,7 +114,7 @@ const CardItem = ({
                 <CardStories stories={WikiStories.stories} />
             </>
         )
-    }, [WikiStories, isWikiStoriesFetched, card.id, $t])
+    }, [WikiStories, isWikiStoriesFetched, card.id, locale, $t, $c])
 
     if (!rarityData) {
         return <Skeleton height={300} />
