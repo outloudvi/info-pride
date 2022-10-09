@@ -9,7 +9,8 @@ import type {
     Card as WikiCard,
     TheRootSchema as WikiCards,
 } from '#data/wikiPages/cards'
-import type { ChapterItem, Stories } from '#data/types'
+import type { ChapterItem } from '#data/types'
+import type { Stories } from '#data/videos/cardStories.data/types'
 import type { SkillLaunchItem } from '#components/notemap/types'
 import type { BirthdayCommuList } from '#data/birthday.data'
 import type { Contributor } from '#components/api/contributors/types'
