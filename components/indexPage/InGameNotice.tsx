@@ -75,7 +75,7 @@ const InGameNotice = ({ type }: { type: NoticeType }) => {
             )}
         </>
     ) : (
-        <p className="text-gray-500">{$t('Loading news.')}</p>
+        <p className="text-gray-500">{$t('loading_news')}</p>
     )
 }
 
