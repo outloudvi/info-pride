@@ -12,7 +12,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import type { CardRarity } from 'hoshimi-types/ProtoMaster'
-import { CardType } from 'hoshimi-types/ProtoEnum'
+import { AttributeType, CardType } from 'hoshimi-types/ProtoEnum'
 import { useLocale, useTranslations } from 'next-intl'
 import Link from 'next/link'
 
@@ -163,7 +163,8 @@ const CardItem = ({
                         ></div>
                     )}
                     <div>
-                        {$v(CardType[type])} / {$v(getCardColor(card))} /{' '}
+                        {$v(CardType[type])} /{' '}
+                        {$v(AttributeType[getCardColor(card)])} /{' '}
                         {$t('Initially')} {initialRarity}★
                     </div>
                     <div className="mt-2">
