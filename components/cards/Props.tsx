@@ -64,13 +64,13 @@ const Props = ({
     )
 
     return (
-        <Grid className="text-lg">
-            <Grid.Col span={6} className="flex justify-center items-center">
+        <Grid className="text-lg" grow>
+            <Grid.Col span={3} className="flex justify-center items-center">
                 <div className={`${cardColorClassName} text-[1.5em]`}>
                     {totalScore}
                 </div>
             </Grid.Col>
-            <Grid.Col span={6}>
+            <Grid.Col span="content">
                 <Grid>
                     <Grid.Col span={6}>
                         <div className="text-vocal text-center">
