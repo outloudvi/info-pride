@@ -1,4 +1,4 @@
-import { AppProps } from 'next/app'
+import App, { AppContext, AppProps } from 'next/app'
 import Head from 'next/head'
 import {
     ColorScheme,
@@ -12,14 +12,13 @@ import '../styles/globals.css' // for Tailwind CSS
 import { useEffect, useState } from 'react'
 import NextNProgress from 'nextjs-progressbar'
 import { QueryClient, QueryClientProvider } from 'react-query'
-import { GetServerSidePropsContext } from 'next'
 import { getCookie, setCookie } from 'cookies-next'
 
 import Layout from '#components/layout/Layout'
 import startupHook from '#utils/startupHook'
 import Paths from '#utils/paths'
 
-const App = (
+const MainApp = (
     props: AppProps<{ _m: Record<string, string> }> & {
         colorScheme: ColorScheme
     }
@@ -169,8 +168,12 @@ const App = (
     )
 }
 
-App.getInitialProps = ({ ctx }: { ctx: GetServerSidePropsContext }) => ({
-    colorScheme: getCookie('mantine-color-scheme', ctx) || 'light',
-})
+MainApp.getInitialProps = async (appContext: AppContext) => {
+    const { ctx } = appContext
+    return {
+        colorScheme: getCookie('mantine-color-scheme', ctx) || 'light',
+        ...(await App.getInitialProps(appContext)),
+    }
+}
 
-export default App
+export default MainApp
