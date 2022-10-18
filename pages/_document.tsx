@@ -19,10 +19,11 @@ const allowedConnectionDomains = [
     'res.cloudinary.com',
 ]
 
-const META_TITLE = 'info pride'
-const META_DESCRIPTION =
-    'An informational website for Project IDOLY PRIDE fans.'
+const DESCRIPTION = 'Infomational site for Project IDOLY PRIDE fans.'
+const META_TITLE = `Info Pride - ${DESCRIPTION}`
+const META_DESCRIPTION = 'The IDOLY PRIDE game database.'
 const BASEURL = 'https://ip.outv.im'
+const OG_IMAGE = BASEURL + '/social.png'
 
 const cspRules = (scriptOthers: string) =>
     [
@@ -69,15 +70,15 @@ export default class _Document extends Document {
                         property="twitter:description"
                         content={META_DESCRIPTION}
                     />
-                    <meta
-                        property="og:image"
-                        content={BASEURL + '/social.png'}
-                    />
+                    <meta property="og:image" content={OG_IMAGE} />
                     <meta property="og:image:alt" content={META_DESCRIPTION} />
                     <meta property="og:image:width" content="1200" />
                     <meta property="og:image:height" content="600" />
                     <meta property="og:site_name" content={META_TITLE} />
                     <meta property="og:type" content="website" />
+
+                    <meta name="twitter:image:src" content={OG_IMAGE} />
+                    <meta name="twitter:card" content="summary_large_image" />
                 </Head>
                 <body>
                     <Main />
