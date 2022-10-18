@@ -1,5 +1,6 @@
 {
     "Event Stories": "活动剧情",
-    "stories_ordering": "活动剧情从新到老排列。",
-    "episode": "第 {ep} 章"
+    "Event banner": "活动横幅",
+    "episode": "第 {ep} 章",
+    "stories_ordering": "活动剧情从新到老排列。"
 }
