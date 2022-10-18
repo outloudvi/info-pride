@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import {
     Button,
     Collapse,
@@ -15,6 +15,7 @@ import {
 import { showNotification } from '@mantine/notifications'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
+import { StringParam, useQueryParam, withDefault } from 'use-query-params'
 
 import useApi from '#utils/useApi'
 import CardIdData from '#data/ccid'
@@ -29,6 +30,7 @@ import UnitPosition from '#components/units/UnitPosition'
 import UnitAnalyzer from '#components/units/UnitAnalyzer'
 import UnitNotemap from '#components/units/UnitNotemap'
 import TrackColorSelect from '#components/notemap/TrackColorSelect'
+import withQueryParam from '#utils/withQueryParam'
 
 const UnitsPage = ({
     CardData,
@@ -44,8 +46,15 @@ const UnitsPage = ({
         }))
     ).reduce((a, b) => [...a, ...b])
 
-    const [selectedMusicChart, setSelectedMusicChart] =
-        useState<MusicChartItem>(musicChartList[0])
+    const [unitId, setUnitId] = useQueryParam('u', withDefault(StringParam, ''))
+    const [chartId, setChartId] = useQueryParam(
+        'chart',
+        withDefault(StringParam, musicChartList[0].id)
+    )
+
+    const selectedMusicChart = musicChartList.find(
+        (x) => x.id === chartId
+    ) as MusicChartItem
 
     const { data: ChartData } = useApi('MusicChart', {
         chartId: selectedMusicChart.id,
@@ -69,14 +78,13 @@ const UnitsPage = ({
         [setUnitCards]
     )
 
-    const unitCode = useMemo(() => {
+    useEffect(() => {
         const cardList = unitCards.slice(1)
-        if (cardList.filter((x) => x).length !== 5) return ''
-        return unitCodeV1.encode(
-            cardList as NonNullable<CardTiny[]>,
-            CardIdData
+        if (cardList.filter((x) => x).length !== 5) return
+        setUnitId(
+            unitCodeV1.encode(cardList as NonNullable<CardTiny[]>, CardIdData)
         )
-    }, [unitCards])
+    }, [unitCards, setUnitId])
 
     const [modalImportUnit, setModalImportUnit] = useState(false)
     const [importUnitId, setImportUnitId] = useState('')
@@ -90,6 +98,44 @@ const UnitsPage = ({
         'blue',
         'blue',
     ])
+
+    const importUnitCode = useCallback(
+        (unitId: string) => {
+            let result = null
+            try {
+                result = unitCodeV1.decode(unitId, CardIdData)
+            } catch (e) {
+                //
+            }
+            if (result === null) {
+                showNotification({
+                    title: `错误的队伍编码：${unitId}`,
+                    message: '此编码无效，或来自更新版本的 INFO PRIDE。',
+                    color: 'red',
+                })
+                return
+            }
+            setUnitCards([
+                null,
+                ...result.map((x) => CardData.find((y) => y.id === x) ?? null),
+            ])
+            showNotification({
+                title: '导入了队伍。',
+                message: '队伍编码导入成功。',
+                color: 'green',
+            })
+            setModalImportUnit(false)
+        },
+        [CardData]
+    )
+
+    useEffect(() => {
+        // Import unitId in query
+        if (unitId && unitCards[1] === null) {
+            console.log(performance.now())
+            importUnitCode(unitId)
+        }
+    }, [importUnitCode, unitId, unitCards])
 
     return (
         <>
@@ -114,33 +160,7 @@ const UnitsPage = ({
                 <Button
                     className="mt-2"
                     onClick={() => {
-                        let result = null
-                        try {
-                            result = unitCodeV1.decode(importUnitId, CardIdData)
-                        } catch (e) {
-                            //
-                        }
-                        if (result === null) {
-                            showNotification({
-                                title: `错误的队伍编码：${importUnitId}`,
-                                message:
-                                    '此编码无效，或来自更新版本的 INFO PRIDE。',
-                                color: 'red',
-                            })
-                            return
-                        }
-                        setUnitCards([
-                            null,
-                            ...result.map(
-                                (x) => CardData.find((y) => y.id === x) ?? null
-                            ),
-                        ])
-                        showNotification({
-                            title: '导入了队伍。',
-                            message: '队伍编码导入成功。',
-                            color: 'green',
-                        })
-                        setModalImportUnit(false)
+                        importUnitCode(importUnitId)
                     }}
                 >
                     导入
@@ -151,26 +171,13 @@ const UnitsPage = ({
                     <div className="mb-2">
                         <NativeSelect
                             label="选择谱面"
-                            data={musicChartList.map(
-                                (x, index) =>
-                                    `[#${index + 1}] ${x.songTitle} - ${x.desc}`
-                            )}
+                            data={musicChartList.map((x) => ({
+                                value: x.id,
+                                label: `${x.songTitle} - ${x.desc}`,
+                            }))}
+                            value={chartId}
                             onChange={(e) => {
-                                const value =
-                                    e.currentTarget.value.match(
-                                        /^\[#(\d+)\]/
-                                    )?.[1]
-                                if (!value) {
-                                    showNotification({
-                                        title: '无效的谱面',
-                                        message: '请重新选择谱面。',
-                                        color: 'red',
-                                    })
-                                    return
-                                }
-                                setSelectedMusicChart(
-                                    musicChartList[Number(value) - 1]
-                                )
+                                setChartId(e.currentTarget.value)
                             }}
                             required
                         />
@@ -178,10 +185,10 @@ const UnitsPage = ({
                     <Group>
                         <div className="grow">
                             队伍编码：
-                            {unitCode
-                                ? unitCode.includes('!')
+                            {unitId
+                                ? unitId.includes('!')
                                     ? '（部分新卡片在 ccid 数据库中不存在，暂时无法生成编码。）'
-                                    : unitCode
+                                    : unitId
                                 : '（请先选择所有位置的卡片。）'}
                         </div>
                         <Button
@@ -279,6 +286,6 @@ const SkeletonUnitsPage = () => {
     )
 }
 
-export const getStaticProps = getI18nProps(['v-chr'])
+export const getServerSideProps = getI18nProps(['v-chr'])
 
-export default SkeletonUnitsPage
+export default withQueryParam(SkeletonUnitsPage)
