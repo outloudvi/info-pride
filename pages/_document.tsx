@@ -19,7 +19,7 @@ const allowedConnectionDomains = [
     'res.cloudinary.com',
 ]
 
-const DESCRIPTION = 'Infomational site for Project IDOLY PRIDE fans.'
+const DESCRIPTION = 'Informational site for Project IDOLY PRIDE fans.'
 const META_TITLE = `Info Pride - ${DESCRIPTION}`
 const META_DESCRIPTION = 'The IDOLY PRIDE game database.'
 const BASEURL = 'https://ip.outv.im'
