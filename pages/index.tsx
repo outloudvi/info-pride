@@ -48,7 +48,7 @@ const Home = ({ gitCommit }: { gitCommit: string }) => {
             <Grid className="mt-3">
                 <Grid.Col xs={12} lg={6}>
                     <div className="text-center text-6xl mt-4">
-                        INFO PRIDE{' '}
+                        INFO PRIDE <br />
                         <Link
                             href={`https://github.com/outloudvi/info-pride/tree/${gitCommit}`}
                             passHref
