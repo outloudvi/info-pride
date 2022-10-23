@@ -2,6 +2,7 @@ import { Alert } from '@mantine/core'
 import { Skill } from 'hoshimi-types/ProtoMaster'
 import { MusicChart } from 'hoshimi-types/types'
 import _range from 'lodash/range'
+import { useTranslations } from 'next-intl'
 
 import { CardTiny, MusicChartItem } from './types'
 import lint from './lint'
@@ -80,6 +81,8 @@ const UnitAnalyzerDownloader = ({
     unitCards: CardTiny[]
     musicChart: MusicChartItem
 }) => {
+    const $c = useTranslations('common')
+
     const { data: ChartData, isFetched: ChartDataFetched } = useApi(
         'MusicChart',
         {
@@ -94,8 +97,8 @@ const UnitAnalyzerDownloader = ({
 
     if (!ChartDataFetched || !SkillDataFetched) {
         return (
-            <Alert title="正在获取数据..." color="yellow">
-                正在下载...
+            <Alert title={$c('loading')} color="yellow">
+                {$c('loading')}
                 <ul>
                     <li>谱面数据 {ChartDataFetched ? '✅' : '⌛'}</li>
                     <li>技能数据 {SkillDataFetched ? '✅' : '⌛'}</li>

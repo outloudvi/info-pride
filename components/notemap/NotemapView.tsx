@@ -1,5 +1,6 @@
 import dynamic from 'next/dynamic'
 import { MusicChart } from 'hoshimi-types/types'
+import { useTranslations } from 'next-intl'
 
 import { ImageChart, SkillChart } from './types'
 
@@ -20,6 +21,7 @@ const NotemapGraphToDownload = ({
     landingSkillChart?: SkillChart
     imageChart?: ImageChart
 }) => {
+    const $c = useTranslations('common')
     const { data } = useApi('MusicChart', {
         chartId,
     })
@@ -32,7 +34,7 @@ const NotemapGraphToDownload = ({
             imageChart={imageChart}
         />
     ) : (
-        <div className="text-center text-gray-500">正在下载曲谱信息。</div>
+        <div className="text-center text-gray-500">{$c('loading')}</div>
     )
 }
 

@@ -1,5 +1,6 @@
 import { MusicChart } from 'hoshimi-types/types'
 import { Loader } from '@mantine/core'
+import { useTranslations } from 'next-intl'
 
 import { CardTiny } from './types'
 
@@ -21,6 +22,8 @@ const UnitNotemap = ({
     unitCards: (CardTiny | null)[]
     laneColors: string[]
 }) => {
+    const $c = useTranslations('common')
+
     const useSkillRunner = (id: number) => {
         const unitCardSlot = unitCards[id]
 
@@ -50,7 +53,7 @@ const UnitNotemap = ({
             {!skillRunnerOk && (
                 <div className="flex justify-center items-center mb-2">
                     <Loader />
-                    <span className="ml-2">正在运行技能有效性计算...</span>
+                    <span className="ml-2">{$c('loading')}</span>
                 </div>
             )}
             <NotemapView

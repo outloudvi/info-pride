@@ -61,10 +61,10 @@ const CurrentEvents = () => {
             </Stack>
         ) : (
             <div className="text-sm text-gray-600 mt-3">
-                <span>数据库中没有正在进行的活动。</span>
+                <span>{$t('no_running_events')}</span>
                 <br />
                 <span>
-                    最后更新于： {lastUpdate.format('YYYY/MM/DD hh:mm')}
+                    {$t('last_updated')} {lastUpdate.format('YYYY/MM/DD hh:mm')}
                 </span>
             </div>
         )

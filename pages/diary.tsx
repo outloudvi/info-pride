@@ -4,6 +4,7 @@ import dayjs from 'dayjs'
 import { atomWithHash } from 'jotai/utils'
 import { useAtom } from 'jotai'
 import { useLayoutEffect } from 'react'
+import { useTranslations } from 'next-intl'
 
 import Title from '#components/Title'
 import AssetImage from '#components/AssetImage'
@@ -16,12 +17,13 @@ import {
 import { addI18nMessages } from '#utils/getI18nProps'
 
 const ManaDiaryTranslated = ({ date }: { date: string }) => {
+    const $c = useTranslations('common')
     const { data, isSuccess } = useFrontendApi('diary', {
         date,
     })
 
     if (!isSuccess) {
-        return <p>正在加载中。</p>
+        return <p>{$c('loading')}</p>
     }
 
     if (data) {
