@@ -228,6 +228,21 @@ const dataSaki: StoriesData = {
             video: { type: 'bilibili', vid: 'av687413499' },
         },
     },
+    'card-chs-05-flow-00': {
+        // 檻に咲く名花
+        1: {
+            name: '这里就是传闻中的摄影棚了是吗',
+            video: { type: 'bilibili', vid: 'av731754403' },
+        },
+        2: {
+            name: '憧憬的真实闹鬼！',
+            video: { type: 'bilibili', vid: 'av346859460' },
+        },
+        3: {
+            name: '比幽灵还要恐怖！',
+            video: { type: 'bilibili', vid: 'av859291525' },
+        },
+    },
 }
 
 // 成宫铃
