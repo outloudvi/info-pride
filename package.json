@@ -18,7 +18,9 @@
         "dataset:type": "scripts/schemaToType.sh",
         "dataset:ajv": "ajv",
         "dataset:ts": "ts-node-esm",
-        "prepare": "husky install"
+        "prepare": "husky install",
+        "t:dev": "turbo dev",
+        "t:build": "turbo build lint"
     },
     "dependencies": {
         "@babel/core": "^7.19.3",
@@ -85,6 +87,7 @@
         "ts-node": "^10.9.1",
         "tsconfig-paths": "^4.1.0",
         "tslib": "^2.4.0",
+        "turbo": "^1.6.1",
         "typescript": "4.8.3",
         "wtf_wikipedia": "^10.0.3"
     },

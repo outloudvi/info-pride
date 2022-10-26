@@ -42,3 +42,6 @@ utils/*/*.origin.json
 
 # Sentry
 .sentryclirc
+
+# Turborepo
+/.turbo
