@@ -98,7 +98,7 @@ const CharacterItem = ({
                     )} 50%, transparent 75%)`,
                 }}
             >
-                <b className="text-4xl" lang="zh-hans">
+                <b className="text-4xl" lang="zh-Hans">
                     {$vc(id)}
                 </b>{' '}
                 <span className="text-2xl ml-4" lang="ja">
@@ -163,7 +163,7 @@ const CharacterItem = ({
                             </Table>
                             <Group position="center" className="mt-4">
                                 {/* Chinese only */}
-                                {locale === 'zh-hans' && (
+                                {locale === 'zh-Hans' && (
                                     <a href={Paths.mgw($vc(id))}>
                                         <Button>萌娘百科条目</Button>
                                     </a>

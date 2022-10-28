@@ -3,7 +3,7 @@ import { NativeSelect } from '@mantine/core'
 import { useRouter } from 'next/router'
 
 const CurrentLanguage: Record<string, string> = {
-    'zh-hans': '中文（简体）',
+    'zh-Hans': '中文（简体）',
     en: 'English',
 }
 

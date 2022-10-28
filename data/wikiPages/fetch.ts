@@ -42,7 +42,7 @@ const CharacterChineseNameList: Record<CharacterId, string> = {
 
 const CardsJson = 'cards.json'
 const SongsJson = 'songs.json'
-const CardsCnTransJson = '../../locales/zh-hans/v-card-name.json'
+const CardsCnTransJson = '../../locales/zh-Hans/v-card-name.json'
 const SitePref: SitePrefConfig = {
     domain: 'wiki.biligame.com',
     path: 'idolypride/api.php',

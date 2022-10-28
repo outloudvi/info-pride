@@ -8,7 +8,7 @@ import type {
     EffectWithTarget,
 } from 'hoshimi-types/Skillx'
 
-import vendorLocale from '../../../locales/zh-hans/vendor.json'
+import vendorLocale from '../../../locales/zh-Hans/vendor.json'
 
 import {
     EFFECT_SPECIAL,

@@ -60,7 +60,7 @@ const CardItem = ({
     const rarityInfo = rarityData.filter((x) => x.rarity === rarity)[0]
     const [level, setLevel] = useState(rarityInfo?.levelLimit ?? 1)
     const locale = useLocale()
-    const [cnTrans, setCnTrans] = useState(locale === 'zh-hans')
+    const [cnTrans, setCnTrans] = useState(locale === 'zh-Hans')
 
     const { data: SkillData } = useApi(`Skill`, {
         ids: `${card.skillId1},${card.skillId2},${card.skillId3}`,
@@ -239,7 +239,7 @@ const CardItem = ({
                         isInitiallyAwaken={card.initialRarity >= 5}
                     />
                     {storiesDisplay}
-                    {locale === 'zh-hans' && cardCcidInfo && (
+                    {locale === 'zh-Hans' && cardCcidInfo && (
                         <Button
                             className="mt-2"
                             variant="outline"
