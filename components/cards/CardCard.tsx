@@ -67,54 +67,56 @@ const CardCard = ({
     })
 
     return (
-        <Link href={`/cards/${id}`} passHref>
-            <a className="no-underline">
-                <Card shadow="sm" p="sm" className="cursor-pointer">
-                    <Card.Section>{assetImage}</Card.Section>
+        <div>
+            <Link href={`/cards/${id}`} passHref>
+                <a className="no-underline">
+                    <Card shadow="sm" p="sm" className="cursor-pointer">
+                        <Card.Section>{assetImage}</Card.Section>
 
-                    <div className="mt-3">
-                        {nameCn ? (
-                            <>
-                                <b className="text-xl">{nameCn}</b>
-                                <br />
-                                <span>{name}</span>
-                            </>
-                        ) : (
-                            <b className="text-xl">{name}</b>
-                        )}
-                    </div>
+                        <div className="mt-3">
+                            {nameCn ? (
+                                <>
+                                    <b className="text-xl">{nameCn}</b>
+                                    <br />
+                                    <span>{name}</span>
+                                </>
+                            ) : (
+                                <b className="text-xl">{name}</b>
+                            )}
+                        </div>
 
-                    <div className="my-2">
-                        {$vc(characterId)} / {$v(CardType[type])} /{' '}
-                        {$v(AttributeType[cardColor])} / {$t('Initially')}{' '}
-                        {initialRarity}★
-                    </div>
+                        <div className="my-2">
+                            {$vc(characterId)} / {$v(CardType[type])} /{' '}
+                            {$v(AttributeType[cardColor])} / {$t('Initially')}{' '}
+                            {initialRarity}★
+                        </div>
 
-                    <Group className="gap-1">
-                        <PropValueBg
-                            type={AttributeType.Vocal}
-                            bold={cardColor === AttributeType.Vocal}
-                            value={vocalPt}
-                        />
-                        <PropValueBg
-                            type={AttributeType.Dance}
-                            bold={cardColor === AttributeType.Dance}
-                            value={dancePt}
-                        />
-                        <PropValueBg
-                            type={AttributeType.Visual}
-                            bold={cardColor === AttributeType.Visual}
-                            value={visualPt}
-                        />
-                        <PropValueBg
-                            type={'stamina'}
-                            bold={false}
-                            value={staminaPt}
-                        />
-                    </Group>
-                </Card>
-            </a>
-        </Link>
+                        <Group className="gap-1">
+                            <PropValueBg
+                                type={AttributeType.Vocal}
+                                bold={cardColor === AttributeType.Vocal}
+                                value={vocalPt}
+                            />
+                            <PropValueBg
+                                type={AttributeType.Dance}
+                                bold={cardColor === AttributeType.Dance}
+                                value={dancePt}
+                            />
+                            <PropValueBg
+                                type={AttributeType.Visual}
+                                bold={cardColor === AttributeType.Visual}
+                                value={visualPt}
+                            />
+                            <PropValueBg
+                                type={'stamina'}
+                                bold={false}
+                                value={staminaPt}
+                            />
+                        </Group>
+                    </Card>
+                </a>
+            </Link>
+        </div>
     )
 }
 
