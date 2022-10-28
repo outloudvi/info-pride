@@ -41,10 +41,8 @@ const CardFaceTypes = [
 
 const CardsPage = ({
     CardListData,
-    CardNameData,
 }: {
     CardListData: APIResponseOf<'Card/List'>
-    CardNameData: CardNameDataType
 }) => {
     const $v = useTranslations('vendor')
     const $vc = useTranslations('v-chr')
@@ -202,15 +200,7 @@ const CardsPage = ({
                 ]}
             >
                 {cards.map((item, key) => (
-                    <CardCard
-                        key={key}
-                        card={item}
-                        nameCn={
-                            CardNameData.filter(
-                                (x) => x.nameJa === item.name
-                            )?.[0]?.nameCn
-                        }
-                    />
+                    <CardCard key={key} card={item} />
                 ))}
             </SimpleGrid>
         </>
@@ -223,15 +213,9 @@ const SkeletonCardsPage = ({ maxRarity }: { maxRarity: number }) => {
         level: String(MAX_LEVEL),
         rarity: String(maxRarity),
     })
-    const { data: CardNameData } = useFrontendApi('wikiCard', {
-        fields: 'nameCn,nameJa',
-    })
 
     const allData = {
         CardListData,
-        CardNameData: CardNameData as
-            | Pick<WikiCard, 'nameCn' | 'nameJa'>[]
-            | undefined,
     }
 
     return (
@@ -260,7 +244,12 @@ export const getServerSideProps = async ({ locale }: { locale: string }) => {
         .json()
     return {
         props: {
-            ...(await addI18nMessages(locale, ['cards', 'vendor', 'v-chr'])),
+            ...(await addI18nMessages(locale, [
+                'cards',
+                'vendor',
+                'v-chr',
+                'v-card-name',
+            ])),
             maxRarity: CardRarity.reduce((a, b) =>
                 a.rarity > b.rarity ? a : b
             ).rarity,

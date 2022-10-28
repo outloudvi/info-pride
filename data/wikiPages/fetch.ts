@@ -42,6 +42,7 @@ const CharacterChineseNameList: Record<CharacterId, string> = {
 
 const CardsJson = 'cards.json'
 const SongsJson = 'songs.json'
+const CardsCnTransJson = '../../locales/zh-hans/v-card-name.json'
 const SitePref: SitePrefConfig = {
     domain: 'wiki.biligame.com',
     path: 'idolypride/api.php',
@@ -141,6 +142,7 @@ async function main() {
     try {
         // Cards
         const cardInfo = readJson(join(currDir, CardsJson))
+        const cardCnTrans = readJson(join(currDir, CardsCnTransJson))
         for (const [idolId, idolCnName] of Object.entries(
             CharacterChineseNameList
         )) {
@@ -173,8 +175,13 @@ async function main() {
                 cardMeta.ownerId = Number(cardId)
                 ;(cardInfo[idolId] || (cardInfo[idolId] = {}))[cardId] =
                     cardMeta
+                cardCnTrans[cardMeta.nameJa] = cardMeta.nameCn
             }
             writeFileSync(join(currDir, CardsJson), JSON.stringify(cardInfo))
+            writeFileSync(
+                join(currDir, CardsCnTransJson),
+                JSON.stringify(cardCnTrans)
+            )
             await sleep(3000)
         }
     } catch (e) {

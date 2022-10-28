@@ -10,16 +10,11 @@ import getCardColor from '#utils/getCardColor'
 import { APIResponseOf, UnArray } from '#utils/api'
 import AssetImage from '#components/AssetImage'
 
-const CardCard = ({
-    card,
-    nameCn,
-}: {
-    card: UnArray<APIResponseOf<'Card/List'>>
-    nameCn?: string
-}) => {
+const CardCard = ({ card }: { card: UnArray<APIResponseOf<'Card/List'>> }) => {
     const $v = useTranslations('vendor')
     const $vc = useTranslations('v-chr')
     const $t = useTranslations('cards')
+    const $vcn = useTranslations('v-card-name')
     const {
         id,
         name,
@@ -74,9 +69,9 @@ const CardCard = ({
                         <Card.Section>{assetImage}</Card.Section>
 
                         <div className="mt-3">
-                            {nameCn ? (
+                            {$vcn(name) !== name ? (
                                 <>
-                                    <b className="text-xl">{nameCn}</b>
+                                    <b className="text-xl">{$vcn(name)}</b>
                                     <br />
                                     <span>{name}</span>
                                 </>

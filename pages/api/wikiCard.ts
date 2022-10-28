@@ -16,12 +16,9 @@ const wikiCard = async (
     res: NextApiResponse<FrontendAPIResponseMapping['wikiCard']>
 ) => {
     const q = req.query
-    const fields = q.fields ? pickFirstOrOne(q.fields) : null
     const nameJa = q.nameJa ? pickFirstOrOne(q.nameJa) : null
     if (nameJa === null) {
-        res.status(200).json(
-            CardsArray.map((x) => (fields ? pick(x, fields.split(',')) : x))
-        )
+        res.status(200).json(CardsArray)
         return
     }
 
