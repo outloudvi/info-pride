@@ -17,12 +17,8 @@ import CardCard from '#components/cards/CardCard'
 import { CharacterId, CharacterIds } from '#data/vendor/characterId'
 import getCardColor from '#utils/getCardColor'
 import FilterSelect from '#components/search/FilterSelect'
-import type { Card as WikiCard } from '#data/wikiPages/cards'
-import useFrontendApi from '#utils/useFrontendApi'
 import { MAX_LEVEL } from '#utils/constants'
 import Paths from '#utils/paths'
-
-type CardNameDataType = { nameCn: string; nameJa: string }[]
 
 const CardFaceTypes = [
     'schl',
