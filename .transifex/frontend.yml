@@ -6,3 +6,7 @@ git:
       source_language: en
       source_file_dir: locales/en
       translation_files_expression: "locales/<lang>"
+      ignore_files:
+        - locales/en/v-card-name.json
+        - locales/en/v-chr.json
+        - locales/en/v-group.json
