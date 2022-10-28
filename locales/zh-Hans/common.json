@@ -21,14 +21,14 @@
             "prefix": "来自 ",
             "bwikilinktitle": "bwiki",
             "middle": " 的内容以 ",
-            "suffix": " 授权"
+            "suffix": ""
         }
     },
     "Video": "视频",
     "Back": "返回",
     "Color": "颜色",
-    "Export as image": "导出为图片",
     "loading": "加载中。",
+    "Export as image": "导出为图片",
     "audio_loading": "正在加载音频。首次加载可能需要较长时间。",
     "audio_load_failed": "未能加载音频 {id} 。",
     "no_trans": "尚无翻译信息。请添加翻译信息到 {file} 的 {field} 。",
