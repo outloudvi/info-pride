@@ -25,7 +25,7 @@ const nextConfig = {
     },
     i18n: {
         locales,
-        defaultLocale: 'zh-hans',
+        defaultLocale: 'zh-Hans',
     },
 }
 
