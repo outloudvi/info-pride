@@ -1,8 +1,7 @@
 {
-  "extends": [
-    "development"
-  ],
-  "hints": {
-    "no-inline-styles": "off"
-  }
+    "extends": ["development"],
+    "hints": {
+        "no-inline-styles": "off",
+        "valid-lang": "off"
+    }
 }
