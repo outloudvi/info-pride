@@ -64,6 +64,7 @@ const PreloadedCardInfoPage = () => {
 export const getServerSideProps = getI18nProps([
     'cards_slug',
     'vendor',
+    'v-chr',
     'v-card-name',
 ])
 

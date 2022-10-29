@@ -163,7 +163,7 @@ const CardItem = ({
                         ></div>
                     )}
                     <div>
-                        {$v(CardType[type])} /{' '}
+                        {$vc(card.characterId)} / {$v(CardType[type])} /{' '}
                         {$v(AttributeType[getCardColor(card)])} /{' '}
                         {$t('Initially')} {initialRarity}★
                     </div>
