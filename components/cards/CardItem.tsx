@@ -42,9 +42,10 @@ const CardItem = ({
     const $c = useTranslations('common')
     const $v = useTranslations('vendor')
     const $vc = useTranslations('v-chr')
+    const $vcn = useTranslations('v-card-name')
 
     const {
-        name: nameJa,
+        name,
         description,
         type,
         initialRarity,
@@ -67,7 +68,7 @@ const CardItem = ({
     })
 
     const { data: WikiCardData } = useFrontendApi('wikiCard', {
-        nameJa,
+        nameJa: name,
     })
     const { data: WikiStories, isFetched: isWikiStoriesFetched } =
         useFrontendApi('cardStories', {
@@ -132,23 +133,22 @@ const CardItem = ({
                     <Anchor>{$t('Card list')}</Anchor>
                 </Link>
                 <Link href="#" passHref>
-                    <Anchor>{nameJa}</Anchor>
+                    <Anchor>{name}</Anchor>
                 </Link>
             </Breadcrumbs>
             <div>
-                {useCn ? (
+                {$vcn(card.name) !== card.name ? (
                     <>
-                        {' '}
-                        <div className="text-3xl mb-2" lang="zh-CN">
-                            {wikiCard?.nameCn}
+                        <div className="text-3xl mb-2" lang={locale}>
+                            {$vcn(card.name)}
                         </div>
                         <div className="text-xl mb-2" lang="ja">
-                            {nameJa}
+                            {name}
                         </div>
                     </>
                 ) : (
-                    <div className="text-3xl mb-2" lang="zh-CN">
-                        {nameJa}
+                    <div className="text-3xl mb-2" lang="ja">
+                        {name}
                     </div>
                 )}
             </div>
