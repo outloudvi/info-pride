@@ -242,6 +242,9 @@ const dataSaki: StoriesData = {
             name: '比幽灵还要恐怖！',
             video: { type: 'bilibili', vid: 'av859291525' },
         },
+        phone: {
+            video: { type: 'bilibili', vid: 'av646763583' },
+        },
     },
 }
 
@@ -1195,6 +1198,21 @@ const dataFran: StoriesData = {
         3: {
             name: 'TODO',
             video: { type: 'bilibili', vid: 'av258078013', pid: 3 },
+        },
+    },
+    'card-kor-05-poli-00': {
+        // 壁越しに香るゆず湯
+        1: {
+            name: '这个旅馆是怎么回事',
+            video: { type: 'bilibili', vid: 'av262049577', pid: 1 },
+        },
+        2: {
+            name: '这次就放过你',
+            video: { type: 'bilibili', vid: 'av262049577', pid: 2 },
+        },
+        3: {
+            name: '要保密哟',
+            video: { type: 'bilibili', vid: 'av262049577', pid: 3 },
         },
     },
 }
