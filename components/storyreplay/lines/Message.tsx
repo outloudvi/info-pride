@@ -11,9 +11,9 @@ const CompMessage = ({ l }: { l: Message }) => {
             <div className="uppercase text-gray-300 text-sm mb-2">
                 {$t('Message')}
             </div>
-            <div className="flex items-center">
-                <div className="flex flex-col items-center mr-2 w-24">
-                    <div>
+            <div className="flex flex-col md:flex-row md:items-center">
+                <div className="flex md:flex-col items-center md:mr-2 md:w-24">
+                    <div className="mr-2 md:mr-0">
                         {l.thumbnail && (
                             <AssetImage
                                 name={l.thumbnail}

@@ -11,15 +11,11 @@ const CompBackgroundSetting = ({ l }: { l: BackgroundSetting }) => {
             <div className="uppercase text-gray-300 text-sm mb-2">
                 {$t('Background')}
             </div>
-            <div
-                style={{
-                    marginLeft: 'calc( (100% - 600px)/2 )',
-                }}
-            >
+            <div className="mx-[5%]">
                 <AssetImage
                     name={`env_adv_2d_${l.id}`}
                     ratio={16 / 9}
-                    width={600}
+                    width={'100%'}
                     alt={`Image: ${l.id}`}
                 />
             </div>
