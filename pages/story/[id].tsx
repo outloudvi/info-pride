@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 import { useTranslations } from 'next-intl'
-import { Alert } from '@mantine/core'
+import { Alert, Divider } from '@mantine/core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 
@@ -23,25 +23,28 @@ const StoryReplayPage = ({
     return (
         <>
             <Title title={$t('Story replay')} noh2 />
-            {StoryScriptData.length === 0 ? (
-                <p>{$t('no_story')}</p>
-            ) : StoryScriptData.length > 1 ? (
-                <>
-                    <p>
-                        {$t('multiple_parts', {
-                            len: StoryScriptData.length,
-                        })}
-                    </p>
-                    {StoryScriptData.map((lines, index) => (
-                        <>
-                            <p>{$t('story_part', { p: index + 1 })}</p>
-                            <StoryReplayView lines={lines} />
-                        </>
-                    ))}
-                </>
-            ) : (
-                <StoryReplayView lines={StoryScriptData[0]} />
-            )}
+            <div className="max-w-3xl mx-auto">
+                {StoryScriptData.length === 0 ? (
+                    <p>{$t('no_story')}</p>
+                ) : StoryScriptData.length > 1 ? (
+                    <>
+                        <p>
+                            {$t('multiple_parts', {
+                                len: StoryScriptData.length,
+                            })}
+                        </p>
+                        {StoryScriptData.map((lines, index) => (
+                            <>
+                                <Divider />
+                                <p>{$t('story_part', { p: index + 1 })}</p>
+                                <StoryReplayView lines={lines} />
+                            </>
+                        ))}
+                    </>
+                ) : (
+                    <StoryReplayView lines={StoryScriptData[0]} />
+                )}
+            </div>
         </>
     )
 }

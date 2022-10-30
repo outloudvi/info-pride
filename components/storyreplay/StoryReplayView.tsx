@@ -32,7 +32,7 @@ const StoryReplayView = ({ lines }: { lines: Line[] }) => {
         $t('no_title')
 
     return (
-        <div className="max-w-3xl mx-auto">
+        <div>
             <h3>{title}</h3>
             {lines
                 .filter(
