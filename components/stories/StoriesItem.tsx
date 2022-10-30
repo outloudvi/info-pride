@@ -1,5 +1,6 @@
-import { Skeleton } from '@mantine/core'
+import { Button, Skeleton } from '@mantine/core'
 import { useLocale, useTranslations } from 'next-intl'
+import Link from 'next/link'
 
 import { toVideoLink } from '#components/ExternalVideo'
 import useApi from '#utils/useApi'
@@ -93,6 +94,11 @@ const StoriesItem = (props: PropType) => {
             {StoryData && (
                 <div>
                     <p lang="ja">{StoryData.description}</p>
+                    <Link href={`/story/${StoryData.id}`} passHref>
+                        <a>
+                            <Button>{$c('Story replay')}</Button>
+                        </a>
+                    </Link>
                 </div>
             )}
             {StoryTrnData && (

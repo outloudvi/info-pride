@@ -1,6 +1,7 @@
 import { Blockquote, Button, Group, Skeleton } from '@mantine/core'
 import { useEffect, useState } from 'react'
 import { useLocale, useTranslations } from 'next-intl'
+import Link from 'next/link'
 
 import { APIResponseOf } from '#utils/api'
 import useApi from '#utils/useApi'
@@ -40,6 +41,11 @@ const EventEpisodeDetail = ({
                 <h3 lang="ja">{jaName}</h3>
             )}
             <Blockquote>{description}</Blockquote>
+            <Link href={`/story/${id}`} passHref>
+                <a>
+                    <Button>{$c('Story replay')}</Button>
+                </a>
+            </Link>
             {isSuccess ? (
                 VideoInfoData ? (
                     <div>
