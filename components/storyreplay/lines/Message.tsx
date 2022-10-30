@@ -27,7 +27,9 @@ const CompMessage = ({ l }: { l: Message }) => {
                         {l.name === '{user}' ? $t('Manager') : l.name}
                     </div>
                 </div>
-                <div className="grow">{l.text}</div>
+                <div className="grow">
+                    {l.text.replace(/\{user\}/g, $t('Manager'))}
+                </div>
             </div>
         </>
     )
