@@ -6,6 +6,7 @@ import CompSe from './lines/Se'
 import CompBgm from './lines/Bgm'
 import CompMessage from './lines/Message'
 import CompVoice from './lines/Voice'
+import collapseLines from './collapseLines'
 
 function displayLine(line: Line): JSX.Element {
     switch (line._t) {
@@ -34,8 +35,8 @@ const StoryReplayView = ({ lines }: { lines: Line[] }) => {
     return (
         <div>
             <h3>{title}</h3>
-            {lines
-                .filter(
+            {collapseLines(
+                lines.filter(
                     (x) =>
                         ![
                             'BackgroundGroup',
@@ -46,14 +47,14 @@ const StoryReplayView = ({ lines }: { lines: Line[] }) => {
                             'Voice',
                         ].includes(x._t)
                 )
-                .map((line, key) => (
-                    <div
-                        key={key}
-                        className="my-1 p-2 text-white bg-[#4c4c4c] rounded"
-                    >
-                        {displayLine(line)}
-                    </div>
-                ))}
+            ).map((line, key) => (
+                <div
+                    key={key}
+                    className="my-1 p-2 text-white bg-[#4c4c4c] rounded"
+                >
+                    {displayLine(line)}
+                </div>
+            ))}
         </div>
     )
 }
