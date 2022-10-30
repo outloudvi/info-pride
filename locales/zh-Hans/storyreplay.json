@@ -1,0 +1,14 @@
+{
+    "Story replay": "剧情回放",
+    "Background": "背景图片",
+    "BGM": "背景音乐",
+    "Message": "台词",
+    "Manager": "マネージャー",
+    "SFX": "音效",
+    "Voice": "声音",
+    "be_patient": "本页数据量较大，因此加载时间较长。请坐和放宽。",
+    "no_story": "没有找到故事。",
+    "multiple_parts": "故事分为 {len} 部分。",
+    "story_part": "这是故事的第 {p} 部分。",
+    "no_title": "（无标题）"
+}

@@ -1,0 +1,14 @@
+{
+    "Story replay": "Story replay",
+    "Background": "Background",
+    "BGM": "BGM",
+    "Message": "Message",
+    "Manager": "マネージャー",
+    "SFX": "SFX",
+    "Voice": "Voice",
+    "be_patient": "There is a large amount of data on this page, leading to longer load time. Please sit back and relax.",
+    "no_story": "No story found.",
+    "multiple_parts": "There are {len} parts in this story.",
+    "story_part": "This is the part {p} of the story.",
+    "no_title": "(Untitled)"
+}

@@ -64,6 +64,7 @@
         "use-query-params": "^2.1.1"
     },
     "devDependencies": {
+        "@hoshimei/adv": "^0.3.0",
         "@next/bundle-analyzer": "^12.3.1",
         "@types/chai": "^4.3.3",
         "@types/d3": "^7.4.0",
@@ -79,7 +80,7 @@
         "eslint-config-next": "12.3.0",
         "eslint-import-resolver-typescript": "^3.5.1",
         "eslint-plugin-import": "^2.26.0",
-        "hoshimi-types": "^1.1.2",
+        "hoshimi-types": "^1.2.0",
         "husky": "^8.0.1",
         "json-schema-to-typescript": "^11.0.2",
         "mocha": "^10.0.0",
