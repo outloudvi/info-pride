@@ -1,6 +1,5 @@
 import { withSentry } from '@sentry/nextjs'
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { pick } from 'lodash'
 
 import { Cards } from '#data/wikiPages'
 import type { Card as WikiCard } from '#data/wikiPages/cards'
