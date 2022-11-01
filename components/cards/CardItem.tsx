@@ -4,6 +4,7 @@ import {
     Breadcrumbs,
     Button,
     Grid,
+    Group,
     Skeleton,
     Slider,
     Switch,
@@ -54,6 +55,7 @@ const CardItem = ({
         danceRatioPermil,
         visualRatioPermil,
         staminaRatioPermil,
+        stories,
     } = card
 
     const maxRarity = Math.max(...rarityData.map((x) => x.rarity))
@@ -80,42 +82,38 @@ const CardItem = ({
 
     const storiesDisplay = useMemo(() => {
         // Not fetched
+
+        if (stories.length === 0) {
+            // No stories
+            return <p className="text-gray-500 mt-1 mb-2">{$t('no_stories')}</p>
+        }
+
         if (!isWikiStoriesFetched) {
-            return <Skeleton height={200} className="my-2" />
+            return <Skeleton height={200} className="mt-1 mb-2" />
         }
 
         // Translation does not exist
         if (WikiStories === undefined) {
             return (
-                <>
-                    <h3>{$t('Stories')}</h3>
-                    <p className="text-gray-500">
-                        {$c.rich('no_trans', {
-                            field: card.id,
-                            file: `data/videos/cardStories.data/${locale}.ts`,
-                        })}
-                    </p>
-                </>
+                <p className="text-gray-500 mt-1 mb-2">
+                    {$c.rich('no_trans', {
+                        field: card.id,
+                        file: `data/videos/cardStories.data/${locale}.ts`,
+                    })}
+                </p>
             )
         }
 
-        // Stories do not exist
-        if (WikiStories.stories === null) {
-            return (
-                <>
-                    <h3>{$t('Stories')}</h3>
-                    <p className="text-gray-500">{$t('no_stories')}</p>
-                </>
-            )
-        }
-
-        return (
-            <>
-                <h3>{$t('Stories')}</h3>
-                <CardStories stories={WikiStories.stories} />
-            </>
-        )
-    }, [WikiStories, isWikiStoriesFetched, card.id, locale, $t, $c])
+        return <CardStories stories={WikiStories.stories} />
+    }, [
+        WikiStories,
+        isWikiStoriesFetched,
+        card.id,
+        locale,
+        $t,
+        $c,
+        stories.length,
+    ])
 
     if (!rarityData) {
         return <Skeleton height={300} />
@@ -238,6 +236,21 @@ const CardItem = ({
                         cardAssetId={card.assetId}
                         isInitiallyAwaken={card.initialRarity >= 5}
                     />
+                    <h3>{$t('Story replay')}</h3>
+                    {stories.length > 0 && (
+                        <Group>
+                            {stories.map((item, key) => (
+                                <Link href={`/story/${item.storyId}`} key={key}>
+                                    <a>
+                                        <Button>
+                                            {$t('part', { s: key + 1 })}
+                                        </Button>
+                                    </a>
+                                </Link>
+                            ))}
+                        </Group>
+                    )}
+                    <h3>{$t('Story videos')}</h3>
                     {storiesDisplay}
                     {locale === 'zh-Hans' && cardCcidInfo && (
                         <Button

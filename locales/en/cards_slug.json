@@ -1,6 +1,7 @@
 {
     "Cards": "Cards",
-    "Stories": "Stories",
+    "Story replay": "Story replay",
+    "Story videos": "Story videos",
     "Card list": "Card list",
     "Rarity": "Rarity",
     "Level": "Level",
@@ -19,5 +20,6 @@
     "awakened_only": "Only awakened available",
     "show_awakened": "Show awakened",
     "skills_bwiki": "(At the highest skill level)",
-    "skill_icons_beta": "Skill icon display is in beta. Please <a>report</a> any encountered issues."
+    "skill_icons_beta": "Skill icon display is in beta. Please <a>report</a> any encountered issues.",
+    "part": "Part {s}"
 }

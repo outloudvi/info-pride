@@ -5,7 +5,7 @@ import { toVideoLink } from '#components/ExternalVideo'
 import type { Stories } from '#data/videos/cardStories.data/types'
 
 const CardStories = ({ stories }: { stories: Stories }) => (
-    <div className="mb-2">
+    <div className="mt-1 mb-2">
         {_range(3)
             .map((x) => x + 1)
             .map((id) => {
