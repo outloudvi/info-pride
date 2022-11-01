@@ -1237,6 +1237,21 @@ const dataKana: StoriesData = {
             video: { type: 'bilibili', vid: 'av300684870' },
         },
     },
+    'card-kan-05-poli-00': {
+        // 超強いんだから
+        1: {
+            name: '纵使醉宿依旧神清气爽',
+            video: { type: 'bilibili', vid: 'av389620168' },
+        },
+        2: {
+            name: '把这张脸给我去掉！',
+            video: { type: 'bilibili', vid: 'av647123135' },
+        },
+        3: {
+            name: '偶尔还是挺能干的嘛',
+            video: { type: 'bilibili', vid: 'av262166499' },
+        },
+    },
 }
 
 // miho
