@@ -47,10 +47,7 @@ const dataMiho: StoriesData = {}
 
 // ---- Personal Idols ----
 // Mana
-const dataMana: StoriesData = {
-    // Premium cards do NOT have stories
-    'card-mna-05-prem-00': null,
-}
+const dataMana: StoriesData = {}
 
 const dataMikuCollab: StoriesData = {}
 
