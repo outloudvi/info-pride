@@ -7,17 +7,22 @@ import CompBgm from './lines/Bgm'
 import CompMessage from './lines/Message'
 import CompVoice from './lines/Voice'
 import collapseLines from './collapseLines'
+import type { MergedLine } from './types'
+import CompMWV from './lines/MWV'
 
-function displayLine(line: Line): JSX.Element {
+function displayLine(line: MergedLine): JSX.Element {
     switch (line._t) {
         case 'BackgroundSetting':
             return <CompBackgroundSetting l={line} />
-        case 'Message':
-            return <CompMessage l={line} />
         case 'Bgm':
             return <CompBgm l={line} />
         case 'Se':
             return <CompSe l={line} />
+        case 'MWV':
+            return <CompMWV l={line} />
+        // Fallback
+        case 'Message':
+            return <CompMessage l={line} />
         case 'Voice':
             return <CompVoice l={line} />
         default:
@@ -37,16 +42,9 @@ const StoryReplayView = ({ lines }: { lines: Line[] }) => {
             <h3>{title}</h3>
             {collapseLines(
                 lines.filter(
-                    (x) =>
-                        ![
-                            'BackgroundGroup',
-                            'Title',
-                            // TODO: Support BGM/SE/Voice
-                            'Bgm',
-                            'Se',
-                            'Voice',
-                        ].includes(x._t)
-                )
+                    (x) => !['BackgroundGroup', 'Title'].includes(x._t)
+                ),
+                title
             ).map((line, key) => (
                 <div
                     key={key}

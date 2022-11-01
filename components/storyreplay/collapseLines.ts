@@ -1,25 +1,24 @@
-import type { BackgroundSetting, Line } from '@hoshimei/adv/types'
+import type { Line } from '@hoshimei/adv/types'
 
-function mergeBackground(lines: Line[]): Line[] {
-    const ret = []
-    let lastBg = ''
-    for (const i of lines) {
-        if (i._t !== 'BackgroundSetting') {
-            ret.push(i)
-            continue
-        }
-        const currBg = (i as BackgroundSetting).id
-        if (currBg !== lastBg) {
-            ret.push(i)
-            lastBg = currBg
-        }
-    }
-    return ret
-}
+import type { MergedLine } from './types'
+import mergeBackground from './mergeBackground'
+import mergeMWV from './mergeMWV'
 
-export default function collapseLines(lines: Line[]): Line[] {
+export default function collapseLines(
+    lines: Line[],
+    title: string
+): MergedLine[] {
     // 1. Merge backgrounds that only differs in scale/position
     const ret = mergeBackground(lines)
 
-    return ret
+    // 2. Merge messages and voices
+    const ret2 = mergeMWV(ret, title)
+
+    // 3. Reorder the timeline
+    return ret2.sort((a, b) => {
+        // @ts-expect-errors forced assertion
+        if (a.startTime === undefined || b.startTime === undefined) return 0
+        // @ts-expect-errors forced assertion
+        return a.startTime - b.startTime
+    })
 }
