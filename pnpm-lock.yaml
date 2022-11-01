@@ -42,7 +42,7 @@ specifiers:
   eslint-plugin-import: ^2.26.0
   got: ^12.5.2
   history: ^5.3.0
-  hoshimi-types: ^1.2.0
+  hoshimi-types: ^2.0.0
   husky: ^8.0.1
   jotai: ^1.8.5
   json-schema-to-typescript: ^11.0.2
@@ -126,7 +126,7 @@ devDependencies:
   eslint-config-next: 12.3.0_itqs5654cmlnjraw6gjzqacppi
   eslint-import-resolver-typescript: 3.5.1_faomjyrlgqmwswvqymymzkxcqi
   eslint-plugin-import: 2.26.0_dwwujaxb33eqylyeb7euk2dxcq
-  hoshimi-types: 1.2.0
+  hoshimi-types: 2.0.0
   husky: 8.0.1
   json-schema-to-typescript: 11.0.2
   mocha: 10.0.0
@@ -4713,8 +4713,8 @@ packages:
       react-is: 16.13.1
     dev: false
 
-  /hoshimi-types/1.2.0:
-    resolution: {integrity: sha512-wFDT9H4Zpzxl6PB53tz0mQZSw9+fTT2cjn0104hKwl3gr0uNRmMx3qZLsoQuCb1q+sKmNkj7mgdOBa/kKQl0cw==}
+  /hoshimi-types/2.0.0:
+    resolution: {integrity: sha512-KpU6fB00EUVA3Y76MFNaoE/5z7bVgJed9rgCUfRcwp/9bRdbpfVviEQAG/N8HTMLTnqs6TFnyBbLoEBkiynCmQ==}
     dependencies:
       '@hoshimei/adv': 0.2.0
     dev: true

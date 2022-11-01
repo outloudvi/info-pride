@@ -1310,8 +1310,6 @@ const dataMana: StoriesData = {
             video: { type: 'bilibili', vid: 'av595197954', pid: 3 },
         },
     },
-    // Premium cards do NOT have stories
-    'card-mna-05-prem-00': null,
 }
 
 const dataMikuCollab: StoriesData = {

@@ -26,7 +26,7 @@ export type FrontendAPIResponseMapping = {
     cards: WikiCards
     cardStories:
         | {
-              stories: Stories | null
+              stories: Stories
           }
         | undefined
     'characters/profile': {
