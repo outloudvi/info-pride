@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import { ActionIcon } from '@mantine/core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
@@ -7,10 +7,12 @@ import {
     faSpinner,
     faXmarkCircle,
 } from '@fortawesome/free-solid-svg-icons'
+import { useTranslations } from 'next-intl'
 
 import Paths from '#utils/paths'
 
 const AssetAudioButton = ({ id }: { id: string }) => {
+    const $t = useTranslations('common')
     const aud = useRef<HTMLAudioElement | null>(null)
     const [isActivated, setActivated] = useState(false)
     /**
@@ -55,14 +57,16 @@ const AssetAudioButton = ({ id }: { id: string }) => {
                 size="lg"
                 onClick={onClick}
                 disabled={!playReady}
+                tabIndex={0}
             >
                 {playReady === 0 ? (
-                    <FontAwesomeIcon icon={faSpinner} />
+                    <FontAwesomeIcon icon={faSpinner} title={$t('Loading')} />
                 ) : playReady === -2 ? (
-                    <FontAwesomeIcon icon={faXmarkCircle} />
+                    <FontAwesomeIcon icon={faXmarkCircle} title={$t('Error')} />
                 ) : (
                     <FontAwesomeIcon
                         icon={isPlaying ? faPauseCircle : faPlayCircle}
+                        title={isPlaying ? $t('Pause') : $t('Play')}
                     />
                 )}
             </ActionIcon>
