@@ -12,7 +12,14 @@ import Paths from '#utils/paths'
 
 const AssetAudioButton = ({ id }: { id: string }) => {
     const aud = useRef<HTMLAudioElement | null>(null)
-    const [playReady, setPlayReady] = useState(0)
+    const [isActivated, setActivated] = useState(false)
+    /**
+     * -2: Error
+     * -1: Not clicked/activated
+     * 0: Loading
+     * 1: Ready
+     */
+    const [playReady, setPlayReady] = useState(-1)
     const [isPlaying, setIsPlaying] = useState(false)
 
     const reset = () => {
@@ -23,6 +30,11 @@ const AssetAudioButton = ({ id }: { id: string }) => {
     }
 
     const onClick = () => {
+        if (playReady === -1) {
+            setActivated(true)
+            setPlayReady(0)
+            return
+        }
         const a = aud.current
         if (!a) return
         if (isPlaying) {
@@ -35,25 +47,6 @@ const AssetAudioButton = ({ id }: { id: string }) => {
         }
     }
 
-    useEffect(() => {
-        const cur = aud.current
-        if (cur === null) return
-        cur.load()
-        setPlayReady(0)
-    }, [id])
-
-    useEffect(() => {
-        const loadedCb = () => {
-            setPlayReady(1)
-        }
-        const cur = aud.current
-        if (cur === null) return
-        cur.addEventListener('loadeddata', loadedCb)
-        return () => {
-            cur.removeEventListener('loadeddata', loadedCb)
-        }
-    }, [aud, setPlayReady])
-
     return (
         <div className="text-white">
             <ActionIcon
@@ -63,41 +56,49 @@ const AssetAudioButton = ({ id }: { id: string }) => {
                 onClick={onClick}
                 disabled={!playReady}
             >
-                {playReady === 0 && <FontAwesomeIcon icon={faSpinner} />}
-                {playReady === -1 && <FontAwesomeIcon icon={faXmarkCircle} />}
-                {playReady === 1 && (
+                {playReady === 0 ? (
+                    <FontAwesomeIcon icon={faSpinner} />
+                ) : playReady === -2 ? (
+                    <FontAwesomeIcon icon={faXmarkCircle} />
+                ) : (
                     <FontAwesomeIcon
                         icon={isPlaying ? faPauseCircle : faPlayCircle}
                     />
                 )}
             </ActionIcon>
-            <audio
-                controls={false}
-                ref={aud}
-                onError={() => {
-                    setPlayReady(-1)
-                }}
-                onPlay={() => {
-                    setIsPlaying(true)
-                }}
-                onPause={() => {
-                    setIsPlaying(false)
-                    reset()
-                }}
-                onEnded={() => {
-                    setIsPlaying(false)
-                    reset()
-                }}
-            >
-                <source
-                    src={Paths.assets('sud')(`${id}.opus`)}
-                    type="audio/ogg; codecs=opus"
-                />
-                <source
-                    src={Paths.assets('sud')(`${id}.mp3`)}
-                    type="audio/mpeg"
-                />
-            </audio>
+            {isActivated && (
+                <audio
+                    controls={false}
+                    ref={aud}
+                    onError={() => {
+                        setPlayReady(-2)
+                    }}
+                    onLoadedData={() => {
+                        setPlayReady(1)
+                        aud.current?.play()
+                    }}
+                    onPlay={() => {
+                        setIsPlaying(true)
+                    }}
+                    onPause={() => {
+                        setIsPlaying(false)
+                        reset()
+                    }}
+                    onEnded={() => {
+                        setIsPlaying(false)
+                        reset()
+                    }}
+                >
+                    <source
+                        src={Paths.assets('sud')(`${id}.opus`)}
+                        type="audio/ogg; codecs=opus"
+                    />
+                    <source
+                        src={Paths.assets('sud')(`${id}.mp3`)}
+                        type="audio/mpeg"
+                    />
+                </audio>
+            )}
         </div>
     )
 }
