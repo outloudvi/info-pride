@@ -23,6 +23,7 @@ jobs:
               run: |
                   node scripts/to-esm.mjs mjs
                   bash scripts/buildAndValidate.sh
+                  node scripts/updateVCardName.mjs
 
             - name: Commit files
               continue-on-error: true
@@ -30,7 +31,7 @@ jobs:
                   node scripts/to-esm.mjs cjs
                   git config --local user.email "noreply@outv.im"
                   git config --local user.name "GitHub Actions"
-                  git add data/
+                  git add data/ locales/
                   git commit -m "feat: update dataset"
 
             - name: Push changes
