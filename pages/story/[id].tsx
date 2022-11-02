@@ -2,7 +2,7 @@ import { useRouter } from 'next/router'
 import { useTranslations } from 'next-intl'
 import { Alert, Divider } from '@mantine/core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
+import { faInfoCircle, faWarning } from '@fortawesome/free-solid-svg-icons'
 
 import PageLoading from '#components/PageLoading'
 import Title from '#components/Title'
@@ -53,7 +53,7 @@ const SkeletonStoryReplayPage = () => {
     const router = useRouter()
     const $t = useTranslations('storyreplay')
     const id = pickFirstOrOne(router.query.id ?? '')
-    const { data: StoryScriptData } = useApi('StoryScript', {
+    const { data: StoryScriptData, isFetched } = useApi('StoryScript', {
         id,
     })
 
@@ -64,7 +64,11 @@ const SkeletonStoryReplayPage = () => {
     return (
         <>
             <h2>{$t('Story replay')}</h2>
-            {allFinished(allData) ? (
+            {isFetched && !Array.isArray(StoryScriptData) ? (
+                <Alert icon={<FontAwesomeIcon icon={faWarning} />} color="red">
+                    Error: {(StoryScriptData as any)?.message}
+                </Alert>
+            ) : allFinished(allData) ? (
                 <StoryReplayPage {...allData} />
             ) : (
                 <>
