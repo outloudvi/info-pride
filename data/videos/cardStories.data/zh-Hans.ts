@@ -1214,6 +1214,9 @@ const dataFran: StoriesData = {
             name: '要保密哟',
             video: { type: 'bilibili', vid: 'av262049577', pid: 3 },
         },
+        phone: {
+            video: { type: 'bilibili', vid: 'av689638435' },
+        },
     },
 }
 
