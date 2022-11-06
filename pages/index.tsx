@@ -104,7 +104,7 @@ export async function getStaticProps({ locale }: { locale: string }) {
     return {
         props: {
             gitCommit,
-            ...(await addI18nMessages(locale, ['index'])),
+            ...(await addI18nMessages(locale, ['index', 'notice'])),
         },
     }
 }
