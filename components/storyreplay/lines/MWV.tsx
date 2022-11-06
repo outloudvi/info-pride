@@ -1,4 +1,5 @@
 import { useTranslations } from 'next-intl'
+import { atom, useAtom } from 'jotai'
 
 import type { MessageWithVoice } from '../types'
 
@@ -6,8 +7,11 @@ import AssetImage from '#components/AssetImage'
 import lfToBr from '#utils/lfToBr'
 import AssetAudioButton from '#components/AssetAudioButton'
 
+const mwvCurrentPlayingAtom = atom<string | null>(null)
+
 const CompMWV = ({ l }: { l: MessageWithVoice }) => {
     const $t = useTranslations('storyreplay')
+    const [currMwv, setCurrMwv] = useAtom(mwvCurrentPlayingAtom)
 
     return (
         <>
@@ -38,7 +42,11 @@ const CompMWV = ({ l }: { l: MessageWithVoice }) => {
                     {lfToBr(l.text.replace(/\{user\}/g, $t('Manager')))}
                 </div>
                 <div className="hidden md:block">
-                    <AssetAudioButton id={l.voice} />
+                    <AssetAudioButton
+                        id={l.voice}
+                        atom={currMwv}
+                        setAtom={setCurrMwv}
+                    />
                 </div>
             </div>
         </>

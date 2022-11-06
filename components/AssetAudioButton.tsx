@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { SetStateAction, useEffect, useRef, useState } from 'react'
 import { ActionIcon } from '@mantine/core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
@@ -11,7 +11,15 @@ import { useTranslations } from 'next-intl'
 
 import Paths from '#utils/paths'
 
-const AssetAudioButton = ({ id }: { id: string }) => {
+const AssetAudioButton = ({
+    id,
+    atom,
+    setAtom,
+}: {
+    id: string
+    atom?: string | null
+    setAtom?: (update: SetStateAction<string | null>) => void
+}) => {
     const $t = useTranslations('common')
     const aud = useRef<HTMLAudioElement | null>(null)
     const [isActivated, setActivated] = useState(false)
@@ -23,6 +31,14 @@ const AssetAudioButton = ({ id }: { id: string }) => {
      */
     const [playReady, setPlayReady] = useState(-1)
     const [isPlaying, setIsPlaying] = useState(false)
+
+    useEffect(() => {
+        const cur = aud.current
+        if (cur === null || atom === null) return
+        if (atom !== id) {
+            cur.pause()
+        }
+    }, [atom, aud, id])
 
     const reset = () => {
         const a = aud.current
@@ -82,6 +98,7 @@ const AssetAudioButton = ({ id }: { id: string }) => {
                         aud.current?.play()
                     }}
                     onPlay={() => {
+                        setAtom?.(id)
                         setIsPlaying(true)
                     }}
                     onPause={() => {

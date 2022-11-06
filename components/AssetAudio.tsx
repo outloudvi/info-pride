@@ -1,16 +1,28 @@
-import { useEffect, useRef, useState } from 'react'
+import { SetStateAction, useEffect, useRef, useState } from 'react'
 import { useTranslations } from 'next-intl'
 
 import Paths from '#utils/paths'
 
-const AssetAudio = ({ id }: { id: string }) => {
+const AssetAudio = ({
+    id,
+    atom,
+    setAtom,
+}: {
+    id: string
+    atom?: string | null
+    setAtom?: (update: SetStateAction<string | null>) => void
+}) => {
     const $t = useTranslations('common')
     const aud = useRef<HTMLAudioElement | null>(null)
     const [playReady, setPlayReady] = useState(0)
 
-    const errorCb = () => {
-        setPlayReady(-1)
-    }
+    useEffect(() => {
+        const cur = aud.current
+        if (cur === null || atom === null) return
+        if (atom !== id) {
+            cur.pause()
+        }
+    }, [atom, aud, id])
 
     useEffect(() => {
         const cur = aud.current
@@ -39,7 +51,16 @@ const AssetAudio = ({ id }: { id: string }) => {
             {playReady === -1 && (
                 <div className="mb-1">[{$t('audio_load_failed', { id })}]</div>
             )}
-            <audio controls={playReady !== 0} ref={aud} onError={errorCb}>
+            <audio
+                controls={playReady !== 0}
+                ref={aud}
+                onError={() => {
+                    setPlayReady(-1)
+                }}
+                onPlay={() => {
+                    setAtom?.(id)
+                }}
+            >
                 <source
                     src={Paths.assets('sud')(`${id}.opus`)}
                     type="audio/ogg; codecs=opus"
