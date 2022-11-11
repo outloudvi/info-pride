@@ -37,6 +37,7 @@ export type EventType =
     | '愚人节'
     | '私信任务活动'
     | '合宿活动'
+    | 'multi links活动'
 /**
  * Each YYYY/MM in the calendar.
  */
