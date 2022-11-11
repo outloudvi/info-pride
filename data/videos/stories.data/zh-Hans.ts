@@ -15,16 +15,36 @@ const special: StoriesData['special'] = [
         video: { type: 'bilibili', vid: 'av980357709', pid: 2 },
     },
     {
-        name: '[2022/6/30] 三得利售货机限定慰问来电（瑠依）',
+        name: '[2022] 三得利售货机限定慰问来电（瑠依）',
         video: { type: 'bilibili', vid: 'av812917702' },
     },
     {
-        name: '[2022/6/30] 三得利售货机限定慰问来电（堇）',
+        name: '[2022] 三得利售货机限定慰问来电（堇）',
         video: { type: 'bilibili', vid: 'av813293495' },
     },
     {
-        name: '[2022/6/30] 三得利售货机限定慰问来电（优）',
+        name: '[2022] 三得利售货机限定慰问来电（优）',
         video: { type: 'bilibili', vid: 'av343290005' },
+    },
+    {
+        name: '[2022] 三得利售货机限定慰问来电（樱）',
+        video: { type: 'bilibili', vid: 'av902396183' },
+    },
+    {
+        name: '[2022] 三得利售货机限定慰问来电（怜）',
+        video: { type: 'bilibili', vid: 'av474831144' },
+    },
+    {
+        name: '[2022] 三得利售货机限定慰问来电（遥子）',
+        video: { type: 'bilibili', vid: 'av219735396' },
+    },
+    {
+        name: '[2022] 三得利售货机限定慰问来电（千纱）',
+        video: { type: 'bilibili', vid: 'av732411728' },
+    },
+    {
+        name: '[2022] 三得利售货机限定慰问来电（雫）',
+        video: { type: 'bilibili', vid: 'av817426800' },
     },
 ]
 

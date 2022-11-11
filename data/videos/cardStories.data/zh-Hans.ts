@@ -374,6 +374,9 @@ const dataMei: StoriesData = {
             name: 'TODO',
             video: { type: 'bilibili', vid: 'av721401394', pid: 3 },
         },
+        phone: {
+            video: { type: 'bilibili', vid: 'av474977174' },
+        },
     },
     'card-mei-05-fest-00': {
         // 一人のアイドルとの出会い
@@ -485,6 +488,24 @@ const dataShizuku: StoriesData = {
         3: {
             name: '和憧憬之人前往同一舞台',
             video: { type: 'bilibili', vid: 'av681881066' },
+        },
+    },
+    'card-szk-05-rock-00': {
+        // 香るミステリアスクール
+        1: {
+            name: '我想要……变得帅气！',
+            video: { type: 'bilibili', vid: 'av473720860' },
+        },
+        2: {
+            name: '赌上偶像宅之名',
+            video: { type: 'bilibili', vid: 'av218958387' },
+        },
+        3: {
+            name: '世界最最最帅气偶像',
+            video: { type: 'bilibili', vid: 'av986474898' },
+        },
+        phone: {
+            video: { type: 'bilibili', vid: 'av432398586' },
         },
     },
 }
@@ -1275,6 +1296,21 @@ const dataMiho: StoriesData = {
         },
         phone: {
             video: { type: 'bilibili', vid: 'av428537418' },
+        },
+    },
+    'card-mhk-05-poli-00': {
+        // 湯けむりショートトリップ
+        1: {
+            name: '今后注意',
+            video: { type: 'bilibili', vid: 'av262470650' },
+        },
+        2: {
+            name: 'ⅢX的休息日',
+            video: { type: 'bilibili', vid: 'av562443596' },
+        },
+        3: {
+            name: '偶尔休闲度日',
+            video: { type: 'bilibili', vid: 'av774880295' },
         },
     },
 }

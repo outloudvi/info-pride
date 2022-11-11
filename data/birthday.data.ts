@@ -99,6 +99,11 @@ const BirthdayCommu: Partial<Record<CharacterId, BirthdayCommuList>> = {
         2021: {
             opening: { type: 'bilibili', vid: 'av806658982' },
         },
+        2022: {
+            opening: { type: 'bilibili', vid: 'av859891940' },
+            phone: { type: 'bilibili', vid: 'av647521861' },
+            others: { type: 'bilibili', vid: 'av605031900' },
+        },
     },
     'char-yu': {
         2022: {
