@@ -13,6 +13,7 @@ const Paths = {
     repoIssue: (id?: number) =>
         `https://github.com/outloudvi/info-pride/issues/${id ?? ''}`,
     api: (path: string) => `https://idoly-backend.outv.im/api/${path}`,
+    advJson: (id: string) => Paths.s3(`processed/adv/adv_${id}.txt.json`),
 }
 
 export default Paths

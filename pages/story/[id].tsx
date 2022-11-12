@@ -1,8 +1,6 @@
 import { useRouter } from 'next/router'
 import { useTranslations } from 'next-intl'
-import { Alert, Divider } from '@mantine/core'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faInfoCircle, faWarning } from '@fortawesome/free-solid-svg-icons'
+import { Divider } from '@mantine/core'
 
 import PageLoading from '#components/PageLoading'
 import Title from '#components/Title'
@@ -11,38 +9,43 @@ import useApi from '#utils/useApi'
 import allFinished from '#utils/allFinished'
 import type { APIResponseOf } from '#utils/api'
 import pickFirstOrOne from '#utils/pickFirstOrOne'
-import StoryReplayView from '#components/storyreplay/StoryReplayView'
+import StoryReplayViewSkeleton from '#components/storyreplay/StoryReplayViewSkeleton'
 
 const StoryReplayPage = ({
-    StoryScriptData,
+    StoryData,
 }: {
-    StoryScriptData: APIResponseOf<'StoryScript'>
+    StoryData: APIResponseOf<'Story'>
 }) => {
     const $t = useTranslations('storyreplay')
+
+    const items = StoryData.advAssetIds
 
     return (
         <>
             <Title title={$t('Story replay')} noh2 />
             <div className="max-w-3xl mx-auto">
-                {StoryScriptData.length === 0 ? (
+                {items.length === 0 ? (
                     <p>{$t('no_story')}</p>
-                ) : StoryScriptData.length > 1 ? (
+                ) : items.length > 1 ? (
                     <>
-                        <p>
-                            {$t('multiple_parts', {
-                                len: StoryScriptData.length,
-                            })}
-                        </p>
-                        {StoryScriptData.map((lines, index) => (
+                        {items.map((advAssetId, index) => (
                             <>
+                                <p>
+                                    {$t('multiple_parts', {
+                                        len: items.length,
+                                    })}
+                                </p>
                                 <Divider />
                                 <p>{$t('story_part', { p: index + 1 })}</p>
-                                <StoryReplayView lines={lines} />
+                                <StoryReplayViewSkeleton
+                                    id={advAssetId}
+                                    index={index}
+                                />
                             </>
                         ))}
                     </>
                 ) : (
-                    <StoryReplayView lines={StoryScriptData[0]} />
+                    <StoryReplayViewSkeleton id={items[0]} index={0} />
                 )}
             </div>
         </>
@@ -53,33 +56,21 @@ const SkeletonStoryReplayPage = () => {
     const router = useRouter()
     const $t = useTranslations('storyreplay')
     const id = pickFirstOrOne(router.query.id ?? '')
-    const { data: StoryScriptData, isFetched } = useApi('StoryScript', {
+    const { data: StoryData } = useApi('Story', {
         id,
     })
 
     const allData = {
-        StoryScriptData,
+        StoryData,
     }
 
     return (
         <>
             <h2>{$t('Story replay')}</h2>
-            {isFetched && !Array.isArray(StoryScriptData) ? (
-                <Alert icon={<FontAwesomeIcon icon={faWarning} />} color="red">
-                    Error: {(StoryScriptData as any)?.message}
-                </Alert>
-            ) : allFinished(allData) ? (
+            {allFinished(allData) ? (
                 <StoryReplayPage {...allData} />
             ) : (
-                <>
-                    <Alert
-                        icon={<FontAwesomeIcon icon={faInfoCircle} />}
-                        color="orange"
-                    >
-                        {$t('be_patient')}
-                    </Alert>
-                    <PageLoading data={allData} />
-                </>
+                <PageLoading data={allData} />
             )}
         </>
     )

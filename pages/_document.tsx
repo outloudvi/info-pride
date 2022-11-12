@@ -16,6 +16,8 @@ const allowedConnectionDomains = [
     'o421264.ingest.sentry.io',
     // Asset server
     'idoly-assets-curator.vercel.app',
+    // Asset storage
+    'idoly-assets.outv.im',
     'res.cloudinary.com',
 ]
 
