@@ -1,6 +1,6 @@
 import { Skill } from 'hoshimi-types/ProtoMaster'
 import { Card, Grid } from '@mantine/core'
-import { CardType } from 'hoshimi-types/ProtoEnum'
+import { AttributeType, CardType } from 'hoshimi-types/ProtoEnum'
 import { useTranslations } from 'next-intl'
 import dayjs from 'dayjs'
 import dayjsUtc from 'dayjs/plugin/utc'
@@ -58,8 +58,9 @@ const CardWithSkills = ({
             )}
             <br />
             <span>
-                {$vc(characterId)} / {$v(CardType[type])} / {$v(cardColor)} /{' '}
-                {initialRarity}★ / {$t('Released')} {releaseDateFmt}
+                {$vc(characterId)} / {$v(CardType[type])} /{' '}
+                {$v(AttributeType[cardColor])} / {initialRarity}★ /{' '}
+                {$t('Released')} {releaseDateFmt}
             </span>
 
             <Grid className="mt-1">
