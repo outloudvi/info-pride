@@ -28,9 +28,11 @@ const CardWithSkills = ({
 }) => {
     const $t = useTranslations('search')
     const $v = useTranslations('vendor')
+    const $vca = useTranslations('v-card-alias')
     const $vc = useTranslations('v-chr')
 
-    const { name, characterId, type, initialRarity, releaseDate } = card
+    const { name, characterId, type, initialRarity, releaseDate, assetId } =
+        card
     const cardColor = getCardColor(card)
     const releaseDateFmt = dayjs(Number(releaseDate))
         .tz('Asia/Tokyo')
@@ -43,6 +45,9 @@ const CardWithSkills = ({
     return (
         <Card className="bg-neutral-200 dark:bg-neutral-800 rounded-md mb-2">
             <b>{name}</b>
+            {$vca(assetId) !== assetId && (
+                <small className="ml-3">{$vca(assetId)}</small>
+            )}
             {cardCcid && (
                 <>
                     <br className="lg:hidden" />
@@ -62,7 +67,6 @@ const CardWithSkills = ({
                 {$v(AttributeType[cardColor])} / {initialRarity}★ /{' '}
                 {$t('Released')} {releaseDateFmt}
             </span>
-
             <Grid className="mt-1">
                 {skillData.map((skill, index) => (
                     <Grid.Col

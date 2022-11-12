@@ -28,15 +28,18 @@ import CCIDTable from '#data/ccid'
 import Title from '#components/Title'
 import Paths from '#utils/paths'
 import getI18nProps from '#utils/getI18nProps'
+import { PropsWithL10n } from '#components/types'
 
 const SearchPage = ({
     CardData,
     SkillAllData,
     SkillxData,
+    VCardAlias,
 }: {
     CardData: APIResponseOf<'Card'>
     SkillAllData: APIResponseOf<'Skill/All'>
     SkillxData: APIResponseOf<'Skill/X'>
+    VCardAlias: Record<string, string>
 }) => {
     const $t = useTranslations('search')
     const $vc = useTranslations('v-chr')
@@ -118,7 +121,13 @@ const SearchPage = ({
         const numCtMax = Number.isNaN(Number(ctMax)) ? 0 : Number(ctMax)
 
         if (keyword.trim() !== '') {
-            ret = ret.filter((x) => x.name.includes(keyword.trim()))
+            ret = ret.filter(
+                (x) =>
+                    x.name.includes(keyword.trim()) ||
+                    (VCardAlias[x.assetId] ?? '')
+                        .toLowerCase()
+                        .includes(keyword.toLowerCase())
+            )
         }
 
         if (selectedCharacters.length > 0) {
@@ -232,7 +241,7 @@ const SearchPage = ({
         })
 
         return [ret, highlightedSkills]
-    }, [CardData, SkillAllData, SkillxData, formValues, localBox])
+    }, [CardData, SkillAllData, SkillxData, VCardAlias, formValues, localBox])
 
     return (
         <>
@@ -362,7 +371,7 @@ const SearchPage = ({
     )
 }
 
-const SkeletonSearchPage = () => {
+const SkeletonSearchPage = (props: PropsWithL10n) => {
     const $t = useTranslations('search')
 
     const { data: CardData } = useApi('Card')
@@ -373,6 +382,7 @@ const SkeletonSearchPage = () => {
         CardData,
         SkillAllData,
         SkillxData,
+        VCardAlias: props._m['v-card-alias'],
     }
 
     return (
@@ -387,6 +397,11 @@ const SkeletonSearchPage = () => {
     )
 }
 
-export const getStaticProps = getI18nProps(['search', 'vendor', 'v-chr'])
+export const getStaticProps = getI18nProps([
+    'search',
+    'vendor',
+    'v-chr',
+    'v-card-alias',
+])
 
 export default SkeletonSearchPage
