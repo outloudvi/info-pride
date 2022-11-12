@@ -11,3 +11,4 @@ git:
         - locales/en/v-chr.json
         - locales/en/v-group.json
         - locales/en/v-event-name.json
+        - locales/en/v-card-alias.json

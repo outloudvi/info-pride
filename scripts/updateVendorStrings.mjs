@@ -7,6 +7,7 @@ import { got } from 'got'
 const __dirname = dirname(new URL(import.meta.url).pathname)
 
 const Transformations = {
+    'v-card-alias.json': ['/Card', (x) => [x.assetId, x.name]],
     'v-card-name.json': ['/Card', (x) => x.name],
     'v-event-name.json': ['/EventStory/List', (x) => x.description],
 }
@@ -22,7 +23,11 @@ async function main() {
                 let ret = JSON.parse(readFileSync(filePath, 'utf-8'))
                 for (const i of items) {
                     const key = lambda(i)
-                    ret[key] = key
+                    if (typeof key === 'string') {
+                        ret[key] = key
+                    } else {
+                        ret[key[0]] = key[1]
+                    }
                 }
                 writeFileSync(filePath, JSON.stringify(ret, null, 4))
                 console.log(`[DONE] ${filename}`)
