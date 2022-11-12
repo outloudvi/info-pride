@@ -5,6 +5,7 @@ import { useTranslations } from 'next-intl'
 import dayjs from 'dayjs'
 import dayjsUtc from 'dayjs/plugin/utc'
 import dayjsTz from 'dayjs/plugin/timezone'
+import Link from 'next/link'
 
 import SkillDesc from './SkillDesc'
 
@@ -31,7 +32,7 @@ const CardWithSkills = ({
     const $vca = useTranslations('v-card-alias')
     const $vc = useTranslations('v-chr')
 
-    const { name, characterId, type, initialRarity, releaseDate, assetId } =
+    const { id, name, characterId, type, initialRarity, releaseDate, assetId } =
         card
     const cardColor = getCardColor(card)
     const releaseDateFmt = dayjs(Number(releaseDate))
@@ -44,7 +45,11 @@ const CardWithSkills = ({
 
     return (
         <Card className="bg-neutral-200 dark:bg-neutral-800 rounded-md mb-2">
-            <b>{name}</b>
+            <Link href={`/cards/${id}`}>
+                <a>
+                    <b>{name}</b>
+                </a>
+            </Link>
             {$vca(assetId) !== assetId && (
                 <small className="ml-3">{$vca(assetId)}</small>
             )}
