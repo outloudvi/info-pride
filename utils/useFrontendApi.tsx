@@ -24,6 +24,9 @@ const frontendQueryFn: QueryFunction = ({ queryKey: [path] }) =>
 export type FrontendAPIResponseMapping = {
     birthdayCommu: BirthdayCommuList
     cards: WikiCards
+    cardAliases: {
+        aliases: string
+    }
     cardStories:
         | {
               stories: Stories

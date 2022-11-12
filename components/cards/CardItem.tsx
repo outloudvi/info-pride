@@ -72,6 +72,10 @@ const CardItem = ({
     const { data: WikiCardData } = useFrontendApi('wikiCard', {
         nameJa: name,
     })
+    const { data: CardAliasData } = useFrontendApi('cardAliases', {
+        assetId: card.assetId,
+        locale,
+    })
     const { data: WikiStories, isFetched: isWikiStoriesFetched } =
         useFrontendApi('cardStories', {
             id: card.id,
@@ -159,6 +163,11 @@ const CardItem = ({
                                 __html: description.replace(/\n/g, '<br/>'),
                             }}
                         ></div>
+                    )}
+                    {CardAliasData?.aliases && (
+                        <div>
+                            {$t('aka')} {CardAliasData.aliases}
+                        </div>
                     )}
                     <div>
                         {$vc(card.characterId)} / {$v(CardType[type])} /{' '}
