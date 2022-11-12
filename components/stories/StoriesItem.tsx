@@ -123,7 +123,7 @@ const StoriesItem = (props: PropType) => {
             )}
 
             <AssetImage
-                name={`img_story_thumb_${StoryData.advAssetId}`}
+                name={`img_story_thumb_${StoryData.advAssetIds[0]}`}
                 ratio="16 / 9"
                 alt="Story thumb image"
                 className="my-2 mx-3"
