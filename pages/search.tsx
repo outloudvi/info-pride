@@ -401,6 +401,7 @@ export const getStaticProps = getI18nProps([
     'search',
     'vendor',
     'v-chr',
+    'v-card-name',
     'v-card-alias',
 ])
 

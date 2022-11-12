@@ -29,6 +29,7 @@ const CardWithSkills = ({
 }) => {
     const $t = useTranslations('search')
     const $v = useTranslations('vendor')
+    const $vcn = useTranslations('v-card-name')
     const $vca = useTranslations('v-card-alias')
     const $vc = useTranslations('v-chr')
 
@@ -43,13 +44,20 @@ const CardWithSkills = ({
         (x) => x.cardId === card.id
     )
 
+    const hasTranslatedName = $vcn(name) !== name
+
     return (
         <Card className="bg-neutral-200 dark:bg-neutral-800 rounded-md mb-2">
             <Link href={`/cards/${id}`}>
                 <a>
-                    <b>{name}</b>
+                    <b>{hasTranslatedName ? $vcn(name) : name}</b>
                 </a>
             </Link>
+            {hasTranslatedName && (
+                <span className="ml-2 text-gray-700 dark:text-gray-300">
+                    {name}
+                </span>
+            )}
             {$vca(assetId) !== assetId && (
                 <small className="ml-3">{$vca(assetId)}</small>
             )}
