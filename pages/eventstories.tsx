@@ -28,7 +28,7 @@ const EventStoriesPage = ({
     EventStoriesData: APIResponseOf<'EventStory/List'>
     eventGroup: EventGroupData
 }) => {
-    const $ev = useTranslations('events')
+    const $ev = useTranslations('v-event-name')
     const $t = useTranslations('eventstories')
 
     const [currEvent, setCurrEvent] = useState<
@@ -105,7 +105,7 @@ export const getStaticProps = async ({ locale }: { locale: string }) => {
     return {
         props: {
             eventGroup: eventStoriesData[locale]?.eventGroup,
-            ...(await addI18nMessages(locale, ['events', 'eventstories'])),
+            ...(await addI18nMessages(locale, ['v-event-name', 'eventstories'])),
         },
     }
 }

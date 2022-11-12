@@ -23,7 +23,7 @@ jobs:
         run: |
           node scripts/to-esm.mjs mjs
           bash scripts/buildAndValidate.sh
-          node scripts/updateVCardName.mjs
+          node scripts/updateVendorStrings.mjs
 
       - name: Commit files
         continue-on-error: true
