@@ -399,6 +399,7 @@ const SkeletonSearchPage = (props: PropsWithL10n) => {
 
 export const getStaticProps = getI18nProps([
     'search',
+    'analyze',
     'vendor',
     'v-chr',
     'v-card-name',
