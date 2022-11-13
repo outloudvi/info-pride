@@ -6,6 +6,7 @@ import CompSe from './lines/Se'
 import CompBgm from './lines/Bgm'
 import CompMessage from './lines/Message'
 import CompVoice from './lines/Voice'
+import CompNarration from './lines/Narration'
 import collapseLines from './collapseLines'
 import type { MergedLine } from './types'
 import CompMWV from './lines/MWV'
@@ -18,6 +19,8 @@ function displayLine(line: MergedLine): JSX.Element {
             return <CompBgm l={line} />
         case 'Se':
             return <CompSe l={line} />
+        case 'Narration':
+            return <CompNarration l={line} />
         case 'MWV':
             return <CompMWV l={line} />
         // Fallback
