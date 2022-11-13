@@ -109,8 +109,12 @@
     "After title": "After title",
     "Gifts": "Gifts",
     "Store": "Store",
+    "Name": "Name",
     "bday-opening": "Opening",
     "bday-phone": "Phone call",
     "bday-others": "From others",
-    "no-bday-translation": "No birthday commu translations found. Please add translation info to BirthdayCommu[{charaId}] in data/birthday.data.ts."
+    "no-bday-translation": "No birthday commu translations found. Please add translation info to BirthdayCommu[{charaId}] in data/birthday.data.ts.",
+    "name-char-kor": "Yamada Franziska Kaori",
+    "name-char-kan": "Kojima Kana",
+    "name-char-mhk": "Takeda Mihoko"
 }

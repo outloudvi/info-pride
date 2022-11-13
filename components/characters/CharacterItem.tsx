@@ -25,6 +25,7 @@ import useFrontendApi from '#utils/useFrontendApi'
 
 const BirthdayCommuException: CharacterId[] = ['char-mna']
 const VoiceException: CharacterId[] = ['char-mku']
+const OriginalName: CharacterId[] = ['char-kor', 'char-kan', 'char-mhk']
 
 const CharacterItem = ({
     character,
@@ -65,6 +66,7 @@ const CharacterItem = ({
     } = CharacterData[0] ?? {}
 
     const tableItem = [
+        ...(OriginalName.includes(id) ? [[$t('Name'), $t(`name-${id}`)]] : []),
         [$t('Group'), $vg(characterGroupId)],
         [$t('Age'), $t('age', { age: age.replace('歳', '') })],
         [$t('CV'), $t(cv)],
