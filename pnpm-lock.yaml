@@ -10,7 +10,7 @@ specifiers:
   '@fortawesome/free-regular-svg-icons': ^6.2.0
   '@fortawesome/free-solid-svg-icons': ^6.2.0
   '@fortawesome/react-fontawesome': ^0.2.0
-  '@hoshimei/adv': ^0.5.1
+  '@hoshimei/adv': ^0.6.0
   '@mantine/core': ^5.5.5
   '@mantine/dates': ^5.5.5
   '@mantine/form': ^5.5.5
@@ -110,7 +110,7 @@ dependencies:
   use-query-params: 2.1.1_biqbaboplfbrettd7655fr4n2y
 
 devDependencies:
-  '@hoshimei/adv': 0.5.1
+  '@hoshimei/adv': 0.6.0
   '@next/bundle-analyzer': 12.3.1
   '@types/chai': 4.3.3
   '@types/d3': 7.4.0
@@ -1599,8 +1599,8 @@ packages:
       react: 18.2.0
     dev: false
 
-  /@hoshimei/adv/0.5.1:
-    resolution: {integrity: sha512-Vj6rXmSMVcZ7qSLTEgumQsH/ybKAswg29Rh5Mt6cweecXDX3JuCGkO5WhJY9FujkhgmYQ7desm2J+59BaLga0w==}
+  /@hoshimei/adv/0.6.0:
+    resolution: {integrity: sha512-ePN5R7jID5A5hP9RFnT2cQHRYO3CsssM2CvXhbdWwXjJsgPq0+3HMUsOD7GTQFVLNc/h9Jjm2z3c248TkS53bg==}
     dev: true
 
   /@humanwhocodes/config-array/0.10.7:

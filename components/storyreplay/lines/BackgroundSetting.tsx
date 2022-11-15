@@ -1,9 +1,8 @@
-import type { BackgroundSetting } from '@hoshimei/adv/types'
 import { useTranslations } from 'next-intl'
 
 import AssetImage from '#components/AssetImage'
 
-const CompBackgroundSetting = ({ l }: { l: BackgroundSetting }) => {
+const CompBackgroundSetting = ({ id }: { id: string }) => {
     const $t = useTranslations('storyreplay')
 
     return (
@@ -13,10 +12,10 @@ const CompBackgroundSetting = ({ l }: { l: BackgroundSetting }) => {
             </div>
             <div className="mx-[5%]">
                 <AssetImage
-                    name={`env_adv_2d_${l.id}`}
+                    name={id}
                     ratio={16 / 9}
                     width={'100%'}
-                    alt={`Image: ${l.id}`}
+                    alt={`Image: ${id}`}
                 />
             </div>
         </>

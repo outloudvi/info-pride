@@ -1,4 +1,4 @@
-import type { Line, Title } from '@hoshimei/adv/types'
+import type { BackgroundGroup, Line, Title } from '@hoshimei/adv/types'
 import { useTranslations } from 'next-intl'
 
 import CompBackgroundSetting from './lines/BackgroundSetting'
@@ -11,10 +11,16 @@ import collapseLines from './collapseLines'
 import type { MergedLine } from './types'
 import CompMWV from './lines/MWV'
 
-function displayLine(line: MergedLine): JSX.Element {
+function displayLine(
+    line: MergedLine,
+    backgroundGroup: Record<string, string>
+): JSX.Element {
     switch (line._t) {
-        case 'BackgroundSetting':
-            return <CompBackgroundSetting l={line} />
+        case 'BackgroundSetting': {
+            const id = backgroundGroup[line.id]
+            return <CompBackgroundSetting id={id} />
+        }
+
         case 'Bgm':
             return <CompBgm l={line} />
         case 'Se':
@@ -40,6 +46,13 @@ const StoryReplayView = ({ lines }: { lines: Line[] }) => {
         (lines.find((x) => x._t === 'Title') as Title | undefined)?.title ??
         $t('no_title')
 
+    const backgroundGroup: Record<string, string> =
+        (
+            lines.find((x) => x._t === 'BackgroundGroup') as
+                | BackgroundGroup
+                | undefined
+        )?.backgrounds ?? {}
+
     return (
         <div>
             <h3>{title}</h3>
@@ -53,7 +66,7 @@ const StoryReplayView = ({ lines }: { lines: Line[] }) => {
                     key={key}
                     className="my-1 p-2 text-white bg-[#4c4c4c] rounded"
                 >
-                    {displayLine(line)}
+                    {displayLine(line, backgroundGroup)}
                 </div>
             ))}
         </div>
