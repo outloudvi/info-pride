@@ -1,6 +1,8 @@
 import type { Narration } from '@hoshimei/adv/types'
 import { useTranslations } from 'next-intl'
 
+import lfToBr from '#utils/lfToBr'
+
 const CompNarration = ({ l }: { l: Narration }) => {
     const $t = useTranslations('storyreplay')
 
@@ -13,7 +15,7 @@ const CompNarration = ({ l }: { l: Narration }) => {
                 className="text-gray-200 mx-1 md:mx-2 text-center md:text-left"
                 lang="ja"
             >
-                {l.text}
+                {lfToBr(l.text)}
             </div>
         </>
     )

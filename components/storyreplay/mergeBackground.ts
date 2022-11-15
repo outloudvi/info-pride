@@ -1,6 +1,8 @@
-import type { BackgroundSetting, Line } from '@hoshimei/adv/types'
+import type { BackgroundSetting } from '@hoshimei/adv/types'
 
-export default function mergeBackground(lines: Line[]): Line[] {
+import { MergedLine } from './types'
+
+export default function mergeBackground(lines: MergedLine[]): MergedLine[] {
     const ret = []
     let lastBg = ''
     for (const i of lines) {
