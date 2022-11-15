@@ -42,6 +42,7 @@ const SearchPage = ({
     VCardAlias: Record<string, string>
 }) => {
     const $t = useTranslations('search')
+    const $ss = useTranslations('search_skills')
     const $vc = useTranslations('v-chr')
     const $v = useTranslations('vendor')
 
@@ -328,7 +329,7 @@ const SearchPage = ({
                         }
                         multiple
                         list={skillEffectTypes}
-                        listNamemap={skillEffectTypeNames}
+                        displayAs={$ss}
                         width={300}
                         formProps={getInputProps('effectTypes')}
                     />
@@ -337,7 +338,7 @@ const SearchPage = ({
                         label={$t('Target type')}
                         multiple
                         list={skillTargetTypes}
-                        listNamemap={skillTargetTypeNames}
+                        displayAs={$ss}
                         width={300}
                         formProps={getInputProps('targetTypes')}
                     />
@@ -399,6 +400,7 @@ const SkeletonSearchPage = (props: PropsWithL10n) => {
 
 export const getStaticProps = getI18nProps([
     'search',
+    'search_skills',
     'analyze',
     'vendor',
     'v-chr',
