@@ -308,23 +308,26 @@ const data: Record<string, ChapterItem> = {
         name: '星之海的记忆',
         video: { type: 'bilibili', vid: 'av688850892', pid: 5 },
     },
-}
-
-export const eventGroup: Record<string, string> = {
-    'st-eve-2107-tour': '遥子',
-    'st-eve-2108-tour': '芽衣',
-    'st-eve-2109-backside': 'LizNoir',
-    'st-eve-2110-marathon': '麻奈',
-    'st-eve-2111-backside': '怜',
-    'st-eve-2112-marathon': 'TRINITYAiLE',
-    'st-eve-2201-contest': 'SUNNY PEACE',
-    'st-eve-2202-marathon': 'LizNoir',
-    'st-eve-2203-race': '瑠依/雫',
-    'st-eve-2204-contest': '铃',
-    'st-eve-2205-race': '千纱/沙季',
-    'st-eve-2206-marathon': 'SUNNY PEACE',
-    'st-eve-2207-contest': 'ⅢX',
-    'st-eve-2208-backside': 'LizNoir',
+    'st-eve-2211-marathon-raid-001': {
+        name: '幽灵旅馆？',
+        video: { type: 'bilibili', vid: 'av219616694' },
+    },
+    'st-eve-2211-marathon-raid-002': {
+        name: '只有今晚友好相处的ⅢX',
+        video: { type: 'bilibili', vid: 'av859627662' },
+    },
+    'st-eve-2211-marathon-raid-003': {
+        name: '爆发？相互夸赞 battle',
+        video: { type: 'bilibili', vid: 'av690076285' },
+    },
+    'st-eve-2211-marathon-raid-004': {
+        name: '醉鬼派对',
+        video: { type: 'bilibili', vid: 'av945229604' },
+    },
+    'st-eve-2211-marathon-raid-005': {
+        name: '关系好到可以吵架',
+        video: { type: 'bilibili', vid: 'av902748113' },
+    },
 }
 
 const _ = {
