@@ -42,13 +42,13 @@ const NoticeItem = ({ nKey, unit }: { nKey: string; unit: NoticeUnit }) => {
     const doNotShow = showKey === 'true'
 
     return !doNotShow ? (
-        <div>
+        <div key={nKey}>
             {unit(() => {
                 setShowKey('true')
             }, $t)}
         </div>
     ) : (
-        <div className="hidden"></div>
+        <div key={nKey} className="hidden"></div>
     )
 }
 
