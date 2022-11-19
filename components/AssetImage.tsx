@@ -1,4 +1,4 @@
-import type { ImageProps } from 'next/image';
+import type { ImageProps } from 'next/image'
 import Image from 'next/image'
 
 import Paths from '#utils/paths'
@@ -9,7 +9,6 @@ import Paths from '#utils/paths'
   <rect transform="rotate(45)" x="5" y="-2.5" width="5" height="5" fill="none" stroke="#1428ff" stroke-linecap="round" stroke-linejoin="round" stroke-width=".6" style="paint-order:stroke fill markers"/>
 </svg>
  */
-// TODO: placeholder doesn't work
 const PLACEHOLDER_SVG =
     'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48c3ZnIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmVyc2lvbj0iMS4xIiB2aWV3Qm94PSIwIDAgMTAgMTAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3QgdHJhbnNmb3JtPSJyb3RhdGUoNDUpIiB4PSI1IiB5PSItMi41IiB3aWR0aD0iNSIgaGVpZ2h0PSI1IiBmaWxsPSJub25lIiBzdHJva2U9IiMxNDI4ZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSIuNiIgc3R5bGU9InBhaW50LW9yZGVyOnN0cm9rZSBmaWxsIG1hcmtlcnMiLz48L3N2Zz4K'
 
@@ -22,7 +21,9 @@ const AssetImage = (
         name: string
         ratio: number | string
         alt: string
-    } & Partial<ImageProps>
+        width?: number | string
+        height?: number | string
+    } & Omit<Partial<ImageProps>, 'height' | 'width'>
 ) => {
     const { name, ratio, alt, height, width } = props
 
@@ -37,12 +38,14 @@ const AssetImage = (
         >
             <Image
                 src={Paths.assets(name.split('_')[0])(name)}
-                layout="fill"
-                objectFit="fill"
+                objectFit="contain"
                 loading="lazy"
                 placeholder="blur"
                 blurDataURL={PLACEHOLDER_SVG}
+                fill={true}
                 {...props}
+                height={undefined}
+                width={undefined}
                 alt={alt}
             />
         </div>
