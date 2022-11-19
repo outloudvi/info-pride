@@ -49,9 +49,7 @@ const CardWithSkills = ({
     return (
         <Card className="bg-neutral-200 dark:bg-neutral-800 rounded-md mb-2">
             <Link href={`/cards/${id}`}>
-                <a>
-                    <b>{hasTranslatedName ? $vcn(name) : name}</b>
-                </a>
+                <b>{hasTranslatedName ? $vcn(name) : name}</b>
             </Link>
             {hasTranslatedName && (
                 <span className="ml-2 text-gray-700 dark:text-gray-300">

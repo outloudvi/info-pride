@@ -95,9 +95,7 @@ const StoriesItem = (props: PropType) => {
                 <div>
                     <p lang="ja">{StoryData.description}</p>
                     <Link href={`/story/${StoryData.id}`} passHref>
-                        <a>
-                            <Button>{$c('Story replay')}</Button>
-                        </a>
+                        <Button>{$c('Story replay')}</Button>
                     </Link>
                 </div>
             )}

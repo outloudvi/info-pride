@@ -42,9 +42,7 @@ const EventEpisodeDetail = ({
             )}
             <Blockquote>{description}</Blockquote>
             <Link href={`/story/${id}`} passHref>
-                <a>
-                    <Button>{$c('Story replay')}</Button>
-                </a>
+                <Button>{$c('Story replay')}</Button>
             </Link>
             {isSuccess ? (
                 VideoInfoData ? (

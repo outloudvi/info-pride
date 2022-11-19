@@ -250,11 +250,9 @@ const CardItem = ({
                         <Group>
                             {stories.map((item, key) => (
                                 <Link href={`/story/${item.storyId}`} key={key}>
-                                    <a>
-                                        <Button>
-                                            {$t('part', { s: key + 1 })}
-                                        </Button>
-                                    </a>
+                                    <Button>
+                                        {$t('part', { s: key + 1 })}
+                                    </Button>
                                 </Link>
                             ))}
                         </Group>

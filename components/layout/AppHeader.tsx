@@ -44,10 +44,12 @@ const AppHeader = ({
                 title={title}
                 aria-label={title}
             />
-            <Link href="/">
-                <a className="text-black dark:text-white no-underline hover:underline ml-2">
-                    <b>INFO PRIDE</b>
-                </a>
+            <Link
+                href="/"
+                className="text-black dark:text-white no-underline hover:underline ml-2">
+
+                <b>INFO PRIDE</b>
+
             </Link>
             <div className="grow"></div>
             <LanguageSelection className="hidden md:block" />
@@ -59,7 +61,7 @@ const AppHeader = ({
                 {$t('Switch theme')}
             </Button>
         </Header>
-    )
+    );
 }
 
 export default AppHeader
