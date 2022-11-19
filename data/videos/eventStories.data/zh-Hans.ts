@@ -332,7 +332,6 @@ const data: Record<string, ChapterItem> = {
 
 const _ = {
     data,
-    eventGroup,
 }
 
 export default _

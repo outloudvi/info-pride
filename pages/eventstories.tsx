@@ -10,7 +10,7 @@ import { APIResponseOf } from '#utils/api'
 import ListButton from '#components/ListButton'
 import EventStoryView from '#components/eventstories/EventStoryView'
 import { addI18nMessages } from '#utils/getI18nProps'
-import eventStoriesData from '#data/videos/eventStories.data'
+import { eventGroup } from '#data/videos/eventStories.data'
 import type { EventGroupData } from '#data/videos/eventStories.data/types'
 
 function guessDate(id: string): string | null {
@@ -104,8 +104,11 @@ const SkeletonEventStoriesPage = ({
 export const getStaticProps = async ({ locale }: { locale: string }) => {
     return {
         props: {
-            eventGroup: eventStoriesData[locale]?.eventGroup,
-            ...(await addI18nMessages(locale, ['v-event-name', 'eventstories'])),
+            eventGroup,
+            ...(await addI18nMessages(locale, [
+                'v-event-name',
+                'eventstories',
+            ])),
         },
     }
 }

@@ -5,5 +5,4 @@ export type EventGroupData = Record<string, string>
 
 export type EventStoriesData = {
     data: ChapterData
-    eventGroup: EventGroupData
 }
