@@ -32,7 +32,14 @@
         ],
         "react/jsx-uses-react": "off",
         "react/react-in-jsx-scope": "off",
-        "import/namespace": "off"
+        "import/namespace": "off",
+        "@typescript-eslint/consistent-type-imports": [
+            "warn",
+            {
+                "prefer": "type-imports",
+                "fixStyle": "separate-type-imports"
+            }
+        ]
     },
     "ignorePatterns": ["pages/_error.tsx"]
 }

@@ -1,10 +1,10 @@
 import { Alert } from '@mantine/core'
-import { Skill } from 'hoshimi-types/ProtoMaster'
-import { MusicChart } from 'hoshimi-types/types'
+import type { Skill } from 'hoshimi-types/ProtoMaster'
+import type { MusicChart } from 'hoshimi-types/types'
 import _range from 'lodash/range'
 import { useTranslations } from 'next-intl'
 
-import { CardTiny, MusicChartItem } from './types'
+import type { CardTiny, MusicChartItem } from './types'
 import lint from './lint'
 
 import useApi from '#utils/useApi'

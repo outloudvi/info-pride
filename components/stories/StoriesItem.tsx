@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 import { toVideoLink } from '#components/ExternalVideo'
 import useApi from '#utils/useApi'
-import { SeriesName } from '#data/stories'
+import type { SeriesName } from '#data/stories'
 import AssetImage from '#components/AssetImage'
 import useFrontendApi from '#utils/useFrontendApi'
 

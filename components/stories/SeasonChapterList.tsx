@@ -2,7 +2,7 @@ import { useTranslations } from 'next-intl'
 import _range from 'lodash/range'
 import { Button } from '@mantine/core'
 
-import { SeriesName } from '#data/stories'
+import type { SeriesName } from '#data/stories'
 
 const SeasonChapterList = ({
     series,

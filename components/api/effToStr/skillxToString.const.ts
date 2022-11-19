@@ -1,4 +1,4 @@
-import { EffectScoreGetTyp } from 'hoshimi-types/Skillx'
+import type { EffectScoreGetTyp } from 'hoshimi-types/Skillx'
 
 import type { TargetTypeName } from '#utils/typeSlug'
 

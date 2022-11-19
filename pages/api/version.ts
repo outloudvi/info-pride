@@ -3,7 +3,7 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import { got } from 'got'
 import * as cheerio from 'cheerio'
 
-import { FrontendAPIResponseMapping } from '#utils/useFrontendApi'
+import type { FrontendAPIResponseMapping } from '#utils/useFrontendApi'
 
 const IOS_APP_PAGE = 'https://apps.apple.com/jp/app/id1535925293'
 

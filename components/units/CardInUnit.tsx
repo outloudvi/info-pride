@@ -4,7 +4,7 @@ import { useTranslations } from 'next-intl'
 import Link from 'next/link'
 
 import SkillInUnit from './SkillInUnit'
-import { CardTiny } from './types'
+import type { CardTiny } from './types'
 
 import type { Card as WikiCard } from '#data/wikiPages/cards'
 import useApi from '#utils/useApi'

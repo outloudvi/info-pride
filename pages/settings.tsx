@@ -5,7 +5,7 @@ import rfdc from 'rfdc'
 import { useTranslations } from 'next-intl'
 
 import type { Card } from '#data/wikiPages/cards'
-import { CharacterId } from '#data/vendor/characterId'
+import type { CharacterId } from '#data/vendor/characterId'
 import { LOCALSTORAGE_BOX_TAG } from '#utils/startupHook'
 import Title from '#components/Title'
 import useFrontendApi from '#utils/useFrontendApi'

@@ -1,4 +1,5 @@
-import { Dispatch, SetStateAction, useState } from 'react'
+import type { Dispatch, SetStateAction} from 'react';
+import { useState } from 'react'
 import { Radio, Switch } from '@mantine/core'
 import { useTranslations } from 'next-intl'
 

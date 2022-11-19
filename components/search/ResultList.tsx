@@ -3,7 +3,7 @@ import { Pagination } from '@mantine/core'
 
 import CardWithSkills from './CardWithSkills'
 
-import { APIResponseOf } from '#utils/api'
+import type { APIResponseOf } from '#utils/api'
 
 const PER_PAGE = 10
 

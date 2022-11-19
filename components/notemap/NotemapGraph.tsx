@@ -1,6 +1,6 @@
 import { Button, Group, Stack } from '@mantine/core'
 import { useEffect, useRef } from 'react'
-import { MusicChart } from 'hoshimi-types/types'
+import type { MusicChart } from 'hoshimi-types/types'
 import _range from 'lodash/range'
 import { useTranslations } from 'next-intl'
 

@@ -7,7 +7,7 @@ import Title from '#components/Title'
 import getI18nProps from '#utils/getI18nProps'
 import useApi from '#utils/useApi'
 import allFinished from '#utils/allFinished'
-import { APIResponseOf } from '#utils/api'
+import type { APIResponseOf } from '#utils/api'
 import pickFirstOrOne from '#utils/pickFirstOrOne'
 import CardItem from '#components/cards/CardItem'
 

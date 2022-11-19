@@ -7,7 +7,7 @@ import { getAssetSlug } from './CardAsset'
 import PropValueBg from './PropValueBg'
 
 import getCardColor from '#utils/getCardColor'
-import { APIResponseOf, UnArray } from '#utils/api'
+import type { APIResponseOf, UnArray } from '#utils/api'
 import AssetImage from '#components/AssetImage'
 
 const CardCard = ({ card }: { card: UnArray<APIResponseOf<'Card/List'>> }) => {

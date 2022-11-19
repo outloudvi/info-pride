@@ -20,7 +20,7 @@ import {
     skillEffectTypeNames,
     triggerEffectTypeNames,
 } from '#data/vendor/searchSkillTypes'
-import { EffectTypeName } from '#utils/typeSlug'
+import type { EffectTypeName } from '#utils/typeSlug'
 
 // jq '[.[].levels[].skillDetails[].triggerId, .[].levels[].triggerId] | unique | sort' Skill.json
 function triggerToString(s: string): string | null {

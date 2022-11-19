@@ -1,10 +1,10 @@
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Group } from '@mantine/core'
-import { ReactNode } from 'react'
+import type { ReactNode } from 'react'
 import { useTranslations } from 'next-intl'
 
-import { CharacterId } from '#data/vendor/characterId'
+import type { CharacterId } from '#data/vendor/characterId'
 import AssetImage from '#components/AssetImage'
 
 const MessageItem = ({

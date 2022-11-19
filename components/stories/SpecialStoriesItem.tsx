@@ -1,7 +1,7 @@
 import { useTranslations } from 'next-intl'
 
 import { toVideoLink } from '#components/ExternalVideo'
-import { ChapterItem } from '#data/types'
+import type { ChapterItem } from '#data/types'
 
 const SpecialStoriesItem = ({ item }: { item: ChapterItem }) => {
     const $c = useTranslations('common')

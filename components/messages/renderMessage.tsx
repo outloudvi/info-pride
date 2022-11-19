@@ -1,5 +1,5 @@
-import { ReactNode } from 'react'
-import { MessageDetail } from 'hoshimi-types/ProtoMaster'
+import type { ReactNode } from 'react'
+import type { MessageDetail } from 'hoshimi-types/ProtoMaster'
 
 import TelephoneMessage from './TelephoneMessage'
 

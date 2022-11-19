@@ -1,5 +1,5 @@
 import { SkillCategoryType } from 'hoshimi-types/ProtoEnum'
-import { Skill, SkillLevel } from 'hoshimi-types/ProtoMaster'
+import type { Skill, SkillLevel } from 'hoshimi-types/ProtoMaster'
 import { useTranslations } from 'next-intl'
 
 import SkillExplainer from '#components/cards/SkillExplainer'

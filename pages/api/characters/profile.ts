@@ -1,7 +1,7 @@
 import { withSentry } from '@sentry/nextjs'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
-import { FrontendAPIResponseMapping } from '#utils/useFrontendApi'
+import type { FrontendAPIResponseMapping } from '#utils/useFrontendApi'
 import pickFirstOrOne from '#utils/pickFirstOrOne'
 import { DEFAULT_LANGUAGE } from '#utils/constants'
 import data from '#data/profile.data'

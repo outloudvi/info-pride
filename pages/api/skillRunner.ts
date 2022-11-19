@@ -2,9 +2,9 @@ import { got } from 'got'
 import { withSentry } from '@sentry/nextjs'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
-import { FrontendAPIResponseMapping } from '#utils/useFrontendApi'
+import type { FrontendAPIResponseMapping } from '#utils/useFrontendApi'
 import Paths from '#utils/paths'
-import { APIResponseOf } from '#utils/api'
+import type { APIResponseOf } from '#utils/api'
 import skillRunner from '#utils/skillRunner'
 
 type RequestQuery = {

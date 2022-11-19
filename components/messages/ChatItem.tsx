@@ -1,5 +1,5 @@
 import { Group } from '@mantine/core'
-import { MessageGroup } from 'hoshimi-types/ProtoMaster'
+import type { MessageGroup } from 'hoshimi-types/ProtoMaster'
 
 import ChatList from './ChatList'
 

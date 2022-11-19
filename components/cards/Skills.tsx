@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Slider, Stack } from '@mantine/core'
-import type { Skill } from 'hoshimi-types/ProtoMaster'
+import { Skill } from 'hoshimi-types/ProtoMaster'
 import { SkillCategoryType } from 'hoshimi-types/ProtoEnum'
 import { useTranslations } from 'next-intl'
 

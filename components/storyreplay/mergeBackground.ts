@@ -1,6 +1,6 @@
 import type { BackgroundSetting } from '@hoshimei/adv/types'
 
-import { MergedLine } from './types'
+import type { MergedLine } from './types'
 
 export default function mergeBackground(lines: MergedLine[]): MergedLine[] {
     const ret = []

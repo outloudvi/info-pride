@@ -1,8 +1,8 @@
 import dynamic from 'next/dynamic'
-import { MusicChart } from 'hoshimi-types/types'
+import type { MusicChart } from 'hoshimi-types/types'
 import { useTranslations } from 'next-intl'
 
-import { ImageChart, SkillChart } from './types'
+import type { ImageChart, SkillChart } from './types'
 
 import useApi from '#utils/useApi'
 

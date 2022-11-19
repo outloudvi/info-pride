@@ -1,7 +1,7 @@
 /* eslint-disable import/order */
 
-import { Skill } from 'hoshimi-types/ProtoMaster'
-import { LintMessage } from './types'
+import type { Skill } from 'hoshimi-types/ProtoMaster'
+import type { LintMessage } from './types'
 
 // linting rules
 import spAbsentWhenNeeded from './rules/sp-absent-when-needed'

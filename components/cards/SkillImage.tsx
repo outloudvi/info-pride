@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
-import { ReactNode } from 'react'
-import { Skill } from 'hoshimi-types/ProtoMaster'
+import type { ReactNode } from 'react'
+import type { Skill } from 'hoshimi-types/ProtoMaster'
 import { SkillCategoryType } from 'hoshimi-types/ProtoEnum'
 
 import Paths from '#utils/paths'

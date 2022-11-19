@@ -1,6 +1,6 @@
 import { Global } from '@mantine/core'
 
-import { CharacterId } from '#data/vendor/characterId'
+import type { CharacterId } from '#data/vendor/characterId'
 import Paths from '#utils/paths'
 import { getMoveStyle, SizeStyle } from '#data/vendor/characterAnimation'
 

@@ -1,24 +1,26 @@
-import { ReactNode, useEffect, useMemo, useState } from 'react'
+import type { ReactNode} from 'react';
+import { useEffect, useMemo, useState } from 'react'
 import Link from 'next/link'
 import { useForm } from '@mantine/form'
 import { Checkbox, NumberInput, TextInput, Tooltip } from '@mantine/core'
 import { SkillCategoryType } from 'hoshimi-types/ProtoEnum'
-import { EffectWithTarget as SXEffectWithTarget } from 'hoshimi-types/Skillx'
+import type { EffectWithTarget as SXEffectWithTarget } from 'hoshimi-types/Skillx'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import uniq from 'lodash/uniq'
 import { useTranslations } from 'next-intl'
 
-import { LocalBox } from './settings'
+import type { LocalBox } from './settings'
 
 import tryJSONParse from '#utils/tryJsonParse'
 import { LOCALSTORAGE_BOX_TAG } from '#utils/startupHook'
 import useApi from '#utils/useApi'
 import allFinished from '#utils/allFinished'
 import PageLoading from '#components/PageLoading'
-import { APIResponseOf } from '#utils/api'
+import type { APIResponseOf } from '#utils/api'
 import FilterSelect from '#components/search/FilterSelect'
-import { CharacterId, CharacterIds } from '#data/vendor/characterId'
+import type { CharacterId} from '#data/vendor/characterId';
+import { CharacterIds } from '#data/vendor/characterId'
 import {
     skillEffectTypeNames,
     skillTargetTypeNames,
@@ -28,7 +30,7 @@ import CCIDTable from '#data/ccid'
 import Title from '#components/Title'
 import Paths from '#utils/paths'
 import getI18nProps from '#utils/getI18nProps'
-import { PropsWithL10n } from '#components/types'
+import type { PropsWithL10n } from '#components/types'
 
 const SearchPage = ({
     CardData,

@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { useTranslations } from 'next-intl'
 
 import useApi from '#utils/useApi'
-import { APIResponseOf } from '#utils/api'
+import type { APIResponseOf } from '#utils/api'
 import ListButton from '#components/ListButton'
 import allFinished from '#utils/allFinished'
 import PageLoading from '#components/PageLoading'

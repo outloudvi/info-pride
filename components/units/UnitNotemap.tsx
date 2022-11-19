@@ -1,8 +1,8 @@
-import { MusicChart } from 'hoshimi-types/types'
+import type { MusicChart } from 'hoshimi-types/types'
 import { Loader } from '@mantine/core'
 import { useTranslations } from 'next-intl'
 
-import { CardTiny } from './types'
+import type { CardTiny } from './types'
 
 import NotemapView from '#components/notemap/NotemapView'
 import useFrontendApi from '#utils/useFrontendApi'

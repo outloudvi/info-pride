@@ -1,4 +1,5 @@
-import { ReactNode, useEffect } from 'react'
+import type { ReactNode} from 'react';
+import { useEffect } from 'react'
 import { AppShell } from '@mantine/core'
 import { atom, useAtom } from 'jotai'
 import { useRouter } from 'next/router'

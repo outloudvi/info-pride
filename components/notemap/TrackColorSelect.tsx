@@ -1,6 +1,6 @@
 import { NativeSelect } from '@mantine/core'
 import _range from 'lodash/range'
-import { Dispatch, SetStateAction } from 'react'
+import type { Dispatch, SetStateAction } from 'react'
 import { useTranslations } from 'next-intl'
 
 import { Colors } from '#data/colors'

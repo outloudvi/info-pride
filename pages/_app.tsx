@@ -1,7 +1,9 @@
-import App, { AppContext, AppProps } from 'next/app'
+import type { AppContext, AppProps } from 'next/app';
+import App from 'next/app'
 import Head from 'next/head'
+import type {
+    ColorScheme} from '@mantine/core';
 import {
-    ColorScheme,
     ColorSchemeProvider,
     Global,
     MantineProvider,

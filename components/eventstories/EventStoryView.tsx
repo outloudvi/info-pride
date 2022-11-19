@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { useLocale, useTranslations } from 'next-intl'
 import Link from 'next/link'
 
-import { APIResponseOf } from '#utils/api'
+import type { APIResponseOf } from '#utils/api'
 import useApi from '#utils/useApi'
 import { toVideoLink } from '#components/ExternalVideo'
 import AssetImage from '#components/AssetImage'

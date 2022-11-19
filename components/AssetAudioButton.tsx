@@ -1,4 +1,5 @@
-import { SetStateAction, useEffect, useRef, useState } from 'react'
+import type { SetStateAction} from 'react';
+import { useEffect, useRef, useState } from 'react'
 import { ActionIcon } from '@mantine/core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {

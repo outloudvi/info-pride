@@ -1,4 +1,4 @@
-import { MessageDetail } from 'hoshimi-types/ProtoMaster'
+import type { MessageDetail } from 'hoshimi-types/ProtoMaster'
 
 function findBranchSrc(
     curMsgId: string,

@@ -1,6 +1,7 @@
 import { Button } from '@mantine/core'
 import { useTranslations } from 'next-intl'
-import { MutableRefObject, useEffect, useState } from 'react'
+import type { MutableRefObject} from 'react';
+import { useEffect, useState } from 'react'
 import screenfull from 'screenfull'
 
 const FullScreenButton = ({

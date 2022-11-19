@@ -7,7 +7,7 @@ import { useTranslations } from 'next-intl'
 import ChatItem from './ChatItem'
 import ChatView from './ChatView'
 
-import { APIResponseOf } from '#utils/api'
+import type { APIResponseOf } from '#utils/api'
 
 const FullScreenButton = dynamic(() => import('#components/FullScreenButton'), {
     ssr: false,

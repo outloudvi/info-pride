@@ -1,6 +1,6 @@
 import { MultiSelect, Select } from '@mantine/core'
 import type { MultiSelectProps, SelectProps } from '@mantine/core'
-import { ReactNode } from 'react'
+import type { ReactNode } from 'react'
 
 const FilterSelect = <T extends string>({
     label,

@@ -3,7 +3,7 @@ import { Grid, NativeSelect } from '@mantine/core'
 import { useTranslations } from 'next-intl'
 
 import useApi from '#utils/useApi'
-import { APIResponseOf, UnArray } from '#utils/api'
+import type { APIResponseOf, UnArray } from '#utils/api'
 import allFinished from '#utils/allFinished'
 import PageLoading from '#components/PageLoading'
 import Title from '#components/Title'

@@ -1,6 +1,6 @@
 import { SkillCategoryType } from 'hoshimi-types/ProtoEnum'
 
-import { LintRule } from '../types'
+import type { LintRule } from '../types'
 
 const spAbsentWhenNeeded: LintRule = (skills, chartLine) => {
     if (

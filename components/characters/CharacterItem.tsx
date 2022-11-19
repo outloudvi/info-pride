@@ -15,8 +15,9 @@ import CharacterAnimation from './CharacterAnimation'
 import InGameVoice from './InGameVoice'
 
 import useApi from '#utils/useApi'
-import { APIResponseOf, UnArray } from '#utils/api'
-import { CharacterId, PrimaryCharacterIds } from '#data/vendor/characterId'
+import type { APIResponseOf, UnArray } from '#utils/api'
+import type { CharacterId} from '#data/vendor/characterId';
+import { PrimaryCharacterIds } from '#data/vendor/characterId'
 import Paths from '#utils/paths'
 import { IdolyFashionUrl, IdolyRoomUrl } from '#data/ipcmmu.data'
 import BirthdayCommu from '#components/characters/BirthdayCommu'

@@ -1,7 +1,7 @@
 import { withSentry } from '@sentry/nextjs'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
-import { FrontendAPIResponseMapping } from '#utils/useFrontendApi'
+import type { FrontendAPIResponseMapping } from '#utils/useFrontendApi'
 import { Diary } from '#data/wikiModules'
 import pickFirstOrOne from '#utils/pickFirstOrOne'
 import { getDiaryRangePair } from '#components/api/diary'

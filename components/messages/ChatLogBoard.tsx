@@ -5,7 +5,7 @@ import MessageItem from './MessageItem'
 import renderMessage from './renderMessage'
 import buildMessageTree from './buildMessageTree'
 
-import { APIResponseOf } from '#utils/api'
+import type { APIResponseOf } from '#utils/api'
 
 const ChatBoard = ({ msg }: { msg: NonNullable<APIResponseOf<'Message'>> }) => {
     const $t = useTranslations('messages')

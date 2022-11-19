@@ -4,7 +4,7 @@ import zip from 'lodash/zip'
 import { got } from 'got'
 import * as cheerio from 'cheerio'
 
-import { FrontendAPIResponseMapping } from '#utils/useFrontendApi'
+import type { FrontendAPIResponseMapping } from '#utils/useFrontendApi'
 
 const NEWS_PAGE = 'https://idolypride.jp/recent-news/'
 

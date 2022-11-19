@@ -5,7 +5,7 @@ import pickFirstOrOne from '#utils/pickFirstOrOne'
 import type { FrontendAPIResponseMapping } from '#utils/useFrontendApi'
 import { DEFAULT_LANGUAGE } from '#utils/constants'
 import storiesData from '#data/videos/stories.data'
-import { SeriesName } from '#data/stories'
+import type { SeriesName } from '#data/stories'
 
 // ?series=hoshimi&season=1&chapter=1
 const eventStories = async (

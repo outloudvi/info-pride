@@ -4,7 +4,7 @@ import { useTranslations } from 'next-intl'
 
 import useApi from '#utils/useApi'
 import allFinished from '#utils/allFinished'
-import { APIResponseOf } from '#utils/api'
+import type { APIResponseOf } from '#utils/api'
 import { Meta as WikiPagesMeta } from '#data/wikiPages'
 import { Meta as WikiModulesMeta } from '#data/wikiModules'
 import PageLoading from '#components/PageLoading'

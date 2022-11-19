@@ -1,11 +1,11 @@
 import { Anchor, Modal } from '@mantine/core'
 import { useState } from 'react'
 import dayjs from 'dayjs'
-import { APIMapping } from 'hoshimi-types'
+import type { APIMapping } from 'hoshimi-types'
 import { useTranslations } from 'next-intl'
 
 import useApi from '#utils/useApi'
-import { APIResponseOf } from '#utils/api'
+import type { APIResponseOf } from '#utils/api'
 
 type NoticeType = Parameters<APIMapping['Notice']>[number]['type']
 

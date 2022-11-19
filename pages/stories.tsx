@@ -5,14 +5,15 @@ import { NumberParam, useQueryParams, withDefault } from 'use-query-params'
 
 import StoriesItem from '#components/stories/StoriesItem'
 import SpecialStoriesItem from '#components/stories/SpecialStoriesItem'
-import { Episodes, Series, SeriesName } from '#data/stories'
+import type { SeriesName } from '#data/stories';
+import { Episodes, Series } from '#data/stories'
 import Title from '#components/Title'
 import { addI18nMessages } from '#utils/getI18nProps'
 import storiesData from '#data/videos/stories.data'
-import { IStoriesData } from '#data/videos/stories.data/types'
+import type { IStoriesData } from '#data/videos/stories.data/types'
 import SeasonChapterList from '#components/stories/SeasonChapterList'
 import getSpecialStories from '#components/stories/getSpecialStories'
-import { ChapterItem } from '#data/types'
+import type { ChapterItem } from '#data/types'
 import withQueryParam from '#utils/withQueryParam'
 
 const SPECIAL_SERIES_TAG = 99

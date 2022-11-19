@@ -1,4 +1,4 @@
-import { Skill } from 'hoshimi-types/ProtoMaster'
+import type { Skill } from 'hoshimi-types/ProtoMaster'
 import { Card, Grid } from '@mantine/core'
 import { AttributeType, CardType } from 'hoshimi-types/ProtoEnum'
 import { useTranslations } from 'next-intl'
@@ -10,9 +10,9 @@ import Link from 'next/link'
 import SkillDesc from './SkillDesc'
 
 import CCIDTable from '#data/ccid'
-import { APIResponseOf } from '#utils/api'
+import type { APIResponseOf } from '#utils/api'
 import getCardColor from '#utils/getCardColor'
-import { CharacterId } from '#data/vendor/characterId'
+import type { CharacterId } from '#data/vendor/characterId'
 import Paths from '#utils/paths'
 
 dayjs.extend(dayjsUtc)

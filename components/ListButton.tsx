@@ -1,5 +1,6 @@
-import { Button, ButtonProps } from '@mantine/core'
-import { HTMLAttributes } from 'react'
+import type { ButtonProps } from '@mantine/core';
+import { Button } from '@mantine/core'
+import type { HTMLAttributes } from 'react'
 
 const ListButton = (
     props: HTMLAttributes<HTMLButtonElement> &

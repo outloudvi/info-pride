@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Button, Modal, Select } from '@mantine/core'
 import { useTranslations } from 'next-intl'
 
-import { CardTiny } from './types'
+import type { CardTiny } from './types'
 import CardInUnit from './CardInUnit'
 
 const UnitPosition = ({
