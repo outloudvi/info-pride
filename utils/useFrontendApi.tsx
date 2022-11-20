@@ -36,6 +36,7 @@ export type FrontendAPIResponseMapping = {
         profile: string
     }
     contributors: Contributor[]
+    effToStr: string[]
     eventStories: ChapterItem | null
     diary: DiaryItem | undefined
     news: { title: string; link?: string }[]

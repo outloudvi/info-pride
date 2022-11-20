@@ -9,7 +9,13 @@ import type { APIResponseOf } from '#utils/api'
 
 const BTN_STRING = ['Analyze', 'Analyzing', 'Analyzed'] as const
 
-const SkillExplainer = ({ level }: { level: SkillLevel }) => {
+const SkillExplainer = ({
+    level,
+    trigger,
+}: {
+    level: SkillLevel
+    trigger?: string
+}) => {
     const $t = useTranslations('analyze')
     const [translation, setTranslation] = useState('')
     const [stage, setStage] = useState(0)
@@ -26,6 +32,9 @@ const SkillExplainer = ({ level }: { level: SkillLevel }) => {
         ).then((x) => x.json())
         const trn = await fetch('/api/effToStr', {
             method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
             body: JSON.stringify(
                 Object.values(effects).map((x, index) => ({
                     ...x,

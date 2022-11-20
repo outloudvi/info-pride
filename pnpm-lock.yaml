@@ -6,6 +6,7 @@ specifiers:
   '@emotion/react': ^11.10.5
   '@emotion/server': ^11.10.0
   '@emotion/styled': ^11.10.5
+  '@formatjs/intl': ^2.5.1
   '@fortawesome/fontawesome-svg-core': ^6.2.1
   '@fortawesome/free-regular-svg-icons': ^6.2.1
   '@fortawesome/free-solid-svg-icons': ^6.2.1
@@ -41,8 +42,9 @@ specifiers:
   eslint-import-resolver-typescript: ^3.5.2
   eslint-plugin-import: ^2.26.0
   got: ^12.5.3
+  handlebars: ^4.7.7
   history: ^5.3.0
-  hoshimi-types: ^2.2.2
+  hoshimi-types: ^2.3.0
   husky: ^8.0.2
   jotai: ^1.10.0
   json-schema-to-typescript: ^11.0.2
@@ -74,6 +76,7 @@ dependencies:
   '@emotion/react': 11.10.5_cuziicjcvwawlf5iuhzacuhqcy
   '@emotion/server': 11.10.0
   '@emotion/styled': 11.10.5_hmjty4frusbltjhl3xd7udcm2y
+  '@formatjs/intl': 2.5.1_typescript@4.9.3
   '@fortawesome/fontawesome-svg-core': 6.2.1
   '@fortawesome/free-regular-svg-icons': 6.2.1
   '@fortawesome/free-solid-svg-icons': 6.2.1
@@ -93,6 +96,7 @@ dependencies:
   d3: 7.6.1
   dayjs: 1.11.6
   got: 12.5.3
+  handlebars: 4.7.7
   history: 5.3.0
   jotai: 1.10.0_3lzqd2prgnu7gkxqqdmtvzna5u
   lodash: 4.17.21
@@ -126,7 +130,7 @@ devDependencies:
   eslint-config-next: 13.0.4_hsf322ms6xhhd4b5ne6lb74y4a
   eslint-import-resolver-typescript: 3.5.2_ktrec6dplf4now6nlbc6d67jee
   eslint-plugin-import: 2.26.0_d5vn4nsvkp5ugznurcfxmdkaeu
-  hoshimi-types: 2.2.2
+  hoshimi-types: 2.3.0
   husky: 8.0.2
   json-schema-to-typescript: 11.0.2
   mocha: 10.1.0
@@ -1528,6 +1532,12 @@ packages:
       tslib: 2.4.1
     dev: false
 
+  /@formatjs/fast-memoize/1.2.6:
+    resolution: {integrity: sha512-9CWZ3+wCkClKHX+i5j+NyoBVqGf0pIskTo6Xl6ihGokYM2yqSSS68JIgeo+99UIHc+7vi9L3/SDSz/dWI9SNlA==}
+    dependencies:
+      tslib: 2.4.0
+    dev: false
+
   /@formatjs/icu-messageformat-parser/2.1.0:
     resolution: {integrity: sha512-Qxv/lmCN6hKpBSss2uQ8IROVnta2r9jd3ymUEIjm2UyIkUCHVcbUVRGL/KS/wv7876edvsPe+hjHVJ4z8YuVaw==}
     dependencies:
@@ -1536,11 +1546,42 @@ packages:
       tslib: 2.4.1
     dev: false
 
+  /@formatjs/icu-messageformat-parser/2.1.10:
+    resolution: {integrity: sha512-KkRMxhifWkRC45dhM9tqm0GXbb6NPYTGVYY3xx891IKc6p++DQrZTnmkVSNNO47OEERLfuP2KkPFPJBuu8z/wg==}
+    dependencies:
+      '@formatjs/ecma402-abstract': 1.13.0
+      '@formatjs/icu-skeleton-parser': 1.3.14
+      tslib: 2.4.0
+    dev: false
+
+  /@formatjs/icu-skeleton-parser/1.3.14:
+    resolution: {integrity: sha512-7bv60HQQcBb3+TSj+45tOb/CHV5z1hOpwdtS50jsSBXfB+YpGhnoRsZxSRksXeCxMy6xn6tA6VY2601BrrK+OA==}
+    dependencies:
+      '@formatjs/ecma402-abstract': 1.13.0
+      tslib: 2.4.0
+    dev: false
+
   /@formatjs/icu-skeleton-parser/1.3.6:
     resolution: {integrity: sha512-I96mOxvml/YLrwU2Txnd4klA7V8fRhb6JG/4hm3VMNmeJo1F03IpV2L3wWt7EweqNLES59SZ4d6hVOPCSf80Bg==}
     dependencies:
       '@formatjs/ecma402-abstract': 1.11.4
       tslib: 2.4.1
+    dev: false
+
+  /@formatjs/intl-displaynames/6.1.4:
+    resolution: {integrity: sha512-sEbziGLsWQo6nA8ZUBcsDRlZzPg+uMVjDmbTalgGqRWLbdXuxMldTYdaCK+UptyJhkmNVM/erz3csTiyqamXHQ==}
+    dependencies:
+      '@formatjs/ecma402-abstract': 1.13.0
+      '@formatjs/intl-localematcher': 0.2.31
+      tslib: 2.4.0
+    dev: false
+
+  /@formatjs/intl-listformat/7.1.3:
+    resolution: {integrity: sha512-rs0Kxl78PeRCedx2cmFoBqcun2Kf0bCQrF8ycna54sfePpDhMskvODWeI4G/xBioW01FjK7CJSvtJJ87hrr79A==}
+    dependencies:
+      '@formatjs/ecma402-abstract': 1.13.0
+      '@formatjs/intl-localematcher': 0.2.31
+      tslib: 2.4.0
     dev: false
 
   /@formatjs/intl-localematcher/0.2.25:
@@ -1553,6 +1594,24 @@ packages:
     resolution: {integrity: sha512-9QTjdSBpQ7wHShZgsNzNig5qT3rCPvmZogS/wXZzKotns5skbXgs0I7J8cuN0PPqXyynvNVuN+iOKhNS2eb+ZA==}
     dependencies:
       tslib: 2.4.0
+    dev: false
+
+  /@formatjs/intl/2.5.1_typescript@4.9.3:
+    resolution: {integrity: sha512-P01ZGuDDlcN8bHHBCEHspJPvs8WJeO8SXlUIcVGWhS3IN5vUgz0QKUXcKBFnJbEHhONJ+azlObVwvlDKsE+kUg==}
+    peerDependencies:
+      typescript: ^4.7
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+    dependencies:
+      '@formatjs/ecma402-abstract': 1.13.0
+      '@formatjs/fast-memoize': 1.2.6
+      '@formatjs/icu-messageformat-parser': 2.1.10
+      '@formatjs/intl-displaynames': 6.1.4
+      '@formatjs/intl-listformat': 7.1.3
+      intl-messageformat: 10.2.1
+      tslib: 2.4.0
+      typescript: 4.9.3
     dev: false
 
   /@fortawesome/fontawesome-common-types/6.2.1:
@@ -4585,6 +4644,19 @@ packages:
       duplexer: 0.1.2
     dev: true
 
+  /handlebars/4.7.7:
+    resolution: {integrity: sha512-aAcXm5OAfE/8IXkcZvCepKU3VzW1/39Fb5ZuqMtgI/hT8X2YgoMvBY5dLhq/cpOvw7Lk1nK/UF71aLG/ZnVYRA==}
+    engines: {node: '>=0.4.7'}
+    hasBin: true
+    dependencies:
+      minimist: 1.2.7
+      neo-async: 2.6.2
+      source-map: 0.6.1
+      wordwrap: 1.0.0
+    optionalDependencies:
+      uglify-js: 3.17.4
+    dev: false
+
   /hard-rejection/2.1.0:
     resolution: {integrity: sha512-VIZB+ibDhx7ObhAe7OVtoEbuP4h/MuOTHJ+J8h/eBXotJYl0fBgR72xDFCKgIh22OJZIOVNxBMWuhAr10r8HdA==}
     engines: {node: '>=6'}
@@ -4647,8 +4719,8 @@ packages:
       react-is: 16.13.1
     dev: false
 
-  /hoshimi-types/2.2.2:
-    resolution: {integrity: sha512-BelFx8br98UxLMOjaEU4qDC//xApRESPMojLVEJSVvj8q7C3f5xq040YdZh7U9sqeIqu4oMFMltIO+pO9hvP6w==}
+  /hoshimi-types/2.3.0:
+    resolution: {integrity: sha512-t1UX0Tk3aQUTSp+2tgesOC8pRSW2f2J2ANLXaTX2cFcPcjqArS9wQ1uX49sGYFOuH6N+nQm87/m0XDhhCTJ4Dw==}
     dev: true
 
   /hosted-git-info/4.1.0:
@@ -4792,6 +4864,15 @@ packages:
   /internmap/2.0.3:
     resolution: {integrity: sha512-5Hh7Y1wQbvY5ooGgPbDaL5iYLAPzMTUrjMulskHLH6wnv/A+1q5rgEaiuqEjB+oxGXIVZs1FF+R/KPN3ZSQYYg==}
     engines: {node: '>=12'}
+    dev: false
+
+  /intl-messageformat/10.2.1:
+    resolution: {integrity: sha512-1lrJG2qKzcC1TVzYu1VuB1yiY68LU5rwpbHa2THCzA67Vutkz7+1lv5U20K3Lz5RAiH78zxNztMEtchokMWv8A==}
+    dependencies:
+      '@formatjs/ecma402-abstract': 1.13.0
+      '@formatjs/fast-memoize': 1.2.6
+      '@formatjs/icu-messageformat-parser': 2.1.10
+      tslib: 2.4.0
     dev: false
 
   /intl-messageformat/9.13.0:
@@ -5431,6 +5512,10 @@ packages:
   /natural-compare/1.4.0:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
     dev: true
+
+  /neo-async/2.6.2:
+    resolution: {integrity: sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==}
+    dev: false
 
   /next-intl/2.9.1_next@13.0.4+react@18.2.0:
     resolution: {integrity: sha512-/OPaH5T+jOHXEZJfCzfl+ZkmjcNQOvb7DNR0SHSbtzYk/9IqjLFSLlxJvj4JPbW9xivzZbPCdgT5+yGzI2Uk0w==}
@@ -6294,6 +6379,11 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: false
 
+  /source-map/0.6.1:
+    resolution: {integrity: sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==}
+    engines: {node: '>=0.10.0'}
+    dev: false
+
   /spdx-correct/3.1.1:
     resolution: {integrity: sha512-cOYcUWwhCuHCXi49RhFRCyJEK3iPj1Ziz9DpViV3tbZOwXD49QzIN3MpOLJNxh2qwq2lJJZaKMVw9qNi4jTC0w==}
     dependencies:
@@ -6757,6 +6847,14 @@ packages:
     engines: {node: '>=4.2.0'}
     hasBin: true
 
+  /uglify-js/3.17.4:
+    resolution: {integrity: sha512-T9q82TJI9e/C1TAxYvfb16xO120tMVFZrGA3f9/P4424DNu6ypK103y0GPFVa17yotwSyZW5iYXgjYHkGrJW/g==}
+    engines: {node: '>=0.8.0'}
+    hasBin: true
+    requiresBuild: true
+    dev: false
+    optional: true
+
   /unbox-primitive/1.0.2:
     resolution: {integrity: sha512-61pPlCD9h51VoreyJ0BReideM3MDKMKnh6+V9L08331ipq6Q8OFXZYiqP6n/tbHx4s5I9uRhcye6BrbkizkBDw==}
     dependencies:
@@ -6956,6 +7054,10 @@ packages:
     resolution: {integrity: sha512-Hz/mrNwitNRh/HUAtM/VT/5VH+ygD6DV7mYKZAtHOrbs8U7lvPS6xf7EJKMF0uW1KJCl0H701g3ZGus+muE5vQ==}
     engines: {node: '>=0.10.0'}
     dev: true
+
+  /wordwrap/1.0.0:
+    resolution: {integrity: sha512-gvVzJFlPycKc5dZN4yPkP8w7Dc37BtP1yczEneOb4uq34pXZcvrtRTmWV8W+Ume+XCxKgbjM+nevkyFPMybd4Q==}
+    dev: false
 
   /workerpool/6.2.1:
     resolution: {integrity: sha512-ILEIE97kDZvF9Wb9f6h5aXK4swSlKGUcOEGiIYb2OOu/IrDU9iwj0fD//SsA6E5ibwJxpEvhullJY4Sl4GcpAw==}
