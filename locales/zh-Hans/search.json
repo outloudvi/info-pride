@@ -18,5 +18,8 @@
     "no_skip_sp_on_ctfilter_desc": "选择此选项时，即使卡片的其它技能均不满足 CT 筛选要求，有 SP 技能的卡片也会被显示。如果同时附加了其它筛选条件，您可能希望勾选此项。",
     "skill_type_desc": "这是什么？",
     "card_total": "共有 {num} 张卡片。",
-    "card_filtered": "从 {total} 张卡片中找到 {num} 张卡片。"
+    "card_filtered": "从 {total} 张卡片中找到 {num} 张卡片。",
+    "st_stamina": "所需体力 {s}",
+    "st_ct": "CT {ct}",
+    "st_limit": "Live 中只生效 {l} 次"
 }

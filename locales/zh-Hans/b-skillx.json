@@ -57,6 +57,7 @@
     "strength_effect_migration_before_active_skill": "强化效果移至 A 技能前",
     "strength_effect_migration_before_special_skill": "强化效果移至 SP 技能前",
     "---": "---",
+    "trigger": "",
     "chart_dependence": "",
     "self": "自身",
     "all": "全员",

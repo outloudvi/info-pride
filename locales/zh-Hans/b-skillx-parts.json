@@ -1,0 +1,13 @@
+{
+    "combo": "{{1}}连击",
+    "someone_stamina_lower": "有人体力低于{{1}}%",
+    "stamina_higher": "体力高于{{1}}%",
+    "stamina_lower": "体力高于{{1}}%",
+    "combo_less_equal": "连击小于{{len}}",
+    "status": "自己存在[{{cond [1]}}]",
+    "someone_status": "有人存在[{{cond [1]}}]",
+    "someone_status_group": "有人存在[{{cond [1]}}]",
+    "more_than_character_count": "角色[{{char [1]}}]存在时",
+    "----": "----",
+    "_when": "当{{text}}"
+}

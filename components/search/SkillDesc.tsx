@@ -1,44 +1,41 @@
 import { SkillCategoryType } from 'hoshimi-types/ProtoEnum'
-import type { Skill, SkillLevel } from 'hoshimi-types/ProtoMaster'
+import type { Skill } from 'hoshimi-types/ProtoMaster'
 import { useTranslations } from 'next-intl'
+import { useMemo } from 'react'
 
 import SkillExplainer from '#components/cards/SkillExplainer'
 
-function buildStatusLine(
-    levelDesc: SkillLevel,
-    typ: SkillCategoryType
-): string {
-    const { stamina, limitCount, coolTime } = levelDesc
-
-    const ret = [`所需体力 ${stamina}`]
-
-    switch (typ) {
-        case SkillCategoryType.Active:
-        case SkillCategoryType.Passive: {
-            if (limitCount > 0) {
-                ret.push(`Live 中只生效 ${limitCount} 次`)
-            } else {
-                ret.push(`CT ${coolTime}`)
-            }
-            break
-        }
-        case SkillCategoryType.Special: {
-            // SP does not care about CT
-            break
-        }
-    }
-
-    return ret.join(' / ')
-}
-
 const SkillDesc = ({ skill }: { skill: Skill }) => {
+    const $t = useTranslations('search')
     const $v = useTranslations('vendor')
 
     const { name, categoryType } = skill
     const highestLevel = skill.levels[skill.levels.length - 1]
     const { description } = highestLevel
 
-    const statusLine = buildStatusLine(highestLevel, categoryType)
+    const statusLine = useMemo(() => {
+        const { stamina, limitCount, coolTime } = highestLevel
+
+        const ret = [$t('st_stamina', { s: stamina })]
+
+        switch (categoryType) {
+            case SkillCategoryType.Active:
+            case SkillCategoryType.Passive: {
+                if (limitCount > 0) {
+                    ret.push($t('st_limit', { l: limitCount }))
+                } else {
+                    ret.push($t('st_ct', { ct: coolTime }))
+                }
+                break
+            }
+            case SkillCategoryType.Special: {
+                // SP does not care about CT
+                break
+            }
+        }
+
+        return ret.join(' / ')
+    }, [categoryType, highestLevel, $t])
 
     return (
         <div>
