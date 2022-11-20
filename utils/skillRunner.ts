@@ -1,8 +1,9 @@
 import type { Skill } from 'hoshimi-types/ProtoMaster'
 import { SkillCategoryType } from 'hoshimi-types/ProtoEnum'
+import type { EffectCharacterWithLength } from 'hoshimi-types/Skillx'
 
 import type { SkillLaunchItem } from '#components/notemap/types'
-import { APIResponseOf } from '#utils/api'
+import type { APIResponseOf } from '#utils/api'
 
 type PartialSkill = Pick<Skill, 'categoryType' | 'levels'>
 
@@ -20,7 +21,7 @@ function skillToLength(
         .map((x) => {
             const sk = skillxData[x]
             if (!sk) return 0
-            return 'len' in sk.effect ? sk.effect.len : 0
+            return (sk.effect as EffectCharacterWithLength).len ?? 0
         })
         .reduce((a, b) => Math.max(a, b))
 }
