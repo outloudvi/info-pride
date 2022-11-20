@@ -9,13 +9,7 @@ import type { APIResponseOf } from '#utils/api'
 
 const BTN_STRING = ['Analyze', 'Analyzing', 'Analyzed'] as const
 
-const SkillExplainer = ({
-    level,
-    trigger,
-}: {
-    level: SkillLevel
-    trigger?: string
-}) => {
+const SkillExplainer = ({ level }: { level: SkillLevel }) => {
     const $t = useTranslations('analyze')
     const [translation, setTranslation] = useState('')
     const [stage, setStage] = useState(0)
