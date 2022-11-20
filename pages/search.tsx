@@ -1,4 +1,4 @@
-import type { ReactNode} from 'react';
+import type { ReactNode } from 'react'
 import { useEffect, useMemo, useState } from 'react'
 import Link from 'next/link'
 import { useForm } from '@mantine/form'
@@ -19,12 +19,8 @@ import allFinished from '#utils/allFinished'
 import PageLoading from '#components/PageLoading'
 import type { APIResponseOf } from '#utils/api'
 import FilterSelect from '#components/search/FilterSelect'
-import type { CharacterId} from '#data/vendor/characterId';
+import type { CharacterId } from '#data/vendor/characterId'
 import { CharacterIds } from '#data/vendor/characterId'
-import {
-    skillEffectTypeNames,
-    skillTargetTypeNames,
-} from '#data/vendor/searchSkillTypes'
 import ResultList from '#components/search/ResultList'
 import CCIDTable from '#data/ccid'
 import Title from '#components/Title'
@@ -86,20 +82,18 @@ const SearchPage = ({
     })
 
     const skillEffectTypes = useMemo(() => {
-        const orders = Object.keys(skillEffectTypeNames)
         return uniq(
             Object.values<SXEffectWithTarget>(SkillxData)
                 .map((x) => x.effect.typ)
                 .filter((x) => x)
-        ).sort((a, b) => orders.indexOf(a) - orders.indexOf(b))
+        ).sort()
     }, [SkillxData])
     const skillTargetTypes = useMemo(() => {
-        const orders = Object.keys(skillTargetTypeNames)
         return uniq(
             Object.values<SXEffectWithTarget>(SkillxData)
                 .map((x) => x.target.typ)
                 .filter((x) => x)
-        ).sort((a, b) => orders.indexOf(a) - orders.indexOf(b))
+        ).sort()
     }, [SkillxData])
 
     const [selectedCards, selectedSkills] = useMemo(() => {

@@ -68,6 +68,11 @@ function getSkillImageBgPrefix(typ: EffectTypeName): SkillImageBgType {
         case 'weakness_effect_prevention':
         case 'weakness_effect_recovery':
         case 'strength_effect_erasing_all':
+        case 'passive_score_multiplier_add':
+        case 'special_score_multiplier_add':
+        case 'score_get_by_skill_success_rate_up':
+        case 'strength_effect_erasing':
+        case 'strength_effect_assignment_all':
         case 'strength_effect_migration_before_active_skill':
         case 'strength_effect_migration_before_special_skill':
             return ''
