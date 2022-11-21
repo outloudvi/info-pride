@@ -39,7 +39,6 @@ function h_99_update_localbox() {
         localStorage.setItem(LOCALSTORAGE_BOX_TAG, JSON.stringify(box))
         if (diff) {
             console.info('localbox migrated to latest version :D')
-            Sentry.captureMessage('localbox migrated to latest version')
         }
     } catch (_) {
         //
