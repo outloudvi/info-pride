@@ -17,6 +17,7 @@ const dataKotono: StoriesData = {
             name: 'TODO',
             video: { type: 'bilibili', vid: 'av892980835', pid: 3 },
         },
+        phone: { video: { type: 'bilibili', vid: 'av674946478', pid: 6 } },
     },
     'card-ktn-05-mizg-01': {
         // はにかみサマームーン
@@ -99,6 +100,7 @@ const dataNagisa: StoriesData = {
             name: 'TODO',
             video: { type: 'bilibili', vid: 'av677917588', pid: 3 },
         },
+        phone: { video: { type: 'bilibili', vid: 'av674946478', pid: 7 } },
     },
     'card-ngs-05-mizg-01': {
         // 光踊る砂浜のメッセージ
@@ -163,6 +165,7 @@ const dataSaki: StoriesData = {
             name: '与千纱的相处方式',
             video: { type: 'bilibili', vid: 'av631776373', pid: 3 },
         },
+        phone: { video: { type: 'bilibili', vid: 'av674946478', pid: 9 } },
     },
     'card-ski-05-kifj-00': {
         // 涙のカーテンコール
@@ -264,6 +267,7 @@ const dataSuzu: StoriesData = {
             name: 'TODO',
             video: { type: 'bilibili', vid: 'av550376484', pid: 3 },
         },
+        phone: { video: { type: 'bilibili', vid: 'av674946478', pid: 8 } },
     },
     'card-suz-05-mizg-01': {
         // ほろにがサマーメモリーズ
@@ -344,6 +348,7 @@ const dataMei: StoriesData = {
             name: 'TODO',
             video: { type: 'bilibili', vid: 'av503841344', pid: 3 },
         },
+        phone: { video: { type: 'bilibili', vid: 'av674946478', pid: 10 } },
     },
     'card-mei-05-mizg-01': {
         // 二人きりのサンセットビーチ
@@ -416,6 +421,7 @@ const dataSakura: StoriesData = {
         1: { name: 'TODO', video: { type: 'bilibili', vid: 'av291359551' } },
         2: { name: 'TODO', video: { type: 'bilibili', vid: 'av803995318' } },
         3: { name: 'TODO', video: { type: 'bilibili', vid: 'av588913322' } },
+        phone: { video: { type: 'bilibili', vid: 'av674946478' } },
     },
     'card-skr-05-newy-00': {
         // 笑う門には福来るだよ！
@@ -459,6 +465,7 @@ const dataShizuku: StoriesData = {
         1: { name: 'TODO', video: { type: 'bilibili', vid: 'av546767588' } },
         2: { name: 'TODO', video: { type: 'bilibili', vid: 'av546767588' } },
         3: { name: 'TODO', video: { type: 'bilibili', vid: 'av546767588' } },
+        phone: { video: { type: 'bilibili', vid: 'av674946478', pid: 2 } },
     },
     'card-szk-05-chna-00': {
         // 夢は、きっと叶う
@@ -526,6 +533,7 @@ const dataChisa: StoriesData = {
             name: 'TODO',
             video: { type: 'bilibili', vid: 'av291762995', pid: 3 },
         },
+        phone: { video: { type: 'bilibili', vid: 'av674946478', pid: 3 } },
     },
     'card-chs-05-seik-00': {
         // 一夜限りの聖なるステージ
@@ -572,6 +580,7 @@ const dataRei: StoriesData = {
         1: { name: 'TODO', video: { type: 'bilibili', vid: 'av804212174' } },
         2: { name: 'TODO', video: { type: 'bilibili', vid: 'av804212174' } },
         3: { name: 'TODO', video: { type: 'bilibili', vid: 'av804212174' } },
+        phone: { video: { type: 'bilibili', vid: 'av674946478', pid: 4 } },
     },
     'card-rei-05-rock-00': {
         // 失敗なんて恐れない
@@ -657,6 +666,7 @@ const dataHaruka: StoriesData = {
             name: 'TODO',
             video: { type: 'bilibili', vid: 'av931773133', pid: 3 },
         },
+        phone: { video: { type: 'bilibili', vid: 'av674946478', pid: 5 } },
     },
     'card-hrk-05-mizg-01': {
         // 恵みのサニーシャワー
@@ -736,6 +746,7 @@ const dataRui: StoriesData = {
             name: 'TODO',
             video: { type: 'bilibili', vid: 'av759141474', pid: 3 },
         },
+        phone: { video: { type: 'bilibili', vid: 'av674946478', pid: 15 } },
     },
     'card-rui-05-mizg-01': {
         // 真夏の恥じらいショット
@@ -821,6 +832,7 @@ const dataYu: StoriesData = {
             name: 'TODO',
             video: { type: 'bilibili', vid: 'av206507224', pid: 3 },
         },
+        phone: { video: { type: 'bilibili', vid: 'av674946478', pid: 16 } },
     },
     'card-yu-05-mizg-01': {
         // 秘密のフォトセッション
@@ -888,6 +900,7 @@ const dataSumire: StoriesData = {
             name: 'TODO',
             video: { type: 'bilibili', vid: 'av589063431', pid: 3 },
         },
+        phone: { video: { type: 'bilibili', vid: 'av674946478', pid: 17 } },
     },
     'card-smr-05-mizg-01': {
         // 常夏ウォーターパーク
@@ -973,6 +986,7 @@ const dataRio: StoriesData = {
         1: { name: 'TODO', video: { type: 'bilibili', vid: 'av206825976' } },
         2: { name: 'TODO', video: { type: 'bilibili', vid: 'av206825976' } },
         3: { name: 'TODO', video: { type: 'bilibili', vid: 'av206825976' } },
+        phone: { video: { type: 'bilibili', vid: 'av674946478', pid: 11 } },
     },
     'card-rio-05-fest-00': {
         // 奇跡より必然
@@ -1032,6 +1046,7 @@ const dataAoi: StoriesData = {
         1: { name: 'TODO', video: { type: 'bilibili', vid: 'av206705615' } },
         2: { name: 'TODO', video: { type: 'bilibili', vid: 'av546871385' } },
         3: { name: 'TODO', video: { type: 'bilibili', vid: 'av759460701' } },
+        phone: { video: { type: 'bilibili', vid: 'av674946478', pid: 12 } },
     },
     'card-aoi-05-kait-00': {
         // growing up！
@@ -1078,6 +1093,7 @@ const dataAi: StoriesData = {
             video: { type: 'bilibili', vid: 'av334321966' },
         },
         3: { name: '三封信', video: { type: 'bilibili', vid: 'av334321966' } },
+        phone: { video: { type: 'bilibili', vid: 'av674946478', pid: 14 } },
     },
     'card-ai-05-kait-00': {
         // 私にとって大切な曲
@@ -1160,6 +1176,7 @@ const dataKokoro: StoriesData = {
             name: 'TODO',
             video: { type: 'bilibili', vid: 'av594759853', pid: 3 },
         },
+        phone: { video: { type: 'bilibili', vid: 'av674946478', pid: 13 } },
     },
     'card-kkr-05-seik-00': {
         // 私は私
