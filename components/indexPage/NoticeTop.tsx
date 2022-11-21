@@ -31,28 +31,36 @@ const GlobalNotices: Record<string, NoticeUnit> = {
     ),
 }
 
-const NoticeItem = ({ nKey, unit }: { nKey: string; unit: NoticeUnit }) => {
-    const $t = useTranslations('notice')
-    const [showKey, setShowKey] = useLocalStorage({
+const NoticeItem = ({
+    nKey,
+    unit,
+    t,
+}: {
+    nKey: string
+    unit: NoticeUnit
+    t: (s: string) => string
+}) => {
+    const [hideKey, setHideKey] = useLocalStorage({
         key: nKey,
         defaultValue: 'false',
         serialize: (v) => v,
         deserialize: (v) => v,
     })
-    const doNotShow = showKey === 'true'
 
-    return !doNotShow ? (
-        <div key={nKey}>
+    return hideKey !== 'true' ? (
+        <div>
             {unit(() => {
-                setShowKey('true')
-            }, $t)}
+                setHideKey('true')
+            }, t)}
         </div>
     ) : (
-        <div key={nKey} className="hidden"></div>
+        <></>
     )
 }
 
 const NoticeTop = () => {
+    const $t = useTranslations('notice')
+
     useEffect(() => {
         const ls = window.localStorage
         if (!ls) return
@@ -63,7 +71,7 @@ const NoticeTop = () => {
     return (
         <div>
             {Object.entries(GlobalNotices).map(([nKey, unit], index) => (
-                <NoticeItem key={index} nKey={nKey} unit={unit} />
+                <NoticeItem key={index} nKey={nKey} unit={unit} t={$t} />
             ))}
         </div>
     )
