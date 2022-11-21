@@ -59,7 +59,7 @@ const VersionInfo = ({
                     </div>
                 ) : (
                     <div className="text-gray-500">
-                        {$t('Loading game version info.')}
+                        {$t('version_info_loading')}
                     </div>
                 )}
             </div>

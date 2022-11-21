@@ -11,7 +11,6 @@
     "情报站微博": "情报站微博",
     "星见编辑部": "星见编辑部",
     "Current events": "当前活动",
-    "Loading game version info.": "正在加载游戏版本信息。",
     "Backend": "后端",
     "Bwiki modules": "Bwiki 模块",
     "Bwiki pages": "Bwiki 页面",
@@ -40,5 +39,6 @@
     "multi links活动": "Multi links活动",
     "loading_news": "新闻加载中。",
     "last_updated": "最后更新：",
-    "no_running_events": "数据库中没有正在进行的活动。"
+    "no_running_events": "数据库中没有正在进行的活动。",
+    "version_info_loading": "正在加载游戏版本信息。"
 }

@@ -9,7 +9,6 @@
     "Discord Group (English)": "Discord Group (English)",
     "Discord Group (Chinese)": "Discord Group (Chinese)",
     "Current events": "Current events",
-    "Loading game version info.": "Loading game version info.",
     "Backend": "Backend",
     "Bwiki modules": "Bwiki modules",
     "Bwiki pages": "Bwiki pages",
@@ -40,5 +39,6 @@
     "multi links活动": "Multi Links",
     "loading_news": "Loading news.",
     "last_updated": "Last updated:",
-    "no_running_events": "No running events in the database."
+    "no_running_events": "No running events in the database.",
+    "version_info_loading": "Loading game version info."
 }
