@@ -46,7 +46,7 @@
     "strength_effect_count_increase": "强化效果延长 [{{lvl}}拍]",
     "strength_effect_value_increase": "{{lvl}} 阶段强化效果增强",
     "cool_time_reduction": "CT 减少 {{lvl}}",
-    "target_stamina_recovery": "回复体力 {{div10 lvl}}",
+    "target_stamina_recovery": "回复体力 {{div10 lvl}}%",
     "fix_stamina_recovery": "回复体力 {{lvl}}",
     "stamina_consumption": "体力消耗 {{lvl}}",
     "weakness_effect_inversion": "低下效果反转",

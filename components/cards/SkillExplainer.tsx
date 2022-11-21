@@ -2,7 +2,7 @@ import { Button } from '@mantine/core'
 import { showNotification } from '@mantine/notifications'
 import type { SkillLevel } from 'hoshimi-types/ProtoMaster'
 import { useCallback, useEffect, useState } from 'react'
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 
 import Paths from '#utils/paths'
 import type { APIResponseOf } from '#utils/api'
@@ -13,6 +13,7 @@ const SkillExplainer = ({ level }: { level: SkillLevel }) => {
     const $t = useTranslations('analyze')
     const [translation, setTranslation] = useState('')
     const [stage, setStage] = useState(0)
+    const locale = useLocale()
 
     useEffect(() => {
         setStage(0)
@@ -24,7 +25,7 @@ const SkillExplainer = ({ level }: { level: SkillLevel }) => {
         const effects: APIResponseOf<'Skill/X'> = await fetch(
             Paths.api('Skill/X') + `?ids=${effIds.join(',')}`
         ).then((x) => x.json())
-        const trn = await fetch('/api/effToStr', {
+        const trn = await fetch(`/api/effToStr?locale=${locale}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
