@@ -43,9 +43,6 @@ export default function mergeMWV(lines: Line[], title: string): MergedLine[] {
         }
     }
     if (stashedMessages.length > 0) {
-        Sentry.captureMessage(
-            `MWV Anomaly: [${title}] Unprocessed messages at the end`
-        )
         ret.push(...stashedMessages)
     }
     return ret
