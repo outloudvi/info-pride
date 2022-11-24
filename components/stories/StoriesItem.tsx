@@ -26,6 +26,7 @@ function getBackendStoryId(props: PropType): string {
         Mana: 'st-group-mna-01',
         ThreeX: 'st-group-thrx-01',
         Tsuki: 'st-group-moon-01',
+        Sunny: 'st-group-sun-01',
     }
     return [
         Prefix[series],

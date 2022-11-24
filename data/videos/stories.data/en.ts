@@ -11,6 +11,7 @@ const data: StoriesData['data'] = {
     ThreeX: {},
     Big4: {},
     Tsuki: {},
+    Sunny: {}
 }
 
 const _ = {

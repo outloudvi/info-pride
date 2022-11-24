@@ -7,6 +7,7 @@ export const Series = [
     'Mana',
     'ThreeX',
     'Tsuki',
+    'Sunny'
 ] as const
 
 export type SeriesName = typeof Series[number]
@@ -28,4 +29,6 @@ export const Episodes: Record<SeriesName, number[]> = {
     ThreeX: [20],
     // adv_group_moon_
     Tsuki: [5],
+    // adv_group_sun
+    Sunny: [5]
 }
