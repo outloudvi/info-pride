@@ -131,12 +131,10 @@ const CardItem = ({
     return (
         <>
             <Breadcrumbs className="mb-2">
-                <Link href="/cards" passHref>
+                <Link href="/cards" passHref className="no-underline">
                     <Anchor>{$t('Card list')}</Anchor>
                 </Link>
-                <Link href="#" passHref>
                     <Anchor>{name}</Anchor>
-                </Link>
             </Breadcrumbs>
             <div>
                 {$vcn(card.name) !== card.name ? (
