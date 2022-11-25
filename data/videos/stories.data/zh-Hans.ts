@@ -1206,15 +1206,19 @@ const data: StoriesData['data'] = {
     Sunny: {
         1: {
             1: {
-                name: "TODO",
-                video: {type: "bilibili", vid:"av562961218"}
+                name: 'TODO',
+                video: { type: 'bilibili', vid: 'av562961218' },
             },
             2: {
-                name: "TODO",
-                video: {type: "bilibili", vid:"av562961218"}
-            }
-        }
-    }
+                name: 'TODO',
+                video: { type: 'bilibili', vid: 'av562961218' },
+            },
+            3: {
+                name: 'TODO',
+                video: { type: 'bilibili', vid: 'av520542762' },
+            },
+        },
+    },
 }
 
 const _ = { data, special }
