@@ -1,5 +1,5 @@
 import type { SeriesName } from '#data/stories'
-import { ChapterItem } from '#data/types'
+import type { ChapterItem } from '#data/types'
 
 export type IStoriesData<T> = Record<
     SeriesName,
