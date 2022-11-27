@@ -30,17 +30,23 @@ const StoryReplayPage = ({
                     <>
                         {items.map((advAssetId, index) => (
                             <>
-                                <p>
-                                    {$t('multiple_parts', {
-                                        len: items.length,
-                                    })}
-                                </p>
-                                <Divider />
+                                {index === 0 && (
+                                    <p>
+                                        {$t('multiple_parts', {
+                                            len: items.length,
+                                        })}
+                                    </p>
+                                )}
+                                <Divider className="my-3" />
                                 <p>{$t('story_part', { p: index + 1 })}</p>
-                                <StoryReplayViewSkeleton
-                                    id={advAssetId}
-                                    index={index}
-                                />
+                                {advAssetId.startsWith('adv-live') ? (
+                                    <p>{$t('story_part_live')}</p>
+                                ) : (
+                                    <StoryReplayViewSkeleton
+                                        id={advAssetId}
+                                        index={index}
+                                    />
+                                )}
                             </>
                         ))}
                     </>

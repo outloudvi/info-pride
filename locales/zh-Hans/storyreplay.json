@@ -11,5 +11,6 @@
     "no_story": "没有找到故事。",
     "multiple_parts": "故事分为 {len} 部分。",
     "story_part": "这是故事的第 {p} 部分。",
-    "no_title": "（无标题）"
+    "no_title": "（无标题）",
+    "story_part_live": "这是一段 Live 片段。"
 }

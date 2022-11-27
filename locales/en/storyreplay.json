@@ -11,5 +11,6 @@
     "no_story": "No story found.",
     "multiple_parts": "There are {len} parts in this story.",
     "story_part": "This is the part {p} of the story.",
-    "no_title": "(Untitled)"
+    "no_title": "(Untitled)",
+    "story_part_live": "This part is a live movie."
 }
