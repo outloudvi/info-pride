@@ -22,11 +22,11 @@ const NotemapPage = ({
         ChartListData[0]
     )
     const chartList = song.charts
-    const [chartId, setChartId] = useState<string>(chartList[0].id)
+    const [chartId, setChartId] = useState<string | null>(null)
 
     useEffect(() => {
         // update notemap after switching songs
-        setChartId(chartList[0].id)
+        setChartId(song.charts?.[0]?.id ?? null)
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [song])
 
@@ -63,7 +63,7 @@ const NotemapPage = ({
                             label: desc,
                             value: id,
                         }))}
-                        value={chartId}
+                        value={chartId ?? ''}
                         onChange={(i) => {
                             setChartId(i.target.value)
                         }}
@@ -81,17 +81,21 @@ const NotemapPage = ({
                         </div>
                     </Grid.Col>
                     <Grid.Col xs={12} lg={8}>
-                        <div className="mt-4">
-                            <TrackColorSelect
-                                laneColors={laneColors}
-                                setLaneColors={setLaneColors}
-                            />
-                        </div>
+                        {chartId !== null && (
+                            <div className="mt-4">
+                                <TrackColorSelect
+                                    laneColors={laneColors}
+                                    setLaneColors={setLaneColors}
+                                />
+                            </div>
+                        )}
                     </Grid.Col>
                 </Grid>
             </Grid.Col>
             <Grid.Col xs={12} lg={6}>
-                <NotemapView chartId={chartId} laneColors={laneColors} />
+                {chartId !== null && (
+                    <NotemapView chartId={chartId} laneColors={laneColors} />
+                )}
             </Grid.Col>
         </Grid>
     )
