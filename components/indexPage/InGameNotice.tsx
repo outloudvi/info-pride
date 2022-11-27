@@ -1,5 +1,5 @@
 import { Anchor, Modal } from '@mantine/core'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import dayjs from 'dayjs'
 import type { APIMapping } from 'hoshimi-types'
 import { useTranslations } from 'next-intl'
@@ -12,14 +12,20 @@ type NoticeType = Parameters<APIMapping['Notice']>[number]['type']
 const InGameNotice = ({ type }: { type: NoticeType }) => {
     const $t = useTranslations('index')
     const [limit, setLimit] = useState(5)
-    const { data: news } = useApi('Notice', {
+    const { data: NewsData, isLoading } = useApi('Notice', {
         limit: String(limit),
         type,
     })
+    const [news, setNews] = useState<APIResponseOf<'Notice'>>([])
     const [modalOpened, setModalOpened] = useState(false)
     const [modalNews, setModalNews] = useState<
         APIResponseOf<'Notice'>[number] | null
     >(null)
+
+    useEffect(() => {
+        if (NewsData === undefined) return
+        setNews(NewsData ?? [])
+    }, [NewsData])
 
     return news && news.length > 0 ? (
         <>
@@ -30,6 +36,7 @@ const InGameNotice = ({ type }: { type: NoticeType }) => {
                 size="xl"
             >
                 <iframe
+                    title="modal"
                     className="text-center h-[75vh] w-full"
                     src={modalNews?.linkDetail}
                 ></iframe>
@@ -64,13 +71,14 @@ const InGameNotice = ({ type }: { type: NoticeType }) => {
                     )
                 })}
             </ul>
-            {news.length === limit && (
+            {(isLoading || news.length === limit) && (
                 <Anchor
                     onClick={() => {
+                        if (isLoading) return
                         setLimit((x) => x + 5)
                     }}
                 >
-                    {$t('More')}
+                    {isLoading ? $t('loading_news') : $t('More')}
                 </Anchor>
             )}
         </>
