@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useLocalStorage } from '@mantine/hooks'
 
 import type { CharacterIdWithManager, CommuLine, EditorPref } from './types'
 import Preview from './Preview'
@@ -6,24 +7,27 @@ import Compose from './Compose'
 import EditorMenu from './EditorMenu'
 
 const TalkView = ({ currChrId }: { currChrId: CharacterIdWithManager }) => {
-    const [commuData, setCommuData] = useState<CommuLine[]>([
-        {
-            characterId: 'char-aoi',
-            text: '人には向き不向きがある',
-        },
-        {
-            text: '相変わらず仲がいいな',
-            characterId: '',
-        },
-        {
-            text: 'みんなはどんな反応を？',
-            characterId: '',
-        },
-        {
-            characterId: 'char-aoi',
-            text: '番組を観た後',
-        },
-    ])
+    const [commuData, setCommuData] = useLocalStorage<CommuLine[]>({
+        key: 'mtalk-commu',
+        defaultValue: [
+            {
+                characterId: 'char-aoi',
+                text: '人には向き不向きがある',
+            },
+            {
+                text: '相変わらず仲がいいな',
+                characterId: '',
+            },
+            {
+                text: 'みんなはどんな反応を？',
+                characterId: '',
+            },
+            {
+                characterId: 'char-aoi',
+                text: '番組を観た後',
+            },
+        ],
+    })
     const [pref, setPref] = useState<EditorPref>({
         editMode: false,
         expandMenu: false,
