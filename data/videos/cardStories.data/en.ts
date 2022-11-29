@@ -20,7 +20,7 @@ const dataChisa: StoriesData = {}
 
 const dataRei: StoriesData = {}
 
-const dataHaruka: StoriesData = {}
+const dataHaruko: StoriesData = {}
 
 // ---- TRINITYAiLE ----
 const dataRui: StoriesData = {}
@@ -62,7 +62,7 @@ const data: StoriesData = {
     ...dataShizuku,
     ...dataChisa,
     ...dataRei,
-    ...dataHaruka,
+    ...dataHaruko,
 
     ...dataRui,
     ...dataYu,

@@ -651,7 +651,7 @@ const dataRei: StoriesData = {
 }
 
 // 佐伯遥子
-const dataHaruka: StoriesData = {
+const dataHaruko: StoriesData = {
     'card-hrk-05-idol-00': {
         // とても頼れるお姉さん
         1: {
@@ -1396,7 +1396,7 @@ const data: StoriesData = {
     ...dataShizuku,
     ...dataChisa,
     ...dataRei,
-    ...dataHaruka,
+    ...dataHaruko,
 
     ...dataRui,
     ...dataYu,
