@@ -33,6 +33,9 @@ const dataKotono: StoriesData = {
             name: 'TODO',
             video: { type: 'bilibili', vid: 'av380460959', pid: 3 },
         },
+        phone: {
+            video: { type: 'bilibili', vid: 'av860718209' },
+        },
     },
     'card-ktn-05-fest-00': {
         // 光華霜夜
@@ -726,6 +729,22 @@ const dataHaruko: StoriesData = {
             video: { type: 'bilibili', vid: 'av769555664' },
         },
         phone: { video: { type: 'bilibili', vid: 'av639603040' } },
+    },
+    'card-hrk-05-onep-00': {
+        // ゆるり妄想温泉の旅
+        1: {
+            name: '心旌荡漾与温泉之旅',
+            video: { type: 'bilibili', vid: 'av690479257' },
+        },
+        2: {
+            name: '我来给你搓背吧？',
+            video: { type: 'bilibili', vid: 'av648012710' },
+        },
+        3: {
+            name: '与你的温泉约会',
+            video: { type: 'bilibili', vid: 'av263244833' },
+        },
+        phone: { video: { type: 'bilibili', vid: 'av433127652' } },
     },
 }
 
