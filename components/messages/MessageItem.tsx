@@ -19,8 +19,8 @@ const MessageItem = ({
     children: ReactNode
     characterId: CharacterId | string
     user: 'self' | 'others'
-    showEditMenu: boolean
-    deleteThis: () => void
+    showEditMenu?: boolean
+    deleteThis?: () => void
 }) => {
     const $vc = useTranslations('v-chr')
 
@@ -38,7 +38,16 @@ const MessageItem = ({
         )
     return (
         <Group>
-            {showEditMenu && <EditMenu deleteThis={deleteThis} />}
+            {showEditMenu && (
+                <EditMenu
+                    deleteThis={
+                        deleteThis ??
+                        (() => {
+                            //
+                        })
+                    }
+                />
+            )}
             <Group
                 className={`flex-grow p-2 items-end flex-nowrap ${
                     isSelf ? 'flex-row-reverse' : 'flex-row'

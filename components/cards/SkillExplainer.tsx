@@ -54,7 +54,7 @@ const SkillExplainer = ({ level }: { level: SkillLevel }) => {
         if (trn) {
             setTranslation(trn.join('\n'))
         }
-    }, [$t, level.skillDetails, level.triggerId])
+    }, [$t, level.skillDetails, level.triggerId, locale])
 
     return (
         <div>
