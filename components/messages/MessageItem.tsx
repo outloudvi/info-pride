@@ -60,7 +60,7 @@ const MessageItem = ({
                 <div>
                     <div className="text-white mb-1">{$vc(characterId)}</div>
                     <div
-                        className={`text-black p-2 rounded-2xl ${bg} ${
+                        className={`text-black p-2 rounded-2xl inline-block ${bg} ${
                             isSelf ? 'rounded-br-none' : 'rounded-bl-none'
                         }`}
                     >
