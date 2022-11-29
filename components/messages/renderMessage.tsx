@@ -4,6 +4,7 @@ import type { MessageDetail } from 'hoshimi-types/ProtoMaster'
 import TelephoneMessage from './TelephoneMessage'
 
 import AssetImage from '#components/AssetImage'
+import lfToBr from '#utils/lfToBr'
 
 export default function renderMessage(
     msg: MessageDetail,
@@ -23,7 +24,7 @@ export default function renderMessage(
                             : $t('line_choice', { src: choiceId ?? '' })
                     }] `}</span>
                 )}
-                {msg.text.replace(/\{user\}/g, $t('Manager'))}
+                {lfToBr(msg.text.replace(/\{user\}/g, $t('Manager')))}
             </>
         )
     }
