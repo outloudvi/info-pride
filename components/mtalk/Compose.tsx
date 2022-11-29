@@ -1,6 +1,6 @@
 import type { Dispatch, SetStateAction } from 'react'
 import { useState } from 'react'
-import { ActionIcon, Group, Modal, Textarea } from '@mantine/core'
+import { ActionIcon, Group, Modal, Textarea, Tooltip } from '@mantine/core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
     faCirclePlus,
@@ -73,34 +73,52 @@ const Compose = ({
             </Modal>
 
             <Group className="p-2 min-h-[32px] max-h-[128px]">
-                <ActionIcon
-                    variant="outline"
-                    onClick={() => {
-                        setPref((x) => ({
-                            ...x,
-                            expandMenu: !x.expandMenu,
-                        }))
-                    }}
-                >
-                    <FontAwesomeIcon icon={faEllipsisVertical} color="white" />
-                </ActionIcon>
-                <ActionIcon
-                    variant="outline"
-                    onClick={() => {
-                        setInsertStampModal(true)
-                    }}
-                >
-                    <FontAwesomeIcon icon={faCirclePlus} color="white" />
-                </ActionIcon>
+                <Tooltip label={$t('Expand menu')}>
+                    <ActionIcon
+                        variant="outline"
+                        onClick={() => {
+                            setPref((x) => ({
+                                ...x,
+                                expandMenu: !x.expandMenu,
+                            }))
+                        }}
+                    >
+                        <FontAwesomeIcon
+                            icon={faEllipsisVertical}
+                            color="white"
+                            aria-label={$t('Expand menu')}
+                        />
+                    </ActionIcon>
+                </Tooltip>
+                <Tooltip label={$t('Insert a stamp')}>
+                    <ActionIcon
+                        variant="outline"
+                        onClick={() => {
+                            setInsertStampModal(true)
+                        }}
+                    >
+                        <FontAwesomeIcon
+                            icon={faCirclePlus}
+                            color="white"
+                            aria-label={$t('Insert a stamp')}
+                        />
+                    </ActionIcon>
+                </Tooltip>
                 <CharacterIcon id={currChrId} />
                 <Textarea
                     className="flex-grow min-h-[32px] max-h-[128px]"
                     value={text}
                     onChange={(e) => setText(e.currentTarget.value)}
                 />
-                <ActionIcon variant="outline" onClick={submit}>
-                    <FontAwesomeIcon icon={faPaperPlane} color="white" />
-                </ActionIcon>
+                <Tooltip label={$t('Send')}>
+                    <ActionIcon variant="outline" onClick={submit}>
+                        <FontAwesomeIcon
+                            icon={faPaperPlane}
+                            color="white"
+                            aria-label={$t('Send')}
+                        />
+                    </ActionIcon>
+                </Tooltip>
             </Group>
         </>
     )

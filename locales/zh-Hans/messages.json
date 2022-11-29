@@ -5,6 +5,7 @@
     "Select a communication.": "选择消息。",
     "Communication ended.": "消息结束。",
     "Manager": "マネージャー",
+    "Delete": "删除",
     "line_response": "选项回应 {src}",
     "line_choice": "选项 {src}",
     "full_screen_advised": "建议使用全屏模式查看本页。",

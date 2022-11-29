@@ -5,6 +5,7 @@
     "Select a communication.": "Select a communication.",
     "Communication ended.": "Communication ended.",
     "Manager": "Manager",
+    "Delete": "Delete",
     "line_response": "Response {src}",
     "line_choice": "Choice {src}",
     "full_screen_advised": "Viewing this page in fullscreen is advised.",
