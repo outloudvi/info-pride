@@ -5,6 +5,7 @@ import type { FrontendAPIResponseMapping } from '#utils/useFrontendApi'
 import pickFirstOrOne from '#utils/pickFirstOrOne'
 import { DEFAULT_LANGUAGE } from '#utils/constants'
 import data from '#data/profile.data'
+import type { CharacterId } from '#data/vendor/characterId'
 
 const charactersProfile = async (
     req: NextApiRequest,
@@ -17,14 +18,15 @@ const charactersProfile = async (
         return
     }
 
-    const id = String(q.id)
+    const id = String(q.id) as CharacterId
     const locale = q.locale ? pickFirstOrOne(q.locale) : DEFAULT_LANGUAGE
 
-    if (data?.[locale]?.[id]) {
+    const profile = data?.[locale]?.[id]
+    if (profile) {
         // Cache for 7d
         res.setHeader('Cache-Control', 'max-age=604800')
         res.status(200).json({
-            profile: data?.[locale]?.[id],
+            profile,
         })
         return
     }

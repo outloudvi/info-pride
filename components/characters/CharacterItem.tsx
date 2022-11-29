@@ -16,7 +16,7 @@ import InGameVoice from './InGameVoice'
 
 import useApi from '#utils/useApi'
 import type { APIResponseOf, UnArray } from '#utils/api'
-import type { CharacterId} from '#data/vendor/characterId';
+import type { CharacterId } from '#data/vendor/characterId'
 import { PrimaryCharacterIds } from '#data/vendor/characterId'
 import Paths from '#utils/paths'
 import { IdolyFashionUrl, IdolyRoomUrl } from '#data/ipcmmu.data'
@@ -67,7 +67,9 @@ const CharacterItem = ({
     } = CharacterData[0] ?? {}
 
     const tableItem = [
-        ...(OriginalName.includes(id) ? [[$t('Name'), $t(`name-${id}`)]] : []),
+        ...(OriginalName.includes(id as CharacterId)
+            ? [[$t('Name'), $t(`name-${id}`)]]
+            : []),
         [$t('Group'), $vg(characterGroupId)],
         [$t('Age'), $t('age', { age: age.replace('歳', '') })],
         [$t('CV'), $t(cv)],
@@ -194,18 +196,18 @@ const CharacterItem = ({
                     lg={4}
                     className="flex items-center justify-center"
                 >
-                    {PrimaryCharacterIds.includes(id) && (
-                        <CharacterAnimation charId={id as CharacterId} />
-                    )}
+                    {PrimaryCharacterIds.includes(
+                        id as typeof PrimaryCharacterIds[number]
+                    ) && <CharacterAnimation charId={id as CharacterId} />}
                 </Grid.Col>
             </Grid>
-            {!BirthdayCommuException.includes(id) && (
+            {!BirthdayCommuException.includes(id as CharacterId) && (
                 <>
                     <h2>{$t('Birthday stories')}</h2>
                     <BirthdayCommu charaId={id} />
                 </>
             )}
-            {!VoiceException.includes(id) && (
+            {!VoiceException.includes(id as CharacterId) && (
                 <>
                     <h2>{$t('In-game voices')}</h2>
                     <InGameVoice charaId={id} />

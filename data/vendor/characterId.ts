@@ -32,16 +32,20 @@ export const PrimaryCharacterIds = [
 
     // Mana
     'char-mna',
-]
+] as const
 
-// Note that the order of existing items MUST NOT change, or old unitCodes will be broken!
-export const CharacterIds = [
+export const MessageCharacterIds = [
     ...PrimaryCharacterIds,
 
     // ThreeX
     'char-kor',
     'char-kan',
     'char-mhk',
+] as const
+
+// Note that the order of existing items MUST NOT change, or old unitCodes will be broken!
+export const CharacterIds = [
+    ...MessageCharacterIds,
 
     // Collab
     'char-mku',
