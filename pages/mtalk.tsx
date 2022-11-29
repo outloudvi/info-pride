@@ -10,7 +10,7 @@ const MTalkPage = () => {
     return (
         <>
             <Group>
-                <Title title={$t('Macaron Talk')} />
+                <Title title={$t('MacaronTalk')} />
                 <Badge>beta</Badge>
             </Group>
             <p>
