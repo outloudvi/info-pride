@@ -7,7 +7,11 @@ import buildMessageTree from './buildMessageTree'
 
 import type { APIResponseOf } from '#utils/api'
 
-const ChatBoard = ({ msg }: { msg: NonNullable<APIResponseOf<'Message'>> }) => {
+const ChatLogBoard = ({
+    msg,
+}: {
+    msg: NonNullable<APIResponseOf<'Message'>>
+}) => {
     const $t = useTranslations('messages')
 
     const { details } = msg
@@ -40,4 +44,4 @@ const ChatBoard = ({ msg }: { msg: NonNullable<APIResponseOf<'Message'>> }) => {
     )
 }
 
-export default ChatBoard
+export default ChatLogBoard

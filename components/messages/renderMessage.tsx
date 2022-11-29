@@ -12,8 +12,8 @@ export default function renderMessage(
 ): ReactNode {
     // Text
     if (msg.text) {
-        const isSelection = msg.messageDetailId.includes('-')
-        const choiceId = msg.messageDetailId
+        const isSelection = (msg.messageDetailId ?? '').includes('-')
+        const choiceId = msg.messageDetailId ?? ''
         return (
             <>
                 {isSelection && (

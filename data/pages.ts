@@ -9,6 +9,7 @@ const Pages = {
     Messages: '/messages',
     'Card Search': '/search',
     'Mana Diary': '/diary',
+    MacaronTalk: '/mtalk',
     Colors: '/colors',
     Settings: '/settings',
     About: '/about',
