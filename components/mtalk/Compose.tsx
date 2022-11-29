@@ -1,6 +1,6 @@
 import type { Dispatch, SetStateAction } from 'react'
 import { useState } from 'react'
-import { ActionIcon, Group, TextInput } from '@mantine/core'
+import { ActionIcon, Group, Textarea, TextInput } from '@mantine/core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
     faEllipsisVertical,
@@ -22,6 +22,7 @@ const Compose = ({
     const [text, setText] = useState('')
 
     const submit = () => {
+        if (text.trim() === '') return
         setCommuData((x) => [
             ...x,
             {
@@ -33,7 +34,7 @@ const Compose = ({
     }
 
     return (
-        <Group className="p-2">
+        <Group className="p-2 min-h-[32px] max-h-[128px]">
             <ActionIcon
                 variant="outline"
                 onClick={() => {
@@ -46,8 +47,8 @@ const Compose = ({
                 <FontAwesomeIcon icon={faEllipsisVertical} color="white" />
             </ActionIcon>
             <CharacterIcon id={currChrId} />
-            <TextInput
-                className="flex-grow"
+            <Textarea
+                className="flex-grow min-h-[32px] max-h-[128px]"
                 value={text}
                 onChange={(e) => setText(e.currentTarget.value)}
             />
