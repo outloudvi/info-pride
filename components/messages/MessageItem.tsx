@@ -13,12 +13,14 @@ const MessageItem = ({
     children,
     characterId,
     user,
+    isTransparent,
     showEditMenu,
     deleteThis,
 }: {
     children: ReactNode
     characterId: CharacterId | string
     user: 'self' | 'others'
+    isTransparent: boolean
     showEditMenu?: boolean
     deleteThis?: () => void
 }) => {
@@ -36,6 +38,7 @@ const MessageItem = ({
         ) : (
             <FontAwesomeIcon icon={faUserCircle} color="white" size="2x" />
         )
+    const bg = isTransparent ? '' : isSelf ? 'bg-green-500' : 'bg-white'
     return (
         <Group>
             {showEditMenu && (
@@ -57,10 +60,8 @@ const MessageItem = ({
                 <div>
                     <div className="text-white mb-1">{$vc(characterId)}</div>
                     <div
-                        className={`text-black p-2 rounded-2xl ${
-                            isSelf
-                                ? 'bg-green-500 rounded-br-none'
-                                : 'bg-white rounded-bl-none'
+                        className={`text-black p-2 rounded-2xl ${bg} ${
+                            isSelf ? 'rounded-br-none' : 'rounded-bl-none'
                         }`}
                     >
                         {children}

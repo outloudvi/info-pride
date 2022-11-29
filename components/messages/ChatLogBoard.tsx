@@ -33,6 +33,7 @@ const ChatLogBoard = ({
                     key={key}
                     characterId={line.characterId}
                     user={line.characterId ? 'others' : 'self'}
+                    isTransparent={Boolean(line.stampAssetId)}
                 >
                     {renderMessage(line, $t, branchSrc[line.messageDetailId])}
                 </MessageItem>

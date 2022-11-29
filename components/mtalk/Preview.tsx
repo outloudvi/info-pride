@@ -27,6 +27,7 @@ const Preview = ({
                     characterId={line.characterId}
                     user={line.characterId ? 'others' : 'self'}
                     showEditMenu={editMode}
+                    isTransparent={Boolean(line.stampAssetId)}
                     deleteThis={() => {
                         setCommuData((x) => [
                             ...x.slice(0, key),
