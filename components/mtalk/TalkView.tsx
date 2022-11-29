@@ -30,7 +30,7 @@ const TalkView = ({ currChrId }: { currChrId: CharacterIdWithManager }) => {
     })
     const [pref, setPref] = useState<EditorPref>({
         editMode: false,
-        expandMenu: false,
+        expandMenu: true,
     })
 
     return (
