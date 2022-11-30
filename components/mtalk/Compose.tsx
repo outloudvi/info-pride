@@ -73,7 +73,7 @@ const Compose = ({
             </Modal>
 
             <Group className="p-2 min-h-[32px] max-h-[128px]">
-                <Tooltip label={$t('Expand menu')}>
+                <Tooltip label={$t('Toggle menu')}>
                     <ActionIcon
                         variant="outline"
                         onClick={() => {
@@ -86,7 +86,7 @@ const Compose = ({
                         <FontAwesomeIcon
                             icon={faEllipsisVertical}
                             color="white"
-                            aria-label={$t('Expand menu')}
+                            aria-label={$t('Toggle menu')}
                         />
                     </ActionIcon>
                 </Tooltip>
