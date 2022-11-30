@@ -8,6 +8,8 @@ import renderNotemap from './renderNotemap'
 import type { ImageChart, SkillChart } from './types'
 import { notemapColumnId, unitColumnId } from './const'
 
+import downloadUrl from '#utils/downloadUrl'
+
 const NotemapGraph = ({
     chart,
     laneColors,
@@ -115,13 +117,6 @@ const NotemapGraph = ({
             </Group>
         </Stack>
     )
-}
-
-function downloadUrl(url: string, filename: string) {
-    const a = document.createElement('a')
-    a.href = url
-    a.download = filename
-    a.click()
 }
 
 export default NotemapGraph

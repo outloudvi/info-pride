@@ -4,5 +4,14 @@
     "Insert a stamp": "Insert a stamp",
     "Toggle menu": "Toggle menu",
     "Send": "Send",
-    "mtalk_description": "MacaronTalk - the IDOLY PRIDE variant of <a>YuzuTalk</a>, allows the user to create customized communications."
+    "Import/Export": "Import/Export",
+    "Import from text": "Import from text",
+    "Import from file": "Import from file",
+    "Save as file": "Save as file",
+    "mtalk_description": "MacaronTalk - the IDOLY PRIDE variant of <a>YuzuTalk</a>, allows the user to create customized communications.",
+    "n_import_failed": "Import failed",
+    "n_import_success": "Import succeed.",
+    "n_invalid_json": "Invalid JSON.",
+    "n_not_array": "Should be an array.",
+    "n_failed_to_read_file": "Failed to read the file."
 }

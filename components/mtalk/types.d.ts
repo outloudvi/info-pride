@@ -12,4 +12,5 @@ export type CommuLine = {
 export type EditorPref = {
     editMode: boolean
     expandMenu: boolean
+    importExportModal: boolean
 }

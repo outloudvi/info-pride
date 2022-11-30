@@ -22,6 +22,16 @@ const EditorMenu = ({
             >
                 {$t('Toggle Editor Mode')}
             </Button>
+            <Button
+                onClick={() => {
+                    setPref((x) => ({
+                        ...x,
+                        importExportModal: true,
+                    }))
+                }}
+            >
+                {$t('Import/Export')}
+            </Button>
         </Group>
     )
 }

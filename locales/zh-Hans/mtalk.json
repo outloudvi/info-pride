@@ -4,5 +4,14 @@
     "Insert a stamp": "插入贴纸",
     "Toggle menu": "展开/折叠菜单",
     "Send": "发送",
-    "mtalk_description": "MacaronTalk 是 <a>YuzuTalk</a> 的 IDOLY PRIDE 版本。用户可以使用此功能创建自定义消息通讯。"
+    "Import/Export": "导入/导出",
+    "Import from text": "从文本导入",
+    "Import from file": "从文件导入",
+    "Save as file": "保存到文件",
+    "mtalk_description": "MacaronTalk 是 <a>YuzuTalk</a> 的 IDOLY PRIDE 版本。用户可以使用此功能创建自定义消息通讯。",
+    "n_import_failed": "导入失败",
+    "n_import_success": "导入成功。",
+    "n_invalid_json": "无效 JSON。",
+    "n_not_array": "导入资料应为一个数组。",
+    "n_failed_to_read_file": "文件读取失败。"
 }
