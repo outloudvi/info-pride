@@ -7,17 +7,19 @@ import AssetImage from '#components/AssetImage'
 
 const CharacterIcon = ({ id }: { id: CharacterIdWithManager }) =>
     id === '' ? (
-        <FontAwesomeIcon
-            icon={faUserCircle}
-            color="white"
-            className="rounded-full ml-2 -mr-2 h-[3rem]"
-        />
+        <div className="h-[3rem]">
+            <FontAwesomeIcon
+                icon={faUserCircle}
+                color="white"
+                className="rounded-full h-full"
+            />
+        </div>
     ) : (
         <AssetImage
             name={`img_message_icon_${id.split('-')[1]}`}
             ratio={1}
             height="3rem"
-            className="rounded-full ml-2"
+            className="rounded-full"
             alt="Chat icon"
         />
     )

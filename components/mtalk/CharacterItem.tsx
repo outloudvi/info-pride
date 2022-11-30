@@ -24,7 +24,9 @@ const CharacterItem = ({
             className={`py-2 ${active ? 'bg-blue-800' : ''}`}
             onClick={() => setActive(id)}
         >
-            <CharacterIcon id={id} />
+            <div className="ml-2">
+                <CharacterIcon id={id} />
+            </div>
             <div>
                 <b className="text-white">
                     {id === '' ? $tm('Manager') : $vc(id)}

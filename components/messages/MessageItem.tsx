@@ -1,5 +1,3 @@
-import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Group } from '@mantine/core'
 import type { ReactNode } from 'react'
 import { useTranslations } from 'next-intl'
@@ -7,7 +5,8 @@ import { useTranslations } from 'next-intl'
 import EditMenu from './EditMenu'
 
 import type { CharacterId } from '#data/vendor/characterId'
-import AssetImage from '#components/AssetImage'
+import CharacterIcon from '#components/mtalk/CharacterIcon'
+import type { CharacterIdWithManager } from '#components/mtalk/types'
 
 const MessageItem = ({
     children,
@@ -29,14 +28,9 @@ const MessageItem = ({
     const isSelf = user === 'self'
     const userIcon =
         user === 'others' ? (
-            <AssetImage
-                name={`img_message_icon_${characterId.split('-')[1]}`}
-                ratio={1}
-                height="3rem"
-                alt="Contact icon"
-            />
+            <CharacterIcon id={characterId as CharacterIdWithManager} />
         ) : (
-            <FontAwesomeIcon icon={faUserCircle} color="white" size="2x" />
+            <CharacterIcon id={''} />
         )
     const bg = isTransparent ? '' : isSelf ? 'bg-green-500' : 'bg-white'
     return (
