@@ -23,8 +23,6 @@ const MessageItem = ({
     showEditMenu?: boolean
     deleteThis?: () => void
 }) => {
-    const $vc = useTranslations('v-chr')
-
     const isSelf = user === 'self'
     const userIcon =
         user === 'others' ? (
@@ -51,15 +49,12 @@ const MessageItem = ({
                 }`}
             >
                 {userIcon}
-                <div>
-                    <div className="text-white mb-1">{$vc(characterId)}</div>
-                    <div
-                        className={`text-black p-2 rounded-2xl inline-block ${bg} ${
-                            isSelf ? 'rounded-br-none' : 'rounded-bl-none'
-                        }`}
-                    >
-                        {children}
-                    </div>
+                <div
+                    className={`text-black p-2 rounded-2xl inline-block ${bg} ${
+                        isSelf ? 'rounded-br-none' : 'rounded-bl-none'
+                    }`}
+                >
+                    {children}
                 </div>
             </Group>
         </Group>
