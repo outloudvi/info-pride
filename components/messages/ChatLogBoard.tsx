@@ -39,7 +39,7 @@ const ChatLogBoard = ({
                 </MessageItem>
             ))}
             <div className="text-gray-300 text-center my-4">
-                [{$t('Communication ended.')}]
+                [{$t('communication_ended')}]
             </div>
         </div>
     )
