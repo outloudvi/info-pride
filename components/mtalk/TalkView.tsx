@@ -48,7 +48,10 @@ const TalkView = ({ currChrId }: { currChrId: CharacterIdWithManager }) => {
             .then((x) => x.text())
             .then(svgToPngDataUrl)
             .then((dataUrl) => {
-                downloadUrl(dataUrl, 'macarontalk.png')
+                downloadUrl(
+                    dataUrl,
+                    `macarontalk-${(Number(new Date()) / 1000).toFixed(0)}.png`
+                )
                 showNotification({
                     message: $t('n_image_exported'),
                     color: 'green',

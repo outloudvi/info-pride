@@ -69,7 +69,10 @@ const ImportExportModal = ({
         const blob = new Blob([commuJson], {
             type: 'application/json',
         })
-        downloadUrl(URL.createObjectURL(blob), 'MacaronTalk.json')
+        downloadUrl(
+            URL.createObjectURL(blob),
+            `MacaronTalk-${(Number(new Date()) / 1000).toFixed(0)}.json`
+        )
     }
     const handleImportFile = async () => {
         const c = inputFileRef.current
