@@ -1,6 +1,5 @@
 import { Group } from '@mantine/core'
 import type { ReactNode } from 'react'
-import { useTranslations } from 'next-intl'
 
 import EditMenu from './EditMenu'
 

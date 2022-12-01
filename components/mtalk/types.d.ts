@@ -13,4 +13,5 @@ export type EditorPref = {
     editMode: boolean
     expandMenu: boolean
     importExportModal: boolean
+    setupExportAsImage: boolean
 }

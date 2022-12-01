@@ -8,10 +8,14 @@
     "Import from text": "Import from text",
     "Import from file": "Import from file",
     "Save as file": "Save as file",
+    "Export as Image": "Export as Image",
     "mtalk_description": "MacaronTalk - the IDOLY PRIDE variant of <a>YuzuTalk</a>, allows the user to create customized communications.",
     "n_import_failed": "Import failed",
     "n_import_success": "Import succeed.",
     "n_invalid_json": "Invalid JSON.",
     "n_not_array": "Should be an array.",
-    "n_failed_to_read_file": "Failed to read the file."
+    "n_failed_to_read_file": "Failed to read the file.",
+    "n_export_image": "Exporting image...",
+    "n_error_export_image": "Error exporting image",
+    "n_image_exported": "Image exported."
 }

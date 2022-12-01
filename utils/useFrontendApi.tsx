@@ -2,7 +2,8 @@ import * as Sentry from '@sentry/browser'
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { showNotification } from '@mantine/notifications'
-import { QueryFunction, useQuery } from 'react-query'
+import type { QueryFunction } from 'react-query'
+import { useQuery } from 'react-query'
 import { useMemo } from 'react'
 
 import type {
@@ -14,7 +15,7 @@ import type { Stories } from '#data/videos/cardStories.data/types'
 import type { SkillLaunchItem } from '#components/notemap/types'
 import type { BirthdayCommuList } from '#data/birthday.data'
 import type { Contributor } from '#components/api/contributors/types'
-import { DiaryItem } from '#data/wikiModules/diary'
+import type { DiaryItem } from '#data/wikiModules/diary'
 
 const frontendQueryFn: QueryFunction = ({ queryKey: [path] }) =>
     fetch(('/api/' + path) as string).then((x) =>

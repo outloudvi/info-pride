@@ -32,6 +32,16 @@ const EditorMenu = ({
             >
                 {$t('Import/Export')}
             </Button>
+            <Button
+                onClick={() => {
+                    setPref((x) => ({
+                        ...x,
+                        setupExportAsImage: true,
+                    }))
+                }}
+            >
+                {$t('Export as Image')}
+            </Button>
         </Group>
     )
 }

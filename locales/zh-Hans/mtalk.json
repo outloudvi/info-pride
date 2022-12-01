@@ -8,10 +8,14 @@
     "Import from text": "从文本导入",
     "Import from file": "从文件导入",
     "Save as file": "保存到文件",
+    "Export as Image": "导出为图片",
     "mtalk_description": "MacaronTalk 是 <a>YuzuTalk</a> 的 IDOLY PRIDE 版本。用户可以使用此功能创建自定义消息通讯。",
     "n_import_failed": "导入失败",
     "n_import_success": "导入成功。",
     "n_invalid_json": "无效 JSON。",
     "n_not_array": "导入资料应为一个数组。",
-    "n_failed_to_read_file": "文件读取失败。"
+    "n_failed_to_read_file": "文件读取失败。",
+    "n_export_image": "正在导出图片...",
+    "n_error_export_image": "图片导出失败",
+    "n_image_exported": "图片已经导出。"
 }

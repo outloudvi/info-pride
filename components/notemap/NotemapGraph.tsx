@@ -53,7 +53,6 @@ const NotemapGraph = ({
         svgElement.setAttribute('width', viewBoxWidth)
         svgElement.setAttribute('height', viewBoxHeight)
         const svgUrl = new XMLSerializer().serializeToString(svgElement)
-        console.log(svgElement)
         const img = new Image()
         img.addEventListener('load', async () => {
             const canvas = document.createElement('canvas')
