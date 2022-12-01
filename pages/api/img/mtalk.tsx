@@ -1,19 +1,24 @@
-import { readFileSync } from 'node:fs'
-import path from 'node:path'
-
 import { withSentry } from '@sentry/nextjs'
 import type { NextApiRequest, NextApiResponse } from 'next'
 import satori from 'satori'
 
 import type { CommuLine } from '#components/mtalk/types'
 import MTalkExport from '#components/api/img/mtalk/MTalkExport'
+import FontLoader from '#components/api/img/mtalk/FontLoader'
+import Paths from '#utils/paths'
 
 type BodyType = {
     lines: CommuLine[]
 }
 
-const FONT_OTF = readFileSync(
-    path.join(process.cwd(), 'assets', 'notosans-sc.otf')
+const fontSC = new FontLoader(
+    'https://cdn.jsdelivr.net/gh/googlefonts/noto-cjk@main/Sans/OTF/SimplifiedChinese/NotoSansCJKsc-Regular.otf'
+)
+const fontJP = new FontLoader(
+    'https://cdn.jsdelivr.net/gh/googlefonts/noto-cjk@main/Sans/OTF/Japanese/NotoSansCJKjp-Regular.otf'
+)
+const fontTC = new FontLoader(
+    'https://cdn.jsdelivr.net/gh/googlefonts/noto-cjk@main/Sans/OTF/TraditionalChinese/NotoSansCJKtc-Regular.otf'
 )
 
 const imgMtalk = async (req: NextApiRequest, res: NextApiResponse) => {
@@ -26,15 +31,36 @@ const imgMtalk = async (req: NextApiRequest, res: NextApiResponse) => {
         return
     }
 
+    const [
+        fontScBlob,
+        // fontJpBlob,
+        // fontTcBlob
+    ] = await Promise.all([
+        fontSC.get(),
+        // fontJP.get(),
+        // fontTC.get(),
+    ])
     const svgString = await satori(<MTalkExport lines={body.lines} />, {
         width: 500,
         fonts: [
             {
                 name: 'NotoSansSc',
-                data: FONT_OTF,
+                data: fontScBlob,
                 weight: 400,
                 style: 'normal',
             },
+            // {
+            //     name: 'NotoSansJp',
+            //     data: fontJpBlob,
+            //     weight: 400,
+            //     style: 'normal',
+            // },
+            // {
+            //     name: 'NotoSansTc',
+            //     data: fontTcBlob,
+            //     weight: 400,
+            //     style: 'normal',
+            // },
         ],
     })
     res.setHeader('Content-Type', 'image/svg+xml')

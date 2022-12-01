@@ -9,7 +9,7 @@ const MTalkExport = ({ lines }: { lines: CommuLine[] }) => (
             backgroundColor: '#4c4c4c',
             display: 'flex',
             flexDirection: 'column',
-            fontFamily: 'NotoSansSc',
+            fontFamily: 'NotoSansSc, NotoSansJp, NotoSansTc',
             width: '100%',
             paddingTop: '25px',
             paddingBottom: '25px',
