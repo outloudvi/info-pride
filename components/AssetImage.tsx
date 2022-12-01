@@ -38,7 +38,6 @@ const AssetImage = (
         >
             <Image
                 src={Paths.assets(name.split('_')[0])(name)}
-                objectFit="contain"
                 loading="lazy"
                 placeholder="blur"
                 blurDataURL={PLACEHOLDER_SVG}
@@ -47,6 +46,7 @@ const AssetImage = (
                 height={undefined}
                 width={undefined}
                 alt={alt}
+                className={`object-contain ${props.className ?? ''}`}
             />
         </div>
     )

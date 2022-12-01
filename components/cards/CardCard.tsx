@@ -36,14 +36,14 @@ const CardCard = ({ card }: { card: UnArray<APIResponseOf<'Card/List'>> }) => {
                     ratio="2 / 9"
                     width="12.5%"
                     alt={'Card image'}
-                    objectFit="cover"
+                    className="object-cover"
                 />
                 <AssetImage
                     name={getAssetSlug(assetId, 'rect', true)}
                     ratio="14 / 9"
                     width="87.5%"
                     alt={'Card image'}
-                    objectFit="cover"
+                    className="object-cover"
                 />
             </div>
         ) : (
