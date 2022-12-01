@@ -80,7 +80,7 @@ const MessageBoardView = ({
                     ) : (
                         <div className="flex h-full justify-center items-center">
                             <div className="text-white">
-                                {$t('Select a communication.')}
+                                {$t('select_a_commu')}
                             </div>
                         </div>
                     )}

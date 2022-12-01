@@ -2,12 +2,12 @@
     "Messages": "Messages",
     "Fullscreen": "Fullscreen",
     "Exit fullscreen": "Exit fullscreen",
-    "Select a communication.": "Select a communication.",
     "Manager": "Manager",
     "Delete": "Delete",
     "line_response": "Response {src}",
     "line_choice": "Choice {src}",
     "full_screen_advised": "Viewing this page in fullscreen is advised.",
     "full_screen_unsupported": "Fullscreen is not supported.",
-    "communication_ended": "Communication ended."
+    "communication_ended": "Communication ended.",
+    "select_a_commu": "Select a communication."
 }
