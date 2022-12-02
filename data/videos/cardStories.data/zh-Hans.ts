@@ -234,22 +234,20 @@ const dataSaki: StoriesData = {
             video: { type: 'bilibili', vid: 'av687413499' },
         },
     },
-    'card-chs-05-flow-00': {
-        // 檻に咲く名花
+
+    'card-ski-05-xmas-00': {
+        // 記憶から拾うスノードーム
         1: {
-            name: '这里就是传闻中的摄影棚了是吗',
-            video: { type: 'bilibili', vid: 'av731754403' },
+            name: '送什么礼物好呢',
+            video: { type: 'bilibili', vid: 'av903201814', pid: 1 },
         },
         2: {
-            name: '憧憬的真实闹鬼！',
-            video: { type: 'bilibili', vid: 'av346859460' },
+            name: '记忆里的水晶球',
+            video: { type: 'bilibili', vid: 'av903201814', pid: 2 },
         },
         3: {
-            name: '比幽灵还要恐怖！',
-            video: { type: 'bilibili', vid: 'av859291525' },
-        },
-        phone: {
-            video: { type: 'bilibili', vid: 'av646763583' },
+            name: '喜欢之人的礼物',
+            video: { type: 'bilibili', vid: 'av903201814', pid: 3 },
         },
     },
 }
@@ -398,6 +396,13 @@ const dataMei: StoriesData = {
         2: { name: 'TODO', video: { type: 'bilibili', vid: 'av600893737' } },
         3: { name: 'TODO', video: { type: 'bilibili', vid: 'av600931569' } },
         phone: { video: { type: 'bilibili', vid: 'av900030006' } },
+    },
+    'card-mei-05-xmas-00': {
+        // 幸せ招く芽衣サンタ
+        1: { name: 'TODO', video: { type: 'bilibili', vid: 'av305532911' } },
+        2: { name: 'TODO', video: { type: 'bilibili', vid: 'av263157305' } },
+        3: { name: 'TODO', video: { type: 'bilibili', vid: 'av945738115' } },
+        phone: { video: { type: 'bilibili', vid: 'av520703665' } },
     },
 }
 
@@ -572,6 +577,24 @@ const dataChisa: StoriesData = {
         3: {
             name: '二人所描绘的梦想',
             video: { type: 'bilibili', vid: 'av383653813' },
+        },
+    },
+    'card-chs-05-flow-00': {
+        // 檻に咲く名花
+        1: {
+            name: '这里就是传闻中的摄影棚了是吗',
+            video: { type: 'bilibili', vid: 'av731754403' },
+        },
+        2: {
+            name: '憧憬的真实闹鬼！',
+            video: { type: 'bilibili', vid: 'av346859460' },
+        },
+        3: {
+            name: '比幽灵还要恐怖！',
+            video: { type: 'bilibili', vid: 'av859291525' },
+        },
+        phone: {
+            video: { type: 'bilibili', vid: 'av646763583' },
         },
     },
 }
