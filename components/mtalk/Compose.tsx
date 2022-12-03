@@ -1,6 +1,6 @@
 import type { Dispatch, SetStateAction } from 'react'
 import { useState } from 'react'
-import { ActionIcon, Group, Modal, Textarea, Tooltip } from '@mantine/core'
+import { ActionIcon, Group, Textarea, Tooltip } from '@mantine/core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
     faCirclePlus,
@@ -11,9 +11,7 @@ import { useTranslations } from 'next-intl'
 
 import type { CharacterIdWithManager, CommuLine, EditorPref } from './types'
 import CharacterIcon from './CharacterIcon'
-
-import Stamps from '#data/stamps'
-import AssetImage from '#components/AssetImage'
+import InsertStampModal from './InsertStampModal'
 
 const Compose = ({
     currChrId,
@@ -41,37 +39,23 @@ const Compose = ({
         setText('')
     }
 
+    const insertStamp = (stampAssetId: string) => {
+        setCommuData((x) => [
+            ...x,
+            {
+                characterId: currChrId,
+                stampAssetId,
+            },
+        ])
+    }
+
     return (
         <>
-            <Modal
-                opened={insertStampModal}
-                onClose={() => setInsertStampModal(false)}
-                title={$t('Insert a stamp')}
-                size="65%"
-            >
-                <Group>
-                    {Stamps.map((stampAssetId, key) => (
-                        <AssetImage
-                            key={key}
-                            name={`img_message_stamp_${stampAssetId}`}
-                            ratio={1}
-                            height="9rem"
-                            alt={`Stamp: ${stampAssetId}`}
-                            onClick={() => {
-                                setCommuData((x) => [
-                                    ...x,
-                                    {
-                                        characterId: currChrId,
-                                        stampAssetId,
-                                    },
-                                ])
-                                setInsertStampModal(false)
-                            }}
-                        />
-                    ))}
-                </Group>
-            </Modal>
-
+            <InsertStampModal
+                visible={insertStampModal}
+                setVisible={setInsertStampModal}
+                insertStamp={insertStamp}
+            />
             <Group className="p-2 min-h-[32px] max-h-[128px]">
                 <Tooltip label={$t('Toggle menu')}>
                     <ActionIcon
