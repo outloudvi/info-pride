@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { useLocalStorage } from '@mantine/hooks'
 import { showNotification } from '@mantine/notifications'
 import { useTranslations } from 'next-intl'
@@ -24,7 +24,9 @@ const TalkView = ({ currChrId }: { currChrId: CharacterIdWithManager }) => {
         expandMenu: true,
         importExportModal: false,
         setupExportAsImage: false,
+        setupScrollToBottom: false,
     })
+    const previewRef = useRef<HTMLDivElement>(null)
     const commuJson = useMemo(
         () => JSON.stringify(commuData, null, 2),
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -70,6 +72,21 @@ const TalkView = ({ currChrId }: { currChrId: CharacterIdWithManager }) => {
         }))
     }, [$t, commuData, pref.setupExportAsImage])
 
+    useEffect(() => {
+        if (!pref.setupScrollToBottom) return
+        const cur = previewRef.current
+        if (!cur) return
+        const children = cur.children
+        children[children.length - 1].scrollIntoView({
+            block: 'end',
+            behavior: 'smooth',
+        })
+        setPref((x) => ({
+            ...x,
+            setupScrollToBottom: false,
+        }))
+    }, [pref.setupScrollToBottom])
+
     return (
         <>
             <ImportModal
@@ -85,7 +102,7 @@ const TalkView = ({ currChrId }: { currChrId: CharacterIdWithManager }) => {
                         '"Preview" 1fr "Compose" minmax(64px, min-content) "Menu" minmax(0px, min-content)',
                 }}
             >
-                <div className="min-h-0 overflow-y-auto">
+                <div className="min-h-0 overflow-y-auto" ref={previewRef}>
                     <Preview
                         commu={commuData}
                         pref={pref}

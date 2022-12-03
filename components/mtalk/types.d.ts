@@ -14,4 +14,5 @@ export type EditorPref = {
     expandMenu: boolean
     importExportModal: boolean
     setupExportAsImage: boolean
+    setupScrollToBottom: boolean
 }

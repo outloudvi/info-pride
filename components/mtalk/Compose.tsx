@@ -37,6 +37,10 @@ const Compose = ({
             },
         ])
         setText('')
+        setPref((x) => ({
+            ...x,
+            setupScrollToBottom: true,
+        }))
     }
 
     const insertStamp = (stampAssetId: string) => {
