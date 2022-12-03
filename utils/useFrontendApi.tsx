@@ -16,6 +16,7 @@ import type { SkillLaunchItem } from '#components/notemap/types'
 import type { BirthdayCommuList } from '#data/birthday.data'
 import type { Contributor } from '#components/api/contributors/types'
 import type { DiaryItem } from '#data/wikiModules/diary'
+import type { EventItem } from '#components/indexPage/types'
 
 const frontendQueryFn: QueryFunction = ({ queryKey: [path] }) =>
     fetch(('/api/' + path) as string).then((x) =>
@@ -37,6 +38,7 @@ export type FrontendAPIResponseMapping = {
         profile: string
     }
     contributors: Contributor[]
+    currentEvents: EventItem[]
     effToStr: string[]
     eventStories: ChapterItem | null
     diary: DiaryItem | undefined
