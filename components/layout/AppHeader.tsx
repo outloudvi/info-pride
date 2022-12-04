@@ -2,7 +2,12 @@ import * as React from 'react'
 import Link from 'next/link'
 import { Burger, Button, Header, useMantineColorScheme } from '@mantine/core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons'
+import {
+    faBell,
+    faMoon,
+    faSun,
+    faTree,
+} from '@fortawesome/free-solid-svg-icons'
 import { useCallback, useEffect } from 'react'
 import { useTranslations } from 'next-intl'
 
@@ -46,12 +51,45 @@ const AppHeader = ({
             />
             <Link
                 href="/"
-                className="text-black dark:text-white no-underline hover:underline ml-2">
-
+                className="text-black dark:text-white no-underline hover:underline ml-2"
+            >
                 <b>INFO PRIDE</b>
-
             </Link>
-            <div className="grow"></div>
+            <div className="grow text-center">
+                <div className="hidden md:block">
+                    <FontAwesomeIcon
+                        icon={faTree}
+                        color="green"
+                        className="h-4"
+                    />
+                    <FontAwesomeIcon
+                        icon={faBell}
+                        color="gold"
+                        className="h-4"
+                    />
+                    <span
+                        className="mx-2 font-semibold"
+                        style={{
+                            background: 'linear-gradient(#74D680, #FF7878)',
+                            WebkitBackgroundClip: 'text',
+                            WebkitTextFillColor: 'transparent',
+                            letterSpacing: '1.1px',
+                        }}
+                    >
+                        {$t('1205_merry_christmas')}
+                    </span>
+                    <FontAwesomeIcon
+                        icon={faBell}
+                        color="gold"
+                        className="h-4"
+                    />
+                    <FontAwesomeIcon
+                        icon={faTree}
+                        color="green"
+                        className="h-4"
+                    />
+                </div>
+            </div>
             <LanguageSelection className="hidden md:block" />
             <Button onClick={() => toggleColorSchemeWithTailwind()}>
                 <FontAwesomeIcon
@@ -61,7 +99,7 @@ const AppHeader = ({
                 {$t('Switch theme')}
             </Button>
         </Header>
-    );
+    )
 }
 
 export default AppHeader

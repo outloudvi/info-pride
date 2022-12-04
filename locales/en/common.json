@@ -39,5 +39,6 @@
     "audio_loading": "Audio is loading - note that the first load may be longer.",
     "audio_load_failed": "Failed to load audio {id}.",
     "no_trans": "Translation info is not found. Please add them to {field} at {file}.",
-    "load_progress": "Loading data... [{cur}/{total}]"
+    "load_progress": "Loading data... [{cur}/{total}]",
+    "1205_merry_christmas": "Merry Christmas!"
 }
