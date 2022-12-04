@@ -17,6 +17,7 @@ const GlobalNotices: Record<string, NoticeUnit> = {
             title={$t('221105-title')}
             withCloseButton
             onClose={off}
+            closeButtonLabel={$t('btn_close')}
         >
             {lfToBr($t('221105-desc'))}
             <p>

@@ -22,6 +22,7 @@ const PageLoading = ({
                         Object.keys(data).length) *
                     100
                 }
+                aria-label="Progress"
             />
         </>
     )

@@ -38,7 +38,12 @@ const EventItem = ({ item }: { item: EventItem }) => {
                         title={$t('Event info (Chinese)')}
                         href={Paths.wiki(link)}
                     >
-                        <ActionIcon color="blue" size="xl" variant="outline">
+                        <ActionIcon
+                            color="blue"
+                            size="xl"
+                            variant="outline"
+                            aria-label="View wiki"
+                        >
                             <FontAwesomeIcon icon={faInfoCircle} />
                         </ActionIcon>
                     </a>
@@ -50,7 +55,10 @@ const EventItem = ({ item }: { item: EventItem }) => {
                     </span>
                 </div>
             </Group>
-            <Progress value={100 * ((Number(now) - start) / (end - start))} />
+            <Progress
+                value={100 * ((Number(now) - start) / (end - start))}
+                aria-label={title}
+            />
         </div>
     )
 }

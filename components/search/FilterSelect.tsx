@@ -1,6 +1,7 @@
 import { MultiSelect, Select } from '@mantine/core'
 import type { MultiSelectProps, SelectProps } from '@mantine/core'
 import type { ReactNode } from 'react'
+import { useTranslations } from 'next-intl'
 
 const FilterSelect = <T extends string>({
     label,
@@ -21,6 +22,8 @@ const FilterSelect = <T extends string>({
     listNamemap?: Record<string, string>
     formProps: Omit<SelectProps, 'data'> & Omit<MultiSelectProps, 'data'>
 }) => {
+    const $c = useTranslations('common')
+
     const data =
         displayAs || listNamemap
             ? list.map((x) => ({
@@ -36,6 +39,7 @@ const FilterSelect = <T extends string>({
                 width={width}
                 className={className}
                 clearable
+                clearButtonLabel={$c('Clear')}
                 classNames={{
                     wrapper: 'max-w-xl',
                 }}
@@ -50,6 +54,7 @@ const FilterSelect = <T extends string>({
                 width={width}
                 className={className}
                 clearable
+                clearButtonLabel={$c('Clear')}
                 {...formProps}
             />
         )

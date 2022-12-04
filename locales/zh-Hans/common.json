@@ -35,6 +35,7 @@
     "Play": "播放",
     "Export as image": "导出为图片",
     "Story replay": "剧情回放",
+    "Clear": "清楚",
     "loading": "加载中。",
     "audio_loading": "正在加载音频。首次加载可能需要较长时间。",
     "audio_load_failed": "未能加载音频 {id} 。",
