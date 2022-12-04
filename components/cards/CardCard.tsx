@@ -5,6 +5,7 @@ import Link from 'next/link'
 
 import { getAssetSlug } from './CardAsset'
 import PropValueBg from './PropValueBg'
+import MixedImageBox from './MixedImageBox'
 
 import getCardColor from '#utils/getCardColor'
 import type { APIResponseOf, UnArray } from '#utils/api'
@@ -30,27 +31,13 @@ const CardCard = ({ card }: { card: UnArray<APIResponseOf<'Card/List'>> }) => {
 
     const assetImage =
         initialRarity < 5 ? (
-            <div className="flex">
-                <AssetImage
-                    name={getAssetSlug(assetId, 'rect', false)}
-                    ratio="2 / 9"
-                    width="12.5%"
-                    alt={'Card image'}
-                    className="object-cover"
-                />
-                <AssetImage
-                    name={getAssetSlug(assetId, 'rect', true)}
-                    ratio="14 / 9"
-                    width="87.5%"
-                    alt={'Card image'}
-                    className="object-cover"
-                />
-            </div>
+            <MixedImageBox assetId={assetId} />
         ) : (
             <AssetImage
                 name={getAssetSlug(assetId, 'rect', true)}
                 ratio="16 / 9"
                 alt={'Card image'}
+                className="object-fill"
             />
         )
 
