@@ -45,7 +45,7 @@ const AssetImage = (props: Props) => {
                 height={undefined}
                 width={undefined}
                 alt={alt}
-                className={`object-contain ${props.className ?? ''}`}
+                className={`object-fill ${props.className ?? ''}`}
             />
         </div>
     )
