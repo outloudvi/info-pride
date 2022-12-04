@@ -10,6 +10,7 @@ const Pages = {
     'Card Search': '/search',
     'Mana Diary': '/diary',
     MacaronTalk: '/mtalk',
+    Emblems: '/emblems',
     Colors: '/colors',
     Settings: '/settings',
     About: '/about',
