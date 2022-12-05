@@ -50,6 +50,8 @@ const shortDateAtom = atomWithHash('date', new Date(0), {
 })
 
 const DiaryPage = ({ first, last }: { first: string; last: string }) => {
+    const $c = useTranslations('common')
+
     const [currDate, setCurrDate] = useAtom(shortDateAtom)
 
     useLayoutEffect(() => {
@@ -89,6 +91,7 @@ const DiaryPage = ({ first, last }: { first: string; last: string }) => {
                                     onChange={(e) => {
                                         if (e) setCurrDate(e)
                                     }}
+                                    clearButtonLabel={$c('Clear')}
                                 />
                             </div>
                         </div>

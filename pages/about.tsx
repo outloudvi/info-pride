@@ -32,7 +32,12 @@ const ContributorBox = ({ contrib }: { contrib: Contributor }) => {
     const { name, login, avatar_url, profile, contributions } = contrib
     return (
         <Card shadow="sm" p="sm" radius="md" className="flex items-center">
-            <Avatar src={avatar_url} size="lg" className="rounded-full" />
+            <Avatar
+                src={avatar_url}
+                size="lg"
+                className="rounded-full"
+                alt={`Avatar for ${name}`}
+            />
             <div className="ml-2">
                 <b>{name}</b> (
                 <a href={`https://github.com/${login}`} rel="nofollow noopener">
