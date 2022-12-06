@@ -147,6 +147,10 @@ const BirthdayCommu: Partial<Record<CharacterId, BirthdayCommuList>> = {
             others: { type: 'bilibili', vid: 'av464719603' },
             phone: { type: 'bilibili', vid: 'av464719603', pid: 2 },
         },
+        2022: {
+            opening: { type: 'bilibili', vid: 'av348485351' },
+            phone: { type: 'bilibili', vid: 'av305911138' },
+        },
     },
 
     // ThreeX
