@@ -143,6 +143,7 @@ const UnitsPage = ({
                 opened={modalImportUnit}
                 onClose={() => setModalImportUnit(false)}
                 title="导入队伍编码"
+                closeButtonLabel="Close"
             >
                 <p className="p-2">
                     队伍编码可以表示一个五人队伍的卡组及站位，但不包含等级或技能信息。{' '}

@@ -134,7 +134,7 @@ const CardItem = ({
                 <Link href="/cards" passHref className="no-underline">
                     <Anchor>{$t('Card list')}</Anchor>
                 </Link>
-                    <Anchor>{name}</Anchor>
+                <Anchor>{name}</Anchor>
             </Breadcrumbs>
             <div>
                 {$vcn(card.name) !== card.name ? (
@@ -182,6 +182,7 @@ const CardItem = ({
                         onChange={(r) => {
                             setRarity(r)
                         }}
+                        aria-label={$t('Rarity')}
                     />
                     <div className="mt-2">
                         {$t('Level')} / {level}
@@ -193,6 +194,7 @@ const CardItem = ({
                         onChange={(l) => {
                             setLevel(l)
                         }}
+                        aria-label={$t('Level') + '44'}
                     />
                     <div className="mt-2">
                         {$t('Props')}{' '}

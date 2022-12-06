@@ -14,12 +14,9 @@ const EditMenu = ({ deleteThis }: { deleteThis: () => void }) => {
                     onClick={() => {
                         deleteThis()
                     }}
+                    aria-label={$t('Delete')}
                 >
-                    <FontAwesomeIcon
-                        icon={faTrash}
-                        color="white"
-                        aria-label={$t('Delete')}
-                    />
+                    <FontAwesomeIcon icon={faTrash} color="white" />
                 </ActionIcon>
             </Tooltip>
         </>

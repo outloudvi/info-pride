@@ -47,6 +47,7 @@ const Skill = ({
                             value={level}
                             label={(v) => `Level ${v}`}
                             onChange={setLevel}
+                            aria-label={'Level'}
                         />
                     )}
                 </div>

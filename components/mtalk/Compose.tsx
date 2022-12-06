@@ -70,11 +70,11 @@ const Compose = ({
                                 expandMenu: !x.expandMenu,
                             }))
                         }}
+                        aria-label={$t('Toggle menu')}
                     >
                         <FontAwesomeIcon
                             icon={faEllipsisVertical}
                             color="white"
-                            aria-label={$t('Toggle menu')}
                         />
                     </ActionIcon>
                 </Tooltip>
@@ -84,12 +84,9 @@ const Compose = ({
                         onClick={() => {
                             setInsertStampModal(true)
                         }}
+                        aria-label={$t('Insert a stamp')}
                     >
-                        <FontAwesomeIcon
-                            icon={faCirclePlus}
-                            color="white"
-                            aria-label={$t('Insert a stamp')}
-                        />
+                        <FontAwesomeIcon icon={faCirclePlus} color="white" />
                     </ActionIcon>
                 </Tooltip>
                 <CharacterIcon id={currChrId} />
@@ -97,9 +94,14 @@ const Compose = ({
                     className="flex-grow min-h-[32px] max-h-[128px]"
                     value={text}
                     onChange={(e) => setText(e.currentTarget.value)}
+                    aria-label="Text"
                 />
                 <Tooltip label={$t('Send')}>
-                    <ActionIcon variant="outline" onClick={submit}>
+                    <ActionIcon
+                        variant="outline"
+                        onClick={submit}
+                        aria-label={$t('Send')}
+                    >
                         <FontAwesomeIcon
                             icon={faPaperPlane}
                             color="white"
