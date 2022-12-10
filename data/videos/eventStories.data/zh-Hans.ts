@@ -328,6 +328,27 @@ const data: Record<string, ChapterItem> = {
         name: '关系好到可以吵架',
         video: { type: 'bilibili', vid: 'av902748113' },
     },
+    // 君と願う月灯の祝祭
+    'st-eve-2212-race-001': {
+        name: '月光风暴的冬日新歌会议',
+        video: { type: 'acfun', vid: 'ac40073063' },
+    },
+    'st-eve-2212-race-002': {
+        name: '不为谁知的秘密',
+        video: { type: 'acfun', vid: 'ac40090946' },
+    },
+    'st-eve-2212-race-003': {
+        name: '关于秘密的博弈',
+        video: { type: 'acfun', vid: 'ac40096889' },
+    },
+    'st-eve-2212-race-004': {
+        name: '与你一同度过的圣诞节',
+        video: { type: 'acfun', vid: 'ac40105983' },
+    },
+    'st-eve-2212-race-005': {
+        name: '感谢你能降生于这个世界',
+        video: { type: 'acfun', vid: 'ac40106045' },
+    },
 }
 
 const _ = {

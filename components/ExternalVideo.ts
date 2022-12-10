@@ -1,5 +1,5 @@
 export type ExternalVideo = {
-    type: 'bilibili' | 'youtube'
+    type: 'bilibili' | 'youtube' | 'acfun'
     vid: string
     // Bilibili only
     pid?: number
@@ -14,6 +14,9 @@ export function toVideoLink(e: ExternalVideo): string {
         }
         case 'youtube': {
             return `https://www.youtube.com/watch?v=${e.vid}`
+        }
+        case 'acfun': {
+            return `https://www.acfun.cn/v/${e.vid}`
         }
     }
     return ''
