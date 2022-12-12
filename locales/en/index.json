@@ -39,5 +39,6 @@
     "MultiLinks": "Multi Links",
     "loading_news": "Loading news.",
     "last_updated": "Last updated:",
-    "version_info_loading": "Loading game version info."
+    "version_info_loading": "Loading game version info.",
+    "local_time": "Local time:"
 }

@@ -39,5 +39,6 @@
     "MultiLinks": "Multi Links 活动",
     "loading_news": "新闻加载中。",
     "last_updated": "最后更新：",
-    "version_info_loading": "正在加载游戏版本信息。"
+    "version_info_loading": "正在加载游戏版本信息。",
+    "local_time": "本地时间："
 }
