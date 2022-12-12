@@ -37,17 +37,24 @@ const CalendarEventTypeMapping: Record<CalendarEventType, EventType> = {
 
 const CommonDateFormat = 'YYYY/M/D'
 const LastVenusBattleStartDate = '2022/12/2'
+const DefaultTimeZone = 'Asia/Tokyo'
 
 function getVenusBattleEvent(startOfToday: Dayjs): EventItem[] {
     // VB goes for 9 days and rests for a day
-    const baseDate = dayjs(LastVenusBattleStartDate, CommonDateFormat)
+    const baseDate = dayjs.tz(
+        LastVenusBattleStartDate,
+        CommonDateFormat,
+        DefaultTimeZone
+    )
     const dayProgressForCurrVenus = startOfToday.diff(baseDate, 'day') % 10
+
     if (dayProgressForCurrVenus === 9) {
         // in rest
         return []
     }
     const startDate = startOfToday.subtract(dayProgressForCurrVenus, 'day')
-    const endDate = startDate.add(9, 'day')
+    const endDate = startDate.add(9, 'day').subtract(1, 'second')
+
     return [
         {
             title: 'VENUS バトル',
@@ -83,7 +90,7 @@ const currentEvents = async (
     _: NextApiRequest,
     res: NextApiResponse<FrontendAPIResponseMapping['currentEvents']>
 ) => {
-    const startOfToday = dayjs().tz('Asia/Tokyo').startOf('day')
+    const startOfToday = dayjs().tz(DefaultTimeZone).startOf('day')
     const allEvents = Object.values(Calendar).reduce((a, b) => [...a, ...b])
     const activeEvents = allEvents
         .filter(
@@ -93,14 +100,15 @@ const currentEvents = async (
         )
         .sort(
             (a, b) =>
-                Number(dayjs(a.start, CommonDateFormat)) -
-                Number(dayjs(b.start, CommonDateFormat))
+                // TZ doesn't matter here since they are all dates without time
+                Number(dayjs.tz(a.start, CommonDateFormat, DefaultTimeZone)) -
+                Number(dayjs.tz(b.start, CommonDateFormat, DefaultTimeZone))
         )
         .map(({ title, type, start, end, link }) => ({
             title,
             type: CalendarEventTypeMapping[type],
-            start: Number(dayjs(start, CommonDateFormat)),
-            end: Number(dayjs(end, CommonDateFormat)),
+            start: Number(dayjs.tz(start, CommonDateFormat, DefaultTimeZone)),
+            end: Number(dayjs.tz(end, CommonDateFormat, DefaultTimeZone)),
             link: link ? link : undefined,
         }))
 
