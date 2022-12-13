@@ -22,6 +22,7 @@ const nextConfig = {
     },
     images: {
         domains: ['idoly-assets-curator.vercel.app', 'idoly-assets.outv.im'],
+        unoptimized: true,
     },
     i18n: {
         locales,
