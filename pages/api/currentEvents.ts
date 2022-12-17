@@ -96,7 +96,8 @@ const currentEvents = async (
         .filter(
             (x) =>
                 startOfToday.isSameOrAfter(x.start, 'day') &&
-                startOfToday.isSameOrBefore(x.end, 'day')
+                startOfToday.isSameOrBefore(x.end, 'day') &&
+                !['VENUS对战', '联合对战'].includes(x.type)
         )
         .sort(
             (a, b) =>
