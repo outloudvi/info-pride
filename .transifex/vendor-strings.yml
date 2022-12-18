@@ -6,3 +6,5 @@ git:
       source_language: ja
       source_file_dir: locales/ja
       translation_files_expression: "locales/<lang>"
+      ignore_files:
+        - locales/ja/v-card-alias.json
