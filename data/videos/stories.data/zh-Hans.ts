@@ -1141,6 +1141,10 @@ const data: StoriesData['data'] = {
                 name: '未能实现的约定',
                 video: { type: 'bilibili', vid: 'av562543411' },
             },
+            10: {
+                name: '宿命的对决',
+                video: { type: 'bilibili', vid: 'av819045683' },
+            },
         },
     },
     Big4: {

@@ -245,6 +245,11 @@ const data: Record<string, ChapterItem> = {
         name: '只要是我们的话，就没有问题',
         video: { type: 'bilibili', vid: 'av553882116' },
     },
+    // 導きのファンファーレ
+    'st-eve-2206-marathon-001': {
+        name: '大家一起创作的歌曲',
+        video: { type: 'bilibili', vid: 'av649046459' },
+    },
     // 熱中☆ハプニングサマー
     'st-eve-2208-backside-001': {
         name: '想和前辈一起玩',

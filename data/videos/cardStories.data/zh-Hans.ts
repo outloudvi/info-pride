@@ -150,6 +150,12 @@ const dataNagisa: StoriesData = {
         3: { name: 'TODO', video: { type: 'bilibili', vid: 'av600547275' } },
         phone: { video: { type: 'bilibili', vid: 'av940813838' } },
     },
+    'card-ngs-05-xmas-00': {
+        // 夢抱くクリスマスデート
+        1: { name: 'TODO', video: { type: 'bilibili', vid: 'av521235898' } },
+        2: { name: 'TODO', video: { type: 'bilibili', vid: 'av221291222' } },
+        3: { name: 'TODO', video: { type: 'bilibili', vid: 'av518829869' } },
+    },
 }
 
 // 白石沙季
@@ -329,6 +335,21 @@ const dataSuzu: StoriesData = {
         3: {
             name: '大女演员传说的开始',
             video: { type: 'bilibili', vid: 'av900799515' },
+        },
+    },
+    'card-suz-05-xmas-00': {
+        // 恵みを運ぶアイドルサンタ
+        1: {
+            name: '一定会很惊喜',
+            video: { type: 'bilibili', vid: 'av476291610' },
+        },
+        2: {
+            name: 'Endless·Christmas跌丝袜！',
+            video: { type: 'bilibili', vid: 'av306412185' },
+        },
+        3: {
+            name: '作为偶像圣诞老人这是当然的',
+            video: { type: 'bilibili', vid: 'av518969677' },
         },
     },
 }
