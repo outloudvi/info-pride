@@ -155,6 +155,7 @@ const dataNagisa: StoriesData = {
         1: { name: 'TODO', video: { type: 'bilibili', vid: 'av521235898' } },
         2: { name: 'TODO', video: { type: 'bilibili', vid: 'av221291222' } },
         3: { name: 'TODO', video: { type: 'bilibili', vid: 'av518829869' } },
+        phone: { video: { type: 'bilibili', vid: 'av434255947' } },
     },
 }
 
@@ -350,6 +351,9 @@ const dataSuzu: StoriesData = {
         3: {
             name: '作为偶像圣诞老人这是当然的',
             video: { type: 'bilibili', vid: 'av518969677' },
+        },
+        phone: {
+            video: { type: 'bilibili', vid: 'av861773834' },
         },
     },
 }
@@ -694,6 +698,22 @@ const dataRei: StoriesData = {
         phone: {
             video: { type: 'bilibili', vid: 'av940855465' },
         },
+    },
+    'card-rei-05-fest-00': {
+        // 踊る彼女に息をのむ
+        1: {
+            name: '怜的对手',
+            video: { type: 'bilibili', vid: 'av946817911', pid: 1 },
+        },
+        2: {
+            name: '现在，我想告诉她',
+            video: { type: 'bilibili', vid: 'av946817911', pid: 2 },
+        },
+        3: {
+            name: '作为偶像',
+            video: { type: 'bilibili', vid: 'av946817911', pid: 3 },
+        },
+        phone: { video: { type: 'bilibili', vid: 'av564475797' } },
     },
 }
 
@@ -1139,6 +1159,24 @@ const dataAoi: StoriesData = {
         3: {
             name: '唠唠叨叨',
             video: { type: 'bilibili', vid: 'av250442533', pid: 3 },
+        },
+    },
+    'card-aoi-05-fest-00': {
+        // 名残の空に約束を
+        1: {
+            name: '希望你能助我一臂之力',
+            video: { type: 'bilibili', vid: 'av606909078' },
+        },
+        2: {
+            name: '崭新的光芒',
+            video: { type: 'bilibili', vid: 'av264458174' },
+        },
+        3: {
+            name: '这是我们的约定',
+            video: { type: 'bilibili', vid: 'av564481556' },
+        },
+        phone: {
+            video: { type: 'bilibili', vid: 'av306970363' },
         },
     },
 }

@@ -1181,6 +1181,34 @@ const data: StoriesData['data'] = {
                 name: '无尽的低谷',
                 video: { type: 'bilibili', vid: 'av858440503', pid: 3 },
             },
+            9: {
+                name: '被掩埋的中心',
+                video: { type: 'bilibili', vid: 'av858440503', pid: 4 },
+            },
+            10: {
+                name: '寻找机会',
+                video: { type: 'bilibili', vid: 'av858440503', pid: 5 },
+            },
+            11: {
+                name: '不寻常的企划',
+                video: { type: 'bilibili', vid: 'av861703761', pid: 1 },
+            },
+            12: {
+                name: '月组强化合宿＠成宫家',
+                video: { type: 'bilibili', vid: 'av861703761', pid: 2 },
+            },
+            13: {
+                name: '寻找欧卡皮！',
+                video: { type: 'bilibili', vid: 'av861703761', pid: 3 },
+            },
+            14: {
+                name: '探寻的结果',
+                video: { type: 'bilibili', vid: 'av861703761', pid: 4 },
+            },
+            15: {
+                name: '玩得开心但也尽力而为',
+                video: { type: 'bilibili', vid: 'av861703761', pid: 5 },
+            },
         },
     },
     Tsuki: {
