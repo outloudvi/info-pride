@@ -1,7 +1,7 @@
 import { DatePicker } from '@mantine/dates'
 import { Button, Grid } from '@mantine/core'
 import dayjs from 'dayjs'
-import { atomWithHash } from 'jotai/utils'
+import { atomWithHash } from 'jotai-location'
 import { useAtom } from 'jotai'
 import { useLayoutEffect } from 'react'
 import { useTranslations } from 'next-intl'

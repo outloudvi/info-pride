@@ -47,6 +47,7 @@ specifiers:
   hoshimi-types: ^2.3.5
   husky: ^8.0.2
   jotai: ^1.11.2
+  jotai-location: ^0.3.2
   json-schema-to-typescript: ^11.0.2
   lodash: ^4.17.21
   mocha: ^10.2.0
@@ -100,6 +101,7 @@ dependencies:
   handlebars: 4.7.7
   history: 5.3.0
   jotai: 1.11.2_zavbqmrropwrojvx6ojaa4s7im
+  jotai-location: 0.3.2_jotai@1.11.2
   lodash: 4.17.21
   next: 13.0.4_672uxklweod7ene3nqtsh262ca
   next-intl: 2.10.2_next@13.0.4+react@18.2.0
@@ -5060,6 +5062,14 @@ packages:
     transitivePeerDependencies:
       - encoding
     dev: true
+
+  /jotai-location/0.3.2_jotai@1.11.2:
+    resolution: {integrity: sha512-VQe3CzArXqzdmJ8EqRppsXn9/rjRjIWjlshWUc1FaB/XeFq5bQwfVq9tGK9JNpwT7Er56LXnf1ez20IPntUY0g==}
+    peerDependencies:
+      jotai: '*'
+    dependencies:
+      jotai: 1.11.2_zavbqmrropwrojvx6ojaa4s7im
+    dev: false
 
   /jotai/1.11.2_zavbqmrropwrojvx6ojaa4s7im:
     resolution: {integrity: sha512-hVLn1aS1QprDy+NrvyWIOcaA/LEG5AY0Z7kWtx26EJ8eH8DY8pW1wUM0PrlqQzthqd6HdEVtXLY1rB//0n8LvA==}
