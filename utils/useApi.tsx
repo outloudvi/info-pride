@@ -2,16 +2,23 @@ import { showNotification } from '@mantine/notifications'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons'
 import * as Sentry from '@sentry/browser'
-import { APIMapping } from 'hoshimi-types'
+import type { APIMapping } from 'hoshimi-types'
+import type { QueryKey, UseQueryOptions } from 'react-query'
 import { useQuery } from 'react-query'
 
-import { APIResponseOf, GetFirst, LengthOf } from './api'
+import type { APIResponseOf, GetFirst, LengthOf } from './api'
 
 function useApi<T extends keyof APIMapping>(
     key: T,
     params?: LengthOf<Parameters<APIMapping[T]>> extends 0
         ? undefined
-        : GetFirst<Parameters<APIMapping[T]>>
+        : GetFirst<Parameters<APIMapping[T]>>,
+    options?: UseQueryOptions<
+        APIResponseOf<T>,
+        unknown,
+        APIResponseOf<T>,
+        QueryKey
+    >
 ) {
     const urlsp = new URLSearchParams()
     let withParams = false
@@ -31,6 +38,7 @@ function useApi<T extends keyof APIMapping>(
             console.error(error)
             Sentry.captureException(error)
         },
+        ...options,
     })
 
     return rq
