@@ -46,6 +46,10 @@ const special: StoriesData['special'] = [
         name: '[2022] 三得利售货机限定慰问来电（雫）',
         video: { type: 'bilibili', vid: 'av817426800' },
     },
+    {
+        name: '[2023] 新年祝贺初见剧情',
+        video: { type: 'bilibili', vid: 'av989588644' },
+    },
 ]
 
 const data: StoriesData['data'] = {
