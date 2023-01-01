@@ -1,7 +1,7 @@
 import { useTranslations } from 'next-intl'
-import { useForm } from '@mantine/form'
 import { Button, Checkbox, SimpleGrid } from '@mantine/core'
 import { useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
 
 import Title from '#components/Title'
 import getI18nProps from '#utils/getI18nProps'
@@ -12,15 +12,9 @@ import Emblem from '#components/emblems/Emblem'
 const EmblemsPage = () => {
     const $t = useTranslations('emblems')
 
-    const {
-        values: formValues,
-        errors: formErrors,
-        getInputProps,
-    } = useForm({
-        initialValues: {
-            showHiddenEmblems: true,
-        },
-    })
+    const router = useRouter()
+    const routePath = useRouter().asPath
+    const showHidden = router.query.showHidden === '1'
     const [currItemList, setCurrItemList] = useState<
         APIResponseOf<'Emblems'>['data']
     >([])
@@ -28,11 +22,17 @@ const EmblemsPage = () => {
     const { data: ApiData, isFetching } = useApi('Emblems', {
         limit: String(16),
         offset: String(currOffset),
+        showHidden: String(showHidden),
     })
+    useEffect(() => {
+        setCurrOffset(0)
+        setCurrItemList([])
+    }, [routePath])
     useEffect(() => {
         if (!ApiData) return
         setCurrItemList((x) => [...x, ...ApiData.data])
     }, [ApiData])
+
     const loadMore = () => {
         setCurrOffset((x) => x + 16)
     }
@@ -43,8 +43,14 @@ const EmblemsPage = () => {
             <div className="mt-2 mb-4 rounded-md border-solid border-6 border-sky-500 p-2">
                 <Checkbox
                     label={$t('Show hidden emblems')}
-                    {...getInputProps('showHiddenEmblems')}
-                    checked={formValues.showHiddenEmblems}
+                    checked={showHidden}
+                    onChange={() => {
+                        const { pathname } = router
+                        router.push({
+                            pathname,
+                            query: { showHidden: showHidden ? '0' : '1' },
+                        })
+                    }}
                 />
             </div>
             <SimpleGrid
@@ -57,15 +63,9 @@ const EmblemsPage = () => {
                     { maxWidth: 600, cols: 1, spacing: 'sm' },
                 ]}
             >
-                {currItemList
-                    .filter(
-                        (x) =>
-                            formValues.showHiddenEmblems ||
-                            x.isViewableInInactive
-                    )
-                    .map((item, key) => (
-                        <Emblem key={key} item={item} />
-                    ))}
+                {currItemList.map((item, key) => (
+                    <Emblem key={key} item={item} />
+                ))}
             </SimpleGrid>
             <Button
                 onClick={() => loadMore()}
