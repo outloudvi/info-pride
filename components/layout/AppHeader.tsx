@@ -55,41 +55,7 @@ const AppHeader = ({
             >
                 <b>INFO PRIDE</b>
             </Link>
-            <div className="grow text-center">
-                <div className="hidden md:block">
-                    <FontAwesomeIcon
-                        icon={faTree}
-                        color="green"
-                        className="h-4"
-                    />
-                    <FontAwesomeIcon
-                        icon={faBell}
-                        color="gold"
-                        className="h-4"
-                    />
-                    <span
-                        className="mx-2 font-semibold"
-                        style={{
-                            background: 'linear-gradient(#74D680, #FF7878)',
-                            WebkitBackgroundClip: 'text',
-                            WebkitTextFillColor: 'transparent',
-                            letterSpacing: '1.1px',
-                        }}
-                    >
-                        {$t('1205_merry_christmas')}
-                    </span>
-                    <FontAwesomeIcon
-                        icon={faBell}
-                        color="gold"
-                        className="h-4"
-                    />
-                    <FontAwesomeIcon
-                        icon={faTree}
-                        color="green"
-                        className="h-4"
-                    />
-                </div>
-            </div>
+            <div className="grow"></div>
             <LanguageSelection className="hidden md:block" />
             <Button onClick={() => toggleColorSchemeWithTailwind()}>
                 <FontAwesomeIcon
