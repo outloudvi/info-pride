@@ -63,7 +63,7 @@ const CardItem = ({
     const rarityInfo = rarityData.filter((x) => x.rarity === rarity)[0]
     const [level, setLevel] = useState(rarityInfo?.levelLimit ?? 1)
     const locale = useLocale()
-    const [cnTrans, setCnTrans] = useState(locale === 'zh-Hans')
+    const [cnTrans, setCnTrans] = useState(false)
 
     const { data: SkillData } = useApi(`Skill`, {
         ids: `${card.skillId1},${card.skillId2},${card.skillId3}`,
