@@ -6,77 +6,29 @@ import { SkillCategoryType } from 'hoshimi-types/ProtoEnum'
 import Paths from '#utils/paths'
 import type { EffectTypeName } from '#utils/typeSlug'
 
+// In reference of Meidayo: https://github.com/Soulycoris/meidayo/blob/main/html/src/composables/skill.ts
+
 const pathAssetsForImg = Paths.assets('img')
 
 type SkillImageBgType = 'score' | 'strength' | 'support' | 'yell' | ''
 
+enum CornerType {
+    Opponent,
+    Negative,
+    Neutral,
+}
+
 // Background for non-SP skills
 function getSkillImageBgPrefix(typ: EffectTypeName): SkillImageBgType {
-    switch (typ) {
-        case 'combo_continuation':
-            return 'strength'
-        case 'score_get':
-        case 'score_get_by_strength_effect_count':
-        case 'score_get_by_more_combo_count':
-        case 'score_get_by_less_stamina':
-        case 'score_get_by_less_fan_amount':
-        case 'score_get_by_more_stamina_use':
-        case 'score_get_by_skill_activation_count':
-        case 'score_get_by_more_fan_engage':
-        case 'score_get_by_trigger':
-        case 'score_get_by_status_effect_type_grade':
-        case 'score_get_by_more_stamina':
-        case 'score_get_and_stamina_consumption_by_more_stamina_use':
-            return 'score'
-        case 'cool_time_reduction':
-        case 'stamina_consumption':
-        case 'stamina_consumption_reduction':
-        case 'strength_effect_count_increase':
-        case 'strength_effect_value_increase':
-        case 'audience_amount_increase':
-        case 'fix_stamina_recovery':
-        case 'target_stamina_recovery':
-            return 'support'
-        case 'active_skill_score_up':
-        case 'critical_rate_up':
-        case 'vocal_up':
-        case 'dance_up':
-        case 'visual_up':
-        case 'vocal_boost':
-        case 'dance_boost':
-        case 'visual_boost':
-        case 'combo_score_up':
-        case 'tension_up':
-        case 'score_up':
-        case 'passive_skill_score_up':
-        case 'beat_score_up':
-        case 'critical_bonus_permil_up':
-        case 'skill_score_up':
-        case 'skill_success_rate_up':
-        case 'special_skill_score_up':
-        case 'active_score_multiplier_add':
-            return 'strength'
-        // Undecided
-        case 'dance_down':
-        case 'visual_down':
-        case 'vocal_down':
-        case 'skill_impossible':
-        case 'audience_amount_reduction':
-        case 'stamina_consumption_increase':
-        case 'stamina_continuous_recovery':
-        case 'weakness_effect_inversion':
-        case 'weakness_effect_prevention':
-        case 'weakness_effect_recovery':
-        case 'strength_effect_erasing_all':
-        case 'passive_score_multiplier_add':
-        case 'special_score_multiplier_add':
-        case 'score_get_by_skill_success_rate_up':
-        case 'strength_effect_erasing':
-        case 'strength_effect_assignment_all':
-        case 'strength_effect_migration_before_active_skill':
-        case 'strength_effect_migration_before_special_skill':
-            return ''
+    if (typ.includes('score_get')) {
+        return 'score'
     }
+
+    if ((typ.includes('up') || typ.includes('boost')) && !isDebuff(typ)) {
+        return 'strength'
+    }
+
+    return 'support'
 }
 
 function buildSkillImage(parts: ReactNode[]): JSX.Element {
@@ -85,6 +37,31 @@ function buildSkillImage(parts: ReactNode[]): JSX.Element {
             {parts.map((x) => x)}
         </div>
     )
+}
+
+function isDebuff(skill: string): boolean {
+    return (
+        ['down', 'consumption-increase', 'impossible', 'erasing'].filter((x) =>
+            skill.includes(x)
+        ).length > 0
+    )
+}
+
+function getCornerTriangleType(skill: string): CornerType {
+    if (skill.includes('opponent')) {
+        return CornerType.Opponent
+    }
+    if (isDebuff(skill)) {
+        return CornerType.Negative
+    }
+    return CornerType.Neutral
+}
+
+// https://github.com/MalitsPlus/sakura-love/blob/97174f278e2ad8146f80cc3a0f5d64ca57e7fda3/components/media/SkillIcon.tsx#L71-L72
+const CornerTriangleColor: Record<CornerType, string> = {
+    [CornerType.Opponent]: '#fc7e44',
+    [CornerType.Negative]: '#d80032',
+    [CornerType.Neutral]: '#d7d7d6',
 }
 
 // really really chaotic
@@ -124,6 +101,7 @@ const SkillImage = ({
         />
     )
 
+    // For skills with an assetId (usually SP)
     if (skill.assetId) {
         // Use assetId as foreground
         parts.push(
@@ -139,7 +117,10 @@ const SkillImage = ({
         return buildSkillImage(parts)
     }
 
-    const skillIcons = skill.levels[0].skillDetails.map(
+    // For non-SPs
+    const skillIcons = (
+        skill.levels.find((x) => x.level === skillImgLevel) ?? skill.levels[0]
+    ).skillDetails.map(
         (x) =>
             'img_icon_skill-normal_' +
             x.efficacyId.split('-')[1].replace(/_/g, '-')
@@ -166,34 +147,94 @@ const SkillImage = ({
         return buildSkillImage(parts)
     }
 
-    // Pick the first two effects and build the image
-    // https://wiki.biligame.com/idolypride/模板:技能图标
-    parts.push(
-        <img
-            src={pathAssetsForImg(skillIcons[1])}
-            loading="lazy"
-            height={54.4}
-            width={54.4}
-            className="absolute left-0 bottom-0 -ml-1 -mb-1"
-            alt="Primary component of the skill icon"
-            style={{
-                filter: 'invert(1)',
-            }}
-        />
-    )
-    parts.push(
-        <img
-            src={pathAssetsForImg(skillIcons[0])}
-            loading="lazy"
-            height={32}
-            width={32}
-            className="absolute top-0 right-0"
-            alt="Secondary component of the skill icon"
-            style={{
-                filter: 'invert(1)',
-            }}
-        />
-    )
+    // Debuff goes #3
+    const debuffIndex = skillIcons.findIndex((x) => isDebuff(x))
+    if (debuffIndex !== -1 && debuffIndex !== 2) {
+        ;[skillIcons[2], skillIcons[debuffIndex]] = [
+            skillIcons[debuffIndex],
+            skillIcons[2],
+        ]
+    }
+
+    // score-get series goes #2
+    const scoreGetIndex = skillIcons.findIndex((x) => x.includes('score-get'))
+    if (scoreGetIndex !== -1 && scoreGetIndex !== 1) {
+        ;[skillIcons[1], skillIcons[scoreGetIndex]] = [
+            skillIcons[scoreGetIndex],
+            skillIcons[1],
+        ]
+    }
+
+    // Remove non-debuff #3
+    if (skillIcons[2] && !isDebuff(skillIcons[2])) {
+        delete skillIcons[2]
+    }
+
+    const skillIconList = skillIcons.filter((x) => x)
+
+    if (skillIconList[0]) {
+        // Center-left large icon
+        parts.push(
+            <img
+                src={pathAssetsForImg(skillIconList[0])}
+                loading="lazy"
+                height={54.4}
+                width={54.4}
+                className="absolute left-0 bottom-0 -ml-1 -mb-1"
+                alt="Primary component of the skill icon"
+                style={{
+                    filter: 'invert(1)',
+                }}
+            />
+        )
+    }
+
+    if (skillIconList[1]) {
+        // Top-right small icon
+        parts.push(
+            <img
+                src={pathAssetsForImg(skillIconList[1])}
+                loading="lazy"
+                height={32}
+                width={32}
+                className="absolute top-0 right-0"
+                alt="Secondary component of the skill icon"
+                style={{
+                    filter: 'invert(1)',
+                }}
+            />
+        )
+    }
+
+    if (skillIconList[2]) {
+        // Square
+        const cornerTriangleType = getCornerTriangleType(skillIconList[2])
+        parts.push(
+            <div
+                style={{
+                    backgroundColor: CornerTriangleColor[cornerTriangleType],
+                    clipPath: 'polygon(100% 0, 100% 100%, 0 100%)',
+                }}
+                className="absolute left-1/2 right-0 bottom-0 top-1/2"
+            />
+        )
+
+        // Bottom-right tiny icon
+        parts.push(
+            <img
+                src={pathAssetsForImg(skillIconList[2])}
+                loading="lazy"
+                height={20}
+                width={20}
+                className="absolute right-0 bottom-0"
+                alt="Primary component of the skill icon"
+                style={{
+                    filter: 'invert(1)',
+                }}
+            />
+        )
+    }
+
     return buildSkillImage(parts)
 }
 

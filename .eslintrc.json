@@ -39,7 +39,8 @@
                 "prefer": "type-imports",
                 "fixStyle": "separate-type-imports"
             }
-        ]
+        ],
+        "@typescript-eslint/no-extra-semi": "off"
     },
     "ignorePatterns": ["pages/_error.tsx"]
 }
