@@ -47,7 +47,11 @@ const special: StoriesData['special'] = [
         video: { type: 'bilibili', vid: 'av817426800' },
     },
     {
-        name: '[2023] 新年祝贺初见剧情',
+        name: '[2022] 年末祝福',
+        video: { type: 'bilibili', vid: 'av519872344' },
+    },
+    {
+        name: '[2023] 新年祝贺初见',
         video: { type: 'bilibili', vid: 'av989588644' },
     },
 ]

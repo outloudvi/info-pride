@@ -1120,6 +1120,24 @@ const dataRio: StoriesData = {
             video: { type: 'bilibili', vid: 'av346319550' },
         },
     },
+    'card-rio-05-newy-00': {
+        // 貴方と新春ホームカミング
+        1: {
+            name: '要来老家吗',
+            video: { type: 'bilibili', vid: 'av522158623' },
+        },
+        2: {
+            name: '女儿就请多关照了！？',
+            video: { type: 'bilibili', vid: 'av862265737' },
+        },
+        3: {
+            name: '莉央的本心',
+            video: { type: 'bilibili', vid: 'av862260565' },
+        },
+        phone: {
+            video: { type: 'bilibili', vid: 'av819895427' },
+        },
+    },
 }
 
 // 井川葵
@@ -1317,6 +1335,21 @@ const dataKokoro: StoriesData = {
         },
         phone: {
             video: { type: 'bilibili', vid: 'av430021035' },
+        },
+    },
+    'card-kkr-05-newy-00': {
+        // うれしはずかし初詣
+        1: {
+            name: 'TODO',
+            video: { type: 'bilibili', vid: 'av522460846' },
+        },
+        2: {
+            name: 'TODO',
+            video: { type: 'bilibili', vid: 'av522460846' },
+        },
+        3: {
+            name: 'TODO',
+            video: { type: 'bilibili', vid: 'av522460846' },
         },
     },
 }

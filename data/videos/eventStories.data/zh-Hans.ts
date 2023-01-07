@@ -354,6 +354,11 @@ const data: Record<string, ChapterItem> = {
         name: '感谢你能降生于这个世界',
         video: { type: 'acfun', vid: 'ac40106045' },
     },
+    // 最高優美＊飛躍のカウントダウン
+    'st-eve-2301-contest-001': {
+        name: '今年最后的演出对战',
+        video: { type: 'bilibili', vid: 'av522131017' },
+    },
 }
 
 const _ = {
