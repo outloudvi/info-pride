@@ -126,7 +126,6 @@ const CharacterItem = ({
                     </div>
                 </MediaQuery>
             )}
-
             {catchphrase && (
                 <Blockquote
                     className="text-gray-700 dark:text-gray-200"
@@ -201,12 +200,14 @@ const CharacterItem = ({
                     ) && <CharacterAnimation charId={id as CharacterId} />}
                 </Grid.Col>
             </Grid>
-            {!BirthdayCommuException.includes(id as CharacterId) && (
-                <>
-                    <h2>{$t('Birthday stories')}</h2>
-                    <BirthdayCommu charaId={id} />
-                </>
-            )}
+            {/* eslint-disable-next-line @typescript-eslint/no-explicit-any  */}
+            {PrimaryCharacterIds.includes(id as any) &&
+                !BirthdayCommuException.includes(id as CharacterId) && (
+                    <>
+                        <h2>{$t('Birthday stories')}</h2>
+                        <BirthdayCommu charaId={id} />
+                    </>
+                )}
             {!VoiceException.includes(id as CharacterId) && (
                 <>
                     <h2>{$t('In-game voices')}</h2>
