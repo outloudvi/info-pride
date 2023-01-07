@@ -36,7 +36,7 @@ const BirthdayCommu = ({ charaId }: { charaId: string }) => {
     if (yearList.length === 0) {
         return (
             <div>
-                {$t('no-bday-traslation', {
+                {$t('no-bday-translation', {
                     charaId,
                 })}
             </div>
