@@ -250,6 +250,14 @@ const data: Record<string, ChapterItem> = {
         name: '大家一起创作的歌曲',
         video: { type: 'bilibili', vid: 'av649046459' },
     },
+    'st-eve-2206-marathon-002': {
+        name: '失踪的拼图',
+        video: { type: 'bilibili', vid: 'av777132995' },
+    },
+    'st-eve-2206-marathon-003': {
+        name: '散步中的偶遇',
+        video: { type: 'bilibili', vid: 'av607551538' },
+    },
     // 熱中☆ハプニングサマー
     'st-eve-2208-backside-001': {
         name: '想和前辈一起玩',
