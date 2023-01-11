@@ -39,10 +39,10 @@ function buildSkillImage(parts: ReactNode[]): JSX.Element {
     )
 }
 
-function isDebuff(skill: string): boolean {
+function isDebuff(skill?: string): boolean {
     return (
         ['down', 'consumption-increase', 'impossible', 'erasing'].filter((x) =>
-            skill.includes(x)
+            skill?.includes(x)
         ).length > 0
     )
 }
@@ -118,7 +118,7 @@ const SkillImage = ({
     }
 
     // For non-SPs
-    const skillIcons = (
+    const skillIcons: (string | undefined)[] = (
         skill.levels.find((x) => x.level === skillImgLevel) ?? skill.levels[0]
     ).skillDetails.map(
         (x) =>
@@ -134,7 +134,7 @@ const SkillImage = ({
     if (skillIcons.length === 1) {
         parts.push(
             <img
-                src={pathAssetsForImg(skillIcons[0])}
+                src={pathAssetsForImg(skillIcons[0] as string)}
                 alt="Skill icon"
                 height={64}
                 width={64}
@@ -157,7 +157,7 @@ const SkillImage = ({
     }
 
     // score-get series goes #2
-    const scoreGetIndex = skillIcons.findIndex((x) => x.includes('score-get'))
+    const scoreGetIndex = skillIcons.findIndex((x) => x?.includes('score-get'))
     if (scoreGetIndex !== -1 && scoreGetIndex !== 1) {
         ;[skillIcons[1], skillIcons[scoreGetIndex]] = [
             skillIcons[scoreGetIndex],
@@ -170,30 +170,44 @@ const SkillImage = ({
         delete skillIcons[2]
     }
 
-    const skillIconList = skillIcons.filter((x) => x)
-
-    if (skillIconList[0]) {
-        // Center-left large icon
-        parts.push(
-            <img
-                src={pathAssetsForImg(skillIconList[0])}
-                loading="lazy"
-                height={54.4}
-                width={54.4}
-                className="absolute left-0 bottom-0 -ml-1 -mb-1"
-                alt="Primary component of the skill icon"
-                style={{
-                    filter: 'invert(1)',
-                }}
-            />
-        )
+    if (skillIcons[0]) {
+        if (skillIcons[1]) {
+            // Center-left large icon
+            parts.push(
+                <img
+                    src={pathAssetsForImg(skillIcons[0])}
+                    loading="lazy"
+                    height={54.4}
+                    width={54.4}
+                    className="absolute left-0 bottom-0 -ml-1 -mb-1"
+                    alt="Primary component of the skill icon"
+                    style={{
+                        filter: 'invert(1)',
+                    }}
+                />
+            )
+        } else {
+            // Center large icon
+            parts.push(
+                <img
+                    src={pathAssetsForImg(skillIcons[0])}
+                    alt="Skill icon"
+                    height={64}
+                    width={64}
+                    className="absolute"
+                    style={{
+                        filter: 'invert(1)',
+                    }}
+                />
+            )
+        }
     }
 
-    if (skillIconList[1]) {
+    if (skillIcons[1]) {
         // Top-right small icon
         parts.push(
             <img
-                src={pathAssetsForImg(skillIconList[1])}
+                src={pathAssetsForImg(skillIcons[1])}
                 loading="lazy"
                 height={32}
                 width={32}
@@ -206,9 +220,9 @@ const SkillImage = ({
         )
     }
 
-    if (skillIconList[2]) {
+    if (skillIcons[2]) {
         // Square
-        const cornerTriangleType = getCornerTriangleType(skillIconList[2])
+        const cornerTriangleType = getCornerTriangleType(skillIcons[2])
         parts.push(
             <div
                 style={{
@@ -222,7 +236,7 @@ const SkillImage = ({
         // Bottom-right tiny icon
         parts.push(
             <img
-                src={pathAssetsForImg(skillIconList[2])}
+                src={pathAssetsForImg(skillIcons[2])}
                 loading="lazy"
                 height={20}
                 width={20}
