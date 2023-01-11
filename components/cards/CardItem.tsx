@@ -30,7 +30,7 @@ import type { APIResponseOf, UnArray } from '#utils/api'
 import type { CharacterId } from '#data/vendor/characterId'
 import useFrontendApi from '#utils/useFrontendApi'
 import CCIDTable from '#data/ccid'
-import { MAX_LEVEL } from '#utils/constants'
+import { MAX_LEVEL, MAX_LEVEL_BEFORE_POTENTIAL } from '#utils/constants'
 
 const CardItem = ({
     card,
@@ -127,6 +127,15 @@ const CardItem = ({
     const cardCcidInfo = CCIDTable?.[card.characterId as CharacterId]?.find(
         (x) => x.cardId === card.id
     )
+    const levelDisplay =
+        level <= MAX_LEVEL_BEFORE_POTENTIAL ? (
+            <span>{level}</span>
+        ) : (
+            <span>
+                {MAX_LEVEL_BEFORE_POTENTIAL} +{' '}
+                {level - MAX_LEVEL_BEFORE_POTENTIAL} = {level}
+            </span>
+        )
 
     return (
         <>
@@ -185,7 +194,7 @@ const CardItem = ({
                         aria-label={$t('Rarity')}
                     />
                     <div className="mt-2">
-                        {$t('Level')} / {level}
+                        {$t('Level')} / {levelDisplay}
                     </div>
                     <Slider
                         min={1}
@@ -194,6 +203,12 @@ const CardItem = ({
                         onChange={(l) => {
                             setLevel(l)
                         }}
+                        marks={[
+                            {
+                                value: MAX_LEVEL_BEFORE_POTENTIAL,
+                                label: '200',
+                            },
+                        ]}
                         aria-label={$t('Level') + '44'}
                     />
                     <div className="mt-2">
