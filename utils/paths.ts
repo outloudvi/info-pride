@@ -7,7 +7,7 @@ const Paths = {
     ipcommu: (postId: string) =>
         `https://community.idolypride.jp/posts/${postId}`,
     assets: (typ: string) => (assetId: string) =>
-        `http://idoly-assets-curator.vercel.app/api/${typ}/${assetId}`,
+        `https://idoly-assets-curator.vercel.app/api/${typ}/${assetId}`,
     s3: (path: string) => `https://idoly-assets.outv.im/${path}`,
     sprite: (id: string) => Paths.s3(`sprite/${id}.png`),
     repoIssue: (id?: number) =>
