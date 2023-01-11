@@ -1,7 +1,11 @@
 import { useTranslations } from 'next-intl'
 
+import buildConfig from '#data/build.json'
+
 const Footer = () => {
     const $t = useTranslations('common.footer')
+
+    const gitCommit = buildConfig?.rev ?? 'HEAD'
     return (
         <footer className="text-center text-gray-500">
             <a
@@ -10,6 +14,12 @@ const Footer = () => {
                 rel="noopener noreferrer"
             >
                 {$t('Source code')}
+            </a>{' '}
+            @{' '}
+            <a
+                href={`https://github.com/outloudvi/info-pride/tree/${gitCommit}`}
+            >
+                {gitCommit.slice(0, 8)}
             </a>
             <br />
             {$t('bwiki.prefix')}
@@ -25,7 +35,6 @@ const Footer = () => {
                 CC BY-NC-SA 3.0
             </a>
             {$t('bwiki.suffix')}
-
             <br />
             {$t('copy')}
         </footer>

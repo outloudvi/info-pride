@@ -1,5 +1,8 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 
+const fs = require('node:fs')
+const cp = require('node:child_process')
+
 const { withSentryConfig } = require('@sentry/nextjs')
 
 const locales = require('./locales/locales.json')
@@ -41,8 +44,21 @@ const conf =
         ? withSentryConfig(nextConfig, sentryWebpackPluginOptions)
         : nextConfig
 
-module.exports = process.env.ANALYZE
-    ? require('@next/bundle-analyzer')({
-          enabled: true,
-      })(conf)
-    : conf
+const generateGlobalData = () => {
+    fs.writeFileSync(
+        'data/build.json',
+        JSON.stringify({
+            rev: cp.execSync('git rev-parse HEAD').toString().trim(),
+        })
+    )
+
+    return true
+}
+
+module.exports =
+    generateGlobalData() &&
+    (process.env.ANALYZE
+        ? require('@next/bundle-analyzer')({
+              enabled: true,
+          })(conf)
+        : conf)

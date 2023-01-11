@@ -45,3 +45,6 @@ utils/*/*.origin.json
 
 # Turborepo
 /.turbo
+
+# Build-time
+/data/build.json
