@@ -35,9 +35,11 @@ const EventItem = ({ item }: { item: EventItem }) => {
         return endDate.format(CommonDateFormat)
     }, [endDate])
 
-    const localTimeString = `${$t('local_time')} ${startDate.format(
-        ExtendedDateFormat
-    )} - ${endDate.format(ExtendedDateFormat)}`
+    const localTimeString = `${$t('local_time')} ${startDate
+        .local()
+        .format(ExtendedDateFormat)} - ${endDate
+        .local()
+        .format(ExtendedDateFormat)}`
 
     return (
         <div className="mb-4">
