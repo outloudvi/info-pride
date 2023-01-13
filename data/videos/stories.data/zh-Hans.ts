@@ -54,6 +54,18 @@ const special: StoriesData['special'] = [
         name: '[2023] 新年祝贺初见',
         video: { type: 'bilibili', vid: 'av989588644' },
     },
+    {
+        name: '[2023] 三得利售货机限定慰问来电（kana）',
+        video: { type: 'bilibili', vid: 'av777644312' },
+    },
+    {
+        name: '[2023] 三得利售货机限定慰问来电（miho）',
+        video: { type: 'bilibili', vid: 'av692644702' },
+    },
+    {
+        name: '[2023] 三得利售货机限定慰问来电（fran）',
+        video: { type: 'bilibili', vid: 'av522746969' },
+    },
 ]
 
 const data: StoriesData['data'] = {
