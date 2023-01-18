@@ -20,4 +20,5 @@ export enum EventType {
     MessageEvent,
     Training,
     MultiLinks,
+    VenusLeague
 }

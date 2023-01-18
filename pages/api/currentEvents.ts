@@ -33,6 +33,7 @@ const CalendarEventTypeMapping: Record<CalendarEventType, EventType> = {
     私信任务活动: EventType.MessageEvent,
     合宿活动: EventType.Training,
     'multi links活动': EventType.MultiLinks,
+    VENUS联赛: EventType.VenusLeague,
 }
 
 const CommonDateFormat = 'YYYY/M/D'
