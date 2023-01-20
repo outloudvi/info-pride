@@ -1,16 +1,6 @@
-import type { CharacterId } from './vendor/characterId'
+import type { BirthdayCommu } from './types'
 
-import type { ExternalVideo } from '#components/ExternalVideo'
-
-export type BirthdayStoryData = {
-    opening?: ExternalVideo
-    phone?: ExternalVideo
-    others?: ExternalVideo
-}
-
-export type BirthdayCommuList = Record<string, BirthdayStoryData>
-
-const BirthdayCommu: Partial<Record<CharacterId, BirthdayCommuList>> = {
+const _: BirthdayCommu = {
     // Tsuki
     'char-ktn': {
         2020: {
@@ -168,4 +158,4 @@ const BirthdayCommu: Partial<Record<CharacterId, BirthdayCommuList>> = {
     'char-mhk': {},
 } as const
 
-export default BirthdayCommu
+export default _

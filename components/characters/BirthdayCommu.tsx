@@ -1,15 +1,18 @@
 import { Button, Grid, Group, NativeSelect, Skeleton } from '@mantine/core'
 import { useEffect, useState } from 'react'
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 
 import useFrontendApi from '#utils/useFrontendApi'
 import { toVideoLink } from '#components/ExternalVideo'
-import type { BirthdayStoryData } from '#data/birthday.data'
+import type { BirthdayStoryData } from '#data/videos/birthday.data/types'
 
 const BirthdayCommu = ({ charaId }: { charaId: string }) => {
     const $t = useTranslations('characters')
+    const locale = useLocale()
+
     const { data, isSuccess } = useFrontendApi('birthdayCommu', {
         charaId,
+        locale,
     })
     const [selectedYear, setSelectedYear] = useState('')
 
