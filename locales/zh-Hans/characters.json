@@ -114,7 +114,7 @@
     "bday-opening": "开场剧情",
     "bday-phone": "电话剧情",
     "bday-others": "全员祝福",
-    "no-bday-translation": "暂无生日剧情翻译信息。请添加到翻译信息到 data/birthday.data.ts 的 BirthdayCommu[{charaId}] 。",
+    "no-bday-translation": "暂无生日剧情翻译信息。请添加到翻译信息到 data/videos/birthday.data/[lang].ts 的 BirthdayCommu[{charaId}] 。",
     "name-char-kor": "山田·弗兰西斯卡·夏织",
     "name-char-kan": "小岛叶",
     "name-char-mhk": "武田美帆子"
