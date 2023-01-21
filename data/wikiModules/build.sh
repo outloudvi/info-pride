@@ -4,7 +4,6 @@ set -eu
 declare -A PAGES
 
 PAGES['calendar']="模块:日历数据"
-PAGES['diary']="模块:麻奈日记数据"
 
 pushd $(dirname $0)
 

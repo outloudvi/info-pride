@@ -15,7 +15,6 @@ import type { Stories } from '#data/videos/cardStories.data/types'
 import type { SkillLaunchItem } from '#components/notemap/types'
 import type { BirthdayCommuList } from '#data/videos/birthday.data/types'
 import type { Contributor } from '#components/api/contributors/types'
-import type { DiaryItem } from '#data/wikiModules/diary'
 import type { EventItem } from '#components/indexPage/types'
 
 const frontendQueryFn: QueryFunction = ({ queryKey: [path] }) =>
@@ -41,7 +40,6 @@ export type FrontendAPIResponseMapping = {
     currentEvents: EventItem[]
     effToStr: string[]
     eventStories: ChapterItem | null
-    diary: DiaryItem | undefined
     news: { title: string; link?: string }[]
     skillRunner: SkillLaunchItem[]
     stories: ChapterItem | null

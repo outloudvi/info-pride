@@ -1,7 +1,7 @@
 #!/bin/bash
 set -eu
 
-PAGES=(calendar diary)
+PAGES=(calendar)
 
 pushd $(dirname $0)
 

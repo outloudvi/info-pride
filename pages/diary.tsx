@@ -1,5 +1,5 @@
 import { DatePicker } from '@mantine/dates'
-import { Button, Grid } from '@mantine/core'
+import { Alert, Button, Grid } from '@mantine/core'
 import dayjs from 'dayjs'
 import { atomWithHash } from 'jotai-location'
 import { useAtom } from 'jotai'
@@ -8,40 +8,102 @@ import { useTranslations } from 'next-intl'
 
 import Title from '#components/Title'
 import AssetImage from '#components/AssetImage'
-import useFrontendApi from '#utils/useFrontendApi'
-import {
-    fromShortDate,
-    getDiaryRangePair,
-    toShortDate,
-} from '#components/api/diary'
-import { addI18nMessages } from '#utils/getI18nProps'
+import getI18nProps from '#utils/getI18nProps'
 
-const ManaDiaryTranslated = ({ date }: { date: string }) => {
-    const $c = useTranslations('common')
-    const { data, isSuccess } = useFrontendApi('diary', {
-        date,
-    })
+const START_DATE = dayjs('2016-05-05')
+const END_DATE = dayjs('2017-12-26')
 
-    if (!isSuccess) {
-        return <p>{$c('loading')}</p>
+const VALID_DATE_LIST = [
+    '0-56',
+    '58-58',
+    '61-139',
+    '141-191',
+    '194-199',
+    '202-204',
+    '206-207',
+    '213-213',
+    '216-216',
+    '220-236',
+    '239-241',
+    '243-243',
+    '246-252',
+    '259-268',
+    '270-270',
+    '273-274',
+    '276-278',
+    '280-280',
+    '282-282',
+    '285-285',
+    '287-287',
+    '290-293',
+    '298-298',
+    '301-305',
+    '309-309',
+    '312-316',
+    '320-331',
+    '333-333',
+    '336-337',
+    '341-343',
+    '348-348',
+    '351-351',
+    '356-357',
+    '359-366',
+    '369-371',
+    '374-374',
+    '378-379',
+    '382-382',
+    '384-384',
+    '386-386',
+    '389-389',
+    '393-393',
+    '396-400',
+    '405-405',
+    '407-410',
+    '413-415',
+    '418-419',
+    '422-422',
+    '425-426',
+    '437-451',
+    '454-456',
+    '460-460',
+    '462-465',
+    '468-468',
+    '471-471',
+    '474-488',
+    '493-493',
+    '495-495',
+    '497-498',
+    '501-502',
+    '506-506',
+    '510-510',
+    '512-522',
+    '524-524',
+    '530-533',
+    '538-566',
+    '569-569',
+    '571-576',
+    '578-583',
+    '585-590',
+    '592-600',
+]
+
+const toShortDate = (date: Date) =>
+    `${String(date.getFullYear()).slice(2)}-${(date.getMonth() + 1)
+        .toString()
+        .padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}`
+
+const fromShortDate = (s: string | null) =>
+    s === null ? new Date(0) : new Date('20' + s)
+
+const isValidDate = (s: string) => {
+    const thatDay = dayjs('20' + s)
+    const dayDiff = thatDay.diff(START_DATE, 'day')
+    for (const i of VALID_DATE_LIST) {
+        const [dayFrom, dayTo] = i.split('-').map(Number)
+        if (dayDiff > dayTo) continue
+        return dayFrom <= dayDiff
     }
-
-    if (data) {
-        return (
-            <>
-                <p>{data.date}</p>
-                <p
-                    dangerouslySetInnerHTML={{
-                        __html: data.diary,
-                    }}
-                ></p>
-            </>
-        )
-    }
-
-    return (
-        <p className="text-gray-600 dark:text-gray-300">没有 {date} 的日记。</p>
-    )
+    return false
 }
 
 const shortDateAtom = atomWithHash('date', new Date(0), {
@@ -49,34 +111,28 @@ const shortDateAtom = atomWithHash('date', new Date(0), {
     deserialize: fromShortDate,
 })
 
-const DiaryPage = ({ first, last }: { first: string; last: string }) => {
+const DiaryPage = () => {
     const $c = useTranslations('common')
+    const $t = useTranslations('diary')
 
     const [currDate, setCurrDate] = useAtom(shortDateAtom)
+    const isValid = isValidDate(toShortDate(currDate))
 
     useLayoutEffect(() => {
-        setCurrDate(fromShortDate(last))
-    }, [last, setCurrDate])
+        setCurrDate(END_DATE.toDate())
+    }, [setCurrDate])
 
     return (
         <>
             <Title title="麻奈日记" />
+            <Alert color="pink">{$t('mana_diary_not_updating')}</Alert>
             <Grid gutter={20} className="my-3">
-                <Grid.Col xs={12} lg={4}>
+                <Grid.Col xs={12} lg={8}>
                     <div>
                         <p>
-                            如无特殊说明，此处内容的翻译均来自 Bilibili{' '}
-                            <a href="https://space.bilibili.com/107734456">
-                                @长濑琴乃
-                            </a>{' '}
-                            / 微博{' '}
-                            <a href="https://weibo.com/7326542616/">
-                                @IDOLYPRIDE
-                            </a>
-                            。
-                        </p>
-                        <p>
-                            目前包含的日记日期：{first} 至 {last}
+                            目前包含的日记日期：
+                            {toShortDate(START_DATE.toDate())} 至{' '}
+                            {toShortDate(END_DATE.toDate())}
                         </p>
                         <div>
                             <div className="flex-col">
@@ -86,8 +142,8 @@ const DiaryPage = ({ first, last }: { first: string; last: string }) => {
                                     required
                                     className="w-72"
                                     value={currDate}
-                                    minDate={dayjs('20' + first).toDate()}
-                                    maxDate={dayjs('20' + last).toDate()}
+                                    minDate={START_DATE.toDate()}
+                                    maxDate={END_DATE.toDate()}
                                     onChange={(e) => {
                                         if (e) setCurrDate(e)
                                     }}
@@ -98,15 +154,10 @@ const DiaryPage = ({ first, last }: { first: string; last: string }) => {
                         <div className="mt-2">
                             <Button
                                 className="mr-2"
-                                onClick={() => {
-                                    setCurrDate(new Date('20' + last))
-                                }}
-                            >
-                                转到最新日期
-                            </Button>
-                            <Button
-                                className="mr-2"
-                                disabled={toShortDate(currDate) === first}
+                                disabled={
+                                    toShortDate(currDate) ===
+                                    toShortDate(START_DATE.toDate())
+                                }
                                 onClick={() => {
                                     const currDay = dayjs(currDate)
                                     setCurrDate(
@@ -117,7 +168,10 @@ const DiaryPage = ({ first, last }: { first: string; last: string }) => {
                                 转到前一天
                             </Button>
                             <Button
-                                disabled={toShortDate(currDate) === last}
+                                disabled={
+                                    toShortDate(currDate) ===
+                                    toShortDate(END_DATE.toDate())
+                                }
                                 onClick={() => {
                                     const currDay = dayjs(currDate)
                                     setCurrDate(currDay.add(1, 'day').toDate())
@@ -129,30 +183,21 @@ const DiaryPage = ({ first, last }: { first: string; last: string }) => {
                     </div>
                 </Grid.Col>
                 <Grid.Col xs={12} lg={4}>
-                    <AssetImage
-                        name={`img_ui_diary_${toShortDate(currDate)}`}
-                        ratio={0.7}
-                        width="100%"
-                        alt="Diary image"
-                    />
-                </Grid.Col>
-                <Grid.Col xs={12} lg={4}>
-                    <ManaDiaryTranslated date={toShortDate(currDate)} />
+                    {isValid ? (
+                        <AssetImage
+                            name={`img_ui_diary_${toShortDate(currDate)}`}
+                            ratio={0.7}
+                            width="100%"
+                            alt="Diary image"
+                        />
+                    ) : (
+                        <p>{$t('no_diary')}</p>
+                    )}
                 </Grid.Col>
             </Grid>
         </>
     )
 }
 
-export const getStaticProps = async ({ locale }: { locale: string }) => {
-    const { first, last } = getDiaryRangePair()
-    return {
-        props: {
-            first,
-            last,
-            ...(await addI18nMessages(locale)),
-        },
-    }
-}
-
+export const getStaticProps = getI18nProps(['common', 'diary'])
 export default DiaryPage
