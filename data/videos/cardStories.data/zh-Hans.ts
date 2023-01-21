@@ -489,6 +489,21 @@ const dataSakura: StoriesData = {
             video: { type: 'bilibili', vid: 'av554879758' },
         },
     },
+    'card-skr-05-chna-00': {
+        // パクパク満腹笑顔
+        1: {
+            name: 'TODO',
+            video: { type: 'bilibili', vid: 'av223202403' },
+        },
+        2: {
+            name: 'TODO',
+            video: { type: 'bilibili', vid: 'av223202403' },
+        },
+        3: {
+            name: 'TODO',
+            video: { type: 'bilibili', vid: 'av223202403' },
+        },
+    },
 }
 
 // 兵藤雫
