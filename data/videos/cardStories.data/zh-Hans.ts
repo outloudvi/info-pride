@@ -503,6 +503,9 @@ const dataSakura: StoriesData = {
             name: 'TODO',
             video: { type: 'bilibili', vid: 'av223202403' },
         },
+        phone: {
+            video: { type: 'bilibili', vid: 'av523323219' },
+        },
     },
 }
 

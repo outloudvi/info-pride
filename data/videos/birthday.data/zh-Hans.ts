@@ -155,7 +155,12 @@ const _: BirthdayCommu = {
     // ThreeX
     'char-kor': {},
     'char-kan': {},
-    'char-mhk': {},
+    'char-mhk': {
+        2023: {
+            opening: { type: 'bilibili', vid: 'av478319126' },
+            phone: { type: 'bilibili', vid: 'av480804492' },
+        },
+    },
 } as const
 
 export default _
