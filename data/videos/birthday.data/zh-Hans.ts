@@ -159,6 +159,7 @@ const _: BirthdayCommu = {
         2023: {
             opening: { type: 'bilibili', vid: 'av478319126' },
             phone: { type: 'bilibili', vid: 'av480804492' },
+            others: { type: 'bilibili', vid: 'av948438227' },
         },
     },
 } as const
