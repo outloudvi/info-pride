@@ -1518,20 +1518,35 @@ const dataMana: StoriesData = {
             video: { type: 'bilibili', vid: 'av595197954', pid: 3 },
         },
     },
+    'card-mna-05-vlnt-00': {
+        //胸に残るショコラの約束
+        1: {
+            name: '突然的礼物',
+            video: { type: 'bilibili', vid: 'av350913472' },
+        },
+        2: {
+            name: '要是能一直这样下去的话',
+            video: { type: 'bilibili', vid: 'av863451227' },
+        },
+        3: {
+            name: '自那之后不变的心意',
+            video: { type: 'bilibili', vid: 'av350903053' },
+        },
+    },
 }
 
 const dataMikuCollab: StoriesData = {
     'card-mku-05-miku-00': {
         1: {
-            name: '教教我经纪人',
+            name: '我没有经验',
             video: { type: 'bilibili', vid: 'av730055527' },
         },
         2: {
-            name: 'TRINITYAiLE 的大家',
+            name: '现在不要看',
             video: { type: 'bilibili', vid: 'av900051090' },
         },
         3: {
-            name: '音乐的三要素',
+            name: '敬请期待',
             video: { type: 'bilibili', vid: 'av217526570' },
         },
     },
