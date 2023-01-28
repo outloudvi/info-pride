@@ -1,19 +1,28 @@
 import { useTranslations } from 'next-intl'
-import { Badge, Group, Stack, TextInput } from '@mantine/core'
-import { useState } from 'react'
+import { Badge, Group, Skeleton, Stack, TextInput } from '@mantine/core'
+import { StringParam, useQueryParam, withDefault } from 'use-query-params'
+import { useDebouncedValue } from '@mantine/hooks'
+import { useEffect, useState } from 'react'
 
 import Title from '#components/Title'
 import getI18nProps from '#utils/getI18nProps'
 import useApi from '#utils/useApi'
 import StorySearchItem from '#components/story/search/StorySearchItem'
+import withQueryParam from '#utils/withQueryParam'
 
 const StorySearchPage = () => {
     const $t = useTranslations('story_search')
 
-    const [q, setQ] = useState('')
-    const { data } = useApi('Search/Commu', {
+    const [realQ, setRealQ] = useState('')
+    const [debouncedQ] = useDebouncedValue(realQ, 700)
+    const [q, setQ] = useQueryParam('q', withDefault(StringParam, ''))
+    const { data, isLoading } = useApi('Search/Commu', {
         q,
     })
+
+    useEffect(() => {
+        setQ(debouncedQ)
+    }, [debouncedQ, setQ])
 
     return (
         <>
@@ -24,19 +33,23 @@ const StorySearchPage = () => {
             <p>{$t('description')}</p>
             <div className="max-w-7xl mx-auto">
                 <TextInput
-                    value={q}
+                    value={realQ}
                     onChange={(event) => {
-                        setQ(event.currentTarget.value)
+                        setRealQ(event.currentTarget.value)
                     }}
                     placeholder={$t('search_placeholder')}
                     className="mb-3"
                 />
-                {Array.isArray(data) && (
-                    <Stack>
-                        {data.map((x, key) => (
-                            <StorySearchItem key={key} item={x} />
-                        ))}
-                    </Stack>
+                {isLoading ? (
+                    <Skeleton height={600} />
+                ) : (
+                    Array.isArray(data) && (
+                        <Stack>
+                            {data.map((x, key) => (
+                                <StorySearchItem key={key} item={x} />
+                            ))}
+                        </Stack>
+                    )
                 )}
             </div>
         </>
@@ -45,4 +58,4 @@ const StorySearchPage = () => {
 
 export const getServerSideProps = getI18nProps(['story_search'])
 
-export default StorySearchPage
+export default withQueryParam(StorySearchPage)
