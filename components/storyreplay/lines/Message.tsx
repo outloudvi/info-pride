@@ -2,6 +2,7 @@ import type { Message } from '@hoshimei/adv/types'
 import { useTranslations } from 'next-intl'
 
 import AssetImage from '#components/AssetImage'
+import managerize from '#utils/managerize'
 
 const CompMessage = ({ l }: { l: Message }) => {
     const $t = useTranslations('storyreplay')
@@ -24,7 +25,7 @@ const CompMessage = ({ l }: { l: Message }) => {
                         )}
                     </div>
                     <div className="mt-1 bg-blue-300 px-2 rounded text-black">
-                        {l.name === '{user}' ? $t('Manager') : l.name}
+                        {managerize(l.name)}
                     </div>
                 </div>
                 <div className="grow" lang="ja">
