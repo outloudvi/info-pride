@@ -1,4 +1,3 @@
-import * as Sentry from '@sentry/browser'
 import { setCookie } from 'cookies-next'
 
 export const LOCALSTORAGE_BOX_TAG = 'localBox'

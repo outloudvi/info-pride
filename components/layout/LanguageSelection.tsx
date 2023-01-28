@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
 import { NativeSelect } from '@mantine/core'
 import { useRouter } from 'next/router'
+import { setCookie } from 'cookies-next'
 
 const CurrentLanguage: Record<string, string> = {
     'zh-Hans': '中文（简体）',
@@ -19,6 +20,7 @@ const LanguageSelection = ({ className }: { className?: string }) => {
             if (!router.isReady) return
             const { pathname, asPath, query, locale: routerLocale } = router
             if (!routerLocale || !locale || routerLocale === locale) return
+            setCookie('NEXT_LOCALE', locale)
             router.push(
                 {
                     pathname,
