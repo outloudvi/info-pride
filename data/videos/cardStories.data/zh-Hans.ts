@@ -915,6 +915,24 @@ const dataRui: StoriesData = {
             video: { type: 'bilibili', vid: 'av217753165' },
         },
     },
+    'card-rui-05-vlnt-00': {
+        // 薔薇色の夕暮れに染まって
+        1: {
+            name: '无法捕获的感觉',
+            video: { type: 'bilibili', vid: 'av478635251' },
+        },
+        2: {
+            name: '一旦意识到的话',
+            video: { type: 'bilibili', vid: 'av991219717' },
+        },
+        3: {
+            name: '向重要的人表达想法',
+            video: { type: 'bilibili', vid: 'av608629599' },
+        },
+        phone: {
+            video: { type: 'bilibili', vid: 'av736212256' },
+        },
+    },
 }
 
 // 铃村优
