@@ -3,6 +3,8 @@ import { NativeSelect } from '@mantine/core'
 import { useRouter } from 'next/router'
 import { setCookie } from 'cookies-next'
 
+import { USER_PREF_COOKIE_MAXAGE } from '#utils/constants'
+
 const CurrentLanguage: Record<string, string> = {
     'zh-Hans': '中文（简体）',
     en: 'English',
@@ -20,7 +22,9 @@ const LanguageSelection = ({ className }: { className?: string }) => {
             if (!router.isReady) return
             const { pathname, asPath, query, locale: routerLocale } = router
             if (!routerLocale || !locale || routerLocale === locale) return
-            setCookie('NEXT_LOCALE', locale)
+            setCookie('NEXT_LOCALE', locale, {
+                maxAge: USER_PREF_COOKIE_MAXAGE,
+            })
             router.push(
                 {
                     pathname,
