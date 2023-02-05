@@ -1,5 +1,7 @@
 import { setCookie } from 'cookies-next'
 
+import { USER_PREF_COOKIE_MAXAGE } from './constants'
+
 export const LOCALSTORAGE_BOX_TAG = 'localBox'
 
 function h_99_update_localbox() {
@@ -51,7 +53,7 @@ function h_99_migrate_colorScheme_to_cookie() {
         'mantine-color-scheme',
         colorScheme.includes('dark') ? 'dark' : 'light',
         {
-            maxAge: 60 * 60 * 24 * 30,
+            maxAge: USER_PREF_COOKIE_MAXAGE,
         }
     )
     localStorage.removeItem('mantine-color-scheme')
