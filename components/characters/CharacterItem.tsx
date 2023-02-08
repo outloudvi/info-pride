@@ -5,7 +5,9 @@ import {
     Group,
     MediaQuery,
     Skeleton,
+    Stack,
     Table,
+    useMantineColorScheme,
 } from '@mantine/core'
 import { useLocale, useTranslations } from 'next-intl'
 
@@ -23,6 +25,7 @@ import { IdolyFashionUrl, IdolyRoomUrl } from '#data/ipcmmu.data'
 import BirthdayCommu from '#components/characters/BirthdayCommu'
 import { toHashColor } from '#utils/toHashColor'
 import useFrontendApi from '#utils/useFrontendApi'
+import AssetImage from '#components/AssetImage'
 
 const BirthdayCommuException: CharacterId[] = ['char-mna']
 const VoiceException: CharacterId[] = ['char-mku']
@@ -37,6 +40,7 @@ const CharacterItem = ({
     const $vc = useTranslations('v-chr')
     const $vg = useTranslations('v-group')
     const locale = useLocale()
+    const { colorScheme } = useMantineColorScheme()
 
     const { id, characterGroupId, name, enName, color } = character
 
@@ -45,6 +49,7 @@ const CharacterItem = ({
         id,
         locale,
     })
+    const shortId = id.replace(/^char-/, '')
 
     if (!isSuccess) {
         return <Skeleton height={700} />
@@ -195,9 +200,21 @@ const CharacterItem = ({
                     lg={4}
                     className="flex items-center justify-center"
                 >
-                    {PrimaryCharacterIds.includes(
-                        id as typeof PrimaryCharacterIds[number]
-                    ) && <CharacterAnimation charId={id as CharacterId} />}
+                    <Stack align="center">
+                        <AssetImage
+                            name={`img_chr_sign_${shortId}`}
+                            alt={'Signature'}
+                            ratio={1}
+                            width={150}
+                            style={{
+                                filter:
+                                    colorScheme === 'dark' ? '' : 'invert(1)',
+                            }}
+                        />
+                        {PrimaryCharacterIds.includes(
+                            id as typeof PrimaryCharacterIds[number]
+                        ) && <CharacterAnimation charId={id as CharacterId} />}
+                    </Stack>
                 </Grid.Col>
             </Grid>
             {/* eslint-disable-next-line @typescript-eslint/no-explicit-any  */}
