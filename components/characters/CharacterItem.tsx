@@ -201,16 +201,26 @@ const CharacterItem = ({
                     className="flex items-center justify-center"
                 >
                     <Stack align="center">
-                        <AssetImage
-                            name={`img_chr_sign_${shortId}`}
-                            alt={'Signature'}
-                            ratio={1}
-                            width={150}
-                            style={{
-                                filter:
-                                    colorScheme === 'dark' ? '' : 'invert(1)',
-                            }}
-                        />
+                        <Group spacing="xl" className="justify-center">
+                            <AssetImage
+                                name={`img_chr_icon_${shortId}`}
+                                alt={$t('Avatar')}
+                                ratio={1}
+                                width={100}
+                            />
+                            <AssetImage
+                                name={`img_chr_sign_${shortId}`}
+                                alt={$t('Signature')}
+                                ratio={1}
+                                width={150}
+                                style={{
+                                    filter:
+                                        colorScheme === 'dark'
+                                            ? ''
+                                            : 'invert(1)',
+                                }}
+                            />
+                        </Group>
                         {PrimaryCharacterIds.includes(
                             id as typeof PrimaryCharacterIds[number]
                         ) && <CharacterAnimation charId={id as CharacterId} />}
