@@ -255,8 +255,16 @@ const data: Record<string, ChapterItem> = {
         video: { type: 'bilibili', vid: 'av777132995' },
     },
     'st-eve-2206-marathon-003': {
-        name: '散步中的偶遇',
+        name: '在外面尽情玩耍',
         video: { type: 'bilibili', vid: 'av607551538' },
+    },
+    'st-eve-2206-marathon-004': {
+        name: '散步中的偶遇',
+        video: { type: 'bilibili', vid: 'av224159246' },
+    },
+    'st-eve-2206-marathon-005': {
+        name: '最后一句歌词',
+        video: { type: 'bilibili', vid: 'av479174420' },
     },
     // 熱中☆ハプニングサマー
     'st-eve-2208-backside-001': {

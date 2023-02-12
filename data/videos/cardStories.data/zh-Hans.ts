@@ -1001,6 +1001,21 @@ const dataYu: StoriesData = {
             video: { type: 'bilibili', vid: 'av261082054' },
         },
     },
+    'card-yu-05-vlnt-00': {
+        // 思わせぶりな戦略家
+        1: {
+            name: 'TODO',
+            video: { type: 'bilibili', vid: 'av864136751' },
+        },
+        2: {
+            name: 'TODO',
+            video: { type: 'bilibili', vid: 'av864136751' },
+        },
+        3: {
+            name: 'TODO',
+            video: { type: 'bilibili', vid: 'av864136751' },
+        },
+    },
 }
 
 // 奥山堇
