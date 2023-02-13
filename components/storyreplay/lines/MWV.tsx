@@ -13,6 +13,7 @@ const CompMWV = ({ l }: { l: MessageWithVoice }) => {
     const $t = useTranslations('storyreplay')
     const [currMwv, setCurrMwv] = useAtom(mwvCurrentPlayingAtom)
 
+    const darkText = l.text.startsWith('（') || l.text.endsWith('）')
     return (
         <>
             <div className="uppercase text-gray-300 text-sm mb-2">
@@ -38,7 +39,11 @@ const CompMWV = ({ l }: { l: MessageWithVoice }) => {
                         <AssetAudioButton id={l.voice} />
                     </div>
                 </div>
-                <div className="grow mt-2 md:mt-0">
+                <div
+                    className={`grow mt-2 md:mt-0 ${
+                        darkText ? 'text-[#c0c0c0]' : ''
+                    }`}
+                >
                     {lfToBr(l.text.replace(/\{user\}/g, $t('Manager')))}
                 </div>
                 <div className="hidden md:block">
