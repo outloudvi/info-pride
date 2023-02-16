@@ -21,7 +21,7 @@ const StaticMessageItem = ({
             <img
                 alt={'icon'}
                 src={Paths.assets('img')(
-                    `img_message_icon_${characterId.split('-')[1]}`
+                    `img_chr_icon_${characterId.split('-')[1]}`
                 )}
                 height={48}
                 width={48}

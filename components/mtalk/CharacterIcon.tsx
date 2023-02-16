@@ -16,10 +16,9 @@ const CharacterIcon = ({ id }: { id: CharacterIdWithManager }) =>
         </div>
     ) : (
         <AssetImage
-            name={`img_message_icon_${id.split('-')[1]}`}
+            name={`img_chr_icon_${id.split('-')[1]}`}
             ratio={1}
             height="3rem"
-            className="rounded-full"
             alt="Chat icon"
         />
     )
