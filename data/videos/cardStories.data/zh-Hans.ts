@@ -1015,6 +1015,9 @@ const dataYu: StoriesData = {
             name: 'TODO',
             video: { type: 'bilibili', vid: 'av864136751' },
         },
+        phone: {
+            video: { type: 'bilibili', vid: 'av566941637' },
+        },
     },
 }
 
