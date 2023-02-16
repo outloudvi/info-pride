@@ -43,7 +43,7 @@ const MessageItem = ({
                 />
             )}
             <Group
-                className={`flex-grow p-2 items-end flex-nowrap ${
+                className={`flex-grow p-2 items-end flex-nowrap gap-2 ${
                     isSelf ? 'flex-row-reverse' : 'flex-row'
                 }`}
             >

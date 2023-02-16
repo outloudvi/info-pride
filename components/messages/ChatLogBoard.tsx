@@ -1,9 +1,11 @@
 import { useMemo } from 'react'
 import { useTranslations } from 'next-intl'
+import { Box } from '@mantine/core'
 
 import MessageItem from './MessageItem'
 import renderMessage from './renderMessage'
 import buildMessageTree from './buildMessageTree'
+import messageViewStyle from './messageViewStyle'
 
 import type { APIResponseOf } from '#utils/api'
 
@@ -22,11 +24,12 @@ const ChatLogBoard = ({
     )
 
     return (
-        <div
+        <Box
             className="overflow-y-auto"
-            style={{
+            sx={() => ({
                 height: 'calc(100% - 4rem)',
-            }}
+                ...messageViewStyle,
+            })}
         >
             {msgs.map((line, key) => (
                 <MessageItem
@@ -41,7 +44,7 @@ const ChatLogBoard = ({
             <div className="text-gray-300 text-center my-4">
                 [{$t('communication_ended')}]
             </div>
-        </div>
+        </Box>
     )
 }
 
