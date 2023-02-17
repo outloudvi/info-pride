@@ -65,8 +65,12 @@ const CardItem = ({
     const locale = useLocale()
     const [cnTrans, setCnTrans] = useState(false)
 
-    const { data: SkillData } = useApi(`Skill`, {
+    const { data: SkillData } = useApi('Skill', {
         ids: `${card.skillId1},${card.skillId2},${card.skillId3}`,
+    })
+
+    const { data: YellData } = useApi('LiveAbility', {
+        id: card.liveAbilityId,
     })
 
     const { data: WikiCardData } = useFrontendApi('wikiCard', {
@@ -237,10 +241,10 @@ const CardItem = ({
                             })}
                         </small>
                     </h3>
-
                     {SkillData ? (
                         <Skills
                             skills={SkillData}
+                            yellSkill={YellData}
                             useCn={useCn}
                             wikiCardData={wikiCard}
                         />
