@@ -21,6 +21,7 @@
     "show_awakened": "Show awakened",
     "skills_bwiki": "(At the highest skill level)",
     "skill_icons_beta": "Skill icon display is in beta. Please <a>report</a> any encountered issues.",
+    "no_yell_skill": "This card doesn't have a yell skill.",
     "part": "Part {s}",
     "aka": "Also known as:"
 }

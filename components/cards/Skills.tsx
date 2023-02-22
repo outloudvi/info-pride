@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Skeleton, Slider, Stack } from '@mantine/core'
-import type { LiveAbility} from 'hoshimi-types/ProtoMaster';
+import type { ActivityAbility, LiveAbility } from 'hoshimi-types/ProtoMaster'
 import { Skill } from 'hoshimi-types/ProtoMaster'
 import { SkillCategoryType } from 'hoshimi-types/ProtoEnum'
 import { useTranslations } from 'next-intl'
@@ -73,7 +73,7 @@ const Skill = ({
     )
 }
 
-const YellSkill = ({ skill }: { skill: LiveAbility }) => {
+const YellSkill = ({ skill }: { skill: LiveAbility | ActivityAbility }) => {
     const { name, levels } = skill
 
     const [level, setLevel] = useState(1)
@@ -111,10 +111,11 @@ const Skills = ({
     useCn,
 }: {
     skills: Skill[]
-    yellSkill?: LiveAbility
+    yellSkill?: LiveAbility | ActivityAbility | null
     wikiCardData?: WikiCard
     useCn: boolean
 }) => {
+    const $t = useTranslations('cards_slug')
     return (
         <Stack>
             {skills.map((skill, key) => (
@@ -143,7 +144,9 @@ const Skills = ({
                     />
                 </div>
             ))}
-            {yellSkill ? (
+            {yellSkill === null ? (
+                <p>{$t('no_yell_skill')}</p>
+            ) : yellSkill ? (
                 <YellSkill skill={yellSkill} />
             ) : (
                 <Skeleton height={300} />

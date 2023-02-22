@@ -56,6 +56,8 @@ const CardItem = ({
         visualRatioPermil,
         staminaRatioPermil,
         stories,
+        liveAbilityId,
+        activityAbilityId,
     } = card
 
     const maxRarity = Math.max(...rarityData.map((x) => x.rarity))
@@ -69,9 +71,25 @@ const CardItem = ({
         ids: `${card.skillId1},${card.skillId2},${card.skillId3}`,
     })
 
-    const { data: YellData } = useApi('LiveAbility', {
-        id: card.liveAbilityId,
-    })
+    const { data: YellLiveData } = useApi(
+        'LiveAbility',
+        {
+            id: liveAbilityId,
+        },
+        {
+            enabled: liveAbilityId !== '',
+        }
+    )
+
+    const { data: YellActivityData } = useApi(
+        'ActivityAbility',
+        {
+            id: activityAbilityId,
+        },
+        {
+            enabled: activityAbilityId !== '',
+        }
+    )
 
     const { data: WikiCardData } = useFrontendApi('wikiCard', {
         nameJa: name,
@@ -244,7 +262,11 @@ const CardItem = ({
                     {SkillData ? (
                         <Skills
                             skills={SkillData}
-                            yellSkill={YellData}
+                            yellSkill={
+                                liveAbilityId === '' && activityAbilityId === ''
+                                    ? null
+                                    : YellLiveData || YellActivityData
+                            }
                             useCn={useCn}
                             wikiCardData={wikiCard}
                         />
