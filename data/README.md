@@ -6,7 +6,7 @@ All data shared here is licensed under BY-NC-SA 3.0 unless otherwise specified.
 
 -   [`wikiModules`](./wikiModules)
     -   Data from modules on [bwiki/idolypride/](https://wiki.biligame.com/idolypride/).
-    -   Includes the calendar (events), diaries, and notemaps.
+    -   Includes the calendar (events).
     -   Data license: BY-NC-SA 3.0 / All Rights Reserved (`diary.json`)
 -   [`wikiPages`](./wikiPages) -
     -   Data from pages on [bwiki/idolypride/](https://wiki.biligame.com/idolypride/).
