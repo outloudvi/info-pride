@@ -1330,6 +1330,21 @@ const dataAi: StoriesData = {
             video: { type: 'bilibili', vid: 'av301824157' },
         },
     },
+    'card-ai-05-rock-00': {
+        // クールにキメるぼっち収録
+        1: {
+            name: 'TODO',
+            video: { type: 'bilibili', vid: 'av737550139' },
+        },
+        2: {
+            name: 'TODO',
+            video: { type: 'bilibili', vid: 'av737550139' },
+        },
+        3: {
+            name: 'TODO',
+            video: { type: 'bilibili', vid: 'av737550139' },
+        },
+    },
 }
 
 // 赤崎心
