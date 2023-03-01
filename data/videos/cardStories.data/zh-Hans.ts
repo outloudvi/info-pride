@@ -1344,6 +1344,9 @@ const dataAi: StoriesData = {
             name: 'TODO',
             video: { type: 'bilibili', vid: 'av737550139' },
         },
+        phone: {
+            video: { type: 'bilibili', vid: 'av865158936' },
+        },
     },
 }
 

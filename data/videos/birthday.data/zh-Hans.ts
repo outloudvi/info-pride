@@ -108,6 +108,9 @@ const _: BirthdayCommu = {
         2022: {
             opening: { type: 'bilibili', vid: 'av296767207' },
         },
+        2023: {
+            opening: { type: 'bilibili', vid: 'av567662194' },
+        },
     },
     'char-smr': {
         2022: {
