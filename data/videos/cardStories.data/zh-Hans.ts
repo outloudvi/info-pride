@@ -1097,6 +1097,21 @@ const dataSumire: StoriesData = {
             video: { type: 'bilibili', vid: 'av688554744' },
         },
     },
+    'card-smr-05-pajm-00': {
+        // 夢の国へ誘う安眠膝枕
+        1: {
+            name: 'TODO',
+            video: { type: 'bilibili', vid: 'av567819934' },
+        },
+        2: {
+            name: 'TODO',
+            video: { type: 'bilibili', vid: 'av567819934' },
+        },
+        3: {
+            name: 'TODO',
+            video: { type: 'bilibili', vid: 'av567819934' },
+        },
+    },
 }
 
 // ---- LizNoir ----
