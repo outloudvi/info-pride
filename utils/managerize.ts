@@ -1,3 +1,3 @@
 export default function managerize(s: string): string {
-    return s === '{user}' ? 'マネジャー' : s
+    return s.replaceAll('{user}', 'マネジャー')
 }

@@ -6,6 +6,7 @@ import type { MessageWithVoice } from '../types'
 import AssetImage from '#components/AssetImage'
 import lfToBr from '#utils/lfToBr'
 import AssetAudioButton from '#components/AssetAudioButton'
+import managerize from '#utils/managerize'
 
 const mwvCurrentPlayingAtom = atom<string | null>(null)
 
@@ -32,7 +33,7 @@ const CompMWV = ({ l }: { l: MessageWithVoice }) => {
                         )}
                     </div>
                     <div className="mt-1 bg-blue-300 px-2 rounded text-black">
-                        {l.name === '{user}' ? $t('Manager') : l.name}
+                        {managerize(l.name)}
                     </div>
                     <div className="grow md:hidden"></div>
                     <div className="md:hidden">
