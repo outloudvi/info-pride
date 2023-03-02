@@ -23,6 +23,15 @@ const nextConfig = {
             },
         ]
     },
+    async redirects() {
+        return [
+            {
+                source: '/search',
+                destination: '/search/card',
+                permanent: true,
+            },
+        ]
+    },
     images: {
         domains: ['idoly-assets-curator.vercel.app', 'idoly-assets.outv.im'],
         unoptimized: true,

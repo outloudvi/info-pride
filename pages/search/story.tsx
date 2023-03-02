@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react'
 import Title from '#components/Title'
 import getI18nProps from '#utils/getI18nProps'
 import useApi from '#utils/useApi'
-import StorySearchItem from '#components/story/search/StorySearchItem'
+import StorySearchItem from '#components/search/story/StorySearchItem'
 import withQueryParam from '#utils/withQueryParam'
 
 const StorySearchPage = () => {

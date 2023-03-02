@@ -17,7 +17,7 @@ import CardCard from '#components/cards/CardCard'
 import type { CharacterId } from '#data/vendor/characterId'
 import { CharacterIds } from '#data/vendor/characterId'
 import getCardColor from '#utils/getCardColor'
-import FilterSelect from '#components/search/FilterSelect'
+import FilterSelect from '#components/search/card/FilterSelect'
 import { MAX_LEVEL } from '#utils/constants'
 import Paths from '#utils/paths'
 
