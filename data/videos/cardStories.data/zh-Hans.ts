@@ -566,6 +566,21 @@ const dataShizuku: StoriesData = {
             video: { type: 'bilibili', vid: 'av432398586' },
         },
     },
+    'card-szk-05-pajm-00': {
+        // 万歳オフショ夢空間
+        1: {
+            name: '想要成为大姐姐',
+            video: { type: 'bilibili', vid: 'av992820951' },
+        },
+        2: {
+            name: 'Good Job 大哥哥',
+            video: { type: 'bilibili', vid: 'av992820951' },
+        },
+        3: {
+            name: '今后仍是姐妹',
+            video: { type: 'bilibili', vid: 'av992820951' },
+        },
+    },
 }
 
 // 白石千纱
@@ -1100,15 +1115,15 @@ const dataSumire: StoriesData = {
     'card-smr-05-pajm-00': {
         // 夢の国へ誘う安眠膝枕
         1: {
-            name: 'TODO',
+            name: '堇的忍者修行',
             video: { type: 'bilibili', vid: 'av567819934' },
         },
         2: {
-            name: 'TODO',
+            name: '我的风格的 C 位',
             video: { type: 'bilibili', vid: 'av567819934' },
         },
         3: {
-            name: 'TODO',
+            name: '凝聚大家的力量',
             video: { type: 'bilibili', vid: 'av567819934' },
         },
     },
