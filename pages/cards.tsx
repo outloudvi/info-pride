@@ -14,7 +14,7 @@ import type { APIResponseOf, UnArray } from '#utils/api'
 import PageLoading from '#components/PageLoading'
 import Title from '#components/Title'
 import CardCard from '#components/cards/CardCard'
-import type { CharacterId} from '#data/vendor/characterId';
+import type { CharacterId } from '#data/vendor/characterId'
 import { CharacterIds } from '#data/vendor/characterId'
 import getCardColor from '#utils/getCardColor'
 import FilterSelect from '#components/search/FilterSelect'
@@ -34,6 +34,7 @@ const CardFaceTypes = [
     'wedd',
     'prem',
     'newy',
+    'pajm',
 ]
 
 const CardsPage = ({
