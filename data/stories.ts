@@ -10,7 +10,7 @@ export const Series = [
     'Sunny',
 ] as const
 
-export type SeriesName = typeof Series[number]
+export type SeriesName = (typeof Series)[number]
 
 export const Episodes: Record<SeriesName, number[]> = {
     // adv_main_01_
