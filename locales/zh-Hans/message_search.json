@@ -1,0 +1,5 @@
+{
+    "Message Search": "消息搜索",
+    "description": "本页可以通过消息文本搜索到相应消息。最多显示 30 条结果。",
+    "search_placeholder": "消息文本..."
+}

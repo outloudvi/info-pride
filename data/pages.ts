@@ -11,6 +11,7 @@ const Pages = {
     MacaronTalk: '/mtalk',
     'Card Search': '/search/card',
     'Story Search': '/search/story',
+    'Message Search': '/search/message',
     Emblems: '/emblems',
     Colors: '/colors',
     Settings: '/settings',
