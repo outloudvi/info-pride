@@ -110,6 +110,7 @@ const _: BirthdayCommu = {
         },
         2023: {
             opening: { type: 'bilibili', vid: 'av567662194' },
+            phone: { type: 'bilibili', vid: 'av225464703' },
         },
     },
     'char-smr': {
