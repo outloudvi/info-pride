@@ -375,6 +375,27 @@ const data: Record<string, ChapterItem> = {
         name: '今年最后的演出对战',
         video: { type: 'bilibili', vid: 'av522131017' },
     },
+    // ぱじゃまパーティー！～夢見る少女と眠り姫～
+    'st-eve-2303-race-001': {
+        name: '写不完的作业',
+        video: { type: 'bilibili', vid: 'av438090508' },
+    },
+    'st-eve-2303-race-002': {
+        name: '令人心动的新组合企划会议',
+        video: { type: 'bilibili', vid: 'av950584070' },
+    },
+    'st-eve-2303-race-003': {
+        name: '热热闹闹的合宿购物小分队',
+        video: { type: 'bilibili', vid: 'av610655984' },
+    },
+    'st-eve-2303-race-004': {
+        name: '堇的魅力',
+        video: { type: 'bilibili', vid: 'av610684565' },
+    },
+    'st-eve-2303-race-005': {
+        name: '睡衣派对！成立',
+        video: { type: 'bilibili', vid: 'av353197768' },
+    },
 }
 
 const _ = {
