@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 import {
+    Alert,
     Button,
     Collapse,
     Divider,
@@ -16,6 +17,7 @@ import { showNotification } from '@mantine/notifications'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import { StringParam, useQueryParam, withDefault } from 'use-query-params'
+import { useTranslations } from 'next-intl'
 
 import useApi from '#utils/useApi'
 import CardIdData from '#data/ccid'
@@ -39,6 +41,8 @@ const UnitsPage = ({
     CardData: APIResponseOf<'Card'>
     ChartListData: APIResponseOf<'MusicChartList'>
 }) => {
+    const $t = useTranslations('units')
+
     const musicChartList: MusicChartItem[] = ChartListData.map((x) =>
         x.charts.map((r) => ({
             ...r,
@@ -167,6 +171,13 @@ const UnitsPage = ({
                     导入
                 </Button>
             </Modal>
+            <Alert className="mb-2">
+                {$t.rich('check_out_sakura_love', {
+                    a: (c) => (
+                        <a href="https://hoshimi-stage.vercel.app/">{c}</a>
+                    ),
+                })}
+            </Alert>
             <Grid gutter={20}>
                 <Grid.Col xs={12} lg={6}>
                     <div className="mb-2">
@@ -287,6 +298,6 @@ const SkeletonUnitsPage = () => {
     )
 }
 
-export const getServerSideProps = getI18nProps(['v-chr'])
+export const getServerSideProps = getI18nProps(['units', 'v-chr'])
 
 export default withQueryParam(SkeletonUnitsPage)
