@@ -1,20 +1,15 @@
-import type { AppContext, AppProps } from 'next/app';
+import type { AppContext, AppProps } from 'next/app'
 import App from 'next/app'
 import Head from 'next/head'
-import type {
-    ColorScheme} from '@mantine/core';
-import {
-    ColorSchemeProvider,
-    Global,
-    MantineProvider,
-} from '@mantine/core'
-import { NotificationsProvider } from '@mantine/notifications'
+import type { ColorScheme } from '@mantine/core'
+import { ColorSchemeProvider, Global, MantineProvider } from '@mantine/core'
 import { NextIntlProvider } from 'next-intl'
 import '../styles/globals.css' // for Tailwind CSS
 import { useEffect, useState } from 'react'
 import NextNProgress from 'nextjs-progressbar'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { getCookie, setCookie } from 'cookies-next'
+import { Notifications } from '@mantine/notifications'
 
 import Layout from '#components/layout/Layout'
 import startupHook from '#utils/startupHook'
@@ -90,10 +85,10 @@ const MainApp = (
                     withNormalizeCSS
                     theme={{
                         breakpoints: {
-                            sm: 640,
-                            md: 768,
-                            lg: 1024,
-                            xl: 1280,
+                            sm: '640px',
+                            md: '768px',
+                            lg: '1024px',
+                            xl: '1280px',
                         },
                         colorScheme,
                         fontFamily:
@@ -151,19 +146,18 @@ const MainApp = (
                         },
                     }}
                 >
-                    <NotificationsProvider>
-                        <QueryClientProvider client={queryClient}>
-                            <NextIntlProvider
-                                messages={pageProps._m}
-                                getMessageFallback={({ key }) => key}
-                            >
-                                <Layout>
-                                    <NextNProgress />
-                                    <Component {...pageProps} />
-                                </Layout>
-                            </NextIntlProvider>
-                        </QueryClientProvider>
-                    </NotificationsProvider>
+                    <Notifications />
+                    <QueryClientProvider client={queryClient}>
+                        <NextIntlProvider
+                            messages={pageProps._m}
+                            getMessageFallback={({ key }) => key}
+                        >
+                            <Layout>
+                                <NextNProgress />
+                                <Component {...pageProps} />
+                            </Layout>
+                        </NextIntlProvider>
+                    </QueryClientProvider>
                 </MantineProvider>
             </ColorSchemeProvider>
         </>

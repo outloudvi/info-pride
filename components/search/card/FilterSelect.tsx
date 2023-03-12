@@ -39,7 +39,9 @@ const FilterSelect = <T extends string>({
                 width={width}
                 className={className}
                 clearable
-                clearButtonLabel={$c('Clear')}
+                clearButtonProps={{
+                    'aria-label': $c('Clear'),
+                }}
                 classNames={{
                     wrapper: 'max-w-xl',
                 }}
@@ -54,7 +56,9 @@ const FilterSelect = <T extends string>({
                 width={width}
                 className={className}
                 clearable
-                clearButtonLabel={$c('Clear')}
+                clearButtonProps={{
+                    'aria-label': $c('Clear'),
+                }}
                 {...formProps}
             />
         )

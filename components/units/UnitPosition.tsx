@@ -30,7 +30,9 @@ const UnitPosition = ({
                 opened={modalOpened}
                 onClose={() => setModalOpened(false)}
                 title={`选择位置 ${position} 的卡片`}
-                closeButtonLabel="Close"
+                closeButtonProps={{
+                    'aria-label': 'Close',
+                }}
             >
                 <Select
                     label="选择一张卡片"

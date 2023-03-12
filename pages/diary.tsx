@@ -1,4 +1,4 @@
-import { DatePicker } from '@mantine/dates'
+import { DatePickerInput } from '@mantine/dates'
 import { Alert, Button, Grid } from '@mantine/core'
 import dayjs from 'dayjs'
 import { atomWithHash } from 'jotai-location'
@@ -136,7 +136,7 @@ const DiaryPage = () => {
                         </p>
                         <div>
                             <div className="flex-col">
-                                <DatePicker
+                                <DatePickerInput
                                     placeholder="选择日期"
                                     label="日期"
                                     required
@@ -147,7 +147,9 @@ const DiaryPage = () => {
                                     onChange={(e) => {
                                         if (e) setCurrDate(e)
                                     }}
-                                    clearButtonLabel={$c('Clear')}
+                                    clearButtonProps={{
+                                        'aria-label': $c('Clear'),
+                                    }}
                                 />
                             </div>
                         </div>

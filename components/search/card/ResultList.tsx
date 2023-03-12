@@ -4,7 +4,7 @@ import { Pagination } from '@mantine/core'
 import CardWithSkills from './CardWithSkills'
 
 import type { APIResponseOf } from '#utils/api'
-import getItemAriaLabel from '#utils/getItemAriaLabel'
+import getItemAriaLabelProps from '#utils/getItemAriaLabelProps'
 
 const PER_PAGE = 10
 
@@ -27,10 +27,10 @@ const ResultList = ({
         <>
             <Pagination
                 className="justify-center mb-2"
-                page={activePage}
+                value={activePage}
                 onChange={setPage}
                 total={Math.ceil(list.length / PER_PAGE)}
-                getItemAriaLabel={getItemAriaLabel}
+                getItemProps={getItemAriaLabelProps}
             />
             {list
                 .slice((activePage - 1) * PER_PAGE, activePage * PER_PAGE)
@@ -50,10 +50,10 @@ const ResultList = ({
                 ))}
             <Pagination
                 className="justify-center mt-2"
-                page={activePage}
+                value={activePage}
                 onChange={setPage}
                 total={Math.ceil(list.length / PER_PAGE)}
-                getItemAriaLabel={getItemAriaLabel}
+                getItemProps={getItemAriaLabelProps}
             />
         </>
     )
