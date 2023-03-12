@@ -98,18 +98,17 @@ const StoriesItem = (props: PropType) => {
                     <Link href={`/story/${StoryData.id}`} passHref>
                         <Button>{$c('Story replay')}</Button>
                     </Link>
+                    {StoryTrnData && (
+                        <Link
+                            href={toVideoLink(StoryTrnData.video)}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            passHref
+                        >
+                            <Button className="ml-2">{$t('Video')}</Button>
+                        </Link>
+                    )}
                 </div>
-            )}
-            {StoryTrnData && (
-                <p>
-                    <a
-                        href={toVideoLink(StoryTrnData.video)}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        {$t('Video')}
-                    </a>
-                </p>
             )}
 
             {(StoryTrnData === undefined || localTitle === null) && (

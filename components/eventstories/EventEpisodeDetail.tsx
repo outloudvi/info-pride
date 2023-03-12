@@ -41,19 +41,19 @@ const EventEpisodeDetail = ({
             <Link href={`/story/${id}`} passHref>
                 <Button>{$c('Story replay')}</Button>
             </Link>
+            {VideoInfoData && (
+                <Link
+                    href={toVideoLink(VideoInfoData.video)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    passHref
+                >
+                    <Button className="ml-2">{$c('Video')}</Button>
+                </Link>
+            )}
             <div className="mt-2">
                 {isSuccess ? (
-                    VideoInfoData ? (
-                        <div>
-                            <a
-                                href={toVideoLink(VideoInfoData.video)}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                            >
-                                {$c('Video')}
-                            </a>
-                        </div>
-                    ) : (
+                    !VideoInfoData && (
                         <div className="mt-4 text-gray-500">
                             {$c.rich('no_trans', {
                                 field: `data[${id}]`,
