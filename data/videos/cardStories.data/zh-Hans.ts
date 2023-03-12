@@ -580,6 +580,9 @@ const dataShizuku: StoriesData = {
             name: '今后仍是姐妹',
             video: { type: 'bilibili', vid: 'av992820951' },
         },
+        phone: {
+            video: { type: 'bilibili', vid: 'av438374038' },
+        },
     },
 }
 
