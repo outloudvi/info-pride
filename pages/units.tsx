@@ -175,9 +175,7 @@ const UnitsPage = ({
             </Modal>
             <Alert className="mb-2">
                 {$t.rich('check_out_sakura_love', {
-                    a: (c) => (
-                        <a href="https://hoshimi-stage.vercel.app/">{c}</a>
-                    ),
+                    a: (c) => <a href="https://ipr.vibbit.me/">{c}</a>,
                 })}
             </Alert>
             <Grid gutter={20}>
