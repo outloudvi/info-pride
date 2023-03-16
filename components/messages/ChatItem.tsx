@@ -23,7 +23,7 @@ const ChatItem = ({
                 onClick={onActivate}
             >
                 <AssetImage
-                    name={`img_chr_icon_${group.assetId}`}
+                    name={`img_message_icon_${group.assetId}`}
                     ratio={1}
                     height="3rem"
                     className="rounded-full"
