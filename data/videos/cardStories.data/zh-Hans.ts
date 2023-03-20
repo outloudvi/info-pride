@@ -658,6 +658,21 @@ const dataChisa: StoriesData = {
             video: { type: 'bilibili', vid: 'av646763583' },
         },
     },
+    'card-chs-05-pajm-00': {
+        // お姫様抱っこで夢の中
+        1: {
+            name: '目标是ⅢX',
+            video: { type: 'bilibili', vid: 'av908261968' },
+        },
+        2: {
+            name: '按着自己的步调',
+            video: { type: 'bilibili', vid: 'av225967677' },
+        },
+        3: {
+            name: '大人的包容力？',
+            video: { type: 'bilibili', vid: 'av438653038' },
+        },
+    },
 }
 
 // 一之濑怜
