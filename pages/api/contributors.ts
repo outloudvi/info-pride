@@ -1,4 +1,3 @@
-import { withSentry } from '@sentry/nextjs'
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { got } from 'got'
 
@@ -18,7 +17,7 @@ const contributors = async (
     res.status(200).json(JSON.parse(text)?.contributors ?? [])
 }
 
-export default withSentry(contributors)
+export default contributors
 
 export const config = {
     api: {

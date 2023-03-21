@@ -1,5 +1,4 @@
 import { got } from 'got'
-import { withSentry } from '@sentry/nextjs'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 import type { FrontendAPIResponseMapping } from '#utils/useFrontendApi'
@@ -68,7 +67,7 @@ const SkillRunner = async (
     )
 }
 
-export default withSentry(SkillRunner)
+export default SkillRunner
 
 export const config = {
     api: {

@@ -1,4 +1,3 @@
-import { withSentry } from '@sentry/nextjs'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 import type { FrontendAPIResponseMapping } from '#utils/useFrontendApi'
@@ -35,7 +34,7 @@ const charactersProfile = async (
     return
 }
 
-export default withSentry(charactersProfile)
+export default charactersProfile
 
 export const config = {
     api: {

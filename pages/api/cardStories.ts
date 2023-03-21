@@ -1,4 +1,3 @@
-import { withSentry } from '@sentry/nextjs'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 import CardStories from '#data/videos/cardStories.data'
@@ -30,7 +29,7 @@ const cardStories = async (
     })
 }
 
-export default withSentry(cardStories)
+export default cardStories
 
 export const config = {
     api: {

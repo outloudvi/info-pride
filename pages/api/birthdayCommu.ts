@@ -1,4 +1,3 @@
-import { withSentry } from '@sentry/nextjs'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 import BirthdayCommu from '#data/videos/birthday.data'
@@ -23,7 +22,7 @@ const birthdayCommu = async (
     res.status(200).json(BirthdayCommu?.[locale]?.[id as CharacterId] ?? {})
 }
 
-export default withSentry(birthdayCommu)
+export default birthdayCommu
 
 export const config = {
     api: {

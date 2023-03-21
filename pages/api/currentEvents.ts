@@ -1,4 +1,3 @@
-import { withSentry } from '@sentry/nextjs'
 import type { NextApiRequest, NextApiResponse } from 'next'
 import type { Dayjs } from 'dayjs'
 import dayjs from 'dayjs'
@@ -121,7 +120,7 @@ const currentEvents = async (
     ])
 }
 
-export default withSentry(currentEvents)
+export default currentEvents
 
 export const config = {
     api: {

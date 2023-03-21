@@ -1,4 +1,3 @@
-import { withSentry } from '@sentry/nextjs'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 import { Cards } from '#data/wikiPages'
@@ -13,7 +12,7 @@ const cards = async (
     res.status(200).json(Cards)
 }
 
-export default withSentry(cards)
+export default cards
 
 export const config = {
     api: {

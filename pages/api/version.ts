@@ -1,4 +1,3 @@
-import { withSentry } from '@sentry/nextjs'
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { got } from 'got'
 import * as cheerio from 'cheerio'
@@ -49,7 +48,7 @@ const Version = async (
     res.status(200).json(ver)
 }
 
-export default withSentry(Version)
+export default Version
 
 export const config = {
     api: {

@@ -1,4 +1,3 @@
-import { withSentry } from '@sentry/nextjs'
 import type { NextApiRequest, NextApiResponse } from 'next'
 import satori from 'satori'
 
@@ -69,7 +68,7 @@ const imgMtalk = async (req: NextApiRequest, res: NextApiResponse) => {
     )
 }
 
-export default withSentry(imgMtalk)
+export default imgMtalk
 
 export const config = {
     api: {

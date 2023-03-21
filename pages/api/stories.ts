@@ -1,4 +1,3 @@
-import { withSentry } from '@sentry/nextjs'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 import pickFirstOrOne from '#utils/pickFirstOrOne'
@@ -32,7 +31,7 @@ const eventStories = async (
     res.status(200).json(ret)
 }
 
-export default withSentry(eventStories)
+export default eventStories
 
 export const config = {
     api: {

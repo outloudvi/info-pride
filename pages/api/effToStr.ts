@@ -1,4 +1,3 @@
-import { withSentry } from '@sentry/nextjs'
 import type { NextApiRequest, NextApiResponse } from 'next'
 import type { EffectWithTarget } from 'hoshimi-types/Skillx'
 import handlebars from 'handlebars'
@@ -71,7 +70,7 @@ const EffToStr = async (
     )
 }
 
-export default withSentry(EffToStr)
+export default EffToStr
 
 export const config = {
     api: {

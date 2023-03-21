@@ -1,4 +1,3 @@
-import { withSentry } from '@sentry/nextjs'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 import apiData from '../../locales/apiData'
@@ -31,7 +30,7 @@ const cardAliases = async (
     })
 }
 
-export default withSentry(cardAliases)
+export default cardAliases
 
 export const config = {
     api: {
