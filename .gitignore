@@ -48,3 +48,6 @@ utils/*/*.origin.json
 
 # Build-time
 /data/build.json
+
+# Sentry
+.sentryclirc

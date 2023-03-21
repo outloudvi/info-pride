@@ -70,6 +70,7 @@
     "devDependencies": {
         "@hoshimei/adv": "^0.6.1",
         "@next/bundle-analyzer": "^13.2.4",
+        "@sentry/cli": "^2.15.2",
         "@types/chai": "^4.3.4",
         "@types/d3": "^7.4.0",
         "@types/lodash": "^4.14.191",
