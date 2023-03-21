@@ -4,7 +4,6 @@ import satori from 'satori'
 import type { CommuLine } from '#components/mtalk/types'
 import MTalkExport from '#components/api/img/mtalk/MTalkExport'
 import FontLoader from '#components/api/img/mtalk/FontLoader'
-import Paths from '#utils/paths'
 
 type BodyType = {
     lines: CommuLine[]

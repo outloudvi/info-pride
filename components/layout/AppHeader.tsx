@@ -2,12 +2,7 @@ import * as React from 'react'
 import Link from 'next/link'
 import { Burger, Button, Header, useMantineColorScheme } from '@mantine/core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {
-    faBell,
-    faMoon,
-    faSun,
-    faTree,
-} from '@fortawesome/free-solid-svg-icons'
+import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons'
 import { useCallback, useEffect } from 'react'
 import { useTranslations } from 'next-intl'
 
