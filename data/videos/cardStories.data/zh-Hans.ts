@@ -861,6 +861,21 @@ const dataHaruko: StoriesData = {
         },
         phone: { video: { type: 'bilibili', vid: 'av433127652' } },
     },
+    'card-hrk-05-sail-00': {
+        // 陽光見守るとなりの青春
+        1: {
+            name: '虽然长了点肉',
+            video: { type: 'bilibili', vid: 'av908863959' },
+        },
+        2: {
+            name: '迷迷糊糊的遥子桑',
+            video: { type: 'bilibili', vid: 'av908950186' },
+        },
+        3: {
+            name: '憧憬的青春',
+            video: { type: 'bilibili', vid: 'av611421464' },
+        },
+    },
 }
 
 // ---- TRINITYAiLE ----
