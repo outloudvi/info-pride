@@ -24,6 +24,9 @@
     "More": "More",
     "情报站微博": "Aipura Info (Weibo)",
     "星见编辑部": "Hoshimi Newsroom",
+    "Inactive yet": "Inactive yet",
+    "Next event starts at:": "Next event starts at:",
+    "Ends at:": "Ends at:",
     "NormalGacha": "Normal Gacha",
     "LimitedGacha": "Limited Gacha",
     "PickupGacha": "Pick-up Gacha",
@@ -41,5 +44,6 @@
     "loading_news": "Loading news.",
     "last_updated": "Last updated:",
     "version_info_loading": "Loading game version info.",
-    "local_time": "Local time:"
+    "local_time": "Local time:",
+    "no_events": "No current events."
 }

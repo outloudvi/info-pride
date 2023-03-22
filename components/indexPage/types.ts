@@ -6,6 +6,15 @@ export type EventItem = {
     link?: string
 }
 
+export type IndexEventItem =
+    | {
+          start: number
+          end: number
+      }
+    | {
+          nextStart: number
+      }
+
 export enum EventType {
     NormalGacha,
     LimitedGacha,
@@ -20,5 +29,5 @@ export enum EventType {
     MessageEvent,
     Training,
     MultiLinks,
-    VenusLeague
+    VenusLeague,
 }

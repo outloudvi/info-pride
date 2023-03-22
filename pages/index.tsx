@@ -1,12 +1,21 @@
-import { Button, Grid, Group, Stack } from '@mantine/core'
+import { Button, Flex, Grid, Group, Stack } from '@mantine/core'
 import { useTranslations } from 'next-intl'
+import { useMemo } from 'react'
 
 import CurrentEvents from '#components/indexPage/CurrentEvents'
 import Notice from '#components/indexPage/Notice'
 import VersionInfo from '#components/indexPage/VersionInfo'
 import Paths from '#utils/paths'
 import NoticeTop from '#components/indexPage/NoticeTop'
-import getI18nProps from '#utils/getI18nProps'
+import { addI18nMessages } from '#utils/getI18nProps'
+import RoutineCountdown from '#components/indexPage/RoutineCountdown'
+import IndexTitle from '#components/indexPage/IndexTitle'
+import {
+    getStartOfToday,
+    getUnionBattleEvent,
+    getVenusBattleEvent,
+    getVenusLeagueEvent,
+} from '#components/indexPage/venusEvents'
 
 const Home = () => {
     const $t = useTranslations('index')
@@ -39,12 +48,32 @@ const Home = () => {
         },
     ]
 
+    const startOfToday = useMemo(() => getStartOfToday(), [])
+
     return (
         <>
             <NoticeTop />
+            <Flex direction={{ base: 'column', md: 'row' }} gap="sm">
+                <IndexTitle />
+                <RoutineCountdown
+                    title={'VenusLeague'}
+                    event={getVenusLeagueEvent(startOfToday)}
+                    bgColor={'#a5adff'}
+                    league={true}
+                />
+                <RoutineCountdown
+                    title={'VenusBattle'}
+                    event={getVenusBattleEvent(startOfToday)}
+                    bgColor={'#d894fc'}
+                />
+                <RoutineCountdown
+                    title={'UnionBattle'}
+                    event={getUnionBattleEvent(startOfToday)}
+                    bgColor={'#81c275'}
+                />
+            </Flex>
             <Grid className="mt-3">
                 <Grid.Col xs={12} lg={6}>
-                    <div className="text-center text-6xl mt-4">INFO PRIDE</div>
                     <Stack spacing={15} justify="center" className="mt-2">
                         {MainPageSiteData.map((items, _key) => (
                             <Group key={_key}>
@@ -84,6 +113,12 @@ const Home = () => {
     )
 }
 
-export const getStaticProps = getI18nProps(['index', 'notice'])
+export const getServerSideProps = async ({ locale }: { locale: string }) => {
+    return {
+        props: {
+            ...(await addI18nMessages(locale, ['index', 'notice'])),
+        },
+    }
+}
 
 export default Home

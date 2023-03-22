@@ -1,5 +1,4 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import type { Dayjs } from 'dayjs'
 import dayjs from 'dayjs'
 import dayjsUtc from 'dayjs/plugin/utc'
 import dayjsTz from 'dayjs/plugin/timezone'
@@ -8,8 +7,11 @@ import dayjsIsSameOrBefore from 'dayjs/plugin/isSameOrBefore'
 import dayjsCustomParseFormat from 'dayjs/plugin/customParseFormat'
 
 import type { EventType as CalendarEventType } from '#data/wikiModules/calendar'
-import type { EventItem } from '#components/indexPage/types'
 import { EventType } from '#components/indexPage/types'
+import type { FrontendAPIResponseMapping } from '#utils/useFrontendApi'
+import { Calendar } from '#data/wikiModules'
+import { getStartOfToday } from '#components/indexPage/venusEvents'
+import { COMMON_DATE_FORMAT, SOURCE_TIMEZONE } from '#utils/constants'
 
 dayjs.extend(dayjsUtc)
 dayjs.extend(dayjsTz)
@@ -35,89 +37,34 @@ const CalendarEventTypeMapping: Record<CalendarEventType, EventType> = {
     VENUS联赛: EventType.VenusLeague,
 }
 
-const CommonDateFormat = 'YYYY/M/D'
-const LastVenusBattleStartDate = '2022/12/2'
-const DefaultTimeZone = 'Asia/Tokyo'
-
-function getVenusBattleEvent(startOfToday: Dayjs): EventItem[] {
-    // VB goes for 9 days and rests for a day
-    const baseDate = dayjs.tz(
-        LastVenusBattleStartDate,
-        CommonDateFormat,
-        DefaultTimeZone
-    )
-    const dayProgressForCurrVenus = startOfToday.diff(baseDate, 'day') % 10
-
-    if (dayProgressForCurrVenus === 9) {
-        // in rest
-        return []
-    }
-    const startDate = startOfToday.subtract(dayProgressForCurrVenus, 'day')
-    const endDate = startDate.add(9, 'day').subtract(1, 'second')
-
-    return [
-        {
-            title: 'VENUS バトル',
-            type: EventType.VenusBattle,
-            start: Number(startDate),
-            end: Number(endDate),
-        },
-    ]
-}
-
-function getUnionBattleEvent(startOfToday: Dayjs): EventItem[] {
-    // UB starts at 15th and goes for 7 days
-    const day = startOfToday.date()
-    if (day >= 15 && day <= 21) {
-        const startDate = startOfToday.date(15)
-        const endDate = startOfToday.date(22)
-        return [
-            {
-                title: 'VENUS ユニオン',
-                type: EventType.UnionBattle,
-                start: Number(startDate),
-                end: Number(endDate),
-            },
-        ]
-    }
-    return []
-}
-
-import type { FrontendAPIResponseMapping } from '#utils/useFrontendApi'
-import { Calendar } from '#data/wikiModules'
-
 const currentEvents = async (
     _: NextApiRequest,
     res: NextApiResponse<FrontendAPIResponseMapping['currentEvents']>
 ) => {
-    const startOfToday = dayjs().tz(DefaultTimeZone).startOf('day')
+    const startOfToday = getStartOfToday()
     const allEvents = Object.values(Calendar).reduce((a, b) => [...a, ...b])
     const activeEvents = allEvents
         .filter(
             (x) =>
                 startOfToday.isSameOrAfter(x.start, 'day') &&
                 startOfToday.isSameOrBefore(x.end, 'day') &&
-                !['VENUS对战', '联合对战'].includes(x.type)
+                !['VENUS对战', '联合对战', 'VENUS联赛'].includes(x.type)
         )
         .sort(
             (a, b) =>
                 // TZ doesn't matter here since they are all dates without time
-                Number(dayjs.tz(a.start, CommonDateFormat, DefaultTimeZone)) -
-                Number(dayjs.tz(b.start, CommonDateFormat, DefaultTimeZone))
+                Number(dayjs.tz(a.start, COMMON_DATE_FORMAT, SOURCE_TIMEZONE)) -
+                Number(dayjs.tz(b.start, COMMON_DATE_FORMAT, SOURCE_TIMEZONE))
         )
         .map(({ title, type, start, end, link }) => ({
             title,
             type: CalendarEventTypeMapping[type],
-            start: Number(dayjs.tz(start, CommonDateFormat, DefaultTimeZone)),
-            end: Number(dayjs.tz(end, CommonDateFormat, DefaultTimeZone)),
+            start: Number(dayjs.tz(start, COMMON_DATE_FORMAT, SOURCE_TIMEZONE)),
+            end: Number(dayjs.tz(end, COMMON_DATE_FORMAT, SOURCE_TIMEZONE)),
             link: link ? link : undefined,
         }))
 
-    res.status(200).json([
-        ...activeEvents,
-        ...getVenusBattleEvent(startOfToday),
-        ...getUnionBattleEvent(startOfToday),
-    ])
+    res.status(200).json(activeEvents)
 }
 
 export default currentEvents

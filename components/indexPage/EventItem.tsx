@@ -10,29 +10,28 @@ import dayjsTz from 'dayjs/plugin/timezone'
 import { EventItem, EventType } from './types'
 
 import Paths from '#utils/paths'
+import { COMMON_DATE_FORMAT, SOURCE_TIMEZONE } from '#utils/constants'
 
 dayjs.extend(dayjsUtc)
 dayjs.extend(dayjsTz)
 
-const CommonDateFormat = 'YYYY/M/D'
 const ExtendedDateFormat = 'YYYY/M/D H:mm:ss'
-const SourceTimeZone = 'Asia/Tokyo'
 
 const EventItem = ({ item }: { item: EventItem }) => {
     const $t = useTranslations('index')
 
     const { title, type, start, end, link } = item
 
-    const startDate = dayjs(start).tz(SourceTimeZone)
-    const endDate = dayjs(end).tz(SourceTimeZone)
+    const startDate = dayjs(start).tz(SOURCE_TIMEZONE)
+    const endDate = dayjs(end).tz(SOURCE_TIMEZONE)
     const now = dayjs()
-    const startDateStr = startDate.format(CommonDateFormat)
+    const startDateStr = startDate.format(COMMON_DATE_FORMAT)
     const endDateStr = useMemo(() => {
         const startOfEndDate = endDate.startOf('day')
         if (endDate.diff(startOfEndDate, 'second') === 0) {
-            return endDate.subtract(1, 'day').format(CommonDateFormat)
+            return endDate.subtract(1, 'day').format(COMMON_DATE_FORMAT)
         }
-        return endDate.format(CommonDateFormat)
+        return endDate.format(COMMON_DATE_FORMAT)
     }, [endDate])
 
     const localTimeString = `${$t('local_time')} ${startDate

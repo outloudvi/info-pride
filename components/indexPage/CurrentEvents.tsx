@@ -16,11 +16,15 @@ const CurrentEvents = () => {
                 {$t('Current events')}
             </div>
             {CurrentEvents !== undefined ? (
-                CurrentEvents.map((item, key) => (
-                    <EventItem key={key} item={item} />
-                ))
+                CurrentEvents.length === 0 ? (
+                    <p>{$t('no_events')}</p>
+                ) : (
+                    CurrentEvents.map((item, key) => (
+                        <EventItem key={key} item={item} />
+                    ))
+                )
             ) : (
-                <Skeleton height={400} />
+                <Skeleton height={200} />
             )}
         </>
     )

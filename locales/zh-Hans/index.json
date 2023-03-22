@@ -10,6 +10,9 @@
     "Discord Group (Chinese)": "Discord 中文群组",
     "情报站微博": "情报站微博",
     "星见编辑部": "星见编辑部",
+    "Inactive yet": "未开始",
+    "Next event starts at:": "下次开始于：",
+    "Ends at:": "本次结束于：",
     "Current events": "当前活动",
     "Backend": "后端",
     "Bwiki modules": "Bwiki 模块",
@@ -41,5 +44,6 @@
     "loading_news": "新闻加载中。",
     "last_updated": "最后更新：",
     "version_info_loading": "正在加载游戏版本信息。",
-    "local_time": "本地时间："
+    "local_time": "本地时间：",
+    "no_events": "没有当前活动。"
 }

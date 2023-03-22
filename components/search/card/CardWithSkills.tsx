@@ -14,6 +14,7 @@ import type { APIResponseOf } from '#utils/api'
 import getCardColor from '#utils/getCardColor'
 import type { CharacterId } from '#data/vendor/characterId'
 import Paths from '#utils/paths'
+import { SOURCE_TIMEZONE } from '#utils/constants'
 
 dayjs.extend(dayjsUtc)
 dayjs.extend(dayjsTz)
@@ -37,7 +38,7 @@ const CardWithSkills = ({
         card
     const cardColor = getCardColor(card)
     const releaseDateFmt = dayjs(Number(releaseDate))
-        .tz('Asia/Tokyo')
+        .tz(SOURCE_TIMEZONE)
         .format('YYYY-MM-DD')
 
     const cardCcid = CCIDTable?.[card.characterId as CharacterId]?.find(

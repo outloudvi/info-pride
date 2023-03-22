@@ -13,6 +13,13 @@ module.exports = {
             },
         },
     },
-    safelist: ['border-vocal', 'border-dance', 'border-visual'],
+    safelist: [
+        'border-vocal',
+        'border-dance',
+        'border-visual',
+        'border-[#a5adff]',
+        'border-[#d894fc]',
+        'border-[#81c275]',
+    ],
     plugins: [],
 }
