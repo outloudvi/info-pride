@@ -264,6 +264,7 @@ const SearchPage = ({
                         displayAs={$vc}
                         width={300}
                         formProps={getInputProps('selectedCharacters')}
+                        maxDropdownHeight={400}
                     />
                     <FilterSelect
                         className="mr-2"
@@ -328,6 +329,7 @@ const SearchPage = ({
                         displayAs={$ss}
                         width={300}
                         formProps={getInputProps('effectTypes')}
+                        maxDropdownHeight={450}
                     />
                     <FilterSelect
                         className="mr-2"
@@ -337,6 +339,7 @@ const SearchPage = ({
                         displayAs={$ss}
                         width={300}
                         formProps={getInputProps('targetTypes')}
+                        maxDropdownHeight={450}
                     />
                     <Checkbox
                         label={$t('Dual A skills')}

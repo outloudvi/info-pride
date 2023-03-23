@@ -12,6 +12,7 @@ const FilterSelect = <T extends string>({
     displayAs,
     listNamemap,
     formProps,
+    maxDropdownHeight = 220, // mantine preset value
 }: {
     label: string | ReactNode
     list: readonly T[]
@@ -21,15 +22,16 @@ const FilterSelect = <T extends string>({
     displayAs?: (s: string) => string
     listNamemap?: Record<string, string>
     formProps: Omit<SelectProps, 'data'> & Omit<MultiSelectProps, 'data'>
+    maxDropdownHeight?: number
 }) => {
     const $c = useTranslations('common')
 
     const data =
         displayAs || listNamemap
             ? list.map((x) => ({
-                  label: (displayAs ? displayAs(x) : listNamemap?.[x]) ?? x,
-                  value: x,
-              }))
+                label: (displayAs ? displayAs(x) : listNamemap?.[x]) ?? x,
+                value: x,
+            }))
             : [...list]
     if (multiple) {
         return (
@@ -46,6 +48,7 @@ const FilterSelect = <T extends string>({
                     wrapper: 'max-w-xl',
                 }}
                 {...formProps}
+                maxDropdownHeight={maxDropdownHeight}
             />
         )
     } else {
@@ -60,6 +63,7 @@ const FilterSelect = <T extends string>({
                     'aria-label': $c('Clear'),
                 }}
                 {...formProps}
+                maxDropdownHeight={maxDropdownHeight}
             />
         )
     }
