@@ -86,7 +86,16 @@ const SearchPage = ({
             Object.values<SXEffectWithTarget>(SkillxData)
                 .map((x) => x.effect.typ)
                 .filter((x) => x)
-        ).sort()
+        ).sort((a, b) => {
+            // In real case, score_get types are seldom used,
+            // leave those worthlessness at the end of the list
+            // instead of keeping them intertwined with other usefuls.
+            const aIsScore = a.startsWith("score_get_")
+            const bIsScore = b.startsWith("score_get_")
+            if (aIsScore && !bIsScore) return 1
+            else if (!aIsScore && bIsScore) return -1
+            else return a.localeCompare(b)
+        })
     }, [SkillxData])
     const skillTargetTypes = useMemo(() => {
         return uniq(
