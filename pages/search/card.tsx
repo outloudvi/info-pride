@@ -13,6 +13,7 @@ import { useTranslations } from 'next-intl'
 
 import type { LocalBox } from '../settings'
 import jpSearchSkills from "../../locales/ja/search_skills.json"
+import jpCharas from "../../locales/ja/v-chr.json"
 
 import tryJSONParse from '#utils/tryJsonParse'
 import { LOCALSTORAGE_BOX_TAG } from '#utils/startupHook'
@@ -277,7 +278,8 @@ const SearchPage = ({
                         label={$t('Character')}
                         multiple
                         list={CharacterIds}
-                        displayAs={$vc}
+                        displayAs={useJpStr ? undefined : $vc}
+                        listNamemap={useJpStr ? jpCharas : undefined}
                         width={300}
                         formProps={getInputProps('selectedCharacters')}
                         maxDropdownHeight={400}
@@ -353,7 +355,8 @@ const SearchPage = ({
                         label={$t('Target type')}
                         multiple
                         list={skillTargetTypes}
-                        displayAs={$ss}
+                        displayAs={useJpStr ? undefined : $ss}
+                        listNamemap={useJpStr ? jpSearchSkills : undefined}
                         width={300}
                         formProps={getInputProps('targetTypes')}
                         maxDropdownHeight={450}
