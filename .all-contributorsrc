@@ -20,7 +20,8 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/50281195?v=4",
       "profile": "https://malitsplus.blogspot.com",
       "contributions": [
-        "data"
+        "data",
+        "code"
       ]
     },
     {
@@ -38,5 +39,6 @@
   "projectOwner": "outloudvi",
   "repoType": "github",
   "repoHost": "https://github.com",
-  "skipCi": true
+  "skipCi": true,
+  "commitConvention": "angular"
 }
