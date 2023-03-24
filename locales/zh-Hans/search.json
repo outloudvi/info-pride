@@ -21,5 +21,6 @@
     "card_filtered": "从 {total} 张卡片中找到 {num} 张卡片。",
     "st_stamina": "所需体力 {s}",
     "st_ct": "CT {ct}",
-    "st_limit": "Live 中只生效 {l} 次"
+    "st_limit": "Live 中只生效 {l} 次",
+    "Use original strings": "仅在搜索时使用日文"
 }
