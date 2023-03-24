@@ -2,6 +2,7 @@ import type { ReactNode } from 'react'
 import { useEffect, useMemo, useState } from 'react'
 import Link from 'next/link'
 import { useForm } from '@mantine/form'
+import { useLocalStorage } from '@mantine/hooks'
 import { Checkbox, NumberInput, TextInput, Tooltip } from '@mantine/core'
 import { SkillCategoryType } from 'hoshimi-types/ProtoEnum'
 import type { EffectWithTarget as SXEffectWithTarget } from 'hoshimi-types/Skillx'
@@ -11,6 +12,7 @@ import uniq from 'lodash/uniq'
 import { useTranslations } from 'next-intl'
 
 import type { LocalBox } from '../settings'
+import jpSearchSkills from "../../locales/ja/search_skills.json"
 
 import tryJSONParse from '#utils/tryJsonParse'
 import { LOCALSTORAGE_BOX_TAG } from '#utils/startupHook'
@@ -45,6 +47,11 @@ const SearchPage = ({
     const $v = useTranslations('vendor')
 
     const [localBox, setLocalBox] = useState<LocalBox>({})
+    // provides a escape hatch for those who have already get used to in-game literatures
+    const [useJpStr, setUseJpStr] = useLocalStorage({
+        key: 'use-jp-strings-during-searching',
+        defaultValue: false,
+    })
     useEffect(() => {
         setLocalBox(
             tryJSONParse(localStorage.getItem(LOCALSTORAGE_BOX_TAG)) ?? {}
@@ -335,7 +342,8 @@ const SearchPage = ({
                         }
                         multiple
                         list={skillEffectTypes}
-                        displayAs={$ss}
+                        displayAs={useJpStr ? undefined : $ss}
+                        listNamemap={useJpStr ? jpSearchSkills : undefined}
                         width={300}
                         formProps={getInputProps('effectTypes')}
                         maxDropdownHeight={450}
@@ -354,6 +362,12 @@ const SearchPage = ({
                         label={$t('Dual A skills')}
                         className="mr-2"
                         {...getInputProps('dualA')}
+                    />
+                    <Checkbox
+                        label={$t('Use original strings')}
+                        className="mr-2"
+                        checked={useJpStr}
+                        onChange={(e) => setUseJpStr(e.currentTarget.checked)}
                     />
                 </div>
             </div>
