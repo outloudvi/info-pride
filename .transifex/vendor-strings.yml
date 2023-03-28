@@ -8,3 +8,4 @@ git:
       translation_files_expression: "locales/<lang>"
       ignore_files:
         - locales/ja/v-card-alias.json
+        - locales/ja/search_skills.json
