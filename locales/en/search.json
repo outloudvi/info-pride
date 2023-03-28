@@ -14,6 +14,7 @@
     "Dual A skills": "Dual A skills",
     "Wiki Page (Chinese)": "Wiki Page (Chinese)",
     "Released": "Released",
+    "Use original strings": "Use original strings",
     "no_skip_sp_on_ctfilter": "Don't skip SP skills with the CT filter",
     "no_skip_sp_on_ctfilter_desc": "When selected, cards with a SP will NOT be excluded even if no skills match the CT filter. You may want to select this while using other filters together.",
     "skill_type_desc": "What's this? (Chinese)",
