@@ -48,7 +48,7 @@ const AppHeader = ({
                 href="/"
                 className="text-black dark:text-white no-underline hover:underline ml-2"
             >
-                <b>INFO PRIDE</b>
+                <b>SATOMI PRIDE</b>
             </Link>
             <div className="grow"></div>
             <LanguageSelection className="hidden md:block" />

@@ -1,5 +1,5 @@
 <h1 align=center>
-INFO PRIDE
+SATOMI PRIDE
 </h1>
 
 <h3 align=center>
