@@ -48,7 +48,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
       <td align="center" valign="top" width="14.28%"><a href="https://blog.outv.im"><img src="https://avatars.githubusercontent.com/u/19144373?v=4?s=100" width="100px;" alt="Outvi V"/><br /><sub><b>Outvi V</b></sub></a><br /><a href="https://github.com/outloudvi/info-pride/commits?author=outloudvi" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://malitsplus.blogspot.com"><img src="https://avatars.githubusercontent.com/u/50281195?v=4?s=100" width="100px;" alt="Vibbit"/><br /><sub><b>Vibbit</b></sub></a><br /><a href="#data-MalitsPlus" title="Data">🔣</a> <a href="https://github.com/outloudvi/info-pride/commits?author=MalitsPlus" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/tokanada"><img src="https://avatars.githubusercontent.com/u/9441423?v=4?s=100" width="100px;" alt="David T"/><br /><sub><b>David T</b></sub></a><br /><a href="#translation-tokanada" title="Translation">🌍</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/AlsoMustard"><img src="https://avatars.githubusercontent.com/u/62282785?v=4?s=100" width="100px;" alt="Salad"/><br /><sub><b>Salad</b></sub></a><br /><a href="#design-AlsoMustard" title="Design">🎨</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://t.me/nuclearpowerstation"><img src="https://avatars.githubusercontent.com/u/62282785?v=4?s=100" width="100px;" alt="Salad"/><br /><sub><b>Salad</b></sub></a><br /><a href="#design-AlsoMustard" title="Design">🎨</a></td>
     </tr>
   </tbody>
 </table>
