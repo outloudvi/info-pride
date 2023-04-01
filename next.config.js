@@ -63,7 +63,10 @@ const sentryWebpackPluginOptions = {
     // https://github.com/getsentry/sentry-webpack-plugin#options.
 }
 
-const conf = withSentryConfig(nextConfig, sentryWebpackPluginOptions)
+const conf =
+    process.env.VERCEL_ENV === 'production'
+        ? withSentryConfig(nextConfig, sentryWebpackPluginOptions)
+        : nextConfig
 
 const generateGlobalData = () => {
     fs.writeFileSync(
