@@ -32,6 +32,15 @@
       "contributions": [
         "translation"
       ]
+    },
+    {
+      "login": "AlsoMustard",
+      "name": "Salad",
+      "avatar_url": "https://avatars.githubusercontent.com/u/62282785?v=4",
+      "profile": "https://github.com/AlsoMustard",
+      "contributions": [
+        "design"
+      ]
     }
   ],
   "contributorsPerLine": 7,
