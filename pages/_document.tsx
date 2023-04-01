@@ -59,6 +59,7 @@ export default class _Document extends Document {
             <Html>
                 <Head>
                     <meta httpEquiv="Content-Security-Policy" content={csp} />
+                    {/* opengraph */}
                     <meta property="og:title" content={META_TITLE} />
                     <meta property="twitter:title" content={META_TITLE} />
                     <meta property="og:url" content={BASEURL} />
@@ -78,9 +79,39 @@ export default class _Document extends Document {
                     <meta property="og:image:height" content="600" />
                     <meta property="og:site_name" content={META_TITLE} />
                     <meta property="og:type" content="website" />
-
                     <meta name="twitter:image:src" content={OG_IMAGE} />
                     <meta name="twitter:card" content="summary_large_image" />
+                    {/* icons */}
+                    <link
+                        rel="apple-touch-icon"
+                        sizes="180x180"
+                        href="/apple-touch-icon.png?v=2"
+                    />
+                    <link
+                        rel="icon"
+                        type="image/png"
+                        sizes="32x32"
+                        href="/favicon-32x32.png?v=2"
+                    />
+                    <link
+                        rel="icon"
+                        type="image/png"
+                        sizes="16x16"
+                        href="/favicon-16x16.png?v=2"
+                    />
+                    <link rel="manifest" href="/site.webmanifest?v=2" />
+                    <link
+                        rel="mask-icon"
+                        href="/safari-pinned-tab.svg?v=2"
+                        color="#5bbad5"
+                    />
+                    <link rel="shortcut icon" href="/favicon.ico?v=2" />
+                    <meta
+                        name="apple-mobile-web-app-title"
+                        content="Info Pride"
+                    />
+                    <meta name="application-name" content="Info Pride" />
+                    <meta name="msapplication-TileColor" content="#2b5797" />
                 </Head>
                 <body>
                     <Main />
