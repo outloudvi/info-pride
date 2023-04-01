@@ -3,7 +3,7 @@ import Head from 'next/head'
 const Title = ({ title, noh2 }: { title: string; noh2?: boolean }) => (
     <>
         <Head>
-            <title>{title + ' | SATOMI PRIDE'}</title>
+            <title>{title + ' | INFO PRIDE'}</title>
         </Head>
         {!noh2 && <h2>{title}</h2>}
     </>

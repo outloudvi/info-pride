@@ -12,7 +12,7 @@ export default function Custom404() {
                 <Link href="/">{$t('back_to_main_page')}</Link>
             </p>
             <p>
-                SATOMI PRIDE |{' '}
+                INFO PRIDE |{' '}
                 <a href="https://github.com/outloudvi/info-pride/issues">
                     {$t('bug_report')}
                 </a>
