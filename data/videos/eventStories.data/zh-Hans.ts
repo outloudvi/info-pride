@@ -375,6 +375,14 @@ const data: Record<string, ChapterItem> = {
         name: '今年最后的演出对战',
         video: { type: 'bilibili', vid: 'av522131017' },
     },
+    'st-eve-2301-contest-002': {
+        name: '当作和ⅢX对战',
+        video: { type: 'bilibili', vid: 'av268770818' },
+    },
+    'st-eve-2301-contest-003': {
+        name: '前辈的保镖',
+        video: { type: 'bilibili', vid: 'av653794025' },
+    },
     // ぱじゃまパーティー！～夢見る少女と眠り姫～
     'st-eve-2303-race-001': {
         name: '写不完的作业',
@@ -395,6 +403,27 @@ const data: Record<string, ChapterItem> = {
     'st-eve-2303-race-005': {
         name: '睡衣派对！成立',
         video: { type: 'bilibili', vid: 'av353197768' },
+    },
+    // 音色の輝石が紡ぐ未来
+    'st-eve-2304-marathon-raid-001': {
+        name: '参加祭典',
+        video: { type: 'bilibili', vid: 'av824153890' },
+    },
+    'st-eve-2304-marathon-raid-002': {
+        name: '离得太近而无法交谈',
+        video: { type: 'bilibili', vid: 'av824153890' },
+    },
+    'st-eve-2304-marathon-raid-003': {
+        name: '约会的邀请',
+        video: { type: 'bilibili', vid: 'av824153890' },
+    },
+    'st-eve-2304-marathon-raid-004': {
+        name: '完全复活！',
+        video: { type: 'bilibili', vid: 'av824153890' },
+    },
+    'st-eve-2304-marathon-raid-005': {
+        name: '永远的对手',
+        video: { type: 'bilibili', vid: 'av824153890' },
     },
 }
 

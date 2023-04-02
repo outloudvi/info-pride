@@ -85,6 +85,21 @@ const dataKotono: StoriesData = {
             video: { type: 'bilibili', vid: 'av473715057' },
         },
     },
+    'card-ktn-05-fest-01': {
+        // 月光惑う光耀の幻影
+        1: {
+            name: '任何想法都是燃料',
+            video: { type: 'bilibili', vid: 'av526813812' },
+        },
+        2: {
+            name: '和好炸猪排',
+            video: { type: 'bilibili', vid: 'av226866648' },
+        },
+        3: {
+            name: '不想再输',
+            video: { type: 'bilibili', vid: 'av696802586' },
+        },
+    },
 }
 
 // 伊吹渚
@@ -505,6 +520,21 @@ const dataSakura: StoriesData = {
         },
         phone: {
             video: { type: 'bilibili', vid: 'av523323219' },
+        },
+    },
+    'card-skr-05-fest-01': {
+        // 太陽は光耀と共に
+        1: {
+            name: '看新闻了吗？',
+            video: { type: 'bilibili', vid: 'av354226365', pid: 1 },
+        },
+        2: {
+            name: '必须要超越那个人',
+            video: { type: 'bilibili', vid: 'av354226365', pid: 2 },
+        },
+        3: {
+            name: '一起来唱吧，麻奈',
+            video: { type: 'bilibili', vid: 'av354226365', pid: 3 },
         },
     },
 }

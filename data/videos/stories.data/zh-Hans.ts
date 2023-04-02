@@ -66,6 +66,10 @@ const special: StoriesData['special'] = [
         name: '[2023] 三得利售货机限定慰问来电（fran）',
         video: { type: 'bilibili', vid: 'av522746969' },
     },
+    {
+        name: '[2023/4/1] 愚人节桥本剧情（前篇）',
+        video: { type: 'bilibili', vid: 'av696886567' },
+    },
 ]
 
 const data: StoriesData['data'] = {
@@ -1228,6 +1232,26 @@ const data: StoriesData['data'] = {
             15: {
                 name: '玩得开心但也尽力而为',
                 video: { type: 'bilibili', vid: 'av861703761', pid: 5 },
+            },
+            16: {
+                name: 'TODO',
+                video: { type: 'bilibili', vid: 'av611418577', pid: 1 },
+            },
+            17: {
+                name: 'TODO',
+                video: { type: 'bilibili', vid: 'av611418577', pid: 2 },
+            },
+            18: {
+                name: 'TODO',
+                video: { type: 'bilibili', vid: 'av611418577', pid: 3 },
+            },
+            19: {
+                name: 'TODO',
+                video: { type: 'bilibili', vid: 'av611418577', pid: 4 },
+            },
+            20: {
+                name: 'TODO',
+                video: { type: 'bilibili', vid: 'av611418577', pid: 5 },
             },
         },
     },
