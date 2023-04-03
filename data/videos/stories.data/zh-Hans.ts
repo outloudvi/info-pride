@@ -71,9 +71,13 @@ const special: StoriesData['special'] = [
         video: { type: 'bilibili', vid: 'av696886567' },
     },
     {
-        name: "[2023/4/1] 愚人节桥本剧情（中篇）",
-        video: { type: 'bilibili', vid: 'av824497943' }
-    }
+        name: '[2023/4/1] 愚人节桥本剧情（中篇）',
+        video: { type: 'bilibili', vid: 'av824497943' },
+    },
+    {
+        name: '[2023/4/1] 愚人节桥本剧情（后篇）',
+        video: { type: 'bilibili', vid: 'av866951926' },
+    },
 ]
 
 const data: StoriesData['data'] = {
