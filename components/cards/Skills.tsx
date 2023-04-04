@@ -22,19 +22,17 @@ const Skill = ({ skill, className }: { skill: Skill; className?: string }) => {
                 <SkillImage skill={skill} skillImgLevel={level} />
             </div>
             <div className={className + ' flex flex-col flex-grow'}>
-                <div className="mx-4">
-                    <Slider
-                        min={levels[0].level}
-                        max={levels[levels.length - 1].level}
-                        value={level}
-                        label={(v) => `Level ${v}`}
-                        onChange={setLevel}
-                        aria-label={'Level'}
-                    />
-                </div>
                 <span>
                     <b>{name}</b> / {$v(SkillCategoryType[categoryType])}
                 </span>
+                <Slider
+                    min={levels[0].level}
+                    max={levels[levels.length - 1].level}
+                    value={level}
+                    label={(v) => `Level ${v}`}
+                    onChange={setLevel}
+                    aria-label={'Level'}
+                />
                 <span>{lfToBr(levels[level - 1].description, true)}</span>
             </div>
         </>
