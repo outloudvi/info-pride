@@ -64,7 +64,6 @@ const CardItem = ({
     const rarityInfo = rarityData.filter((x) => x.rarity === rarity)[0]
     const [level, setLevel] = useState(rarityInfo?.levelLimit ?? 1)
     const locale = useLocale()
-    const [cnTrans, setCnTrans] = useState(false)
 
     const { data: SkillData } = useApi('Skill', {
         ids: `${card.skillId1},${card.skillId2},${card.skillId3}`,
@@ -264,11 +263,6 @@ const CardItem = ({
                         <Skeleton height={200} />
                     )}
                     <br />
-                    <Switch
-                        label={$t('Use biliwiki translations')}
-                        checked={cnTrans}
-                        onChange={(e) => setCnTrans(e.target.checked)}
-                    />
                 </Grid.Col>
                 <Grid.Col xs={12} lg={6}>
                     <h3>{$t('Images')}</h3>

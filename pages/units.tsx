@@ -93,7 +93,6 @@ const UnitsPage = ({
     const [modalImportUnit, setModalImportUnit] = useState(false)
     const [importUnitId, setImportUnitId] = useState('')
     const [showNotemap, setShowNotemap] = useState(false)
-    const [cnTrans, setCnTrans] = useState(true)
 
     const [laneColors, setLaneColors] = useState<string[]>([
         'blue',
@@ -230,21 +229,6 @@ const UnitsPage = ({
                         />
                     </div>
                     <Divider className="my-2" />
-                    <Switch
-                        label={
-                            <span>
-                                使用中文翻译
-                                <Tooltip
-                                    className="ml-2"
-                                    label="请注意中文翻译的技能描述细节数据所对应的等级可能不符。"
-                                >
-                                    <FontAwesomeIcon icon={faInfoCircle} />
-                                </Tooltip>
-                            </span>
-                        }
-                        checked={cnTrans}
-                        onChange={(e) => setCnTrans(e.target.checked)}
-                    />
                 </Grid.Col>
                 <Grid.Col xs={12} lg={6}>
                     <UnitAnalyzer
