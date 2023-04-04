@@ -66,7 +66,7 @@ export const getServerSideProps = getI18nProps([
     'analyze',
     'vendor',
     'v-chr',
-    'v-card-name',
+    'v-card-name', // TODO: optimize
 ])
 
 export default PreloadedCardInfoPage
