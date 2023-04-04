@@ -55,14 +55,14 @@ const CardCard = ({ card }: { card: UnArray<APIResponseOf<'Card/List'>> }) => {
                     <Card.Section>{assetImage}</Card.Section>
 
                     <div className="mt-3">
-                        {$vcn(name) !== name ? (
+                        <b className="text-xl" lang="ja">
+                            {name}
+                        </b>
+                        {$vcn(name) !== name && (
                             <>
-                                <b className="text-xl">{$vcn(name)}</b>
                                 <br />
-                                <span>{name}</span>
+                                <span>{$vcn(name)}</span>
                             </>
-                        ) : (
-                            <b className="text-xl">{name}</b>
                         )}
                     </div>
 
