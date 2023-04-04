@@ -4,37 +4,28 @@ import type { Skill } from 'hoshimi-types/ProtoMaster'
 import { SkillCategoryType } from 'hoshimi-types/ProtoEnum'
 import { useTranslations } from 'next-intl'
 
+import lfToBr from '#utils/lfToBr'
+
 const SkillInUnit = ({
     skill,
     className,
     style,
-    skillName,
-    skillDesc,
 }: {
     skill: Skill
-    skillName?: string
-    skillDesc?: string
 } & HTMLAttributes<'div'>) => {
     const $v = useTranslations('vendor')
     return (
         <div {...{ className, style }}>
-            {skillName ?? skill.name} <br />
+            {skill.name} <br />
             <span className="text-sm">
                 {$v(SkillCategoryType[skill.categoryType])} 技
             </span>{' '}
             <br />
             <Tooltip
-                label={
-                    <div
-                        dangerouslySetInnerHTML={{
-                            __html: (
-                                skillDesc ??
-                                skill.levels[skill.levels.length - 1]
-                                    .description
-                            ).replace(/\n+/g, '<br/>'),
-                        }}
-                    ></div>
-                }
+                label={lfToBr(
+                    skill.levels[skill.levels.length - 1].description,
+                    true
+                )}
                 withArrow
                 position="right"
             >

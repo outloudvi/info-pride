@@ -1,5 +1,5 @@
-export default function lfToBr(str: string): JSX.Element {
-    const split = str.split('\n')
+export default function lfToBr(str: string, foldLf = false): JSX.Element {
+    const split = (foldLf ? str.replace(/\n+/g, '\n') : str).split('\n')
     const ret = []
     for (let i = 0; i < split.length; i++) {
         ret.push(<span key={i}>{split[i]}</span>)

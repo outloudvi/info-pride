@@ -51,7 +51,6 @@ export type FrontendAPIResponseMapping = {
               versionDisplay: string
           }
         | undefined
-    wikiCard: Partial<WikiCard>[] | undefined
 }
 
 function useFrontendApi<T extends keyof FrontendAPIResponseMapping>(

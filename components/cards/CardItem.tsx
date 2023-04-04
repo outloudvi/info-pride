@@ -22,7 +22,6 @@ import Props from './Props'
 import Skills from './Skills'
 import CardStories from './CardStories'
 
-import type { Card as WikiCard } from '#data/wikiPages/cards'
 import useApi from '#utils/useApi'
 import Paths from '#utils/paths'
 import getCardColor from '#utils/getCardColor'
@@ -91,9 +90,6 @@ const CardItem = ({
         }
     )
 
-    const { data: WikiCardData } = useFrontendApi('wikiCard', {
-        nameJa: name,
-    })
     const { data: CardAliasData } = useFrontendApi('cardAliases', {
         assetId: card.assetId,
         locale,
@@ -103,8 +99,6 @@ const CardItem = ({
             id: card.id,
             locale,
         })
-
-    const useCn = cnTrans && (WikiCardData?.length ?? 0) > 0
 
     const storiesDisplay = useMemo(() => {
         // Not fetched
@@ -145,7 +139,6 @@ const CardItem = ({
         return <Skeleton height={300} />
     }
 
-    const wikiCard = WikiCardData?.[0] as WikiCard | undefined
     const cardCcidInfo = CCIDTable?.[card.characterId as CharacterId]?.find(
         (x) => x.cardId === card.id
     )
@@ -185,14 +178,13 @@ const CardItem = ({
             </div>
             <Grid gutter={20}>
                 <Grid.Col xs={12} lg={6}>
-                    {!useCn && (
-                        <div
-                            className="text-gray-600 dark:text-gray-400"
-                            dangerouslySetInnerHTML={{
-                                __html: description.replace(/\n/g, '<br/>'),
-                            }}
-                        ></div>
-                    )}
+                    <div
+                        className="text-gray-600 dark:text-gray-400"
+                        dangerouslySetInnerHTML={{
+                            __html: description.replace(/\n/g, '<br/>'),
+                        }}
+                    ></div>
+
                     {CardAliasData?.aliases && (
                         <div>
                             {$t('aka')} {CardAliasData.aliases}
@@ -249,7 +241,7 @@ const CardItem = ({
                         level={level}
                     />
                     <h3>
-                        {$t('Skills')} {useCn && $t('skills_bwiki')}
+                        {$t('Skills')}
                         <br />
                         <small className="font-normal text-gray-500">
                             {$t.rich('skill_icons_beta', {
@@ -267,8 +259,6 @@ const CardItem = ({
                                     ? null
                                     : YellLiveData || YellActivityData
                             }
-                            useCn={useCn}
-                            wikiCardData={wikiCard}
                         />
                     ) : (
                         <Skeleton height={200} />

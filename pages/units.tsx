@@ -220,7 +220,6 @@ const UnitsPage = ({
                                 card={unitCards[position]}
                                 setCard={setPositionCard(position)}
                                 cardList={CardData}
-                                useCnTrans={cnTrans}
                             />
                         ))}
                     </div>

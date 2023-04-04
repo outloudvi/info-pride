@@ -11,14 +11,12 @@ const UnitPosition = ({
     setCard,
     cardList,
     col,
-    useCnTrans,
 }: {
     position: number
     card: CardTiny | null
     setCard: (c: CardTiny) => void
     cardList: CardTiny[]
     col: number
-    useCnTrans: boolean
 }) => {
     const $vc = useTranslations('v-chr')
 
@@ -59,7 +57,7 @@ const UnitPosition = ({
                 选择卡片
             </Button>
             {card ? (
-                <CardInUnit card={card} col={col} useCnTrans={useCnTrans} />
+                <CardInUnit card={card} col={col} />
             ) : (
                 <div
                     className="text-center text-gray-500 mt-3"

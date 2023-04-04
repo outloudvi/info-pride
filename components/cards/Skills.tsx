@@ -6,26 +6,10 @@ import { SkillCategoryType } from 'hoshimi-types/ProtoEnum'
 import { useTranslations } from 'next-intl'
 
 import SkillImage from './SkillImage'
-import SkillExplainer from './SkillExplainer'
 
-import type { Card as WikiCard } from '#data/wikiPages/cards'
 import lfToBr from '#utils/lfToBr'
 
-const Skill = ({
-    skill,
-    useCn,
-    cnLevel,
-    titleCn,
-    descCn,
-    className,
-}: {
-    skill: Skill
-    useCn: boolean
-    cnLevel: number
-    className?: string
-    titleCn?: string
-    descCn?: string
-}) => {
+const Skill = ({ skill, className }: { skill: Skill; className?: string }) => {
     const { name, categoryType, levels } = skill
 
     const $v = useTranslations('vendor')
@@ -35,39 +19,23 @@ const Skill = ({
     return (
         <>
             <div className="mr-2">
-                <SkillImage
-                    skill={skill}
-                    skillImgLevel={useCn ? cnLevel : level}
-                />
+                <SkillImage skill={skill} skillImgLevel={level} />
             </div>
             <div className={className + ' flex flex-col flex-grow'}>
                 <div className="mx-4">
-                    {!useCn && (
-                        <Slider
-                            min={levels[0].level}
-                            max={levels[levels.length - 1].level}
-                            value={level}
-                            label={(v) => `Level ${v}`}
-                            onChange={setLevel}
-                            aria-label={'Level'}
-                        />
-                    )}
+                    <Slider
+                        min={levels[0].level}
+                        max={levels[levels.length - 1].level}
+                        value={level}
+                        label={(v) => `Level ${v}`}
+                        onChange={setLevel}
+                        aria-label={'Level'}
+                    />
                 </div>
                 <span>
-                    <b>{(useCn ? titleCn : undefined) ?? name}</b> /{' '}
-                    {$v(SkillCategoryType[categoryType])}
+                    <b>{name}</b> / {$v(SkillCategoryType[categoryType])}
                 </span>
-                <br />
-                <span
-                    dangerouslySetInnerHTML={{
-                        __html: (
-                            (useCn ? descCn : undefined) ??
-                            levels[level - 1].description
-                        ).replace(/\n+/g, '<br />'),
-                    }}
-                ></span>
-                <br />
-                {!useCn && <SkillExplainer level={levels[level - 1]} />}
+                <span>{lfToBr(levels[level - 1].description, true)}</span>
             </div>
         </>
     )
@@ -107,41 +75,16 @@ const YellSkill = ({ skill }: { skill: LiveAbility | ActivityAbility }) => {
 const Skills = ({
     skills,
     yellSkill,
-    wikiCardData,
-    useCn,
 }: {
     skills: Skill[]
     yellSkill?: LiveAbility | ActivityAbility | null
-    wikiCardData?: WikiCard
-    useCn: boolean
 }) => {
     const $t = useTranslations('cards_slug')
     return (
         <Stack>
             {skills.map((skill, key) => (
                 <div key={key} className="flex items-center">
-                    <Skill
-                        key={key}
-                        skill={skill}
-                        useCn={useCn}
-                        cnLevel={6 - key}
-                        titleCn={
-                            wikiCardData?.[
-                                `ski${key + 1}NameCn` as
-                                    | 'ski1NameCn'
-                                    | 'ski2NameCn'
-                                    | 'ski3NameCn'
-                            ]
-                        }
-                        descCn={
-                            wikiCardData?.[
-                                `ski${key + 1}DescCn` as
-                                    | 'ski1NameCn'
-                                    | 'ski2NameCn'
-                                    | 'ski3NameCn'
-                            ] as string | undefined
-                        }
-                    />
+                    <Skill key={key} skill={skill} />
                 </div>
             ))}
             {yellSkill === null ? (
