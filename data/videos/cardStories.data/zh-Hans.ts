@@ -1592,6 +1592,21 @@ const dataKana: StoriesData = {
             video: { type: 'bilibili', vid: 'av262166499' },
         },
     },
+    'card-kan-05-idol-03': {
+        // 本音イミテーション
+        1: {
+            name: '也就是说，恋爱解禁？',
+            video: { type: 'bilibili', vid: 'av439533200' },
+        },
+        2: {
+            name: '去更好一点的地方啊',
+            video: { type: 'bilibili', vid: 'av269531054' },
+        },
+        3: {
+            name: '欲盖弥彰亦是可爱',
+            video: { type: 'bilibili', vid: 'av952014672' },
+        },
+    },
 }
 
 // miho
