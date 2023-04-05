@@ -1606,6 +1606,9 @@ const dataKana: StoriesData = {
             name: '欲盖弥彰亦是可爱',
             video: { type: 'bilibili', vid: 'av952014672' },
         },
+        phone: {
+            video: { type: 'bilibili', vid: 'av909504741' },
+        },
     },
 }
 
