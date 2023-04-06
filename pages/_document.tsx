@@ -15,7 +15,7 @@ const allowedConnectionDomains = [
     // Sentry's reporting & performance measurement
     'o421264.ingest.sentry.io',
     // Asset server
-    'idoly-assets-curator.vercel.app',
+    'ac.ip.outv.im',
     // Asset storage
     'idoly-assets.outv.im',
     'res.cloudinary.com',

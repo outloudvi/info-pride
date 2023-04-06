@@ -33,7 +33,7 @@ const nextConfig = {
         ]
     },
     images: {
-        domains: ['idoly-assets-curator.vercel.app', 'idoly-assets.outv.im'],
+        domains: ['ac.ip.outv.im', 'idoly-assets.outv.im'],
         unoptimized: true,
     },
     i18n: {
