@@ -29,9 +29,9 @@ const FilterSelect = <T extends string>({
     const data =
         displayAs || listNamemap
             ? list.map((x) => ({
-                label: (displayAs ? displayAs(x) : listNamemap?.[x]) ?? x,
-                value: x,
-            }))
+                  label: (displayAs ? displayAs(x) : listNamemap?.[x]) ?? x,
+                  value: x,
+              }))
             : [...list]
     if (multiple) {
         return (

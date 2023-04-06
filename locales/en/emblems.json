@@ -1,6 +1,21 @@
 {
     "Emblems": "Emblems",
-    "Show hidden emblems": "Show hidden emblems",
-    "btn_more": "More...",
-    "btn_loading": "Loading..."
+    "Type": "Type",
+    "type_Various": "Various",
+    "type_MLv": "MLv",
+    "type_HiscoreLive": "HiscoreLive",
+    "type_TowerLevel": "TowerLevel",
+    "type_IdolJobLevel": "IdolJobLevel",
+    "type_StoryGroup": "StoryGroup",
+    "type_StoryAndRate": "StoryAndRate",
+    "type_FanNumber": "FanNumber",
+    "type_Score10M": "Score10M",
+    "type_Birthday": "Birthday",
+    "type_April": "April",
+    "type_Valentine": "Valentine",
+    "type_Purchase": "Purchase",
+    "type_VenusLeague": "VenusLeague",
+    "type_PVP": "PVP",
+    "type_GVG": "GVG",
+    "type_EventResult": "EventResult"
 }

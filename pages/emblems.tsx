@@ -1,56 +1,41 @@
 import { useTranslations } from 'next-intl'
-import { Button, Checkbox, SimpleGrid } from '@mantine/core'
-import { useEffect, useState } from 'react'
-import { useRouter } from 'next/router'
+import { SimpleGrid, Skeleton } from '@mantine/core'
+import { StringParam, useQueryParam, withDefault } from 'use-query-params'
 
 import Title from '#components/Title'
 import getI18nProps from '#utils/getI18nProps'
 import useApi from '#utils/useApi'
-import type { APIResponseOf } from '#utils/api'
 import Emblem from '#components/emblems/Emblem'
+import FilterSelect from '#components/search/card/FilterSelect'
+import EmblemTypes from '#data/emblemTypes'
+import withQueryParam from '#utils/withQueryParam'
 
 const EmblemsPage = () => {
     const $t = useTranslations('emblems')
 
-    const router = useRouter()
-    const routePath = useRouter().asPath
-    const showHidden = router.query.showHidden === '1'
-    const [currItemList, setCurrItemList] = useState<
-        APIResponseOf<'Emblems'>['data']
-    >([])
-    const [currOffset, setCurrOffset] = useState(0)
-    const { data: ApiData, isFetching } = useApi('Emblems', {
-        limit: String(16),
-        offset: String(currOffset),
-        showHidden: String(showHidden),
-    })
-    useEffect(() => {
-        setCurrOffset(0)
-        setCurrItemList([])
-    }, [routePath])
-    useEffect(() => {
-        if (!ApiData) return
-        setCurrItemList((x) => [...x, ...ApiData.data])
-    }, [ApiData])
+    const [emblemType, setEmblemType] = useQueryParam(
+        'q',
+        withDefault(StringParam, 'Various')
+    )
 
-    const loadMore = () => {
-        setCurrOffset((x) => x + 16)
-    }
+    const { data: ApiData } = useApi('Emblems', {
+        prefix: EmblemTypes[emblemType as keyof typeof EmblemTypes].join(','),
+    })
 
     return (
         <>
             <Title title={$t('Emblems')} />
-            <div className="mt-2 mb-4 rounded-md border-solid border-6 border-sky-500 p-2">
-                <Checkbox
-                    label={$t('Show hidden emblems')}
-                    checked={showHidden}
-                    onChange={() => {
-                        const { pathname } = router
-                        router.push({
-                            pathname,
-                            query: { showHidden: showHidden ? '0' : '1' },
-                        })
+            <div className="mt-2 mb-4 rounded-md border-solid border-6 border-sky-500 p-2 flex">
+                <FilterSelect
+                    label={$t('Type')}
+                    list={Object.keys(EmblemTypes)}
+                    displayAs={(x) => $t(`type_${x}`)}
+                    width={300}
+                    formProps={{
+                        onChange: (x) => setEmblemType(x as string),
+                        value: emblemType as any,
                     }}
+                    maxDropdownHeight={400}
                 />
             </div>
             <SimpleGrid
@@ -63,21 +48,16 @@ const EmblemsPage = () => {
                     { maxWidth: 600, cols: 1, spacing: 'sm' },
                 ]}
             >
-                {currItemList.map((item, key) => (
-                    <Emblem key={key} item={item} />
-                ))}
+                {ApiData ? (
+                    ApiData.map((item, key) => <Emblem key={key} item={item} />)
+                ) : (
+                    <Skeleton height={500} />
+                )}
             </SimpleGrid>
-            <Button
-                onClick={() => loadMore()}
-                className="mt-2"
-                disabled={isFetching}
-            >
-                {isFetching ? $t('btn_loading') : $t('btn_more')}
-            </Button>
         </>
     )
 }
 
 export const getStaticProps = getI18nProps(['emblems'])
 
-export default EmblemsPage
+export default withQueryParam(EmblemsPage)

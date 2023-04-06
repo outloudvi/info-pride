@@ -3,11 +3,7 @@ import { Card } from '@mantine/core'
 import type { APIResponseOf, UnArray } from '#utils/api'
 import AssetImage from '#components/AssetImage'
 
-const Emblem = ({
-    item,
-}: {
-    item: UnArray<APIResponseOf<'Emblems'>['data']>
-}) => {
+const Emblem = ({ item }: { item: UnArray<APIResponseOf<'Emblems'>> }) => {
     const { name, assetId, description } = item
     return (
         <Card shadow="sm" p="sm">

@@ -1,6 +1,21 @@
 {
     "Emblems": "称号",
-    "Show hidden emblems": "显示隐藏称号",
-    "btn_more": "更多...",
-    "btn_loading": "正在加载..."
+    "Type": "类型",
+    "type_Various": "杂项",
+    "type_MLv": "经纪人等级",
+    "type_HiscoreLive": "高分演出",
+    "type_TowerLevel": "主线/VENUS 塔",
+    "type_IdolJobLevel": "偶像工作等级",
+    "type_StoryGroup": "剧情",
+    "type_StoryAndRate": "偶像剧情/信赖度",
+    "type_FanNumber": "偶像粉丝数",
+    "type_Score10M": "偶像个人得分",
+    "type_Birthday": "偶像生日",
+    "type_April": "愚人节",
+    "type_Valentine": "情人节",
+    "type_Purchase": "特典",
+    "type_VenusLeague": "VENUS LEAGUE",
+    "type_PVP": "VENUS BATTLE",
+    "type_GVG": "UNION BATTLE",
+    "type_EventResult": "活动"
 }
