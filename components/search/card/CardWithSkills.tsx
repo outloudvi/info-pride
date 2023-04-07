@@ -1,5 +1,5 @@
 import type { Skill } from 'hoshimi-types/ProtoMaster'
-import { Card, Grid } from '@mantine/core'
+import { Card, Grid, Group } from '@mantine/core'
 import { AttributeType, CardType } from 'hoshimi-types/ProtoEnum'
 import { useTranslations } from 'next-intl'
 import dayjs from 'dayjs'
@@ -9,12 +9,10 @@ import Link from 'next/link'
 
 import SkillDesc from './SkillDesc'
 
-import CCIDTable from '#data/ccid'
 import type { APIResponseOf } from '#utils/api'
 import getCardColor from '#utils/getCardColor'
-import type { CharacterId } from '#data/vendor/characterId'
-import Paths from '#utils/paths'
 import { SOURCE_TIMEZONE } from '#utils/constants'
+import AssetImage from '#components/AssetImage'
 
 dayjs.extend(dayjsUtc)
 dayjs.extend(dayjsTz)
@@ -41,44 +39,39 @@ const CardWithSkills = ({
         .tz(SOURCE_TIMEZONE)
         .format('YYYY-MM-DD')
 
-    const cardCcid = CCIDTable?.[card.characterId as CharacterId]?.find(
-        (x) => x.cardId === card.id
-    )
-
     const hasTranslatedName = $vcn(name) !== name
 
     return (
         <Card className="bg-neutral-200 dark:bg-neutral-800 rounded-md mb-2">
-            <Link href={`/cards/${id}`}>
-                <b>{hasTranslatedName ? $vcn(name) : name}</b>
-            </Link>
-            {hasTranslatedName && (
-                <span className="ml-2 text-gray-700 dark:text-gray-300">
-                    {name}
-                </span>
-            )}
-            {$vca(assetId) !== assetId && (
-                <small className="ml-3">{$vca(assetId)}</small>
-            )}
-            {cardCcid && (
-                <>
-                    <br className="lg:hidden" />
-                    <a
-                        className="lg:float-right"
-                        href={Paths.wiki(
-                            `${$vc(characterId)}/卡牌/${cardCcid.ccid}`
-                        )}
-                    >
-                        {$t('Wiki Page (Chinese)')}
-                    </a>
-                </>
-            )}
-            <br />
-            <span>
-                {$vc(characterId)} / {$v(CardType[type])} /{' '}
-                {$v(AttributeType[cardColor])} / {initialRarity}★ /{' '}
-                {$t('Released')} {releaseDateFmt}
-            </span>
+            <Group align="start">
+                <div>
+                    <Link href={`/cards/${id}`}>
+                        <b>{hasTranslatedName ? $vcn(name) : name}</b>
+                    </Link>
+                    {hasTranslatedName && (
+                        <span className="ml-2 text-gray-700 dark:text-gray-300">
+                            {name}
+                        </span>
+                    )}
+                    {$vca(assetId) !== assetId && (
+                        <small className="ml-3">{$vca(assetId)}</small>
+                    )}
+                    <br />
+                    <span>
+                        {$vc(characterId)} / {$v(CardType[type])} /{' '}
+                        {$v(AttributeType[cardColor])} / {initialRarity}★ /{' '}
+                        {$t('Released')} {releaseDateFmt}
+                    </span>
+                </div>
+                <div className="flex-grow"></div>
+                <AssetImage
+                    name={`img_card_thumb_1_${assetId}`}
+                    ratio={1}
+                    height={80}
+                    alt={'Asset image'}
+                />
+            </Group>
+
             <Grid className="mt-1">
                 {skillData.map((skill, index) => (
                     <Grid.Col
