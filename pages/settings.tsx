@@ -3,13 +3,14 @@ import { showNotification } from '@mantine/notifications'
 import { Button, Checkbox, Grid } from '@mantine/core'
 import rfdc from 'rfdc'
 import { useTranslations } from 'next-intl'
+import Link from 'next/link'
 
-import type { Card } from '#data/wikiPages/cards'
-import type { CharacterId } from '#data/vendor/characterId'
 import { LOCALSTORAGE_BOX_TAG } from '#utils/startupHook'
 import Title from '#components/Title'
-import useFrontendApi from '#utils/useFrontendApi'
+import { CCIDTableWithName } from '#data/ccid'
 import getI18nProps from '#utils/getI18nProps'
+import type { CharacterId } from '#data/vendor/characterId'
+import { CharacterIds } from '#data/vendor/characterId'
 
 const clone = rfdc({
     proto: true,
@@ -23,7 +24,6 @@ const SettingsPage = () => {
     const $c = useTranslations('common')
 
     const [localBox, setLocalBox] = useState<LocalBox>({})
-    const { data: Cards } = useFrontendApi('cards')
 
     useEffect(() => {
         try {
@@ -65,46 +65,38 @@ const SettingsPage = () => {
             <Title title={$t('Settings')} />
             <h3>{$t('My box')}</h3>
             <p>{$t('mybox_header')}</p>
-            {Cards ? (
-                <Grid gutter={20}>
-                    {Object.entries(Cards).map(([name], _key) => (
-                        <Grid.Col key={_key} xs={12} lg={3} className="rounded">
-                            <b>{$vc(name)}</b>
-                            <div>
-                                {Object.values(
-                                    Cards[name as keyof typeof Cards]
-                                ).map((card: Card, __key) => (
-                                    <Checkbox
-                                        key={__key}
-                                        label={
-                                            <div className="text-lg">
-                                                <span>{card.nameCn}</span>{' '}
-                                                <br />
-                                                <small>{card.nameJa}</small>
-                                            </div>
-                                        }
-                                        checked={Boolean(
-                                            localBox?.[card.ownerSlug]?.[
-                                                card.ownerId
-                                            ]
-                                        )}
-                                        onChange={(e) => {
-                                            updateLocalBox(
-                                                card.ownerSlug,
-                                                card.ownerId,
-                                                e.target.checked
-                                            )
-                                        }}
-                                        className="mt-2"
-                                    ></Checkbox>
-                                ))}
-                            </div>
-                        </Grid.Col>
-                    ))}
-                </Grid>
-            ) : (
-                <p>{$c('loading')}</p>
-            )}
+
+            <Grid gutter={20} className="mb-2">
+                {CharacterIds.map((chrId, _key) => (
+                    <Grid.Col key={_key} xs={12} lg={3} className="rounded">
+                        <b>{$vc(chrId)}</b>
+                        {CCIDTableWithName[chrId].map((card) => (
+                            <Checkbox
+                                key={card.cardId}
+                                label={
+                                    <span>
+                                        {card.nameJa}{' '}
+                                        <Link href={`/cards/${card.cardId}`}>
+                                            ➡️
+                                        </Link>
+                                    </span>
+                                }
+                                checked={Boolean(
+                                    localBox?.[chrId]?.[card.ccid]
+                                )}
+                                onChange={(e) => {
+                                    updateLocalBox(
+                                        chrId,
+                                        card.ccid,
+                                        e.target.checked
+                                    )
+                                }}
+                                className="mt-2"
+                            ></Checkbox>
+                        ))}
+                    </Grid.Col>
+                ))}
+            </Grid>
             <Button variant="outline" onClick={() => saveLocalBox()}>
                 {$t('Save')}
             </Button>
