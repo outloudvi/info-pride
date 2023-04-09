@@ -59,6 +59,9 @@ const _: BirthdayCommu = {
             phone: { type: 'bilibili', vid: 'av552772740' },
             others: { type: 'bilibili', vid: 'av980257748' },
         },
+        2023: {
+            phone: { type: 'bilibili', vid: 'av782356806' },
+        },
     },
     'char-szk': {
         2021: {

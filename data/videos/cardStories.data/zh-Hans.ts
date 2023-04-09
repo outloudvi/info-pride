@@ -1647,6 +1647,21 @@ const dataMiho: StoriesData = {
             video: { type: 'bilibili', vid: 'av774880295' },
         },
     },
+    'card-mhk-05-idol-03': {
+        // 囚われの執心
+        1: {
+            name: '另一位优胜者',
+            video: { type: 'bilibili', vid: 'av227079812' },
+        },
+        2: {
+            name: '和你无话可说',
+            video: { type: 'bilibili', vid: 'av824674444' },
+        },
+        3: {
+            name: '一定在看着',
+            video: { type: 'bilibili', vid: 'av354724496' },
+        },
+    },
 }
 
 // ---- 个人偶像 ----
