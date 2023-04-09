@@ -1,9 +1,9 @@
 import { useState } from 'react'
-import { Button, Modal, Select } from '@mantine/core'
-import { useTranslations } from 'next-intl'
+import { Button } from '@mantine/core'
 
 import type { CardTiny } from './types'
 import CardInUnit from './CardInUnit'
+import CardSelectionModal from './CardSelectionModal'
 
 const UnitPosition = ({
     position,
@@ -18,35 +18,18 @@ const UnitPosition = ({
     cardList: CardTiny[]
     col: number
 }) => {
-    const $vc = useTranslations('v-chr')
-
     const [modalOpened, setModalOpened] = useState(false)
 
     return (
         <>
-            <Modal
+            <CardSelectionModal
                 opened={modalOpened}
                 onClose={() => setModalOpened(false)}
                 title={`选择位置 ${position} 的卡片`}
-                closeButtonProps={{
-                    'aria-label': 'Close',
-                }}
-            >
-                <Select
-                    label="选择一张卡片"
-                    data={cardList.map((x) => ({
-                        label: `${x.name} / ${$vc(x.characterId)}`,
-                        value: x.id,
-                    }))}
-                    searchable
-                    value={card?.id}
-                    onChange={(e) => {
-                        if (!e) return
-                        setCard(cardList[cardList.findIndex((c) => c.id === e)])
-                    }}
-                />
-            </Modal>
-
+                cardList={cardList}
+                value={card}
+                onSelect={setCard}
+            />
             <Button
                 onClick={() => setModalOpened(true)}
                 style={{
