@@ -3,11 +3,13 @@ import { useEffect, useRef, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { useViewportSize } from '@mantine/hooks'
 import { useTranslations } from 'next-intl'
+import { StringParam, useQueryParam, withDefault } from 'use-query-params'
 
 import ChatItem from './ChatItem'
 import ChatView from './ChatView'
 
 import type { APIResponseOf } from '#utils/api'
+import withQueryParam from '#utils/withQueryParam'
 
 const FullScreenButton = dynamic(() => import('#components/FullScreenButton'), {
     ssr: false,
@@ -22,8 +24,9 @@ const MessageBoardView = ({
     const [activeGroup, setActiveGroup] = useState<undefined | string>(
         undefined
     )
-    const [activeMessageId, setActiveMessageId] = useState<undefined | string>(
-        undefined
+    const [activeMessageId, setActiveMessageId] = useQueryParam(
+        'd',
+        withDefault(StringParam, '')
     )
     const [mdShowSidebar, setMdShowSidebar] = useState(true)
     const outer = useRef<HTMLDivElement | null>(null)
@@ -90,4 +93,4 @@ const MessageBoardView = ({
     )
 }
 
-export default MessageBoardView
+export default withQueryParam(MessageBoardView)
