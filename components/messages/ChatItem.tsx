@@ -32,8 +32,6 @@ const ChatItem = ({
 
                 <div>
                     <b className="text-white">{group.name}</b>
-                    <br />
-                    <span className="text-gray-400">{group.name}</span>
                 </div>
             </Group>
             {active && (
