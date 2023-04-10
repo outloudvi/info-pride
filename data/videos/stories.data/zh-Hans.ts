@@ -1181,6 +1181,14 @@ const data: StoriesData['data'] = {
                 name: '宿命的对决',
                 video: { type: 'bilibili', vid: 'av819045683' },
             },
+            11: {
+                name: '新的制作人',
+                video: { type: 'bilibili', vid: 'av566938548' },
+            },
+            12: {
+                name: '奇怪的故事',
+                video: { type: 'bilibili', vid: 'av439799042' },
+            },
         },
     },
     Big4: {

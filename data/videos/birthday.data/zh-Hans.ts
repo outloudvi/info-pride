@@ -168,7 +168,12 @@ const _: BirthdayCommu = {
 
     // ThreeX
     'char-kor': {},
-    'char-kan': {},
+    'char-kan': {
+        2023: {
+            opening: { type: 'bilibili', vid: 'av227282032' },
+            others: { type: 'bilibili', vid: 'av439857781' },
+        },
+    },
     'char-mhk': {
         2023: {
             opening: { type: 'bilibili', vid: 'av478319126' },
