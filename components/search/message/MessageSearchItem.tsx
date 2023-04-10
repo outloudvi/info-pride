@@ -1,6 +1,7 @@
 import { Card } from '@mantine/core'
 import type { MessageX } from 'hoshimi-types/types'
 import { useTranslations } from 'next-intl'
+import Link from 'next/link'
 
 const MessageSearchItem = ({ item }: { item: MessageX }) => {
     const $v = useTranslations('v-chr')
@@ -9,7 +10,8 @@ const MessageSearchItem = ({ item }: { item: MessageX }) => {
         <Card>
             <div>
                 <small>
-                    {$v(item.characterGroupId)} - {item.name}
+                    {$v(item.characterGroupId)} -{' '}
+                    <Link href={`/messages?d=${item.id}`}>{item.name}</Link>
                 </small>
                 <p lang="ja">
                     <span>
