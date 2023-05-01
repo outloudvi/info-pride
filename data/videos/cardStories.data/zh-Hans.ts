@@ -371,6 +371,21 @@ const dataSuzu: StoriesData = {
             video: { type: 'bilibili', vid: 'av861773834' },
         },
     },
+    'card-suz-05-kion-00': {
+        // にゃんて素晴らしい放課後！
+        1: {
+            name: 'TODO',
+            video: { type: 'bilibili', vid: 'av698030548' },
+        },
+        2: {
+            name: 'TODO',
+            video: { type: 'bilibili', vid: 'av783031841' },
+        },
+        3: {
+            name: 'TODO',
+            video: { type: 'bilibili', vid: 'av443037176' },
+        },
+    },
 }
 
 // 早坂芽衣

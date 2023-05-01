@@ -425,6 +425,15 @@ const data: Record<string, ChapterItem> = {
         name: '永远的对手',
         video: { type: 'bilibili', vid: 'av824153890' },
     },
+    // きょうえん！HTT＆HMA～放課後ティータイム＆星見アンバサダー～
+    'st-eve-2305-race-001': {
+        name: '特别合作决定！',
+        video: { type: 'bilibili', vid: 'av825555591' },
+    },
+    'st-eve-2305-race-002': {
+        name: '放学后茶会日常',
+        video: { type: 'bilibili', vid: 'av485554409' },
+    },
 }
 
 const _ = {
