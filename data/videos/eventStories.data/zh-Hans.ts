@@ -434,6 +434,10 @@ const data: Record<string, ChapterItem> = {
         name: '放学后茶会日常',
         video: { type: 'bilibili', vid: 'av485554409' },
     },
+    'st-eve-2305-race-003': {
+        name: '星见音乐节宣传队长',
+        video: { type: 'bilibili', vid: 'av398216826' },
+    },
 }
 
 const _ = {
