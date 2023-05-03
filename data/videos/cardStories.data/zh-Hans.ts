@@ -1570,6 +1570,21 @@ const dataFran: StoriesData = {
             video: { type: 'bilibili', vid: 'av689638435' },
         },
     },
+    'card-kor-05-idol-03': {
+        // 俊傑は我が道を貫く
+        1: {
+            name: 'fran的兴趣',
+            video: { type: 'bilibili', vid: 'av485330021' },
+        },
+        2: {
+            name: '两个人去星见市',
+            video: { type: 'bilibili', vid: 'av740684909' },
+        },
+        3: {
+            name: '不模仿他人格调',
+            video: { type: 'bilibili', vid: 'av228141565' },
+        },
+    },
 }
 
 // kana
