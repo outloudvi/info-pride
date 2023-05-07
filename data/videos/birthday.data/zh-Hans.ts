@@ -124,6 +124,9 @@ const _: BirthdayCommu = {
         2022: {
             opening: { type: 'bilibili', vid: 'av683824634' },
         },
+        2023: {
+            opening: { type: 'bilibili', vid: 'av655780771' },
+        },
     },
 
     // LizNoir
