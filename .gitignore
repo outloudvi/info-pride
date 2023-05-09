@@ -49,5 +49,5 @@ utils/*/*.origin.json
 # Build-time
 /data/build.json
 
-# Sentry
+# Sentry Auth Token
 .sentryclirc

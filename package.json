@@ -39,7 +39,7 @@
         "@mantine/next": "^6.0.6",
         "@mantine/notifications": "^6.0.6",
         "@sentry/browser": "^7.47.0",
-        "@sentry/nextjs": "^7.47.0",
+        "@sentry/nextjs": "^7.51.2",
         "@sentry/replay": "^7.47.0",
         "autoprefixer": "^10.4.14",
         "base58": "^2.0.1",
