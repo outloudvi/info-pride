@@ -33,6 +33,7 @@ const EmblemTypes = {
     PVP: ['sp-pvp-season-001-', 'pvp-season-'],
     GVG: ['gvg-season-'],
     EventResult: ['backside-', 'marathon-', 'contest-', 'race-', 'tour-'],
+    Love: ['love'],
 } as const
 
 export default EmblemTypes
