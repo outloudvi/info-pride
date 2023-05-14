@@ -10,6 +10,7 @@ export default function mergeNarrations(lines: MergedLine[]): MergedLine[] {
             i.branches.forEach((y) => {
                 y.lines = mergeNarrations(y.lines)
             })
+            ret.push(i)
             continue
         }
         if (i._t !== 'Narration') {

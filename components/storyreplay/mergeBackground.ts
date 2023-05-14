@@ -10,6 +10,7 @@ export default function mergeBackground(lines: MergedLine[]): MergedLine[] {
             i.branches.forEach((y) => {
                 y.lines = mergeBackground(y.lines)
             })
+            ret.push(i)
             continue
         }
         if (i._t !== 'BackgroundSetting') {

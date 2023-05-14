@@ -13,12 +13,6 @@ export default function mergeMWV(
     for (let i = 0; i < lines.length; i++) {
         const item = lines[i]
         switch (item._t) {
-            case 'XBranch': {
-                item.branches.forEach((y) => {
-                    y.lines = mergeMWV(y.lines, title)
-                })
-                break
-            }
             case 'Message': {
                 stashedMessages.push(item)
                 break
@@ -44,6 +38,13 @@ export default function mergeMWV(
                         ?.thumbnail,
                 })
                 stashedMessages = []
+                break
+            }
+            case 'XBranch': {
+                item.branches.forEach((y) => {
+                    y.lines = mergeMWV(y.lines, title)
+                })
+                ret.push(item)
                 break
             }
             default: {
