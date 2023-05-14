@@ -6,8 +6,8 @@ export default function mergeBackground(lines: MergedLine[]): MergedLine[] {
     const ret = []
     let lastBg = ''
     for (const i of lines) {
-        if (i._t === 'XChoice') {
-            i.choices.forEach((y) => {
+        if (i._t === 'XBranch') {
+            i.branches.forEach((y) => {
                 y.lines = mergeBackground(y.lines)
             })
             continue

@@ -2,7 +2,7 @@ import { useTranslations } from 'next-intl'
 import { Button } from '@mantine/core'
 import { useState } from 'react'
 
-import type { MergedLine, XBranch } from '../types'
+import type { XBranch } from '../types'
 import { displayLine } from '../StoryReplayView'
 import Box from '../Box'
 

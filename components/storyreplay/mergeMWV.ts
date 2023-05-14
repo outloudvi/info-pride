@@ -13,8 +13,8 @@ export default function mergeMWV(
     for (let i = 0; i < lines.length; i++) {
         const item = lines[i]
         switch (item._t) {
-            case 'XChoice': {
-                item.choices.forEach((y) => {
+            case 'XBranch': {
+                item.branches.forEach((y) => {
                     y.lines = mergeMWV(y.lines, title)
                 })
                 break
