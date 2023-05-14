@@ -45,7 +45,11 @@ const CompMWV = ({ l }: { l: MessageWithVoice }) => {
                         darkText ? 'text-[#c0c0c0]' : ''
                     }`}
                 >
-                    {lfToBr(l.text.replace(/\{user\}/g, $t('Manager')))}
+                    {lfToBr(
+                        l.text
+                            .replaceAll('\\n', '\n')
+                            .replace(/\{user\}/g, $t('Manager'))
+                    )}
                 </div>
                 <div className="hidden md:block">
                     <AssetAudioButton

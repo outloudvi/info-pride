@@ -7,6 +7,8 @@
     "SFX": "SFX",
     "Voice": "Voice",
     "Narration": "Narration",
+    "ChoiceGroup": "Choice",
+    "BranchGroup": "Branch",
     "be_patient": "There is a large amount of data on this page, leading to longer load time. Please sit back and relax.",
     "no_story": "No story found.",
     "multiple_parts": "There are {len} parts in this story.",

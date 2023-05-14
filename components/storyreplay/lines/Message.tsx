@@ -3,6 +3,7 @@ import { useTranslations } from 'next-intl'
 
 import AssetImage from '#components/AssetImage'
 import managerize from '#utils/managerize'
+import lfToBr from '#utils/lfToBr'
 
 const CompMessage = ({ l }: { l: Message }) => {
     const $t = useTranslations('storyreplay')
@@ -29,7 +30,11 @@ const CompMessage = ({ l }: { l: Message }) => {
                     </div>
                 </div>
                 <div className="grow" lang="ja">
-                    {l.text.replace(/\{user\}/g, $t('Manager'))}
+                    {lfToBr(
+                        l.text
+                            .replaceAll('\\n', '\n')
+                            .replace(/\{user\}/g, $t('Manager'))
+                    )}
                 </div>
             </div>
         </>

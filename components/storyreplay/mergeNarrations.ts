@@ -6,6 +6,12 @@ export default function mergeNarrations(lines: MergedLine[]): MergedLine[] {
     const ret = []
     let last: Narration | undefined = undefined
     for (const i of lines) {
+        if (i._t === 'XChoice') {
+            i.choices.forEach((y) => {
+                y.lines = mergeNarrations(y.lines)
+            })
+            continue
+        }
         if (i._t !== 'Narration') {
             if (last) {
                 ret.push(last)

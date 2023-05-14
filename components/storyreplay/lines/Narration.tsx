@@ -15,7 +15,7 @@ const CompNarration = ({ l }: { l: Narration }) => {
                 className="text-gray-200 mx-1 md:mx-2 text-center md:text-left"
                 lang="ja"
             >
-                {lfToBr(l.text)}
+                {lfToBr(l.text.replaceAll('\\n', '\n'))}
             </div>
         </>
     )

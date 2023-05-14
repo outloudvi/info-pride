@@ -133,8 +133,8 @@ dependencies:
 
 devDependencies:
   '@hoshimei/adv':
-    specifier: ^0.6.1
-    version: 0.6.1
+    specifier: ^0.7.1
+    version: 0.7.1
   '@next/bundle-analyzer':
     specifier: ^13.4.2
     version: 13.4.2
@@ -1683,8 +1683,8 @@ packages:
       react: 18.2.0
     dev: false
 
-  /@hoshimei/adv@0.6.1:
-    resolution: {integrity: sha512-tp61utx+jgHCDquuaSrgBOLSYInS42YwmXdrWhYnAI6LF7dm8dA4hYEpZMRMA2yHwFzC5ui8eE7Nfe+/v9RLag==}
+  /@hoshimei/adv@0.7.1:
+    resolution: {integrity: sha512-71FJUg2Aj7ETdL5uzGo0enxyoQ0BF+ygnL70XiUyNoAcIc6lqpXY6UuHWCaEBLORPCn0wHXBSMx+utiUaBmqLQ==}
     dev: true
 
   /@humanwhocodes/config-array@0.11.8:

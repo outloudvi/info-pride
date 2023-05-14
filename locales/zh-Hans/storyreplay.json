@@ -7,6 +7,8 @@
     "SFX": "音效",
     "Voice": "声音",
     "Narration": "旁白",
+    "ChoiceGroup": "选项",
+    "BranchGroup": "分支",
     "be_patient": "本页数据量较大，因此加载时间较长。请坐和放宽。",
     "no_story": "没有找到故事。",
     "multiple_parts": "故事分为 {len} 部分。",

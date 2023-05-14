@@ -8,4 +8,17 @@ export type AdvFromAsset = {
     l: Line[]
 }
 
-export type MergedLine = Line | MessageWithVoice
+export type CompositeLine = Line | MessageWithVoice
+
+export type XBranch = {
+    _t: 'XBranch'
+    isChoice: boolean
+    branches: BranchItem[]
+}
+
+export type BranchItem = {
+    choiceText?: string
+    lines: MergedLine[]
+}
+
+export type MergedLine = CompositeLine | XBranch

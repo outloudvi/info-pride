@@ -1,5 +1,6 @@
 import type { BackgroundGroup, Line, Title } from '@hoshimei/adv/types'
 import { useTranslations } from 'next-intl'
+import { useMemo, Fragment } from 'react'
 
 import CompBackgroundSetting from './lines/BackgroundSetting'
 import CompSe from './lines/Se'
@@ -10,32 +11,64 @@ import CompNarration from './lines/Narration'
 import collapseLines from './collapseLines'
 import type { MergedLine } from './types'
 import CompMWV from './lines/MWV'
+import CompXBranch from './lines/XBranch'
+import Box from './Box'
 
-function displayLine(
+export function displayLine(
     line: MergedLine,
     backgroundGroup: Record<string, string>
 ): JSX.Element {
     switch (line._t) {
         case 'BackgroundSetting': {
             const id = backgroundGroup[line.id]
-            return <CompBackgroundSetting id={id} />
+            return (
+                <Box>
+                    <CompBackgroundSetting id={id} />
+                </Box>
+            )
         }
 
         case 'Bgm':
-            return <CompBgm l={line} />
+            return (
+                <Box>
+                    <CompBgm l={line} />
+                </Box>
+            )
         case 'Se':
-            return <CompSe l={line} />
+            return (
+                <Box>
+                    <CompSe l={line} />
+                </Box>
+            )
         case 'Narration':
-            return <CompNarration l={line} />
+            return (
+                <Box>
+                    <CompNarration l={line} />
+                </Box>
+            )
         case 'MWV':
-            return <CompMWV l={line} />
+            return (
+                <Box>
+                    <CompMWV l={line} />
+                </Box>
+            )
+        case 'XBranch':
+            return <CompXBranch l={line} backgroundGroup={backgroundGroup} />
         // Fallback
         case 'Message':
-            return <CompMessage l={line} />
+            return (
+                <Box>
+                    <CompMessage l={line} />
+                </Box>
+            )
         case 'Voice':
-            return <CompVoice l={line} />
+            return (
+                <Box>
+                    <CompVoice l={line} />
+                </Box>
+            )
         default:
-            return <>{line._t}</>
+            return <Box>{line._t}</Box>
     }
 }
 
@@ -53,21 +86,24 @@ const StoryReplayView = ({ lines }: { lines: Line[] }) => {
                 | undefined
         )?.backgrounds ?? {}
 
-    return (
-        <div>
-            <h3>{title}</h3>
-            {collapseLines(
+    const mergedLines = useMemo(
+        () =>
+            collapseLines(
                 lines.filter(
                     (x) => !['BackgroundGroup', 'Title'].includes(x._t)
                 ),
                 title
-            ).map((line, key) => (
-                <div
-                    key={key}
-                    className="my-1 p-2 text-white bg-[#4c4c4c] rounded"
-                >
+            ),
+        [lines, title]
+    )
+
+    return (
+        <div>
+            <h3>{title}</h3>
+            {mergedLines.map((line, key) => (
+                <Fragment key={key}>
                     {displayLine(line, backgroundGroup)}
-                </div>
+                </Fragment>
             ))}
         </div>
     )

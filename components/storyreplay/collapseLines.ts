@@ -4,27 +4,30 @@ import type { MergedLine } from './types'
 import mergeBackground from './mergeBackground'
 import mergeNarrations from './mergeNarrations'
 import mergeMWV from './mergeMWV'
+import mergeChoices from './mergeChoices'
 
 export default function collapseLines(
     lines: Line[],
     title: string
 ): MergedLine[] {
-    // 0. Remove unknown parts
-    const base = lines.filter((x) => x._t !== 'Unknown')
+    // 1. Merge choices and branches
+    const ret = mergeChoices(lines)
+    console.log('r1', ret)
 
-    // 1. Merge messages and voices
-    const ret = mergeMWV(base, title).sort((a, b) => {
+    // 2. Merge messages and voices
+    const ret2 = mergeMWV(ret, title).sort((a, b) => {
         // @ts-expect-errors forced assertion
         if (a.startTime === undefined || b.startTime === undefined) return 0
         // @ts-expect-errors forced assertion
         return a.startTime - b.startTime
     })
+    // console.log('r2', ret2)
 
-    // 1. Merge backgrounds that only differs in scale/position
-    const ret2 = mergeBackground(ret)
+    // 3. Merge backgrounds that only differs in scale/position
+    const ret3 = mergeBackground(ret2)
 
-    // 2. Merge narrations
-    const ret3 = mergeNarrations(ret2)
+    // 4. Merge narrations
+    const ret4 = mergeNarrations(ret3)
 
-    return ret3
+    return ret4
 }
