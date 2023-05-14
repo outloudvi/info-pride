@@ -12,7 +12,6 @@ export default function collapseLines(
 ): MergedLine[] {
     // 1. Merge choices and branches
     const ret = mergeChoices(lines)
-    console.log('r1', ret)
 
     // 2. Merge messages and voices
     const ret2 = mergeMWV(ret, title).sort((a, b) => {
@@ -21,7 +20,6 @@ export default function collapseLines(
         // @ts-expect-errors forced assertion
         return a.startTime - b.startTime
     })
-    // console.log('r2', ret2)
 
     // 3. Merge backgrounds that only differs in scale/position
     const ret3 = mergeBackground(ret2)

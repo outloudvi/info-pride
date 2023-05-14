@@ -135,7 +135,6 @@ const UnitsPage = ({
     useEffect(() => {
         // Import unitId in query
         if (unitId && unitCards[1] === null) {
-            console.log(performance.now())
             importUnitCode(unitId)
         }
     }, [importUnitCode, unitId, unitCards])
