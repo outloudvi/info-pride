@@ -1,4 +1,4 @@
-import type { SetStateAction} from 'react';
+import type { SetStateAction } from 'react'
 import { useEffect, useRef, useState } from 'react'
 import { useTranslations } from 'next-intl'
 
@@ -63,13 +63,10 @@ const AssetAudio = ({
                 }}
             >
                 <source
-                    src={Paths.assets('sud')(`${id}.opus`)}
+                    src={Paths.assets(`sud_${id}.opus`)}
                     type="audio/ogg; codecs=opus"
                 />
-                <source
-                    src={Paths.assets('sud')(`${id}.mp3`)}
-                    type="audio/mpeg"
-                />
+                <source src={Paths.assets(`sud_${id}.mp3`)} type="audio/mpeg" />
             </audio>
         </div>
     )

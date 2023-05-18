@@ -1,4 +1,4 @@
-import type { SetStateAction} from 'react';
+import type { SetStateAction } from 'react'
 import { useEffect, useRef, useState } from 'react'
 import { ActionIcon } from '@mantine/core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -112,11 +112,11 @@ const AssetAudioButton = ({
                     }}
                 >
                     <source
-                        src={Paths.assets('sud')(`${id}.opus`)}
+                        src={Paths.assets(`sud_${id}.opus`)}
                         type="audio/ogg; codecs=opus"
                     />
                     <source
-                        src={Paths.assets('sud')(`${id}.mp3`)}
+                        src={Paths.assets(`sud_${id}.mp3`)}
                         type="audio/mpeg"
                     />
                 </audio>

@@ -10,7 +10,7 @@ import Paths from '#utils/paths'
 
 const cardTinyToAssetUrl = (u: CardTiny | null) => {
     if (!u) return undefined
-    return Paths.assets('img')(`img_card_thumb_1_${u.assetId}`)
+    return Paths.assetsImg(`img_card_thumb_1_${u.assetId}`)
 }
 
 const UnitNotemap = ({

@@ -8,7 +8,7 @@ import type { EffectTypeName } from '#utils/typeSlug'
 
 // In reference of Meidayo: https://github.com/Soulycoris/meidayo/blob/main/html/src/composables/skill.ts
 
-const pathAssetsForImg = Paths.assets('img')
+const pathAssetsForImg = Paths.assetsImg
 
 type SkillImageBgType = 'score' | 'strength' | 'support' | 'yell' | ''
 

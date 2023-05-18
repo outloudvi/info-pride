@@ -36,7 +36,7 @@ const AssetImage = (props: Props) => {
             }}
         >
             <Image
-                src={Paths.assets(name.split('_')[0])(name)}
+                src={Paths.assets(name)}
                 loading="lazy"
                 placeholder="blur"
                 blurDataURL={PLACEHOLDER_SVG}

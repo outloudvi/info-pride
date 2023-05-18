@@ -7,9 +7,7 @@ export default function renderStaticMessage(line: CommuLine): JSX.Element {
         return (
             <img
                 alt={'stamp'}
-                src={Paths.assets('img')(
-                    `img_message_stamp_${line.stampAssetId}`
-                )}
+                src={Paths.assetsImg(`img_message_stamp_${line.stampAssetId}`)}
                 height={144}
                 width={144}
             />

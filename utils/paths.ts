@@ -1,3 +1,12 @@
+function assetIdToPath(assetId: string): string {
+    const splits = assetId.split('_')
+    return (
+        splits.length < 3
+            ? ['_', assetId]
+            : [splits[0], splits[1], splits.slice(2).join(_)]
+    ).join('/')
+}
+
 const Paths = {
     wiki: (pageName: string) =>
         `https://wiki.biligame.com/idolypride/${pageName}`,
@@ -6,8 +15,8 @@ const Paths = {
     mgw: (pageName: string) => `https://zh.moegirl.org.cn/${pageName}`,
     ipcommu: (postId: string) =>
         `https://community.idolypride.jp/posts/${postId}`,
-    assets: (typ: string) => (assetId: string) =>
-        `https://ac.ip.outv.im/api/${typ}/${assetId}`,
+    assetsImg: (assetId: string) => `https://ac.ip.outv.im/api/img/${assetId}`,
+    assets: (assetId: string) => Paths.s3(`assets/${assetIdToPath(assetId)}`),
     s3: (path: string) => `https://idoly-assets.outv.im/${path}`,
     sprite: (id: string) => Paths.s3(`sprite/${id}.png`),
     repoIssue: (id?: number) =>

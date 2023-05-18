@@ -20,7 +20,7 @@ const StaticMessageItem = ({
         user === 'others' ? (
             <img
                 alt={'icon'}
-                src={Paths.assets('img')(
+                src={Paths.assetsImg(
                     `img_chr_icon_${characterId.split('-')[1]}`
                 )}
                 height={48}
