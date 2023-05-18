@@ -101,12 +101,24 @@ const NotemapPage = ({
     )
 }
 
+function removeDup(ChartListData?: APIResponseOf<'MusicChartList'>) {
+    if (!ChartListData) return ChartListData
+    return ChartListData.filter((x) => {
+        if (x.charts.length > 0) return true
+        return (
+            ChartListData.find(
+                (y) => y.assetId === x.assetId && y.charts.length > 0
+            ) === undefined
+        )
+    })
+}
+
 const SkeletonNotemapPage = () => {
     const $t = useTranslations('notemap')
     const { data: ChartListData } = useApi('MusicChartList')
 
     const allData = {
-        ChartListData,
+        ChartListData: removeDup(ChartListData),
     }
 
     return (
