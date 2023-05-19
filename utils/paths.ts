@@ -3,7 +3,7 @@ function assetIdToPath(assetId: string): string {
     return (
         splits.length < 3
             ? ['_', assetId]
-            : [splits[0], splits[1], splits.slice(2).join(_)]
+            : [splits[0], splits[1], splits.slice(2).join('_')]
     ).join('/')
 }
 

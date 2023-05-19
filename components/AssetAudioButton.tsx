@@ -112,7 +112,7 @@ const AssetAudioButton = ({
                     }}
                 >
                     <source
-                        src={Paths.assets(`sud_${id}.opus`)}
+                        src={Paths.assets(`${id}.opus`)}
                         type="audio/ogg; codecs=opus"
                     />
                 </audio>
