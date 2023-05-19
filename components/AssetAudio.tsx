@@ -66,7 +66,6 @@ const AssetAudio = ({
                     src={Paths.assets(`sud_${id}.opus`)}
                     type="audio/ogg; codecs=opus"
                 />
-                <source src={Paths.assets(`sud_${id}.mp3`)} type="audio/mpeg" />
             </audio>
         </div>
     )
