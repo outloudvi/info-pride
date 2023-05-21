@@ -1,3 +1,5 @@
+import { locale } from 'dayjs'
+
 const getI18nProps =
     (sources: string[] = []) =>
     async ({ locale }: { locale: string }) => {
@@ -7,6 +9,12 @@ const getI18nProps =
             },
         }
     }
+
+export const getI18nMessages = async (
+    locale: string,
+    source: string,
+    key: string
+) => import(`../locales/${locale}/${source}.json`).then((x) => x.default?.[key])
 
 export const addI18nMessages = async (
     locale: string,

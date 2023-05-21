@@ -1,5 +1,5 @@
 import type { APIMapping } from 'hoshimi-types'
-import { UnwrapPromise } from 'hoshimi-types/helpers'
+import type { UnwrapPromise } from 'hoshimi-types/helpers'
 
 export type UnArray<T> = T extends (infer R)[] ? R : never
 

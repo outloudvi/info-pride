@@ -34,15 +34,16 @@ import { MAX_LEVEL, MAX_LEVEL_BEFORE_POTENTIAL } from '#utils/constants'
 const CardItem = ({
     card,
     rarityData,
+    title,
 }: {
     card: UnArray<APIResponseOf<'Card'>>
     rarityData: CardRarity[]
+    title: string
 }) => {
     const $t = useTranslations('cards_slug')
     const $c = useTranslations('common')
     const $v = useTranslations('vendor')
     const $vc = useTranslations('v-chr')
-    const $vcn = useTranslations('v-card-name')
 
     const {
         name,
@@ -160,10 +161,10 @@ const CardItem = ({
                 <Anchor>{name}</Anchor>
             </Breadcrumbs>
             <div>
-                {$vcn(card.name) !== card.name ? (
+                {title !== card.name ? (
                     <>
                         <div className="text-3xl mb-2" lang={locale}>
-                            {$vcn(card.name)}
+                            {title}
                         </div>
                         <div className="text-xl mb-2" lang="ja">
                             {name}
