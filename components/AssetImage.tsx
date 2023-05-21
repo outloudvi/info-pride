@@ -36,7 +36,7 @@ const AssetImage = (props: Props) => {
             }}
         >
             <Image
-                src={Paths.assets(name)}
+                src={Paths.assetsImg(name)}
                 loading="lazy"
                 placeholder="blur"
                 blurDataURL={PLACEHOLDER_SVG}
