@@ -1,6 +1,6 @@
-import type { Dispatch, SetStateAction} from 'react';
+import type { Dispatch, SetStateAction } from 'react'
 import { useState } from 'react'
-import { Radio, Switch } from '@mantine/core'
+import { Group, Radio, Switch } from '@mantine/core'
 import { useTranslations } from 'next-intl'
 
 import AssetImage from '#components/AssetImage'
@@ -78,12 +78,13 @@ const CardAsset = ({
                 label={$t('Select card type')}
                 value={imageType}
                 onChange={setImageType as Dispatch<SetStateAction<string>>}
-                required
             >
-                <Radio value="thumb" label={$t('Thumbnail')} />
-                <Radio value="upper" label={$t('Vertical')} />
-                <Radio value="rect" label={$t('Landscape')} />
-                <Radio value="full" label={$t('Landscape (large)')} />
+                <Group>
+                    <Radio value="thumb" label={$t('Thumbnail')} />
+                    <Radio value="upper" label={$t('Vertical')} />
+                    <Radio value="rect" label={$t('Landscape')} />
+                    <Radio value="full" label={$t('Landscape (large)')} />
+                </Group>
             </Radio.Group>
             <Switch
                 className="mb-3"
