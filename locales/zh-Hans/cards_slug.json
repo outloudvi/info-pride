@@ -15,7 +15,7 @@
     "Skills": "技能",
     "Initially": "初始",
     "no_stories": "此卡片无剧情。",
-    "props_toolkit": "实际数值可能比此数值略高。",
+    "props_tooltip": "实际数值可能比此数值略高。",
     "awakened_only": "此卡片只有觉醒后卡面。",
     "show_awakened": "显示觉醒后卡面",
     "skill_icons_beta": "技能图标显示功能正在实装中。欢迎<a>报告</a>遇到的任何问题。",

@@ -15,7 +15,7 @@
     "Skills": "Skills",
     "Initially": "Initial",
     "no_stories": "No stories for this card.",
-    "props_toolkit": "Actual props might be higher.",
+    "props_tooltip": "Actual props might be higher.",
     "awakened_only": "Only awakened available",
     "show_awakened": "Show awakened",
     "skill_icons_beta": "Skill icon display is in beta. Please <a>report</a> any encountered issues.",
