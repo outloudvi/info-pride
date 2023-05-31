@@ -1273,6 +1273,26 @@ const data: StoriesData['data'] = {
                 name: 'TODO',
                 video: { type: 'bilibili', vid: 'av611418577', pid: 5 },
             },
+            21: {
+                name: 'TODO',
+                video: { type: 'bilibili', vid: 'av699266930', pid: 1 },
+            },
+            22: {
+                name: 'TODO',
+                video: { type: 'bilibili', vid: 'av699266930', pid: 2 },
+            },
+            23: {
+                name: 'TODO',
+                video: { type: 'bilibili', vid: 'av699266930', pid: 3 },
+            },
+            24: {
+                name: 'TODO',
+                video: { type: 'bilibili', vid: 'av699266930', pid: 4 },
+            },
+            25: {
+                name: 'TODO',
+                video: { type: 'bilibili', vid: 'av699266930', pid: 5 },
+            },
         },
     },
     Tsuki: {

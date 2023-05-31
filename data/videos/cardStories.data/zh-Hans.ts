@@ -459,6 +459,12 @@ const dataMei: StoriesData = {
         3: { name: 'TODO', video: { type: 'bilibili', vid: 'av945738115' } },
         phone: { video: { type: 'bilibili', vid: 'av520703665' } },
     },
+    'card-mei-05-wedd-00': {
+        // パールホワイトの想い出
+        1: { name: 'TODO', video: { type: 'bilibili', vid: 'av741640959' } },
+        2: { name: 'TODO', video: { type: 'bilibili', vid: 'av741645373' } },
+        3: { name: 'TODO', video: { type: 'bilibili', vid: 'av444136374' } },
+    },
 }
 
 // ---- SUNNY PEACE ----
