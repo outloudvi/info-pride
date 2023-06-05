@@ -1365,6 +1365,21 @@ const dataAoi: StoriesData = {
             video: { type: 'bilibili', vid: 'av306970363' },
         },
     },
+    'card-aoi-05-wedd-00': {
+        // リングに誓う永遠
+        1: {
+            name: '明明只是电视剧的剧情',
+            video: { type: 'bilibili', vid: 'av229474415' },
+        },
+        2: {
+            name: '可爱的经纪人',
+            video: { type: 'bilibili', vid: 'av314406713' },
+        },
+        3: {
+            name: '让你幸福',
+            video: { type: 'bilibili', vid: 'av911973299' },
+        },
+    },
 }
 
 // 小美山爱
