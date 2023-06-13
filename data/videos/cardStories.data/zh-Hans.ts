@@ -1306,6 +1306,21 @@ const dataRio: StoriesData = {
             video: { type: 'bilibili', vid: 'av819895427' },
         },
     },
+    'card-rio-05-wedd-00': {
+        // ベールに隠した本音
+        1: {
+            name: 'TODO',
+            video: { type: 'bilibili', vid: 'av357227648' },
+        },
+        2: {
+            name: 'TODO',
+            video: { type: 'bilibili', vid: 'av357227648' },
+        },
+        3: {
+            name: 'TODO',
+            video: { type: 'bilibili', vid: 'av357227648' },
+        },
+    }
 }
 
 // 井川葵
