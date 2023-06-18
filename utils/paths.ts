@@ -15,7 +15,10 @@ const Paths = {
     mgw: (pageName: string) => `https://zh.moegirl.org.cn/${pageName}`,
     ipcommu: (postId: string) =>
         `https://community.idolypride.jp/posts/${postId}`,
-    assetsImg: (assetId: string) => `https://ac.ip.outv.im/api/img/${assetId}`,
+    assetsImg: (assetId: string) =>
+        `https://ac.ip.outv.im/api/${
+            assetId.startsWith('env') ? 'env' : 'img'
+        }/${assetId}`,
     assets: (assetId: string) => Paths.s3(`assets/${assetIdToPath(assetId)}`),
     s3: (path: string) => `https://idoly-assets.outv.im/${path}`,
     sprite: (id: string) => Paths.s3(`sprite/${id}.png`),
