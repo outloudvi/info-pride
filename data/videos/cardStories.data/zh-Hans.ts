@@ -1320,7 +1320,7 @@ const dataRio: StoriesData = {
             name: 'TODO',
             video: { type: 'bilibili', vid: 'av357227648' },
         },
-    }
+    },
 }
 
 // 井川葵
@@ -1566,6 +1566,21 @@ const dataKokoro: StoriesData = {
         3: {
             name: 'TODO',
             video: { type: 'bilibili', vid: 'av522460846' },
+        },
+    },
+    'card-kkr-05-kion-00': {
+        // 打ち上げティータイム
+        1: {
+            name: '相似的声音',
+            video: { type: 'bilibili', vid: 'av783083938' },
+        },
+        2: {
+            name: '去拜访之后',
+            video: { type: 'bilibili', vid: 'av401036846' },
+        },
+        3: {
+            name: '成为粉丝的是',
+            video: { type: 'bilibili', vid: 'av443620383' },
         },
     },
 }
