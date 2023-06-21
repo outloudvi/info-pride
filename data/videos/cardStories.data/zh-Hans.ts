@@ -1320,6 +1320,9 @@ const dataRio: StoriesData = {
             name: 'TODO',
             video: { type: 'bilibili', vid: 'av357227648' },
         },
+        phone: {
+            video:{ type: 'bilibili', vid: 'av229881287' },
+        }
     },
 }
 

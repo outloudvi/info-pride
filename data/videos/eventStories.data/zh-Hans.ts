@@ -383,6 +383,14 @@ const data: Record<string, ChapterItem> = {
         name: '前辈的保镖',
         video: { type: 'bilibili', vid: 'av653794025' },
     },
+    'st-eve-2301-contest-004': {
+        name: '莉央不在的LizNoir',
+        video: { type: 'bilibili', vid: 'av784944570' },
+    },
+    'st-eve-2301-contest-005': {
+        name: '飞跃之年、无敌的LizNoir',
+        video: { type: 'bilibili', vid: 'av784936788' },
+    },
     // ぱじゃまパーティー！～夢見る少女と眠り姫～
     'st-eve-2303-race-001': {
         name: '写不完的作业',
