@@ -7,9 +7,9 @@ const Year2Anniv = () => {
     const reduceMotion = useReducedMotion()
 
     return (
-        <div className={show ? 'flex' : 'hidden'}>
+        <div className={`hidden ${show ? ' md:flex' : ''}`}>
             <Box
-                className="hidden md:block text-center text-[#1428ff] dark:text-white flex-grow"
+                className="text-center text-[#1428ff] dark:text-white flex-grow"
                 sx={() => ({
                     animationName: 'y2-anim',
                     animationDuration: '10s',
