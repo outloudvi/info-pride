@@ -17,7 +17,7 @@ const nextConfig = {
                 headers: [
                     {
                         key: 'Permissions-Policy',
-                        value: 'interest-cohert=()',
+                        value: 'interest-cohort=()',
                     },
                 ],
             },
