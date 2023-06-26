@@ -1321,8 +1321,8 @@ const dataRio: StoriesData = {
             video: { type: 'bilibili', vid: 'av357227648' },
         },
         phone: {
-            video:{ type: 'bilibili', vid: 'av229881287' },
-        }
+            video: { type: 'bilibili', vid: 'av229881287' },
+        },
     },
 }
 
@@ -1795,6 +1795,21 @@ const dataMana: StoriesData = {
         3: {
             name: '自那之后不变的心意',
             video: { type: 'bilibili', vid: 'av350903053' },
+        },
+    },
+    'card-mna-05-fest-01': {
+        // 友と集めた音の欠片
+        1: {
+            name: 'TODO',
+            video: { type: 'bilibili', vid: 'av230129444' },
+        },
+        2: {
+            name: 'TODO',
+            video: { type: 'bilibili', vid: 'av315214724' },
+        },
+        3: {
+            name: 'TODO',
+            video: { type: 'bilibili', vid: 'av360175583' },
         },
     },
 }

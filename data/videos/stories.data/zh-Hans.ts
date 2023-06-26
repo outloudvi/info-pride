@@ -82,6 +82,34 @@ const special: StoriesData['special'] = [
         name: '[2023/4/1] 愚人节桥本剧情（主页）',
         video: { type: 'bilibili', vid: 'av867188964' },
     },
+    {
+        name: '[2023/6/24] 二周年剧情 Part 1 - ⅢX',
+        video: { type: 'bilibili', vid: 'av487660067' },
+    },
+    {
+        name: '[2023/6/24] 二周年剧情 Part 2 - TRINITYAiLE',
+        video: { type: 'bilibili', vid: 'av700234220' },
+    },
+    {
+        name: '[2023/6/24] 二周年剧情 Part 3 - LizNoir',
+        video: { type: 'bilibili', vid: 'av230204311' },
+    },
+    {
+        name: '[2023/6/24] 二周年剧情 Part 4 - SUNNY PEACE',
+        video: { type: 'bilibili', vid: 'av657648147' },
+    },
+    {
+        name: '[2023/6/24] 二周年剧情 Part 5 - 月光风暴',
+        video: { type: 'bilibili', vid: 'av230234779' },
+    },
+    {
+        name: '[2023/6/24] 二周年剧情 Part 6',
+        video: { type: 'bilibili', vid: 'av315126530' },
+    },
+    {
+        name: '[2023/6/24] 二周年剧情 Part ? - Dream',
+        video: { type: 'bilibili', vid: 'av955186777' },
+    },
 ]
 
 const data: StoriesData['data'] = {
