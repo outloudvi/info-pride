@@ -1,6 +1,6 @@
 import type { MessageDetail } from 'hoshimi-types/ProtoMaster'
 import { useTranslations } from 'next-intl'
-import type { Dispatch, SetStateAction } from 'react'
+import type { Dispatch, RefObject, SetStateAction } from 'react'
 
 import type { CommuLine, EditorPref } from './types'
 
@@ -8,10 +8,12 @@ import renderMessage from '#components/messages/renderMessage'
 import MessageItem from '#components/messages/MessageItem'
 
 const Preview = ({
+    refItem,
     commu,
     pref,
     setCommuData,
 }: {
+    refItem: RefObject<HTMLDivElement>
     commu: CommuLine[]
     pref: EditorPref
     setCommuData: Dispatch<SetStateAction<CommuLine[]>>
@@ -20,7 +22,7 @@ const Preview = ({
 
     const { editMode } = pref
     return (
-        <>
+        <div className="bg-[#4c4c4c]" ref={refItem}>
             {commu.map((line, key) => (
                 <MessageItem
                     key={key}
@@ -38,7 +40,7 @@ const Preview = ({
                     {renderMessage(line as MessageDetail, $t)}
                 </MessageItem>
             ))}
-        </>
+        </div>
     )
 }
 

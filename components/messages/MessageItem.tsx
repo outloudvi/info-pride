@@ -31,7 +31,7 @@ const MessageItem = ({
         )
     const bg = isTransparent ? '' : isSelf ? 'bg-green-500' : 'bg-white'
     return (
-        <Group>
+        <Group className="flex-nowrap">
             {showEditMenu && (
                 <EditMenu
                     deleteThis={

@@ -2,13 +2,13 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { useLocalStorage } from '@mantine/hooks'
 import { showNotification } from '@mantine/notifications'
 import { useTranslations } from 'next-intl'
+import { toPng } from 'html-to-image'
 
 import type { CharacterIdWithManager, CommuLine, EditorPref } from './types'
 import Preview from './Preview'
 import Compose from './Compose'
 import EditorMenu from './EditorMenu'
 import ImportModal from './ImportModal'
-import svgToPngDataUrl from './svgToPngDataUrl'
 
 import downloadUrl from '#utils/downloadUrl'
 
@@ -34,42 +34,33 @@ const TalkView = ({ currChrId }: { currChrId: CharacterIdWithManager }) => {
     )
     useEffect(() => {
         if (!pref.setupExportAsImage) return
-        showNotification({
-            message: $t('n_export_image'),
-            color: 'blue',
-        })
-        fetch('/api/img/mtalk', {
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            method: 'POST',
-            body: JSON.stringify({
-                lines: commuData,
-            }),
-        })
-            .then((x) => x.text())
-            .then(svgToPngDataUrl)
-            .then((dataUrl) => {
-                downloadUrl(
-                    dataUrl,
-                    `macarontalk-${(Number(new Date()) / 1000).toFixed(0)}.png`
-                )
-                showNotification({
-                    message: $t('n_image_exported'),
-                    color: 'green',
-                })
-            })
-            .catch((e) => {
-                showNotification({
-                    title: $t('n_error_export_image'),
-                    message: String(e),
-                    color: 'red',
-                })
-            })
         setPref((x) => ({
             ...x,
             setupExportAsImage: false,
         }))
+
+        const previewElem = previewRef.current
+        if (!previewElem) return
+        showNotification({
+            message: $t('n_export_image'),
+            color: 'blue',
+        })
+
+        toPng(previewElem, {
+            cacheBust: true,
+        }).then((url) => {
+            const now = new Date()
+            downloadUrl(
+                url,
+                `macarontalk-${now.getFullYear()}${
+                    now.getMonth() + 1
+                }${now.getDate()}_${now.getHours()}${now.getMinutes()}${now.getSeconds()}.png`
+            )
+            showNotification({
+                message: $t('n_image_exported'),
+                color: 'green',
+            })
+        })
     }, [$t, commuData, pref.setupExportAsImage])
 
     useEffect(() => {
@@ -100,10 +91,12 @@ const TalkView = ({ currChrId }: { currChrId: CharacterIdWithManager }) => {
                 style={{
                     gridTemplate:
                         '"Preview" 1fr "Compose" minmax(64px, min-content) "Menu" minmax(0px, min-content)',
+                    flex: '0 0 600px',
                 }}
             >
-                <div className="min-h-0 overflow-y-auto" ref={previewRef}>
+                <div className="min-h-0 overflow-y-auto">
                     <Preview
+                        refItem={previewRef}
                         commu={commuData}
                         pref={pref}
                         setCommuData={setCommuData}

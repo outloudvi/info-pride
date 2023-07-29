@@ -1,4 +1,4 @@
-import { Grid } from '@mantine/core'
+import { Flex } from '@mantine/core'
 import { useEffect, useRef, useState } from 'react'
 import { useViewportSize } from '@mantine/hooks'
 
@@ -23,8 +23,13 @@ const EditorView = () => {
 
     return (
         <div ref={outer}>
-            <Grid className="h-full bg-[#4c4c4c] m-0">
-                <Grid.Col xs={3} className="p-0 h-full overflow-y-auto">
+            <Flex className="h-full bg-[#4c4c4c] m-0 max-w-5xl mx-auto">
+                <div
+                    className="p-0 h-full overflow-y-auto"
+                    style={{
+                        flex: '1 0 200px',
+                    }}
+                >
                     <CharacterItem
                         id={''}
                         active={'' === currChrId}
@@ -38,11 +43,9 @@ const EditorView = () => {
                             setActive={setCurrChrId}
                         />
                     ))}
-                </Grid.Col>
-                <Grid.Col xs={9} className="p-0 h-full">
-                    <TalkView currChrId={currChrId} />
-                </Grid.Col>
-            </Grid>
+                </div>
+                <TalkView currChrId={currChrId} />
+            </Flex>
         </div>
     )
 }
