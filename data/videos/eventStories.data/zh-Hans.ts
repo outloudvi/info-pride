@@ -446,6 +446,27 @@ const data: Record<string, ChapterItem> = {
         name: '星见音乐节宣传队长',
         video: { type: 'bilibili', vid: 'av398216826' },
     },
+    // 星々が奇跡と叶える約束の未来
+    'st-eve-2306-contest-001': {
+        name: '特别 live 作战会议',
+        video: { type: 'bilibili', vid: 'av403436802' },
+    },
+    'st-eve-2306-contest-002': {
+        name: '让我们一起',
+        video: { type: 'bilibili', vid: 'av403436802' },
+    },
+    'st-eve-2306-contest-003': {
+        name: '送给你的歌',
+        video: { type: 'bilibili', vid: 'av403436802' },
+    },
+    'st-eve-2306-contest-004': {
+        name: '最棒的一曲',
+        video: { type: 'bilibili', vid: 'av403436802' },
+    },
+    'st-eve-2306-contest-005': {
+        name: '想法不会改变',
+        video: { type: 'bilibili', vid: 'av403436802' },
+    },
 }
 
 const _ = {

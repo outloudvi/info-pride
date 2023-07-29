@@ -465,6 +465,12 @@ const dataMei: StoriesData = {
         2: { name: 'TODO', video: { type: 'bilibili', vid: 'av741645373' } },
         3: { name: 'TODO', video: { type: 'bilibili', vid: 'av444136374' } },
     },
+    'card-mei-05-birt-00': {
+        // ドーナツ山盛りバースデー
+        1: { name: 'TODO', video: { type: 'bilibili', vid: 'av230715972' } },
+        2: { name: 'TODO', video: { type: 'bilibili', vid: 'av403191267' } },
+        3: { name: 'TODO', video: { type: 'bilibili', vid: 'av360655776' } },
+    },
 }
 
 // ---- SUNNY PEACE ----
@@ -635,6 +641,21 @@ const dataShizuku: StoriesData = {
             video: { type: 'bilibili', vid: 'av438374038' },
         },
     },
+    'card-szk-05-yukt-00': {
+        // 大輪彩る夏夜の一瞬
+        1: {
+            name: '憧憬的浴衣出道会',
+            video: { type: 'bilibili', vid: 'av273449480' },
+        },
+        2: {
+            name: '果断大胆',
+            video: { type: 'bilibili', vid: 'av488476588' },
+        },
+        3: {
+            name: '与平时不同的心跳加速',
+            video: { type: 'bilibili', vid: 'av315972124' },
+        },
+    },
 }
 
 // 白石千纱
@@ -722,6 +743,21 @@ const dataChisa: StoriesData = {
         3: {
             name: '大人的包容力？',
             video: { type: 'bilibili', vid: 'av438653038' },
+        },
+    },
+    'card-chs-05-yukt-00': {
+        // 祭りに光る一番星
+        1: {
+            name: '回忆中的夏日祭',
+            video: { type: 'bilibili', vid: 'av358846195' },
+        },
+        2: {
+            name: '我想和那个人一起逛',
+            video: { type: 'bilibili', vid: 'av658823431' },
+        },
+        3: {
+            name: '和爸爸一起',
+            video: { type: 'bilibili', vid: 'av871263165' },
         },
     },
 }
@@ -1637,6 +1673,21 @@ const dataFran: StoriesData = {
         3: {
             name: '不模仿他人格调',
             video: { type: 'bilibili', vid: 'av228141565' },
+        },
+    },
+    'card-kor-05-mizg-01': {
+        // 真夏のレーベン
+        1: {
+            name: '是这样吗？',
+            video: { type: 'bilibili', vid: 'av743242157' },
+        },
+        2: {
+            name: '原来是蛇啊',
+            video: { type: 'bilibili', vid: 'av785705535' },
+        },
+        3: {
+            name: '以防万一',
+            video: { type: 'bilibili', vid: 'av743210745' },
         },
     },
 }
