@@ -8,8 +8,6 @@ import AppHeader from './AppHeader'
 import AppNavBar from './AppNavBar'
 import Footer from './Footer'
 
-import Year2Anniv from '#components/Year2Anniv'
-
 const expandedNavbarAtom = atom(false)
 
 const Layout = ({ children }: { children: ReactNode }) => {
@@ -31,7 +29,6 @@ const Layout = ({ children }: { children: ReactNode }) => {
 
     return (
         <>
-            <Year2Anniv />
             <AppShell
                 fixed={false}
                 navbar={<AppNavBar expanded={expandedNavbar} />}
