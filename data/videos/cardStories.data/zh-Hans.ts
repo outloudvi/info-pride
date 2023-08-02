@@ -1154,6 +1154,21 @@ const dataYu: StoriesData = {
             video: { type: 'bilibili', vid: 'av566941637' },
         },
     },
+    'card-yu-05-mizg-02': {
+        // 陽に溶けるブレークタイム
+        1: {
+            name: '预料之外的反应',
+            video: { type: 'bilibili', vid: 'av231681721' },
+        },
+        2: {
+            name: '生气的理由',
+            video: { type: 'bilibili', vid: 'av531637552' },
+        },
+        3: {
+            name: '午后由我独占',
+            video: { type: 'bilibili', vid: 'av574213961' },
+        },
+    },
 }
 
 // 奥山堇
@@ -1245,6 +1260,21 @@ const dataSumire: StoriesData = {
         3: {
             name: '凝聚大家的力量',
             video: { type: 'bilibili', vid: 'av567819934' },
+        },
+    },
+    'card-smr-05-mizg-02': {
+        // 波打ち際のしろくまサマー
+        1: {
+            name: '人家想去海边嘛',
+            video: { type: 'bilibili', vid: 'av404200000' },
+        },
+        2: {
+            name: '在商业街尽享夏日',
+            video: { type: 'bilibili', vid: 'av274214649' },
+        },
+        3: {
+            name: '和瑠依酱一起闹翻天',
+            video: { type: 'bilibili', vid: 'av231695849' },
         },
     },
 }
