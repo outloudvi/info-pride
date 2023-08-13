@@ -5,42 +5,7 @@ import { useEffect } from 'react'
 
 type NoticeUnit = (x: () => void, y: (s: string) => string) => JSX.Element
 
-const GlobalNotices: Record<string, NoticeUnit> = {
-    '230405-intl': (off, $t) => (
-        <Alert
-            color="blue"
-            title={$t('230405-title')}
-            withCloseButton
-            onClose={off}
-            closeButtonLabel={$t('btn_close')}
-        >
-            <a
-                href="https://twitter.com/IDOLYG_official"
-                rel="noopener nofollow"
-            >
-                Twitter (English)
-            </a>{' '}
-            /{' '}
-            <a href="https://twitter.com/IDOLYPRIDE_TW" rel="noopener nofollow">
-                Twitter（繁体中文）
-            </a>{' '}
-            /{' '}
-            <a
-                href="https://play.google.com/store/apps/details?id=com.neowiz.game.idolypride.en"
-                rel="noopener nofollow"
-            >
-                Google Play (English)
-            </a>{' '}
-            /{' '}
-            <a
-                href="https://play.google.com/store/apps/details?id=com.neowiz.game.idolypride.tw"
-                rel="noopener nofollow"
-            >
-                Google Play（繁体中文）
-            </a>
-        </Alert>
-    ),
-}
+const GlobalNotices: Record<string, NoticeUnit> = {}
 
 const NoticeItem = ({
     nKey,
@@ -75,7 +40,7 @@ const NoticeTop = () => {
     useEffect(() => {
         const ls = window.localStorage
         if (!ls) return
-        ls.removeItem('221218-kanda')
+        ls.removeItem('230405-intl')
     }, [])
 
     return (
