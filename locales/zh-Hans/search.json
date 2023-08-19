@@ -1,6 +1,7 @@
 {
     "Card search": "卡片搜索",
     "notice_mybox": "如果发现自己持有的卡片没有显示为「已持有」，请<link>更新卡片持有状态</link>。",
+    "use_hs_search": "根据技能搜索卡片的功能将下线。请换用 <link>Hoshimi Stage</link>。",
     "Keyword": "关键词",
     "Character": "角色",
     "Type": "类型",

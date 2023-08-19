@@ -3,17 +3,14 @@ import { useEffect, useMemo, useState } from 'react'
 import Link from 'next/link'
 import { useForm } from '@mantine/form'
 import { useLocalStorage } from '@mantine/hooks'
-import { Checkbox, NumberInput, TextInput, Tooltip } from '@mantine/core'
+import { Alert, Checkbox, NumberInput, TextInput, Tooltip } from '@mantine/core'
 import { SkillCategoryType } from 'hoshimi-types/ProtoEnum'
-import type { EffectWithTarget as SXEffectWithTarget } from 'hoshimi-types/Skillx'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
-import uniq from 'lodash/uniq'
 import { useTranslations } from 'next-intl'
 
 import type { LocalBox } from '../settings'
-import jpSearchSkills from "../../locales/ja/search_skills.json"
-import jpCharas from "../../locales/ja/v-chr.json"
+import jpCharas from '../../locales/ja/v-chr.json'
 
 import tryJSONParse from '#utils/tryJsonParse'
 import { LOCALSTORAGE_BOX_TAG } from '#utils/startupHook'
@@ -27,23 +24,19 @@ import { CharacterIds } from '#data/vendor/characterId'
 import ResultList from '#components/search/card/ResultList'
 import CCIDTable from '#data/ccid'
 import Title from '#components/Title'
-import Paths from '#utils/paths'
 import getI18nProps from '#utils/getI18nProps'
 import type { PropsWithL10n } from '#components/types'
 
 const SearchPage = ({
     CardData,
     SkillAllData,
-    SkillxData,
     VCardAlias,
 }: {
     CardData: APIResponseOf<'Card'>
     SkillAllData: APIResponseOf<'Skill/All'>
-    SkillxData: APIResponseOf<'Skill/X'>
     VCardAlias: Record<string, string>
 }) => {
     const $t = useTranslations('search')
-    const $ss = useTranslations('search_skills')
     const $vc = useTranslations('v-chr')
     const $v = useTranslations('vendor')
 
@@ -72,8 +65,6 @@ const SearchPage = ({
             ctMin: '',
             ctMax: '',
             ctShowSp: false,
-            effectTypes: [] as SXEffectWithTarget['effect']['typ'][],
-            targetTypes: [] as SXEffectWithTarget['target']['typ'][],
             dualA: false,
             initial5Only: false,
         },
@@ -89,30 +80,6 @@ const SearchPage = ({
         },
     })
 
-    const skillEffectTypes = useMemo(() => {
-        return uniq(
-            Object.values<SXEffectWithTarget>(SkillxData)
-                .map((x) => x.effect.typ)
-                .filter((x) => x)
-        ).sort((a, b) => {
-            // In real case, score_get types are seldom used,
-            // leave those worthlessness at the end of the list
-            // instead of keeping them intertwined with other usefuls.
-            const aIsScore = a.startsWith("score_get_")
-            const bIsScore = b.startsWith("score_get_")
-            if (aIsScore && !bIsScore) return 1
-            else if (!aIsScore && bIsScore) return -1
-            else return a.localeCompare(b)
-        })
-    }, [SkillxData])
-    const skillTargetTypes = useMemo(() => {
-        return uniq(
-            Object.values<SXEffectWithTarget>(SkillxData)
-                .map((x) => x.target.typ)
-                .filter((x) => x)
-        ).sort()
-    }, [SkillxData])
-
     const [selectedCards, selectedSkills] = useMemo(() => {
         let ret = [...CardData]
         let highlightedSkills: string[] = []
@@ -124,8 +91,6 @@ const SearchPage = ({
             ctMin,
             ctMax,
             ctShowSp,
-            effectTypes,
-            targetTypes,
             dualA,
             ownedOnly,
             initial5Only,
@@ -190,11 +155,7 @@ const SearchPage = ({
             ) {
                 return false
             }
-            const hasSkillFilters =
-                numCtMin > 0 ||
-                numCtMax > 0 ||
-                effectTypes.length > 0 ||
-                targetTypes.length > 0
+            const hasSkillFilters = numCtMin > 0 || numCtMax > 0
             const selectedSkills = cardSkills.filter((sk) => {
                 // Only check the highest level for now
                 const skillHighestLevel = sk.levels[sk.levels.length - 1]
@@ -221,28 +182,7 @@ const SearchPage = ({
                     )
                         return false
                 }
-                if (effectTypes.length > 0) {
-                    if (
-                        skillHighestLevel.skillDetails
-                            .map((r) => r.efficacyId)
-                            .map((r) => SkillxData[r])
-                            .filter(
-                                (r) => r && effectTypes.includes(r.effect.typ)
-                            ).length === 0
-                    )
-                        return false
-                }
-                if (targetTypes.length > 0) {
-                    if (
-                        skillHighestLevel.skillDetails
-                            .map((r) => r.efficacyId)
-                            .map((r) => SkillxData[r])
-                            .filter(
-                                (r) => r && targetTypes.includes(r.target.typ)
-                            ).length === 0
-                    )
-                        return false
-                }
+
                 return true
             })
             if (selectedSkills.length === 0) return false
@@ -255,10 +195,19 @@ const SearchPage = ({
         })
 
         return [ret, highlightedSkills]
-    }, [CardData, SkillAllData, SkillxData, VCardAlias, formValues, localBox])
+    }, [CardData, SkillAllData, VCardAlias, formValues, localBox])
 
     return (
         <>
+            <Alert>
+                {$t.rich('use_hs_search', {
+                    link: (c) => (
+                        <Link href="https://ipr.vibbit.me/search">
+                            {(c as ReactNode[])[0]}
+                        </Link>
+                    ),
+                })}
+            </Alert>
             <p>
                 {$t.rich('notice_mybox', {
                     link: (c) => (
@@ -332,35 +281,6 @@ const SearchPage = ({
                     </Tooltip>
                 </div>
                 <div className="flex items-center mb-2">
-                    <FilterSelect
-                        className="mr-2"
-                        label={
-                            <span>
-                                {$t('Skill type')}{' '}
-                                <Link href={Paths.wiki('技能说明')}>
-                                    {$t('skill_type_desc')}
-                                </Link>
-                            </span>
-                        }
-                        multiple
-                        list={skillEffectTypes}
-                        displayAs={useJpStr ? undefined : $ss}
-                        listNamemap={useJpStr ? jpSearchSkills : undefined}
-                        width={300}
-                        formProps={getInputProps('effectTypes')}
-                        maxDropdownHeight={450}
-                    />
-                    <FilterSelect
-                        className="mr-2"
-                        label={$t('Target type')}
-                        multiple
-                        list={skillTargetTypes}
-                        displayAs={useJpStr ? undefined : $ss}
-                        listNamemap={useJpStr ? jpSearchSkills : undefined}
-                        width={300}
-                        formProps={getInputProps('targetTypes')}
-                        maxDropdownHeight={450}
-                    />
                     <Checkbox
                         label={$t('Dual A skills')}
                         className="mr-2"
@@ -402,12 +322,10 @@ const SkeletonSearchPage = (props: PropsWithL10n) => {
 
     const { data: CardData } = useApi('Card')
     const { data: SkillAllData } = useApi('Skill/All')
-    const { data: SkillxData } = useApi('Skill/X')
 
     const allData = {
         CardData,
         SkillAllData,
-        SkillxData,
         VCardAlias: props._m['v-card-alias'],
     }
 
