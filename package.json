@@ -32,7 +32,7 @@
         "@fortawesome/free-regular-svg-icons": "^6.4.0",
         "@fortawesome/free-solid-svg-icons": "^6.4.0",
         "@fortawesome/react-fontawesome": "^0.2.0",
-        "@hoshimei/spine-runtime": "3.8.95-build.3",
+        "@hoshimei/spine-runtime": "3.8.95-build.4",
         "@mantine/core": "^6.0.10",
         "@mantine/dates": "^6.0.10",
         "@mantine/form": "^6.0.10",
