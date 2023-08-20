@@ -177,7 +177,7 @@ const SpineView = ({ id }: { id: string }) => {
                         withAsterisk
                     />
                 ) : (
-                    <p>{$c('Loading...')}</p>
+                    <p>{$c('loading')}</p>
                 )}
             </Grid.Col>
             <Grid.Col md={12} lg={4}>

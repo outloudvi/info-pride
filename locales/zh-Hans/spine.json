@@ -1,5 +1,9 @@
 {
     "Spine viewer": "Spine 查看器",
     "Select the animation": "选择动画",
-    "Spine ID": "Spine ID"
+    "Spine ID": "Spine ID",
+    "View": "查看",
+    "Spine license confirmation": "Spine 授权确认",
+    "license_info": "根据 <link>Spine Editor License Agreement</link>，您需要拥有 Spine Professional 或者 Spine Essential 授权才能访问此页面。",
+    "btn_license_confirmed": "是的，我有一份 Spine 授权"
 }
