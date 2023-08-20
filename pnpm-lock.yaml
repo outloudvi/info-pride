@@ -32,6 +32,9 @@ dependencies:
   '@fortawesome/react-fontawesome':
     specifier: ^0.2.0
     version: 0.2.0(@fortawesome/fontawesome-svg-core@6.4.0)(react@18.2.0)
+  '@hoshimei/spine-runtime':
+    specifier: 3.8.95-build.3
+    version: 3.8.95-build.3
   '@mantine/core':
     specifier: ^6.0.10
     version: 6.0.10(@emotion/react@11.11.0)(@mantine/hooks@6.0.10)(@types/react@18.2.6)(react-dom@18.2.0)(react@18.2.0)
@@ -1693,6 +1696,10 @@ packages:
   /@hoshimei/adv@0.7.1:
     resolution: {integrity: sha512-71FJUg2Aj7ETdL5uzGo0enxyoQ0BF+ygnL70XiUyNoAcIc6lqpXY6UuHWCaEBLORPCn0wHXBSMx+utiUaBmqLQ==}
     dev: true
+
+  /@hoshimei/spine-runtime@3.8.95-build.3:
+    resolution: {integrity: sha512-mD6C9ONbNrMOioMcFebN5DPBNDFaI8VVYhQEhV19VH/5xsWFnBPCrpPe6JsjPtZu9sqDDzdNDDq12/KtOp3LIA==}
+    dev: false
 
   /@humanwhocodes/config-array@0.11.8:
     resolution: {integrity: sha512-UybHIJzJnR5Qc/MsD9Kr+RpO2h+/P1GhOwdiLPXK5TWk5sgTdu88bTD9UP+CKbPPh5Rni1u0GjAdYQLemG8g+g==}
