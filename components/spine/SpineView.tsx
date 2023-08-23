@@ -1,10 +1,71 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Grid, NativeSelect } from '@mantine/core'
 import { useQuery } from 'react-query'
 import spine from '@hoshimei/spine-runtime/spine-canvas'
 import { useTranslations } from 'next-intl'
 
 import Paths from '#utils/paths'
+
+function resize(elem: HTMLCanvasElement, context: CanvasRenderingContext2D) {
+    const w = elem.clientWidth
+    const h = elem.clientHeight
+    if (elem.width != w || elem.height != h) {
+        elem.width = w
+        elem.height = h
+    }
+    context.setTransform(1, 0, 0, 1, 0, 0)
+    context.translate(elem.width / 2, elem.height / 2)
+    // TODO: fix a value
+    context.translate(0, 150)
+}
+
+function loadSkeleton(
+    assetManager: spine.AssetManager,
+    name: string,
+    initialAnimation: string,
+    skins: string[]
+) {
+    // Load the texture atlas using name.atlas and name.png from the AssetManager.
+    // The function passed to TextureAtlas is used to resolve relative paths.
+    const atlas = new spine.TextureAtlas(
+        assetManager.get(name + '.atlas'),
+        function (path) {
+            return assetManager.get(path)
+        }
+    )
+
+    // Create a AtlasAttachmentLoader, which is specific to the WebGL backend.
+    const atlasLoader = new spine.AtlasAttachmentLoader(atlas)
+
+    // Create a SkeletonJson instance for parsing the .json file.
+    const skeletonJson = new spine.SkeletonJson(atlasLoader)
+
+    // Set the scale to apply during parsing, parse the file, and create a new skeleton.
+    const skeletonData = skeletonJson.readSkeletonData(
+        assetManager.get(name + '.skl.json')
+    )
+    const skeleton = new spine.Skeleton(skeletonData)
+    // skeleton.bones = skeleton.bones.filter()
+    skeleton.scaleY = -1
+    const combinedSkin = new spine.Skin('combined-skin')
+    for (const skinName of skins) {
+        combinedSkin.addSkin(skeletonData.findSkin(skinName))
+    }
+    skeleton.setSkin(combinedSkin)
+    skeleton.setSlotsToSetupPose()
+
+    // Create an AnimationState, and set the initial animation in looping mode.
+    const animationState = new spine.AnimationState(
+        new spine.AnimationStateData(skeleton.data)
+    )
+    animationState.setAnimation(0, initialAnimation, true)
+
+    // Pack everything up and return to caller.
+    return {
+        skeleton: skeleton,
+        state: animationState,
+    }
+}
 
 const SpineView = ({ id }: { id: string }) => {
     const $t = useTranslations('spine')
@@ -16,154 +77,104 @@ const SpineView = ({ id }: { id: string }) => {
     })
 
     const [animation, setAnimation] = useState('loop_idle')
-    const canvasRef = useRef<HTMLCanvasElement>(null)
+    const skinSets = useMemo(() => [['shadow'], ['head_FL', 'body_FL']], [])
 
-    const setupCanvas = useCallback(
-        (elem: HTMLCanvasElement, baseName: string) => {
-            let lastFrameTime = Date.now() / 1000
-            let context: CanvasRenderingContext2D
-            let assetManager: spine.canvas.AssetManager
-            let skeletonRenderer: spine.canvas.SkeletonRenderer
-            let resized = false
-            const skinStates: {
-                skeleton: spine.Skeleton
-                state: spine.AnimationState
-            }[] = []
+    // Canvas related - we don't want changes on them to trigger re-render
+    const $canvasRef = useRef<HTMLCanvasElement>(null)
+    const $canvasCtx = useRef<CanvasRenderingContext2D>()
+    const $lastFrameTime = useRef(Date.now() / 1000)
+    const $assetManager = useRef<spine.canvas.AssetManager>()
+    const $skeletonRenderer = useRef<spine.canvas.SkeletonRenderer>()
+    const $resized = useRef(false)
+    const $skinStates = useRef<
+        {
+            skeleton: spine.Skeleton
+            state: spine.AnimationState
+        }[]
+    >([])
+    const $frameRequest = useRef<number>(-1)
 
-            const animName = animation
-            const skinSets = [['shadow'], ['head_FL', 'body_FL']]
+    const render = useCallback(() => {
+        const canvasElem = $canvasRef.current
+        const context = $canvasCtx.current
+        const skeletonRenderer = $skeletonRenderer.current
+        if (!canvasElem || !context || !skeletonRenderer) return // should not happen
 
-            function init() {
-                const _ctx = elem.getContext('2d')
-                if (!_ctx) {
-                    console.log('canvas is not ready!')
-                    return
-                }
-                context = _ctx
+        const now = Date.now() / 1000
+        const delta = now - $lastFrameTime.current
+        $lastFrameTime.current = now
 
-                skeletonRenderer = new spine.canvas.SkeletonRenderer(context)
-                // enable debug rendering
-                skeletonRenderer.debugRendering = false
-                // enable the triangle renderer, supports meshes, but may produce artifacts in some browsers
-                skeletonRenderer.triangleRendering = true
+        if (!$resized.current) {
+            resize(canvasElem, context)
+            $resized.current = true
+        }
 
-                assetManager = new spine.canvas.AssetManager(
-                    Paths.spineBasePath(baseName)
+        context.save()
+        context.setTransform(1, 0, 0, 1, 0, 0)
+        context.fillStyle = '#cccccc'
+        context.fillRect(0, 0, canvasElem.width, canvasElem.height)
+        context.restore()
+
+        for (const { state, skeleton } of Object.values($skinStates.current)) {
+            state.update(delta)
+            state.apply(skeleton)
+            skeleton.updateWorldTransform()
+            skeletonRenderer.draw(skeleton)
+        }
+
+        requestAnimationFrame(render)
+    }, [])
+
+    const load = useCallback(() => {
+        const assetManager = $assetManager.current
+        if (!assetManager) return -1 // this should not happen
+
+        if (assetManager.isLoadingComplete()) {
+            for (const skinList of skinSets) {
+                $skinStates.current.push(
+                    loadSkeleton(assetManager, id, animation, skinList)
                 )
-                assetManager.loadText(baseName + '.skl.json')
-                assetManager.loadText(baseName + '.atlas')
-                assetManager.loadTexture(baseName + '.png')
-
-                requestAnimationFrame(load)
             }
-
-            function load() {
-                if (assetManager.isLoadingComplete()) {
-                    for (const skinList of skinSets) {
-                        skinStates.push(
-                            loadSkeleton(baseName, animName, skinList)
-                        )
-                    }
-                    requestAnimationFrame(render)
-                } else {
-                    requestAnimationFrame(load)
-                }
-            }
-
-            function loadSkeleton(
-                name: string,
-                initialAnimation: string,
-                skins: string[]
-            ) {
-                // Load the texture atlas using name.atlas and name.png from the AssetManager.
-                // The function passed to TextureAtlas is used to resolve relative paths.
-                const atlas = new spine.TextureAtlas(
-                    assetManager.get(baseName + '.atlas'),
-                    function (path) {
-                        return assetManager.get(path)
-                    }
-                )
-
-                // Create a AtlasAttachmentLoader, which is specific to the WebGL backend.
-                const atlasLoader = new spine.AtlasAttachmentLoader(atlas)
-
-                // Create a SkeletonJson instance for parsing the .json file.
-                const skeletonJson = new spine.SkeletonJson(atlasLoader)
-
-                // Set the scale to apply during parsing, parse the file, and create a new skeleton.
-                const skeletonData = skeletonJson.readSkeletonData(
-                    assetManager.get(name + '.skl.json')
-                )
-                const skeleton = new spine.Skeleton(skeletonData)
-                // skeleton.bones = skeleton.bones.filter()
-                skeleton.scaleY = -1
-                const combinedSkin = new spine.Skin('combined-skin')
-                for (const skinName of skins) {
-                    combinedSkin.addSkin(skeletonData.findSkin(skinName))
-                }
-                skeleton.setSkin(combinedSkin)
-                skeleton.setSlotsToSetupPose()
-
-                // Create an AnimationState, and set the initial animation in looping mode.
-                const animationState = new spine.AnimationState(
-                    new spine.AnimationStateData(skeleton.data)
-                )
-                animationState.setAnimation(0, initialAnimation, true)
-
-                // Pack everything up and return to caller.
-                return {
-                    skeleton: skeleton,
-                    state: animationState,
-                }
-            }
-
-            function render() {
-                const now = Date.now() / 1000
-                const delta = now - lastFrameTime
-                lastFrameTime = now
-
-                if (!resized) resize()
-
-                context.save()
-                context.setTransform(1, 0, 0, 1, 0, 0)
-                context.fillStyle = '#cccccc'
-                context.fillRect(0, 0, elem.width, elem.height)
-                context.restore()
-
-                for (const { state, skeleton } of Object.values(skinStates)) {
-                    state.update(delta)
-                    state.apply(skeleton)
-                    skeleton.updateWorldTransform()
-                    skeletonRenderer.draw(skeleton)
-                }
-
-                requestAnimationFrame(render)
-            }
-
-            function resize() {
-                const w = elem.clientWidth
-                const h = elem.clientHeight
-                if (elem.width != w || elem.height != h) {
-                    elem.width = w
-                    elem.height = h
-                }
-                context.setTransform(1, 0, 0, 1, 0, 0)
-                context.translate(elem.width / 2, elem.height / 2)
-                // TODO: fix a value
-                context.translate(0, 150)
-                resized = true
-            }
-
-            init()
-        },
-        [animation]
-    )
+            return requestAnimationFrame(render)
+        } else {
+            return requestAnimationFrame(load)
+        }
+    }, [id, skinSets, animation, render])
 
     useEffect(() => {
-        const cur = canvasRef.current
-        if (!cur) return
-        setupCanvas(cur, id)
-    }, [canvasRef, id, setupCanvas])
+        const canvas = $canvasRef.current
+        if (!canvas) return
+        const ctx = canvas.getContext('2d')
+        if (!ctx) {
+            console.log('canvas is not ready!')
+            return
+        }
+
+        $canvasCtx.current = ctx
+
+        const skeletonRenderer = new spine.canvas.SkeletonRenderer(
+            $canvasCtx.current
+        )
+        // enable debug rendering
+        skeletonRenderer.debugRendering = false
+        // enable the triangle renderer, supports meshes, but may produce artifacts in some browsers
+        skeletonRenderer.triangleRendering = true
+
+        $skeletonRenderer.current = skeletonRenderer
+
+        const assetManager = new spine.canvas.AssetManager(
+            Paths.spineBasePath(id)
+        )
+        assetManager.loadText(id + '.skl.json')
+        assetManager.loadText(id + '.atlas')
+        assetManager.loadTexture(id + '.png')
+
+        $assetManager.current = assetManager
+
+        $frameRequest.current = requestAnimationFrame(load)
+
+        return () => cancelAnimationFrame($frameRequest.current)
+    }, [id, load])
 
     return (
         <Grid>
@@ -189,7 +200,7 @@ const SpineView = ({ id }: { id: string }) => {
                     className="mx-auto block"
                     height="400"
                     width="220"
-                    ref={canvasRef}
+                    ref={$canvasRef}
                 />
             </Grid.Col>
         </Grid>
