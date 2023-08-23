@@ -25,16 +25,13 @@ const SpineView = ({ id }: { id: string }) => {
             let assetManager: spine.canvas.AssetManager
             let skeletonRenderer: spine.canvas.SkeletonRenderer
             let resized = false
-            const skinStates: Record<
-                string,
-                {
-                    skeleton: spine.Skeleton
-                    state: spine.AnimationState
-                }
-            > = {}
+            const skinStates: {
+                skeleton: spine.Skeleton
+                state: spine.AnimationState
+            }[] = []
 
             const animName = animation
-            const skins = ['shadow', 'body_FL', 'head_FL']
+            const skinSets = [['shadow'], ['head_FL', 'body_FL']]
 
             function init() {
                 const _ctx = elem.getContext('2d')
@@ -62,8 +59,10 @@ const SpineView = ({ id }: { id: string }) => {
 
             function load() {
                 if (assetManager.isLoadingComplete()) {
-                    for (const i of skins) {
-                        skinStates[i] = loadSkeleton(baseName, animName, i)
+                    for (const skinList of skinSets) {
+                        skinStates.push(
+                            loadSkeleton(baseName, animName, skinList)
+                        )
                     }
                     requestAnimationFrame(render)
                 } else {
@@ -74,7 +73,7 @@ const SpineView = ({ id }: { id: string }) => {
             function loadSkeleton(
                 name: string,
                 initialAnimation: string,
-                skin: string
+                skins: string[]
             ) {
                 // Load the texture atlas using name.atlas and name.png from the AssetManager.
                 // The function passed to TextureAtlas is used to resolve relative paths.
@@ -96,8 +95,13 @@ const SpineView = ({ id }: { id: string }) => {
                     assetManager.get(name + '.skl.json')
                 )
                 const skeleton = new spine.Skeleton(skeletonData)
+                // skeleton.bones = skeleton.bones.filter()
                 skeleton.scaleY = -1
-                skeleton.setSkinByName(skin)
+                const combinedSkin = new spine.Skin('combined-skin')
+                for (const skinName of skins) {
+                    combinedSkin.addSkin(skeletonData.findSkin(skinName))
+                }
+                skeleton.setSkin(combinedSkin)
                 skeleton.setSlotsToSetupPose()
 
                 // Create an AnimationState, and set the initial animation in looping mode.
