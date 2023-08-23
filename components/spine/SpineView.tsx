@@ -130,6 +130,7 @@ const SpineView = ({ id }: { id: string }) => {
         if (!assetManager) return -1 // this should not happen
 
         if (assetManager.isLoadingComplete()) {
+            $skinStates.current = []
             for (const skinList of skinSets) {
                 $skinStates.current.push(
                     loadSkeleton(assetManager, id, animation, skinList)
@@ -173,7 +174,11 @@ const SpineView = ({ id }: { id: string }) => {
 
         $frameRequest.current = requestAnimationFrame(load)
 
-        return () => cancelAnimationFrame($frameRequest.current)
+        return () => {
+            cancelAnimationFrame($frameRequest.current)
+            $skeletonRenderer.current = undefined
+            $assetManager.current = undefined
+        }
     }, [id, load])
 
     return (
