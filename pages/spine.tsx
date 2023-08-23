@@ -1,7 +1,7 @@
 import { useTranslations } from 'next-intl'
 import { Alert, Badge, Button, Group, TextInput } from '@mantine/core'
 import { StringParam, useQueryParam, withDefault } from 'use-query-params'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import type { ReactNode } from 'react'
 import Link from 'next/link'
 
@@ -20,6 +20,10 @@ const AboutPage = () => {
     )
 
     const [idInput, setIdInput] = useState(id)
+
+    useEffect(() => {
+        setIdInput(id)
+    }, [id])
 
     return (
         <>
