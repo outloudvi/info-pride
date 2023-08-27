@@ -6,6 +6,8 @@ import { useTranslations } from 'next-intl'
 
 import Paths from '#utils/paths'
 
+// START License: Spine Runtimes License Agreement
+// https://github.com/EsotericSoftware/spine-runtimes/blob/3.8/spine-ts/LICENSE
 function resize(elem: HTMLCanvasElement, context: CanvasRenderingContext2D) {
     const w = elem.clientWidth
     const h = elem.clientHeight
@@ -66,6 +68,7 @@ function loadSkeleton(
         state: animationState,
     }
 }
+// END License
 
 const SpineView = ({ id }: { id: string }) => {
     const $t = useTranslations('spine')
