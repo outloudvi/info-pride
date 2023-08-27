@@ -30,9 +30,9 @@ function loadSkeleton(
     // Load the texture atlas using name.atlas and name.png from the AssetManager.
     // The function passed to TextureAtlas is used to resolve relative paths.
     const atlas = new spine.TextureAtlas(
-        assetManager.get(name + '.atlas'),
+        assetManager.get(Paths.relSpinePath(name + '.atlas')),
         function (path) {
-            return assetManager.get(path)
+            return assetManager.get(Paths.relSpinePath(path))
         }
     )
 
@@ -44,7 +44,7 @@ function loadSkeleton(
 
     // Set the scale to apply during parsing, parse the file, and create a new skeleton.
     const skeletonData = skeletonJson.readSkeletonData(
-        assetManager.get(name + '.skl.json')
+        assetManager.get(Paths.relSpinePath(name + '.skl.json'))
     )
     const skeleton = new spine.Skeleton(skeletonData)
     // skeleton.bones = skeleton.bones.filter()
@@ -80,7 +80,11 @@ const SpineView = ({ id }: { id: string }) => {
     })
 
     const [animation, setAnimation] = useState('loop_idle')
-    const skinSets = useMemo(() => [['shadow'], ['head_FL', 'body_FL']], [])
+    const consSkinSets = useMemo(() => [['shadow'], ['head_FL', 'body_FL']], [])
+    const hairSkinSets = useMemo(
+        () => [['head_FL_back'], ['head_FL_front']],
+        []
+    )
 
     // Canvas related - we don't want changes on them to trigger re-render
     const $canvasRef = useRef<HTMLCanvasElement>(null)
@@ -134,16 +138,17 @@ const SpineView = ({ id }: { id: string }) => {
 
         if (assetManager.isLoadingComplete()) {
             $skinStates.current = []
-            for (const skinList of skinSets) {
+            for (const skinList of consSkinSets) {
                 $skinStates.current.push(
                     loadSkeleton(assetManager, id, animation, skinList)
                 )
             }
+
             return requestAnimationFrame(render)
         } else {
             return requestAnimationFrame(load)
         }
-    }, [id, skinSets, animation, render])
+    }, [id, consSkinSets, animation, render])
 
     useEffect(() => {
         const canvas = $canvasRef.current
@@ -166,12 +171,10 @@ const SpineView = ({ id }: { id: string }) => {
 
         $skeletonRenderer.current = skeletonRenderer
 
-        const assetManager = new spine.canvas.AssetManager(
-            Paths.spineBasePath(id)
-        )
-        assetManager.loadText(id + '.skl.json')
-        assetManager.loadText(id + '.atlas')
-        assetManager.loadTexture(id + '.png')
+        const assetManager = new spine.canvas.AssetManager(Paths.s3(''))
+        assetManager.loadText(Paths.relSpinePath(id + '.skl.json'))
+        assetManager.loadText(Paths.relSpinePath(id + '.atlas'))
+        assetManager.loadTexture(Paths.relSpinePath(id + '.png'))
 
         $assetManager.current = assetManager
 
