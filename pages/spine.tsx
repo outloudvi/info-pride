@@ -10,7 +10,7 @@ import getI18nProps from '#utils/getI18nProps'
 import SpineView from '#components/spine/SpineView'
 import withQueryParam from '#utils/withQueryParam'
 
-const AboutPage = () => {
+const SpinePage = () => {
     const $t = useTranslations('spine')
 
     const [userHasLicense, setUserHasLicense] = useState(false)
@@ -74,4 +74,4 @@ const AboutPage = () => {
 
 export const getStaticProps = getI18nProps(['spine'])
 
-export default withQueryParam(AboutPage)
+export default withQueryParam(SpinePage)
