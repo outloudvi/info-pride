@@ -21,7 +21,6 @@ export type LocalBox = Partial<Record<CharacterId, boolean[]>>
 const SettingsPage = () => {
     const $t = useTranslations('settings')
     const $vc = useTranslations('v-chr')
-    const $c = useTranslations('common')
 
     const [localBox, setLocalBox] = useState<LocalBox>({})
 

@@ -7,7 +7,6 @@ import {
     Group,
     Skeleton,
     Slider,
-    Switch,
     Tooltip,
 } from '@mantine/core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'

@@ -1,4 +1,3 @@
-import { Alert } from '@mantine/core'
 import { useLocalStorage } from '@mantine/hooks'
 import { useTranslations } from 'next-intl'
 import { useEffect } from 'react'

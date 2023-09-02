@@ -1,4 +1,4 @@
-import { Group, Modal, Select } from '@mantine/core'
+import {  Modal, Select } from '@mantine/core'
 import { useTranslations } from 'next-intl'
 
 import type { CardTiny } from './types'

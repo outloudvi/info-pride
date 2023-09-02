@@ -9,13 +9,9 @@ import {
     Modal,
     NativeSelect,
     Skeleton,
-    Switch,
     TextInput,
-    Tooltip,
 } from '@mantine/core'
 import { showNotification } from '@mantine/notifications'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import { StringParam, useQueryParam, withDefault } from 'use-query-params'
 import { useTranslations } from 'next-intl'
 
