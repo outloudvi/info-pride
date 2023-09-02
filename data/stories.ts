@@ -30,5 +30,5 @@ export const Episodes: Record<SeriesName, number[]> = {
     // adv_group_moon_
     Tsuki: [5, 5],
     // adv_group_sun
-    Sunny: [5],
+    Sunny: [5, 5],
 }
