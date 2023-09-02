@@ -4,6 +4,8 @@
     "Spine ID": "Spine ID",
     "View": "View",
     "Spine license confirmation": "Spine license confirmation",
+    "Character": "Character",
+    "Costume": "Costume",
     "license_info": "According to <link>Spine Editor License Agreement</link>, you need to have a Spine license (e.g. Spine Professional or Spine Essential) to view this page.",
     "btn_license_confirmed": "Yes, I have that license."
 }

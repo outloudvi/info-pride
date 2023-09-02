@@ -1,5 +1,5 @@
 import { useTranslations } from 'next-intl'
-import { Alert, Badge, Button, Group, TextInput } from '@mantine/core'
+import { Alert, Badge, Button, Flex, Group, NativeSelect } from '@mantine/core'
 import { StringParam, useQueryParam, withDefault } from 'use-query-params'
 import { useEffect, useState } from 'react'
 import type { ReactNode } from 'react'
@@ -9,21 +9,95 @@ import Title from '#components/Title'
 import getI18nProps from '#utils/getI18nProps'
 import SpineView from '#components/spine/SpineView'
 import withQueryParam from '#utils/withQueryParam'
+import useApi from '#utils/useApi'
+import { MessageCharacterIds } from '#data/vendor/characterId'
+
+const SpineViewWrapper = () => {
+    const $t = useTranslations('spine')
+    const $vc = useTranslations('v-chr')
+
+    const [initSync, setInitSync] = useState(false)
+    const [id, setId] = useState('')
+    const [urlId, setUrlId] = useQueryParam('id', withDefault(StringParam, ''))
+
+    const [idInput, setIdInput] = useState(urlId)
+    const [characterId, setCharacterId] = useState('char-ktn')
+    const { data: ChibiData } = useApi('Costume/Chibi', {
+        characterId,
+    })
+
+    useEffect(() => {
+        if (urlId !== '' && !initSync) {
+            setId(urlId)
+            setInitSync(true)
+        } else if (id !== '') {
+            setUrlId(id)
+        }
+    }, [id, initSync, setUrlId, urlId])
+
+    return (
+        <>
+            <Flex className="flex-col md:flex-row gap-4 mb-2 max-w-xl md:items-end">
+                <NativeSelect
+                    className="grow-[3]"
+                    data={MessageCharacterIds.map((v) => ({
+                        label: $vc(v),
+                        value: v,
+                    }))}
+                    value={characterId}
+                    onChange={(event) =>
+                        setCharacterId(event.currentTarget.value)
+                    }
+                    label={$t('Character')}
+                    withAsterisk
+                />
+                <NativeSelect
+                    className="grow-[4]"
+                    data={
+                        ChibiData?.map(({ sdAssetId, name }) => ({
+                            value: sdAssetId,
+                            label: name,
+                        })) ?? []
+                    }
+                    value={idInput}
+                    onChange={(event) => setIdInput(event.currentTarget.value)}
+                    label={$t('Costume')}
+                    withAsterisk
+                />
+                <Button
+                    className="flex-grow"
+                    onClick={() => setId(`spi_sd_chr_cos_${idInput}`)}
+                >
+                    {$t('View')}
+                </Button>
+            </Flex>
+            {id && <SpineView id={id} />}
+        </>
+    )
+}
+
+const LicenseCheck = ({ confirm }: { confirm: () => void }) => {
+    const $t = useTranslations('spine')
+
+    return (
+        <Alert color="blue" title={$t('Spine license confirmation')}>
+            <p>
+                {$t.rich('license_info', {
+                    link: (c) => (
+                        <Link href="https://esotericsoftware.com/spine-editor-license">
+                            {(c as ReactNode[])[0]}
+                        </Link>
+                    ),
+                })}
+            </p>
+            <Button onClick={confirm}>{$t('btn_license_confirmed')}</Button>
+        </Alert>
+    )
+}
 
 const SpinePage = () => {
     const $t = useTranslations('spine')
-
-    const [userHasLicense, setUserHasLicense] = useState(false)
-    const [id, setId] = useQueryParam(
-        'id',
-        withDefault(StringParam, 'spi_sd_chr_cos_rui-idol-00')
-    )
-
-    const [idInput, setIdInput] = useState(id)
-
-    useEffect(() => {
-        setIdInput(id)
-    }, [id])
+    const [userHasLicense, setUserHasLicense] = useState(true)
 
     return (
         <>
@@ -32,46 +106,18 @@ const SpinePage = () => {
                 <Badge>beta</Badge>
             </Group>
             {userHasLicense ? (
-                <>
-                    <Group className="lg:w-1/3">
-                        <TextInput
-                            className="flex-grow"
-                            label={$t('Spine ID')}
-                            value={idInput}
-                            onChange={(e) => setIdInput(e.target.value)}
-                            withAsterisk
-                        />
-                        <Button onClick={() => setId(idInput)}>
-                            {$t('View')}
-                        </Button>
-                    </Group>
-                    <SpineView id={id} />
-                </>
+                <SpineViewWrapper />
             ) : (
-                <>
-                    <Alert
-                        color="blue"
-                        title={$t('Spine license confirmation')}
-                    >
-                        <p>
-                            {$t.rich('license_info', {
-                                link: (c) => (
-                                    <Link href="https://esotericsoftware.com/spine-editor-license">
-                                        {(c as ReactNode[])[0]}
-                                    </Link>
-                                ),
-                            })}
-                        </p>
-                        <Button onClick={() => setUserHasLicense(true)}>
-                            {$t('btn_license_confirmed')}
-                        </Button>
-                    </Alert>
-                </>
+                <LicenseCheck
+                    confirm={() => {
+                        setUserHasLicense(true)
+                    }}
+                />
             )}
         </>
     )
 }
 
-export const getStaticProps = getI18nProps(['spine'])
+export const getStaticProps = getI18nProps(['spine', 'v-chr'])
 
 export default withQueryParam(SpinePage)

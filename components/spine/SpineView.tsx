@@ -70,6 +70,8 @@ function loadSkeleton(
 }
 // END License
 
+const ANIMATION_LOOP_IDLE = 'loop_idle'
+
 const SpineView = ({ id }: { id: string }) => {
     const $t = useTranslations('spine')
     const $c = useTranslations('common')
@@ -79,7 +81,7 @@ const SpineView = ({ id }: { id: string }) => {
         queryFn: ({ queryKey }) => fetch(queryKey[0]).then((x) => x.json()),
     })
 
-    const [animation, setAnimation] = useState('loop_idle')
+    const [animation, setAnimation] = useState(ANIMATION_LOOP_IDLE)
     const consSkinSets = useMemo(() => [['shadow'], ['head_FL', 'body_FL']], [])
     const hairSkinSets = useMemo(
         () => [['head_FL_back'], ['head_FL_front']],
@@ -186,6 +188,10 @@ const SpineView = ({ id }: { id: string }) => {
             $assetManager.current = undefined
         }
     }, [id, load])
+
+    useEffect(() => {
+        setAnimation(ANIMATION_LOOP_IDLE)
+    }, [id])
 
     return (
         <Grid>
