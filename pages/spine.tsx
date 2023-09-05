@@ -27,6 +27,16 @@ const SpineViewWrapper = () => {
     })
 
     useEffect(() => {
+        if (ChibiData && idInput === '') {
+            setIdInput(ChibiData[0].sdAssetId)
+        }
+    }, [ChibiData])
+
+    useEffect(() => {
+        setIdInput('')
+    }, [characterId])
+
+    useEffect(() => {
         if (urlId !== '' && !initSync) {
             setId(urlId)
             setInitSync(true)
@@ -67,6 +77,7 @@ const SpineViewWrapper = () => {
                 <Button
                     className="flex-grow"
                     onClick={() => setId(`spi_sd_chr_cos_${idInput}`)}
+                    disabled={idInput === ''}
                 >
                     {$t('View')}
                 </Button>
