@@ -18,5 +18,6 @@
     "type_PVP": "PVP",
     "type_GVG": "GVG",
     "type_EventResult": "EventResult",
-    "Love": "Moshikoi"
+    "type_Love": "Moshikoi",
+    "type_All": "(All)"
 }

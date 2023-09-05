@@ -34,6 +34,7 @@ const EmblemTypes = {
     GVG: ['gvg-season-'],
     EventResult: ['backside-', 'marathon-', 'contest-', 'race-', 'tour-'],
     Love: ['love'],
+    All: ['']
 } as const
 
 export default EmblemTypes

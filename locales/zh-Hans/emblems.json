@@ -18,5 +18,6 @@
     "type_PVP": "VENUS BATTLE",
     "type_GVG": "UNION BATTLE",
     "type_EventResult": "活动",
-    "type_Love": "もし恋"
+    "type_Love": "もし恋",
+    "type_All": "(全部)"
 }
