@@ -100,6 +100,21 @@ const dataKotono: StoriesData = {
             video: { type: 'bilibili', vid: 'av696802586' },
         },
     },
+    'card-ktn-05-circ-00': {
+        // カットバックタンデム
+        1: {
+            name: 'TODO',
+            video: { type: 'bilibili', vid: 'av958287266' },
+        },
+        2: {
+            name: 'TODO',
+            video: { type: 'bilibili', vid: 'av830814353' },
+        },
+        3: {
+            name: 'TODO',
+            video: { type: 'bilibili', vid: 'av533316457' },
+        },
+    },
 }
 
 // 伊吹渚
@@ -256,7 +271,6 @@ const dataSaki: StoriesData = {
             video: { type: 'bilibili', vid: 'av687413499' },
         },
     },
-
     'card-ski-05-xmas-00': {
         // 記憶から拾うスノードーム
         1: {
@@ -270,6 +284,21 @@ const dataSaki: StoriesData = {
         3: {
             name: '喜欢之人的礼物',
             video: { type: 'bilibili', vid: 'av903201814', pid: 3 },
+        },
+    },
+    'card-ski-05-poli-00': {
+        // 厳然たるプライド
+        1: {
+            name: '目标是3X',
+            video: { type: 'bilibili', vid: 'av272506837' },
+        },
+        2: {
+            name: '自己缺少的东西',
+            video: { type: 'bilibili', vid: 'av402728399' },
+        },
+        3: {
+            name: '压倒性的舞台',
+            video: { type: 'bilibili', vid: 'av359467268' },
         },
     },
 }
@@ -852,6 +881,21 @@ const dataRei: StoriesData = {
             video: { type: 'bilibili', vid: 'av946817911', pid: 3 },
         },
         phone: { video: { type: 'bilibili', vid: 'av564475797' } },
+    },
+    'card-rei-05-pair-00': {
+        // ステップアップ・バンビーナ
+        1: {
+            name: '只是粗茶，请用',
+            video: { type: 'bilibili', vid: 'av275655809' },
+        },
+        2: {
+            name: '和大家一起前进',
+            video: { type: 'bilibili', vid: 'av873172843' },
+        },
+        3: {
+            name: '值得交心的伙伴',
+            video: { type: 'bilibili', vid: 'av533171812' },
+        },
     },
 }
 
@@ -1825,6 +1869,21 @@ const dataMiho: StoriesData = {
         3: {
             name: '一定在看着',
             video: { type: 'bilibili', vid: 'av354724496' },
+        },
+    },
+    'card-mhk-05-mizg-01': {
+        // 波間に揺れるノスタルジー
+        1: {
+            name: '啊、寄居蟹',
+            video: { type: 'bilibili', vid: 'av787194330' },
+        },
+        2: {
+            name: '这是预料之外的事态',
+            video: { type: 'bilibili', vid: 'av404739606' },
+        },
+        3: {
+            name: '绝对不能说出去',
+            video: { type: 'bilibili', vid: 'av702222393' },
         },
     },
 }

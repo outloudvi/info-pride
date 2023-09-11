@@ -467,6 +467,27 @@ const data: Record<string, ChapterItem> = {
         name: '想法不会改变',
         video: { type: 'bilibili', vid: 'av403436802' },
     },
+    // 遥か頂に向かう秀麗
+    'st-eve-2309-backside-001': {
+        name: '继续这样下去可以吗？',
+        video: { type: 'bilibili', vid: 'av618120211' },
+    },
+    'st-eve-2309-backside-002': {
+        name: '以优胜为目标',
+        video: { type: 'bilibili', vid: 'av830651539' },
+    },
+    'st-eve-2309-backside-003': {
+        name: '与日俱增的焦虑',
+        video: { type: 'bilibili', vid: 'av960682392' },
+    },
+    'st-eve-2309-backside-004': {
+        name: '太过温柔了',
+        video: { type: 'bilibili', vid: 'av448194666' },
+    },
+    'st-eve-2309-backside-005': {
+        name: '比优胜更重要的东西',
+        video: { type: 'bilibili', vid: 'av915652235' },
+    },
 }
 
 const _ = {
