@@ -1,6 +1,7 @@
 import { Button, Flex, Grid, Group, Stack } from '@mantine/core'
 import { useTranslations } from 'next-intl'
 import { useMemo } from 'react'
+import dynamic from 'next/dynamic'
 
 import CurrentEvents from '#components/indexPage/CurrentEvents'
 import Notice from '#components/indexPage/Notice'
@@ -8,7 +9,6 @@ import VersionInfo from '#components/indexPage/VersionInfo'
 import Paths from '#utils/paths'
 import NoticeTop from '#components/indexPage/NoticeTop'
 import { addI18nMessages } from '#utils/getI18nProps'
-import RoutineCountdown from '#components/indexPage/RoutineCountdown'
 import IndexTitle from '#components/indexPage/IndexTitle'
 import {
     getStartOfToday,
@@ -16,6 +16,11 @@ import {
     getVenusBattleEvent,
     getVenusLeagueEvent,
 } from '#components/indexPage/venusEvents'
+
+const RoutineCountdown = dynamic(
+    () => import('#components/indexPage/RoutineCountdown'),
+    { ssr: false }
+)
 
 const Home = () => {
     const $t = useTranslations('index')

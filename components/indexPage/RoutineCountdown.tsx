@@ -1,7 +1,7 @@
 import { Progress } from '@mantine/core'
 import dayjs from 'dayjs'
-import { useMemo } from 'react'
 import { useTranslations } from 'next-intl'
+import { useMemo } from 'react'
 
 import type { IndexEventItem } from './types'
 
