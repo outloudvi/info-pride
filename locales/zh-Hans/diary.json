@@ -1,4 +1,11 @@
 {
+    "choose_a_date": "选择日期",
+    "date": "日期",
+    "date_from_to": "{START_DATE} 至 {END_DATE}",
+    "mana_diary": "麻奈日记",
     "mana_diary_not_updating": "麻奈日记于 2022 年 12 月 23 日（或世界观中的 12 月 26 日）停止更新。",
-    "no_diary": "今日无日记。"
+    "no_diary": "今日无日记。",
+    "included_diary_dates": "目前包含的日记日期：",
+    "previous_day": "转到前一天",
+    "next_day": "转到后一天"
 }
