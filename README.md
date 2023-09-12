@@ -9,7 +9,7 @@ INFO PRIDE
 ![Build Status](https://badgen.net/github/status/outloudvi/info-pride?icon=vercel)
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-5-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 ## Planned features & Bug-fixes
@@ -49,6 +49,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
       <td align="center" valign="top" width="14.28%"><a href="https://malitsplus.blogspot.com"><img src="https://avatars.githubusercontent.com/u/50281195?v=4?s=100" width="100px;" alt="Vibbit"/><br /><sub><b>Vibbit</b></sub></a><br /><a href="#data-MalitsPlus" title="Data">🔣</a> <a href="https://github.com/outloudvi/info-pride/commits?author=MalitsPlus" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/tokanada"><img src="https://avatars.githubusercontent.com/u/9441423?v=4?s=100" width="100px;" alt="David T"/><br /><sub><b>David T</b></sub></a><br /><a href="#translation-tokanada" title="Translation">🌍</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://t.me/nuclearpowerstation"><img src="https://avatars.githubusercontent.com/u/62282785?v=4?s=100" width="100px;" alt="Salad"/><br /><sub><b>Salad</b></sub></a><br /><a href="#design-AlsoMustard" title="Design">🎨</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/billyovo"><img src="https://avatars.githubusercontent.com/u/30436689?v=4?s=100" width="100px;" alt="billyovo"/><br /><sub><b>billyovo</b></sub></a><br /><a href="https://github.com/outloudvi/info-pride/commits?author=billyovo" title="Code">💻</a> <a href="#translation-billyovo" title="Translation">🌍</a></td>
     </tr>
   </tbody>
 </table>
