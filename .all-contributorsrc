@@ -41,6 +41,16 @@
       "contributions": [
         "design"
       ]
+    },
+    {
+      "login": "billyovo",
+      "name": "billyovo",
+      "avatar_url": "https://avatars.githubusercontent.com/u/30436689?v=4",
+      "profile": "https://github.com/billyovo",
+      "contributions": [
+        "code",
+        "translation"
+      ]
     }
   ],
   "contributorsPerLine": 7,
@@ -49,5 +59,6 @@
   "repoType": "github",
   "repoHost": "https://github.com",
   "skipCi": true,
-  "commitConvention": "angular"
+  "commitConvention": "angular",
+  "commitType": "docs"
 }
