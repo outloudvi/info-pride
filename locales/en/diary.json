@@ -1,4 +1,11 @@
 {
+    "choose_a_date": "Choose a date",
+    "date": "Date",
+    "date_from_to": "From {START_DATE} to {END_DATE}",
+    "mana_diary": "Mana's Diary",
     "mana_diary_not_updating": "The Mana's Diary series came to an end at Dec 23, 2022 (or Dec 26 in the Hoshimi world).",
-    "no_diary": "No diary today."
+    "no_diary": "No diary today.",
+    "included_diary_dates": "Diary dates currently included:",
+    "previous_day": "Previous Day",
+    "next_day": "Next Day"
 }

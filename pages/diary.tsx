@@ -124,21 +124,19 @@ const DiaryPage = () => {
 
     return (
         <>
-            <Title title="麻奈日记" />
+            <Title title={$t('mana_diary')} />
             <Alert color="pink">{$t('mana_diary_not_updating')}</Alert>
             <Grid gutter={20} className="my-3">
                 <Grid.Col xs={12} lg={8}>
                     <div>
                         <p>
-                            目前包含的日记日期：
-                            {toShortDate(START_DATE.toDate())} 至{' '}
-                            {toShortDate(END_DATE.toDate())}
+                            {`${$t('included_diary_dates')} ${$t('date_from_to', {START_DATE: toShortDate(START_DATE.toDate()), END_DATE: toShortDate(END_DATE.toDate())})}`}
                         </p>
                         <div>
                             <div className="flex-col">
                                 <DatePickerInput
-                                    placeholder="选择日期"
-                                    label="日期"
+                                    placeholder={$t("choose_a_date")}
+                                    label={$t("date")}
                                     required
                                     className="w-72"
                                     value={currDate}
@@ -167,7 +165,7 @@ const DiaryPage = () => {
                                     )
                                 }}
                             >
-                                转到前一天
+                                {$t("previous_day")}
                             </Button>
                             <Button
                                 disabled={
@@ -179,7 +177,7 @@ const DiaryPage = () => {
                                     setCurrDate(currDay.add(1, 'day').toDate())
                                 }}
                             >
-                                转到后一天
+                                {$t("next_day")}
                             </Button>
                         </div>
                     </div>
