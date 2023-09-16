@@ -109,7 +109,7 @@ const LicenseCheck = ({ confirm }: { confirm: () => void }) => {
 
 const SpinePage = () => {
     const $t = useTranslations('spine')
-    const [userHasLicense, setUserHasLicense] = useState(true)
+    const [userHasLicense, setUserHasLicense] = useState(false)
 
     return (
         <>
