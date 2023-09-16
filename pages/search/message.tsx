@@ -56,6 +56,6 @@ const MessageSearchPage = () => {
     )
 }
 
-export const getServerSideProps = getI18nProps(['message_search', 'v-chr'])
+export const getStaticProps = getI18nProps(['message_search', 'v-chr'])
 
 export default withQueryParam(MessageSearchPage)

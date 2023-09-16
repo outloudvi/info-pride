@@ -142,7 +142,7 @@ const StoriesPage = ({
     )
 }
 
-export const getServerSideProps = async ({ locale }: { locale: string }) => {
+export const getStaticProps = async ({ locale }: { locale: string }) => {
     const completion = (() => {
         const ret: Partial<IStoriesData<0 | 1>> = {}
         for (let i = 0; i < Series.length; i++) {

@@ -56,6 +56,6 @@ const StorySearchPage = () => {
     )
 }
 
-export const getServerSideProps = getI18nProps(['story_search'])
+export const getStaticProps = getI18nProps(['story_search'])
 
 export default withQueryParam(StorySearchPage)

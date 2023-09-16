@@ -8,7 +8,7 @@ import Notice from '#components/indexPage/Notice'
 import VersionInfo from '#components/indexPage/VersionInfo'
 import Paths from '#utils/paths'
 import NoticeTop from '#components/indexPage/NoticeTop'
-import { addI18nMessages } from '#utils/getI18nProps'
+import getI18nProps from '#utils/getI18nProps'
 import IndexTitle from '#components/indexPage/IndexTitle'
 import {
     getStartOfToday,
@@ -118,12 +118,6 @@ const Home = () => {
     )
 }
 
-export const getServerSideProps = async ({ locale }: { locale: string }) => {
-    return {
-        props: {
-            ...(await addI18nMessages(locale, ['index', 'notice'])),
-        },
-    }
-}
+export const getStaticProps = getI18nProps(['index', 'notice'])
 
 export default Home

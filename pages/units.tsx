@@ -276,6 +276,6 @@ const SkeletonUnitsPage = () => {
     )
 }
 
-export const getServerSideProps = getI18nProps(['units', 'v-chr'])
+export const getStaticProps = getI18nProps(['units', 'v-chr'])
 
 export default withQueryParam(SkeletonUnitsPage)
