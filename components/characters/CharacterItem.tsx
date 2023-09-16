@@ -31,6 +31,12 @@ const BirthdayCommuException: CharacterId[] = ['char-mna']
 const VoiceException: CharacterId[] = ['char-mku']
 const OriginalName: CharacterId[] = ['char-kor', 'char-kan', 'char-mhk']
 
+function formatMonthDate(birthday: string): string {
+    const match = birthday.match(/^(\d{1,2})月(\d{1,2})日$/)
+    if (match === null) return birthday
+    return `${match[1]}/${match[2]}`
+}
+
 const CharacterItem = ({
     character,
 }: {
@@ -78,7 +84,7 @@ const CharacterItem = ({
         [$t('Group'), $vg(characterGroupId)],
         [$t('Age'), $t('age', { age: age.replace('歳', '') })],
         [$t('CV'), $t(cv)],
-        [$t('Birthday'), birthday],
+        [$t('Birthday'), formatMonthDate(birthday)],
         [$t('Height'), height],
         [$t('Weight'), weight],
         [$t('Zodiac sign'), $t(zodiacSign)],
@@ -104,7 +110,7 @@ const CharacterItem = ({
                 className="relative py-2 rounded-r-md"
                 style={{
                     background: `linear-gradient(-90deg, ${toHashColor(
-                        color
+                        color,
                     )} 50%, transparent 75%)`,
                 }}
             >
@@ -222,7 +228,7 @@ const CharacterItem = ({
                             />
                         </Group>
                         {PrimaryCharacterIds.includes(
-                            id as typeof PrimaryCharacterIds[number]
+                            id as (typeof PrimaryCharacterIds)[number],
                         ) && <CharacterAnimation charId={id as CharacterId} />}
                     </Stack>
                 </Grid.Col>
