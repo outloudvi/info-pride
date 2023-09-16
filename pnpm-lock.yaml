@@ -62,6 +62,9 @@ dependencies:
   '@pixi/assets':
     specifier: ^7.2.4
     version: 7.2.4(@pixi/core@7.2.4)(@pixi/utils@7.2.4)
+  '@pixi/unsafe-eval':
+    specifier: ^7.2.4
+    version: 7.2.4(@pixi/core@7.2.4)
   '@sentry/browser':
     specifier: ^7.69.0
     version: 7.69.0
@@ -2413,6 +2416,14 @@ packages:
       '@pixi/extensions': 7.2.4
       '@pixi/settings': 7.2.4
       '@pixi/utils': 7.2.4
+    dev: false
+
+  /@pixi/unsafe-eval@7.2.4(@pixi/core@7.2.4):
+    resolution: {integrity: sha512-3Japs14nPJIi+paXufkeka9uIWaFSuSPUa61eKRTMwfgKMP5fTCCh+5fSO7Zwy8etShWfxOCpK4HH4kkWtqRoQ==}
+    peerDependencies:
+      '@pixi/core': 7.2.4
+    dependencies:
+      '@pixi/core': 7.2.4
     dev: false
 
   /@pixi/utils@7.2.4:

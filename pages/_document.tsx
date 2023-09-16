@@ -29,8 +29,8 @@ const OG_IMAGE = BASEURL + '/social.png'
 
 const cspRules = (scriptOthers: string) =>
     [
-        `script-src 'self' ${scriptOthers}`,
-        `connect-src ${allowedConnectionDomains.join(' ')}`,
+        `script-src 'self' blob: ${scriptOthers}`,
+        `connect-src data: ${allowedConnectionDomains.join(' ')}`,
     ].join('; ')
 
 const cspHashOf = (text: string) => {
@@ -43,10 +43,17 @@ export default class _Document extends Document {
     static getInitialProps = getInitialProps
 
     render() {
-        const csp = cspRules(
-            "'unsafe-eval' " +
-                cspHashOf(NextScript.getInlineScriptSource(this.props)),
-        )
+        const csp =
+            process.env.NODE_ENV === 'production'
+                ? cspRules(
+                      cspHashOf(NextScript.getInlineScriptSource(this.props)),
+                  )
+                : cspRules(
+                      "'unsafe-eval' " +
+                          cspHashOf(
+                              NextScript.getInlineScriptSource(this.props),
+                          ),
+                  )
 
         return (
             <Html>
