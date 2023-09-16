@@ -33,6 +33,12 @@ const MessageBoardView = ({
     const { height } = useViewportSize()
 
     useEffect(() => {
+        if (activeMessageId) {
+            setMdShowSidebar(false)
+        }
+    }, [activeMessageId])
+
+    useEffect(() => {
         if (!outer.current) return
         const elem = outer.current
         elem.style.height = String(height - elem.offsetTop - 140) + 'px'
@@ -60,7 +66,6 @@ const MessageBoardView = ({
                                 setActiveGroup(group.id)
                             }}
                             setActiveMessageId={(a) => {
-                                setMdShowSidebar(false)
                                 setActiveMessageId(a)
                             }}
                         />
