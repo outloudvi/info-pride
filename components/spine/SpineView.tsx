@@ -19,7 +19,7 @@ const SpineView = ({ id }: { id: string }) => {
     const $c = useTranslations('common')
 
     const { data: sklJson } = useQuery({
-        queryKey: Paths.spine(id + '.skl.json'),
+        queryKey: Paths.spinePath(id) + `/${id}.json`,
         queryFn: ({ queryKey }) => fetch(queryKey[0]).then((x) => x.json()),
     })
 
@@ -62,7 +62,7 @@ const SpineView = ({ id }: { id: string }) => {
 
             if (!$isAssetInitialized.current) {
                 PIXI.Assets.init({
-                    basePath: 'https://idoly-assets.outv.im/assets/spi/',
+                    basePath: Paths.spinePath(id),
                 })
                 $isAssetInitialized.current = true
             }
@@ -74,9 +74,7 @@ const SpineView = ({ id }: { id: string }) => {
                 backgroundColor: 0xffffff,
             })
 
-            const spine = await PIXI.Assets.load(
-                'sd/chr/cos/spi_sd_chr_cos_ktn-casl-00.json'
-            )
+            const spine = await PIXI.Assets.load(id + '.json')
             const spineItem = new Spine(spine.spineData)
             const spineData = spineItem.spineData
 

@@ -7,9 +7,9 @@ function assetIdToPath(assetId: string): string {
     ).join('/')
 }
 
-function spiAssetIdToPath(assetId: string): string {
+function spiAssetIdToBasePath(assetId: string): string {
     const splits = assetId.split('_')
-    return [...splits.slice(0, 4), assetId].join('/')
+    return splits.slice(0, 4).join('/')
 }
 
 const Paths = {
@@ -31,8 +31,7 @@ const Paths = {
         `https://github.com/outloudvi/info-pride/issues/${id ?? ''}`,
     api: (path: string) => `https://idoly-backend.outv.im/api/${path}`,
     advJson: (id: string) => Paths.s3(`processed/adv/adv_${id}.txt.json`),
-    spine: (id: string) => Paths.s3(`assets/${spiAssetIdToPath(id)}`),
-    relSpinePath: (id: string) => `assets/${spiAssetIdToPath(id)}`,
+    spinePath: (id: string) => Paths.s3(`assets/${spiAssetIdToBasePath(id)}`),
 }
 
 export default Paths
