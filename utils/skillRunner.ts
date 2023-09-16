@@ -1,9 +1,7 @@
 import type { Skill } from 'hoshimi-types/ProtoMaster'
 import { SkillCategoryType } from 'hoshimi-types/ProtoEnum'
-import type { EffectCharacterWithLength } from 'hoshimi-types/Skillx'
 
 import type { SkillLaunchItem } from '#components/notemap/types'
-import type { APIResponseOf } from '#utils/api'
 
 type PartialSkill = Pick<Skill, 'categoryType' | 'levels'>
 
@@ -12,25 +10,10 @@ type RequestBody = {
     chartLine: readonly number[]
 }
 
-function skillToLength(
-    sk: PartialSkill,
-    skillxData: APIResponseOf<'Skill/X'>,
-): number {
-    return sk.levels[0].skillDetails
-        .map((x) => x.efficacyId)
-        .map((x) => {
-            const sk = skillxData[x]
-            if (!sk) return 0
-            return (sk.effect as EffectCharacterWithLength).len ?? 0
-        })
-        .reduce((a, b) => Math.max(a, b))
-}
-
-export default function skillRunner(
-    { skills, chartLine }: RequestBody,
-    // TODO: definitely doesn't need the whole set
-    skillxData?: APIResponseOf<'Skill/X'>,
-): SkillLaunchItem[] {
+export default function skillRunner({
+    skills,
+    chartLine,
+}: RequestBody): SkillLaunchItem[] {
     const ret: SkillLaunchItem[] = []
     const aSkills = skills
         .filter((x) => x.categoryType === SkillCategoryType.Active)
@@ -41,14 +24,12 @@ export default function skillRunner(
     const lastSkillTime: number[] = []
     for (const tick of aSkillTimes) {
         let ok = false
-        let okSkill: PartialSkill | undefined = undefined
-        for (const [i, { skill, ct }] of Object.entries(aSkills)) {
+        for (const [i, { ct }] of Object.entries(aSkills)) {
             if (
                 lastSkillTime[Number(i)] === undefined || // first use of the skill
                 lastSkillTime[Number(i)] + ct <= tick // CT is enough
             ) {
                 lastSkillTime[Number(i)] = tick
-                okSkill = skill
                 ok = true
                 break
             }
@@ -57,9 +38,6 @@ export default function skillRunner(
             type: SkillCategoryType.Active,
             success: ok,
             start: tick,
-            ...(skillxData && {
-                end: tick + (okSkill ? skillToLength(okSkill, skillxData) : 0),
-            }),
         })
     }
 
@@ -76,9 +54,6 @@ export default function skillRunner(
                     type: SkillCategoryType.Special,
                     success: true,
                     start: tick,
-                    ...(skillxData && {
-                        end: tick + skillToLength(spSkill, skillxData),
-                    }),
                 })
             }
         } else {

@@ -38,7 +38,6 @@ export type FrontendAPIResponseMapping = {
     }
     contributors: Contributor[]
     currentEvents: EventItem[]
-    effToStr: string[]
     eventStories: ChapterItem | null
     news: { title: string; link?: string }[]
     skillRunner: SkillLaunchItem[]

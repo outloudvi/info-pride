@@ -35,32 +35,15 @@ const SkillRunner = async (
         Paths.api('Skill') + `?ids=${skillIds}`,
     ).then((x) => x.json())
 
-    const skillxData: APIResponseOf<'Skill/X'> = await fetch(
-        Paths.api('Skill/X') +
-            `?ids=${
-                // TODO: allow specifying the level
-                skillData
-                    .map((x) =>
-                        x.levels[0].skillDetails
-                            .map((r) => r.efficacyId)
-                            .join(','),
-                    )
-                    .join(',')
-            }`,
-    ).then((x) => x.json())
-
     const chartData: APIResponseOf<'MusicChart'> = await fetch(
         Paths.api('MusicChart') + `?chartId=${chartId}`,
     ).then((x) => x.json())
 
     res.status(200).json(
-        skillRunner(
-            {
-                skills: skillData,
-                chartLine: chartData.chart[Number(track) as 1 | 2 | 3 | 4 | 5],
-            },
-            skillxData,
-        ),
+        skillRunner({
+            skills: skillData,
+            chartLine: chartData.chart[Number(track) as 1 | 2 | 3 | 4 | 5],
+        }),
     )
 }
 

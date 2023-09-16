@@ -4,7 +4,6 @@ import type { Skill } from 'hoshimi-types/ProtoMaster'
 import { SkillCategoryType } from 'hoshimi-types/ProtoEnum'
 
 import Paths from '#utils/paths'
-import type { EffectTypeName } from '#utils/typeSlug'
 
 // In reference of Meidayo: https://github.com/Soulycoris/meidayo/blob/main/html/src/composables/skill.ts
 
@@ -19,7 +18,7 @@ enum CornerType {
 }
 
 // Background for non-SP skills
-function getSkillImageBgPrefix(typ: EffectTypeName): SkillImageBgType {
+function getSkillImageBgPrefix(typ: string): SkillImageBgType {
     if (typ.includes('score_get')) {
         return 'score'
     }
@@ -41,8 +40,8 @@ function buildSkillImage(parts: ReactNode[]): JSX.Element {
 
 function isDebuff(skill?: string): boolean {
     return (
-        ['down', 'consumption-increase', 'impossible', 'erasing'].filter((x) =>
-            skill?.includes(x)
+        ['down', 'consumption-increase', 'impossible', 'erasing'].filter(
+            (x) => skill?.includes(x),
         ).length > 0
     )
 }
@@ -89,16 +88,16 @@ const SkillImage = ({
             ? `bg_special_${
                   skillImgLevel >= 6 ? 3 : skillImgLevel >= 4 ? 2 : 1
               }`
-            : `bg_${getSkillImageBgPrefix(
-                  keySkillEfficacyId.split('-')[1] as EffectTypeName
-              )}_${skillImgLevel >= 6 ? 3 : skillImgLevel >= 4 ? 2 : 1}`
+            : `bg_${getSkillImageBgPrefix(keySkillEfficacyId.split('-')[1])}_${
+                  skillImgLevel >= 6 ? 3 : skillImgLevel >= 4 ? 2 : 1
+              }`
 
     parts.push(
         <img
             src={Paths.sprite(skillImageBg)}
             alt="Skill background"
             className="absolute h-16 w-16"
-        />
+        />,
     )
 
     // For skills with an assetId (usually SP)
@@ -112,7 +111,7 @@ const SkillImage = ({
                 style={{
                     filter: 'invert(1)',
                 }}
-            />
+            />,
         )
         return buildSkillImage(parts)
     }
@@ -123,7 +122,7 @@ const SkillImage = ({
     ).skillDetails.map(
         (x) =>
             'img_icon_skill-normal_' +
-            x.efficacyId.split('-')[1].replace(/_/g, '-')
+            x.efficacyId.split('-')[1].replace(/_/g, '-'),
     )
 
     if (skillIcons.length === 0) {
@@ -142,7 +141,7 @@ const SkillImage = ({
                 style={{
                     filter: 'invert(1)',
                 }}
-            />
+            />,
         )
         return buildSkillImage(parts)
     }
@@ -150,7 +149,7 @@ const SkillImage = ({
     // Debuff goes #3
     const debuffIndex = skillIcons.findIndex((x) => isDebuff(x))
     if (debuffIndex !== -1 && debuffIndex !== 2) {
-        [skillIcons[2], skillIcons[debuffIndex]] = [
+        ;[skillIcons[2], skillIcons[debuffIndex]] = [
             skillIcons[debuffIndex],
             skillIcons[2],
         ]
@@ -159,7 +158,7 @@ const SkillImage = ({
     // score-get series goes #2
     const scoreGetIndex = skillIcons.findIndex((x) => x?.includes('score-get'))
     if (scoreGetIndex !== -1 && scoreGetIndex !== 1) {
-        [skillIcons[1], skillIcons[scoreGetIndex]] = [
+        ;[skillIcons[1], skillIcons[scoreGetIndex]] = [
             skillIcons[scoreGetIndex],
             skillIcons[1],
         ]
@@ -184,7 +183,7 @@ const SkillImage = ({
                     style={{
                         filter: 'invert(1)',
                     }}
-                />
+                />,
             )
         } else {
             // Center large icon
@@ -198,7 +197,7 @@ const SkillImage = ({
                     style={{
                         filter: 'invert(1)',
                     }}
-                />
+                />,
             )
         }
     }
@@ -216,7 +215,7 @@ const SkillImage = ({
                 style={{
                     filter: 'invert(1)',
                 }}
-            />
+            />,
         )
     }
 
@@ -230,7 +229,7 @@ const SkillImage = ({
                     clipPath: 'polygon(100% 0, 100% 100%, 0 100%)',
                 }}
                 className="absolute left-1/2 right-0 bottom-0 top-1/2"
-            />
+            />,
         )
 
         // Bottom-right tiny icon
@@ -245,7 +244,7 @@ const SkillImage = ({
                 style={{
                     filter: 'invert(1)',
                 }}
-            />
+            />,
         )
     }
 
