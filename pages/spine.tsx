@@ -4,13 +4,17 @@ import { StringParam, useQueryParam, withDefault } from 'use-query-params'
 import { useEffect, useState } from 'react'
 import type { ReactNode } from 'react'
 import Link from 'next/link'
+import dynamic from 'next/dynamic'
 
 import Title from '#components/Title'
 import getI18nProps from '#utils/getI18nProps'
-import SpineView from '#components/spine/SpineView'
 import withQueryParam from '#utils/withQueryParam'
 import useApi from '#utils/useApi'
 import { MessageCharacterIds } from '#data/vendor/characterId'
+
+const SpineView = dynamic(() => import('#components/spine/SpineView'), {
+    ssr: false,
+})
 
 const SpineViewWrapper = () => {
     const $t = useTranslations('spine')
@@ -30,15 +34,12 @@ const SpineViewWrapper = () => {
         if (ChibiData && idInput === '') {
             setIdInput(ChibiData[0].sdAssetId)
         }
-    }, [ChibiData])
-
-    useEffect(() => {
-        setIdInput('')
-    }, [characterId])
+    }, [ChibiData, idInput])
 
     useEffect(() => {
         if (urlId !== '' && !initSync) {
             setId(urlId)
+            setIdInput(urlId.replace('spi_sd_chr_cos_', ''))
             setInitSync(true)
         } else if (id !== '') {
             setUrlId(id)

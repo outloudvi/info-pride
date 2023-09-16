@@ -7,5 +7,7 @@
     "Character": "Character",
     "Costume": "Costume",
     "license_info": "According to <link>Spine Editor License Agreement</link>, you need to have a Spine license (e.g. Spine Professional or Spine Essential) to view this page.",
-    "btn_license_confirmed": "Yes, I have that license."
+    "btn_license_confirmed": "Yes, I have that license.",
+    "webgl_unsupported": "WebGL is not supported",
+    "webgl_unsupported_text": "Your browser does not support WebGL, which is required for this page. To visit this page, please upgrade your browser or enable WebGL and then retry."
 }

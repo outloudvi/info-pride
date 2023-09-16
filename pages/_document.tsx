@@ -58,7 +58,7 @@ export default class _Document extends Document {
         return (
             <Html>
                 <Head>
-                    <meta httpEquiv="Content-Security-Policy" content={csp} />
+                    {/* <meta httpEquiv="Content-Security-Policy" content={csp} /> */}
                     {/* opengraph */}
                     <meta property="og:title" content={META_TITLE} />
                     <meta property="twitter:title" content={META_TITLE} />

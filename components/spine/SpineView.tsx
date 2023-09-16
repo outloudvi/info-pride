@@ -1,76 +1,18 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Grid, NativeSelect } from '@mantine/core'
 import { useQuery } from 'react-query'
-import spine from '@hoshimei/spine-runtime/spine-canvas'
 import { useTranslations } from 'next-intl'
+import { showNotification } from '@mantine/notifications'
+// Pixi only
+import './pixiutils'
+import { Skin, Spine } from '@pixi-spine/runtime-3.8'
+import * as PIXI from 'pixi.js'
 
 import Paths from '#utils/paths'
 
-// START License: Spine Runtimes License Agreement
-// https://github.com/EsotericSoftware/spine-runtimes/blob/3.8/spine-ts/LICENSE
-function resize(elem: HTMLCanvasElement, context: CanvasRenderingContext2D) {
-    const w = elem.clientWidth
-    const h = elem.clientHeight
-    if (elem.width != w || elem.height != h) {
-        elem.width = w
-        elem.height = h
-    }
-    context.setTransform(1, 0, 0, 1, 0, 0)
-    context.translate(elem.width / 2, elem.height / 2)
-    // TODO: fix a value
-    context.translate(0, 150)
-}
-
-function loadSkeleton(
-    assetManager: spine.AssetManager,
-    name: string,
-    initialAnimation: string,
-    skins: string[]
-) {
-    // Load the texture atlas using name.atlas and name.png from the AssetManager.
-    // The function passed to TextureAtlas is used to resolve relative paths.
-    const atlas = new spine.TextureAtlas(
-        assetManager.get(Paths.relSpinePath(name + '.atlas')),
-        function (path) {
-            return assetManager.get(Paths.relSpinePath(path))
-        }
-    )
-
-    // Create a AtlasAttachmentLoader, which is specific to the WebGL backend.
-    const atlasLoader = new spine.AtlasAttachmentLoader(atlas)
-
-    // Create a SkeletonJson instance for parsing the .json file.
-    const skeletonJson = new spine.SkeletonJson(atlasLoader)
-
-    // Set the scale to apply during parsing, parse the file, and create a new skeleton.
-    const skeletonData = skeletonJson.readSkeletonData(
-        assetManager.get(Paths.relSpinePath(name + '.skl.json'))
-    )
-    const skeleton = new spine.Skeleton(skeletonData)
-    // skeleton.bones = skeleton.bones.filter()
-    skeleton.scaleY = -1
-    const combinedSkin = new spine.Skin('combined-skin')
-    for (const skinName of skins) {
-        combinedSkin.addSkin(skeletonData.findSkin(skinName))
-    }
-    skeleton.setSkin(combinedSkin)
-    skeleton.setSlotsToSetupPose()
-
-    // Create an AnimationState, and set the initial animation in looping mode.
-    const animationState = new spine.AnimationState(
-        new spine.AnimationStateData(skeleton.data)
-    )
-    animationState.setAnimation(0, initialAnimation, true)
-
-    // Pack everything up and return to caller.
-    return {
-        skeleton: skeleton,
-        state: animationState,
-    }
-}
-// END License
-
 const ANIMATION_LOOP_IDLE = 'loop_idle'
+const CONS_SKINSETS = ['shadow', 'head_FL', 'body_FL']
+const HAIR_SKINSETS = [['head_FL_back'], ['head_FL_front']]
 
 const SpineView = ({ id }: { id: string }) => {
     const $t = useTranslations('spine')
@@ -82,112 +24,92 @@ const SpineView = ({ id }: { id: string }) => {
     })
 
     const [animation, setAnimation] = useState(ANIMATION_LOOP_IDLE)
-    const consSkinSets = useMemo(() => [['shadow'], ['head_FL', 'body_FL']], [])
-    const hairSkinSets = useMemo(
-        () => [['head_FL_back'], ['head_FL_front']],
-        []
-    )
 
     // Canvas related - we don't want changes on them to trigger re-render
     const $canvasRef = useRef<HTMLCanvasElement>(null)
-    const $canvasCtx = useRef<CanvasRenderingContext2D>()
-    const $lastFrameTime = useRef(Date.now() / 1000)
-    const $assetManager = useRef<spine.canvas.AssetManager>()
-    const $skeletonRenderer = useRef<spine.canvas.SkeletonRenderer>()
-    const $resized = useRef(false)
-    const $skinStates = useRef<
-        {
-            skeleton: spine.Skeleton
-            state: spine.AnimationState
-        }[]
-    >([])
-    const $frameRequest = useRef<number>(-1)
-
-    const render = useCallback(() => {
-        const canvasElem = $canvasRef.current
-        const context = $canvasCtx.current
-        const skeletonRenderer = $skeletonRenderer.current
-        if (!canvasElem || !context || !skeletonRenderer) return // should not happen
-
-        const now = Date.now() / 1000
-        const delta = now - $lastFrameTime.current
-        $lastFrameTime.current = now
-
-        if (!$resized.current) {
-            resize(canvasElem, context)
-            $resized.current = true
-        }
-
-        context.save()
-        context.setTransform(1, 0, 0, 1, 0, 0)
-        context.fillStyle = '#cccccc'
-        context.fillRect(0, 0, canvasElem.width, canvasElem.height)
-        context.restore()
-
-        for (const { state, skeleton } of Object.values($skinStates.current)) {
-            state.update(delta)
-            state.apply(skeleton)
-            skeleton.updateWorldTransform()
-            skeletonRenderer.draw(skeleton)
-        }
-
-        requestAnimationFrame(render)
-    }, [])
-
-    const load = useCallback(() => {
-        const assetManager = $assetManager.current
-        if (!assetManager) return -1 // this should not happen
-
-        if (assetManager.isLoadingComplete()) {
-            $skinStates.current = []
-            for (const skinList of consSkinSets) {
-                $skinStates.current.push(
-                    loadSkeleton(assetManager, id, animation, skinList)
-                )
-            }
-
-            return requestAnimationFrame(render)
-        } else {
-            return requestAnimationFrame(load)
-        }
-    }, [id, consSkinSets, animation, render])
+    const $app = useRef<PIXI.Application>()
+    const $spine = useRef<Spine>()
+    const $isAssetInitialized = useRef(false)
 
     useEffect(() => {
-        const canvas = $canvasRef.current
-        if (!canvas) return
-        const ctx = canvas.getContext('2d')
-        if (!ctx) {
-            console.log('canvas is not ready!')
-            return
-        }
+        const spine = $spine.current
 
-        $canvasCtx.current = ctx
+        if (!spine) return
 
-        const skeletonRenderer = new spine.canvas.SkeletonRenderer(
-            $canvasCtx.current
-        )
-        // enable debug rendering
-        skeletonRenderer.debugRendering = false
-        // enable the triangle renderer, supports meshes, but may produce artifacts in some browsers
-        skeletonRenderer.triangleRendering = true
+        spine.state.setAnimation(0, animation, true)
+    }, [animation])
 
-        $skeletonRenderer.current = skeletonRenderer
+    // Initialize
+    useEffect(() => {
+        ;(async () => {
+            const canvas = $canvasRef.current
+            if (!canvas) return
 
-        const assetManager = new spine.canvas.AssetManager(Paths.s3(''))
-        assetManager.loadText(Paths.relSpinePath(id + '.skl.json'))
-        assetManager.loadText(Paths.relSpinePath(id + '.atlas'))
-        assetManager.loadTexture(Paths.relSpinePath(id + '.png'))
+            if (
+                !window.WebGLRenderingContext ||
+                !(
+                    canvas.getContext('webgl') ||
+                    canvas.getContext('experimental-webgl')
+                )
+            ) {
+                showNotification({
+                    title: $t('webgl_unsupported'),
+                    message: $t('webgl_unsupported_text'),
+                    color: 'red',
+                })
+                return
+            }
 
-        $assetManager.current = assetManager
+            if (!$isAssetInitialized.current) {
+                PIXI.Assets.init({
+                    basePath: 'https://idoly-assets.outv.im/assets/spi/',
+                })
+                $isAssetInitialized.current = true
+            }
 
-        $frameRequest.current = requestAnimationFrame(load)
+            const app = new PIXI.Application({
+                view: canvas,
+                width: canvas.width,
+                height: canvas.height,
+                backgroundColor: 0xffffff,
+            })
+
+            const spine = await PIXI.Assets.load(
+                'sd/chr/cos/spi_sd_chr_cos_ktn-casl-00.json'
+            )
+            const spineItem = new Spine(spine.spineData)
+            const spineData = spineItem.spineData
+
+            const skin = new Skin('combined-skin')
+            for (const skinName of CONS_SKINSETS) {
+                skin.addSkin(spineData.findSkin(skinName) as Skin)
+            }
+            spineItem.skeleton.setSkin(skin)
+            spineItem.skeleton.setSlotsToSetupPose()
+            spineItem.x += 120
+            spineItem.y += 360
+
+            app.stage.addChild(spineItem)
+
+            if (spineItem.state.hasAnimation(ANIMATION_LOOP_IDLE)) {
+                spineItem.state.setAnimation(0, ANIMATION_LOOP_IDLE, true)
+                spineItem.state.timeScale = 1
+                spineItem.autoUpdate = true
+            }
+
+            app.ticker.add((delta) => {
+                // console.log('d', delta)
+            })
+
+            $app.current = app
+            $spine.current = spineItem
+        })()
 
         return () => {
-            cancelAnimationFrame($frameRequest.current)
-            $skeletonRenderer.current = undefined
-            $assetManager.current = undefined
+            $app.current = undefined
+            $spine.current = undefined
         }
-    }, [id, load])
+    }, [id, $t])
 
     useEffect(() => {
         setAnimation(ANIMATION_LOOP_IDLE)

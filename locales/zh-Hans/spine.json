@@ -7,5 +7,7 @@
     "Character": "角色",
     "Costume": "服装",
     "license_info": "根据 <link>Spine Editor License Agreement</link>，您需要拥有 Spine 软件授权（例如 Spine Professional 或者 Spine Essential）才能访问此页面。",
-    "btn_license_confirmed": "是的，我有一份 Spine 授权"
+    "btn_license_confirmed": "是的，我有一份 Spine 授权",
+    "webgl_unsupported": "WebGL 不支持",
+    "webgl_unsupported_text": "此浏览器不支持本页面所需要的 WebGL 特性。如欲访问本页，请升级浏览器或启用 WebGL 后重试。"
 }
