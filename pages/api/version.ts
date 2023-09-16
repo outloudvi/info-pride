@@ -1,5 +1,4 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { got } from 'got'
 import * as cheerio from 'cheerio'
 
 import type { FrontendAPIResponseMapping } from '#utils/useFrontendApi'
@@ -9,11 +8,7 @@ const IOS_APP_PAGE = 'https://apps.apple.com/jp/app/id1535925293'
 async function getVersion(): Promise<
     FrontendAPIResponseMapping['version'] | null
 > {
-    const html = await got
-        .get(IOS_APP_PAGE, {
-            responseType: 'text',
-        })
-        .text()
+    const html = await fetch(IOS_APP_PAGE).then((x) => x.text())
 
     const $ = cheerio.load(html)
     const shoeboxMeta = $('#shoebox-media-api-cache-apps').html()
@@ -34,7 +29,7 @@ async function getVersion(): Promise<
 
 const Version = async (
     _req: NextApiRequest,
-    res: NextApiResponse<FrontendAPIResponseMapping['version']>
+    res: NextApiResponse<FrontendAPIResponseMapping['version']>,
 ) => {
     const ver = await getVersion()
 

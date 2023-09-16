@@ -2,8 +2,6 @@
 import { readFileSync, writeFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 
-import { got } from 'got'
-
 const __dirname = dirname(new URL(import.meta.url).pathname)
 
 const Transformations = {
@@ -17,9 +15,9 @@ async function main() {
         Object.entries(Transformations).map(([filename, [apiPath, lambda]]) =>
             (async () => {
                 const filePath = join(__dirname, `../locales/ja/${filename}`)
-                const items = await got(
-                    `https://idoly-backend.outv.im/api${apiPath}`
-                ).json()
+                const items = await fetch(
+                    `https://idoly-backend.outv.im/api${apiPath}`,
+                ).then((x) => x.json())
                 let ret = JSON.parse(readFileSync(filePath, 'utf-8'))
                 for (const i of items) {
                     const key = lambda(i)
@@ -31,8 +29,8 @@ async function main() {
                 }
                 writeFileSync(filePath, JSON.stringify(ret, null, 4))
                 console.log(`[DONE] ${filename}`)
-            })()
-        )
+            })(),
+        ),
     )
 }
 

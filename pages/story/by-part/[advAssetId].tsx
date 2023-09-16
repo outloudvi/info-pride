@@ -1,5 +1,4 @@
 import { useTranslations } from 'next-intl'
-import { got } from 'got'
 import { Alert } from '@mantine/core'
 
 import { addI18nMessages } from '#utils/getI18nProps'
@@ -26,8 +25,8 @@ export const getServerSideProps = async ({
     const { advAssetId } = params
     const url = new URL(Paths.api('Story/Reverse'))
     url.searchParams.set('advAssetId', advAssetId)
-    const storyId = await got(String(url))
-        .json()
+    const storyId = await fetch(String(url))
+        .then((x) => x.json())
         .then((x) => (x as APIResponseOf<'Story/Reverse'>).id)
         .catch(() => undefined)
     if (storyId) {

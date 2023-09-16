@@ -1,6 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import zip from 'lodash/zip'
-import { got } from 'got'
 import * as cheerio from 'cheerio'
 
 import type { FrontendAPIResponseMapping } from '#utils/useFrontendApi'
@@ -8,11 +7,7 @@ import type { FrontendAPIResponseMapping } from '#utils/useFrontendApi'
 const NEWS_PAGE = 'https://idolypride.jp/recent-news/'
 
 export async function getNews() {
-    const html = await got
-        .get(NEWS_PAGE, {
-            responseType: 'text',
-        })
-        .text()
+    const html = await fetch(NEWS_PAGE).then((x) => x.text())
 
     const $ = cheerio.load(html)
     const titles = $('li a')
@@ -36,7 +31,7 @@ export async function getNews() {
 
 const news = async (
     _req: NextApiRequest,
-    res: NextApiResponse<FrontendAPIResponseMapping['news']>
+    res: NextApiResponse<FrontendAPIResponseMapping['news']>,
 ) => {
     // Cache for 1d
     res.setHeader('Cache-Control', 'max-age=86400')

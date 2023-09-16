@@ -1,4 +1,3 @@
-import { got } from 'got'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 import type { FrontendAPIResponseMapping } from '#utils/useFrontendApi'
@@ -14,7 +13,7 @@ type RequestQuery = {
 
 const SkillRunner = async (
     req: NextApiRequest,
-    res: NextApiResponse<FrontendAPIResponseMapping['skillRunner']>
+    res: NextApiResponse<FrontendAPIResponseMapping['skillRunner']>,
 ) => {
     const q = req.query
     if (
@@ -32,29 +31,27 @@ const SkillRunner = async (
         return
     }
 
-    const skillData: APIResponseOf<'Skill'> = await got
-        .get(Paths.api('Skill') + `?ids=${skillIds}`)
-        .json()
+    const skillData: APIResponseOf<'Skill'> = await fetch(
+        Paths.api('Skill') + `?ids=${skillIds}`,
+    ).then((x) => x.json())
 
-    const skillxData: APIResponseOf<'Skill/X'> = await got
-        .get(
-            Paths.api('Skill/X') +
-                `?ids=${
-                    // TODO: allow specifying the level
-                    skillData
-                        .map((x) =>
-                            x.levels[0].skillDetails
-                                .map((r) => r.efficacyId)
-                                .join(',')
-                        )
-                        .join(',')
-                }`
-        )
-        .json()
+    const skillxData: APIResponseOf<'Skill/X'> = await fetch(
+        Paths.api('Skill/X') +
+            `?ids=${
+                // TODO: allow specifying the level
+                skillData
+                    .map((x) =>
+                        x.levels[0].skillDetails
+                            .map((r) => r.efficacyId)
+                            .join(','),
+                    )
+                    .join(',')
+            }`,
+    ).then((x) => x.json())
 
-    const chartData: APIResponseOf<'MusicChart'> = await got
-        .get(Paths.api('MusicChart') + `?chartId=${chartId}`)
-        .json()
+    const chartData: APIResponseOf<'MusicChart'> = await fetch(
+        Paths.api('MusicChart') + `?chartId=${chartId}`,
+    ).then((x) => x.json())
 
     res.status(200).json(
         skillRunner(
@@ -62,8 +59,8 @@ const SkillRunner = async (
                 skills: skillData,
                 chartLine: chartData.chart[Number(track) as 1 | 2 | 3 | 4 | 5],
             },
-            skillxData
-        )
+            skillxData,
+        ),
     )
 }
 

@@ -1,6 +1,5 @@
 import { existsSync, readFileSync } from 'node:fs'
 
-import got from 'got'
 import wtfWp from 'wtf_wikipedia'
 
 export type SitePrefConfig = {
@@ -43,11 +42,8 @@ export async function fetchPrefixList(
     ]) {
         url.searchParams.set(key, value)
     }
-    return await got
-        .get(url, {
-            responseType: 'json',
-        })
-        .json()
+    return await fetch(url)
+        .then((x) => x.json())
         .then((x: any) => x.query.allpages.map((y: any) => y.title))
 }
 

@@ -3,7 +3,6 @@ import { Checkbox, SimpleGrid } from '@mantine/core'
 import { useTranslations } from 'next-intl'
 import { useForm } from '@mantine/form'
 import uniq from 'lodash/uniq'
-import { got } from 'got'
 import type { CardRarity } from 'hoshimi-types/ProtoMaster'
 import { AttributeType } from 'hoshimi-types/ProtoEnum'
 
@@ -46,10 +45,7 @@ const CardsPage = ({
     const $vc = useTranslations('v-chr')
     const $t = useTranslations('cards')
 
-    const {
-        values: formValues,
-        getInputProps,
-    } = useForm({
+    const { values: formValues, getInputProps } = useForm({
         initialValues: {
             selectedCharacters: [] as CharacterId[],
             selectedCardTypes: [] as string[],
@@ -236,9 +232,9 @@ const SkeletonCardsPage = ({ maxRarity }: { maxRarity: number }) => {
 }
 
 export const getServerSideProps = async ({ locale }: { locale: string }) => {
-    const CardRarity: CardRarity[] = await got
-        .get(Paths.api('CardRarity'))
-        .json()
+    const CardRarity: CardRarity[] = await fetch(Paths.api('CardRarity')).then(
+        (x) => x.json(),
+    )
     return {
         props: {
             ...(await addI18nMessages(locale, [
