@@ -54,7 +54,7 @@ function h_99_migrate_colorScheme_to_cookie() {
         colorScheme.includes('dark') ? 'dark' : 'light',
         {
             maxAge: USER_PREF_COOKIE_MAXAGE,
-        }
+        },
     )
     localStorage.removeItem('mantine-color-scheme')
 }

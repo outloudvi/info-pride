@@ -1,5 +1,5 @@
 export default function getItemAriaLabelProps(
-    page: number | 'dots' | 'prev' | 'next' | 'first' | 'last'
+    page: number | 'dots' | 'prev' | 'next' | 'first' | 'last',
 ): {
     'aria-label': string
 } {

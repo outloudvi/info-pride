@@ -5,7 +5,7 @@ import { NumberParam, useQueryParams, withDefault } from 'use-query-params'
 
 import StoriesItem from '#components/stories/StoriesItem'
 import SpecialStoriesItem from '#components/stories/SpecialStoriesItem'
-import type { SeriesName } from '#data/stories';
+import type { SeriesName } from '#data/stories'
 import { Episodes, Series } from '#data/stories'
 import Title from '#components/Title'
 import { addI18nMessages } from '#utils/getI18nProps'
@@ -57,7 +57,7 @@ const StoriesPage = ({
                                         {Episodes[seriesSlug].map(
                                             (
                                                 episodeLengthInSeason,
-                                                seasonKey
+                                                seasonKey,
                                             ) => {
                                                 const season = seasonKey + 1
                                                 return (
@@ -89,7 +89,7 @@ const StoriesPage = ({
                                                         }}
                                                     />
                                                 )
-                                            }
+                                            },
                                         )}
                                     </div>
                                 </Tabs.Panel>
@@ -156,8 +156,8 @@ export const getServerSideProps = async ({ locale }: { locale: string }) => {
                             seriesSlug as SeriesName
                         ]?.[episodeKey + 1]?.[chapterId]
                             ? 1
-                            : 0
-                    )
+                            : 0,
+                    ),
                 ),
             ]
         }

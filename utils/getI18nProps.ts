@@ -13,12 +13,12 @@ const getI18nProps =
 export const getI18nMessages = async (
     locale: string,
     source: string,
-    key: string
+    key: string,
 ) => import(`../locales/${locale}/${source}.json`).then((x) => x.default?.[key])
 
 export const addI18nMessages = async (
     locale: string,
-    sources: string[] = []
+    sources: string[] = [],
 ) => {
     const _m: Record<string, any> = {}
     for (const i of [...sources, 'common']) {

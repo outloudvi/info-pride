@@ -5,7 +5,7 @@ export default function getCardColor(
     card: Pick<
         Card,
         'vocalRatioPermil' | 'danceRatioPermil' | 'visualRatioPermil'
-    >
+    >,
 ): AttributeType {
     const { vocalRatioPermil, danceRatioPermil, visualRatioPermil } = card
     if (

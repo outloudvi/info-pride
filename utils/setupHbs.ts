@@ -21,17 +21,18 @@ export default function setupHbs(h: typeof Handlebars) {
         function (this: { locale: string }, cond: TriggerCond | string) {
             if (typeof cond === 'string') {
                 return handlebars.compile(
-                    apiDataSkillx?.[this.locale]?.[cond] ?? `TC-${cond}`
+                    apiDataSkillx?.[this.locale]?.[cond] ?? `TC-${cond}`,
                 )({ locale: this.locale })
             } else {
                 return handlebars.compile(
-                    apiDataSkillx?.[this.locale]?.[cond.typ] ?? `TC-${cond.typ}`
+                    apiDataSkillx?.[this.locale]?.[cond.typ] ??
+                        `TC-${cond.typ}`,
                 )({
                     ...cond,
                     locale: this.locale,
                 })
             }
-        }
+        },
     )
     h.registerHelper('char', function (this: { locale: string }, char: string) {
         return apiDataVChr?.[this.locale]?.[`char-${char}`] ?? char

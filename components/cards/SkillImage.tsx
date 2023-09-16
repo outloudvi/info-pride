@@ -150,7 +150,7 @@ const SkillImage = ({
     // Debuff goes #3
     const debuffIndex = skillIcons.findIndex((x) => isDebuff(x))
     if (debuffIndex !== -1 && debuffIndex !== 2) {
-        ;[skillIcons[2], skillIcons[debuffIndex]] = [
+        [skillIcons[2], skillIcons[debuffIndex]] = [
             skillIcons[debuffIndex],
             skillIcons[2],
         ]
@@ -159,7 +159,7 @@ const SkillImage = ({
     // score-get series goes #2
     const scoreGetIndex = skillIcons.findIndex((x) => x?.includes('score-get'))
     if (scoreGetIndex !== -1 && scoreGetIndex !== 1) {
-        ;[skillIcons[1], skillIcons[scoreGetIndex]] = [
+        [skillIcons[1], skillIcons[scoreGetIndex]] = [
             skillIcons[scoreGetIndex],
             skillIcons[1],
         ]

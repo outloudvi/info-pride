@@ -49,7 +49,7 @@ const EventStoriesPage = ({
                                     .filter(
                                         Boolean as unknown as IdentityFunction<
                                             string | null
-                                        >
+                                        >,
                                     )
                                     .join(', ')
                                 return (
@@ -64,7 +64,7 @@ const EventStoriesPage = ({
                                         {props && `(${props})`}
                                     </ListButton>
                                 )
-                            }
+                            },
                         )}
                     </div>
                 </Grid.Col>

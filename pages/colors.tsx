@@ -70,7 +70,7 @@ const ColorsPage = ({
                                 name={$vc(one)}
                                 color={toHashColor(
                                     CharacterList.find((x) => x.id === one)
-                                        ?.color ?? 'transparent'
+                                        ?.color ?? 'transparent',
                                 )}
                             />
                         ))}

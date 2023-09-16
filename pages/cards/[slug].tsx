@@ -11,7 +11,6 @@ import allFinished from '#utils/allFinished'
 import type { APIResponseOf } from '#utils/api'
 import pickFirstOrOne from '#utils/pickFirstOrOne'
 import CardItem from '#components/cards/CardItem'
-import Paths from '#utils/paths'
 import { fetchApi } from '#utils/fetchApi'
 import { DEFAULT_LANGUAGE } from '#utils/constants'
 

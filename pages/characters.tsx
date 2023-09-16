@@ -22,7 +22,7 @@ const CharactersPage = ({
     const $vc = useTranslations('v-chr')
     const [chrOrderId, setChrOrderId] = useState(0)
     const supportedCharacters = CharacterListData.filter(
-        (x) => $vc(x.id) !== x.id
+        (x) => $vc(x.id) !== x.id,
     )
 
     return (

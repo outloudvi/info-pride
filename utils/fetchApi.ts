@@ -7,7 +7,7 @@ export function fetchApi<T extends keyof APIMapping>(
     key: T,
     params?: LengthOf<Parameters<APIMapping[T]>> extends 0
         ? undefined
-        : GetFirst<Parameters<APIMapping[T]>>
+        : GetFirst<Parameters<APIMapping[T]>>,
 ): Promise<APIResponseOf<T>> {
     const urlsp = new URLSearchParams()
     let withParams = false
@@ -18,6 +18,6 @@ export function fetchApi<T extends keyof APIMapping>(
 
     return fetch(
         Paths.api(key) + (withParams ? '?' + urlsp.toString() : ''),
-        {}
+        {},
     ).then((res) => res.json())
 }

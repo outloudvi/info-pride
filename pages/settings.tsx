@@ -81,13 +81,13 @@ const SettingsPage = () => {
                                     </span>
                                 }
                                 checked={Boolean(
-                                    localBox?.[chrId]?.[card.ccid]
+                                    localBox?.[chrId]?.[card.ccid],
                                 )}
                                 onChange={(e) => {
                                     updateLocalBox(
                                         chrId,
                                         card.ccid,
-                                        e.target.checked
+                                        e.target.checked,
                                     )
                                 }}
                                 className="mt-2"

@@ -40,7 +40,8 @@
                 "fixStyle": "separate-type-imports"
             }
         ],
-        "@typescript-eslint/no-extra-semi": "off"
+        "@typescript-eslint/no-extra-semi": "off",
+        "@typescript-eslint/no-unused-vars": "warn"
     },
     "ignorePatterns": ["pages/_error.tsx"]
 }

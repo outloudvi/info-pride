@@ -130,13 +130,21 @@ const DiaryPage = () => {
                 <Grid.Col xs={12} lg={8}>
                     <div>
                         <p>
-                            {`${$t('included_diary_dates')} ${$t('date_from_to', {START_DATE: toShortDate(START_DATE.toDate()), END_DATE: toShortDate(END_DATE.toDate())})}`}
+                            {`${$t('included_diary_dates')} ${$t(
+                                'date_from_to',
+                                {
+                                    START_DATE: toShortDate(
+                                        START_DATE.toDate(),
+                                    ),
+                                    END_DATE: toShortDate(END_DATE.toDate()),
+                                },
+                            )}`}
                         </p>
                         <div>
                             <div className="flex-col">
                                 <DatePickerInput
-                                    placeholder={$t("choose_a_date")}
-                                    label={$t("date")}
+                                    placeholder={$t('choose_a_date')}
+                                    label={$t('date')}
                                     required
                                     className="w-72"
                                     value={currDate}
@@ -161,11 +169,11 @@ const DiaryPage = () => {
                                 onClick={() => {
                                     const currDay = dayjs(currDate)
                                     setCurrDate(
-                                        currDay.subtract(1, 'day').toDate()
+                                        currDay.subtract(1, 'day').toDate(),
                                     )
                                 }}
                             >
-                                {$t("previous_day")}
+                                {$t('previous_day')}
                             </Button>
                             <Button
                                 disabled={
@@ -177,7 +185,7 @@ const DiaryPage = () => {
                                     setCurrDate(currDay.add(1, 'day').toDate())
                                 }}
                             >
-                                {$t("next_day")}
+                                {$t('next_day')}
                             </Button>
                         </div>
                     </div>

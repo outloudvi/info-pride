@@ -43,17 +43,17 @@ const UnitsPage = ({
         x.charts.map((r) => ({
             ...r,
             songTitle: x.title,
-        }))
+        })),
     ).reduce((a, b) => [...a, ...b])
 
     const [unitId, setUnitId] = useQueryParam('u', withDefault(StringParam, ''))
     const [chartId, setChartId] = useQueryParam(
         'chart',
-        withDefault(StringParam, musicChartList[0].id)
+        withDefault(StringParam, musicChartList[0].id),
     )
 
     const selectedMusicChart = musicChartList.find(
-        (x) => x.id === chartId
+        (x) => x.id === chartId,
     ) as MusicChartItem
 
     const { data: ChartData } = useApi('MusicChart', {
@@ -75,14 +75,14 @@ const UnitsPage = ({
         (pos: number) => (card: CardTiny) => {
             setUnitCards((r) => [...r.slice(0, pos), card, ...r.slice(pos + 1)])
         },
-        [setUnitCards]
+        [setUnitCards],
     )
 
     useEffect(() => {
         const cardList = unitCards.slice(1)
         if (cardList.filter((x) => x).length !== 5) return
         setUnitId(
-            unitCodeV1.encode(cardList as NonNullable<CardTiny[]>, CardIdData)
+            unitCodeV1.encode(cardList as NonNullable<CardTiny[]>, CardIdData),
         )
     }, [unitCards, setUnitId])
 
@@ -125,7 +125,7 @@ const UnitsPage = ({
             })
             setModalImportUnit(false)
         },
-        [CardData]
+        [CardData],
     )
 
     useEffect(() => {

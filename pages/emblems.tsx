@@ -15,7 +15,7 @@ const EmblemsPage = () => {
 
     const [emblemType, setEmblemType] = useQueryParam(
         'q',
-        withDefault(StringParam, 'Various')
+        withDefault(StringParam, 'Various'),
     )
 
     const { data: ApiData } = useApi('Emblems', {
@@ -32,8 +32,8 @@ const EmblemsPage = () => {
                     displayAs={(x) => $t(`type_${x}`)}
                     width={300}
                     formProps={{
-                        onChange: (x) => setEmblemType(x as string),
-                        value: emblemType as any,
+                        onChange: (x: string) => setEmblemType(x),
+                        value: emblemType,
                     }}
                     maxDropdownHeight={400}
                 />

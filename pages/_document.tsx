@@ -46,19 +46,19 @@ export default class _Document extends Document {
         const csp =
             process.env.NODE_ENV === 'production'
                 ? cspRules(
-                      cspHashOf(NextScript.getInlineScriptSource(this.props))
+                      cspHashOf(NextScript.getInlineScriptSource(this.props)),
                   )
                 : cspRules(
                       "'unsafe-eval' " +
                           cspHashOf(
-                              NextScript.getInlineScriptSource(this.props)
-                          )
+                              NextScript.getInlineScriptSource(this.props),
+                          ),
                   )
 
         return (
             <Html>
                 <Head>
-                    {/* <meta httpEquiv="Content-Security-Policy" content={csp} /> */}
+                    <meta httpEquiv="Content-Security-Policy" content={csp} />
                     {/* opengraph */}
                     <meta property="og:title" content={META_TITLE} />
                     <meta property="twitter:title" content={META_TITLE} />

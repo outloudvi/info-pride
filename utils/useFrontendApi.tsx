@@ -19,7 +19,7 @@ import type { EventItem } from '#components/indexPage/types'
 
 const frontendQueryFn: QueryFunction = ({ queryKey: [path] }) =>
     fetch(('/api/' + path) as string).then((x) =>
-        x.status === 200 ? x.json() : undefined
+        x.status === 200 ? x.json() : undefined,
     )
 
 export type FrontendAPIResponseMapping = {
@@ -56,7 +56,7 @@ export type FrontendAPIResponseMapping = {
 function useFrontendApi<T extends keyof FrontendAPIResponseMapping>(
     key: T,
     params?: Record<string, string | string[]>,
-    enabled?: boolean
+    enabled?: boolean,
 ) {
     const [urlsp, withParams] = useMemo(() => {
         const _urlsp = new URLSearchParams()

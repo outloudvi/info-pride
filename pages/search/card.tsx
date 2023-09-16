@@ -48,15 +48,11 @@ const SearchPage = ({
     })
     useEffect(() => {
         setLocalBox(
-            tryJSONParse(localStorage.getItem(LOCALSTORAGE_BOX_TAG)) ?? {}
+            tryJSONParse(localStorage.getItem(LOCALSTORAGE_BOX_TAG)) ?? {},
         )
     }, [])
 
-    const {
-        values: formValues,
-        errors: formErrors,
-        getInputProps,
-    } = useForm({
+    const { values: formValues, getInputProps } = useForm({
         initialValues: {
             keyword: '',
             selectedCharacters: [] as CharacterId[],
@@ -105,13 +101,13 @@ const SearchPage = ({
                     x.name.includes(keyword.trim()) ||
                     (VCardAlias[x.assetId] ?? '')
                         .toLowerCase()
-                        .includes(keyword.toLowerCase())
+                        .includes(keyword.toLowerCase()),
             )
         }
 
         if (selectedCharacters.length > 0) {
             ret = ret.filter((x) =>
-                selectedCharacters.includes(x.characterId as CharacterId)
+                selectedCharacters.includes(x.characterId as CharacterId),
             )
         }
 
@@ -150,7 +146,7 @@ const SearchPage = ({
             if (
                 dualA &&
                 cardSkills.filter(
-                    (x) => x.categoryType === SkillCategoryType.Active
+                    (x) => x.categoryType === SkillCategoryType.Active,
                 ).length < 2
             ) {
                 return false
@@ -188,7 +184,7 @@ const SearchPage = ({
             if (selectedSkills.length === 0) return false
             if (hasSkillFilters) {
                 highlightedSkills = highlightedSkills.concat(
-                    selectedSkills.map((x) => x.id)
+                    selectedSkills.map((x) => x.id),
                 )
             }
             return true

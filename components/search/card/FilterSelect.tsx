@@ -21,7 +21,7 @@ const FilterSelect = <T extends string>({
     className?: string
     displayAs?: (s: string) => string
     listNamemap?: Record<string, string>
-    formProps: Omit<SelectProps, 'data'> & Omit<MultiSelectProps, 'data'>
+    formProps: Omit<SelectProps, 'data'> | Omit<MultiSelectProps, 'data'>
     maxDropdownHeight?: number
 }) => {
     const $c = useTranslations('common')
@@ -47,7 +47,7 @@ const FilterSelect = <T extends string>({
                 classNames={{
                     wrapper: 'max-w-xl',
                 }}
-                {...formProps}
+                {...(formProps as Omit<MultiSelectProps, 'data'>)}
                 maxDropdownHeight={maxDropdownHeight}
             />
         )
@@ -62,7 +62,7 @@ const FilterSelect = <T extends string>({
                 clearButtonProps={{
                     'aria-label': $c('Clear'),
                 }}
-                {...formProps}
+                {...(formProps as Omit<SelectProps, 'data'>)}
                 maxDropdownHeight={maxDropdownHeight}
             />
         )

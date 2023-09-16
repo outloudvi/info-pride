@@ -19,7 +19,7 @@ const NotemapPage = ({
 }) => {
     const $t = useTranslations('notemap')
     const [song, setSong] = useState<UnArray<typeof ChartListData>>(
-        ChartListData[0]
+        ChartListData[0],
     )
     const chartList = song.charts
     const [chartId, setChartId] = useState<string | null>(null)
@@ -51,7 +51,7 @@ const NotemapPage = ({
                         value={song.musicId}
                         onChange={(i) => {
                             const chartSongItem = ChartListData.filter(
-                                (x) => x.musicId === i.target.value
+                                (x) => x.musicId === i.target.value,
                             )[0]
                             setSong(chartSongItem)
                         }}
@@ -107,7 +107,7 @@ function removeDup(ChartListData?: APIResponseOf<'MusicChartList'>) {
         if (x.charts.length > 0) return true
         return (
             ChartListData.find(
-                (y) => y.assetId === x.assetId && y.charts.length > 0
+                (y) => y.assetId === x.assetId && y.charts.length > 0,
             ) === undefined
         )
     })

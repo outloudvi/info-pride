@@ -1,6 +1,6 @@
 import { Button } from '@mantine/core'
 import { useTranslations } from 'next-intl'
-import type { MutableRefObject} from 'react';
+import type { MutableRefObject } from 'react'
 import { useEffect, useState } from 'react'
 import screenfull from 'screenfull'
 
@@ -11,7 +11,7 @@ const FullScreenButton = ({
 }) => {
     const $t = useTranslations('messages')
     const [isFullScreen, setFullScreen] = useState(
-        typeof window !== 'undefined' && document.fullscreenElement !== null
+        typeof window !== 'undefined' && document.fullscreenElement !== null,
     )
 
     useEffect(() => {

@@ -18,7 +18,7 @@ function useApi<T extends keyof APIMapping>(
         unknown,
         APIResponseOf<T>,
         QueryKey
-    >
+    >,
 ) {
     const urlsp = new URLSearchParams()
     let withParams = false

@@ -48,7 +48,6 @@ const CardsPage = ({
 
     const {
         values: formValues,
-        errors: formErrors,
         getInputProps,
     } = useForm({
         initialValues: {
@@ -66,9 +65,9 @@ const CardsPage = ({
             uniq(
                 CardListData.map((x) => x.id.split('-')?.[3])
                     .filter((x) => CardFaceTypes.includes(x))
-                    .sort((a, b) => (a < b ? -1 : 1))
+                    .sort((a, b) => (a < b ? -1 : 1)),
             ),
-        [CardListData]
+        [CardListData],
     )
 
     const cards = useMemo(() => {
@@ -84,17 +83,17 @@ const CardsPage = ({
         return CardListData.filter((x) =>
             selectedCharacters.length === 0
                 ? true
-                : selectedCharacters.includes(x.characterId as CharacterId)
+                : selectedCharacters.includes(x.characterId as CharacterId),
         )
             .filter((x) =>
                 selectedCardTypes.length === 0
                     ? true
-                    : selectedCardTypes.includes(String(x.type))
+                    : selectedCardTypes.includes(String(x.type)),
             )
             .filter((x) =>
                 selectedCardFaceTypes.length === 0
                     ? true
-                    : selectedCardFaceTypes.includes(x.id.split('-')?.[3])
+                    : selectedCardFaceTypes.includes(x.id.split('-')?.[3]),
             )
             .filter((x) =>
                 selectedCardColors.length === 0
@@ -107,13 +106,13 @@ const CardsPage = ({
                                   danceRatioPermil: x.dancePt,
                                   visualRatioPermil: x.visualPt,
                               })
-                          ]
-                      )
+                          ],
+                      ),
             )
             .sort(
                 (a, b) =>
                     (a[orderBy] > b[orderBy] ? -1 : 1) *
-                    (orderReversed ? 1 : -1)
+                    (orderReversed ? 1 : -1),
             )
     }, [formValues, CardListData])
 
@@ -249,7 +248,7 @@ export const getServerSideProps = async ({ locale }: { locale: string }) => {
                 'v-card-name',
             ])),
             maxRarity: CardRarity.reduce((a, b) =>
-                a.rarity > b.rarity ? a : b
+                a.rarity > b.rarity ? a : b,
             ).rarity,
         },
     }

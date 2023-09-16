@@ -41,7 +41,7 @@ const SpineView = ({ id }: { id: string }) => {
 
     // Initialize
     useEffect(() => {
-        ;(async () => {
+        (async () => {
             const canvas = $canvasRef.current
             if (!canvas) return
 
@@ -119,6 +119,7 @@ const SpineView = ({ id }: { id: string }) => {
                 {sklJson ? (
                     <NativeSelect
                         data={Object.keys(
+                            // eslint-disable-next-line @typescript-eslint/no-explicit-any
                             (sklJson as Record<string, any>).animations
                         )}
                         value={animation}

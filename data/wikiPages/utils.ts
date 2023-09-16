@@ -1,6 +1,7 @@
+import { existsSync, readFileSync } from 'node:fs'
+
 import got from 'got'
 import wtfWp from 'wtf_wikipedia'
-import { existsSync, readFileSync } from 'node:fs'
 
 export type SitePrefConfig = {
     domain: string
@@ -9,7 +10,7 @@ export type SitePrefConfig = {
 
 export function mapProps(
     mapper: Record<string, string>,
-    options: { allRequired?: boolean } = {}
+    options: { allRequired?: boolean } = {},
 ) {
     const { allRequired } = options ?? {}
     const retFn = (obj: Record<string, any>) => {
@@ -29,7 +30,7 @@ export function mapProps(
 
 export async function fetchPrefixList(
     prefix: string,
-    sitePref: SitePrefConfig
+    sitePref: SitePrefConfig,
 ) {
     const url = new URL(`https://${sitePref.domain}`)
     url.pathname = sitePref.path

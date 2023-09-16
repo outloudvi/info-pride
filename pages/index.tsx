@@ -19,7 +19,7 @@ import {
 
 const RoutineCountdown = dynamic(
     () => import('#components/indexPage/RoutineCountdown'),
-    { ssr: false }
+    { ssr: false },
 )
 
 const Home = () => {
@@ -95,7 +95,7 @@ const Home = () => {
                                         >
                                             {title}
                                         </Button>
-                                    )
+                                    ),
                                 )}
                             </Group>
                         ))}

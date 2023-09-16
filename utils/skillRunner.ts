@@ -14,7 +14,7 @@ type RequestBody = {
 
 function skillToLength(
     sk: PartialSkill,
-    skillxData: APIResponseOf<'Skill/X'>
+    skillxData: APIResponseOf<'Skill/X'>,
 ): number {
     return sk.levels[0].skillDetails
         .map((x) => x.efficacyId)
@@ -29,7 +29,7 @@ function skillToLength(
 export default function skillRunner(
     { skills, chartLine }: RequestBody,
     // TODO: definitely doesn't need the whole set
-    skillxData?: APIResponseOf<'Skill/X'>
+    skillxData?: APIResponseOf<'Skill/X'>,
 ): SkillLaunchItem[] {
     const ret: SkillLaunchItem[] = []
     const aSkills = skills
@@ -67,7 +67,7 @@ export default function skillRunner(
     if (spSkillTimes.length > 0) {
         // Assumption: Maximum 1 SP skill
         const spSkill = skills.filter(
-            (x) => x.categoryType === SkillCategoryType.Special
+            (x) => x.categoryType === SkillCategoryType.Special,
         )?.[0]
 
         if (spSkill) {

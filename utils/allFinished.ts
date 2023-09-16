@@ -4,7 +4,7 @@ type NoUndefinedField<T> = {
 }
 
 function allFinished<R extends Record<string, any>>(
-    r: R
+    r: R,
 ): r is NoUndefinedField<R> {
     return Object.values(r).filter((x) => x === undefined).length === 0
 }

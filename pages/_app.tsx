@@ -18,12 +18,12 @@ import Paths from '#utils/paths'
 const MainApp = (
     props: AppProps<{ _m: Record<string, string> }> & {
         colorScheme: ColorScheme
-    }
+    },
 ) => {
     const { Component, pageProps } = props
 
     const [colorScheme, setColorScheme] = useState<ColorScheme>(
-        props.colorScheme
+        props.colorScheme,
     )
 
     const toggleColorScheme = (value?: ColorScheme) => {
@@ -54,7 +54,7 @@ const MainApp = (
                         },
                     },
                 },
-            })
+            }),
     )
 
     return (
