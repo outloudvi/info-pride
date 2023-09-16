@@ -1,7 +1,7 @@
 {
     "Card search": "Card search",
     "notice_mybox": "If you don't see owned cards displayed, <link>set your box</link>.",
-    "use_hs_search": "The feature of searching by skill is sunsetting. Please use <link>Hoshimi Stage</link> instead.",
+    "use_hs_search": "The feature of searching by skill is deprecated - please use <link>Hoshimi Stage</link> instead.",
     "Keyword": "Keyword",
     "Character": "Character",
     "Type": "Type",
