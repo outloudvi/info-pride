@@ -1,5 +1,5 @@
 import { AttributeType } from 'hoshimi-types/ProtoEnum'
-import { Card } from 'hoshimi-types/ProtoMaster'
+import type { Card } from 'hoshimi-types/ProtoMaster'
 
 export default function getCardColor(
     card: Pick<

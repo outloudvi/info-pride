@@ -1,4 +1,4 @@
-import { StoriesData } from './types'
+import type { StoriesData } from './types'
 
 const special: StoriesData['special'] = []
 

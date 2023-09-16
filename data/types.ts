@@ -1,4 +1,4 @@
-import { ExternalVideo } from '#components/ExternalVideo'
+import type { ExternalVideo } from '#components/ExternalVideo'
 
 export type ChapterItem = {
     name: string

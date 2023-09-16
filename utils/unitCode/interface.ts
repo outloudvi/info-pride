@@ -1,4 +1,6 @@
-import { Card } from 'hoshimi-types/ProtoMaster'
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
+import type { Card } from 'hoshimi-types/ProtoMaster'
 
 export type PartialCard = Pick<Card, 'id' | 'characterId'>
 

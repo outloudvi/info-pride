@@ -1,4 +1,4 @@
-import { CharacterId } from './vendor/characterId'
+import type { CharacterId } from './vendor/characterId'
 
 import Paths from '#utils/paths'
 

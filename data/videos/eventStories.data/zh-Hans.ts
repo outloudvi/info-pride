@@ -1,4 +1,4 @@
-import { ChapterItem } from '#data/types'
+import type { ChapterItem } from '#data/types'
 
 const data: Record<string, ChapterItem> = {
     // 雨上がりの太陽と共に

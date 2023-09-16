@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { existsSync, readFileSync } from 'node:fs'
 
 import wtfWp from 'wtf_wikipedia'

@@ -1,4 +1,5 @@
 #!/usr/bin/env ts-node
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { writeFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
@@ -13,7 +14,7 @@ import {
 } from './utils.js'
 import type { SitePrefConfig } from './utils.js'
 
-import { CharacterId } from '#data/vendor/characterId.js'
+import type { CharacterId } from '#data/vendor/characterId.js'
 
 const CharacterChineseNameList: Record<CharacterId, string> = {
     'char-ktn': '长濑琴乃',
@@ -67,7 +68,7 @@ function parseSong(pageJson: any) {
                 arranger: '编曲',
                 lyrics: '歌词',
             },
-            { allRequired: true }
+            { allRequired: true },
         )(infoTemplate),
         ...mapProps({
             bvid: 'bv号',
@@ -108,7 +109,7 @@ function parseCard(pageJson: any) {
                 ski3NameJa: '演出技能日文名3',
                 ski3DescJa: '演出技能日文说明3',
             },
-            { allRequired: true }
+            { allRequired: true },
         )(infoTemplate),
         ...mapProps({
             eruNameCn: '应援技能名',
@@ -132,7 +133,7 @@ function parseIdol(pageJson: any) {
         },
         {
             allRequired: true,
-        }
+        },
     )(infoTemplate)
 }
 
@@ -144,7 +145,7 @@ async function main() {
         const cardInfo = readJson(join(currDir, CardsJson))
         const cardCnTrans = readJson(join(currDir, CardsCnTransJson))
         for (const [idolId, idolCnName] of Object.entries(
-            CharacterChineseNameList
+            CharacterChineseNameList,
         )) {
             console.info(`Fetching cards for ${idolCnName}`)
             const pagePrefix = `${idolCnName}/卡牌/`
@@ -152,7 +153,7 @@ async function main() {
             for (const cardName of pageNames) {
                 const cardId = cardName.replace(
                     new RegExp(`^${pagePrefix}`),
-                    ''
+                    '',
                 )
                 if (cardInfo?.[idolId]?.[cardId]) {
                     console.info(`Skipping card ${cardName}`)
@@ -180,7 +181,7 @@ async function main() {
             writeFileSync(join(currDir, CardsJson), JSON.stringify(cardInfo))
             writeFileSync(
                 join(currDir, CardsCnTransJson),
-                JSON.stringify(cardCnTrans)
+                JSON.stringify(cardCnTrans),
             )
             await sleep(3000)
         }

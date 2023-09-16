@@ -1,13 +1,15 @@
 import base58 from 'base58'
 
-import UnitCodeInterface, { PartialCard } from './interface'
+import type { PartialCard } from './interface'
+import type UnitCodeInterface from './interface'
 
-import { CharacterId, CharacterIds } from '#data/vendor/characterId'
+import type { CharacterId } from '#data/vendor/characterId'
+import { CharacterIds } from '#data/vendor/characterId'
 import CardIdData from '#data/ccid'
 
 function encodeCard(card: PartialCard): string {
     const cardIdInfo = CardIdData[card.characterId as CharacterId].find(
-        (r) => r.cardId === card.id
+        (r) => r.cardId === card.id,
     )
     if (!cardIdInfo) return '!!'
     const charId = CharacterIds.findIndex((c) => c === card.characterId)

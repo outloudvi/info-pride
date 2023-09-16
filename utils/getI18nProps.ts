@@ -1,5 +1,3 @@
-import { locale } from 'dayjs'
-
 const getI18nProps =
     (sources: string[] = []) =>
     async ({ locale }: { locale: string }) => {
@@ -20,7 +18,7 @@ export const addI18nMessages = async (
     locale: string,
     sources: string[] = [],
 ) => {
-    const _m: Record<string, any> = {}
+    const _m: Record<string, Record<string, string>> = {}
     for (const i of [...sources, 'common']) {
         _m[i] = (await import(`../locales/${locale}/${i}.json`)).default
     }

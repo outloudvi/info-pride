@@ -1,6 +1,6 @@
 // https://community.idolypride.jp/
 
-import { CharacterId } from './characterId'
+import type { CharacterId } from './characterId'
 
 export const SizeStyle = {
     xs: {
