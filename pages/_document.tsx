@@ -43,17 +43,10 @@ export default class _Document extends Document {
     static getInitialProps = getInitialProps
 
     render() {
-        const csp =
-            process.env.NODE_ENV === 'production'
-                ? cspRules(
-                      cspHashOf(NextScript.getInlineScriptSource(this.props)),
-                  )
-                : cspRules(
-                      "'unsafe-eval' " +
-                          cspHashOf(
-                              NextScript.getInlineScriptSource(this.props),
-                          ),
-                  )
+        const csp = cspRules(
+            "'unsafe-eval' " +
+                cspHashOf(NextScript.getInlineScriptSource(this.props)),
+        )
 
         return (
             <Html>
