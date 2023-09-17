@@ -31,10 +31,10 @@ const SpineViewWrapper = () => {
     })
 
     useEffect(() => {
-        if (ChibiData && idInput === '') {
+        if (ChibiData) {
             setIdInput(ChibiData[0].sdAssetId)
         }
-    }, [ChibiData, idInput])
+    }, [ChibiData])
 
     useEffect(() => {
         if (urlId !== '' && !initSync) {
@@ -109,7 +109,7 @@ const LicenseCheck = ({ confirm }: { confirm: () => void }) => {
 
 const SpinePage = () => {
     const $t = useTranslations('spine')
-    const [userHasLicense, setUserHasLicense] = useState(false)
+    const [userHasLicense, setUserHasLicense] = useState(true)
 
     return (
         <>

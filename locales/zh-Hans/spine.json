@@ -1,6 +1,10 @@
 {
     "Spine viewer": "SD 查看器",
-    "Select the animation": "选择动画",
+    "Select the body animation": "选择身体动画",
+    "Select the mouth animation": "选择口型动画",
+    "Accessory direction": "饰品位置",
+    "Left": "左",
+    "Right": "右",
     "Spine ID": "Spine ID",
     "View": "查看",
     "Spine license confirmation": "Spine 授权确认",
