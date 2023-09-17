@@ -33,6 +33,7 @@ enum AcDirection {
 const SpineView = ({ id }: { id: string }) => {
     const $t = useTranslations('spine')
     const $c = useTranslations('common')
+    const $sp = useTranslations('spine_animation')
 
     const { data: sklJson } = useQuery({
         queryKey: Paths.spinePath(id) + `/${id}.json`,
@@ -168,11 +169,16 @@ const SpineView = ({ id }: { id: string }) => {
                         <NativeSelect
                             data={Object.keys(
                                 (sklJson as Record<string, never>).animations,
-                            ).filter(
-                                (x) =>
-                                    !MOUTH_ANIMATIONS.includes(x) &&
-                                    !UNUSED_ANIMATIONS.includes(x),
-                            )}
+                            )
+                                .filter(
+                                    (x) =>
+                                        !MOUTH_ANIMATIONS.includes(x) &&
+                                        !UNUSED_ANIMATIONS.includes(x),
+                                )
+                                .map((x) => ({
+                                    value: x,
+                                    label: $sp(x),
+                                }))}
                             value={bodyAnimation}
                             onChange={(event) =>
                                 setBodyAnimation(event.target.value)
@@ -187,7 +193,10 @@ const SpineView = ({ id }: { id: string }) => {
                                         .animations,
                                 ).filter((x) => MOUTH_ANIMATIONS.includes(x)),
                                 '',
-                            ]}
+                            ].map((x) => ({
+                                value: x,
+                                label: $sp(x),
+                            }))}
                             value={mouthAnimation}
                             onChange={(event) =>
                                 setMouthAnimation(event.target.value)
@@ -204,7 +213,7 @@ const SpineView = ({ id }: { id: string }) => {
                             onChange={(x) => {
                                 setAcDirectionLeft(x === AcDirection.Left)
                             }}
-                            label={$t('Accessory direction')}
+                            label={$t('Direction')}
                             withAsterisk
                         >
                             <Group mt="xs">

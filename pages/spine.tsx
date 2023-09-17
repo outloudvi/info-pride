@@ -130,6 +130,10 @@ const SpinePage = () => {
     )
 }
 
-export const getStaticProps = getI18nProps(['spine', 'v-chr'])
+export const getStaticProps = getI18nProps([
+    'spine',
+    'spine_animation',
+    'v-chr',
+])
 
 export default withQueryParam(SpinePage)

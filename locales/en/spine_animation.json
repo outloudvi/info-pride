@@ -1,0 +1,9 @@
+{
+    "loop_idle": "Normal (backwards)",
+    "loop_idle_forward": "Normal (forwards)",
+    "pose": "Pose",
+    "loop_mouth_positive": "Happy",
+    "loop_mouth_negative": "Unhappy",
+    "loop_mouth_normal": "Talking",
+    "": "None"
+}
