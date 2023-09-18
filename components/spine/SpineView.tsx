@@ -43,6 +43,12 @@ const SpineView = ({ id }: { id: string }) => {
     const [mouthAnimation, setMouthAnimation] = useState(MOUTH_ANIMATIONS[0])
     const [acDirectionLeft, setAcDirectionLeft] = useState(true)
 
+    useEffect(() => {
+        setBodyAnimation(BODY_ANIMATIONS[0])
+        setMouthAnimation(MOUTH_ANIMATIONS[0])
+        setAcDirectionLeft(true)
+    }, [id])
+
     // Canvas related - we don't want changes on them to trigger re-render
     const $canvasRef = useRef<HTMLCanvasElement>(null)
     const $app = useRef<PIXI.Application>()
