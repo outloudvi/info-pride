@@ -1508,6 +1508,21 @@ const dataAoi: StoriesData = {
             video: { type: 'bilibili', vid: 'av911973299' },
         },
     },
+    'card-aoi-05-circ-00': {
+        // ダーティーアクセル
+        1: {
+            name: '作为一个粉丝的意见',
+            video: { type: 'bilibili', vid: 'av703920941' },
+        },
+        2: {
+            name: '希望你能帅气的被砍',
+            video: { type: 'bilibili', vid: 'av276461338' },
+        },
+        3: {
+            name: '现在，将来，我的战斗还会继续下去',
+            video: { type: 'bilibili', vid: 'av703916111' },
+        },
+    },
 }
 
 // 小美山爱
