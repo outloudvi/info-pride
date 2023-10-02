@@ -36,7 +36,7 @@ const SpineView = ({ id }: { id: string }) => {
     const $sp = useTranslations('spine_animation')
 
     const { data: sklJson } = useQuery({
-        queryKey: Paths.spinePath(id) + `/${id}.json`,
+        queryKey: Paths.assetsRaw(Paths.spinePath(id)) + '.json',
         queryFn: ({ queryKey }) => fetch(queryKey[0]).then((x) => x.json()),
     })
     const [bodyAnimation, setBodyAnimation] = useState(BODY_ANIMATIONS[0])
@@ -114,7 +114,7 @@ const SpineView = ({ id }: { id: string }) => {
 
             if (!$isAssetInitialized.current) {
                 PIXI.Assets.init({
-                    basePath: Paths.spinePath(id),
+                    basePath: Paths.assetsRaw(),
                 })
                 $isAssetInitialized.current = true
             }
@@ -126,7 +126,7 @@ const SpineView = ({ id }: { id: string }) => {
                 backgroundColor: 0xffffff,
             })
 
-            const spine = await PIXI.Assets.load(id + '.json')
+            const spine = await PIXI.Assets.load(Paths.spinePath(id) + '.json')
             const spineItem = new Spine(spine.spineData)
             const spineData = spineItem.spineData
 

@@ -24,6 +24,7 @@ const Paths = {
         `https://ac.ip.outv.im/api/${
             assetId.startsWith('env') ? 'env' : 'img'
         }/${assetId}`,
+    assetsRaw: (assetPath?: string) => Paths.s3(`assets/${assetPath ?? ''}`),
     assets: (assetId: string) => Paths.s3(`assets/${assetIdToPath(assetId)}`),
     s3: (path: string) => `https://idoly-assets.outv.im/${path}`,
     sprite: (id: string) => Paths.s3(`sprite/${id}.png`),
@@ -31,7 +32,9 @@ const Paths = {
         `https://github.com/outloudvi/info-pride/issues/${id ?? ''}`,
     api: (path: string) => `https://idoly-backend.outv.im/api/${path}`,
     advJson: (id: string) => Paths.s3(`processed/adv/adv_${id}.txt.json`),
-    spinePath: (id: string) => Paths.s3(`assets/${spiAssetIdToBasePath(id)}`),
+
+    // Paths
+    spinePath: (id: string) => `${spiAssetIdToBasePath(id)}/${id}`,
 }
 
 export default Paths
