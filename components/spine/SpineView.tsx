@@ -56,6 +56,7 @@ const SpineView = ({ id }: { id: string }) => {
     const $isAssetInitialized = useRef(false)
     const $skinLeft = useRef<Skin>()
     const $skinRight = useRef<Skin>()
+    const $dragTarget = useRef<Spine>()
 
     const setAnimation = useCallback(
         (trackIndex: number, animationName: string) => {
@@ -90,6 +91,46 @@ const SpineView = ({ id }: { id: string }) => {
         if (!skin) return
         setSkin(skin)
     }, [acDirectionLeft, $skinLeft, $skinRight, setSkin])
+
+    const pixiOnDragMove = useCallback(function (event: {
+        global: PIXI.IPointData
+    }) {
+        const dragTarget = $dragTarget.current
+        if (dragTarget) {
+            dragTarget.parent.toLocal(
+                event.global,
+                undefined,
+                dragTarget.position,
+            )
+        }
+    }, [])
+    const pixiOnDragStart = useCallback(
+        function (this: Spine) {
+            this.alpha = 0.7
+            $dragTarget.current = this
+            $app.current?.stage.on('pointermove', pixiOnDragMove)
+        },
+        [pixiOnDragMove],
+    )
+    const pixiOnDragEnd = useCallback(
+        function () {
+            const dragTarget = $dragTarget.current
+            if (dragTarget) {
+                $app.current?.stage.off('pointermove', pixiOnDragMove)
+                dragTarget.alpha = 1
+                $dragTarget.current = undefined
+            }
+        },
+        [pixiOnDragMove],
+    )
+    const pixiSetupDrag = useCallback(
+        (item: Spine) => {
+            item.eventMode = 'static'
+            item.cursor = 'pointer'
+            item.on('pointerdown', pixiOnDragStart, item)
+        },
+        [pixiOnDragStart],
+    )
 
     // Initialize
     useEffect(() => {
@@ -126,9 +167,15 @@ const SpineView = ({ id }: { id: string }) => {
                 backgroundColor: 0xffffff,
             })
 
+            app.stage.eventMode = 'static'
+            app.stage.hitArea = app.screen
+            app.stage.on('pointerup', pixiOnDragEnd)
+            app.stage.on('pointerupoutside', pixiOnDragEnd)
+
             const spine = await PIXI.Assets.load(Paths.spinePath(id) + '.json')
             const spineItem = new Spine(spine.spineData)
             const spineData = spineItem.spineData
+            pixiSetupDrag(spineItem)
 
             const skinLeft = new Skin('combined-skin-left')
             for (const skinName of CONS_SKINSETS_LEFT) {
@@ -165,7 +212,7 @@ const SpineView = ({ id }: { id: string }) => {
             $skinLeft.current = undefined
             $skinRight.current = undefined
         }
-    }, [id, $t, setAnimation])
+    }, [id, $t, setAnimation, pixiOnDragEnd, pixiSetupDrag])
 
     return (
         <Grid>
