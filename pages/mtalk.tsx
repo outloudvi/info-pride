@@ -1,5 +1,4 @@
 import { useTranslations } from 'next-intl'
-import { Badge, Group } from '@mantine/core'
 
 import getI18nProps from '#utils/getI18nProps'
 import EditorView from '#components/mtalk/EditorView'
@@ -9,10 +8,7 @@ const MTalkPage = () => {
     const $t = useTranslations('mtalk')
     return (
         <>
-            <Group>
-                <Title title={$t('MacaronTalk')} />
-                <Badge>beta</Badge>
-            </Group>
+            <Title title={$t('MacaronTalk')} />
             <p>
                 {$t.rich('mtalk_description', {
                     a: (children) => (

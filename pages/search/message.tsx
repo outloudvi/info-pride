@@ -1,5 +1,5 @@
 import { useTranslations } from 'next-intl'
-import { Badge, Group, Skeleton, Stack, TextInput } from '@mantine/core'
+import { Skeleton, Stack, TextInput } from '@mantine/core'
 import { StringParam, useQueryParam, withDefault } from 'use-query-params'
 import { useDebouncedValue } from '@mantine/hooks'
 import { useEffect, useState } from 'react'
@@ -26,10 +26,7 @@ const MessageSearchPage = () => {
 
     return (
         <>
-            <Group>
-                <Title title={$t('Message Search')} />
-                <Badge>beta</Badge>
-            </Group>
+            <Title title={$t('Message Search')} />
             <p>{$t('description')}</p>
             <div className="max-w-7xl mx-auto">
                 <TextInput
