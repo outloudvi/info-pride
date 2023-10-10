@@ -48,4 +48,21 @@ export const CharacterIds = [
     'char-mku',
 ] as const
 
-export type CharacterId = typeof CharacterIds[number]
+// Characters listed by Character.json (non-inclusive)
+export const DataCharacterIds = [
+    ...CharacterIds,
+
+    // Staffs
+    'char-stm', // 橋本さとみ
+    'char-koh', // 牧野航平
+
+    // Collab: K-ON!
+    'char-konazusa',
+    'char-konmio',
+    'char-konmugi',
+    'char-konritsu',
+    'char-konyui',
+] as const
+
+export type CharacterId = (typeof CharacterIds)[number]
+export type DataCharacterId = (typeof DataCharacterIds)[number]
