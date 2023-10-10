@@ -32,10 +32,6 @@ export const PrimaryCharacterIds = [
 
     // Mana
     'char-mna',
-] as const
-
-export const MessageCharacterIds = [
-    ...PrimaryCharacterIds,
 
     // ThreeX
     'char-kor',
@@ -43,11 +39,12 @@ export const MessageCharacterIds = [
     'char-mhk',
 ] as const
 
+// Characters with at least one card.
 // Note that the order of existing items MUST NOT change, or old unitCodes will be broken!
 export const CharacterIds = [
-    ...MessageCharacterIds,
+    ...PrimaryCharacterIds,
 
-    // Collab
+    // Collab: Hatsune Miku
     'char-mku',
 ] as const
 

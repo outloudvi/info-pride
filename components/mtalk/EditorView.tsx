@@ -6,7 +6,7 @@ import CharacterItem from './CharacterItem'
 import TalkView from './TalkView'
 import type { CharacterIdWithManager } from './types'
 
-import { MessageCharacterIds } from '#data/vendor/characterId'
+import { PrimaryCharacterIds } from '#data/vendor/characterId'
 
 const EditorView = () => {
     const outer = useRef<HTMLDivElement | null>(null)
@@ -35,7 +35,7 @@ const EditorView = () => {
                         active={'' === currChrId}
                         setActive={setCurrChrId}
                     />
-                    {MessageCharacterIds.map((item, key) => (
+                    {PrimaryCharacterIds.map((item, key) => (
                         <CharacterItem
                             key={key}
                             id={item}

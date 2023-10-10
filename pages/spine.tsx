@@ -10,7 +10,7 @@ import Title from '#components/Title'
 import getI18nProps from '#utils/getI18nProps'
 import withQueryParam from '#utils/withQueryParam'
 import useApi from '#utils/useApi'
-import { MessageCharacterIds } from '#data/vendor/characterId'
+import { PrimaryCharacterIds } from '#data/vendor/characterId'
 
 const SpineView = dynamic(() => import('#components/spine/SpineView'), {
     ssr: false,
@@ -51,7 +51,7 @@ const SpineViewWrapper = () => {
             <Flex className="flex-col md:flex-row gap-4 mb-2 max-w-xl md:items-end">
                 <NativeSelect
                     className="grow-[3]"
-                    data={MessageCharacterIds.map((v) => ({
+                    data={PrimaryCharacterIds.map((v) => ({
                         label: $vc(v),
                         value: v,
                     }))}
