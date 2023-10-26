@@ -488,6 +488,27 @@ const data: Record<string, ChapterItem> = {
         name: '比优胜更重要的东西',
         video: { type: 'bilibili', vid: 'av915652235' },
     },
+    // 迷走ピリオド 涼やかな青春
+    'st-eve-2310-race-001': {
+        name: '最佳拍档的最强组合',
+        video: { type: 'bilibili', vid: 'av322493008' },
+    },
+    'st-eve-2310-race-002': {
+        name: '各自想象的帅气',
+        video: { type: 'bilibili', vid: 'av704970939' },
+    },
+    'st-eve-2310-race-003': {
+        name: '不要小看我',
+        video: { type: 'bilibili', vid: 'av492543970' },
+    },
+    'st-eve-2310-race-004': {
+        name: '真正能争吵的对手',
+        video: { type: 'bilibili', vid: 'av962529679' },
+    },
+    'st-eve-2310-race-005': {
+        name: 'Super nice 的 twins',
+        video: { type: 'bilibili', vid: 'av365121170' },
+    },
 }
 
 const _ = {

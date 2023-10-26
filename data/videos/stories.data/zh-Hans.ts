@@ -1374,6 +1374,28 @@ const data: StoriesData['data'] = {
                 video: { type: 'bilibili', vid: 'av387418719' },
             },
         },
+        2: {
+            1: {
+                name: 'TODO',
+                video: { type: 'bilibili', vid: 'av310011664' },
+            },
+            2: {
+                name: 'TODO',
+                video: { type: 'bilibili', vid: 'av865119948' },
+            },
+            3: {
+                name: 'TODO',
+                video: { type: 'bilibili', vid: 'av225108986' },
+            },
+            4: {
+                name: 'TODO',
+                video: { type: 'bilibili', vid: 'av780061836' },
+            },
+            5: {
+                name: 'TODO',
+                video: { type: 'bilibili', vid: 'av950045382' },
+            },
+        },
     },
     Sunny: {
         1: {
@@ -1388,6 +1410,36 @@ const data: StoriesData['data'] = {
             3: {
                 name: 'TODO',
                 video: { type: 'bilibili', vid: 'av520542762' },
+            },
+            4: {
+                name: 'TODO',
+                video: { type: 'bilibili', vid: 'av775536085' },
+            },
+            5: {
+                name: 'TODO',
+                video: { type: 'bilibili', vid: 'av860576339' },
+            },
+        },
+        2: {
+            1: {
+                name: 'TODO',
+                video: { type: 'bilibili', vid: 'av575595038', pid: 1 },
+            },
+            2: {
+                name: 'TODO',
+                video: { type: 'bilibili', vid: 'av575595038', pid: 2 },
+            },
+            3: {
+                name: 'TODO',
+                video: { type: 'bilibili', vid: 'av575595038', pid: 3 },
+            },
+            4: {
+                name: 'TODO',
+                video: { type: 'bilibili', vid: 'av575595038', pid: 4 },
+            },
+            5: {
+                name: 'TODO',
+                video: { type: 'bilibili', vid: 'av575595038', pid: 5 },
             },
         },
     },

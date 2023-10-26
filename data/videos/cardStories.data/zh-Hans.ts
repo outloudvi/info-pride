@@ -415,6 +415,21 @@ const dataSuzu: StoriesData = {
             video: { type: 'bilibili', vid: 'av443037176' },
         },
     },
+    'card-suz-05-birt-00': {
+        // すずにゃん様のバースデー
+        1: {
+            name: 'TODO',
+            video: { type: 'bilibili', vid: 'av275950829' },
+        },
+        2: {
+            name: 'TODO',
+            video: { type: 'bilibili', vid: 'av962075149' },
+        },
+        3: {
+            name: 'TODO',
+            video: { type: 'bilibili', vid: 'av874753985' },
+        },
+    },
 }
 
 // 早坂芽衣
@@ -499,6 +514,12 @@ const dataMei: StoriesData = {
         1: { name: 'TODO', video: { type: 'bilibili', vid: 'av230715972' } },
         2: { name: 'TODO', video: { type: 'bilibili', vid: 'av403191267' } },
         3: { name: 'TODO', video: { type: 'bilibili', vid: 'av360655776' } },
+    },
+    'card-mei-05-pair-00': {
+        // ニャンたすてぃっくガール
+        1: { name: 'TODO', video: { type: 'bilibili', vid: 'av491657448' } },
+        2: { name: 'TODO', video: { type: 'bilibili', vid: 'av364212377' } },
+        3: { name: 'TODO', video: { type: 'bilibili', vid: 'av576655005' } },
     },
 }
 
@@ -1434,6 +1455,21 @@ const dataRio: StoriesData = {
             video: { type: 'bilibili', vid: 'av229881287' },
         },
     },
+    'card-rio-05-birt-00': {
+        // 真心パンケーキバースデー
+        1: {
+            name: 'TODO',
+            video: { type: 'bilibili', vid: 'av702985053' },
+        },
+        2: {
+            name: 'TODO',
+            video: { type: 'bilibili', vid: 'av960522638' },
+        },
+        3: {
+            name: 'TODO',
+            video: { type: 'bilibili', vid: 'av318143909' },
+        },
+    },
 }
 
 // 井川葵
@@ -1711,6 +1747,21 @@ const dataKokoro: StoriesData = {
             video: { type: 'bilibili', vid: 'av443620383' },
         },
     },
+    'card-kkr-05-fest-00': {
+        // 戯言に隠すホントの願い
+        1: {
+            name: 'TODO',
+            video: { type: 'bilibili', vid: 'av959533460' },
+        },
+        2: {
+            name: 'TODO',
+            video: { type: 'bilibili', vid: 'av364652636' },
+        },
+        3: {
+            name: 'TODO',
+            video: { type: 'bilibili', vid: 'av277169074' },
+        },
+    },
 }
 
 // ---- 3X ----
@@ -1832,6 +1883,21 @@ const dataKana: StoriesData = {
         },
         phone: {
             video: { type: 'bilibili', vid: 'av909504741' },
+        },
+    },
+    'card-kan-05-chna-00': {
+        // 主役はkanaかな？
+        1: {
+            name: 'TODO',
+            video: { type: 'bilibili', vid: 'av277516071' },
+        },
+        2: {
+            name: 'TODO',
+            video: { type: 'bilibili', vid: 'av705041206' },
+        },
+        3: {
+            name: 'TODO',
+            video: { type: 'bilibili', vid: 'av450019910' },
         },
     },
 }
