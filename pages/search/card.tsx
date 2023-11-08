@@ -211,84 +211,82 @@ const SearchPage = ({
                     ),
                 })}
             </p>
-            <div className="mt-2 rounded-md border-solid border-6 border-sky-500 p-2">
-                <div className="flex items-center mb-2">
-                    <TextInput
-                        className="mr-2"
-                        label={$t('Keyword')}
-                        {...getInputProps('keyword')}
-                    />
-                    <FilterSelect
-                        className="mr-2"
-                        label={$t('Character')}
-                        multiple
-                        list={CharacterIds}
-                        displayAs={useJpStr ? undefined : $vc}
-                        listNamemap={useJpStr ? jpCharas : undefined}
-                        width={300}
-                        formProps={getInputProps('selectedCharacters')}
-                        maxDropdownHeight={400}
-                    />
-                    <FilterSelect
-                        className="mr-2"
-                        label={$t('Type')}
-                        multiple
-                        list={['1', '2', '3']}
-                        listNamemap={{
-                            1: $v('Appeal'),
-                            2: $v('Technique'),
-                            3: $v('Support'),
-                        }}
-                        width={300}
-                        formProps={getInputProps('selectedCardTypes')}
-                    />
-                    <Checkbox
-                        className="mr-2"
-                        label={$t('show_only_owned')}
-                        {...getInputProps('ownedOnly')}
-                    />
-                    <Checkbox
-                        label={$t('show_only_rare')}
-                        {...getInputProps('initial5Only')}
-                    />
-                </div>
-                <div className="flex items-center mb-2">
-                    <NumberInput
-                        className="mr-2"
-                        label={$t('Minimum CT')}
-                        placeholder={$t('Unlimited')}
-                        min={0}
-                        {...getInputProps('ctMin')}
-                    />
-                    <NumberInput
-                        className="mr-2"
-                        label={$t('Maximum CT')}
-                        placeholder={$t('Unlimited')}
-                        min={0}
-                        {...getInputProps('ctMax')}
-                    />
-                    <Checkbox
-                        label={$t('no_skip_sp_on_ctfilter')}
-                        className="mr-2"
-                        {...getInputProps('ctShowSp')}
-                    />
-                    <Tooltip label={$t('no_skip_sp_on_ctfilter_desc')}>
-                        <FontAwesomeIcon icon={faInfoCircle} />
-                    </Tooltip>
-                </div>
-                <div className="flex items-center mb-2">
-                    <Checkbox
-                        label={$t('Dual A skills')}
-                        className="mr-2"
-                        {...getInputProps('dualA')}
-                    />
-                    <Checkbox
-                        label={$t('Use original strings')}
-                        className="mr-2"
-                        checked={useJpStr}
-                        onChange={(e) => setUseJpStr(e.currentTarget.checked)}
-                    />
-                </div>
+            <div className="mt-2 rounded-md border-solid border-6 border-sky-500 p-2 flex flex-wrap items-center">
+                <TextInput
+                    className="ml-2 mx-1"
+                    label={$t('Keyword')}
+                    {...getInputProps('keyword')}
+                />
+                <FilterSelect
+                    className="mx-1"
+                    label={$t('Character')}
+                    multiple
+                    list={CharacterIds}
+                    displayAs={useJpStr ? undefined : $vc}
+                    listNamemap={useJpStr ? jpCharas : undefined}
+                    width={200}
+                    formProps={getInputProps('selectedCharacters')}
+                    maxDropdownHeight={400}
+                />
+                <FilterSelect
+                    className="mx-1"
+                    label={$t('Type')}
+                    multiple
+                    list={['1', '2', '3']}
+                    listNamemap={{
+                        1: $v('Appeal'),
+                        2: $v('Technique'),
+                        3: $v('Support'),
+                    }}
+                    width={200}
+                    formProps={getInputProps('selectedCardTypes')}
+                />
+                <NumberInput
+                    className="mx-2 my-2"
+                    label={$t('Minimum CT')}
+                    placeholder={$t('Unlimited')}
+                    min={0}
+                    {...getInputProps('ctMin')}
+                />
+                <NumberInput
+                    className="mx-2 my-2"
+                    label={$t('Maximum CT')}
+                    placeholder={$t('Unlimited')}
+                    min={0}
+                    {...getInputProps('ctMax')}
+                />
+                <Checkbox
+                    className="mx-2 my-2"
+                    label={$t('show_only_owned')}
+                    {...getInputProps('ownedOnly')}
+                />
+                <Checkbox
+                    className="mx-2 my-2"
+                    label={$t('show_only_rare')}
+                    {...getInputProps('initial5Only')}
+                />
+                <Checkbox
+                    className="ml-2 mr-1 my-2"
+                    label={$t('no_skip_sp_on_ctfilter')}
+                    {...getInputProps('ctShowSp')}
+                />
+                <Tooltip
+                    className="mr-2 my-2"
+                    label={$t('no_skip_sp_on_ctfilter_desc')}
+                >
+                    <FontAwesomeIcon icon={faInfoCircle} />
+                </Tooltip>
+                <Checkbox
+                    className="mx-2 my-2"
+                    label={$t('Dual A skills')}
+                    {...getInputProps('dualA')}
+                />
+                <Checkbox
+                    className="mx-2 my-2"
+                    label={$t('Use original strings')}
+                    checked={useJpStr}
+                    onChange={(e) => setUseJpStr(e.currentTarget.checked)}
+                />
             </div>
             <div className="mt-2">
                 {selectedCards.length === CardData.length ? (
