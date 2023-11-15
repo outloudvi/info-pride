@@ -1,6 +1,6 @@
 import type { BackgroundGroup, Line, Title } from '@hoshimei/adv/types'
 import { useTranslations } from 'next-intl'
-import { useMemo, Fragment } from 'react'
+import { useMemo, Fragment, useState } from 'react'
 
 import CompBackgroundSetting from './lines/BackgroundSetting'
 import CompSe from './lines/Se'
@@ -13,10 +13,18 @@ import type { MergedLine } from './types'
 import CompMWV from './lines/MWV'
 import CompXBranch from './lines/XBranch'
 import Box from './Box'
+import StoryContext, { StoryStateStorageContext } from './StoryContext'
+import evaluateLogic from './logicParser'
+import logics from './logics' // TODO: import on-demand
+import { STORY_STORAGE_PREFIX, getBaseId, getPartId } from './utils'
+import tryJSONParse from '#utils/tryJsonParse'
+import { Button } from '@mantine/core'
+import Link from 'next/link'
 
 export function displayLine(
     line: MergedLine,
-    backgroundGroup: Record<string, string>
+    backgroundGroup: Record<string, string>,
+    index: string,
 ): JSX.Element {
     switch (line._t) {
         case 'BackgroundSetting': {
@@ -53,7 +61,13 @@ export function displayLine(
                 </Box>
             )
         case 'XBranch':
-            return <CompXBranch l={line} backgroundGroup={backgroundGroup} />
+            return (
+                <CompXBranch
+                    l={line}
+                    index={index}
+                    backgroundGroup={backgroundGroup}
+                />
+            )
         // Fallback
         case 'Message':
             return (
@@ -72,7 +86,13 @@ export function displayLine(
     }
 }
 
-const StoryReplayView = ({ lines }: { lines: Line[] }) => {
+const StoryReplayView = ({
+    lines,
+    storyId,
+}: {
+    lines: Line[]
+    storyId: string
+}) => {
     const $t = useTranslations('storyreplay')
 
     const title =
@@ -90,21 +110,58 @@ const StoryReplayView = ({ lines }: { lines: Line[] }) => {
         () =>
             collapseLines(
                 lines.filter(
-                    (x) => !['BackgroundGroup', 'Title'].includes(x._t)
+                    (x) => !['BackgroundGroup', 'Title'].includes(x._t),
                 ),
-                title
+                title,
             ),
-        [lines, title]
+        [lines, title],
+    )
+
+    const baseId = getBaseId(storyId)
+    const partId = getPartId(storyId)
+    const [koiState, setKoiState] = useState<Record<string, number>>(
+        (tryJSONParse(
+            window?.localStorage?.getItem(STORY_STORAGE_PREFIX + baseId),
+        ) ?? {}) as Record<string, number>,
+    )
+    const nextPart = useMemo(
+        () =>
+            // @ts-expect-error Normal tests
+            logics?.[baseId]?.[partId] &&
+            evaluateLogic(
+                // @ts-expect-error Normal tests
+                logics?.[baseId]?.[partId],
+                koiState,
+            ),
+        [koiState, baseId, partId],
+    )
+
+    const storyContext = useMemo(
+        () => new StoryStateStorageContext(storyId, setKoiState),
+        [storyId],
     )
 
     return (
         <div>
-            <h3>{title}</h3>
-            {mergedLines.map((line, key) => (
-                <Fragment key={key}>
-                    {displayLine(line, backgroundGroup)}
-                </Fragment>
-            ))}
+            <StoryContext.Provider value={storyContext}>
+                <h3>{title}</h3>
+                {mergedLines.map((line, key) => (
+                    <Fragment key={key}>
+                        {displayLine(line, backgroundGroup, String(key))}
+                    </Fragment>
+                ))}
+                {nextPart === null ? (
+                    <div className="text-center">{$t('(End)')}</div>
+                ) : nextPart !== undefined ? (
+                    <div className="text-center">
+                        <Link href={`/story/${baseId}-${nextPart}`}>
+                            <Button>{$t('Next chapter')}</Button>
+                        </Link>
+                    </div>
+                ) : (
+                    <></>
+                )}
+            </StoryContext.Provider>
         </div>
     )
 }

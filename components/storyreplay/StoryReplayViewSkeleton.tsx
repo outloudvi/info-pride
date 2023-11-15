@@ -12,9 +12,11 @@ import Paths from '#utils/paths'
 const StoryReplayViewSkeleton = ({
     id,
     index,
+    storyId,
 }: {
     id: string
     index: number
+    storyId: string
 }) => {
     const $t = useTranslations('storyreplay')
 
@@ -22,13 +24,14 @@ const StoryReplayViewSkeleton = ({
         queryKey: id,
         queryFn: ({ queryKey: [path] }) =>
             fetch(Paths.advJson(path as string)).then((x) =>
-                x.status === 200 ? x.json() : undefined
+                x.status === 200 ? x.json() : undefined,
             ),
     })
 
     return StoryLines ? (
         <StoryReplayView
             lines={StoryLines.l.filter((x) => x._t !== 'Unknown')}
+            storyId={storyId}
         />
     ) : (
         <>

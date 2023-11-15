@@ -44,6 +44,7 @@ const StoryReplayPage = ({
                                 ) : (
                                     <StoryReplayViewSkeleton
                                         id={advAssetId}
+                                        storyId={StoryData.id}
                                         index={index}
                                     />
                                 )}
@@ -51,7 +52,11 @@ const StoryReplayPage = ({
                         ))}
                     </>
                 ) : (
-                    <StoryReplayViewSkeleton id={items[0]} index={0} />
+                    <StoryReplayViewSkeleton
+                        id={items[0]}
+                        storyId={StoryData.id}
+                        index={0}
+                    />
                 )}
             </div>
         </>

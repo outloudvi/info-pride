@@ -1,24 +1,36 @@
 import { useTranslations } from 'next-intl'
 import { Button } from '@mantine/core'
-import { useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 
 import type { XBranch } from '../types'
 import { displayLine } from '../StoryReplayView'
 import Box from '../Box'
+import StoryContext from '../StoryContext'
 
 const CompXBranch = ({
     l,
     backgroundGroup,
+    index,
 }: {
     l: XBranch
     backgroundGroup: Record<string, string>
+    index: string
 }) => {
     const $t = useTranslations('storyreplay')
     const [sel, setSel] = useState(0)
+    const storyContext = useContext(StoryContext)
+
+    useEffect(() => {
+        const currSelection = storyContext.get(index)
+        if (currSelection !== null) {
+            setSel(currSelection)
+        }
+    }, [storyContext, index])
 
     return (
         <>
             <Box>
+                <span className="text-gray-300 float-right">#{index}</span>
                 <div className="uppercase text-gray-300 text-sm mb-2">
                     {l.isChoice ? $t('ChoiceGroup') : $t('BranchGroup')}
                 </div>
@@ -29,6 +41,7 @@ const CompXBranch = ({
                             color={sel === key ? 'green' : 'blue'}
                             onClick={() => {
                                 setSel(key)
+                                storyContext.set(index, key)
                             }}
                         >
                             {choice.choiceText ?? key + 1}
@@ -42,7 +55,7 @@ const CompXBranch = ({
                         key={key}
                         className="my-1 p-2 text-white bg-[#4c4c4c] rounded"
                     >
-                        {displayLine(line, backgroundGroup)}
+                        {displayLine(line, backgroundGroup, `${index}.${key}`)}
                     </div>
                 ))}
             </div>
