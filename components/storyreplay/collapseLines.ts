@@ -8,10 +8,10 @@ import mergeChoices from './mergeChoices'
 
 export default function collapseLines(
     lines: Line[],
-    title: string
+    title: string,
 ): MergedLine[] {
     // 1. Merge choices and branches
-    const ret = mergeChoices(lines)
+    const [ret] = mergeChoices(lines)
 
     // 2. Merge messages and voices
     const ret2 = mergeMWV(ret, title).sort((a, b) => {

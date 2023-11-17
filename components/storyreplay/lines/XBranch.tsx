@@ -1,6 +1,6 @@
 import { useTranslations } from 'next-intl'
 import { Button } from '@mantine/core'
-import { useContext, useEffect, useState } from 'react'
+import { Fragment, useContext, useEffect, useState } from 'react'
 
 import type { XBranch } from '../types'
 import { displayLine } from '../StoryReplayView'
@@ -49,14 +49,15 @@ const CompXBranch = ({
                     ))}
                 </div>
             </Box>
-            <div className="border-pink-400 border-0 border-l-4 border-solid pl-2">
+            <div
+                className={`${
+                    index.includes('.') ? 'border-pink-600' : 'border-pink-300'
+                } border-0 border-l-4 border-solid pl-2`}
+            >
                 {l.branches[sel].lines.map((line, key) => (
-                    <div
-                        key={key}
-                        className="my-1 p-2 text-white bg-[#4c4c4c] rounded"
-                    >
+                    <Fragment key={key}>
                         {displayLine(line, backgroundGroup, `${index}.${key}`)}
-                    </div>
+                    </Fragment>
                 ))}
             </div>
         </>
