@@ -2,6 +2,7 @@
 const Pages = {
     Stories: '/stories',
     'Event Stories': '/eventstories',
+    Moshikoi: '/moshikoi',
     Notemaps: '/notemap',
     Characters: '/characters',
     Cards: '/cards',
