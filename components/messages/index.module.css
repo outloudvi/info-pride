@@ -1,0 +1,17 @@
+.board {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)),
+        url('https://idoly-assets.outv.im/sprite/ip_bg.png');
+    background-size: '122px 177px';
+    animation-name: 'bg-anim';
+    animation-duration: '30s';
+    animation-timing-function: 'linear';
+    animation-iteration-count: 'infinite';
+    @keyframes bg-anim {
+        from {
+            backgroundposition: '0 0';
+        }
+        to {
+            backgroundposition: '244px 354px';
+        }
+    }
+}

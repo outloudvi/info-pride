@@ -1,63 +1,56 @@
 import type { ReactNode } from 'react'
 import { useEffect } from 'react'
-import { AppShell } from '@mantine/core'
-import { atom, useAtom } from 'jotai'
-import { useRouter } from 'next/router'
+import { AppShell, useMantineColorScheme } from '@mantine/core'
+import { useDisclosure } from '@mantine/hooks'
 
 import AppHeader from './AppHeader'
 import AppNavBar from './AppNavBar'
 import Footer from './Footer'
 
-const expandedNavbarAtom = atom(false)
+import startupHook from '#utils/startupHook'
 
 const Layout = ({ children }: { children: ReactNode }) => {
-    const [expandedNavbar, setExpandedNavbar] = useAtom(expandedNavbarAtom)
-    const router = useRouter()
+    const [navbarOpened, { toggle }] = useDisclosure()
 
+    const { setColorScheme } = useMantineColorScheme()
     useEffect(() => {
-        const maybeCollapseNavbar = () => {
-            // sm: The sidebar will go full-screen
-            if (window.innerWidth <= 640) {
-                setExpandedNavbar(false)
-            }
-        }
-        router.events.on('routeChangeComplete', maybeCollapseNavbar)
-        return () => {
-            router.events.off('routeChangeComplete', maybeCollapseNavbar)
-        }
-    }, [router.events, setExpandedNavbar])
+        startupHook(setColorScheme)
+    }, [setColorScheme])
 
     return (
         <>
             <AppShell
-                fixed={false}
-                navbar={<AppNavBar expanded={expandedNavbar} />}
-                header={
-                    <AppHeader
-                        navBarOpened={expandedNavbar}
-                        toggleNavBar={() => {
-                            setExpandedNavbar(!expandedNavbar)
-                        }}
-                    />
-                }
-                classNames={{
-                    main:
-                        (expandedNavbar ? 'hidden sm:block' : '') +
-                        ' overflow-y-auto',
+                header={{ height: 60 }}
+                navbar={{
+                    width: 200,
+                    breakpoint: 'sm',
+                    collapsed: {
+                        desktop: !navbarOpened,
+                        mobile: !navbarOpened,
+                    },
                 }}
-                sx={(theme) => ({
+                padding="md"
+                style={{
                     main: {
-                        backgroundColor:
-                            theme.colorScheme === 'dark'
-                                ? theme.colors.dark[8]
-                                : theme.colors.gray[0],
+                        backgroundColor: `light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-8))`,
                         maxHeight: 'calc(100vh - 60px)',
                         overflowY: 'scroll',
                     },
-                })}
+                }}
             >
-                {children}
-                <Footer />
+                <AppShell.Header>
+                    <AppHeader
+                        navBarOpened={navbarOpened}
+                        toggleNavBar={toggle}
+                    />
+                </AppShell.Header>
+                <AppShell.Navbar>
+                    <AppNavBar />
+                </AppShell.Navbar>
+                <AppShell.Main>
+                    {children}
+                    <Footer />
+                </AppShell.Main>
             </AppShell>
         </>
     )

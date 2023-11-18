@@ -1,6 +1,5 @@
-import { setCookie } from 'cookies-next'
-
-import { USER_PREF_COOKIE_MAXAGE } from './constants'
+import { getCookie } from 'cookies-next'
+import type { MantineColorScheme } from '@mantine/core'
 
 export const LOCALSTORAGE_BOX_TAG = 'localBox'
 
@@ -46,23 +45,21 @@ function h_99_update_localbox() {
     }
 }
 
-function h_99_migrate_colorScheme_to_cookie() {
-    const colorScheme = localStorage.getItem('mantine-color-scheme')
-    if (colorScheme === null) return
-    setCookie(
-        'mantine-color-scheme',
-        colorScheme.includes('dark') ? 'dark' : 'light',
-        {
-            maxAge: USER_PREF_COOKIE_MAXAGE,
-        },
-    )
-    localStorage.removeItem('mantine-color-scheme')
+function h_99_migrate_colorScheme_to_mantine(
+    setMantineColorScheme: (s: MantineColorScheme) => void,
+) {
+    const colorScheme = getCookie('mantine-color-scheme')
+    if (colorScheme === 'light' || colorScheme === 'dark') {
+        setMantineColorScheme(colorScheme)
+    }
 }
 
-async function startupHook() {
+async function startupHook(
+    setMantineColorScheme: (s: MantineColorScheme) => void,
+) {
     // Migrate localbox to latest version
     h_99_update_localbox()
-    // Migrate colorScheme settings from localStorage to cookie
-    h_99_migrate_colorScheme_to_cookie()
+    // Migrate colorScheme settings from cookie to MantineProvider
+    h_99_migrate_colorScheme_to_mantine(setMantineColorScheme)
 }
 export default startupHook

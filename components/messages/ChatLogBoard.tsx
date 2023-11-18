@@ -5,7 +5,7 @@ import { Box } from '@mantine/core'
 import MessageItem from './MessageItem'
 import renderMessage from './renderMessage'
 import buildMessageTree from './buildMessageTree'
-import messageViewStyle from './messageViewStyle'
+import styles from './index.module.css'
 
 import type { APIResponseOf } from '#utils/api'
 
@@ -20,16 +20,15 @@ const ChatLogBoard = ({
 
     const { msgs, branchSrc } = useMemo(
         () => buildMessageTree(details),
-        [details]
+        [details],
     )
 
     return (
         <Box
-            className="overflow-y-auto"
-            sx={() => ({
+            className={`overflow-y-auto ${styles.board}`}
+            style={{
                 height: 'calc(100% - 4rem)',
-                ...messageViewStyle,
-            })}
+            }}
         >
             {msgs.map((line, key) => (
                 <MessageItem

@@ -64,6 +64,8 @@
         "nextjs-progressbar": "^0.0.16",
         "pixi.js": "^7.3.2",
         "postcss": "^8.4.31",
+        "postcss-preset-mantine": "^1.11.0",
+        "postcss-simple-vars": "^7.0.1",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
         "react-query": "^3.39.3",

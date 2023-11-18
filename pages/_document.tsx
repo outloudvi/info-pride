@@ -2,6 +2,7 @@ import { createHash } from 'node:crypto'
 
 import { createGetInitialProps } from '@mantine/next'
 import Document, { Head, Html, Main, NextScript } from 'next/document'
+import { ColorSchemeScript } from '@mantine/core'
 
 const getInitialProps = createGetInitialProps()
 
@@ -112,6 +113,7 @@ export default class _Document extends Document {
                     />
                     <meta name="application-name" content="Info Pride" />
                     <meta name="msapplication-TileColor" content="#2b5797" />
+                    <ColorSchemeScript defaultColorScheme="auto" />
                 </Head>
                 <body>
                     <Main />

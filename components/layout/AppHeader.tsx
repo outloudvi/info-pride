@@ -1,6 +1,6 @@
 import * as React from 'react'
 import Link from 'next/link'
-import { Burger, Button, Header, useMantineColorScheme } from '@mantine/core'
+import { Burger, Button, useMantineColorScheme } from '@mantine/core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons'
 import { useCallback, useEffect } from 'react'
@@ -37,7 +37,7 @@ const AppHeader = ({
 
     const title = navBarOpened ? 'Collapse navigation' : 'Expand navigation'
     return (
-        <Header height={60} p="xs" className="flex items-center">
+        <div className="flex p-3 items-center">
             <Burger
                 opened={navBarOpened}
                 onClick={toggleNavBar}
@@ -59,7 +59,7 @@ const AppHeader = ({
                 />{' '}
                 {$t('Switch theme')}
             </Button>
-        </Header>
+        </div>
     )
 }
 
