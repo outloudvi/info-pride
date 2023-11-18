@@ -25,7 +25,7 @@ const MainPageSiteData: Record<
     '231114': {
         title: 'もしも幼なじみと恋をしたら',
         characterId: 'char-ngs',
-        startStory: 'st-love-23-0514-001',
+        startStory: 'st-love-23-1114-001',
         img: 'img_photo_full_photo-love-23-1114-01',
     },
 }
