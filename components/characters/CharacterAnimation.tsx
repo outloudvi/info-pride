@@ -1,5 +1,3 @@
-import { Global } from '@mantine/core'
-
 import type { CharacterId } from '#data/vendor/characterId'
 import Paths from '#utils/paths'
 import { getMoveStyle, SizeStyle } from '#data/vendor/characterAnimation'
@@ -8,19 +6,6 @@ const CharacterAnimation = ({ charId }: { charId: CharacterId }) => {
     const moveStyle = getMoveStyle(charId)
     return (
         <>
-            <Global
-                styles={() => ({
-                    '@keyframes char-anim': {
-                        from: {
-                            backgroundPositionX: '0%',
-                        },
-                        to: {
-                            backgroundPositionX: '100%',
-                        },
-                    },
-                })}
-            />
-
             <div
                 style={{
                     // Animation
@@ -30,7 +15,7 @@ const CharacterAnimation = ({ charId }: { charId: CharacterId }) => {
                     animationIterationCount: 'infinite',
                     // Background
                     backgroundImage: `url(${Paths.s3(
-                        `sprite-idol/${charId}.png`
+                        `sprite-idol/${charId}.png`,
                     )})`,
                     backgroundSize: 'cover',
                     // Size

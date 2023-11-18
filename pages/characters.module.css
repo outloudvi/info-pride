@@ -1,0 +1,5 @@
+.smHeightSet {
+    @media screen and (max-width: 40rem) {
+        height: 300px !important;
+    }
+}

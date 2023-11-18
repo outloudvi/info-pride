@@ -6,3 +6,13 @@ a.nostyle {
     color: light-dark(black, #c1c2c5);
     text-decoration: none;
 }
+
+/* for CharacterAnimation.tsx  */
+@keyframes char-anim {
+    from {
+        background-position-x: 0%;
+    }
+    to {
+        background-position-x: 100%;
+    }
+}

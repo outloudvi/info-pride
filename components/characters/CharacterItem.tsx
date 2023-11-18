@@ -3,7 +3,6 @@ import {
     Button,
     Grid,
     Group,
-    MediaQuery,
     Skeleton,
     Stack,
     Table,
@@ -15,6 +14,7 @@ import { HometownIntroductionPageUrl } from './const'
 import SquareColor from './SquareColor'
 import CharacterAnimation from './CharacterAnimation'
 import InGameVoice from './InGameVoice'
+import styles from './index.module.css'
 
 import useApi from '#utils/useApi'
 import type { APIResponseOf, UnArray } from '#utils/api'
@@ -122,20 +122,20 @@ const CharacterItem = ({
                 </span>
                 {/* Hidden for en */}
                 {locale !== 'en' && (
-                    <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
-                        <div className="uppercase text-3xl mt-1 text-gray-600 right-1 top-0 absolute">
-                            {enName}
-                        </div>
-                    </MediaQuery>
+                    <div
+                        className={`uppercase text-3xl mt-1 text-gray-600 right-1 top-0 absolute ${styles.smHidden}`}
+                    >
+                        {enName}
+                    </div>
                 )}
             </div>
             {/* Hidden for en */}
             {locale !== 'en' && (
-                <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
-                    <div className="uppercase text-2xl mt-1 text-gray-500">
-                        {enName}
-                    </div>
-                </MediaQuery>
+                <div
+                    className={`uppercase text-2xl mt-1 text-gray-500 ${styles.nonsmHidden}`}
+                >
+                    {enName}
+                </div>
             )}
             {catchphrase !== 'ー' && (
                 <Blockquote
@@ -155,28 +155,30 @@ const CharacterItem = ({
                     {CharacterData && (
                         <div>
                             <Table className="max-w-xl text-center mx-auto">
-                                <tbody>
+                                <Table.Tbody>
                                     {tableItem.map(([label, value], key) => (
-                                        <tr
+                                        <Table.Tr
                                             key={key}
                                             className="border-0 border-solid border-b- border-b-gray-400 even:bg-gray-100 dark:even:bg-gray-800"
                                         >
-                                            <td className="py-1  w-1/4">
+                                            <Table.Td className="py-1  w-1/4">
                                                 {label}
-                                            </td>
-                                            <td className="py-1">{value}</td>
-                                        </tr>
+                                            </Table.Td>
+                                            <Table.Td className="py-1">
+                                                {value}
+                                            </Table.Td>
+                                        </Table.Tr>
                                     ))}
-                                    <tr>
-                                        <td>{$t('Theme color')}</td>
-                                        <td>
+                                    <Table.Tr>
+                                        <Table.Td>{$t('Theme color')}</Table.Td>
+                                        <Table.Td>
                                             <SquareColor color={color} />{' '}
                                             {toHashColor(color)}
-                                        </td>
-                                    </tr>
-                                </tbody>
+                                        </Table.Td>
+                                    </Table.Tr>
+                                </Table.Tbody>
                             </Table>
-                            <Group position="center" className="mt-4">
+                            <Group justify="center" className="mt-4">
                                 {/* Chinese only */}
                                 {locale === 'zh-Hans' && (
                                     <a href={Paths.mgw($vc(id))}>
@@ -202,12 +204,14 @@ const CharacterItem = ({
                     )}
                 </Grid.Col>
                 <Grid.Col
-                    xs={12}
-                    lg={4}
+                    span={{
+                        base: 12,
+                        lg: 4,
+                    }}
                     className="flex items-center justify-center"
                 >
                     <Stack align="center">
-                        <Group spacing="xl" className="justify-center">
+                        <Group justify="center" gap="xl">
                             <AssetImage
                                 name={`img_chr_icon_${shortId}`}
                                 alt={$t('Avatar')}

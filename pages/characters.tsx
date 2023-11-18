@@ -1,10 +1,11 @@
-import { Button, Divider, Grid, MediaQuery, ScrollArea } from '@mantine/core'
+import { Button, Divider, Grid, NavLink, ScrollArea } from '@mantine/core'
 import { useState } from 'react'
 import { useTranslations } from 'next-intl'
 
+import styles from './characters.module.css'
+
 import useApi from '#utils/useApi'
 import type { APIResponseOf } from '#utils/api'
-import ListButton from '#components/ListButton'
 import allFinished from '#utils/allFinished'
 import PageLoading from '#components/PageLoading'
 import Title from '#components/Title'
@@ -29,35 +30,27 @@ const CharactersPage = ({
         <>
             <Grid gutter={20} className="my-3">
                 <Grid.Col span={{ base: 12, lg: 4 }}>
-                    <MediaQuery
-                        smallerThan="sm"
-                        styles={{
-                            height: '300px !important',
-                        }}
+                    <ScrollArea
+                        style={{ height: 'min(1200px, 70vh)' }}
+                        className={styles.smHeightSet}
                     >
-                        <ScrollArea style={{ height: 'min(1200px, 70vh)' }}>
-                            {supportedCharacters
-                                .sort((a, b) => a.order - b.order)
-                                .map((item, key) => (
-                                    <ListButton
-                                        key={key}
-                                        selected={chrOrderId === key}
-                                        onClick={() => {
-                                            setChrOrderId(key)
-                                        }}
-                                    >
-                                        <div className="text-base">
-                                            <span lang="zh-CN">
-                                                <SquareColor
-                                                    color={item.color}
-                                                />{' '}
-                                                {$vc(item.id)}
-                                            </span>
-                                        </div>
-                                    </ListButton>
-                                ))}
-                        </ScrollArea>
-                    </MediaQuery>
+                        {supportedCharacters
+                            .sort((a, b) => a.order - b.order)
+                            .map((item, key) => (
+                                <NavLink
+                                    key={key}
+                                    active={chrOrderId === key}
+                                    variant="light"
+                                    onClick={() => {
+                                        setChrOrderId(key)
+                                    }}
+                                    leftSection={
+                                        <SquareColor color={item.color} />
+                                    }
+                                    label={$vc(item.id)}
+                                />
+                            ))}
+                    </ScrollArea>
                 </Grid.Col>
                 <Grid.Col span={{ base: 12, lg: 8 }}>
                     {supportedCharacters[chrOrderId] && (
