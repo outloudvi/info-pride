@@ -1,5 +1,5 @@
 import { useTranslations } from 'next-intl'
-import { Group } from '@mantine/core'
+import { Grid } from '@mantine/core'
 import Link from 'next/link'
 
 import getI18nProps from '#utils/getI18nProps'
@@ -38,35 +38,36 @@ const Moshikoi = () => {
         <>
             <Title title={$t('Moshikoi')} />
             <p>{$t('description')}</p>
-            <Group>
+            <Grid>
                 {Object.entries(MainPageSiteData).map(
                     ([key, { title, characterId, startStory, img }]) => (
-                        <Link
-                            href={`/story/${startStory}`}
-                            key={key}
-                            tabIndex={0}
-                        >
-                            <div
-                                className="relative rounded-md"
-                                style={{
-                                    aspectRatio: '16 / 9',
-                                    width: 'max(32vw, 400px)',
-                                    backgroundImage: `url(${Paths.assetsImg(
-                                        img,
-                                    )})`,
-                                    backgroundSize: '100% 100%',
-                                }}
+                        <Grid.Col span={12} md={6} lg={4} xl={3} key={key}>
+                            <Link
+                                href={`/story/${startStory}`}
+                                tabIndex={0}
+                                className="w-full md:w-[370px]"
                             >
-                                <div className="absolute left-0 right-0 bottom-0 bg-[#eeec] p-2 text-neutral-800">
-                                    <b className="text-lg">{title}</b>
-                                    <br />
-                                    {$vc(characterId)}
+                                <div
+                                    className="relative rounded-md"
+                                    style={{
+                                        aspectRatio: '16 / 9',
+                                        backgroundImage: `url(${Paths.assetsImg(
+                                            img,
+                                        )})`,
+                                        backgroundSize: '100% 100%',
+                                    }}
+                                >
+                                    <div className="absolute left-0 right-0 bottom-0 bg-[#eeec] p-2 text-neutral-800">
+                                        <b className="text-lg">{title}</b>
+                                        <br />
+                                        {$vc(characterId)}
+                                    </div>
                                 </div>
-                            </div>
-                        </Link>
+                            </Link>
+                        </Grid.Col>
                     ),
                 )}
-            </Group>
+            </Grid>
         </>
     )
 }
