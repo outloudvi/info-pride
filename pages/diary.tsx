@@ -127,7 +127,7 @@ const DiaryPage = () => {
             <Title title={$t('mana_diary')} />
             <Alert color="pink">{$t('mana_diary_not_updating')}</Alert>
             <Grid gutter={20} className="my-3">
-                <Grid.Col xs={12} lg={8}>
+                <Grid.Col span={{ base: 12, lg: 8 }}>
                     <div>
                         <p>
                             {`${$t('included_diary_dates')} ${$t(
@@ -190,7 +190,7 @@ const DiaryPage = () => {
                         </div>
                     </div>
                 </Grid.Col>
-                <Grid.Col xs={12} lg={4}>
+                <Grid.Col span={{ base: 12, lg: 4 }}>
                     {isValid ? (
                         <AssetImage
                             name={`img_ui_diary_${toShortDate(currDate)}`}

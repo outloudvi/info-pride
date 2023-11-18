@@ -88,7 +88,10 @@ const AboutPage = () => {
                     <p>{$t('Contributors:')}</p>
                     <Grid>
                         {contribs.map((one, idx) => (
-                            <Grid.Col xs={12} md={6} lg={4} key={idx}>
+                            <Grid.Col
+                                span={{ base: 12, md: 6, lg: 4 }}
+                                key={idx}
+                            >
                                 <ContributorBox contrib={one} />
                             </Grid.Col>
                         ))}

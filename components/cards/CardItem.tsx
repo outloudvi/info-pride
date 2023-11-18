@@ -76,7 +76,7 @@ const CardItem = ({
         },
         {
             enabled: liveAbilityId !== '',
-        }
+        },
     )
 
     const { data: YellActivityData } = useApi(
@@ -86,7 +86,7 @@ const CardItem = ({
         },
         {
             enabled: activityAbilityId !== '',
-        }
+        },
     )
 
     const { data: CardAliasData } = useFrontendApi('cardAliases', {
@@ -139,7 +139,7 @@ const CardItem = ({
     }
 
     const cardCcidInfo = CCIDTable?.[card.characterId as CharacterId]?.find(
-        (x) => x.cardId === card.id
+        (x) => x.cardId === card.id,
     )
     const levelDisplay =
         level <= MAX_LEVEL_BEFORE_POTENTIAL ? (
@@ -176,7 +176,7 @@ const CardItem = ({
                 )}
             </div>
             <Grid gutter={20}>
-                <Grid.Col xs={12} lg={6}>
+                <Grid.Col span={{ base: 12, lg: 6 }}>
                     <div
                         className="text-gray-600 dark:text-gray-400"
                         dangerouslySetInnerHTML={{
@@ -264,7 +264,7 @@ const CardItem = ({
                     )}
                     <br />
                 </Grid.Col>
-                <Grid.Col xs={12} lg={6}>
+                <Grid.Col span={{ base: 12, lg: 6 }}>
                     <h3>{$t('Images')}</h3>
                     <CardAsset
                         cardAssetId={card.assetId}
@@ -292,7 +292,7 @@ const CardItem = ({
                             href={Paths.wiki(
                                 `${$vc(card.characterId)}/卡牌/${
                                     cardCcidInfo.ccid
-                                }`
+                                }`,
                             )}
                             target="_blank"
                             rel="noopener"

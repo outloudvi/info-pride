@@ -40,7 +40,7 @@ const NotemapPage = ({
 
     return (
         <Grid gutter={20} className="my-3">
-            <Grid.Col xs={12} lg={6}>
+            <Grid.Col span={{ base: 12, lg: 6 }}>
                 <div>
                     <NativeSelect
                         label={$t('Song')}
@@ -71,7 +71,7 @@ const NotemapPage = ({
                     />
                 </div>
                 <Grid>
-                    <Grid.Col xs={12} lg={4}>
+                    <Grid.Col span={{ base: 12, lg: 4 }}>
                         <div className="m-2">
                             <AssetImage
                                 name={`img_music_jacket_${song.assetId}`}
@@ -80,7 +80,7 @@ const NotemapPage = ({
                             />
                         </div>
                     </Grid.Col>
-                    <Grid.Col xs={12} lg={8}>
+                    <Grid.Col span={{ base: 12, lg: 8 }}>
                         {chartId !== null && (
                             <div className="mt-4">
                                 <TrackColorSelect
@@ -92,7 +92,7 @@ const NotemapPage = ({
                     </Grid.Col>
                 </Grid>
             </Grid.Col>
-            <Grid.Col xs={12} lg={6}>
+            <Grid.Col span={{ base: 12, lg: 6 }}>
                 {chartId !== null && (
                     <NotemapView chartId={chartId} laneColors={laneColors} />
                 )}

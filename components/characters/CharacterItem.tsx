@@ -151,7 +151,7 @@ const CharacterItem = ({
             )}
             <p>{ProfileData?.profile ?? profile}</p>
             <Grid>
-                <Grid.Col xs={12} lg={8}>
+                <Grid.Col span={{ base: 12, lg: 8 }}>
                     {CharacterData && (
                         <div>
                             <Table className="max-w-xl text-center mx-auto">

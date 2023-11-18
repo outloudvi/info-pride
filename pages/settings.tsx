@@ -67,7 +67,11 @@ const SettingsPage = () => {
 
             <Grid gutter={20} className="mb-2">
                 {CharacterIds.map((chrId, _key) => (
-                    <Grid.Col key={_key} xs={12} lg={3} className="rounded">
+                    <Grid.Col
+                        key={_key}
+                        span={{ base: 12, lg: 3 }}
+                        className="rounded"
+                    >
                         <b>{$vc(chrId)}</b>
                         {CCIDTableWithName[chrId].map((card) => (
                             <Checkbox

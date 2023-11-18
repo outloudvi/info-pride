@@ -40,7 +40,7 @@ const StoriesPage = ({
         <>
             <Title title={$t('Stories')} />
             <Grid gutter={20} className="my-3">
-                <Grid.Col xs={12} lg={6}>
+                <Grid.Col span={{ base: 12, lg: 6 }}>
                     <Tabs defaultValue="Hoshimi">
                         <Tabs.List>
                             {Series.map((seriesSlug, seriesKey) => (
@@ -126,7 +126,7 @@ const StoriesPage = ({
                         </Tabs.Panel>
                     </Tabs>
                 </Grid.Col>
-                <Grid.Col xs={12} lg={6}>
+                <Grid.Col span={{ base: 12, lg: 6 }}>
                     {curSeries === SPECIAL_SERIES_TAG ? (
                         <SpecialStoriesItem item={special[curChapter]} />
                     ) : (

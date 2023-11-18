@@ -216,7 +216,7 @@ const SpineView = ({ id }: { id: string }) => {
 
     return (
         <Grid>
-            <Grid.Col md={12} lg={8}>
+            <Grid.Col span={{ md: 12, lg: 8 }}>
                 {sklJson ? (
                     <>
                         <NativeSelect
@@ -285,7 +285,7 @@ const SpineView = ({ id }: { id: string }) => {
                     <p>{$c('loading')}</p>
                 )}
             </Grid.Col>
-            <Grid.Col md={12} lg={4}>
+            <Grid.Col span={{ md: 12, lg: 4 }}>
                 <canvas
                     className="mx-auto block"
                     height="400"

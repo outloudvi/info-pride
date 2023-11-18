@@ -76,8 +76,8 @@ const Home = () => {
                 />
             </Flex>
             <Grid className="mt-3">
-                <Grid.Col xs={12} lg={6}>
-                    <Stack spacing={15} justify="center" className="mt-2">
+                <Grid.Col span={{ base: 12, lg: 6 }}>
+                    <Stack gap={15} justify="center" className="mt-2">
                         {MainPageSiteData.map((items, _key) => (
                             <Group key={_key}>
                                 {Object.entries(items).map(
@@ -99,15 +99,15 @@ const Home = () => {
                         ))}
                     </Stack>
                 </Grid.Col>
-                <Grid.Col xs={12} lg={6}>
+                <Grid.Col span={{ base: 12, lg: 6 }}>
                     <CurrentEvents />
                 </Grid.Col>
                 {/* Line 2 */}
-                <Grid.Col xs={12} lg={6}>
+                <Grid.Col span={{ base: 12, lg: 6 }}>
                     <div className="mb-2 text-3xl">{$t('News')}</div>
                     <Notice />
                 </Grid.Col>
-                <Grid.Col xs={12} lg={6}>
+                <Grid.Col span={{ base: 12, lg: 6 }}>
                     <div className="mb-2 text-3xl">{$t('Data revision')}</div>
                     <VersionInfo />
                 </Grid.Col>

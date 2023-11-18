@@ -173,7 +173,7 @@ const UnitsPage = ({
                 })}
             </Alert>
             <Grid gutter={20}>
-                <Grid.Col xs={12} lg={6}>
+                <Grid.Col span={{ base: 12, lg: 6 }}>
                     <div className="mb-2">
                         <NativeSelect
                             label="选择谱面"
@@ -225,7 +225,7 @@ const UnitsPage = ({
                     </div>
                     <Divider className="my-2" />
                 </Grid.Col>
-                <Grid.Col xs={12} lg={6}>
+                <Grid.Col span={{ base: 12, lg: 6 }}>
                     <UnitAnalyzer
                         unitCards={unitCards}
                         musicChart={selectedMusicChart}

@@ -38,7 +38,7 @@ const EventStoriesPage = ({
         <>
             <p>{$t('stories_ordering')}</p>
             <Grid gutter={20} className="my-3">
-                <Grid.Col xs={12} lg={3}>
+                <Grid.Col span={{ base: 12, lg: 3 }}>
                     <div className="h-[65vh] overflow-y-auto">
                         {EventStoriesData.sort((a, b) => b.order - a.order).map(
                             (item, key) => {
@@ -68,7 +68,7 @@ const EventStoriesPage = ({
                         )}
                     </div>
                 </Grid.Col>
-                <Grid.Col xs={12} lg={9}>
+                <Grid.Col span={{ base: 12, lg: 9 }}>
                     {currEvent && <EventStoryView currEvent={currEvent} />}
                 </Grid.Col>
             </Grid>

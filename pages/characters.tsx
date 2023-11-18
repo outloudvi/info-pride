@@ -28,7 +28,7 @@ const CharactersPage = ({
     return (
         <>
             <Grid gutter={20} className="my-3">
-                <Grid.Col xs={12} lg={4}>
+                <Grid.Col span={{ base: 12, lg: 4 }}>
                     <MediaQuery
                         smallerThan="sm"
                         styles={{
@@ -59,7 +59,7 @@ const CharactersPage = ({
                         </ScrollArea>
                     </MediaQuery>
                 </Grid.Col>
-                <Grid.Col xs={12} lg={8}>
+                <Grid.Col span={{ base: 12, lg: 8 }}>
                     {supportedCharacters[chrOrderId] && (
                         <CharacterItem
                             character={supportedCharacters[chrOrderId]}

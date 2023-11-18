@@ -22,7 +22,10 @@ const Moshikoi = () => {
                 {Object.entries(MoshikoiMeta)
                     .reverse()
                     .map(([key, { title, characterId, startStory, img }]) => (
-                        <Grid.Col span={12} md={6} lg={4} xl={3} key={key}>
+                        <Grid.Col
+                            span={{ base: 12, md: 6, lg: 4, xl: 3 }}
+                            key={key}
+                        >
                             <Link
                                 href={`/story/${startStory}`}
                                 tabIndex={0}
