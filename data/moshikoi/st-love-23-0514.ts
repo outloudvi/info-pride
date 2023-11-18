@@ -1,4 +1,4 @@
-import type { Logic } from '../logicParser'
+import type { Logic } from '#components/storyreplay/logicParser'
 
 // https://miro.com/app/board/uXjVMJZKz94=/
 const rules: Record<string, [Logic, string | null][]> = {

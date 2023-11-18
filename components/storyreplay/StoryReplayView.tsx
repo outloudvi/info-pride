@@ -17,7 +17,7 @@ import CompXBranch from './lines/XBranch'
 import Box from './Box'
 import StoryContext, { StoryStateStorageContext } from './StoryContext'
 import evaluateLogic from './logicParser'
-import logics from './logics' // TODO: import on-demand
+import logics from '#data/moshikoi' // TODO: import on-demand
 import { STORY_STORAGE_PREFIX, getBaseId, getPartId } from './utils'
 
 import tryJSONParse from '#utils/tryJsonParse'
