@@ -36,7 +36,10 @@ const Moshikoi = () => {
 
     return (
         <>
-            <Title title={$t('Moshikoi')} />
+            <Title title={$t('Moshikoi')} noh2 />
+            <h2>
+                {$t('Moshikoi')} (<span lang="ja">もし恋</span>)
+            </h2>
             <p>{$t('description')}</p>
             <Grid>
                 {Object.entries(MainPageSiteData).map(
