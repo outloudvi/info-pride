@@ -430,6 +430,21 @@ const dataSuzu: StoriesData = {
             video: { type: 'bilibili', vid: 'av874753985' },
         },
     },
+    'card-suz-05-pair-00': {
+        // ごきげんワンぱくガール
+        1: {
+            name: 'TODO',
+            video: { type: 'bilibili', vid: 'av918192329' },
+        },
+        2: {
+            name: 'TODO',
+            video: { type: 'bilibili', vid: 'av323297941' },
+        },
+        3: {
+            name: 'TODO',
+            video: { type: 'bilibili', vid: 'av875875995' },
+        },
+    }
 }
 
 // 早坂芽衣
