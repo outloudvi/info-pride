@@ -4,31 +4,8 @@ import Link from 'next/link'
 
 import getI18nProps from '#utils/getI18nProps'
 import Title from '#components/Title'
-import type { CharacterId } from '#data/vendor/characterId'
 import Paths from '#utils/paths'
-
-const MainPageSiteData: Record<
-    string,
-    {
-        title: string
-        characterId: CharacterId
-        startStory: string
-        img: string
-    }
-> = {
-    '230514': {
-        title: 'もしも君の手に触れたら',
-        characterId: 'char-rei',
-        startStory: 'st-love-23-0514-001',
-        img: 'img_photo_full_photo-love-23-0514-01',
-    },
-    '231114': {
-        title: 'もしも幼なじみと恋をしたら',
-        characterId: 'char-ngs',
-        startStory: 'st-love-23-1114-001',
-        img: 'img_photo_full_photo-love-23-1114-01',
-    },
-}
+import MoshikoiMeta from '#data/moshikoi/meta'
 
 const Moshikoi = () => {
     const $t = useTranslations('moshikoi')
@@ -42,8 +19,9 @@ const Moshikoi = () => {
             </h2>
             <p>{$t('description')}</p>
             <Grid>
-                {Object.entries(MainPageSiteData).map(
-                    ([key, { title, characterId, startStory, img }]) => (
+                {Object.entries(MoshikoiMeta)
+                    .reverse()
+                    .map(([key, { title, characterId, startStory, img }]) => (
                         <Grid.Col span={12} md={6} lg={4} xl={3} key={key}>
                             <Link
                                 href={`/story/${startStory}`}
@@ -68,8 +46,7 @@ const Moshikoi = () => {
                                 </div>
                             </Link>
                         </Grid.Col>
-                    ),
-                )}
+                    ))}
             </Grid>
         </>
     )
