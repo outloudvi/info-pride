@@ -75,8 +75,10 @@ const CardWithSkills = ({
             <Grid className="mt-1">
                 {skillData.map((skill, index) => (
                     <Grid.Col
-                        xs={12}
-                        lg={4}
+                        span={{
+                            base: 12,
+                            lg: 4,
+                        }}
                         key={index}
                         className={
                             highlightedSkills.includes(skill.id)

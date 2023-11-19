@@ -184,13 +184,18 @@ const CardsPage = ({
             </div>
             <SimpleGrid
                 className="max-w-7xl mx-auto"
-                cols={4}
                 spacing="lg"
-                breakpoints={[
-                    { maxWidth: 980, cols: 3, spacing: 'md' },
-                    { maxWidth: 755, cols: 2, spacing: 'sm' },
-                    { maxWidth: 600, cols: 1, spacing: 'sm' },
-                ]}
+                cols={{
+                    base: 1,
+                    sm: 2,
+                    md: 3,
+                    lg: 4,
+                }}
+                verticalSpacing={{
+                    base: 'sm',
+                    md: 'md',
+                    lg: 'lg',
+                }}
             >
                 {cards.map((item, key) => (
                     <CardCard key={key} card={item} />

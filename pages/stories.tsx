@@ -102,7 +102,7 @@ const StoriesPage = ({
                                     return (
                                         <Button
                                             variant="subtle"
-                                            compact
+                                            size="compact-sm"
                                             color="blue"
                                             key={key}
                                             onClick={() => {

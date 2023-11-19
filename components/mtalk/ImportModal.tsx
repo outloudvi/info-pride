@@ -71,7 +71,7 @@ const ImportExportModal = ({
         })
         downloadUrl(
             URL.createObjectURL(blob),
-            `MacaronTalk-${(Number(new Date()) / 1000).toFixed(0)}.json`
+            `MacaronTalk-${(Number(new Date()) / 1000).toFixed(0)}.json`,
         )
     }
     const handleImportFile = async () => {
@@ -106,7 +106,7 @@ const ImportExportModal = ({
                 value={text}
                 onChange={(e) => setText(e.currentTarget.value)}
             ></Textarea>
-            <Group className="mt-2" position="center">
+            <Group className="mt-2" justify="center">
                 <Button onClick={() => importFromText(text)}>
                     {$t('Import from text')}
                 </Button>

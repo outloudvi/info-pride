@@ -22,11 +22,11 @@ const MessageBoardView = ({
 }) => {
     const $t = useTranslations('messages')
     const [activeGroup, setActiveGroup] = useState<undefined | string>(
-        undefined
+        undefined,
     )
     const [activeMessageId, setActiveMessageId] = useQueryParam(
         'd',
-        withDefault(StringParam, '')
+        withDefault(StringParam, ''),
     )
     const [mdShowSidebar, setMdShowSidebar] = useState(true)
     const outer = useRef<HTMLDivElement | null>(null)
@@ -48,8 +48,10 @@ const MessageBoardView = ({
         <div ref={outer}>
             <Grid className="h-full bg-[#4c4c4c] m-0">
                 <Grid.Col
-                    xs={12}
-                    lg={3}
+                    span={{
+                        base: 12,
+                        lg: 3,
+                    }}
                     className={`p-0 h-full overflow-y-auto ${
                         mdShowSidebar ? '' : 'hidden lg:block'
                     }`}
@@ -72,8 +74,10 @@ const MessageBoardView = ({
                     ))}
                 </Grid.Col>
                 <Grid.Col
-                    xs={12}
-                    lg={9}
+                    span={{
+                        base: 12,
+                        lg: 9,
+                    }}
                     className={`p-0 h-full ${
                         mdShowSidebar ? 'hidden lg:block' : ''
                     }`}

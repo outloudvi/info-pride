@@ -34,7 +34,7 @@ const SeasonChapterList = ({
                 return (
                     <Button
                         variant="subtle"
-                        compact
+                        size="compact-sm"
                         color={completion[chapter - 1] ? 'blue' : 'teal'}
                         key={chapter}
                         onClick={() => {

@@ -32,7 +32,7 @@ const EmblemsPage = () => {
                     displayAs={(x) => $t(`type_${x}`)}
                     width={300}
                     formProps={{
-                        onChange: (x: string) => setEmblemType(x),
+                        onChange: (x: string | null) => setEmblemType(x),
                         value: emblemType,
                     }}
                     maxDropdownHeight={400}
@@ -40,13 +40,17 @@ const EmblemsPage = () => {
             </div>
             <SimpleGrid
                 className="max-w-7xl mx-auto"
-                cols={4}
-                spacing="lg"
-                breakpoints={[
-                    { maxWidth: 980, cols: 3, spacing: 'md' },
-                    { maxWidth: 755, cols: 2, spacing: 'sm' },
-                    { maxWidth: 600, cols: 1, spacing: 'sm' },
-                ]}
+                cols={{
+                    base: 1,
+                    sm: 2,
+                    md: 3,
+                    lg: 4,
+                }}
+                verticalSpacing={{
+                    base: 'sm',
+                    md: 'md',
+                    lg: 'lg',
+                }}
             >
                 {ApiData ? (
                     ApiData.map((item, key) => <Emblem key={key} item={item} />)

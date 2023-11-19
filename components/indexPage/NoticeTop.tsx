@@ -19,7 +19,7 @@ const NoticeItem = ({
         key: nKey,
         defaultValue: 'false',
         serialize: (v) => v,
-        deserialize: (v) => v,
+        deserialize: (v) => v!,
     })
 
     return hideKey !== 'true' ? (
