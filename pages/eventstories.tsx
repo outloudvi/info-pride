@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Grid } from '@mantine/core'
+import { Grid, NavLink } from '@mantine/core'
 import { useTranslations } from 'next-intl'
 
 import Title from '#components/Title'
@@ -7,7 +7,6 @@ import useApi from '#utils/useApi'
 import allFinished from '#utils/allFinished'
 import PageLoading from '#components/PageLoading'
 import type { APIResponseOf } from '#utils/api'
-import ListButton from '#components/ListButton'
 import EventStoryView from '#components/eventstories/EventStoryView'
 import { addI18nMessages } from '#utils/getI18nProps'
 import { eventGroup } from '#data/videos/eventStories.data'
@@ -53,16 +52,17 @@ const EventStoriesPage = ({
                                     )
                                     .join(', ')
                                 return (
-                                    <ListButton
+                                    <NavLink
                                         key={key}
+                                        active={currEvent?.id === item.id}
+                                        variant="light"
                                         onClick={() => {
                                             setCurrEvent(item)
                                         }}
-                                        selected={currEvent?.id === item.id}
-                                    >
-                                        {$ev(item.description)}{' '}
-                                        {props && `(${props})`}
-                                    </ListButton>
+                                        label={`${$ev(item.description)} ${
+                                            props && `(${props})`
+                                        }`}
+                                    />
                                 )
                             },
                         )}
