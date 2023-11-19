@@ -35,5 +35,7 @@ const rules: Record<string, [Logic, string | null][]> = {
         ],
         [['TRUE'], '008-normal'],
     ],
+    "008-normal": [[["TRUE"], null]],
+    "008-happy": [[["TRUE"], null]],
 }
 export default rules
