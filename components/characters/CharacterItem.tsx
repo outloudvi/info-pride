@@ -139,7 +139,7 @@ const CharacterItem = ({
             )}
             {catchphrase !== 'ー' && (
                 <Blockquote
-                    className="text-gray-700 dark:text-gray-200"
+                    className="text-gray-700 dark:text-gray-200 !mb-2"
                     lang="ja"
                 >
                     <span

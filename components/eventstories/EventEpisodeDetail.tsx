@@ -22,7 +22,7 @@ const EventEpisodeDetail = ({
             id,
             locale,
         },
-        !!locale
+        !!locale,
     )
 
     return (
@@ -37,7 +37,7 @@ const EventEpisodeDetail = ({
             ) : (
                 <h3 lang="ja">{jaName}</h3>
             )}
-            <Blockquote>{description}</Blockquote>
+            <Blockquote className="!mb-2">{description}</Blockquote>
             <Link href={`/story/${id}`} passHref>
                 <Button>{$c('Story replay')}</Button>
             </Link>
