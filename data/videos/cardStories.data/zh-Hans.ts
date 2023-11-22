@@ -444,7 +444,7 @@ const dataSuzu: StoriesData = {
             name: 'TODO',
             video: { type: 'bilibili', vid: 'av875875995' },
         },
-    }
+    },
 }
 
 // 早坂芽衣
@@ -1146,6 +1146,21 @@ const dataRui: StoriesData = {
         },
         phone: {
             video: { type: 'bilibili', vid: 'av736212256' },
+        },
+    },
+    'card-rui-05-birt-00': {
+        // 満喫放課後バースデー
+        1: {
+            name: 'TODO',
+            video: { type: 'bilibili', vid: 'av920147732' },
+        },
+        2: {
+            name: 'TODO',
+            video: { type: 'bilibili', vid: 'av493272439' },
+        },
+        3: {
+            name: 'TODO',
+            video: { type: 'bilibili', vid: 'av918354216' },
         },
     },
 }
