@@ -6,8 +6,8 @@
         "node": ">=18.0.0"
     },
     "scripts": {
-        "dev": "next dev",
-        "build": "next build",
+        "dev": "next dev --turbo",
+        "build": "turbo build lint",
         "start": "next start",
         "format": "prettier --write **/*.ts{,x}",
         "lint": "next lint",
@@ -17,10 +17,8 @@
         "dataset:bv": "scripts/buildAndValidate.sh",
         "dataset:type": "scripts/schemaToType.sh",
         "dataset:ajv": "ajv",
-        "dataset:ts": "node -r esbuild-register",
-        "prepare": "husky install",
-        "t:dev": "turbo dev",
-        "t:build": "turbo build lint"
+        "dataset:ts": "ts-node-esm",
+        "prepare": "husky install"
     },
     "dependencies": {
         "@babel/core": "^7.23.3",
