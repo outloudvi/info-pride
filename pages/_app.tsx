@@ -2,7 +2,7 @@ import type { AppContext, AppProps } from 'next/app'
 import App from 'next/app'
 import Head from 'next/head'
 import type { MantineColorScheme } from '@mantine/core'
-import { AppShell, MantineProvider, createTheme } from '@mantine/core'
+import { MantineProvider } from '@mantine/core'
 import { NextIntlClientProvider } from 'next-intl'
 import '../styles/globals.css' // for Tailwind CSS
 import { useState } from 'react'
@@ -14,29 +14,10 @@ import { useRouter } from 'next/router'
 
 import Layout from '#components/layout/Layout'
 import Paths from '#utils/paths'
+import { theme } from '#components/theme'
 
 import '@mantine/core/styles.css'
 import './global.css'
-
-const theme = createTheme({
-    breakpoints: {
-        sm: '40em',
-        md: '48em',
-        lg: '64em',
-        xl: '80em',
-    },
-    fontFamily:
-        '-apple-system, system-ui, "Segoe UI", "Helvetica Neue", Arial, "Hiragino Sans GB", "PingFang SC", "Heiti SC", "Noto Sans CJK SC", "Source Han Sans SC", "Microsoft YaHei UI", "Microsoft YaHei", sans-serif',
-    components: {
-        AppShell: AppShell.extend({
-            styles: {
-                main: {
-                    backgroundColor: 'light-dark(#f8f9fa, #141517)',
-                },
-            },
-        }),
-    },
-})
 
 const MainApp = (
     props: AppProps<{ _m: Record<string, string> }> & {
@@ -82,7 +63,6 @@ const MainApp = (
                         locale={router.locale}
                         timeZone="Asia/Tokyo"
                         messages={pageProps._m}
-                        getMessageFallback={({ key }) => key}
                     >
                         <Layout>
                             <NextNProgress />
