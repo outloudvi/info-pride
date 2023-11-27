@@ -1,13 +1,12 @@
-import { useTranslations } from 'next-intl'
-import { Grid } from '@mantine/core'
+import { Grid, GridCol } from '@mantine/core'
 import Link from 'next/link'
+import { useTranslations } from 'next-intl'
 
-import getI18nProps from '#utils/getI18nProps'
 import Title from '#components/Title'
 import Paths from '#utils/paths'
 import MoshikoiMeta from '#data/moshikoi/meta'
 
-const Moshikoi = () => {
+const Page = () => {
     const $t = useTranslations('moshikoi')
     const $vc = useTranslations('v-chr')
 
@@ -22,7 +21,7 @@ const Moshikoi = () => {
                 {Object.entries(MoshikoiMeta)
                     .reverse()
                     .map(([key, { title, characterId, startStory, img }]) => (
-                        <Grid.Col
+                        <GridCol
                             span={{ base: 12, md: 6, lg: 4, xl: 3 }}
                             key={key}
                         >
@@ -48,13 +47,11 @@ const Moshikoi = () => {
                                     </div>
                                 </div>
                             </Link>
-                        </Grid.Col>
+                        </GridCol>
                     ))}
             </Grid>
         </>
     )
 }
 
-export const getStaticProps = getI18nProps(['moshikoi', 'v-chr'])
-
-export default Moshikoi
+export default Page

@@ -3,8 +3,8 @@
     "My box": "My box",
     "Save": "Save",
     "Success": "Success",
-    "Your settings have been saved.": "Your settings have been saved.",
     "Browser compatiblity problem": "Browser compatiblity problem",
     "localstorage_unsupported": "The browser doesn't support localStorage. Please update your browser or switch to normal mode to save settings.",
+    "settings_saved": "Your settings have been saved.",
     "mybox_header": "After setting the box, card possession status will be shown while searching."
 }

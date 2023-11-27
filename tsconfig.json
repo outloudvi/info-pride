@@ -20,7 +20,8 @@
             "#data/*": ["data/*"],
             "#components/*": ["components/*"],
             "#utils/*": ["utils/*"],
-            "#api/*": ["pages/api/*"]
+            "#api/*": ["pages/api/*"],
+            "#locales/*": ["locales/*"]
         },
         "plugins": [
             {

@@ -105,7 +105,8 @@
         "#data/*": "data/*.js",
         "#components/*": "components/*.js",
         "#utils/*": "utils/*.js",
-        "#api/*": "pages/api/*.js"
+        "#api/*": "pages/api/*.js",
+        "#locales/*": "locales/*.js"
     },
     "nextBundleAnalysis": {}
 }

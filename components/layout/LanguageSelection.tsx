@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 import { NativeSelect } from '@mantine/core'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/navigation'
 import { setCookie } from 'cookies-next'
 
 import { USER_PREF_COOKIE_MAXAGE } from '#utils/constants'
@@ -20,20 +20,7 @@ const LanguageSelection = ({ className }: { className?: string }) => {
 
     const updateLocale = useCallback(
         (locale: string) => {
-            if (!router.isReady) return
-            const { pathname, asPath, query, locale: routerLocale } = router
-            if (!routerLocale || !locale || routerLocale === locale) return
-            setCookie('NEXT_LOCALE', locale, {
-                maxAge: USER_PREF_COOKIE_MAXAGE,
-            })
-            router.push(
-                {
-                    pathname,
-                    query,
-                },
-                asPath,
-                { locale },
-            )
+            // TODO
         },
         [router],
     )
@@ -41,7 +28,6 @@ const LanguageSelection = ({ className }: { className?: string }) => {
     // At the beginning of page load, update locale to <Select>
     // It also handles <Select> update on locale switch
     useEffect(() => {
-        if (!router.isReady) return
         const routerLocale = router.locale
         if (routerLocale && routerLocale !== _locale) {
             _setLocale(routerLocale)

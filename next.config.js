@@ -3,12 +3,11 @@
 const fs = require('node:fs')
 const cp = require('node:child_process')
 
+const withNextIntl = require('next-intl/plugin')
 const { withSentryConfig } = require('@sentry/nextjs')
 
-const locales = require('./locales/locales.json')
-
 /** @type {import('next').NextConfig} */
-const nextConfig = {
+const nextConfig = withNextIntl('./i18n.ts')({
     reactStrictMode: true,
     async headers() {
         return [
@@ -36,11 +35,7 @@ const nextConfig = {
         domains: ['ac.ip.outv.im', 'idoly-assets.outv.im'],
         unoptimized: true,
     },
-    i18n: {
-        locales,
-        defaultLocale: 'zh-Hans',
-    },
-}
+})
 
 const conf =
     process.env.VERCEL_ENV === 'production'
@@ -70,7 +65,7 @@ const conf =
 
                   // Automatically tree-shake Sentry logger statements to reduce bundle size
                   disableLogger: true,
-              }
+              },
           )
         : nextConfig
 
@@ -79,7 +74,7 @@ const generateGlobalData = () => {
         'data/build.json',
         JSON.stringify({
             rev: cp.execSync('git rev-parse HEAD').toString().trim(),
-        })
+        }),
     )
 
     return true

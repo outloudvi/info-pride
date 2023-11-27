@@ -3,8 +3,8 @@
     "My box": "我的 box",
     "Save": "保存",
     "Success": "成功",
-    "Your settings have been saved.": "你的设置已经保存。",
     "Browser compatiblity problem": "浏览器兼容性问题",
     "localstorage_unsupported": "此浏览器不支持 localStorage。请升级至更新的浏览器或切换至一般模式以保存设置。",
+    "settings_saved": "你的设置已经保存。",
     "mybox_header": "在此设置 box 后，搜索时将会显示卡片的持有状态。"
 }
