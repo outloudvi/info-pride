@@ -12,6 +12,7 @@ import Layout from '#components/layout/Layout'
 import localeData from '#locales/localeData'
 
 import '@mantine/core/styles.css'
+import '../../styles/globals.css'
 
 const DESCRIPTION = 'Informational site for Project IDOLY PRIDE fans.'
 const META_TITLE = `Info Pride - ${DESCRIPTION}`
@@ -70,13 +71,13 @@ export default async function RootLayout({
 }) {
     if (!locales.includes(locale)) notFound()
 
+    // FIXME: only collect needed message types
     const messages = localeData[locale] ?? {}
 
     return (
         <html lang={locale}>
             <head>
-                {/* TODO: fix the title */}
-                <title>{`${locale} | INFO PRIDE`}</title>
+                <title>INFO PRIDE</title>
                 <ColorSchemeScript />
                 <link rel="shortcut icon" href="/favicon.svg" />
                 <meta
