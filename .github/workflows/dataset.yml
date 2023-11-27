@@ -17,18 +17,16 @@ jobs:
         run: |
           sudo apt install -y lua5.4
           sudo npm install -g pnpm
-          pnpm install
+          pnpm install esbuild-register
 
       - name: Build & Validate
         run: |
-          node scripts/to-esm.mjs mjs
           bash scripts/buildAndValidate.sh
           node scripts/updateVendorStrings.mjs
 
       - name: Commit files
         continue-on-error: true
         run: |
-          node scripts/to-esm.mjs cjs
           git config --local user.email "noreply@outv.im"
           git config --local user.name "GitHub Actions"
           git add data/ locales/

@@ -11,10 +11,10 @@ import {
     mapProps,
     readJson,
     sleep,
-} from './utils.js'
-import type { SitePrefConfig } from './utils.js'
+} from './utils'
+import type { SitePrefConfig } from './utils'
 
-import type { CharacterId } from '#data/vendor/characterId.js'
+import type { CharacterId } from '#data/vendor/characterId'
 
 const CharacterChineseNameList: Record<CharacterId, string> = {
     'char-ktn': '长濑琴乃',

@@ -17,7 +17,7 @@
         "dataset:bv": "scripts/buildAndValidate.sh",
         "dataset:type": "scripts/schemaToType.sh",
         "dataset:ajv": "ajv",
-        "dataset:ts": "ts-node-esm",
+        "dataset:ts": "node -r esbuild-register",
         "prepare": "husky install",
         "t:dev": "turbo dev",
         "t:build": "turbo build lint"
