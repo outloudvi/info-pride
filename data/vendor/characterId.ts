@@ -46,6 +46,11 @@ export const CharacterIds = [
 
     // Collab: Hatsune Miku
     'char-mku',
+
+    // Collab: Love Live! Sunshine!!
+    'char-chk',
+    'char-rik',
+    'char-yo',
 ] as const
 
 // Characters listed by Character.json (non-inclusive)
