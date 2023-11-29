@@ -1,4 +1,3 @@
-import type { NextApiRequest, NextApiResponse } from 'next'
 import * as cheerio from 'cheerio'
 
 import type { FrontendAPIResponseMapping } from '#utils/useFrontendApi'
@@ -27,26 +26,17 @@ async function getVersion(): Promise<
     return null
 }
 
-const Version = async (
-    _req: NextApiRequest,
-    res: NextApiResponse<FrontendAPIResponseMapping['version']>,
-) => {
+export async function GET() {
     const ver = await getVersion()
 
     if (!ver) {
-        res.status(404).end()
-        return
+        return new Response(null, { status: 404 })
     }
 
-    // Cache for 1d
-    res.setHeader('Cache-Control', 'max-age=43200')
-    res.status(200).json(ver)
-}
-
-export default Version
-
-export const config = {
-    api: {
-        externalResolver: true,
-    },
+    return Response.json(ver, {
+        headers: {
+            // Cache for 1d
+            'Cache-Control': 'max-age=86400',
+        },
+    })
 }
