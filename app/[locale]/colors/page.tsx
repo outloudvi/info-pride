@@ -1,15 +1,11 @@
-import { useTranslations } from 'next-intl'
+import { getTranslations } from 'next-intl/server'
 
-import styles from '../styles/colors.module.css'
+import styles from '../../../styles/colors.module.css'
 
 import { toHashColor } from '#utils/toHashColor'
-import PageLoading from '#components/PageLoading'
 import type { CharacterId } from '#data/vendor/characterId'
-import allFinished from '#utils/allFinished'
-import type { APIResponseOf } from '#utils/api'
-import useApi from '#utils/useApi'
 import Title from '#components/Title'
-import getI18nProps from '#utils/getI18nProps'
+import { fetchApi } from '#utils/fetchApi'
 
 const ColorOrder: CharacterId[][] = [
     ['char-mna'],
@@ -42,16 +38,14 @@ const ColorBlock = ({ name, color }: { name: string; color: string }) => (
     </div>
 )
 
-const ColorsPage = ({
-    CharacterList,
-}: {
-    CharacterList: APIResponseOf<'Character/List'>
-}) => {
-    const $vc = useTranslations('v-chr')
-    const $t = useTranslations('colors')
+const ColorsPage = async () => {
+    const CharacterList = await fetchApi('Character/List')
+    const $t = await getTranslations('colors')
+    const $vc = await getTranslations('v-chr')
 
     return (
         <>
+            <Title title={$t('Colors')} />
             <p>
                 {$t.rich('colors_header', {
                     a: (c) => (
@@ -81,26 +75,4 @@ const ColorsPage = ({
     )
 }
 
-const SkeletonColorsPage = () => {
-    const { data: CharacterList } = useApi('Character/List')
-    const $t = useTranslations('colors')
-
-    const allData = {
-        CharacterList,
-    }
-
-    return (
-        <>
-            <Title title={$t('Colors')} />
-            {allFinished(allData) ? (
-                <ColorsPage {...allData} />
-            ) : (
-                <PageLoading data={allData} />
-            )}
-        </>
-    )
-}
-
-export const getStaticProps = getI18nProps(['colors', 'vendor', 'v-chr'])
-
-export default SkeletonColorsPage
+export default ColorsPage
