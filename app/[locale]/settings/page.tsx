@@ -1,3 +1,5 @@
+'use client'
+
 import { useEffect, useState } from 'react'
 import { showNotification } from '@mantine/notifications'
 import { Button, Checkbox, Grid } from '@mantine/core'
@@ -8,7 +10,6 @@ import Link from 'next/link'
 import { LOCALSTORAGE_BOX_TAG } from '#utils/startupHook'
 import Title from '#components/Title'
 import { CCIDTableWithName } from '#data/ccid'
-import getI18nProps from '#utils/getI18nProps'
 import type { CharacterId } from '#data/vendor/characterId'
 import { CharacterIds } from '#data/vendor/characterId'
 
@@ -106,7 +107,5 @@ const SettingsPage = () => {
         </>
     )
 }
-
-export const getStaticProps = getI18nProps(['settings', 'v-chr'])
 
 export default SettingsPage
