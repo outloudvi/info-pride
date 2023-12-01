@@ -11,7 +11,6 @@ import { theme } from '#components/theme'
 import Layout from '#components/layout/Layout'
 import localeData from '#locales/localeData'
 
-import '@mantine/core/styles.css'
 import '../../styles/globals.css'
 
 const DESCRIPTION = 'Informational site for Project IDOLY PRIDE fans.'
