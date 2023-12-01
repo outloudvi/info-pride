@@ -1,12 +1,13 @@
 import * as cheerio from 'cheerio'
 
-import type { FrontendAPIResponseMapping } from '#utils/useFrontendApi'
-
 const IOS_APP_PAGE = 'https://apps.apple.com/jp/app/id1535925293'
 
-async function getVersion(): Promise<
-    FrontendAPIResponseMapping['version'] | null
-> {
+async function getVersion(): Promise<{
+    releaseDate: string
+    releaseNotes: string
+    releaseTimestamp: string
+    versionDisplay: string
+} | null> {
     const html = await fetch(IOS_APP_PAGE).then((x) => x.text())
 
     const $ = cheerio.load(html)
