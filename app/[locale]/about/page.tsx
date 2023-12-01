@@ -1,10 +1,11 @@
-import { Avatar, Card, Grid } from '@mantine/core'
-import { useEffect, useState } from 'react'
+import { Avatar, Card, Grid, GridCol } from '@mantine/core'
 import { useTranslations } from 'next-intl'
+import { getTranslations } from 'next-intl/server'
 
-import type { Contributor } from '#components/api/contributors/types'
 import Title from '#components/Title'
-import getI18nProps from '#utils/getI18nProps'
+
+const ALLCONTRIBUTORS_CONFIG_URL =
+    'https://raw.githubusercontent.com/outloudvi/info-pride/master/.all-contributorsrc'
 
 /**
  * MIT License (MIT) Copyright (c) 2016 Kent C. Dodds, 2019 Jake Bolam, 2020 Maximilian Berkmann
@@ -26,12 +27,25 @@ const EmojiTypes: Record<string, string> = {
     translation: '🌍',
 }
 
+type Contributor = {
+    login: string
+    name: string
+    avatar_url: string
+    profile: string
+    contributions: string[]
+}
+
 const ContributorBox = ({ contrib }: { contrib: Contributor }) => {
     const $t = useTranslations('about')
 
     const { name, login, avatar_url, profile, contributions } = contrib
     return (
-        <Card shadow="sm" p="sm" radius="md" className="flex items-center">
+        <Card
+            shadow="sm"
+            p="sm"
+            radius="md"
+            className="flex flex-row items-center"
+        >
             <Avatar
                 src={avatar_url}
                 size="lg"
@@ -64,36 +78,30 @@ const ContributorBox = ({ contrib }: { contrib: Contributor }) => {
     )
 }
 
-const AboutPage = () => {
-    const $t = useTranslations('about')
+const AboutPage = async () => {
+    const $t = await getTranslations('about')
 
-    const [contribs, setContribs] = useState<Contributor[]>([])
+    const contributors: Contributor[] = await fetch(ALLCONTRIBUTORS_CONFIG_URL)
+        .then((x) => x.json())
+        .then((x) => x.contributors)
 
-    useEffect(() => {
-        fetch('/api/contributors')
-            .then((x) => x.json())
-            .then((x) => setContribs(x))
-            .catch(() => {
-                //
-            })
-    }, [])
     return (
         <>
             <Title title={$t('About')} />
             <p>{$t('site_desc')}</p>
-            {contribs.length === 0 ? (
+            {contributors.length === 0 ? (
                 <p className="text-gray-500">{$t('loading_contribs')}</p>
             ) : (
                 <>
                     <p>{$t('Contributors:')}</p>
-                    <Grid>
-                        {contribs.map((one, idx) => (
-                            <Grid.Col
+                    <Grid className="pb-2">
+                        {contributors.map((one, idx) => (
+                            <GridCol
                                 span={{ base: 12, md: 6, lg: 4 }}
                                 key={idx}
                             >
                                 <ContributorBox contrib={one} />
-                            </Grid.Col>
+                            </GridCol>
                         ))}
                     </Grid>
                 </>
@@ -101,7 +109,5 @@ const AboutPage = () => {
         </>
     )
 }
-
-export const getStaticProps = getI18nProps(['about'])
 
 export default AboutPage
