@@ -1,15 +1,14 @@
 import { Alert, Skeleton } from '@mantine/core'
-import { useQuery } from 'react-query'
-import { useTranslations } from 'next-intl'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
+import { getTranslations } from 'next-intl/server'
 
 import StoryReplayView from './StoryReplayView'
 import type { AdvFromAsset } from './types'
 
 import Paths from '#utils/paths'
 
-const StoryReplayViewSkeleton = ({
+const StoryReplayViewSkeleton = async ({
     id,
     index,
     storyId,
@@ -18,15 +17,11 @@ const StoryReplayViewSkeleton = ({
     index: number
     storyId: string
 }) => {
-    const $t = useTranslations('storyreplay')
+    const $t = await getTranslations('storyreplay')
 
-    const { data: StoryLines } = useQuery<AdvFromAsset>({
-        queryKey: id,
-        queryFn: ({ queryKey: [path] }) =>
-            fetch(Paths.advJson(path as string)).then((x) =>
-                x.status === 200 ? x.json() : undefined,
-            ),
-    })
+    const StoryLines: AdvFromAsset = await fetch(Paths.advJson(id)).then((x) =>
+        x.json(),
+    )
 
     return StoryLines ? (
         <StoryReplayView

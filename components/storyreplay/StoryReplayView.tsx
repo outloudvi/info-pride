@@ -1,3 +1,5 @@
+'use client'
+
 import type { BackgroundGroup, Line, Title } from '@hoshimei/adv/types'
 import { useTranslations } from 'next-intl'
 import { useMemo, Fragment, useState } from 'react'

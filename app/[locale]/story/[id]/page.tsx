@@ -1,22 +1,20 @@
-import { useRouter } from 'next/router'
-import { useTranslations } from 'next-intl'
 import { Divider } from '@mantine/core'
+import { getTranslations } from 'next-intl/server'
 
-import PageLoading from '#components/PageLoading'
 import Title from '#components/Title'
-import getI18nProps from '#utils/getI18nProps'
-import useApi from '#utils/useApi'
-import allFinished from '#utils/allFinished'
-import type { APIResponseOf } from '#utils/api'
-import pickFirstOrOne from '#utils/pickFirstOrOne'
 import StoryReplayViewSkeleton from '#components/storyreplay/StoryReplayViewSkeleton'
+import { fetchApi } from '#utils/fetchApi'
 
-const StoryReplayPage = ({
-    StoryData,
+const StoryReplayPage = async ({
+    params: { id },
 }: {
-    StoryData: APIResponseOf<'Story'>
+    params: { id: string }
 }) => {
-    const $t = useTranslations('storyreplay')
+    const StoryData = await fetchApi('Story', {
+        id,
+    })
+
+    const $t = await getTranslations('storyreplay')
 
     const items = StoryData.advAssetIds
 
@@ -63,30 +61,4 @@ const StoryReplayPage = ({
     )
 }
 
-const SkeletonStoryReplayPage = () => {
-    const router = useRouter()
-    const $t = useTranslations('storyreplay')
-    const id = pickFirstOrOne(router.query.id ?? '')
-    const { data: StoryData } = useApi('Story', {
-        id,
-    })
-
-    const allData = {
-        StoryData,
-    }
-
-    return (
-        <>
-            <h2>{$t('Story replay')}</h2>
-            {allFinished(allData) ? (
-                <StoryReplayPage {...allData} />
-            ) : (
-                <PageLoading data={allData} />
-            )}
-        </>
-    )
-}
-
-export const getServerSideProps = getI18nProps(['storyreplay'])
-
-export default SkeletonStoryReplayPage
+export default StoryReplayPage
