@@ -1,3 +1,5 @@
+'use client'
+
 import { useTranslations } from 'next-intl'
 import { Skeleton, Stack, TextInput } from '@mantine/core'
 import { StringParam, useQueryParam, withDefault } from 'use-query-params'
@@ -5,7 +7,6 @@ import { useDebouncedValue } from '@mantine/hooks'
 import { useEffect, useState } from 'react'
 
 import Title from '#components/Title'
-import getI18nProps from '#utils/getI18nProps'
 import useApi from '#utils/useApi'
 import MessageSearchItem from '#components/search/message/MessageSearchItem'
 import withQueryParam from '#utils/withQueryParam'
@@ -52,7 +53,5 @@ const MessageSearchPage = () => {
         </>
     )
 }
-
-export const getStaticProps = getI18nProps(['message_search', 'v-chr'])
 
 export default withQueryParam(MessageSearchPage)
