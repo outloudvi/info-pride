@@ -1,11 +1,18 @@
+'use client'
+
 import { Progress } from '@mantine/core'
 import dayjs from 'dayjs'
 import { useTranslations } from 'next-intl'
 import { useMemo } from 'react'
+import dayjsUtc from 'dayjs/plugin/utc'
+import dayjsTz from 'dayjs/plugin/timezone'
 
 import type { IndexEventItem } from './types'
 
 import { COMMON_DATE_FORMAT, SOURCE_TIMEZONE } from '#utils/constants'
+
+dayjs.extend(dayjsUtc)
+dayjs.extend(dayjsTz)
 
 const RoutineCountdown = ({
     title,

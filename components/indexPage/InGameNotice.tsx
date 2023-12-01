@@ -1,3 +1,5 @@
+'use client'
+
 import { Anchor, Modal } from '@mantine/core'
 import { useEffect, useState } from 'react'
 import dayjs from 'dayjs'
@@ -44,7 +46,7 @@ const InGameNotice = ({ type }: { type: NoticeType }) => {
                     {$t('Published: ')}{' '}
                     {modalNews &&
                         dayjs(new Date(Number(modalNews.startTime))).format(
-                            'YYYY-MM-DD'
+                            'YYYY-MM-DD',
                         )}
                 </div>
             </Modal>
@@ -64,7 +66,7 @@ const InGameNotice = ({ type }: { type: NoticeType }) => {
                             </Anchor>{' '}
                             <small>
                                 {dayjs(Number(item.startTime)).format(
-                                    'YYYY-MM-DD'
+                                    'YYYY-MM-DD',
                                 )}
                             </small>
                         </li>

@@ -1,3 +1,5 @@
+'use client'
+
 import day from 'dayjs'
 import { Badge } from '@mantine/core'
 import { useTranslations } from 'next-intl'
@@ -20,10 +22,10 @@ const VersionInfo = ({
 
     const backendVersion = day(VersionData.version).format('YYYY/MM/DD')
     const wikiModuleVersion = day(WikiModulesMeta.updatedAt * 1000).format(
-        'YYYY/MM/DD'
+        'YYYY/MM/DD',
     )
     const wikiPageVersion = day(WikiPagesMeta.updatedAt * 1000).format(
-        'YYYY/MM/DD'
+        'YYYY/MM/DD',
     )
 
     const lines = {
@@ -53,7 +55,7 @@ const VersionInfo = ({
                         {$t('Update date')}{' '}
                         <Badge color="green">
                             {day(GameVersionData.releaseDate).format(
-                                'YYYY/MM/DD'
+                                'YYYY/MM/DD',
                             )}
                         </Badge>
                     </div>

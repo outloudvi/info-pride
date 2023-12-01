@@ -1,14 +1,12 @@
-import { Button, Flex, Grid, Group, Stack } from '@mantine/core'
+import { Button, Flex, Grid, GridCol, Group, Stack } from '@mantine/core'
 import { useTranslations } from 'next-intl'
 import { useMemo } from 'react'
-import dynamic from 'next/dynamic'
 
 import CurrentEvents from '#components/indexPage/CurrentEvents'
 import Notice from '#components/indexPage/Notice'
 import VersionInfo from '#components/indexPage/VersionInfo'
 import Paths from '#utils/paths'
 import NoticeTop from '#components/indexPage/NoticeTop'
-import getI18nProps from '#utils/getI18nProps'
 import IndexTitle from '#components/indexPage/IndexTitle'
 import {
     getStartOfToday,
@@ -16,11 +14,7 @@ import {
     getVenusBattleEvent,
     getVenusLeagueEvent,
 } from '#components/indexPage/venusEvents'
-
-const RoutineCountdown = dynamic(
-    () => import('#components/indexPage/RoutineCountdown'),
-    { ssr: false },
-)
+import RoutineCountdown from '#components/indexPage/RoutineCountdown'
 
 const MainPageSiteData = [
     {
@@ -76,7 +70,7 @@ const Home = () => {
                 />
             </Flex>
             <Grid className="mt-3">
-                <Grid.Col span={{ base: 12, lg: 6 }}>
+                <GridCol span={{ base: 12, lg: 6 }}>
                     <Stack gap={15} justify="center" className="mt-2">
                         {MainPageSiteData.map((items, _key) => (
                             <Group key={_key}>
@@ -98,24 +92,22 @@ const Home = () => {
                             </Group>
                         ))}
                     </Stack>
-                </Grid.Col>
-                <Grid.Col span={{ base: 12, lg: 6 }}>
+                </GridCol>
+                <GridCol span={{ base: 12, lg: 6 }}>
                     <CurrentEvents />
-                </Grid.Col>
+                </GridCol>
                 {/* Line 2 */}
-                <Grid.Col span={{ base: 12, lg: 6 }}>
+                <GridCol span={{ base: 12, lg: 6 }}>
                     <div className="mb-2 text-3xl">{$t('News')}</div>
                     <Notice />
-                </Grid.Col>
-                <Grid.Col span={{ base: 12, lg: 6 }}>
+                </GridCol>
+                <GridCol span={{ base: 12, lg: 6 }}>
                     <div className="mb-2 text-3xl">{$t('Data revision')}</div>
                     <VersionInfo />
-                </Grid.Col>
+                </GridCol>
             </Grid>
         </>
     )
 }
-
-export const getStaticProps = getI18nProps(['index', 'notice'])
 
 export default Home

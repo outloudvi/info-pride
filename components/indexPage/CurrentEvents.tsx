@@ -1,3 +1,5 @@
+'use client'
+
 import { Skeleton } from '@mantine/core'
 import { useTranslations } from 'next-intl'
 
