@@ -1,3 +1,5 @@
+'use client'
+
 import { Button, Group } from '@mantine/core'
 import { useEffect, useState } from 'react'
 import { useTranslations } from 'next-intl'
@@ -16,7 +18,7 @@ const EventStoryEpisodeList = ({
     const $t = useTranslations('eventstories')
     const $c = useTranslations('common')
     const [selectedStoryId, setSelectedStoryId] = useState(
-        event.episodes[0].storyId
+        event.episodes[0].storyId,
     )
     const { data: StoryData } = useApi('Story', {
         id: selectedStoryId,
