@@ -9,15 +9,10 @@ export function fetchApi<T extends keyof APIMapping>(
         ? undefined
         : GetFirst<Parameters<APIMapping[T]>>,
 ): Promise<APIResponseOf<T>> {
-    const urlsp = new URLSearchParams()
-    let withParams = false
+    const url = new URL(Paths.api(key))
     Object.entries(params ?? {}).map(([k, v]) => {
-        withParams = true
-        urlsp.set(k, String(v))
+        url.searchParams.set(k, String(v))
     })
 
-    return fetch(
-        Paths.api(key) + (withParams ? '?' + urlsp.toString() : ''),
-        {},
-    ).then((res) => res.json())
+    return fetch(String(url)).then((res) => res.json())
 }
