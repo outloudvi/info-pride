@@ -108,8 +108,8 @@ dependencies:
     specifier: ^3.1.0
     version: 3.1.0(next@14.0.3)(react@18.2.0)
   next-query-params:
-    specifier: ^4.3.0
-    version: 4.3.0(next@14.0.3)(react@18.2.0)(use-query-params@2.2.1)
+    specifier: ^5.0.0
+    version: 5.0.0(next@14.0.3)(react@18.2.0)(use-query-params@2.2.1)
   nextjs-progressbar:
     specifier: ^0.0.16
     version: 0.0.16(next@14.0.3)(react@18.2.0)
@@ -5869,8 +5869,8 @@ packages:
       use-intl: 3.1.0(react@18.2.0)
     dev: false
 
-  /next-query-params@4.3.0(next@14.0.3)(react@18.2.0)(use-query-params@2.2.1):
-    resolution: {integrity: sha512-8w8AXfPJ8vnYvSFBCByT5ZR8ItNSJ6lAbVer8aRZZRUpADZAR6hQ4dh7fLDs/6383DU0Ve7WvNHqswMR8S98zg==}
+  /next-query-params@5.0.0(next@14.0.3)(react@18.2.0)(use-query-params@2.2.1):
+    resolution: {integrity: sha512-Zm9nc0QgrTMaQwGdbICcTDaYS4oRcXo628Ye6JQGdp/9JzlhzDpzcGRqciK0S62yAyE3b5ozFpgzY0gDUEbLtw==}
     peerDependencies:
       next: ^10.0.0 || ^11.0.0 || ^12.0.0 || ^13.0.0 || ^14.0.0
       react: ^16.8.0 || ^17.0.0 || ^18.0.0

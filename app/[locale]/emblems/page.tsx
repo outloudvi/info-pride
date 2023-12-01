@@ -1,9 +1,10 @@
+'use client'
+
 import { useTranslations } from 'next-intl'
 import { SimpleGrid, Skeleton } from '@mantine/core'
 import { StringParam, useQueryParam, withDefault } from 'use-query-params'
 
 import Title from '#components/Title'
-import getI18nProps from '#utils/getI18nProps'
 import useApi from '#utils/useApi'
 import Emblem from '#components/emblems/Emblem'
 import FilterSelect from '#components/search/card/FilterSelect'
@@ -61,7 +62,5 @@ const EmblemsPage = () => {
         </>
     )
 }
-
-export const getStaticProps = getI18nProps(['emblems'])
 
 export default withQueryParam(EmblemsPage)
