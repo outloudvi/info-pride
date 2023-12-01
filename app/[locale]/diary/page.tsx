@@ -107,9 +107,11 @@ const isValidDate = (s: string) => {
     return false
 }
 
+// FIXME: https://github.com/pmndrs/jotai/discussions/2044#discussioncomment-7597019
 const shortDateAtom = atomWithHash('date', new Date(0), {
     serialize: toShortDate,
     deserialize: fromShortDate,
+    setHash: 'replaceState',
 })
 
 const DiaryPage = () => {
