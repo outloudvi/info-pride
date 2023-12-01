@@ -1,3 +1,5 @@
+'use client'
+
 import { DatePickerInput } from '@mantine/dates'
 import { Alert, Button, Grid } from '@mantine/core'
 import dayjs from 'dayjs'
@@ -8,7 +10,6 @@ import { useTranslations } from 'next-intl'
 
 import Title from '#components/Title'
 import AssetImage from '#components/AssetImage'
-import getI18nProps from '#utils/getI18nProps'
 
 const START_DATE = dayjs('2016-05-05')
 const END_DATE = dayjs('2017-12-26')
@@ -207,5 +208,4 @@ const DiaryPage = () => {
     )
 }
 
-export const getStaticProps = getI18nProps(['common', 'diary'])
 export default DiaryPage
