@@ -1,6 +1,8 @@
+'use client'
+
 import { Button, Grid, Tabs } from '@mantine/core'
 import _range from 'lodash/range'
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import { NumberParam, useQueryParams, withDefault } from 'use-query-params'
 
 import StoriesItem from '#components/stories/StoriesItem'
@@ -8,23 +10,37 @@ import SpecialStoriesItem from '#components/stories/SpecialStoriesItem'
 import type { SeriesName } from '#data/stories'
 import { Episodes, Series } from '#data/stories'
 import Title from '#components/Title'
-import { addI18nMessages } from '#utils/getI18nProps'
 import storiesData from '#data/videos/stories.data'
 import type { IStoriesData } from '#data/videos/stories.data/types'
 import SeasonChapterList from '#components/stories/SeasonChapterList'
 import getSpecialStories from '#components/stories/getSpecialStories'
-import type { ChapterItem } from '#data/types'
 import withQueryParam from '#utils/withQueryParam'
 
 const SPECIAL_SERIES_TAG = 99
 
-const StoriesPage = ({
-    completion,
-    special,
-}: {
-    completion: IStoriesData<0 | 1>
-    special: ChapterItem[]
-}) => {
+const StoriesPage = () => {
+    const locale = useLocale()
+    const completion = (() => {
+        const ret: Partial<IStoriesData<0 | 1>> = {}
+        for (let i = 0; i < Series.length; i++) {
+            const seriesSlug = Series[i]
+            ret[seriesSlug] = [
+                // skip index 0
+                [],
+                ...Episodes[seriesSlug].map((length, episodeKey) =>
+                    _range(1, length + 1).map((chapterId) =>
+                        storiesData?.[locale]?.data?.[
+                            seriesSlug as SeriesName
+                        ]?.[episodeKey + 1]?.[chapterId]
+                            ? 1
+                            : 0,
+                    ),
+                ),
+            ]
+        }
+        return ret as IStoriesData<0 | 1>
+    })()
+    const special = getSpecialStories(locale)
     const $t = useTranslations('stories')
 
     const [query, setQuery] = useQueryParams({
@@ -140,37 +156,6 @@ const StoriesPage = ({
             </Grid>
         </>
     )
-}
-
-export const getStaticProps = async ({ locale }: { locale: string }) => {
-    const completion = (() => {
-        const ret: Partial<IStoriesData<0 | 1>> = {}
-        for (let i = 0; i < Series.length; i++) {
-            const seriesSlug = Series[i]
-            ret[seriesSlug] = [
-                // skip index 0
-                [],
-                ...Episodes[seriesSlug].map((length, episodeKey) =>
-                    _range(1, length + 1).map((chapterId) =>
-                        storiesData?.[locale]?.data?.[
-                            seriesSlug as SeriesName
-                        ]?.[episodeKey + 1]?.[chapterId]
-                            ? 1
-                            : 0,
-                    ),
-                ),
-            ]
-        }
-        return ret
-    })()
-
-    return {
-        props: {
-            ...(await addI18nMessages(locale, ['stories'])),
-            completion,
-            special: getSpecialStories(locale),
-        },
-    }
 }
 
 export default withQueryParam(StoriesPage)
