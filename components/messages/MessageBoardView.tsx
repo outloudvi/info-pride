@@ -1,4 +1,6 @@
-import { Grid } from '@mantine/core'
+'use client'
+
+import { Grid, GridCol } from '@mantine/core'
 import { useEffect, useRef, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { useViewportSize } from '@mantine/hooks'
@@ -46,8 +48,13 @@ const MessageBoardView = ({
 
     return (
         <div ref={outer}>
-            <Grid className="h-full bg-[#4c4c4c] m-0">
-                <Grid.Col
+            <Grid
+                className="h-full bg-[#4c4c4c] m-0"
+                classNames={{
+                    inner: 'h-full w-full m-0',
+                }}
+            >
+                <GridCol
                     span={{
                         base: 12,
                         lg: 3,
@@ -72,8 +79,8 @@ const MessageBoardView = ({
                             }}
                         />
                     ))}
-                </Grid.Col>
-                <Grid.Col
+                </GridCol>
+                <GridCol
                     span={{
                         base: 12,
                         lg: 9,
@@ -96,7 +103,7 @@ const MessageBoardView = ({
                             </div>
                         </div>
                     )}
-                </Grid.Col>
+                </GridCol>
             </Grid>
         </div>
     )
