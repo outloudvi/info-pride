@@ -6,12 +6,13 @@
     animation-duration: '30s';
     animation-timing-function: 'linear';
     animation-iteration-count: 'infinite';
-    @keyframes bg-anim {
-        from {
-            backgroundposition: '0 0';
-        }
-        to {
-            backgroundposition: '244px 354px';
-        }
+}
+
+@keyframes bg-anim {
+    from {
+        backgroundposition: '0 0';
+    }
+    to {
+        backgroundposition: '244px 354px';
     }
 }
