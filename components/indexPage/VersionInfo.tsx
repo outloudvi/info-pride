@@ -1,24 +1,16 @@
-'use client'
-
 import day from 'dayjs'
 import { Badge } from '@mantine/core'
-import { useTranslations } from 'next-intl'
+import { getTranslations } from 'next-intl/server'
 
-import useApi from '#utils/useApi'
-import allFinished from '#utils/allFinished'
-import type { APIResponseOf } from '#utils/api'
+import { getVersion } from '#components/api/version'
 import { Meta as WikiPagesMeta } from '#data/wikiPages'
 import { Meta as WikiModulesMeta } from '#data/wikiModules'
-import PageLoading from '#components/PageLoading'
-import useFrontendApi from '#utils/useFrontendApi'
+import { fetchApi } from '#utils/fetchApi'
 
-const VersionInfo = ({
-    VersionData,
-}: {
-    VersionData: APIResponseOf<'Version'>
-}) => {
-    const { data: GameVersionData } = useFrontendApi('version')
-    const $t = useTranslations('index')
+const VersionInfo = async () => {
+    const VersionData = await fetchApi('Version')
+    const GameVersionData = await getVersion()
+    const $t = await getTranslations('index')
 
     const backendVersion = day(VersionData.version).format('YYYY/MM/DD')
     const wikiModuleVersion = day(WikiModulesMeta.updatedAt * 1000).format(
@@ -69,22 +61,4 @@ const VersionInfo = ({
     )
 }
 
-const SkeletonVersionInfo = () => {
-    const { data: VersionData } = useApi('Version')
-
-    const allData = {
-        VersionData,
-    }
-
-    return (
-        <>
-            {allFinished(allData) ? (
-                <VersionInfo {...allData} />
-            ) : (
-                <PageLoading data={allData} />
-            )}
-        </>
-    )
-}
-
-export default SkeletonVersionInfo
+export default VersionInfo
