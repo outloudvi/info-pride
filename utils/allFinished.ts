@@ -3,6 +3,10 @@ type NoUndefinedField<T> = {
     [P in keyof T]-?: NonNullable<T[P]>
 }
 
+/**
+ *
+ * @deprecated Should be un-needed with the SSC framework.
+ */
 function allFinished<R extends Record<string, unknown>>(
     r: R,
 ): r is NoUndefinedField<R> {
