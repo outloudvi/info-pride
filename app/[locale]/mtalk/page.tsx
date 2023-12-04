@@ -1,6 +1,7 @@
+'use client'
+
 import { useTranslations } from 'next-intl'
 
-import getI18nProps from '#utils/getI18nProps'
 import EditorView from '#components/mtalk/EditorView'
 import Title from '#components/Title'
 
@@ -26,7 +27,5 @@ const MTalkPage = () => {
         </>
     )
 }
-
-export const getStaticProps = getI18nProps(['mtalk', 'messages', 'v-chr'])
 
 export default MTalkPage

@@ -1,3 +1,5 @@
+'use client'
+
 import { useCallback, useEffect, useState } from 'react'
 import {
     Alert,
@@ -21,7 +23,6 @@ import type { APIResponseOf } from '#utils/api'
 import allFinished from '#utils/allFinished'
 import unitCodeV1 from '#utils/unitCode'
 import PageLoading from '#components/PageLoading'
-import getI18nProps from '#utils/getI18nProps'
 import Title from '#components/Title'
 import type { CardTiny, MusicChartItem } from '#components/units/types'
 import UnitPosition from '#components/units/UnitPosition'
@@ -275,7 +276,5 @@ const SkeletonUnitsPage = () => {
         </>
     )
 }
-
-export const getStaticProps = getI18nProps(['units', 'v-chr'])
 
 export default withQueryParam(SkeletonUnitsPage)

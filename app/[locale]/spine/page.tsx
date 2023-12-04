@@ -1,3 +1,5 @@
+'use client'
+
 import { useTranslations } from 'next-intl'
 import { Alert, Badge, Button, Flex, Group, NativeSelect } from '@mantine/core'
 import { StringParam, useQueryParam, withDefault } from 'use-query-params'
@@ -5,9 +7,9 @@ import { useEffect, useState } from 'react'
 import type { ReactNode } from 'react'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
+import { Notifications } from '@mantine/notifications'
 
 import Title from '#components/Title'
-import getI18nProps from '#utils/getI18nProps'
 import withQueryParam from '#utils/withQueryParam'
 import useApi from '#utils/useApi'
 import { PrimaryCharacterIds } from '#data/vendor/characterId'
@@ -113,6 +115,7 @@ const SpinePage = () => {
 
     return (
         <>
+            <Notifications />
             <Group>
                 <Title title={$t('Spine viewer')} />
                 <Badge>beta</Badge>
@@ -129,11 +132,5 @@ const SpinePage = () => {
         </>
     )
 }
-
-export const getStaticProps = getI18nProps([
-    'spine',
-    'spine_animation',
-    'v-chr',
-])
 
 export default withQueryParam(SpinePage)

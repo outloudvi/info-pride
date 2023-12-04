@@ -1,3 +1,5 @@
+'use client'
+
 import { useEffect, useState } from 'react'
 import { Grid, NativeSelect } from '@mantine/core'
 import { useTranslations } from 'next-intl'
@@ -10,7 +12,6 @@ import Title from '#components/Title'
 import AssetImage from '#components/AssetImage'
 import NotemapView from '#components/notemap/NotemapView'
 import TrackColorSelect from '#components/notemap/TrackColorSelect'
-import getI18nProps from '#utils/getI18nProps'
 
 const NotemapPage = ({
     ChartListData,
@@ -132,7 +133,5 @@ const SkeletonNotemapPage = () => {
         </>
     )
 }
-
-export const getStaticProps = getI18nProps(['notemap'])
 
 export default SkeletonNotemapPage

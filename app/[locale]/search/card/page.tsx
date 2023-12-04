@@ -1,3 +1,5 @@
+'use client'
+
 import type { ReactNode } from 'react'
 import { useEffect, useMemo, useState } from 'react'
 import Link from 'next/link'
@@ -9,9 +11,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import { useTranslations } from 'next-intl'
 
-import type { LocalBox } from '../settings'
-import jpCharas from '../../locales/ja/v-chr.json'
-
+import type { LocalBox } from '#components/settings/types'
+import jpCharas from '#locales/ja/v-chr.json'
 import tryJSONParse from '#utils/tryJsonParse'
 import { LOCALSTORAGE_BOX_TAG } from '#utils/startupHook'
 import useApi from '#utils/useApi'
@@ -24,7 +25,6 @@ import { CharacterIds } from '#data/vendor/characterId'
 import ResultList from '#components/search/card/ResultList'
 import CCIDTable from '#data/ccid'
 import Title from '#components/Title'
-import getI18nProps from '#utils/getI18nProps'
 import type { PropsWithL10n } from '#components/types'
 
 const SearchPage = ({
@@ -334,15 +334,5 @@ const SkeletonSearchPage = (props: PropsWithL10n) => {
         </>
     )
 }
-
-export const getStaticProps = getI18nProps([
-    'search',
-    'search_skills',
-    'analyze',
-    'vendor',
-    'v-chr',
-    'v-card-name',
-    'v-card-alias',
-])
 
 export default SkeletonSearchPage

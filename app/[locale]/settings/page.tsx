@@ -12,12 +12,11 @@ import Title from '#components/Title'
 import { CCIDTableWithName } from '#data/ccid'
 import type { CharacterId } from '#data/vendor/characterId'
 import { CharacterIds } from '#data/vendor/characterId'
+import type { LocalBox } from '#components/settings/types'
 
 const clone = rfdc({
     proto: true,
 })
-
-export type LocalBox = Partial<Record<CharacterId, boolean[]>>
 
 const SettingsPage = () => {
     const $t = useTranslations('settings')
