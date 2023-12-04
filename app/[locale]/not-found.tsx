@@ -1,8 +1,8 @@
 import Link from 'next/link'
-import { useTranslations } from 'next-intl'
+import { getTranslations } from 'next-intl/server'
 
-export default function Custom404() {
-    const $t = useTranslations('404')
+const Custom404 = async () => {
+    const $t = await getTranslations('404')
     return (
         <html>
             <head>
@@ -34,3 +34,5 @@ export default function Custom404() {
         </html>
     )
 }
+
+export default Custom404
