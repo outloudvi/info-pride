@@ -1,24 +1,18 @@
+'use client'
+
 import { useMemo } from 'react'
 import { Checkbox, SimpleGrid } from '@mantine/core'
 import { useTranslations } from 'next-intl'
 import { useForm } from '@mantine/form'
 import uniq from 'lodash/uniq'
-import type { CardRarity } from 'hoshimi-types/ProtoMaster'
 import { AttributeType } from 'hoshimi-types/ProtoEnum'
 
-import useApi from '#utils/useApi'
-import allFinished from '#utils/allFinished'
-import { addI18nMessages } from '#utils/getI18nProps'
 import type { APIResponseOf, UnArray } from '#utils/api'
-import PageLoading from '#components/PageLoading'
-import Title from '#components/Title'
 import CardCard from '#components/cards/CardCard'
 import type { CharacterId } from '#data/vendor/characterId'
 import { CharacterIds } from '#data/vendor/characterId'
 import getCardColor from '#utils/getCardColor'
 import FilterSelect from '#components/search/card/FilterSelect'
-import { MAX_LEVEL } from '#utils/constants'
-import Paths from '#utils/paths'
 
 const CardFaceTypes = [
     'schl',
@@ -36,7 +30,7 @@ const CardFaceTypes = [
     'pajm',
 ]
 
-const CardsPage = ({
+const CardsPageMainView = ({
     CardListData,
 }: {
     CardListData: APIResponseOf<'Card/List'>
@@ -205,54 +199,4 @@ const CardsPage = ({
     )
 }
 
-const SkeletonCardsPage = ({ maxRarity }: { maxRarity: number }) => {
-    const $t = useTranslations('cards')
-    const { data: CardListData } = useApi('Card/List', {
-        level: String(MAX_LEVEL),
-        rarity: String(maxRarity),
-    })
-
-    const allData = {
-        CardListData,
-    }
-
-    return (
-        <>
-            <Title title={$t('Cards')} />
-            {allFinished(allData) ? (
-                <>
-                    <p>
-                        {$t('page_header', {
-                            rarity: maxRarity,
-                            level: MAX_LEVEL,
-                        })}
-                    </p>
-                    <CardsPage {...allData} />
-                </>
-            ) : (
-                <PageLoading data={allData} />
-            )}
-        </>
-    )
-}
-
-export const getServerSideProps = async ({ locale }: { locale: string }) => {
-    const CardRarity: CardRarity[] = await fetch(Paths.api('CardRarity')).then(
-        (x) => x.json(),
-    )
-    return {
-        props: {
-            ...(await addI18nMessages(locale, [
-                'cards',
-                'vendor',
-                'v-chr',
-                'v-card-name',
-            ])),
-            maxRarity: CardRarity.reduce((a, b) =>
-                a.rarity > b.rarity ? a : b,
-            ).rarity,
-        },
-    }
-}
-
-export default SkeletonCardsPage
+export default CardsPageMainView
