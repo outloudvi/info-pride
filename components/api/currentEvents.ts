@@ -35,7 +35,7 @@ const CalendarEventTypeMapping: Record<CalendarEventType, EventType> = {
     VENUS联赛: EventType.VenusLeague,
 }
 
-export async function GET() {
+async function getCurrentEvents() {
     const startOfToday = getStartOfToday()
     const allEvents = Object.values(Calendar).reduce((a, b) => [...a, ...b])
     const activeEvents = allEvents
@@ -59,5 +59,7 @@ export async function GET() {
             link: link ? link : undefined,
         }))
 
-    return Response.json(activeEvents)
+    return activeEvents
 }
+
+export default getCurrentEvents

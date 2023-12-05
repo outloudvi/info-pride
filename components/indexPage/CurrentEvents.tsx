@@ -1,16 +1,13 @@
-'use client'
-
 import { Skeleton } from '@mantine/core'
-import { useTranslations } from 'next-intl'
+import { getTranslations } from 'next-intl/server'
 
 import EventItem from './EventItem'
 
-import useFrontendApi from '#utils/useFrontendApi'
+import getCurrentEvents from '#components/api/currentEvents'
 
-const CurrentEvents = () => {
-    const { data: CurrentEvents } = useFrontendApi('currentEvents')
-
-    const $t = useTranslations('index')
+const CurrentEvents = async () => {
+    const CurrentEvents = await getCurrentEvents()
+    const $t = await getTranslations('index')
 
     return (
         <>

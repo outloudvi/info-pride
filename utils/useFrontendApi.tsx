@@ -11,7 +11,6 @@ import type { ChapterItem } from '#data/types'
 import type { Stories } from '#data/videos/cardStories.data/types'
 import type { SkillLaunchItem } from '#components/notemap/types'
 import type { BirthdayCommuList } from '#data/videos/birthday.data/types'
-import type { EventItem } from '#components/indexPage/types'
 
 const frontendQueryFn: QueryFunction = ({ queryKey: [path] }) =>
     fetch(('/api/' + path) as string).then((x) =>
@@ -32,7 +31,6 @@ export type FrontendAPIResponseMapping = {
     'characters/profile': {
         profile: string
     }
-    currentEvents: EventItem[]
     eventStories: ChapterItem | null
     news: { title: string; link?: string }[]
     skillRunner: SkillLaunchItem[]
