@@ -1,9 +1,12 @@
-import { useCallback, useEffect, useState } from 'react'
-import { NativeSelect } from '@mantine/core'
-import { useRouter } from 'next/navigation'
-import { setCookie } from 'cookies-next'
+'use client'
 
-import { USER_PREF_COOKIE_MAXAGE } from '#utils/constants'
+import { NativeSelect } from '@mantine/core'
+import {
+    useParams,
+    usePathname,
+    useRouter,
+    useSearchParams,
+} from 'next/navigation'
 
 const CurrentLanguage: Record<string, string> = {
     'zh-Hans': '中文（简体）',
@@ -11,40 +14,40 @@ const CurrentLanguage: Record<string, string> = {
     ko: '한국어',
 }
 
+const LanguageKeys = Object.keys(CurrentLanguage)
+const LanguageNames = LanguageKeys.map((x) => CurrentLanguage[x])
+
 const LanguageSelection = ({ className }: { className?: string }) => {
     const router = useRouter()
+    const pathname = usePathname()
+    const params = useParams()
+    const searchParams = useSearchParams()
 
-    const [_locale, _setLocale] = useState('')
-    const languageKeys = Object.keys(CurrentLanguage)
-    const languageNames = languageKeys.map((x) => CurrentLanguage[x])
+    console.log('!!', router, pathname, searchParams.toString())
 
-    const updateLocale = useCallback(
-        (locale: string) => {
-            // TODO
-        },
-        [router],
-    )
+    const _locale = String(params.locale)
 
-    // At the beginning of page load, update locale to <Select>
-    // It also handles <Select> update on locale switch
-    useEffect(() => {
-        const routerLocale = router.locale
-        if (routerLocale && routerLocale !== _locale) {
-            _setLocale(routerLocale)
-        }
-    }, [router, _locale])
+    const updateLocale = (targetLocale: string) => {
+        const basePath = pathname.replace(new RegExp(`^/${_locale}`), '')
+        const searchParamsStr = searchParams.toString()
+        router.replace(
+            `/${targetLocale}/${basePath}${
+                searchParamsStr === '' ? '' : `?${searchParamsStr}`
+            }`,
+        )
+    }
 
     return (
         <NativeSelect
             className={`mr-2 ${className}`}
-            data={languageNames}
+            data={LanguageNames}
             value={CurrentLanguage[_locale]}
             aria-label="Language selection"
             onChange={(x) => {
                 const localeName = x.target.value
-                const localeIndex = languageNames.indexOf(localeName)
+                const localeIndex = LanguageNames.indexOf(localeName)
                 if (localeIndex == -1) return
-                updateLocale(languageKeys[localeIndex])
+                updateLocale(LanguageKeys[localeIndex])
             }}
         />
     )
