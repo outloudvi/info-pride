@@ -23,8 +23,6 @@ const LanguageSelection = ({ className }: { className?: string }) => {
     const params = useParams()
     const searchParams = useSearchParams()
 
-    console.log('!!', router, pathname, searchParams.toString())
-
     const _locale = String(params.locale)
 
     const updateLocale = (targetLocale: string) => {
