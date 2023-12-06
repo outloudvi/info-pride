@@ -1,10 +1,12 @@
 import en from './en'
 import zhHans from './zh-Hans'
+import ko from './ko'
 import type { EventGroupData, EventStoriesData } from './types'
 
 const _: Record<string, EventStoriesData> = {
     en: en,
     'zh-Hans': zhHans,
+    ko: ko,
 }
 
 // This is in Japanese

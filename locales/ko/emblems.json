@@ -1,0 +1,23 @@
+{
+    "Emblems": "Emblems",
+    "Type": "Type",
+    "type_Various": "type_Various",
+    "type_MLv": "type_MLv",
+    "type_HiscoreLive": "type_HiscoreLive",
+    "type_TowerLevel": "type_TowerLevel",
+    "type_IdolJobLevel": "type_IdolJobLevel",
+    "type_StoryGroup": "type_StoryGroup",
+    "type_StoryAndRate": "type_StoryAndRate",
+    "type_FanNumber": "type_FanNumber",
+    "type_Score10M": "type_Score10M",
+    "type_Birthday": "type_Birthday",
+    "type_April": "type_April",
+    "type_Valentine": "type_Valentine",
+    "type_Purchase": "type_Purchase",
+    "type_VenusLeague": "type_VenusLeague",
+    "type_PVP": "type_PVP",
+    "type_GVG": "type_GVG",
+    "type_EventResult": "type_EventResult",
+    "type_Love": "type_Love",
+    "type_All": "type_All"
+}

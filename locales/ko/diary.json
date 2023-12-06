@@ -1,0 +1,11 @@
+{
+    "choose_a_date": "choose_a_date",
+    "date": "date",
+    "date_from_to": "date_from_to",
+    "mana_diary": "mana_diary",
+    "mana_diary_not_updating": "mana_diary_not_updating",
+    "no_diary": "no_diary",
+    "included_diary_dates": "included_diary_dates",
+    "previous_day": "previous_day",
+    "next_day": "next_day"
+}
