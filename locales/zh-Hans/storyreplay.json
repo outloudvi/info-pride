@@ -6,16 +6,16 @@
     "Manager": "マネージャー",
     "SFX": "音效",
     "Voice": "声音",
-    "Narration": "旁白",
-    "ChoiceGroup": "选项",
-    "BranchGroup": "分支",
-    "Next chapter": "下一章节",
-    "(End)": "（完）",
+    "Narration": "Narration",
+    "ChoiceGroup": "Choice",
+    "BranchGroup": "Branch",
+    "Next chapter": "Next chapter",
+    "(End)": "(End)",
     "be_patient": "本页数据量较大，因此加载时间较长。请坐和放宽。",
     "no_story": "没有找到故事。",
     "multiple_parts": "故事分为 {len} 部分。",
     "story_part": "这是故事的第 {p} 部分。",
     "no_title": "（无标题）",
-    "story_part_live": "这是一段 Live 片段。",
-    "story_not_found": "没有找到关联的剧情。"
+    "story_part_live": "This part is a live movie.",
+    "story_not_found": "Failed to find a related story."
 }
