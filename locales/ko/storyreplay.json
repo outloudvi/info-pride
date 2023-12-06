@@ -1,0 +1,21 @@
+{
+    "Story replay": "Story replay",
+    "Background": "Background",
+    "BGM": "BGM",
+    "Message": "Message",
+    "Manager": "Manager",
+    "SFX": "SFX",
+    "Voice": "Voice",
+    "Narration": "Narration",
+    "ChoiceGroup": "ChoiceGroup",
+    "BranchGroup": "BranchGroup",
+    "Next chapter": "Next chapter",
+    "(End)": "(End)",
+    "be_patient": "be_patient",
+    "no_story": "no_story",
+    "multiple_parts": "multiple_parts",
+    "story_part": "story_part",
+    "no_title": "no_title",
+    "story_part_live": "story_part_live",
+    "story_not_found": "story_not_found"
+}

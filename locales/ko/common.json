@@ -1,0 +1,48 @@
+{
+    "sidebar": {
+        "Stories": "Stories",
+        "Event Stories": "Event Stories",
+        "Moshikoi": "Moshikoi",
+        "Notemaps": "Notemaps",
+        "Characters": "Characters",
+        "Cards": "Cards",
+        "Units": "Units",
+        "Messages": "Messages",
+        "Card Search": "Card Search",
+        "Mana Diary": "Mana Diary",
+        "MacaronTalk": "MacaronTalk",
+        "Spine Viewer": "Spine Viewer",
+        "Story Search": "Story Search",
+        "Message Search": "Message Search",
+        "Emblems": "Emblems",
+        "Colors": "Colors",
+        "Settings": "Settings",
+        "About": "About"
+    },
+    "Switch theme": "Switch theme",
+    "footer": {
+        "Source code": "Source code",
+        "copy": "copy",
+        "bwiki": {
+            "prefix": "prefix",
+            "bwikilinktitle": "bwikilinktitle",
+            "middle": "middle",
+            "suffix": "suffix"
+        }
+    },
+    "Video": "Video",
+    "Back": "Back",
+    "Color": "Color",
+    "Loading": "Loading",
+    "Error": "Error",
+    "Pause": "Pause",
+    "Play": "Play",
+    "loading": "loading",
+    "Export as image": "Export as image",
+    "Story replay": "Story replay",
+    "Clear": "Clear",
+    "audio_loading": "audio_loading",
+    "audio_load_failed": "audio_load_failed",
+    "no_trans": "no_trans",
+    "load_progress": "load_progress"
+}

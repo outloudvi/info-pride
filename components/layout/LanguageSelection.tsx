@@ -8,6 +8,7 @@ import { USER_PREF_COOKIE_MAXAGE } from '#utils/constants'
 const CurrentLanguage: Record<string, string> = {
     'zh-Hans': '中文（简体）',
     en: 'English',
+    ko: '한국어',
 }
 
 const LanguageSelection = ({ className }: { className?: string }) => {
@@ -31,10 +32,10 @@ const LanguageSelection = ({ className }: { className?: string }) => {
                     query,
                 },
                 asPath,
-                { locale }
+                { locale },
             )
         },
-        [router]
+        [router],
     )
 
     // At the beginning of page load, update locale to <Select>
