@@ -1,7 +1,7 @@
 {
     "Card search": "卡片搜索",
     "notice_mybox": "如果发现自己持有的卡片没有显示为「已持有」，请<link>更新卡片持有状态</link>。",
-    "use_hs_search": "关于根据技能搜索卡片的功能，请使用 <link>Hoshimi Stage</link>。",
+    "use_hs_search": "The feature of searching by skill is deprecated - please use <link>Hoshimi Stage</link> instead.",
     "Keyword": "关键词",
     "Character": "角色",
     "Type": "类型",
@@ -15,7 +15,7 @@
     "Dual A skills": "双 A 技能",
     "Wiki Page (Chinese)": "Wiki 页面",
     "Released": "发布于",
-    "Use original strings": "仅在搜索时使用日文",
+    "Use original strings": "Use original strings",
     "no_skip_sp_on_ctfilter": "按 CT 值筛选时不要跳过 SP 技能",
     "no_skip_sp_on_ctfilter_desc": "选择此选项时，即使卡片的其它技能均不满足 CT 筛选要求，有 SP 技能的卡片也会被显示。如果同时附加了其它筛选条件，您可能希望勾选此项。",
     "skill_type_desc": "这是什么？",
