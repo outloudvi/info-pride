@@ -2,17 +2,17 @@
     "Stories": "Stories",
     "Others": "Others",
     "Video": "Video",
-    "season": "season",
+    "season": "{s}화",
     "series": {
-        "Hoshimi": "Hoshimi",
-        "Tokyo": "Tokyo",
-        "Big4": "Big4",
+        "Hoshimi": "호시미편",
+        "Tokyo": "도쿄편",
+        "Big4": "BIG4편",
         "TRINITYAiLE": "TRINITYAiLE",
         "LizNoir": "LizNoir",
-        "Mana": "Mana",
-        "ThreeX": "ThreeX",
-        "Tsuki": "Tsuki",
-        "Sunny": "Sunny",
-        "Special": "Special"
+        "Mana": "나가세 마나",
+        "ThreeX": "ⅢⅩ",
+        "Tsuki": "달의 템페스트",
+        "Sunny": "서니 피스",
+        "Special": "이외"
     }
 }

@@ -1,13 +1,13 @@
 {
-    "Messages": "Messages",
-    "Fullscreen": "Fullscreen",
-    "Exit fullscreen": "Exit fullscreen",
-    "Manager": "Manager",
-    "Delete": "Delete",
-    "line_response": "line_response",
-    "line_choice": "line_choice",
-    "full_screen_advised": "full_screen_advised",
-    "full_screen_unsupported": "full_screen_unsupported",
-    "communication_ended": "communication_ended",
-    "select_a_commu": "select_a_commu"
+    "Messages": "메시지",
+    "Fullscreen": "전체화면",
+    "Exit fullscreen": "전체화면 나가기",
+    "Manager": "マネージャー",
+    "Delete": "제거",
+    "line_response": "답변 {src}",
+    "line_choice": "선택지 {src}",
+    "full_screen_advised": "전체화면으로 시청하는 것을 권장합니다.",
+    "full_screen_unsupported": "전체화면이 지원되지 않는 환경입니다.",
+    "communication_ended": "대화 종료",
+    "select_a_commu": "대화를 선택하세요."
 }
