@@ -51,6 +51,15 @@
         "code",
         "translation"
       ]
+    },
+    {
+      "login": "hwahyang1",
+      "name": "HwaHyang (KangHyeon Kim)",
+      "avatar_url": "https://avatars.githubusercontent.com/u/40535405?v=4",
+      "profile": "http://hwahyang.space",
+      "contributions": [
+        "translation"
+      ]
     }
   ],
   "contributorsPerLine": 7,
