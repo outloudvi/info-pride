@@ -14,14 +14,18 @@ import localeData from '#locales/localeData'
 import '../../styles/globals.css'
 
 const DESCRIPTION = 'Informational site for Project IDOLY PRIDE fans.'
-const META_TITLE = `Info Pride - ${DESCRIPTION}`
+const BASE_TITLE = 'Info Pride'
+const META_TITLE = `${BASE_TITLE} - ${DESCRIPTION}`
 const META_DESCRIPTION = 'The IDOLY PRIDE game database.'
 const BASEURL = 'https://ip.outv.im'
 const OG_IMAGE = BASEURL + '/social.png'
 
 export const metadata: Metadata = {
     metadataBase: new URL(BASEURL),
-    title: META_TITLE,
+    title: {
+        template: `%s | ${BASE_TITLE.toUpperCase()}`,
+        default: BASE_TITLE.toUpperCase(),
+    },
     description: META_DESCRIPTION,
     openGraph: {
         type: 'website',
@@ -76,7 +80,6 @@ export default async function RootLayout({
     return (
         <html lang={locale}>
             <head>
-                <title>INFO PRIDE</title>
                 <ColorSchemeScript />
                 <link rel="shortcut icon" href="/favicon.svg" />
                 <meta

@@ -2,8 +2,6 @@ import { Avatar, Card, Grid, GridCol } from '@mantine/core'
 import { useTranslations } from 'next-intl'
 import { getTranslations } from 'next-intl/server'
 
-import Title from '#components/Title'
-
 const ALLCONTRIBUTORS_CONFIG_URL =
     'https://raw.githubusercontent.com/outloudvi/info-pride/master/.all-contributorsrc'
 
@@ -87,7 +85,7 @@ const AboutPage = async () => {
 
     return (
         <>
-            <Title title={$t('About')} />
+            <h2>{$t('About')}</h2>
             <p>{$t('site_desc')}</p>
             {contributors.length === 0 ? (
                 <p className="text-gray-500">{$t('loading_contribs')}</p>
@@ -108,6 +106,17 @@ const AboutPage = async () => {
             )}
         </>
     )
+}
+
+export async function generateMetadata({
+    params: { locale },
+}: {
+    params: { locale: string }
+}) {
+    const $t = await getTranslations({ locale, namespace: 'about' })
+    return {
+        title: $t('About'),
+    }
 }
 
 export default AboutPage

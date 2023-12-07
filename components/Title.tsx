@@ -1,5 +1,9 @@
 import Head from 'next/head'
 
+/**
+ *
+ * @deprecated Use `generateMetadata()` instead.
+ */
 const Title = ({ title, noh2 }: { title: string; noh2?: boolean }) => (
     <>
         <Head>

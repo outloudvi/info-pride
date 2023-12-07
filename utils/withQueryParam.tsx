@@ -1,7 +1,7 @@
 import { QueryParamProvider } from 'use-query-params'
 import NextAdapterApp from 'next-query-params/app'
 
-type Component<T> = (args: T) => JSX.Element
+import type { Component } from './types'
 
 function withQueryParam<T>(Chlid: Component<T>): Component<T> {
     return function QueryParamWrapped(props: T) {
