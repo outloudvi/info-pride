@@ -4,7 +4,6 @@ import styles from '../../../styles/colors.module.css'
 
 import { toHashColor } from '#utils/toHashColor'
 import type { CharacterId } from '#data/vendor/characterId'
-import Title from '#components/Title'
 import { fetchApi } from '#utils/fetchApi'
 
 const ColorOrder: CharacterId[][] = [
@@ -45,7 +44,7 @@ const ColorsPage = async () => {
 
     return (
         <>
-            <Title title={$t('Colors')} />
+            <h2>{$t('Colors')}</h2>
             <p>
                 {$t.rich('colors_header', {
                     a: (c) => (
@@ -73,6 +72,17 @@ const ColorsPage = async () => {
             </div>
         </>
     )
+}
+
+export async function generateMetadata({
+    params: { locale },
+}: {
+    params: { locale: string }
+}) {
+    const $t = await getTranslations({ locale, namespace: 'colors' })
+    return {
+        title: $t('Colors'),
+    }
 }
 
 export default ColorsPage
