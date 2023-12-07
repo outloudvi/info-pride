@@ -15,7 +15,7 @@ import {
     getVenusLeagueEvent,
 } from '#components/indexPage/venusEvents'
 import RoutineCountdown from '#components/indexPage/RoutineCountdown'
-import withMessages from '#utils/withMessages'
+import { withMessages } from '#utils/withMessages'
 
 const MainPageSiteData = [
     {

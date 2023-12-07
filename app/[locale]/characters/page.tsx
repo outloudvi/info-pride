@@ -1,10 +1,10 @@
 import { Button, Divider } from '@mantine/core'
 import { getTranslations } from 'next-intl/server'
 
-import Title from '#components/Title'
 import { ExtraLinks } from '#components/characters/const'
 import { fetchApi } from '#utils/fetchApi'
 import CharactersMainView from '#components/characters/CharactersMainView'
+import { withAsyncMessages } from '#utils/withMessages'
 
 const CharactersPage = async () => {
     const $t = await getTranslations('characters')
@@ -13,7 +13,7 @@ const CharactersPage = async () => {
 
     return (
         <>
-            <Title title={$t('Characters')} />
+            <h2>{$t('Characters')}</h2>
             <CharactersMainView CharacterListData={CharacterListData} />
             <Divider my="sm" />
             {Object.entries(ExtraLinks).map(([title, link], key) => (
@@ -25,4 +25,19 @@ const CharactersPage = async () => {
     )
 }
 
-export default CharactersPage
+export async function generateMetadata({
+    params: { locale },
+}: {
+    params: { locale: string }
+}) {
+    const $t = await getTranslations({ locale, namespace: 'characters' })
+    return {
+        title: $t('Characters'),
+    }
+}
+
+export default withAsyncMessages(CharactersPage, [
+    'characters',
+    'v-chr',
+    'v-group',
+])
