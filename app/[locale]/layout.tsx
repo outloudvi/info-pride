@@ -4,12 +4,13 @@ import { notFound } from 'next/navigation'
 import { NextIntlClientProvider } from 'next-intl'
 import { Notifications } from '@mantine/notifications'
 import type { Metadata } from 'next'
+import { pick } from 'lodash'
+import { getMessages } from 'next-intl/server'
 
 import locales from '../../locales/locales.json'
 
 import { theme } from '#components/theme'
 import Layout from '#components/layout/Layout'
-import localeData from '#locales/localeData'
 
 import '../../styles/globals.css'
 
@@ -73,9 +74,7 @@ export default async function RootLayout({
     params: { locale: string }
 }) {
     if (!locales.includes(locale)) notFound()
-
-    // FIXME: only collect needed message types
-    const messages = localeData[locale] ?? {}
+    const commonMessages = pick(await getMessages(), ['common'])
 
     return (
         <html lang={locale}>
@@ -90,7 +89,7 @@ export default async function RootLayout({
             <body>
                 <MantineProvider theme={theme}>
                     <Notifications />
-                    <NextIntlClientProvider messages={messages}>
+                    <NextIntlClientProvider messages={commonMessages}>
                         <Layout>{children}</Layout>
                     </NextIntlClientProvider>
                 </MantineProvider>
