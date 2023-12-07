@@ -1,9 +1,9 @@
 import { notFound } from 'next/navigation'
 import { getTranslations } from 'next-intl/server'
 
-import Title from '#components/Title'
 import CardItem from '#components/cards/CardItem'
 import { fetchApi } from '#utils/fetchApi'
+import { withAsyncMessages } from '#utils/withMessages'
 
 const CardInfoPage = async ({
     params: { slug },
@@ -23,15 +23,25 @@ const CardInfoPage = async ({
     const RarityData = await fetchApi('CardRarity')
 
     return (
-        <>
-            <Title title={Card.name} noh2 />
-            <CardItem
-                card={Card}
-                rarityData={RarityData}
-                title={$vn(Card.name)}
-            />
-        </>
+        <CardItem card={Card} rarityData={RarityData} title={$vn(Card.name)} />
     )
 }
 
-export default CardInfoPage
+export async function generateMetadata({
+    params: { slug },
+}: {
+    params: { slug: string }
+}) {
+    const cardResults = await fetchApi('Card', {
+        id: slug,
+    })
+    return {
+        title: cardResults?.[0]?.name,
+    }
+}
+
+export default withAsyncMessages(CardInfoPage, [
+    'cards_slug',
+    'vendor',
+    'v-chr',
+])
