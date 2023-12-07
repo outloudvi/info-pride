@@ -1,11 +1,11 @@
 import type { CardRarity } from 'hoshimi-types/ProtoMaster'
 import { getTranslations } from 'next-intl/server'
 
-import Title from '#components/Title'
 import { MAX_LEVEL } from '#utils/constants'
 import Paths from '#utils/paths'
 import { fetchApi } from '#utils/fetchApi'
 import CardsPageMainView from '#components/cards/CardsPageMainView'
+import { withAsyncMessages } from '#utils/withMessages'
 
 // TODO: return a static value?
 async function getMaxRarity(): Promise<number> {
@@ -28,7 +28,7 @@ const CardsPage = async () => {
 
     return (
         <>
-            <Title title={$t('Cards')} />
+            <h2>{$t('Cards')}</h2>
             <p>
                 {$t('page_header', {
                     rarity: maxRarity,
@@ -40,4 +40,20 @@ const CardsPage = async () => {
     )
 }
 
-export default CardsPage
+export async function generateMetadata({
+    params: { locale },
+}: {
+    params: { locale: string }
+}) {
+    const $t = await getTranslations({ locale, namespace: 'cards' })
+    return {
+        title: $t('Cards'),
+    }
+}
+
+export default withAsyncMessages(CardsPage, [
+    'cards',
+    'vendor',
+    'v-chr',
+    'v-card-name',
+])
