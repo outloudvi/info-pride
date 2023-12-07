@@ -15,6 +15,7 @@ import {
     getVenusLeagueEvent,
 } from '#components/indexPage/venusEvents'
 import RoutineCountdown from '#components/indexPage/RoutineCountdown'
+import withMessages from '#utils/withMessages'
 
 const MainPageSiteData = [
     {
@@ -110,4 +111,4 @@ const Home = () => {
     )
 }
 
-export default Home
+export default withMessages(Home, ['index'])
