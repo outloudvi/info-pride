@@ -1,9 +1,9 @@
 {
-    "loop_idle": "loop_idle",
-    "loop_idle_forward": "loop_idle_forward",
-    "pose": "pose",
-    "loop_mouth_positive": "loop_mouth_positive",
-    "loop_mouth_negative": "loop_mouth_negative",
-    "loop_mouth_normal": "loop_mouth_normal",
-    "": ""
+    "loop_idle": "일반 (후면)",
+    "loop_idle_forward": "일반 (정면)",
+    "pose": "포즈",
+    "loop_mouth_positive": "행복",
+    "loop_mouth_negative": "나쁨",
+    "loop_mouth_normal": "일반",
+    "": "없음"
 }

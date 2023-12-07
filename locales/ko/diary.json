@@ -1,11 +1,11 @@
 {
-    "choose_a_date": "choose_a_date",
-    "date": "date",
-    "date_from_to": "date_from_to",
-    "mana_diary": "mana_diary",
-    "mana_diary_not_updating": "mana_diary_not_updating",
-    "no_diary": "no_diary",
-    "included_diary_dates": "included_diary_dates",
-    "previous_day": "previous_day",
-    "next_day": "next_day"
+    "choose_a_date": "날짜를 선택하세요.",
+    "date": "날짜",
+    "date_from_to": "{START_DATE} ~ {END_DATE} 입니다.",
+    "mana_diary": "마나의 일기",
+    "mana_diary_not_updating": "마나의 일기는 2022년 12월 23일(글로벌 서비스는 2023년 12월 26일)에 끝났습니다. (작중 12월 26일)",
+    "no_diary": "일기를 작성하지 않았습니다.",
+    "included_diary_dates": "현재 조회 가능한 기간은 ",
+    "previous_day": "이전",
+    "next_day": "다음"
 }

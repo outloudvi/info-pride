@@ -1,17 +1,17 @@
 {
     "Spine viewer": "Spine viewer",
-    "Select the body animation": "Select the body animation",
-    "Select the mouth animation": "Select the mouth animation",
-    "Direction": "Direction",
-    "Left": "Left",
-    "Right": "Right",
+    "Select the body animation": "신체 애니메이션 선택",
+    "Select the mouth animation": "입 애니메이션 선택",
+    "Direction": "머리 방향",
+    "Left": "좌측",
+    "Right": "우측",
     "Spine ID": "Spine ID",
-    "View": "View",
-    "Spine license confirmation": "Spine license confirmation",
+    "View": "적용",
+    "Spine license confirmation": "Spine 라이선스 경고",
     "Character": "Character",
     "Costume": "Costume",
-    "license_info": "license_info",
-    "btn_license_confirmed": "btn_license_confirmed",
-    "webgl_unsupported": "webgl_unsupported",
-    "webgl_unsupported_text": "webgl_unsupported_text"
+    "license_info": "<link>Spine Editor License Agreement</link>에 따라, 이 페이지에 접근하려면 Spine 라이선스가 있어야 합니다(예- Spine Professional 또는 Spine Essential).",
+    "btn_license_confirmed": "라이선스를 보유하고 있습니다.",
+    "webgl_unsupported": "WebGL이 지원되지 않음",
+    "webgl_unsupported_text": "브라우저에서 WebGL을 지원하고 있지 않습니다. 브라우저를 업그레이드 하거나 WebGL을 활성화 한 후 다시 시도 해 주세요."
 }

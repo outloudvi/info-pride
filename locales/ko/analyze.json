@@ -1,6 +1,6 @@
 {
-    "Analyze": "Analyze",
-    "Analyzing": "Analyzing",
-    "Analyzed": "Analyzed",
-    "a_error": "a_error"
+    "Analyze": "분석",
+    "Analyzing": "분석 중...",
+    "Analyzed": "분석 완료",
+    "a_error": "분석 도중 문제가 발생했습니다."
 }

@@ -1,6 +1,6 @@
 {
-    "Story search": "Story search",
-    "Original story": "Original story",
-    "description": "description",
-    "search_placeholder": "search_placeholder"
+    "Story search": "스토리 검색",
+    "Original story": "원본 스토리",
+    "description": "스토리를 검색합니다. 검색 결과는 30개까지 표시됩니다.",
+    "search_placeholder": "대사를 입력하세요."
 }

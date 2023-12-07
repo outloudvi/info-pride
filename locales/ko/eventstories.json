@@ -1,6 +1,6 @@
 {
-    "Event Stories": "Event Stories",
-    "Event banner": "Event banner",
-    "episode": "episode",
-    "stories_ordering": "stories_ordering"
+    "Event Stories": "이벤트 스토리",
+    "Event banner": "이벤트 배너",
+    "episode": "{ep}화",
+    "stories_ordering": "이벤트 스토리는 최신 순으로 정렬됩니다."
 }

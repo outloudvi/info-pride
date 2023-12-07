@@ -1,5 +1,5 @@
 {
-    "Message Search": "Message Search",
-    "description": "description",
-    "search_placeholder": "search_placeholder"
+    "Message Search": "메시지 검색",
+    "description": "메시지를 검색합니다. 검색 결과는 30개까지 표시됩니다.",
+    "search_placeholder": "메시지를 입력하세요."
 }

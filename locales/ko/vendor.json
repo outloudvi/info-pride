@@ -1,12 +1,12 @@
 {
-    "Technique": "Technique",
-    "Appeal": "Appeal",
-    "Support": "Support",
-    "Active": "Active",
-    "Passive": "Passive",
-    "Special": "Special",
-    "Vocal": "Vocal",
-    "Dance": "Dance",
-    "Visual": "Visual",
-    "Stamina": "Stamina"
+    "Technique": "버퍼",
+    "Appeal": "스코어러",
+    "Support": "서포터",
+    "Active": "A",
+    "Passive": "P",
+    "Special": "SP",
+    "Vocal": "보컬",
+    "Dance": "댄스",
+    "Visual": "비주얼",
+    "Stamina": "스태미너"
 }
