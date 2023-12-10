@@ -1,7 +1,7 @@
 {
-    "Stories": "Stories",
-    "Others": "Others",
-    "Video": "Video",
+    "Stories": "스토리",
+    "Others": "기타",
+    "Video": "비디오",
     "season": "{s}화",
     "series": {
         "Hoshimi": "호시미편",
