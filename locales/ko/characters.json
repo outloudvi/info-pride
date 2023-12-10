@@ -120,15 +120,15 @@
     "After title": "타이틀 이후",
     "Gifts": "선물함",
     "Store": "상점",
-    "Name": "Name",
+    "Name": "본명",
     "Audio type": "보이스 종류",
     "Avatar": "Avatar",
     "Signature": "Signature",
     "bday-opening": "Opening",
     "bday-phone": "Phone call",
     "bday-others": "From others",
-    "no-bday-translation": "No birthday commu translations found. Please add translation info to BirthdayCommu[{charaId}] in data/birthday.data.ts.",
-    "name-char-kor": "Yamada Franziska Kaori",
-    "name-char-kan": "Kojima Kana",
-    "name-char-mhk": "Takeda Mihoko"
+    "no-bday-translation": "번역 데이터가 없습니다. data/birthday.data.ts. 파일의 BirthdayCommu[{charaId}] 값을 확인하세요.",
+    "name-char-kor": "야마다 프란지스카 카오리",
+    "name-char-kan": "코지마 카나",
+    "name-char-mhk": "타게다 미호코"
 }

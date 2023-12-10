@@ -1,5 +1,5 @@
 {
-    "News": "News",
+    "News": "뉴스",
     "Data revision": "데이터 정보",
     "Official website": "공식 홈페이지 (일본어)",
     "Official Twitter": "공식 트위터 (일본어)",
@@ -19,7 +19,7 @@
     "Announcement": "공지사항",
     "Issues": "버그",
     "PR": "PR",
-    "Event info (Chinese)": "Event info (Chinese)",
+    "Event info (Chinese)": "이벤트 정보 (중국어)",
     "Published: ": "Published: ",
     "More": "More",
     "情报站微博": "Aipura Info (Weibo)",
@@ -42,7 +42,7 @@
     "MultiLinks": "멀티 링크스",
     "VenusLeague": "VENUS 리그",
     "loading_news": "뉴스 로딩중...",
-    "last_updated": "Last updated:",
+    "last_updated": "최근 업데이트:",
     "version_info_loading": "게임 버전 정보 로딩중...",
     "local_time": "현지 시각:",
     "no_events": "진행 중인 이벤트가 없습니다."
