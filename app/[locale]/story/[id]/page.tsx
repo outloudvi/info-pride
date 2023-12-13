@@ -1,9 +1,9 @@
 import { Divider } from '@mantine/core'
 import { getTranslations } from 'next-intl/server'
 
-import Title from '#components/Title'
 import StoryReplayViewSkeleton from '#components/storyreplay/StoryReplayViewSkeleton'
 import { fetchApi } from '#utils/fetchApi'
+import { withAsyncMessages } from '#utils/withMessages'
 
 const StoryReplayPage = async ({
     params: { id },
@@ -20,7 +20,6 @@ const StoryReplayPage = async ({
 
     return (
         <>
-            <Title title={$t('Story replay')} noh2 />
             <div className="max-w-3xl mx-auto">
                 {items.length === 0 ? (
                     <p>{$t('no_story')}</p>
@@ -61,4 +60,15 @@ const StoryReplayPage = async ({
     )
 }
 
-export default StoryReplayPage
+export async function generateMetadata({
+    params: { locale },
+}: {
+    params: { locale: string }
+}) {
+    const $t = await getTranslations({ locale, namespace: 'storyreplay' })
+    return {
+        title: $t('Story replay'),
+    }
+}
+
+export default withAsyncMessages(StoryReplayPage, ['storyreplay'])

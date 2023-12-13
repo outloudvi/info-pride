@@ -1,8 +1,8 @@
 import { getTranslations } from 'next-intl/server'
 
-import Title from '#components/Title'
 import SearchCardPageMainView from '#components/search/card/SearchCardPageMainView'
 import { fetchApi } from '#utils/fetchApi'
+import { withAsyncMessages } from '#utils/withMessages'
 
 const CardSearchPage = async () => {
     const $t = await getTranslations('search')
@@ -12,7 +12,7 @@ const CardSearchPage = async () => {
 
     return (
         <>
-            <Title title={$t('Card search')} />
+            <h2>{$t('Card search')}</h2>
             <SearchCardPageMainView
                 CardData={CardData}
                 SkillAllData={SkillAllData}
@@ -21,4 +21,20 @@ const CardSearchPage = async () => {
     )
 }
 
-export default CardSearchPage
+export async function generateMetadata({
+    params: { locale },
+}: {
+    params: { locale: string }
+}) {
+    const $t = await getTranslations({ locale, namespace: 'search' })
+    return {
+        title: $t('Card search'),
+    }
+}
+
+export default withAsyncMessages(CardSearchPage, [
+    'search',
+    'vendor',
+    'v-chr',
+    'v-card-alias',
+])

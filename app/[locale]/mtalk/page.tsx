@@ -1,15 +1,14 @@
-'use client'
-
 import { useTranslations } from 'next-intl'
+import { getTranslations } from 'next-intl/server'
 
 import EditorView from '#components/mtalk/EditorView'
-import Title from '#components/Title'
+import { withMessages } from '#utils/withMessages'
 
 const MTalkPage = () => {
     const $t = useTranslations('mtalk')
     return (
         <>
-            <Title title={$t('MacaronTalk')} />
+            <h2>{$t('MacaronTalk')}</h2>
             <p>
                 {$t.rich('mtalk_description', {
                     a: (children) => (
@@ -28,4 +27,15 @@ const MTalkPage = () => {
     )
 }
 
-export default MTalkPage
+export async function generateMetadata({
+    params: { locale },
+}: {
+    params: { locale: string }
+}) {
+    const $t = await getTranslations({ locale, namespace: 'mtalk' })
+    return {
+        title: $t('MacaronTalk'),
+    }
+}
+
+export default withMessages(MTalkPage, ['mtalk', 'messages', 'v-chr'])

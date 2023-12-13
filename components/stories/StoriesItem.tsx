@@ -1,3 +1,5 @@
+'use client'
+
 import { Button, Skeleton } from '@mantine/core'
 import { useLocale, useTranslations } from 'next-intl'
 import Link from 'next/link'

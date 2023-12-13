@@ -1,14 +1,12 @@
-import dynamic from 'next/dynamic'
+'use client'
+
 import type { MusicChart } from 'hoshimi-types/types'
 import { useTranslations } from 'next-intl'
 
 import type { ImageChart, SkillChart } from './types'
+import NotemapGraph from './NotemapGraph'
 
 import useApi from '#utils/useApi'
-
-const NotemapGraph = dynamic(() => import('./NotemapGraph'), {
-    ssr: false,
-})
 
 const NotemapGraphToDownload = ({
     chartId,

@@ -2,7 +2,6 @@
 
 import { Grid, GridCol } from '@mantine/core'
 import { useEffect, useRef, useState } from 'react'
-import dynamic from 'next/dynamic'
 import { useViewportSize } from '@mantine/hooks'
 import { useTranslations } from 'next-intl'
 import { StringParam, useQueryParam, withDefault } from 'use-query-params'
@@ -12,10 +11,7 @@ import ChatView from './ChatView'
 
 import type { APIResponseOf } from '#utils/api'
 import withQueryParam from '#utils/withQueryParam'
-
-const FullScreenButton = dynamic(() => import('#components/FullScreenButton'), {
-    ssr: false,
-})
+import FullScreenButton from '#components/FullScreenButton'
 
 const MessageBoardView = ({
     groups,

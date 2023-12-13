@@ -1,3 +1,5 @@
+'use client'
+
 import { Flex } from '@mantine/core'
 import { useEffect, useRef, useState } from 'react'
 import { useViewportSize } from '@mantine/hooks'

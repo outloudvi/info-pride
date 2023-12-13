@@ -1,8 +1,8 @@
 import { Grid, GridCol } from '@mantine/core'
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
+import { getTranslations } from 'next-intl/server'
 
-import Title from '#components/Title'
 import Paths from '#utils/paths'
 import MoshikoiMeta from '#data/moshikoi/meta'
 
@@ -12,7 +12,7 @@ const Page = () => {
 
     return (
         <>
-            <Title title={$t('Moshikoi')} noh2 />
+            <h2>{$t('Moshikoi')}</h2>
             <h2>
                 {$t('Moshikoi')} (<span lang="ja">もし恋</span>)
             </h2>
@@ -52,6 +52,17 @@ const Page = () => {
             </Grid>
         </>
     )
+}
+
+export async function generateMetadata({
+    params: { locale },
+}: {
+    params: { locale: string }
+}) {
+    const $t = await getTranslations({ locale, namespace: 'moshikoi' })
+    return {
+        title: $t('Moshikoi'),
+    }
 }
 
 export default Page

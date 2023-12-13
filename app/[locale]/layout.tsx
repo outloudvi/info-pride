@@ -66,6 +66,10 @@ export const metadata: Metadata = {
     manifest: '/site.webmanifest?v=2',
 }
 
+export function generateStaticParams() {
+    return locales.map((locale) => ({ locale }))
+}
+
 export default async function RootLayout({
     children,
     params: { locale },

@@ -1,3 +1,5 @@
+'use client'
+
 import { Button, Grid, Group, NativeSelect, Skeleton } from '@mantine/core'
 import { useEffect, useState } from 'react'
 import { useLocale, useTranslations } from 'next-intl'
@@ -82,7 +84,7 @@ const BirthdayCommu = ({ charaId }: { charaId: string }) => {
                                         {keyText}
                                     </Button>
                                 )
-                            }
+                            },
                         )}
                     </Group>
                 }

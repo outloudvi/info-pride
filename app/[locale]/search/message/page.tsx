@@ -1,57 +1,30 @@
-'use client'
-
 import { useTranslations } from 'next-intl'
-import { Skeleton, Stack, TextInput } from '@mantine/core'
-import { StringParam, useQueryParam, withDefault } from 'use-query-params'
-import { useDebouncedValue } from '@mantine/hooks'
-import { useEffect, useState } from 'react'
+import { getTranslations } from 'next-intl/server'
 
-import Title from '#components/Title'
-import useApi from '#utils/useApi'
-import MessageSearchItem from '#components/search/message/MessageSearchItem'
-import withQueryParam from '#utils/withQueryParam'
+import MessageSearchMainView from '#components/search/message/MessageSearchMainView'
+import { withMessages } from '#utils/withMessages'
 
 const MessageSearchPage = () => {
     const $t = useTranslations('message_search')
 
-    const [realQ, setRealQ] = useState('')
-    const [debouncedQ] = useDebouncedValue(realQ, 700)
-    const [q, setQ] = useQueryParam('q', withDefault(StringParam, ''))
-    const { data, isLoading } = useApi('Search/Message', {
-        q,
-    })
-
-    useEffect(() => {
-        setQ(debouncedQ)
-    }, [debouncedQ, setQ])
-
     return (
         <>
-            <Title title={$t('Message Search')} />
+            <h2>{$t('Message Search')}</h2>
             <p>{$t('description')}</p>
-            <div className="max-w-7xl mx-auto">
-                <TextInput
-                    value={realQ}
-                    onChange={(event) => {
-                        setRealQ(event.currentTarget.value)
-                    }}
-                    placeholder={$t('search_placeholder')}
-                    className="mb-3"
-                />
-                {isLoading ? (
-                    <Skeleton height={600} />
-                ) : (
-                    Array.isArray(data) && (
-                        <Stack>
-                            {data.map((x, key) => (
-                                <MessageSearchItem key={key} item={x} />
-                            ))}
-                        </Stack>
-                    )
-                )}
-            </div>
+            <MessageSearchMainView />
         </>
     )
 }
 
-export default withQueryParam(MessageSearchPage)
+export async function generateMetadata({
+    params: { locale },
+}: {
+    params: { locale: string }
+}) {
+    const $t = await getTranslations({ locale, namespace: 'message_search' })
+    return {
+        title: $t('Message Search'),
+    }
+}
+
+export default withMessages(MessageSearchPage, ['message_search', 'v-chr'])

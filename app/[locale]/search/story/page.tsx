@@ -1,57 +1,30 @@
-'use client'
-
 import { useTranslations } from 'next-intl'
-import { Skeleton, Stack, TextInput } from '@mantine/core'
-import { StringParam, useQueryParam, withDefault } from 'use-query-params'
-import { useDebouncedValue } from '@mantine/hooks'
-import { useEffect, useState } from 'react'
+import { getTranslations } from 'next-intl/server'
 
-import Title from '#components/Title'
-import useApi from '#utils/useApi'
-import StorySearchItem from '#components/search/story/StorySearchItem'
-import withQueryParam from '#utils/withQueryParam'
+import StorySearchMainView from '#components/search/story/StorySearchMainView'
+import { withMessages } from '#utils/withMessages'
 
 const StorySearchPage = () => {
     const $t = useTranslations('story_search')
 
-    const [realQ, setRealQ] = useState('')
-    const [debouncedQ] = useDebouncedValue(realQ, 700)
-    const [q, setQ] = useQueryParam('q', withDefault(StringParam, ''))
-    const { data, isLoading } = useApi('Search/Commu', {
-        q,
-    })
-
-    useEffect(() => {
-        setQ(debouncedQ)
-    }, [debouncedQ, setQ])
-
     return (
         <>
-            <Title title={$t('Story search')} />
+            <h2>{$t('Story search')}</h2>
             <p>{$t('description')}</p>
-            <div className="max-w-7xl mx-auto">
-                <TextInput
-                    value={realQ}
-                    onChange={(event) => {
-                        setRealQ(event.currentTarget.value)
-                    }}
-                    placeholder={$t('search_placeholder')}
-                    className="mb-3"
-                />
-                {isLoading ? (
-                    <Skeleton height={600} />
-                ) : (
-                    Array.isArray(data) && (
-                        <Stack>
-                            {data.map((x, key) => (
-                                <StorySearchItem key={key} item={x} />
-                            ))}
-                        </Stack>
-                    )
-                )}
-            </div>
+            <StorySearchMainView />
         </>
     )
 }
 
-export default withQueryParam(StorySearchPage)
+export async function generateMetadata({
+    params: { locale },
+}: {
+    params: { locale: string }
+}) {
+    const $t = await getTranslations({ locale, namespace: 'story_search' })
+    return {
+        title: $t('Story search'),
+    }
+}
+
+export default withMessages(StorySearchPage, ['story_search'])
