@@ -187,6 +187,12 @@ const dataNagisa: StoriesData = {
         3: { name: 'TODO', video: { type: 'bilibili', vid: 'av518829869' } },
         phone: { video: { type: 'bilibili', vid: 'av434255947' } },
     },
+    'card-ngs-05-casl-02': {
+        // もしも幼なじみと恋をしたら
+        1: { name: '恋爱的少女 伊吹渚', video: { type: 'bilibili', vid: 'av236619409' } },
+        2: { name: '爆发！', video: { type: 'bilibili', vid: 'av536562028' } },
+        3: { name: '你没有我在是真的不行啊', video: { type: 'bilibili', vid: 'av324064282' } },
+    }
 }
 
 // 白石沙季
@@ -1792,6 +1798,21 @@ const dataKokoro: StoriesData = {
             video: { type: 'bilibili', vid: 'av277169074' },
         },
     },
+    'card-kkr-05-birt-00': {
+        // 可愛くイタズラバースデー
+        1: {
+            name: '由心担任主角，为心而生的日子',
+            video: { type: 'bilibili', vid: 'av279591002' },
+        },
+        2: {
+            name: '万人迷赤崎心TV',
+            video: { type: 'bilibili', vid: 'av579667791' },
+        },
+        3: {
+            name: '玩闹直播',
+            video: { type: 'bilibili', vid: 'av367176816' },
+        },
+    }
 }
 
 // ---- 3X ----
@@ -2065,7 +2086,7 @@ const dataMana: StoriesData = {
     },
 }
 
-const dataMikuCollab: StoriesData = {
+const dataCollab: StoriesData = {
     'card-mku-05-miku-00': {
         1: {
             name: '我没有经验',
@@ -2080,7 +2101,23 @@ const dataMikuCollab: StoriesData = {
             video: { type: 'bilibili', vid: 'av217526570' },
         },
     },
+    'card-rik-05-sush-00': {
+        // Riko - 同志の熱さ
+        1: {
+            name: '总觉得背后有动静',
+            video: { type: 'bilibili', vid: 'av921465514' },
+        },
+        2: {
+            name: '离到目的地就差一点了',
+            video: { type: 'bilibili', vid: 'av963948645' },
+        },
+        3: {
+            name: '想多和雫酱聊会天',
+            video: { type: 'bilibili', vid: 'av578927333' },
+        },
+    }
 }
+
 
 const data: StoriesData = {
     ...dataKotono,
@@ -2110,7 +2147,7 @@ const data: StoriesData = {
     ...dataKana,
     ...dataMiho,
 
-    ...dataMikuCollab,
+    ...dataCollab,
 }
 
 export default data
