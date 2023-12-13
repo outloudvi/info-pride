@@ -7,6 +7,7 @@ import {
     useRouter,
     useSearchParams,
 } from 'next/navigation'
+import { Suspense } from 'react'
 
 const CurrentLanguage: Record<string, string> = {
     'zh-Hans': '中文（简体）',
@@ -51,4 +52,24 @@ const LanguageSelection = ({ className }: { className?: string }) => {
     )
 }
 
-export default LanguageSelection
+const LanguageSelectionFallback = ({ className }: { className?: string }) => {
+    const params = useParams()
+    const _locale = String(params.locale)
+
+    return (
+        <NativeSelect
+            className={`mr-2 ${className}`}
+            data={LanguageNames}
+            value={CurrentLanguage[_locale]}
+            aria-label="Language selection"
+        />
+    )
+}
+
+const LanguageSelectionWrapper = ({ className }: { className?: string }) => (
+    <Suspense fallback={<LanguageSelectionFallback className={className} />}>
+        <LanguageSelection className={className} />
+    </Suspense>
+)
+
+export default LanguageSelectionWrapper
