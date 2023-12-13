@@ -1,6 +1,8 @@
 import { Avatar, Card, Grid, GridCol } from '@mantine/core'
 import { useTranslations } from 'next-intl'
-import { getTranslations } from 'next-intl/server'
+import { getTranslations, unstable_setRequestLocale } from 'next-intl/server'
+
+import type { ParamsWithLocale } from '#utils/types'
 
 const ALLCONTRIBUTORS_CONFIG_URL =
     'https://raw.githubusercontent.com/outloudvi/info-pride/master/.all-contributorsrc'
@@ -76,7 +78,8 @@ const ContributorBox = ({ contrib }: { contrib: Contributor }) => {
     )
 }
 
-const AboutPage = async () => {
+const AboutPage = async ({ params: { locale } }: ParamsWithLocale) => {
+    unstable_setRequestLocale(locale)
     const $t = await getTranslations('about')
 
     const contributors: Contributor[] = await fetch(ALLCONTRIBUTORS_CONFIG_URL)

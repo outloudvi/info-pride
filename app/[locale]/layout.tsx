@@ -5,7 +5,7 @@ import { NextIntlClientProvider } from 'next-intl'
 import { Notifications } from '@mantine/notifications'
 import type { Metadata } from 'next'
 import { pick } from 'lodash'
-import { getMessages } from 'next-intl/server'
+import { getMessages, unstable_setRequestLocale } from 'next-intl/server'
 
 import locales from '../../locales/locales.json'
 
@@ -78,6 +78,7 @@ export default async function RootLayout({
     params: { locale: string }
 }) {
     if (!locales.includes(locale)) notFound()
+    unstable_setRequestLocale(locale)
     const commonMessages = pick(await getMessages(), ['common'])
 
     return (

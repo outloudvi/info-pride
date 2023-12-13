@@ -1,14 +1,18 @@
 import { pick } from 'lodash'
 import { NextIntlClientProvider, useMessages } from 'next-intl'
-import { getMessages } from 'next-intl/server'
+import { getMessages, unstable_setRequestLocale } from 'next-intl/server'
 
-import type { AsyncComponent, Component } from './types'
+import type { AsyncComponent, Component, ParamsWithLocale } from './types'
 
 export function withMessages<T>(
     Child: Component<T>,
     parts: string[],
-): Component<T> {
-    return function MessagesWrapped(props: T) {
+): Component<T & ParamsWithLocale> {
+    return function MessagesWrapped(props: T & ParamsWithLocale) {
+        const {
+            params: { locale },
+        } = props
+        unstable_setRequestLocale(locale)
         const allMessages = useMessages()
         const messagesParts = pick(allMessages, ['common', ...parts])
 
@@ -23,8 +27,12 @@ export function withMessages<T>(
 export function withAsyncMessages<T>(
     Child: AsyncComponent<T>,
     parts: string[],
-): AsyncComponent<T> {
-    return async function MessagesWrapped(props: T) {
+): AsyncComponent<T & ParamsWithLocale> {
+    return async function MessagesWrapped(props: T & ParamsWithLocale) {
+        const {
+            params: { locale },
+        } = props
+        unstable_setRequestLocale(locale)
         const allMessages = await getMessages()
         const messagesParts = pick(allMessages, ['common', ...parts])
 
