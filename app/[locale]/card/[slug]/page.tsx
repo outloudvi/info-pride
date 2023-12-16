@@ -4,6 +4,7 @@ import { getTranslations } from 'next-intl/server'
 import CardItem from '#components/cards/CardItem'
 import { fetchApi } from '#utils/fetchApi'
 import { withAsyncMessages } from '#utils/withMessages'
+import $tp from '#utils/transProtect'
 
 const CardInfoPage = async ({
     params: { slug },
@@ -23,7 +24,11 @@ const CardInfoPage = async ({
     const RarityData = await fetchApi('CardRarity')
 
     return (
-        <CardItem card={Card} rarityData={RarityData} title={$vn(Card.name)} />
+        <CardItem
+            card={Card}
+            rarityData={RarityData}
+            title={$vn($tp(Card.name))}
+        />
     )
 }
 

@@ -13,6 +13,7 @@ import type { APIResponseOf } from '#utils/api'
 import getCardColor from '#utils/getCardColor'
 import { SOURCE_TIMEZONE } from '#utils/constants'
 import AssetImage from '#components/AssetImage'
+import $tp from '#utils/transProtect'
 
 dayjs.extend(dayjsUtc)
 dayjs.extend(dayjsTz)
@@ -46,7 +47,7 @@ const CardWithSkills = ({
             <Group align="start">
                 <div>
                     <Link href={`/cards/${id}`}>
-                        <b>{hasTranslatedName ? $vcn(name) : name}</b>
+                        <b>{hasTranslatedName ? $vcn($tp(name)) : name}</b>
                     </Link>
                     {hasTranslatedName && (
                         <span className="ml-2 text-gray-700 dark:text-gray-300">
@@ -54,7 +55,7 @@ const CardWithSkills = ({
                         </span>
                     )}
                     {$vca(assetId) !== assetId && (
-                        <small className="ml-3">{$vca(assetId)}</small>
+                        <small className="ml-3">{$vca($tp(assetId))}</small>
                     )}
                     <br />
                     <span>

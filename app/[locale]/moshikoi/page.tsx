@@ -12,7 +12,6 @@ const Page = () => {
 
     return (
         <>
-            <h2>{$t('Moshikoi')}</h2>
             <h2>
                 {$t('Moshikoi')} (<span lang="ja">もし恋</span>)
             </h2>

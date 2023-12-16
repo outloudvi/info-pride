@@ -10,6 +10,7 @@ import MixedImageBox from './MixedImageBox'
 import getCardColor from '#utils/getCardColor'
 import type { APIResponseOf, UnArray } from '#utils/api'
 import AssetImage from '#components/AssetImage'
+import $tp from '#utils/transProtect'
 
 const CardCard = ({ card }: { card: UnArray<APIResponseOf<'Card/List'>> }) => {
     const $v = useTranslations('vendor')
@@ -58,10 +59,10 @@ const CardCard = ({ card }: { card: UnArray<APIResponseOf<'Card/List'>> }) => {
                         <b className="text-xl" lang="ja">
                             {name}
                         </b>
-                        {$vcn(name) !== name && (
+                        {$vcn($tp(name)) !== name && (
                             <>
                                 <br />
-                                <span>{$vcn(name)}</span>
+                                <span>{$vcn($tp(name))}</span>
                             </>
                         )}
                     </div>

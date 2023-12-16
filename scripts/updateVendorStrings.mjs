@@ -22,9 +22,9 @@ async function main() {
                 for (const i of items) {
                     const key = lambda(i)
                     if (typeof key === 'string') {
-                        ret[key] = key
+                        ret[$tp(key)] = key
                     } else {
-                        ret[key[0]] = key[1]
+                        ret[$tp(key[0])] = key[1]
                     }
                 }
                 writeFileSync(filePath, JSON.stringify(ret, null, 4))
@@ -32,6 +32,11 @@ async function main() {
             })(),
         ),
     )
+}
+
+// sync with utils/transProtect.ts
+function $tp(x) {
+    return x.replaceAll('.', '__')
 }
 
 main()

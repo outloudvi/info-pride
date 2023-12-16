@@ -30,4 +30,4 @@ export async function generateMetadata({
     }
 }
 
-export default withMessages(SpinePage, ['spine'])
+export default withMessages(SpinePage, ['spine', 'v-chr'])
