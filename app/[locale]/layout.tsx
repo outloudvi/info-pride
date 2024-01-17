@@ -77,7 +77,7 @@ export default async function RootLayout({
     children: React.ReactNode
     params: { locale: string }
 }) {
-    if (!locales.includes(locale)) notFound()
+    if (!(locales as ReadonlyArray<string>).includes(locale)) notFound()
     unstable_setRequestLocale(locale)
     const commonMessages = pick(await getMessages(), ['common'])
 

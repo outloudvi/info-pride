@@ -2,10 +2,6 @@ const items = async () => ({
     '404': await import('./404.json').then((x) => x.default),
     about: await import('./about.json').then((x) => x.default),
     analyze: await import('./analyze.json').then((x) => x.default),
-    'b-skillx': await import('./b-skillx.json').then((x) => x.default),
-    'b-skillx-parts': await import('./b-skillx-parts.json').then(
-        (x) => x.default,
-    ),
     cards: await import('./cards.json').then((x) => x.default),
     cards_slug: await import('./cards_slug.json').then((x) => x.default),
     characters: await import('./characters.json').then((x) => x.default),
