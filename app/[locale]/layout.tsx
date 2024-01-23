@@ -7,8 +7,7 @@ import type { Metadata } from 'next'
 import { pick } from 'lodash'
 import { getMessages, unstable_setRequestLocale } from 'next-intl/server'
 
-import locales from '../../locales/locales.json'
-
+import locales from '#locales/locales.json'
 import { theme } from '#components/theme'
 import Layout from '#components/layout/Layout'
 
