@@ -44,9 +44,7 @@ const MainPageSiteData = [
     },
 ]
 
-const Home = ({ params: { locale } }: { params: { locale: string } }) => {
-    unstable_setRequestLocale(locale)
-
+const Home = () => {
     const $t = useTranslations('index')
 
     const startOfToday = useMemo(() => getStartOfToday(), [])
