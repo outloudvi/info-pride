@@ -203,8 +203,8 @@ devDependencies:
     specifier: ^2.29.0
     version: 2.29.0(@typescript-eslint/parser@6.11.0)(eslint-import-resolver-typescript@3.6.1)(eslint@8.54.0)
   hoshimi-types:
-    specifier: ^2.9.2
-    version: 2.9.2
+    specifier: ^2.11.1
+    version: 2.11.1
   husky:
     specifier: ^8.0.3
     version: 8.0.3
@@ -5027,8 +5027,8 @@ packages:
       react-is: 16.13.1
     dev: false
 
-  /hoshimi-types@2.9.2:
-    resolution: {integrity: sha512-5mUklv0GK5Q/oNOq33KZ/lSzUhwr+YbMeDS3aM7Lf4W/8pTsXib6BRTgUHAkDnwywiolJ7Z3nu+tHqzLNQd/qA==}
+  /hoshimi-types@2.11.1:
+    resolution: {integrity: sha512-J0otD3hDOEFnhbnfzRQ+boCN8+jr/zVMuRkeRGvVA3Wdgxz2d5+DHluBZf/6S4U73ifEU/UTVdAdvHdb60RGHA==}
     dev: true
 
   /hosted-git-info@4.1.0:
