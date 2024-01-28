@@ -19,6 +19,7 @@ const items = async () => ({
     mtalk: await import('./mtalk.json').then((x) => x.default),
     notemap: await import('./notemap.json').then((x) => x.default),
     notice: await import('./notice.json').then((x) => x.default),
+    photos: await import('./photos.json').then((x) => x.default),
     search: await import('./search.json').then((x) => x.default),
     search_skills: await import('./search_skills.json').then((x) => x.default),
     settings: await import('./settings.json').then((x) => x.default),
