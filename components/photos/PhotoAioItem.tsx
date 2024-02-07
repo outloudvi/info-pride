@@ -10,7 +10,7 @@ const PhotoAioItem = ({ id }: { id: string }) => {
     const $t = useTranslations('photos')
     const $cs = useTranslations('cards_slug')
 
-    const { data } = useApi('Photo', {
+    const { data } = useApi('Photo/AIO', {
         id,
     })
 
