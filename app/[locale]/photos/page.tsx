@@ -28,4 +28,8 @@ export async function generateMetadata({
     }
 }
 
-export default withAsyncMessages(PhotosPage, ['photos', 'cards_slug'])
+export default withAsyncMessages(PhotosPage, [
+    'photos',
+    'cards_slug',
+    'photo_ability_type',
+])
