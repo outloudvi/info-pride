@@ -1,6 +1,13 @@
 'use client'
 
-import { Grid, GridCol, NativeSelect, NavLink, ScrollArea } from '@mantine/core'
+import {
+    Grid,
+    GridCol,
+    NativeSelect,
+    NavLink,
+    ScrollArea,
+    Skeleton,
+} from '@mantine/core'
 import { useTranslations } from 'next-intl'
 import { useState } from 'react'
 
@@ -16,6 +23,15 @@ const PhotoAioView = ({ names }: { names: string[] }) => {
     const { data: photos, isFetched } = useApi('Photo/AIO/List', {
         name: selectedName,
     })
+    const { data: photoData } = useApi(
+        'Photo/AIO',
+        {
+            id: selectedPhoto,
+        },
+        {
+            enabled: selectedPhoto !== '',
+        },
+    )
 
     return (
         <>
@@ -45,7 +61,15 @@ const PhotoAioView = ({ names }: { names: string[] }) => {
                     </ScrollArea>
                 </GridCol>
                 <GridCol span={{ base: 12, lg: 9 }}>
-                    {selectedPhoto && <PhotoAioItem id={selectedPhoto} />}
+                    {selectedPhoto ? (
+                        photoData ? (
+                            <PhotoAioItem data={photoData} />
+                        ) : (
+                            <Skeleton height={300} />
+                        )
+                    ) : (
+                        <p>{$t('select_a_photo')}</p>
+                    )}
                 </GridCol>
             </Grid>
         </>

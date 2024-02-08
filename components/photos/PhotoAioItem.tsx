@@ -1,24 +1,18 @@
-import { Skeleton } from '@mantine/core'
+import { Slider } from '@mantine/core'
 import { useTranslations } from 'next-intl'
+import { useState } from 'react'
+import type { PhotoAioDetail } from 'hoshimi-types/types'
 
 import PhotoAbility from './PhotoAbility'
 
-import useApi from '#utils/useApi'
 import AssetImage from '#components/AssetImage'
 
-const PhotoAioItem = ({ id }: { id: string }) => {
+const PhotoAioItem = ({ data }: { data: PhotoAioDetail }) => {
     const $t = useTranslations('photos')
     const $cs = useTranslations('cards_slug')
 
-    const { data } = useApi('Photo/AIO', {
-        id,
-    })
-
-    if (!data) {
-        return <Skeleton height={300} />
-    }
-
-    const { name, assetId, rarity, abilities } = data
+    const { name, assetId, rarity, abilities, level: initialLevel } = data
+    const [level, setLevel] = useState(initialLevel)
 
     return (
         <>
@@ -37,9 +31,22 @@ const PhotoAioItem = ({ id }: { id: string }) => {
             </p>
             <div className="clear-both" />
             <h3>{$t('Skills')}</h3>
+            <Slider
+                min={initialLevel}
+                max={
+                    data.abilities[0].photoAbilityLevels[
+                        data.abilities[0].photoAbilityLevels.length - 1
+                    ].level
+                }
+                value={level}
+                label={(v) => `Level ${v}`}
+                onChange={setLevel}
+                aria-label={'Level'}
+                step={5}
+            />
             <div>
                 {abilities.map((item, key) => (
-                    <PhotoAbility key={key} item={item} />
+                    <PhotoAbility key={key} item={item} level={level} />
                 ))}
             </div>
         </>
