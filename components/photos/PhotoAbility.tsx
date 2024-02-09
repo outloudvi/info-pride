@@ -5,6 +5,51 @@ import { useTranslations } from 'next-intl'
 
 import type { UnArray } from '#utils/api'
 
+function toReadable(v: number, abilityType: PhotoAbilityType): string {
+    switch (abilityType) {
+        case PhotoAbilityType.VocalMultiply:
+        case PhotoAbilityType.DanceMultiply:
+        case PhotoAbilityType.VisualMultiply:
+        case PhotoAbilityType.StaminaMultiply:
+        case PhotoAbilityType.MentalMultiply:
+        case PhotoAbilityType.TechniqueMultiply:
+        case PhotoAbilityType.BeatScoreMultiply:
+        case PhotoAbilityType.ActiveSkillScoreMultiply:
+        case PhotoAbilityType.SpecialSkillScoreMultiply:
+        case PhotoAbilityType.CriticalScoreMultiply:
+            return `+${(v / 10).toFixed(1)}%`
+
+        case PhotoAbilityType.DanceAdd:
+        case PhotoAbilityType.VocalAdd:
+        case PhotoAbilityType.VisualAdd:
+        case PhotoAbilityType.StaminaAdd:
+        case PhotoAbilityType.MentalAdd:
+        case PhotoAbilityType.TechniqueAdd:
+        case PhotoAbilityType.BeatScoreAdd:
+        case PhotoAbilityType.ActiveSkillScoreAdd:
+        case PhotoAbilityType.SpecialSkillScoreAdd:
+            return `+${v}`
+
+        case PhotoAbilityType.PassiveSkill:
+            return `Lv${v}`
+
+        // not used in PhotoAIO
+        case PhotoAbilityType.ManagerExp:
+        case PhotoAbilityType.Gold:
+        case PhotoAbilityType.CardExp:
+        case PhotoAbilityType.AudienceAmountUp:
+        case PhotoAbilityType.ReceivedStrengthEffectValueIncrease:
+        case PhotoAbilityType.ReceivedStrengthEffectCountIncrease:
+        case PhotoAbilityType.AffectStrengthEffectValueIncrease:
+        case PhotoAbilityType.AffectStrengthEffectCountIncrease:
+        case PhotoAbilityType.CoolTimeReductionSkill1:
+        case PhotoAbilityType.CoolTimeReductionSkill2:
+        case PhotoAbilityType.CoolTimeReductionSkill3:
+            break
+    }
+    return `${v}`
+}
+
 const PhotoAbility = ({
     item,
     level,
@@ -34,7 +79,7 @@ const PhotoAbility = ({
                     className="flex items-center justify-center"
                 >
                     <div className="text-center text-3xl border-sky-500 border-solid p-2">
-                        {currentValue}
+                        {toReadable(currentValue, abilityType)}
                     </div>
                 </GridCol>
             </Grid>
