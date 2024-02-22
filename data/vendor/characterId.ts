@@ -51,6 +51,9 @@ export const CharacterIds = [
     'char-chk',
     'char-rik',
     'char-yo',
+
+    // Collab: Hatsune miku #2
+    'char-ymk',
 ] as const
 
 // Characters listed by Character.json (non-inclusive)
