@@ -42,6 +42,7 @@ const CharacterChineseNameList: Record<CharacterId, string> = {
     'char-yo': '渡边曜',
     'char-rik': '樱内梨子',
     'char-chk': '高海千歌',
+    'char-ymk': '雪未来',
 } as const
 
 const CardsJson = 'cards.json'
