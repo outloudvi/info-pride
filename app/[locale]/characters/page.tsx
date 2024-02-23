@@ -8,13 +8,18 @@ import { withAsyncMessages } from '#utils/withMessages'
 
 const CharactersPage = async () => {
     const $t = await getTranslations('characters')
+    const $vc = await getTranslations('v-chr')
 
     const CharacterListData = await fetchApi('Character/List')
 
     return (
         <>
             <h2>{$t('Characters')}</h2>
-            <CharactersMainView CharacterListData={CharacterListData} />
+            <CharactersMainView
+                CharacterListData={CharacterListData.filter(
+                    (x) => $vc(x.id) !== x.id,
+                )}
+            />
             <Divider my="sm" />
             {Object.entries(ExtraLinks).map(([title, link], key) => (
                 <a key={key} href={link} className="mr-3">
