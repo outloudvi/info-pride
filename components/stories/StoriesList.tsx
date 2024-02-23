@@ -5,6 +5,7 @@ import { useTranslations } from 'next-intl'
 import { useSearchParams } from 'next/navigation'
 
 import { SPECIAL_SERIES_TAG } from './constants'
+import type { SearchParams } from './sp'
 
 import { Episodes, Series } from '#data/stories'
 import SeasonChapterList from '#components/stories/SeasonChapterList'
@@ -20,7 +21,7 @@ const StoriesList = ({
     completion: IStoriesData<0 | 1>
 }) => {
     const $t = useTranslations('stories')
-    const { setSearchs } = useSetSearchParams()
+    const { setSearchs } = useSetSearchParams<SearchParams>()
     const params = useSearchParams()
 
     const curSeries = params.get('series')
