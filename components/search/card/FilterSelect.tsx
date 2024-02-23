@@ -16,7 +16,7 @@ const FilterSelect = <T extends string>({
 }: {
     label: string | ReactNode
     list: readonly T[]
-    width: number
+    width?: number
     multiple?: boolean
     className?: string
     displayAs?: (s: string) => string
@@ -27,7 +27,7 @@ const FilterSelect = <T extends string>({
     const $c = useTranslations('common')
 
     const data =
-        displayAs || listNamemap
+        displayAs ?? listNamemap
             ? list.map((x) => ({
                   label: (displayAs ? displayAs(x) : listNamemap?.[x]) ?? x,
                   value: x,
@@ -36,9 +36,14 @@ const FilterSelect = <T extends string>({
     if (multiple) {
         return (
             <MultiSelect
+                styles={{
+                    input: {
+                        width,
+                    },
+                }}
+                size="sm"
                 data={data}
                 label={label}
-                width={width}
                 className={className}
                 clearable
                 clearButtonProps={{
@@ -54,6 +59,7 @@ const FilterSelect = <T extends string>({
     } else {
         return (
             <Select
+                size="sm"
                 data={data}
                 label={label}
                 width={width}
