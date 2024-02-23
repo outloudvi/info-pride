@@ -25,11 +25,13 @@ const EventStoriesPage = async ({
             <p>{$t('stories_ordering')}</p>
             <Grid gutter={20} className="my-3">
                 <GridCol span={{ base: 12, lg: 3 }}>
-                    <EventStoriesList
-                        eventStories={EventStoriesData.sort(
-                            (a, b) => b.order - a.order,
-                        ).map((x) => pick(x, ['id', 'description']))}
-                    />
+                    <Suspense>
+                        <EventStoriesList
+                            eventStories={EventStoriesData.sort(
+                                (a, b) => b.order - a.order,
+                            ).map((x) => pick(x, ['id', 'description']))}
+                        />
+                    </Suspense>
                 </GridCol>
                 <GridCol span={{ base: 12, lg: 9 }}>
                     {currEvent && (

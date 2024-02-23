@@ -56,7 +56,12 @@ const StoriesPage = ({
             <h2>{$t('Stories')}</h2>
             <Grid gutter={20} className="my-3">
                 <GridCol span={{ base: 12, lg: 6 }}>
-                    <StoriesList special={special} completion={completion} />
+                    <Suspense>
+                        <StoriesList
+                            special={special}
+                            completion={completion}
+                        />
+                    </Suspense>
                 </GridCol>
                 <GridCol span={{ base: 12, lg: 6 }}>
                     {curSeries === SPECIAL_SERIES_TAG ? (
