@@ -116,7 +116,7 @@ const CardsPageMainView = ({
                         multiple
                         list={CharacterIds}
                         displayAs={$vc}
-                        width={300}
+                        width={200}
                         formProps={getInputProps('selectedCharacters')}
                     />
                     <FilterSelect
@@ -130,7 +130,7 @@ const CardsPageMainView = ({
                             2: $v('Technique'),
                             3: $v('Support'),
                         }}
-                        width={300}
+                        width={200}
                         formProps={getInputProps('selectedCardTypes')}
                     />
                     <FilterSelect
@@ -143,7 +143,7 @@ const CardsPageMainView = ({
                             Vocal: $v('Vocal'),
                             Visual: $v('Visual'),
                         }}
-                        width={300}
+                        width={200}
                         formProps={getInputProps('selectedCardColors')}
                     />
                     <FilterSelect
@@ -152,7 +152,7 @@ const CardsPageMainView = ({
                         multiple
                         list={cardFaceTypeList}
                         displayAs={(x) => $t(`cardface_${x}`)}
-                        width={300}
+                        width={200}
                         formProps={getInputProps('selectedCardFaceTypes')}
                     />
                     <FilterSelect
@@ -166,7 +166,7 @@ const CardsPageMainView = ({
                             'visualPt',
                         ]}
                         displayAs={$t}
-                        width={300}
+                        width={200}
                         formProps={getInputProps('orderBy')}
                     />
                     <Checkbox
