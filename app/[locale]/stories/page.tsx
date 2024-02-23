@@ -1,7 +1,8 @@
 import { useLocale, useTranslations } from 'next-intl'
 import { getTranslations } from 'next-intl/server'
-import { Grid, GridCol } from '@mantine/core'
+import { Grid, GridCol, Skeleton } from '@mantine/core'
 import _range from 'lodash/range'
+import { Suspense } from 'react'
 
 import StoriesList from '#components/stories/StoriesList'
 import { withMessages } from '#utils/withMessages'
@@ -53,7 +54,6 @@ const StoriesPage = ({
     return (
         <>
             <h2>{$t('Stories')}</h2>
-
             <Grid gutter={20} className="my-3">
                 <GridCol span={{ base: 12, lg: 6 }}>
                     <StoriesList special={special} completion={completion} />
@@ -62,11 +62,13 @@ const StoriesPage = ({
                     {curSeries === SPECIAL_SERIES_TAG ? (
                         <SpecialStoriesItem item={special[curChapter]} />
                     ) : (
-                        <StoriesItem
-                            series={seriesName}
-                            season={curSeason}
-                            chapter={curChapter}
-                        />
+                        <Suspense fallback={<Skeleton height={600} />}>
+                            <StoriesItem
+                                series={seriesName}
+                                season={curSeason}
+                                chapter={curChapter}
+                            />
+                        </Suspense>
                     )}
                 </GridCol>
             </Grid>

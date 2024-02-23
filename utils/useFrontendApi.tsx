@@ -34,7 +34,6 @@ export type FrontendAPIResponseMapping = {
     eventStories: ChapterItem | null
     news: { title: string; link?: string }[]
     skillRunner: SkillLaunchItem[]
-    stories: ChapterItem | null
 }
 
 function useFrontendApi<T extends keyof FrontendAPIResponseMapping>(
