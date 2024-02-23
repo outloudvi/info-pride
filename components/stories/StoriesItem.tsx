@@ -1,14 +1,13 @@
-'use client'
-
 import { Button, Skeleton } from '@mantine/core'
-import { useLocale, useTranslations } from 'next-intl'
+import { useLocale } from 'next-intl'
 import Link from 'next/link'
+import { getTranslations } from 'next-intl/server'
 
 import { toVideoLink } from '#components/ExternalVideo'
-import useApi from '#utils/useApi'
 import type { SeriesName } from '#data/stories'
 import AssetImage from '#components/AssetImage'
-import useFrontendApi from '#utils/useFrontendApi'
+import { fetchApi } from '#utils/fetchApi'
+import storiesData from '#data/videos/stories.data'
 
 type PropType = {
     // "Special" won't appear here
@@ -37,23 +36,18 @@ function getBackendStoryId(props: PropType): string {
     ].join('-')
 }
 
-const StoriesItem = (props: PropType) => {
+const StoriesItem = async (props: PropType) => {
     const { series, season, chapter } = props
-    const $t = useTranslations('stories')
-    const $c = useTranslations('common')
+    const $t = await getTranslations('stories')
+    const $c = await getTranslations('common')
     const locale = useLocale()
 
-    const { data: StoryData, isSuccess } = useApi('Story', {
+    const StoryData = await fetchApi('Story', {
         id: getBackendStoryId(props),
     })
-    const { data: StoryTrnData } = useFrontendApi('stories', {
-        locale,
-        series,
-        season: String(season),
-        chapter: String(chapter),
-    })
+    const StoryTrnData = storiesData[locale].data[series][season][chapter]
 
-    if (!isSuccess) {
+    if (!StoryTrnData) {
         return (
             <>
                 <div className="text-4xl">
