@@ -3,6 +3,10 @@ import NextAdapterApp from 'next-query-params/app'
 
 import type { Component } from './types'
 
+/**
+ *
+ * @deprecated TODO
+ */
 function withQueryParam<T>(Chlid: Component<T>): Component<T> {
     return function QueryParamWrapped(props: T) {
         return (
