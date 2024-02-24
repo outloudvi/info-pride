@@ -1,40 +1,38 @@
 'use client'
 
 import { Grid, GridCol } from '@mantine/core'
-import { useEffect, useRef, useState } from 'react'
+import { Suspense, useEffect, useRef, useState } from 'react'
 import { useViewportSize } from '@mantine/hooks'
-import { useTranslations } from 'next-intl'
-import { StringParam, useQueryParam, withDefault } from 'use-query-params'
+import { useSearchParams } from 'next/navigation'
+import dynamic from 'next/dynamic'
 
 import ChatItem from './ChatItem'
-import ChatView from './ChatView'
+import type { SearchParams } from './sp'
 
 import type { APIResponseOf } from '#utils/api'
-import withQueryParam from '#utils/withQueryParam'
-import FullScreenButton from '#components/FullScreenButton'
+import useSetSearchParams from '#utils/useSetSearchParams'
+
+const FullScreenButton = dynamic(() => import('#components/FullScreenButton'), {
+    ssr: false,
+})
 
 const MessageBoardView = ({
     groups,
+    children,
+    mdShowSidebar,
 }: {
     groups: APIResponseOf<'MessageGroup'>
+    children: JSX.Element
+    mdShowSidebar: boolean
 }) => {
-    const $t = useTranslations('messages')
     const [activeGroup, setActiveGroup] = useState<undefined | string>(
         undefined,
     )
-    const [activeMessageId, setActiveMessageId] = useQueryParam(
-        'd',
-        withDefault(StringParam, ''),
-    )
-    const [mdShowSidebar, setMdShowSidebar] = useState(true)
     const outer = useRef<HTMLDivElement | null>(null)
     const { height } = useViewportSize()
-
-    useEffect(() => {
-        if (activeMessageId) {
-            setMdShowSidebar(false)
-        }
-    }, [activeMessageId])
+    const searchParams = useSearchParams()
+    const activeMessageId = searchParams.get('d')
+    const { setSearch } = useSetSearchParams<SearchParams>()
 
     useEffect(() => {
         if (!outer.current) return
@@ -60,7 +58,9 @@ const MessageBoardView = ({
                     }`}
                 >
                     <div className="flex justify-center my-2">
-                        <FullScreenButton target={outer} />
+                        <Suspense fallback={<div>3</div>}>
+                            <FullScreenButton target={outer} />
+                        </Suspense>
                     </div>
                     {groups.map((group, key) => (
                         <ChatItem
@@ -71,7 +71,7 @@ const MessageBoardView = ({
                                 setActiveGroup(group.id)
                             }}
                             setActiveMessageId={(a) => {
-                                setActiveMessageId(a)
+                                setSearch('d', a)
                             }}
                         />
                     ))}
@@ -85,24 +85,11 @@ const MessageBoardView = ({
                         mdShowSidebar ? 'hidden lg:block' : ''
                     }`}
                 >
-                    {activeMessageId ? (
-                        <ChatView
-                            messageId={activeMessageId}
-                            mdBackToSidebar={() => {
-                                setMdShowSidebar(true)
-                            }}
-                        />
-                    ) : (
-                        <div className="flex h-full justify-center items-center">
-                            <div className="text-white">
-                                {$t('select_a_commu')}
-                            </div>
-                        </div>
-                    )}
+                    {children}
                 </GridCol>
             </Grid>
         </div>
     )
 }
 
-export default withQueryParam(MessageBoardView)
+export default MessageBoardView

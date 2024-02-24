@@ -1,6 +1,6 @@
 export type SearchParams = {
     /**
-     * Character ID.
+     * Message ID
      */
-    chid: string
+    d: string
 }
