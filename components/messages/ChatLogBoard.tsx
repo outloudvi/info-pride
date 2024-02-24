@@ -1,3 +1,5 @@
+'use client'
+
 import { useMemo } from 'react'
 import { useTranslations } from 'next-intl'
 import { Box } from '@mantine/core'

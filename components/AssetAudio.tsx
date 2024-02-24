@@ -1,3 +1,5 @@
+'use client'
+
 import type { SetStateAction } from 'react'
 import { useEffect, useRef, useState } from 'react'
 import { useTranslations } from 'next-intl'

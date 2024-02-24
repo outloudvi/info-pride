@@ -10,7 +10,11 @@ const useSetSearchParams = <T = Record<string, string>>() => {
     const setSearchs = (newParamsList: [keyof T, string][]) => {
         const params = new URLSearchParams(searchParams.toString())
         for (const [key, val] of newParamsList) {
-            params.set(key as string, val)
+            if (val === '') {
+                params.delete(key as string)
+            } else {
+                params.set(key as string, val)
+            }
         }
         const newParams = params.toString()
         router.push(pathname + '?' + newParams)
