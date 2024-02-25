@@ -2,23 +2,27 @@
 
 import { useTranslations } from 'next-intl'
 import { Alert, Button, Flex, NativeSelect } from '@mantine/core'
-import { StringParam, useQueryParam, withDefault } from 'use-query-params'
 import { useEffect, useState } from 'react'
 import type { ReactNode } from 'react'
 import Link from 'next/link'
+import { useSearchParams } from 'next/navigation'
 
-import withQueryParam from '#utils/withQueryParam'
+import type { SearchParams } from './sp'
+
 import useApi from '#utils/useApi'
 import { PrimaryCharacterIds } from '#data/vendor/characterId'
 import SpineView from '#components/spine/SpineView'
+import useSetSearchParams from '#utils/useSetSearchParams'
 
 const SpineViewWrapper = () => {
     const $t = useTranslations('spine')
     const $vc = useTranslations('v-chr')
+    const searchParams = useSearchParams()
 
     const [initSync, setInitSync] = useState(false)
     const [id, setId] = useState('')
-    const [urlId, setUrlId] = useQueryParam('id', withDefault(StringParam, ''))
+    const urlId = searchParams.get('id') ?? ''
+    const { setSearch } = useSetSearchParams<SearchParams>()
 
     const [idInput, setIdInput] = useState(urlId)
     const [characterId, setCharacterId] = useState('char-ktn')
@@ -38,9 +42,9 @@ const SpineViewWrapper = () => {
             setIdInput(urlId.replace('spi_sd_chr_cos_', ''))
             setInitSync(true)
         } else if (id !== '') {
-            setUrlId(id)
+            setSearch('id', id)
         }
-    }, [id, initSync, setUrlId, urlId])
+    }, [id, initSync, setSearch, urlId])
 
     return (
         <>
@@ -121,4 +125,4 @@ const SpinePageMainView = () => {
     )
 }
 
-export default withQueryParam(SpinePageMainView)
+export default SpinePageMainView
