@@ -2,5 +2,6 @@
     "Story search": "剧情搜索",
     "Original story": "剧情原文",
     "description": "本页可以通过剧情对话文本搜索到相应剧情。最多显示 30 条结果。",
-    "search_placeholder": "剧情对话原文…"
+    "search_placeholder": "剧情对话原文…",
+    "no_results": "无结果。"
 }

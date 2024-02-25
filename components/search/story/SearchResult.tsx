@@ -1,13 +1,13 @@
 import { Stack } from '@mantine/core'
 import { getTranslations } from 'next-intl/server'
 
-import MessageSearchItem from './MessageSearchItem'
+import StorySearchItem from './StorySearchItem'
 
 import { fetchApi } from '#utils/fetchApi'
 
 const SearchResult = async ({ q }: { q: string }) => {
-    const $t = await getTranslations('message_search')
-    const data = await fetchApi('Search/Message', {
+    const $t = await getTranslations('story_search')
+    const data = await fetchApi('Search/Commu', {
         q,
     })
 
@@ -18,7 +18,7 @@ const SearchResult = async ({ q }: { q: string }) => {
     return (
         <Stack>
             {data.map((x, key) => (
-                <MessageSearchItem key={key} item={x} />
+                <StorySearchItem key={key} item={x} />
             ))}
         </Stack>
     )

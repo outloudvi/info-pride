@@ -2,5 +2,6 @@
     "Story search": "Story search",
     "Original story": "Original story",
     "description": "Search story dialogues to find the exact story. 30 results are shown at most.",
-    "search_placeholder": "Story dialogue..."
+    "search_placeholder": "Story dialogue...",
+    "no_results": "No results."
 }
