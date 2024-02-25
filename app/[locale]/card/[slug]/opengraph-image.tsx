@@ -1,4 +1,4 @@
-// @ts-nocheck
+// @ts-nocheck - [TODO] ts checking fixes
 
 import { notFound } from 'next/navigation'
 import { ImageResponse } from 'next/og'
@@ -23,15 +23,15 @@ export default async function OGImage({
         notFound()
     }
 
-    const cardMeta = cardResults[0]
-    const { name, description, assetId, characterId } = cardMeta
-
     const siteLogo = await fetch(
         new URL(
             '../../../../public/android-chrome-512x512.png',
             import.meta.url,
         ),
     ).then((x) => x.arrayBuffer())
+
+    const cardMeta = cardResults[0]
+    const { name, description, assetId, characterId } = cardMeta
 
     const assetSlug = getAssetSlug(assetId, 'thumb', true)
 

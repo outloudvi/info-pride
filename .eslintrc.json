@@ -44,5 +44,5 @@
         "@typescript-eslint/no-extra-semi": "off",
         "@typescript-eslint/no-unused-vars": "warn"
     },
-    "ignorePatterns": ["app/**/opengraph-image.tsx"]
+    "ignorePatterns": ["app/**/opengraph-image.tsx", "app/**/twitter-image.tsx"]
 }
