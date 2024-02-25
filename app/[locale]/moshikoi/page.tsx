@@ -1,12 +1,18 @@
 import { Grid, GridCol } from '@mantine/core'
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
-import { getTranslations } from 'next-intl/server'
+import { getTranslations, unstable_setRequestLocale } from 'next-intl/server'
 
 import Paths from '#utils/paths'
 import MoshikoiMeta from '#data/moshikoi/meta'
 
-const Page = () => {
+const MoshikoiPage = ({
+    params: { locale },
+}: {
+    params: { locale: string }
+}) => {
+    unstable_setRequestLocale(locale)
+
     const $t = useTranslations('moshikoi')
     const $vc = useTranslations('v-chr')
 
@@ -64,4 +70,4 @@ export async function generateMetadata({
     }
 }
 
-export default Page
+export default MoshikoiPage
