@@ -8,6 +8,7 @@
     "scripts": {
         "dev": "next dev --turbo",
         "build": "next build",
+        "build:analyze": "NODE_OPTIONS='--max-old-space-size=8192' ANALYZE=1 next build",
         "start": "next start",
         "format": "prettier --write **/*.ts{,x}",
         "lint": "next lint",
