@@ -14,8 +14,10 @@ import {
     TextInput,
 } from '@mantine/core'
 import { showNotification } from '@mantine/notifications'
-import { StringParam, useQueryParam, withDefault } from 'use-query-params'
 import { useTranslations } from 'next-intl'
+import { useSearchParams } from 'next/navigation'
+
+import type { SearchParams } from './sp'
 
 import useApi from '#utils/useApi'
 import CardIdData from '#data/ccid'
@@ -26,7 +28,7 @@ import UnitPosition from '#components/units/UnitPosition'
 import UnitAnalyzer from '#components/units/UnitAnalyzer'
 import UnitNotemap from '#components/units/UnitNotemap'
 import TrackColorSelect from '#components/notemap/TrackColorSelect'
-import withQueryParam from '#utils/withQueryParam'
+import useSetSearchParams from '#utils/useSetSearchParams'
 
 const UnitsPageMainView = ({
     CardData,
@@ -44,11 +46,10 @@ const UnitsPageMainView = ({
         })),
     ).reduce((a, b) => [...a, ...b])
 
-    const [unitId, setUnitId] = useQueryParam('u', withDefault(StringParam, ''))
-    const [chartId, setChartId] = useQueryParam(
-        'chart',
-        withDefault(StringParam, musicChartList[0].id),
-    )
+    const searchParams = useSearchParams()
+    const { setSearch } = useSetSearchParams<SearchParams>()
+    const unitId = searchParams.get('u') ?? ''
+    const chartId = searchParams.get('chart') ?? musicChartList[0].id
 
     const selectedMusicChart = musicChartList.find(
         (x) => x.id === chartId,
@@ -79,10 +80,11 @@ const UnitsPageMainView = ({
     useEffect(() => {
         const cardList = unitCards.slice(1)
         if (cardList.filter((x) => x).length !== 5) return
-        setUnitId(
+        setSearch(
+            'u',
             unitCodeV1.encode(cardList as NonNullable<CardTiny[]>, CardIdData),
         )
-    }, [unitCards, setUnitId])
+    }, [unitCards, setSearch])
 
     const [modalImportUnit, setModalImportUnit] = useState(false)
     const [importUnitId, setImportUnitId] = useState('')
@@ -181,7 +183,7 @@ const UnitsPageMainView = ({
                             }))}
                             value={chartId}
                             onChange={(e) => {
-                                setChartId(e.currentTarget.value)
+                                setSearch('chart', e.currentTarget.value)
                             }}
                             required
                         />
@@ -253,4 +255,4 @@ const UnitsPageMainView = ({
     )
 }
 
-export default withQueryParam(UnitsPageMainView)
+export default UnitsPageMainView
