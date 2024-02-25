@@ -1,4 +1,6 @@
 import { getTranslations } from 'next-intl/server'
+import { Suspense } from 'react'
+import { Skeleton } from '@mantine/core'
 
 import { withAsyncMessages } from '#utils/withMessages'
 import { fetchApi } from '#utils/fetchApi'
@@ -13,10 +15,12 @@ const UnitsPage = async () => {
     return (
         <>
             <h2>{$t('Units')}</h2>
-            <UnitsPageMainView
-                CardData={CardData}
-                ChartListData={ChartListData}
-            />
+            <Suspense fallback={<Skeleton height={600} />}>
+                <UnitsPageMainView
+                    CardData={CardData}
+                    ChartListData={ChartListData}
+                />
+            </Suspense>
         </>
     )
 }
