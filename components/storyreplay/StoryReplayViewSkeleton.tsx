@@ -2,11 +2,15 @@ import { Alert, Skeleton } from '@mantine/core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import { getTranslations } from 'next-intl/server'
+import dynamic from 'next/dynamic'
 
-import StoryReplayView from './StoryReplayView'
 import type { AdvFromAsset } from './types'
 
 import Paths from '#utils/paths'
+
+const StoryReplayView = dynamic(() => import('./StoryReplayView'), {
+    ssr: false,
+})
 
 const StoryReplayViewSkeleton = async ({
     id,
