@@ -6,6 +6,8 @@ import { Notifications } from '@mantine/notifications'
 import type { Metadata } from 'next'
 import { pick } from 'lodash'
 import { getMessages, unstable_setRequestLocale } from 'next-intl/server'
+import { Analytics } from '@vercel/analytics/react'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 
 import locales from '#locales/locales.json'
 import { theme } from '#components/theme'
@@ -97,6 +99,8 @@ export default async function RootLayout({
                         <Layout>{children}</Layout>
                     </NextIntlClientProvider>
                 </MantineProvider>
+                <Analytics />
+                <SpeedInsights />
             </body>
         </html>
     )
