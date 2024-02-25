@@ -18,7 +18,6 @@
         "dataset:bv": "scripts/buildAndValidate.sh",
         "dataset:type": "scripts/schemaToType.sh",
         "dataset:ajv": "ajv",
-        "dataset:ts": "ts-node-esm",
         "prepare": "husky install",
         "t:build": "turbo build lint"
     },
@@ -85,6 +84,7 @@
         "@typescript-eslint/parser": "^7.0.2",
         "ajv-cli": "^5.0.0",
         "chai": "^5.1.0",
+        "esbuild-register": "^3.5.0",
         "eslint": "8.56.0",
         "eslint-config-next": "14.1.0",
         "eslint-config-prettier": "^9.1.0",
@@ -95,7 +95,6 @@
         "json-schema-to-typescript": "^13.1.2",
         "mocha": "^10.3.0",
         "prettier": "^3.2.5",
-        "ts-node": "^10.9.2",
         "tsconfig-paths": "^4.2.0",
         "tslib": "^2.6.2",
         "turbo": "^1.12.4",
