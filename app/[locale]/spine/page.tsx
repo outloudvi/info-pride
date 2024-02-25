@@ -1,6 +1,7 @@
-import { Badge, Group } from '@mantine/core'
+import { Badge, Group, Skeleton } from '@mantine/core'
 import { useTranslations } from 'next-intl'
 import { getTranslations } from 'next-intl/server'
+import { Suspense } from 'react'
 
 import SpinePageMainView from '#components/spine/SpinePageMainView'
 import { withMessages } from '#utils/withMessages'
@@ -14,7 +15,9 @@ const SpinePage = () => {
                 <h2>{$t('Spine viewer')}</h2>
                 <Badge>beta</Badge>
             </Group>
-            <SpinePageMainView />
+            <Suspense fallback={<Skeleton height={600} />}>
+                <SpinePageMainView />
+            </Suspense>
         </>
     )
 }
