@@ -3,9 +3,10 @@ import { useState } from 'react'
 import { Group, Radio, Switch } from '@mantine/core'
 import { useTranslations } from 'next-intl'
 
-import AssetImage from '#components/AssetImage'
+import type { CardImageType } from './cardHelper'
+import { CardSizeConfig, getAssetSlug } from './cardHelper'
 
-type CardImageType = 'thumb' | 'rect' | 'upper' | 'full'
+import AssetImage from '#components/AssetImage'
 
 /**
  * Generate the asset ID for card-related images.
@@ -31,31 +32,6 @@ type CardImageType = 'thumb' | 'rect' | 'upper' | 'full'
  * @param {boolean} isAwaken Whether to pick the awaken version. Note that some cards only have awaken variants.
  * @returns {string} Asset ID.
  */
-export function getAssetSlug(
-    cardAssetId: string,
-    type: CardImageType,
-    isAwaken: boolean
-): string {
-    return `img_card_${type}_${isAwaken ? 1 : 0}_${cardAssetId}`
-}
-
-const CONF: {
-    r: Record<CardImageType, number>
-    h: Record<CardImageType, string | number>
-} = {
-    r: {
-        thumb: 1,
-        full: 1 / 0.56,
-        rect: 1 / 0.56,
-        upper: 0.5,
-    },
-    h: {
-        thumb: 150,
-        full: 512,
-        rect: 256,
-        upper: 360,
-    },
-}
 
 const CardAsset = ({
     cardAssetId,
@@ -100,8 +76,8 @@ const CardAsset = ({
             <AssetImage
                 // TODO
                 name={assetSlug}
-                ratio={CONF['r'][imageType]}
-                height={CONF['h'][imageType]}
+                ratio={CardSizeConfig['r'][imageType]}
+                height={CardSizeConfig['h'][imageType]}
                 alt={'Asset image'}
             />
         </div>
