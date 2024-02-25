@@ -24,7 +24,7 @@ const FilterSelect = <T extends string>({
     listNamemap?: Record<string, string>
     formProps: Omit<SelectProps, 'data'> | Omit<MultiSelectProps, 'data'>
     maxDropdownHeight?: number
-    value?: string[] | string | null
+    value?: string[] | string
 }) => {
     const $c = useTranslations('common')
 
@@ -56,7 +56,7 @@ const FilterSelect = <T extends string>({
                 }}
                 {...(formProps as Omit<MultiSelectProps, 'data'>)}
                 maxDropdownHeight={maxDropdownHeight}
-                value={value}
+                value={value as string[] | undefined}
             />
         )
     } else {
@@ -73,7 +73,7 @@ const FilterSelect = <T extends string>({
                 }}
                 {...(formProps as Omit<SelectProps, 'data'>)}
                 maxDropdownHeight={maxDropdownHeight}
-                value={value}
+                value={value as string | undefined}
             />
         )
     }

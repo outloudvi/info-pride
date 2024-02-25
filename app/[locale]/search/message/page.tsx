@@ -1,17 +1,33 @@
 import { useTranslations } from 'next-intl'
 import { getTranslations } from 'next-intl/server'
+import { Suspense } from 'react'
+import { Skeleton } from '@mantine/core'
 
-import MessageSearchMainView from '#components/search/message/MessageSearchMainView'
 import { withMessages } from '#utils/withMessages'
+import SearchBox from '#components/search/message/SearchBox'
+import type { SearchParams } from '#components/search/message/sp'
+import SearchResult from '#components/search/message/SearchResult'
 
-const MessageSearchPage = () => {
+const MessageSearchPage = ({
+    searchParams,
+}: {
+    searchParams: Partial<SearchParams>
+}) => {
     const $t = useTranslations('message_search')
+    const q = searchParams.q
 
     return (
         <>
             <h2>{$t('Message Search')}</h2>
             <p>{$t('description')}</p>
-            <MessageSearchMainView />
+            <div className="max-w-7xl mx-auto">
+                <SearchBox q={q} />
+                {q !== undefined && (
+                    <Suspense fallback={<Skeleton height={600} />}>
+                        <SearchResult q={q} />
+                    </Suspense>
+                )}
+            </div>
         </>
     )
 }

@@ -1,5 +1,6 @@
 {
     "Message Search": "Message Search",
     "description": "Search from message text. 30 results are shown at most.",
-    "search_placeholder": "Message text..."
+    "search_placeholder": "Message text...",
+    "no_result": "No result."
 }

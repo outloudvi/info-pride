@@ -14,7 +14,7 @@ const EmblemSearch = () => {
     const searchParams = useSearchParams()
     const { setSearch } = useSetSearchParams<SearchParams>()
 
-    const emblemType = searchParams.get('s')
+    const emblemType = searchParams.get('s') ?? ''
 
     return (
         <div className="mt-2 mb-4 rounded-md border-solid border-6 border-sky-500 p-2 flex">
