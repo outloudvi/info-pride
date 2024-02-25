@@ -2,9 +2,14 @@ import { Badge, Group, Skeleton } from '@mantine/core'
 import { useTranslations } from 'next-intl'
 import { getTranslations } from 'next-intl/server'
 import { Suspense } from 'react'
+import dynamic from 'next/dynamic'
 
-import SpinePageMainView from '#components/spine/SpinePageMainView'
 import { withMessages } from '#utils/withMessages'
+
+const SpinePageMainView = dynamic(
+    () => import('#components/spine/SpinePageMainView'),
+    { ssr: false },
+)
 
 const SpinePage = () => {
     const $t = useTranslations('spine')
