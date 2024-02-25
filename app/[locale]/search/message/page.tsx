@@ -5,7 +5,7 @@ import { Skeleton } from '@mantine/core'
 
 import { withMessages } from '#utils/withMessages'
 import SearchBox from '#components/search/message/SearchBox'
-import type { SearchParams } from '#components/search/message/sp'
+import type { SearchParams } from '#components/search/common/sp'
 import SearchResult from '#components/search/message/SearchResult'
 
 const MessageSearchPage = ({

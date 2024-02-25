@@ -2,6 +2,6 @@
 
 import searchBoxBuilder from '../common/SearchBox'
 
-const MessageSearchBox = searchBoxBuilder('message_search')
+const MessageSearchBox = searchBoxBuilder('story_search')
 
 export default MessageSearchBox
