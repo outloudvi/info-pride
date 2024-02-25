@@ -107,9 +107,6 @@ dependencies:
   next-intl:
     specifier: ^3.9.0
     version: 3.9.0(next@14.1.0)(react@18.2.0)
-  next-query-params:
-    specifier: ^5.0.0
-    version: 5.0.0(next@14.1.0)(react@18.2.0)(use-query-params@2.2.1)
   nextjs-progressbar:
     specifier: ^0.0.16
     version: 0.0.16(next@14.1.0)(react@18.2.0)
@@ -143,9 +140,6 @@ dependencies:
   tailwindcss:
     specifier: ^3.4.1
     version: 3.4.1(ts-node@10.9.2)
-  use-query-params:
-    specifier: ^2.2.1
-    version: 2.2.1(react-dom@18.2.0)(react@18.2.0)
 
 devDependencies:
   '@hoshimei/adv':
@@ -6190,19 +6184,6 @@ packages:
       use-intl: 3.9.0(react@18.2.0)
     dev: false
 
-  /next-query-params@5.0.0(next@14.1.0)(react@18.2.0)(use-query-params@2.2.1):
-    resolution: {integrity: sha512-Zm9nc0QgrTMaQwGdbICcTDaYS4oRcXo628Ye6JQGdp/9JzlhzDpzcGRqciK0S62yAyE3b5ozFpgzY0gDUEbLtw==}
-    peerDependencies:
-      next: ^10.0.0 || ^11.0.0 || ^12.0.0 || ^13.0.0 || ^14.0.0
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0
-      use-query-params: ^2.0.0
-    dependencies:
-      next: 14.1.0(@babel/core@7.23.9)(react-dom@18.2.0)(react@18.2.0)
-      react: 18.2.0
-      tslib: 2.6.2
-      use-query-params: 2.2.1(react-dom@18.2.0)(react@18.2.0)
-    dev: false
-
   /next-tick@1.1.0:
     resolution: {integrity: sha512-CXdUiJembsNjuToQvxayPZF9Vqht7hewsvy2sOWafLvi2awflj9mOC6bHIg50orX8IJvWKY9wYQ/zB2kogPslQ==}
     dev: true
@@ -7116,10 +7097,6 @@ packages:
       randombytes: 2.1.0
     dev: true
 
-  /serialize-query-params@2.0.2:
-    resolution: {integrity: sha512-1chMo1dST4pFA9RDXAtF0Rbjaut4is7bzFbI1Z26IuMub68pNCILku85aYmeFhvnY//BXUPUhoRMjYcsT93J/Q==}
-    dev: false
-
   /set-function-length@1.2.1:
     resolution: {integrity: sha512-j4t6ccc+VsKwYHso+kElc5neZpjtq9EnRICFZtWyBsLojhmeF/ZBd/elqm22WJh/BziDe/SBiOeAt0m2mfLD0g==}
     engines: {node: '>= 0.4'}
@@ -7845,24 +7822,6 @@ packages:
       '@types/react': 18.2.57
       react: 18.2.0
       use-isomorphic-layout-effect: 1.1.2(@types/react@18.2.57)(react@18.2.0)
-    dev: false
-
-  /use-query-params@2.2.1(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-i6alcyLB8w9i3ZK3caNftdb+UnbfBRNPDnc89CNQWkGRmDrm/gfydHvMBfVsQJRq3NoHOM2dt/ceBWG2397v1Q==}
-    peerDependencies:
-      '@reach/router': ^1.2.1
-      react: '>=16.8.0'
-      react-dom: '>=16.8.0'
-      react-router-dom: '>=5'
-    peerDependenciesMeta:
-      '@reach/router':
-        optional: true
-      react-router-dom:
-        optional: true
-    dependencies:
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-      serialize-query-params: 2.0.2
     dev: false
 
   /use-sidecar@1.1.2(@types/react@18.2.57)(react@18.2.0):
