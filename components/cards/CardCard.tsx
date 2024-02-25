@@ -3,7 +3,7 @@ import { AttributeType, CardType } from 'hoshimi-types/ProtoEnum'
 import { useTranslations } from 'next-intl'
 import Link from 'next/link'
 
-import { getAssetSlug } from './CardAsset'
+import { getAssetSlug } from './cardHelper'
 import PropValueBg from './PropValueBg'
 import MixedImageBox from './MixedImageBox'
 

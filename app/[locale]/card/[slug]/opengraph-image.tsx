@@ -1,13 +1,12 @@
+// @ts-nocheck
+
 import { notFound } from 'next/navigation'
 import { ImageResponse } from 'next/og'
-import Image from 'next/image'
 
 import { fetchApi } from '#utils/fetchApi'
-import AssetImage from '#components/AssetImage'
-import { CardSizeConfig, getAssetSlug } from '#components/cards/cardHelper'
+import { getAssetSlug } from '#components/cards/cardHelper'
 import Paths from '#utils/paths'
 import jaVChr from '#locales/ja/v-chr.json'
-import lfToBr from '#utils/lfToBr'
 
 export const runtime = 'edge'
 

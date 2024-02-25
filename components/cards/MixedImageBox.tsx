@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import Image from 'next/image'
 
-import { getAssetSlug } from './CardAsset'
+import { getAssetSlug } from './cardHelper'
 
 import Paths from '#utils/paths'
 import { PLACEHOLDER_SVG } from '#utils/constants'
@@ -43,8 +43,8 @@ const MixedImageBox = ({ assetId }: { assetId: string }) => {
                     zoom === ZoomStatus.Left
                         ? '!w-full'
                         : zoom === ZoomStatus.Right
-                        ? '!w-0'
-                        : '!w-1/5'
+                          ? '!w-0'
+                          : '!w-1/5'
                 }`}
                 style={{
                     transitionDuration: '0.5s',
@@ -63,8 +63,8 @@ const MixedImageBox = ({ assetId }: { assetId: string }) => {
                     zoom === ZoomStatus.Right
                         ? '!w-full'
                         : zoom === ZoomStatus.Left
-                        ? '!w-0'
-                        : '!w-4/5'
+                          ? '!w-0'
+                          : '!w-4/5'
                 }`}
                 style={{
                     transitionDuration: '0.5s',
