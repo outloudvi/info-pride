@@ -2,6 +2,12 @@
     "extends": ["development"],
     "hints": {
         "no-inline-styles": "off",
-        "valid-lang": "off"
-    }
+        "valid-lang": "off",
+        "axe/language": [
+            "default",
+            {
+                "valid-lang": "off",
+            },
+        ],
+    },
 }
