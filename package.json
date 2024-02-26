@@ -18,7 +18,8 @@
         "dataset:bv": "scripts/buildAndValidate.sh",
         "dataset:type": "scripts/schemaToType.sh",
         "dataset:ajv": "ajv",
-        "prepare": "husky install",
+        "postinstall": "husky init",
+        "prepare": "husky",
         "t:build": "turbo build lint"
     },
     "dependencies": {
