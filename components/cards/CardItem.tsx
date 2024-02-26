@@ -8,10 +8,9 @@ import {
     Skeleton,
 } from '@mantine/core'
 import { AttributeType, CardType } from 'hoshimi-types/ProtoEnum'
-import { useLocale } from 'next-intl'
 import Link from 'next/link'
 import { Suspense } from 'react'
-import { getTranslations } from 'next-intl/server'
+import { getLocale, getTranslations } from 'next-intl/server'
 
 import CardAsset from './CardAsset'
 import Skills from './Skills'
@@ -26,6 +25,7 @@ import CCIDTable from '#data/ccid'
 import ApiData from '#locales/apiData'
 import CardStoriesData from '#data/videos/cardStories.data'
 import { fetchApi } from '#utils/fetchApi'
+import lfToBr from '#utils/lfToBr'
 
 const CardItem = async ({
     card,
@@ -49,7 +49,7 @@ const CardItem = async ({
         activityAbilityId,
     } = card
 
-    const locale = useLocale()
+    const locale = await getLocale()
 
     const SkillData = await fetchApi('Skill', {
         ids: `${card.skillId1},${card.skillId2},${card.skillId3}`,
@@ -100,9 +100,9 @@ const CardItem = async ({
     return (
         <>
             <Breadcrumbs className="mb-2">
-                <Link href="/cards" passHref className="no-underline">
-                    <Anchor>{$t('Card list')}</Anchor>
-                </Link>
+                <Anchor href="/cards" className="no-underline">
+                    {$t('Card list')}
+                </Anchor>
                 <Anchor>{name}</Anchor>
             </Breadcrumbs>
             <div>
@@ -123,12 +123,9 @@ const CardItem = async ({
             </div>
             <Grid gutter={20}>
                 <GridCol span={{ base: 12, lg: 6 }}>
-                    <div
-                        className="text-gray-600 dark:text-gray-400"
-                        dangerouslySetInnerHTML={{
-                            __html: description.replace(/\n/g, '<br/>'),
-                        }}
-                    ></div>
+                    <div className="text-gray-600 dark:text-gray-400">
+                        {lfToBr(description)}
+                    </div>
 
                     {CardAliases && (
                         <div>
