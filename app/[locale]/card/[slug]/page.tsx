@@ -1,16 +1,26 @@
 import { notFound } from 'next/navigation'
 import { getTranslations } from 'next-intl/server'
+import { Suspense } from 'react'
+import { Skeleton } from '@mantine/core'
 
 import CardItem from '#components/cards/CardItem'
 import { fetchApi } from '#utils/fetchApi'
-import { withAsyncMessages } from '#utils/withMessages'
+import { withMessages } from '#utils/withMessages'
 import $tp from '#utils/transProtect'
 
-const CardInfoPage = async ({
+const CardInfoPageWrapper = ({
     params: { slug },
 }: {
     params: { slug: string }
 }) => {
+    return (
+        <Suspense fallback={<Skeleton height={800} />}>
+            <CardInfoPage slug={slug} />
+        </Suspense>
+    )
+}
+
+const CardInfoPage = async ({ slug }: { slug: string }) => {
     const $vn = await getTranslations('v-card-name')
 
     const cardResults = await fetchApi('Card', {
@@ -38,7 +48,7 @@ export async function generateMetadata({
     }
 }
 
-export default withAsyncMessages(CardInfoPage, [
+export default withMessages(CardInfoPageWrapper, [
     'cards_slug',
     'vendor',
     'v-chr',
