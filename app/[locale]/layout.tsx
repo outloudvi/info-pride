@@ -8,12 +8,16 @@ import { pick } from 'lodash'
 import { getMessages, unstable_setRequestLocale } from 'next-intl/server'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
+import { config as faConfig } from '@fortawesome/fontawesome-svg-core'
 
 import locales from '#locales/locales.json'
 import { theme } from '#components/theme'
 import Layout from '#components/layout/Layout'
 
 import '../../styles/globals.css'
+
+// https://fontawesome.com/docs/web/use-with/react/use-with#next-js
+faConfig.autoAddCss = false
 
 const DESCRIPTION = 'Informational site for Project IDOLY PRIDE fans.'
 const BASE_TITLE = 'Info Pride'
