@@ -1,116 +1,81 @@
-'use client'
-
-import { useMemo, useState } from 'react'
 import {
     Anchor,
     Breadcrumbs,
     Button,
     Grid,
+    GridCol,
     Group,
     Skeleton,
-    Slider,
-    Tooltip,
 } from '@mantine/core'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
-import type { CardRarity } from 'hoshimi-types/ProtoMaster'
 import { AttributeType, CardType } from 'hoshimi-types/ProtoEnum'
-import { useLocale, useTranslations } from 'next-intl'
+import { useLocale } from 'next-intl'
 import Link from 'next/link'
+import { Suspense } from 'react'
+import { getTranslations } from 'next-intl/server'
 
 import CardAsset from './CardAsset'
-import Props from './Props'
 import Skills from './Skills'
 import CardStories from './CardStories'
+import CardParamsWrapper from './CardParamsWrapper'
 
-import useApi from '#utils/useApi'
 import Paths from '#utils/paths'
 import getCardColor from '#utils/getCardColor'
 import type { APIResponseOf, UnArray } from '#utils/api'
 import type { CharacterId } from '#data/vendor/characterId'
-import useFrontendApi from '#utils/useFrontendApi'
 import CCIDTable from '#data/ccid'
-import { MAX_LEVEL, MAX_LEVEL_BEFORE_POTENTIAL } from '#utils/constants'
+import ApiData from '#locales/apiData'
+import CardStoriesData from '#data/videos/cardStories.data'
+import { fetchApi } from '#utils/fetchApi'
 
-const CardItem = ({
+const CardItem = async ({
     card,
-    rarityData,
     title,
 }: {
     card: UnArray<APIResponseOf<'Card'>>
-    rarityData: CardRarity[]
     title: string
 }) => {
-    const $t = useTranslations('cards_slug')
-    const $c = useTranslations('common')
-    const $v = useTranslations('vendor')
-    const $vc = useTranslations('v-chr')
+    const $t = await getTranslations('cards_slug')
+    const $c = await getTranslations('common')
+    const $v = await getTranslations('vendor')
+    const $vc = await getTranslations('v-chr')
 
     const {
         name,
         description,
         type,
         initialRarity,
-        cardParameterId,
-        vocalRatioPermil,
-        danceRatioPermil,
-        visualRatioPermil,
-        staminaRatioPermil,
         stories,
         liveAbilityId,
         activityAbilityId,
     } = card
 
-    const maxRarity = Math.max(...rarityData.map((x) => x.rarity))
-    const [rarity, setRarity] = useState(maxRarity)
-    const rarityInfo = rarityData.filter((x) => x.rarity === rarity)[0]
-    const [level, setLevel] = useState(rarityInfo?.levelLimit ?? 1)
     const locale = useLocale()
 
-    const { data: SkillData } = useApi('Skill', {
+    const SkillData = await fetchApi('Skill', {
         ids: `${card.skillId1},${card.skillId2},${card.skillId3}`,
     })
 
-    const { data: YellLiveData } = useApi(
-        'LiveAbility',
-        {
-            id: liveAbilityId,
-        },
-        {
-            enabled: liveAbilityId !== '',
-        },
-    )
+    const YellLiveData = liveAbilityId
+        ? await fetchApi('LiveAbility', {
+              id: liveAbilityId,
+          })
+        : null
 
-    const { data: YellActivityData } = useApi(
-        'ActivityAbility',
-        {
-            id: activityAbilityId,
-        },
-        {
-            enabled: activityAbilityId !== '',
-        },
-    )
+    const YellActivityData = activityAbilityId
+        ? await fetchApi('ActivityAbility', {
+              id: activityAbilityId,
+          })
+        : null
 
-    const { data: CardAliasData } = useFrontendApi('cardAliases', {
-        assetId: card.assetId,
-        locale,
-    })
-    const { data: WikiStories, isFetched: isWikiStoriesFetched } =
-        useFrontendApi('cardStories', {
-            id: card.id,
-            locale,
-        })
+    const CardAliases = ApiData.alias?.[locale]?.[card.assetId]
+    const WikiStories = CardStoriesData?.[locale]?.[card.id]
 
-    const storiesDisplay = useMemo(() => {
+    const storiesDisplay = (() => {
         // Not fetched
 
         if (stories.length === 0) {
             // No stories
             return <p className="text-gray-500 mt-1 mb-2">{$t('no_stories')}</p>
-        }
-
-        if (!isWikiStoriesFetched) {
-            return <Skeleton height={200} className="mt-1 mb-2" />
         }
 
         // Translation does not exist
@@ -125,33 +90,12 @@ const CardItem = ({
             )
         }
 
-        return <CardStories stories={WikiStories.stories} />
-    }, [
-        WikiStories,
-        isWikiStoriesFetched,
-        card.id,
-        locale,
-        $t,
-        $c,
-        stories.length,
-    ])
-
-    if (!rarityData) {
-        return <Skeleton height={300} />
-    }
+        return <CardStories stories={WikiStories} />
+    })()
 
     const cardCcidInfo = CCIDTable?.[card.characterId as CharacterId]?.find(
         (x) => x.cardId === card.id,
     )
-    const levelDisplay =
-        level <= MAX_LEVEL_BEFORE_POTENTIAL ? (
-            <span>{level}</span>
-        ) : (
-            <span>
-                {MAX_LEVEL_BEFORE_POTENTIAL} +{' '}
-                {level - MAX_LEVEL_BEFORE_POTENTIAL} = {level}
-            </span>
-        )
 
     return (
         <>
@@ -178,7 +122,7 @@ const CardItem = ({
                 )}
             </div>
             <Grid gutter={20}>
-                <Grid.Col span={{ base: 12, lg: 6 }}>
+                <GridCol span={{ base: 12, lg: 6 }}>
                     <div
                         className="text-gray-600 dark:text-gray-400"
                         dangerouslySetInnerHTML={{
@@ -186,9 +130,9 @@ const CardItem = ({
                         }}
                     ></div>
 
-                    {CardAliasData?.aliases && (
+                    {CardAliases && (
                         <div>
-                            {$t('aka')} {CardAliasData.aliases}
+                            {$t('aka')} {CardAliases}
                         </div>
                     )}
                     <div>
@@ -196,51 +140,9 @@ const CardItem = ({
                         {$v(AttributeType[getCardColor(card)])} /{' '}
                         {$t('Initially')} {initialRarity}★
                     </div>
-                    <div className="mt-2">
-                        {$t('Rarity')} / {rarity}
-                    </div>
-                    <Slider
-                        min={initialRarity}
-                        max={maxRarity}
-                        value={rarity}
-                        onChange={(r) => {
-                            setRarity(r)
-                        }}
-                        aria-label={$t('Rarity')}
-                    />
-                    <div className="mt-2">
-                        {$t('Level')} / {levelDisplay}
-                    </div>
-                    <Slider
-                        min={1}
-                        max={MAX_LEVEL}
-                        value={level}
-                        onChange={(l) => {
-                            setLevel(l)
-                        }}
-                        marks={[
-                            {
-                                value: MAX_LEVEL_BEFORE_POTENTIAL,
-                                label: '200',
-                            },
-                        ]}
-                        aria-label={$t('Level') + '44'}
-                    />
-                    <div className="mt-2">
-                        {$t('Props')}{' '}
-                        <Tooltip label={$t('props_tooltip')}>
-                            <FontAwesomeIcon icon={faInfoCircle} />
-                        </Tooltip>
-                    </div>
-                    <Props
-                        cardParameterId={cardParameterId}
-                        vocalRatioPermil={vocalRatioPermil}
-                        danceRatioPermil={danceRatioPermil}
-                        visualRatioPermil={visualRatioPermil}
-                        staminaRatioPermil={staminaRatioPermil}
-                        rarityInfo={rarityInfo}
-                        level={level}
-                    />
+                    <Suspense fallback={<Skeleton height={200} />}>
+                        <CardParamsWrapper card={card} />
+                    </Suspense>
                     <h3>
                         {$t('Skills')}
                         <br />
@@ -252,7 +154,7 @@ const CardItem = ({
                             })}
                         </small>
                     </h3>
-                    {SkillData ? (
+                    <Suspense fallback={<Skeleton height={300} />}>
                         <Skills
                             skills={SkillData}
                             yellSkill={
@@ -261,12 +163,9 @@ const CardItem = ({
                                     : YellLiveData || YellActivityData
                             }
                         />
-                    ) : (
-                        <Skeleton height={200} />
-                    )}
-                    <br />
-                </Grid.Col>
-                <Grid.Col span={{ base: 12, lg: 6 }}>
+                    </Suspense>
+                </GridCol>
+                <GridCol span={{ base: 12, lg: 6 }}>
                     <h3>{$t('Images')}</h3>
                     <CardAsset
                         cardAssetId={card.assetId}
@@ -302,7 +201,7 @@ const CardItem = ({
                             Wiki 页面
                         </Button>
                     )}
-                </Grid.Col>
+                </GridCol>
             </Grid>
         </>
     )

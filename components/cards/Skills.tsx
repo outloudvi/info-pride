@@ -1,3 +1,5 @@
+'use client'
+
 import { useState } from 'react'
 import { Skeleton, Slider, Stack } from '@mantine/core'
 import type { ActivityAbility, LiveAbility } from 'hoshimi-types/ProtoMaster'

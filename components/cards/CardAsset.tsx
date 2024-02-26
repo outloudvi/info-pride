@@ -1,3 +1,5 @@
+'use client'
+
 import type { Dispatch, SetStateAction } from 'react'
 import { useState } from 'react'
 import { Group, Radio, Switch } from '@mantine/core'

@@ -8,7 +8,6 @@ import { useMemo } from 'react'
 
 import type { TheRootSchema as WikiCards } from '#data/wikiPages/cards'
 import type { ChapterItem } from '#data/types'
-import type { Stories } from '#data/videos/cardStories.data/types'
 import type { SkillLaunchItem } from '#components/notemap/types'
 import type { BirthdayCommuList } from '#data/videos/birthday.data/types'
 
@@ -20,14 +19,6 @@ const frontendQueryFn: QueryFunction = ({ queryKey: [path] }) =>
 export type FrontendAPIResponseMapping = {
     birthdayCommu: BirthdayCommuList
     cards: WikiCards
-    cardAliases: {
-        aliases: string
-    }
-    cardStories:
-        | {
-              stories: Stories
-          }
-        | undefined
     'characters/profile': {
         profile: string
     }

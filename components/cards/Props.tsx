@@ -1,50 +1,36 @@
 /* eslint-disable @next/next/no-img-element */
-import { Grid, Skeleton } from '@mantine/core'
-import type { Card, CardRarity } from 'hoshimi-types/ProtoMaster'
+import { Grid } from '@mantine/core'
+import type { Card, CardParameter } from 'hoshimi-types/ProtoMaster'
 
-import useApi from '#utils/useApi'
 import getCardColor from '#utils/getCardColor'
 import Paths from '#utils/paths'
 import getCardColorClassName from '#utils/getCardColorClassName'
 import calcPropValue from '#utils/calcPropValue'
 
 const Props = ({
-    level,
-    rarityInfo,
-    cardParameterId,
+    parameterBonusPermil,
+    parameterInfo,
     vocalRatioPermil,
     danceRatioPermil,
     visualRatioPermil,
     staminaRatioPermil,
 }: Pick<
     Card,
-    | 'cardParameterId'
     | 'vocalRatioPermil'
     | 'danceRatioPermil'
     | 'visualRatioPermil'
     | 'staminaRatioPermil'
-> & { level: number; rarityInfo: CardRarity }) => {
-    const { data: ParamData } = useApi('CardParameter')
-
-    const parameterInfo = (ParamData ?? []).filter(
-        (x) => x.id === cardParameterId && x.level === level
-    )?.[0]
-
-    if (!parameterInfo) {
-        return <Skeleton height={100} />
-    }
-
+> & {
+    parameterInfo: CardParameter
+    parameterBonusPermil: number
+}) => {
     const calc = (base: number) =>
-        calcPropValue(
-            base,
-            Number(parameterInfo.value),
-            rarityInfo.parameterBonusPermil
-        )
+        calcPropValue(base, Number(parameterInfo.value), parameterBonusPermil)
 
     const stamina = calcPropValue(
         staminaRatioPermil,
         Number(parameterInfo.staminaValue),
-        rarityInfo.parameterBonusPermil
+        parameterBonusPermil,
     )
 
     const mental = 100
@@ -60,7 +46,7 @@ const Props = ({
         critical * 3
 
     const cardColorClassName = getCardColorClassName(
-        getCardColor({ vocalRatioPermil, danceRatioPermil, visualRatioPermil })
+        getCardColor({ vocalRatioPermil, danceRatioPermil, visualRatioPermil }),
     )
 
     return (

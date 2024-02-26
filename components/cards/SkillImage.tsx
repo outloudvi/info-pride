@@ -40,8 +40,8 @@ function buildSkillImage(parts: ReactNode[]): JSX.Element {
 
 function isDebuff(skill?: string): boolean {
     return (
-        ['down', 'consumption-increase', 'impossible', 'erasing'].filter(
-            (x) => skill?.includes(x),
+        ['down', 'consumption-increase', 'impossible', 'erasing'].filter((x) =>
+            skill?.includes(x),
         ).length > 0
     )
 }
@@ -94,6 +94,7 @@ const SkillImage = ({
 
     parts.push(
         <img
+            key={'bg'}
             src={Paths.sprite(skillImageBg)}
             alt="Skill background"
             className="absolute h-16 w-16"
@@ -105,6 +106,7 @@ const SkillImage = ({
         // Use assetId as foreground
         parts.push(
             <img
+                key={'ic'}
                 src={pathAssetsForImg(`img_icon_skill_${skill.assetId}`)}
                 alt="Skill icon"
                 className="absolute h-16 w-16 invert"
@@ -133,6 +135,7 @@ const SkillImage = ({
     if (skillIcons.length === 1) {
         parts.push(
             <img
+                key={'sc'}
                 src={pathAssetsForImg(skillIcons[0] as string)}
                 alt="Skill icon"
                 height={64}
@@ -174,6 +177,7 @@ const SkillImage = ({
             // Center-left large icon
             parts.push(
                 <img
+                    key={'pi'}
                     src={pathAssetsForImg(skillIcons[0])}
                     loading="lazy"
                     height={54.4}
@@ -189,6 +193,7 @@ const SkillImage = ({
             // Center large icon
             parts.push(
                 <img
+                    key={'ci'}
                     src={pathAssetsForImg(skillIcons[0])}
                     alt="Skill icon"
                     height={64}
@@ -206,6 +211,7 @@ const SkillImage = ({
         // Top-right small icon
         parts.push(
             <img
+                key={'ti'}
                 src={pathAssetsForImg(skillIcons[1])}
                 loading="lazy"
                 height={32}
@@ -235,6 +241,7 @@ const SkillImage = ({
         // Bottom-right tiny icon
         parts.push(
             <img
+                key={'bi'}
                 src={pathAssetsForImg(skillIcons[2])}
                 loading="lazy"
                 height={20}

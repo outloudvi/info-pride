@@ -21,15 +21,8 @@ const CardInfoPage = async ({
     }
 
     const Card = cardResults[0]
-    const RarityData = await fetchApi('CardRarity')
 
-    return (
-        <CardItem
-            card={Card}
-            rarityData={RarityData}
-            title={$vn($tp(Card.name))}
-        />
-    )
+    return <CardItem card={Card} title={$vn($tp(Card.name))} />
 }
 
 export async function generateMetadata({
