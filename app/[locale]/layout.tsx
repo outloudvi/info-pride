@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import { MantineProvider, ColorSchemeScript } from '@mantine/core'
 import { notFound } from 'next/navigation'
 import { NextIntlClientProvider } from 'next-intl'
@@ -10,9 +10,9 @@ import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import { config as faConfig } from '@fortawesome/fontawesome-svg-core'
 
+import Layout from '#components/layout/Layout'
 import locales from '#locales/locales.json'
 import { theme } from '#components/theme'
-import Layout from '#components/layout/Layout'
 
 import '../../styles/globals.css'
 
@@ -97,14 +97,16 @@ export default async function RootLayout({
                 />
             </head>
             <body>
-                <MantineProvider theme={theme}>
-                    <Notifications />
-                    <NextIntlClientProvider messages={commonMessages}>
-                        <Layout>{children}</Layout>
-                    </NextIntlClientProvider>
-                </MantineProvider>
-                <Analytics />
-                <SpeedInsights />
+                <Suspense fallback={null}>
+                    <MantineProvider theme={theme}>
+                        <Notifications />
+                        <NextIntlClientProvider messages={commonMessages}>
+                            <Layout>{children}</Layout>
+                        </NextIntlClientProvider>
+                    </MantineProvider>
+                    <Analytics />
+                    <SpeedInsights />
+                </Suspense>
             </body>
         </html>
     )
