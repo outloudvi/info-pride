@@ -46,6 +46,8 @@ const CardAsset = ({
 
     const [isAwaken, setIsAwaken] = useState(true)
     const [imageType, setImageType] = useState<CardImageType>('thumb')
+    const actualImageType =
+        imageType === 'full' && !isAwaken ? 'vfull' : imageType
 
     const assetSlug = getAssetSlug(cardAssetId, imageType, isAwaken)
 
@@ -61,7 +63,14 @@ const CardAsset = ({
                     <Radio value="thumb" label={$t('Thumbnail')} />
                     <Radio value="upper" label={$t('Vertical')} />
                     <Radio value="rect" label={$t('Landscape')} />
-                    <Radio value="full" label={$t('Landscape (large)')} />
+                    <Radio
+                        value="full"
+                        label={
+                            isAwaken
+                                ? $t('Landscape (large)')
+                                : $t('Vertical (large)')
+                        }
+                    />
                 </Group>
             </Radio.Group>
             <Switch
@@ -78,8 +87,8 @@ const CardAsset = ({
             <AssetImage
                 // TODO
                 name={assetSlug}
-                ratio={CardSizeConfig['r'][imageType]}
-                height={CardSizeConfig['h'][imageType]}
+                ratio={CardSizeConfig['r'][actualImageType]}
+                height={CardSizeConfig['h'][actualImageType]}
                 alt={'Asset image'}
             />
         </div>

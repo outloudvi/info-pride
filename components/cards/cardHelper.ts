@@ -1,4 +1,4 @@
-export type CardImageType = 'thumb' | 'rect' | 'upper' | 'full'
+export type CardImageType = 'thumb' | 'rect' | 'upper' | 'full' | 'vfull'
 
 export function getAssetSlug(
     cardAssetId: string,
@@ -17,11 +17,13 @@ export const CardSizeConfig: {
         full: 1 / 0.56,
         rect: 1 / 0.56,
         upper: 0.5,
+        vfull: 1,
     },
     h: {
         thumb: 150,
         full: 512,
         rect: 256,
         upper: 360,
+        vfull: 512,
     },
 }
