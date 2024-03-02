@@ -5,7 +5,7 @@ import { useSearchParams } from 'next/navigation'
 
 import type { SearchParams } from './sp'
 
-import FilterSelect from '#components/search/card/FilterSelect'
+import { FilterSelect } from '#components/search/card/FilterSelect'
 import EmblemTypes from '#data/emblemTypes'
 import useSetSearchParams from '#utils/useSetSearchParams'
 
