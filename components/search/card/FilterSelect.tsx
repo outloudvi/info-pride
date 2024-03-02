@@ -13,6 +13,7 @@ export const FilterSelect = <T extends string>({
     formProps,
     value,
     maxDropdownHeight = 220, // mantine preset value
+    ...rest
 }: {
     label: string | ReactNode
     list: readonly T[]
@@ -35,6 +36,7 @@ export const FilterSelect = <T extends string>({
             : [...list]
     return (
         <Select
+            {...rest}
             size="sm"
             data={data}
             label={label}
@@ -61,6 +63,7 @@ export const MultipleFilterSelect = <T extends string>({
     formProps,
     value,
     maxDropdownHeight = 220, // mantine preset value
+    ...rest
 }: {
     label: string | ReactNode
     list: readonly T[]
@@ -84,6 +87,7 @@ export const MultipleFilterSelect = <T extends string>({
 
     return (
         <MultiSelect
+            {...rest}
             styles={{
                 input: {
                     width,

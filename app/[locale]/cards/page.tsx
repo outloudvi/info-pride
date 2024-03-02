@@ -1,41 +1,42 @@
-import type { CardRarity } from 'hoshimi-types/ProtoMaster'
 import { getTranslations } from 'next-intl/server'
+import { Suspense } from 'react'
+import { Skeleton } from '@mantine/core'
+import { useTranslations } from 'next-intl'
 
-import { MAX_LEVEL } from '#utils/constants'
-import Paths from '#utils/paths'
-import { fetchApi } from '#utils/fetchApi'
-import CardsPageMainView from '#components/cards/CardsPageMainView'
-import { withAsyncMessages } from '#utils/withMessages'
+import { MAX_LEVEL, MAX_RARITY } from '#utils/constants'
+import { withMessages } from '#utils/withMessages'
+import type { SearchParams } from '#components/cards/sp'
+import CardsListFilter from '#components/cards/CardsListFilter'
+import spToSo from '#components/cards/spToSo'
+import type { UnsafeSearchParams } from '#utils/typeutils'
+import CardsListWrapper from '#components/cards/CardsListWrapper'
 
-// TODO: return a static value?
-async function getMaxRarity(): Promise<number> {
-    const CardRarity: CardRarity[] = await fetch(Paths.api('CardRarity')).then(
-        (x) => x.json(),
-    )
-
-    return CardRarity.reduce((a, b) => (a.rarity > b.rarity ? a : b)).rarity
-}
-
-const CardsPage = async () => {
-    const $t = await getTranslations('cards')
-
-    const maxRarity = await getMaxRarity()
-    // TODO: only fetch parts of the cards, reducing payload size
-    const CardListData = await fetchApi('Card/List', {
-        level: String(MAX_LEVEL),
-        rarity: String(maxRarity),
-    })
+const CardsPage = ({
+    searchParams,
+}: {
+    searchParams: UnsafeSearchParams<SearchParams>
+}) => {
+    const $t = useTranslations('cards')
+    const searchOptions = spToSo(searchParams)
 
     return (
         <>
             <h2>{$t('Cards')}</h2>
             <p>
                 {$t('page_header', {
-                    rarity: maxRarity,
+                    rarity: MAX_RARITY,
                     level: MAX_LEVEL,
                 })}
             </p>
-            <CardsPageMainView CardListData={CardListData} />
+            <Suspense fallback={<Skeleton height={300} />}>
+                <CardsListFilter />
+            </Suspense>
+            <Suspense
+                key={Object.entries(searchParams).sort().join('|')}
+                fallback={<Skeleton height={600} />}
+            >
+                <CardsListWrapper searchOptions={searchOptions} />
+            </Suspense>
         </>
     )
 }
@@ -51,7 +52,7 @@ export async function generateMetadata({
     }
 }
 
-export default withAsyncMessages(CardsPage, [
+export default withMessages(CardsPage, [
     'cards',
     'vendor',
     'v-chr',
