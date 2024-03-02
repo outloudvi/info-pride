@@ -31,19 +31,30 @@ export default async function OGImage({
     ).then((x) => x.arrayBuffer())
 
     const cardMeta = cardResults[0]
-    const { name, description, assetId, characterId } = cardMeta
+    const { id, assetId } = cardMeta
 
     const fullIconSlug = getAssetSlug(assetId, 'full', true)
+
+    const copyrightMark = [
+        ...(id.includes('mku') || id.includes('ymk') ? ['(c) CFM'] : []), // Crypton Future Media
+        ...(id.includes('chk') || id.includes('rik') || id.includes('yo')
+            ? ['(c) 2017 PL!S']
+            : []), // Project Love Live! Superstar
+        '(c) PIP',
+    ]
 
     return new ImageResponse(
         (
             <div tw="w-full h-full flex flex-col">
-                <div tw="flex h-[80px] w-full items-center">
+                <div tw="flex h-[80px] w-full items-center px-2">
                     <img tw="w-12 h-12 mx-4" src={siteLogo} alt="site logo" />
-                    <span tw="text-3xl">
+                    <div tw="flex text-3xl grow">
                         info-pride /{' '}
                         <span tw="ml-3 text-3xl text-neutral-500">Card</span>
-                    </span>
+                    </div>
+                    <div tw="flex self-end pb-1 text-md text-neutral-600">
+                        {copyrightMark.join(' / ')}
+                    </div>
                 </div>
                 <img
                     width={864}
