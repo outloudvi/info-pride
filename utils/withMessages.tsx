@@ -1,8 +1,10 @@
 import { pick } from 'lodash'
-import { NextIntlClientProvider, useMessages } from 'next-intl'
+import { useMessages } from 'next-intl'
 import { getMessages, unstable_setRequestLocale } from 'next-intl/server'
 
 import type { AsyncComponent, Component, ParamsWithLocale } from './types'
+import OurIntlClientProvider from '#components/OurIntlClientProvider'
+import { SOURCE_TIMEZONE } from './constants'
 
 export function withMessages<T>(
     Child: Component<T>,
@@ -17,9 +19,14 @@ export function withMessages<T>(
         const messagesParts = pick(allMessages, ['common', ...parts])
 
         return (
-            <NextIntlClientProvider messages={messagesParts}>
+            <OurIntlClientProvider
+                locale={locale}
+                timeZone={SOURCE_TIMEZONE}
+                now={new Date()}
+                messages={messagesParts}
+            >
                 <Child {...(props as T & JSX.IntrinsicAttributes)} />
-            </NextIntlClientProvider>
+            </OurIntlClientProvider>
         )
     }
 }
@@ -37,9 +44,14 @@ export function withAsyncMessages<T>(
         const messagesParts = pick(allMessages, ['common', ...parts])
 
         return (
-            <NextIntlClientProvider messages={messagesParts}>
+            <OurIntlClientProvider
+                locale={locale}
+                timeZone={SOURCE_TIMEZONE}
+                now={new Date()}
+                messages={messagesParts}
+            >
                 <Child {...(props as T & JSX.IntrinsicAttributes)} />
-            </NextIntlClientProvider>
+            </OurIntlClientProvider>
         )
     }
 }

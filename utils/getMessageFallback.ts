@@ -15,3 +15,15 @@ export default function getMessageFallback({
     }
     return key
 }
+
+export function onError(error: IntlError) {
+    if (error.code === IntlErrorCode.MISSING_MESSAGE) {
+        if (error.originalMessage?.includes('`v-')) {
+            // ignore vendor-related strings
+            return
+        }
+        console.error(error)
+    } else {
+        Sentry.captureException(error)
+    }
+}

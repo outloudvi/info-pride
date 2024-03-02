@@ -100,6 +100,7 @@ export default async function RootLayout({
                 <Suspense fallback={null}>
                     <MantineProvider theme={theme}>
                         <Notifications />
+                        {/* note: it's just for the common layout; see withMessages for NextIntlClientProvider for the actual contents */}
                         <NextIntlClientProvider messages={commonMessages}>
                             <Layout>{children}</Layout>
                         </NextIntlClientProvider>
