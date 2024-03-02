@@ -15,9 +15,14 @@ export default async function OGImage({
 }: {
     params: { slug: string }
 }) {
-    const cardResults = await fetchApi('Card', {
-        id: slug,
-    })
+    const [cardResults, fontData] = await Promise.all([
+        fetchApi('Card', {
+            id: slug,
+        }),
+        fetch(
+            new URL('../../../../assets/DMSans-Regular.ttf', import.meta.url),
+        ).then((x) => x.arrayBuffer()),
+    ])
 
     if (cardResults.length === 0) {
         notFound()
@@ -36,11 +41,11 @@ export default async function OGImage({
     const fullIconSlug = getAssetSlug(assetId, 'full', true)
 
     const copyrightMark = [
-        ...(id.includes('mku') || id.includes('ymk') ? ['(c) CFM'] : []), // Crypton Future Media
+        ...(id.includes('mku') || id.includes('ymk') ? ['© CFM'] : []), // Crypton Future Media
         ...(id.includes('chk') || id.includes('rik') || id.includes('yo')
-            ? ['(c) 2017 PL!S']
+            ? ['© 2017 PL!S']
             : []), // Project Love Live! Superstar
-        '(c) PIP',
+        '© PIP',
     ]
 
     return new ImageResponse(
@@ -68,6 +73,13 @@ export default async function OGImage({
         {
             width: 884,
             height: 575,
+            fonts: [
+                {
+                    name: 'DMSans',
+                    data: fontData,
+                    style: 'normal',
+                },
+            ],
         },
     )
 }
