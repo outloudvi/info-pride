@@ -25,7 +25,7 @@ const MessagesPage = async ({
             <MessageBoardView mdShowSidebar={!messageId} groups={MessageGroups}>
                 {messageId ? (
                     <Suspense>
-                        <ChatView messageId={messageId} />
+                        <ChatView messageId={String(messageId)} />
                     </Suspense>
                 ) : (
                     <></>

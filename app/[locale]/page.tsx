@@ -1,7 +1,6 @@
 import { Button, Flex, Grid, GridCol, Group, Stack } from '@mantine/core'
 import { useTranslations } from 'next-intl'
 import { useMemo } from 'react'
-import { unstable_setRequestLocale } from 'next-intl/server'
 
 import CurrentEvents from '#components/indexPage/CurrentEvents'
 import Notice from '#components/indexPage/Notice'
@@ -58,7 +57,6 @@ const Home = () => {
                     title={'VenusLeague'}
                     event={getVenusLeagueEvent(startOfToday)}
                     bgColor={'#a5adff'}
-                    league={true}
                 />
                 <RoutineCountdown
                     title={'VenusBattle'}

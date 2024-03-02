@@ -1,4 +1,4 @@
-import { SimpleGrid, Skeleton } from '@mantine/core'
+import { SimpleGrid } from '@mantine/core'
 
 import Emblem from '#components/emblems/Emblem'
 import EmblemTypes from '#data/emblemTypes'

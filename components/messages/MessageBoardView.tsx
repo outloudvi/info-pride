@@ -3,7 +3,6 @@
 import { Grid, GridCol } from '@mantine/core'
 import { Suspense, useEffect, useRef, useState } from 'react'
 import { useViewportSize } from '@mantine/hooks'
-import { useSearchParams } from 'next/navigation'
 import dynamic from 'next/dynamic'
 
 import ChatItem from './ChatItem'
@@ -30,8 +29,6 @@ const MessageBoardView = ({
     )
     const outer = useRef<HTMLDivElement | null>(null)
     const { height } = useViewportSize()
-    const searchParams = useSearchParams()
-    const activeMessageId = searchParams.get('d')
     const { setSearch } = useSetSearchParams<SearchParams>()
 
     useEffect(() => {

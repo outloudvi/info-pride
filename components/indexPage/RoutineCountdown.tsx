@@ -18,12 +18,10 @@ const RoutineCountdown = ({
     title,
     event,
     bgColor,
-    league,
 }: {
     title: string
     event: IndexEventItem
     bgColor: string
-    league?: boolean
 }) => {
     const $t = useTranslations('index')
     const now = useMemo(() => Number(new Date()), [])

@@ -15,7 +15,7 @@ const MessageSearchPage = ({
     searchParams: UnsafeSearchParams<SearchParams>
 }) => {
     const $t = useTranslations('message_search')
-    const q = searchParams.q
+    const q = searchParams.q === undefined ? '' : String(searchParams.q)
 
     return (
         <>

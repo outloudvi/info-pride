@@ -15,7 +15,7 @@ const StorySearchPage = ({
     searchParams: UnsafeSearchParams<SearchParams>
 }) => {
     const $t = useTranslations('story_search')
-    const q = searchParams.q
+    const q = searchParams.q === undefined ? '' : String(searchParams.q)
 
     return (
         <>
