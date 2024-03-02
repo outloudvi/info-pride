@@ -8,11 +8,12 @@ import { withAsyncMessages } from '#utils/withMessages'
 import EventStoriesList from '#components/eventstories/EventStoriesList'
 import type { SearchParams } from '#components/eventstories/sp'
 import EventStoryLoader from '#components/eventstories/EventStoryLoader'
+import type { UnsafeSearchParams } from '#utils/typeutils'
 
 const EventStoriesPage = async ({
     searchParams,
 }: {
-    searchParams: Partial<SearchParams>
+    searchParams: UnsafeSearchParams<SearchParams>
 }) => {
     const $t = await getTranslations('eventstories')
 

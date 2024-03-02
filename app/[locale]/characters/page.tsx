@@ -10,11 +10,12 @@ import { CharacterIds } from '#data/vendor/characterId'
 import CharacterItem from '#components/characters/CharacterItem'
 import CharacterList from '#components/characters/CharacterList'
 import type { SearchParams } from '#components/characters/sp'
+import type { UnsafeSearchParams } from '#utils/typeutils'
 
 const CharactersPage = async ({
     searchParams,
 }: {
-    searchParams: Partial<SearchParams>
+    searchParams: UnsafeSearchParams<SearchParams>
 }) => {
     const $t = await getTranslations('characters')
     const $vc = await getTranslations('v-chr')

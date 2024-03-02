@@ -6,11 +6,12 @@ import { fetchApi } from '#utils/fetchApi'
 import { withAsyncMessages } from '#utils/withMessages'
 import type { SearchParams } from '#components/messages/sp'
 import ChatView from '#components/messages/ChatView'
+import type { UnsafeSearchParams } from '#utils/typeutils'
 
 const MessagesPage = async ({
     searchParams,
 }: {
-    searchParams: Partial<SearchParams>
+    searchParams: UnsafeSearchParams<SearchParams>
 }) => {
     const $t = await getTranslations('messages')
     const MessageGroups = await fetchApi('MessageGroup')

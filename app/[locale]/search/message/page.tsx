@@ -7,11 +7,12 @@ import { withMessages } from '#utils/withMessages'
 import SearchBox from '#components/search/message/SearchBox'
 import type { SearchParams } from '#components/search/common/sp'
 import SearchResult from '#components/search/message/SearchResult'
+import type { UnsafeSearchParams } from '#utils/typeutils'
 
 const MessageSearchPage = ({
     searchParams,
 }: {
-    searchParams: Partial<SearchParams>
+    searchParams: UnsafeSearchParams<SearchParams>
 }) => {
     const $t = useTranslations('message_search')
     const q = searchParams.q

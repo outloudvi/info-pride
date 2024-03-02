@@ -15,11 +15,12 @@ import type { SearchParams } from '#components/stories/sp'
 import { SPECIAL_SERIES_TAG } from '#components/stories/constants'
 import SpecialStoriesItem from '#components/stories/SpecialStoriesItem'
 import StoriesItem from '#components/stories/StoriesItem'
+import type { UnsafeSearchParams } from '#utils/typeutils'
 
 const StoriesPage = ({
     searchParams,
 }: {
-    searchParams: Partial<SearchParams>
+    searchParams: UnsafeSearchParams<SearchParams>
 }) => {
     const $t = useTranslations('stories')
     const locale = useLocale()
