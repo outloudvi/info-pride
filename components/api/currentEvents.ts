@@ -33,6 +33,10 @@ const CalendarEventTypeMapping: Record<CalendarEventType, EventType> = {
     合宿活动: EventType.Training,
     'multi links活动': EventType.MultiLinks,
     VENUS联赛: EventType.VenusLeague,
+    生日卡池: EventType.BirthdayGacha,
+    形象训练活动: EventType.ImageTraining,
+    若恋活动: EventType.Moshikoi,
+    'medley live活动': EventType.MedleyLive,
 }
 
 async function getCurrentEvents() {

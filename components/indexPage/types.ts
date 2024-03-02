@@ -30,4 +30,8 @@ export enum EventType {
     Training,
     MultiLinks,
     VenusLeague,
+    BirthdayGacha,
+    ImageTraining,
+    Moshikoi,
+    MedleyLive,
 }
