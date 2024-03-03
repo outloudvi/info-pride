@@ -1,10 +1,12 @@
 import { useTranslations } from 'next-intl'
-import { getTranslations } from 'next-intl/server'
+import { getTranslations, unstable_setRequestLocale } from 'next-intl/server'
 
 import EditorView from '#components/mtalk/EditorView'
 import { withMessages } from '#utils/withMessages'
+import type { ParamsWithLocale } from '#utils/types'
 
-const MTalkPage = () => {
+const MTalkPage = ({ params: { locale } }: ParamsWithLocale) => {
+    unstable_setRequestLocale(locale)
     const $t = useTranslations('mtalk')
     return (
         <>

@@ -1,11 +1,13 @@
-import { getTranslations } from 'next-intl/server'
+import { getTranslations, unstable_setRequestLocale } from 'next-intl/server'
 import { Badge, Group } from '@mantine/core'
 
 import { fetchApi } from '#utils/fetchApi'
 import PhotoAioView from '#components/photos/PhotoAioView'
 import { withAsyncMessages } from '#utils/withMessages'
+import type { ParamsWithLocale } from '#utils/types'
 
-const PhotosPage = async () => {
+const PhotosPage = async ({ params: { locale } }: ParamsWithLocale) => {
+    unstable_setRequestLocale(locale)
     const PhotoAioNames = await fetchApi('Photo/AIO/Names')
     const $t = await getTranslations('photos')
 

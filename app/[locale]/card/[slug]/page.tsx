@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation'
-import { getTranslations } from 'next-intl/server'
+import { getTranslations, unstable_setRequestLocale } from 'next-intl/server'
 import { Suspense } from 'react'
 import { Skeleton } from '@mantine/core'
 
@@ -7,12 +7,14 @@ import CardItem from '#components/cards/CardItem'
 import { fetchApi } from '#utils/fetchApi'
 import { withMessages } from '#utils/withMessages'
 import $tp from '#utils/transProtect'
+import type { ParamsWithLocale } from '#utils/types'
 
 const CardInfoPageWrapper = ({
-    params: { slug },
+    params: { slug, locale },
 }: {
     params: { slug: string }
-}) => {
+} & ParamsWithLocale) => {
+    unstable_setRequestLocale(locale)
     return (
         <Suspense fallback={<Skeleton height={800} />}>
             <CardInfoPage slug={slug} />

@@ -1,10 +1,12 @@
-import { getTranslations } from 'next-intl/server'
+import { getTranslations, unstable_setRequestLocale } from 'next-intl/server'
 
 import styles from '../../../styles/colors.module.css'
 
 import { toHashColor } from '#utils/toHashColor'
 import type { CharacterId } from '#data/vendor/characterId'
 import { fetchApi } from '#utils/fetchApi'
+import { withAsyncMessages } from '#utils/withMessages'
+import type { ParamsWithLocale } from '#utils/types'
 
 const ColorOrder: CharacterId[][] = [
     ['char-mna'],
@@ -38,7 +40,8 @@ const ColorBlock = ({ name, color }: { name: string; color: string }) => (
     </div>
 )
 
-const ColorsPage = async () => {
+const ColorsPage = async ({ params: { locale } }: ParamsWithLocale) => {
+    unstable_setRequestLocale(locale)
     const CharacterList = await fetchApi('Character/List')
     const $t = await getTranslations('colors')
     const $vc = await getTranslations('v-chr')
@@ -86,4 +89,4 @@ export async function generateMetadata({
     }
 }
 
-export default ColorsPage
+export default withAsyncMessages(ColorsPage, ['colors', 'v-chr'])

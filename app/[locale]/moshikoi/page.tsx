@@ -5,12 +5,10 @@ import { getTranslations, unstable_setRequestLocale } from 'next-intl/server'
 import { Link } from '#utils/navigation'
 import Paths from '#utils/paths'
 import MoshikoiMeta from '#data/moshikoi/meta'
+import type { ParamsWithLocale } from '#utils/types'
+import { withMessages } from '#utils/withMessages'
 
-const MoshikoiPage = ({
-    params: { locale },
-}: {
-    params: { locale: string }
-}) => {
+const MoshikoiPage = ({ params: { locale } }: ParamsWithLocale) => {
     unstable_setRequestLocale(locale)
 
     const $t = useTranslations('moshikoi')
@@ -70,4 +68,4 @@ export async function generateMetadata({
     }
 }
 
-export default MoshikoiPage
+export default withMessages(MoshikoiPage, ['moshikoi', 'v-chr'])

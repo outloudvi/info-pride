@@ -1,4 +1,4 @@
-import { getTranslations } from 'next-intl/server'
+import { getTranslations, unstable_setRequestLocale } from 'next-intl/server'
 import { pick } from 'lodash'
 import { Grid, GridCol, Skeleton } from '@mantine/core'
 import { Suspense } from 'react'
@@ -9,12 +9,15 @@ import EventStoriesList from '#components/eventstories/EventStoriesList'
 import type { SearchParams } from '#components/eventstories/sp'
 import EventStoryLoader from '#components/eventstories/EventStoryLoader'
 import type { UnsafeSearchParams } from '#utils/typeutils'
+import type { ParamsWithLocale } from '#utils/types'
 
 const EventStoriesPage = async ({
     searchParams,
+    params: { locale },
 }: {
     searchParams: UnsafeSearchParams<SearchParams>
-}) => {
+} & ParamsWithLocale) => {
+    unstable_setRequestLocale(locale)
     const $t = await getTranslations('eventstories')
 
     const EventStoriesData = await fetchApi('EventStory/List')

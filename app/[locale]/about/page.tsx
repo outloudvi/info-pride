@@ -3,6 +3,7 @@ import { useTranslations } from 'next-intl'
 import { getTranslations, unstable_setRequestLocale } from 'next-intl/server'
 
 import type { ParamsWithLocale } from '#utils/types'
+import { withAsyncMessages } from '#utils/withMessages'
 
 const ALLCONTRIBUTORS_CONFIG_URL =
     'https://raw.githubusercontent.com/outloudvi/info-pride/master/.all-contributorsrc'
@@ -122,4 +123,4 @@ export async function generateMetadata({
     }
 }
 
-export default AboutPage
+export default withAsyncMessages(AboutPage, ['about'])

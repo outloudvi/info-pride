@@ -1,10 +1,12 @@
-import { getTranslations } from 'next-intl/server'
+import { getTranslations, unstable_setRequestLocale } from 'next-intl/server'
 
 import SearchCardPageMainView from '#components/search/card/SearchCardPageMainView'
 import { fetchApi } from '#utils/fetchApi'
 import { withAsyncMessages } from '#utils/withMessages'
+import type { ParamsWithLocale } from '#utils/types'
 
-const CardSearchPage = async () => {
+const CardSearchPage = async ({ params: { locale } }: ParamsWithLocale) => {
+    unstable_setRequestLocale(locale)
     const $t = await getTranslations('search')
 
     const CardData = await fetchApi('Card')

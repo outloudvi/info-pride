@@ -1,5 +1,5 @@
 import { useLocale, useTranslations } from 'next-intl'
-import { getTranslations } from 'next-intl/server'
+import { getTranslations, unstable_setRequestLocale } from 'next-intl/server'
 import { Grid, GridCol, Skeleton } from '@mantine/core'
 import _range from 'lodash/range'
 import { Suspense } from 'react'
@@ -16,14 +16,16 @@ import { SPECIAL_SERIES_TAG } from '#components/stories/constants'
 import SpecialStoriesItem from '#components/stories/SpecialStoriesItem'
 import StoriesItem from '#components/stories/StoriesItem'
 import type { UnsafeSearchParams } from '#utils/typeutils'
+import type { ParamsWithLocale } from '#utils/types'
 
 const StoriesPage = ({
     searchParams,
+    params: { locale },
 }: {
     searchParams: UnsafeSearchParams<SearchParams>
-}) => {
+} & ParamsWithLocale) => {
+    unstable_setRequestLocale(locale)
     const $t = useTranslations('stories')
-    const locale = useLocale()
 
     const curSeries = Number(searchParams.series ?? 0)
     const curSeason = Number(searchParams.s ?? 1)

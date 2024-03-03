@@ -1,4 +1,4 @@
-import { getTranslations } from 'next-intl/server'
+import { getTranslations, unstable_setRequestLocale } from 'next-intl/server'
 import { Suspense } from 'react'
 import { Skeleton } from '@mantine/core'
 import { useTranslations } from 'next-intl'
@@ -10,12 +10,15 @@ import CardsListFilter from '#components/cards/CardsListFilter'
 import spToSo from '#components/cards/spToSo'
 import type { UnsafeSearchParams } from '#utils/typeutils'
 import CardsListWrapper from '#components/cards/CardsListWrapper'
+import type { ParamsWithLocale } from '#utils/types'
 
 const CardsPage = ({
     searchParams,
+    params: { locale },
 }: {
     searchParams: UnsafeSearchParams<SearchParams>
-}) => {
+} & ParamsWithLocale) => {
+    unstable_setRequestLocale(locale)
     const $t = useTranslations('cards')
     const searchOptions = spToSo(searchParams)
 

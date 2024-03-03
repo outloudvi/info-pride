@@ -1,15 +1,17 @@
 import { Divider } from '@mantine/core'
-import { getTranslations } from 'next-intl/server'
+import { getTranslations, unstable_setRequestLocale } from 'next-intl/server'
 
 import StoryReplayViewSkeleton from '#components/storyreplay/StoryReplayViewSkeleton'
 import { fetchApi } from '#utils/fetchApi'
 import { withAsyncMessages } from '#utils/withMessages'
+import type { ParamsWithLocale } from '#utils/types'
 
 const StoryReplayPage = async ({
-    params: { id },
+    params: { id, locale },
 }: {
     params: { id: string }
-}) => {
+} & ParamsWithLocale) => {
+    unstable_setRequestLocale(locale)
     const StoryData = await fetchApi('Story', {
         id,
     })

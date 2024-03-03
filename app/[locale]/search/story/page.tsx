@@ -1,5 +1,5 @@
 import { useTranslations } from 'next-intl'
-import { getTranslations } from 'next-intl/server'
+import { getTranslations, unstable_setRequestLocale } from 'next-intl/server'
 import { Suspense } from 'react'
 import { Skeleton } from '@mantine/core'
 
@@ -8,12 +8,15 @@ import SearchBox from '#components/search/story/SearchBox'
 import SearchResult from '#components/search/story/SearchResult'
 import type { SearchParams } from '#components/search/common/sp'
 import type { UnsafeSearchParams } from '#utils/typeutils'
+import type { ParamsWithLocale } from '#utils/types'
 
 const StorySearchPage = ({
     searchParams,
+    params: { locale },
 }: {
     searchParams: UnsafeSearchParams<SearchParams>
-}) => {
+} & ParamsWithLocale) => {
+    unstable_setRequestLocale(locale)
     const $t = useTranslations('story_search')
     const q = searchParams.q === undefined ? '' : String(searchParams.q)
 

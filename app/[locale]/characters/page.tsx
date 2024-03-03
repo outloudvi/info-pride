@@ -1,5 +1,5 @@
 import { Button, Divider, Grid, GridCol } from '@mantine/core'
-import { getTranslations } from 'next-intl/server'
+import { getTranslations, unstable_setRequestLocale } from 'next-intl/server'
 import { pick } from 'lodash'
 import { Suspense } from 'react'
 
@@ -11,12 +11,15 @@ import CharacterItem from '#components/characters/CharacterItem'
 import CharacterList from '#components/characters/CharacterList'
 import type { SearchParams } from '#components/characters/sp'
 import type { UnsafeSearchParams } from '#utils/typeutils'
+import type { ParamsWithLocale } from '#utils/types'
 
 const CharactersPage = async ({
     searchParams,
+    params: { locale },
 }: {
     searchParams: UnsafeSearchParams<SearchParams>
-}) => {
+} & ParamsWithLocale) => {
+    unstable_setRequestLocale(locale)
     const $t = await getTranslations('characters')
     const $vc = await getTranslations('v-chr')
 
@@ -31,6 +34,7 @@ const CharactersPage = async ({
     return (
         <>
             <h2>{$t('Characters')}</h2>
+            <p>{$vc('char-mna')}</p>
             <Grid gutter={20} className="my-3">
                 <GridCol span={{ base: 12, lg: 4 }}>
                     <Suspense>

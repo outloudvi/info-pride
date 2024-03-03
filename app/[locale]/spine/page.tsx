@@ -1,17 +1,19 @@
 import { Badge, Group, Skeleton } from '@mantine/core'
 import { useTranslations } from 'next-intl'
-import { getTranslations } from 'next-intl/server'
+import { getTranslations, unstable_setRequestLocale } from 'next-intl/server'
 import { Suspense } from 'react'
 import dynamic from 'next/dynamic'
 
 import { withMessages } from '#utils/withMessages'
+import type { ParamsWithLocale } from '#utils/types'
 
 const SpinePageMainView = dynamic(
     () => import('#components/spine/SpinePageMainView'),
     { ssr: false },
 )
 
-const SpinePage = () => {
+const SpinePage = ({ params: { locale } }: ParamsWithLocale) => {
+    unstable_setRequestLocale(locale)
     const $t = useTranslations('spine')
 
     return (

@@ -1,9 +1,10 @@
-import { getTranslations } from 'next-intl/server'
+import { getTranslations, unstable_setRequestLocale } from 'next-intl/server'
 
 import NotemapPageMainView from '#components/notemap/NotemapPageMainView'
 import type { APIResponseOf } from '#utils/api'
 import { fetchApi } from '#utils/fetchApi'
 import { withAsyncMessages } from '#utils/withMessages'
+import type { ParamsWithLocale } from '#utils/types'
 
 function removeDup(ChartListData: APIResponseOf<'MusicChartList'>) {
     return ChartListData.filter((x) => {
@@ -16,7 +17,8 @@ function removeDup(ChartListData: APIResponseOf<'MusicChartList'>) {
     })
 }
 
-const NotemapPage = async () => {
+const NotemapPage = async ({ params: { locale } }: ParamsWithLocale) => {
+    unstable_setRequestLocale(locale)
     const $t = await getTranslations('notemap')
     const ChartListData = removeDup(await fetchApi('MusicChartList'))
 

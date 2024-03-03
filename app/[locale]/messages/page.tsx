@@ -1,4 +1,4 @@
-import { getTranslations } from 'next-intl/server'
+import { getTranslations, unstable_setRequestLocale } from 'next-intl/server'
 import { Suspense } from 'react'
 
 import MessageBoardView from '#components/messages/MessageBoardView'
@@ -7,12 +7,15 @@ import { withAsyncMessages } from '#utils/withMessages'
 import type { SearchParams } from '#components/messages/sp'
 import ChatView from '#components/messages/ChatView'
 import type { UnsafeSearchParams } from '#utils/typeutils'
+import type { ParamsWithLocale } from '#utils/types'
 
 const MessagesPage = async ({
     searchParams,
+    params: { locale },
 }: {
     searchParams: UnsafeSearchParams<SearchParams>
-}) => {
+} & ParamsWithLocale) => {
+    unstable_setRequestLocale(locale)
     const $t = await getTranslations('messages')
     const MessageGroups = await fetchApi('MessageGroup')
 
