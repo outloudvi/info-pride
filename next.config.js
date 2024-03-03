@@ -3,11 +3,13 @@
 const fs = require('node:fs')
 const cp = require('node:child_process')
 
-const withNextIntl = require('next-intl/plugin')
+const createNextIntlPlugin = require('next-intl/plugin')
 const { withSentryConfig } = require('@sentry/nextjs')
 
+const withNextIntl = createNextIntlPlugin()
+
 /** @type {import('next').NextConfig} */
-const nextConfig = withNextIntl('./i18n.ts')({
+const nextConfig = withNextIntl({
     reactStrictMode: true,
     async headers() {
         return [
