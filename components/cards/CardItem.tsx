@@ -10,13 +10,13 @@ import {
 import { AttributeType, CardType } from 'hoshimi-types/ProtoEnum'
 import { Suspense } from 'react'
 import { getLocale, getTranslations } from 'next-intl/server'
+import Link from 'next/link'
 
 import CardAsset from './CardAsset'
 import Skills from './Skills'
 import CardStories from './CardStories'
 import CardParamsWrapper from './CardParamsWrapper'
 
-import { Link } from '#utils/navigation'
 import Paths from '#utils/paths'
 import getCardColor from '#utils/getCardColor'
 import type { APIResponseOf, UnArray } from '#utils/api'
@@ -172,7 +172,10 @@ const CardItem = async ({
                     {stories.length > 0 && (
                         <Group>
                             {stories.map((item, key) => (
-                                <Link href={`/story/${item.storyId}`} key={key}>
+                                <Link
+                                    href={`/${locale}/story/${item.storyId}`}
+                                    key={key}
+                                >
                                     <Button>
                                         {$t('part', { s: key + 1 })}
                                     </Button>
