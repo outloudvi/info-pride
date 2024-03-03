@@ -13,6 +13,7 @@ import { config as faConfig } from '@fortawesome/fontawesome-svg-core'
 import Layout from '#components/layout/Layout'
 import locales from '#locales/locales.json'
 import { theme } from '#components/theme'
+import Paths from '#utils/paths'
 
 import '../../styles/globals.css'
 
@@ -23,7 +24,7 @@ const DESCRIPTION = 'Informational site for Project IDOLY PRIDE fans.'
 const BASE_TITLE = 'Info Pride'
 const META_TITLE = `${BASE_TITLE} - ${DESCRIPTION}`
 const META_DESCRIPTION = 'The IDOLY PRIDE game database.'
-const BASEURL = 'https://ip.outv.im'
+const BASEURL = Paths.self('')
 const OG_IMAGE = BASEURL + '/social.png'
 
 export const metadata: Metadata = {

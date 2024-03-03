@@ -76,6 +76,10 @@ const generateGlobalData = () => {
             rev: cp.execSync('git rev-parse HEAD').toString().trim(),
         }),
     )
+    fs.writeFileSync(
+        'app/sitemap.xml',
+        cp.execSync('bash scripts/listSitemaps.sh').toString(),
+    )
 
     return true
 }

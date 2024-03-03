@@ -48,6 +48,7 @@ utils/*/*.origin.json
 
 # Build-time
 /data/build.json
+/app/sitemap.xml
 
 # Sentry Auth Token
 .sentryclirc
