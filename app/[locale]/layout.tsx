@@ -1,6 +1,5 @@
 import React, { Suspense } from 'react'
 import { MantineProvider, ColorSchemeScript } from '@mantine/core'
-import { notFound } from 'next/navigation'
 import { NextIntlClientProvider } from 'next-intl'
 import { Notifications } from '@mantine/notifications'
 import type { Metadata } from 'next'
@@ -83,7 +82,6 @@ export default async function RootLayout({
     children: React.ReactNode
     params: { locale: string }
 }) {
-    if (!(locales as ReadonlyArray<string>).includes(locale)) notFound()
     unstable_setRequestLocale(locale)
     const commonMessages = pick(await getMessages(), ['common'])
 
