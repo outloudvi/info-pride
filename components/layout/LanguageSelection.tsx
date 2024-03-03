@@ -3,6 +3,7 @@
 import { NativeSelect } from '@mantine/core'
 import { Suspense } from 'react'
 import { useLocale } from 'next-intl'
+import { useSearchParams } from 'next/navigation'
 
 import { usePathname, useRouter } from '#utils/navigation'
 
@@ -19,9 +20,10 @@ const LanguageSelection = ({ className }: { className?: string }) => {
     const pathname = usePathname()
     const router = useRouter()
     const locale = useLocale()
+    const searchParams = useSearchParams()
 
     const updateLocale = (targetLocale: string) => {
-        router.replace(pathname, { locale: targetLocale })
+        router.replace(pathname + '?' + searchParams, { locale: targetLocale })
     }
 
     return (
