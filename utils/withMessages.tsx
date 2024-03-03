@@ -1,6 +1,6 @@
 import { pick } from 'lodash'
 import { useMessages } from 'next-intl'
-import { getMessages } from 'next-intl/server'
+import { getMessages, unstable_setRequestLocale } from 'next-intl/server'
 
 import type { AsyncComponent, Component, ParamsWithLocale } from './types'
 import { SOURCE_TIMEZONE } from './constants'
@@ -15,6 +15,7 @@ export function withMessages<T>(
         const {
             params: { locale },
         } = props
+        unstable_setRequestLocale(locale)
         const allMessages = useMessages()
         const messagesParts = pick(allMessages, ['common', ...parts])
 
@@ -39,6 +40,7 @@ export function withAsyncMessages<T>(
         const {
             params: { locale },
         } = props
+        unstable_setRequestLocale(locale)
         const allMessages = await getMessages()
         const messagesParts = pick(allMessages, ['common', ...parts])
 
