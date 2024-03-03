@@ -53,7 +53,7 @@ const SettingsPageMainView = () => {
         localStorage.setItem(LOCALSTORAGE_BOX_TAG, JSON.stringify(localBox))
         showNotification({
             title: $t('Success'),
-            message: $t('Your settings have been saved.'),
+            message: $t('settings_saved'),
             color: 'green',
         })
     }

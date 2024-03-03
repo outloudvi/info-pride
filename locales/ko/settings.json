@@ -3,7 +3,7 @@
     "My box": "보유 카드 설정",
     "Save": "저장",
     "Success": "성공",
-    "Your settings have been saved.": "설정이 저장되었습니다..",
+    "settings_saved": "설정이 저장되었습니다..",
     "Browser compatiblity problem": "브라우저 호환성 문제",
     "localstorage_unsupported": "브라우저가 localStorage를 지원하지 않습니다. 브라우저를 업그레이드 하거나 일반 모드를 사용 해 주세요.",
     "mybox_header": "이곳에서 변경 한 값은 카드 검색 페이지에 반영됩니다."
