@@ -41,10 +41,20 @@ export default async function OGImage({
     const fullIconSlug = getAssetSlug(assetId, 'full', true)
 
     const copyrightMark = [
-        ...(id.includes('mku') || id.includes('ymk') ? ['© CFM'] : []), // Crypton Future Media
-        ...(id.includes('chk') || id.includes('rik') || id.includes('yo')
+        ...(id.includes('mku') || id.includes('ymk') || id.includes('miku')
+            ? ['© CFM']
+            : []), // Crypton Future Media
+        ...(id.includes('chk') ||
+        id.includes('rik') ||
+        id.includes('yo') ||
+        id.includes('sush')
             ? ['© 2017 PL!S']
             : []), // Project Love Live! Superstar
+        ...(id.includes('chk') ||
+        id === 'card-ai-02-eve-01' ||
+        id.includes('kion')
+            ? ['© K-H/S']
+            : []), // K-ON!
         '© PIP',
     ]
 
@@ -58,7 +68,7 @@ export default async function OGImage({
                         <span tw="ml-3 text-3xl text-neutral-500">Card</span>
                     </div>
                     <div tw="flex self-end pb-1 text-md text-neutral-600">
-                        {copyrightMark.join(' / ')}
+                        {copyrightMark.join(' ')}
                     </div>
                 </div>
                 <img
