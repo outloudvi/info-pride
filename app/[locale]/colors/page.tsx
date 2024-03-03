@@ -14,6 +14,7 @@ const ColorOrder: CharacterId[][] = [
     ['char-rio', 'char-aoi', 'char-ai', 'char-kkr'],
     ['char-kor', 'char-kan', 'char-mhk'],
     ['char-mku', 'char-ymk'],
+    ['char-chk', 'char-rik', 'char-yo'],
 ]
 
 const ColorBlock = ({ name, color }: { name: string; color: string }) => (
