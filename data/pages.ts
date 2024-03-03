@@ -14,6 +14,7 @@ const Pages = {
     'Card Search': '/search/card',
     'Story Search': '/search/story',
     'Message Search': '/search/message',
+    Photos: '/photos',
     Emblems: '/emblems',
     Colors: '/colors',
     Settings: '/settings',

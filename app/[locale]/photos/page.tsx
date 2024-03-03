@@ -1,4 +1,5 @@
 import { getTranslations } from 'next-intl/server'
+import { Badge, Group } from '@mantine/core'
 
 import { fetchApi } from '#utils/fetchApi'
 import PhotoAioView from '#components/photos/PhotoAioView'
@@ -10,7 +11,11 @@ const PhotosPage = async () => {
 
     return (
         <>
-            <h2>{$t('Photos')}</h2>
+            <Group>
+                <h2>{$t('Photos')}</h2>
+                <Badge>beta</Badge>
+            </Group>
+
             <p>{$t('photos_description')}</p>
             <PhotoAioView names={PhotoAioNames} />
         </>
