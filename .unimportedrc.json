@@ -1,0 +1,41 @@
+{
+  "entry": [
+    "app/**/*.ts{,x}",
+    "data/**/*.ts",
+    "i18n.ts",
+    "middleware.ts",
+    "next.config.{js,ts}",
+    "sentry.{client,server,edge}.config.ts",
+    "locales/localeData.ts"
+  ],
+  "ignorePatterns": [
+    "**/node_modules/**",
+    "**/*.tests.{js,jsx,ts,tsx}",
+    "**/*.test.{js,jsx,ts,tsx}",
+    "**/*.spec.{js,jsx,ts,tsx}",
+    "**/tests/**",
+    "**/__tests__/**",
+    "**/*.d.ts"
+  ],
+  "ignoreUnimported": [],
+  "ignoreUnused": [
+    "next",
+    "react",
+    "react-dom",
+    "@babel/preset-env",
+    "autoprefixer",
+    "postcss-preset-mantine",
+    "postcss-simple-vars",
+    "sharp",
+    "tailwindcss",
+    "@sentry/replay"
+  ],
+  "ignoreUnresolved": [],
+  "respectGitignore": true,
+  "extensions": [
+    ".js",
+    ".ts",
+    ".tsx",
+    ".d.ts"
+  ]
+}

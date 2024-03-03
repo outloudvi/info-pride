@@ -1,4 +1,4 @@
-import type { CharacterId } from './vendor/characterId'
+import type { CharacterId } from '../../vendor/characterId'
 
 import type { ExternalVideo } from '#components/ExternalVideo'
 
