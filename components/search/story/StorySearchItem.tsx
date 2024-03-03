@@ -1,8 +1,8 @@
 import { Button, Card } from '@mantine/core'
 import type { CommuX } from 'hoshimi-types/types'
 import { useTranslations } from 'next-intl'
-import Link from 'next/link'
 
+import { Link } from '#utils/navigation'
 import managerize from '#utils/managerize'
 
 const StorySearchItem = ({ item }: { item: CommuX }) => {

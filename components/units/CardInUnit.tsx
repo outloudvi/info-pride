@@ -1,11 +1,11 @@
 import { Skeleton } from '@mantine/core'
 import { CardType } from 'hoshimi-types/ProtoEnum'
 import { useTranslations } from 'next-intl'
-import Link from 'next/link'
 
 import SkillInUnit from './SkillInUnit'
 import type { CardTiny } from './types'
 
+import { Link } from '#utils/navigation'
 import useApi from '#utils/useApi'
 import AssetImage from '#components/AssetImage'
 import { unitColumnId } from '#components/notemap/const'

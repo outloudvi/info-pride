@@ -4,11 +4,11 @@ import { useTranslations } from 'next-intl'
 import { Alert, Button, Flex, NativeSelect } from '@mantine/core'
 import { useEffect, useState } from 'react'
 import type { ReactNode } from 'react'
-import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
 
 import type { SearchParams } from './sp'
 
+import { Link } from '#utils/navigation'
 import useApi from '#utils/useApi'
 import { PrimaryCharacterIds } from '#data/vendor/characterId'
 import SpineView from '#components/spine/SpineView'

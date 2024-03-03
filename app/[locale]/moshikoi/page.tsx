@@ -1,8 +1,8 @@
 import { Grid, GridCol } from '@mantine/core'
-import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 import { getTranslations, unstable_setRequestLocale } from 'next-intl/server'
 
+import { Link } from '#utils/navigation'
 import Paths from '#utils/paths'
 import MoshikoiMeta from '#data/moshikoi/meta'
 

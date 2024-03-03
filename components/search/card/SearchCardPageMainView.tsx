@@ -2,7 +2,6 @@
 
 import type { ReactNode } from 'react'
 import { useEffect, useMemo, useState } from 'react'
-import Link from 'next/link'
 import { useForm } from '@mantine/form'
 import { useLocalStorage } from '@mantine/hooks'
 import { Alert, Checkbox, NumberInput, TextInput, Tooltip } from '@mantine/core'
@@ -11,6 +10,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import { useTranslations } from 'next-intl'
 
+import { Link } from '#utils/navigation'
 import type { LocalBox } from '#components/settings/types'
 import jpCharas from '#locales/ja/v-chr.json'
 import tryJSONParse from '#utils/tryJsonParse'

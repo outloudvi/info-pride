@@ -4,7 +4,6 @@ import type { BackgroundGroup, Line, Title } from '@hoshimei/adv/types'
 import { useTranslations } from 'next-intl'
 import { useMemo, Fragment, useState } from 'react'
 import { Button } from '@mantine/core'
-import Link from 'next/link'
 
 import CompBackgroundSetting from './lines/BackgroundSetting'
 import CompSe from './lines/Se'
@@ -21,6 +20,7 @@ import StoryContext, { StoryStateStorageContext } from './StoryContext'
 import evaluateLogic from './logicParser'
 import { STORY_STORAGE_PREFIX, getBaseId, getPartId } from './utils'
 
+import { Link } from '#utils/navigation'
 import logics from '#data/moshikoi' // TODO: import on-demand
 import tryJSONParse from '#utils/tryJsonParse'
 

@@ -2,8 +2,8 @@
 
 import { Blockquote, Button, Skeleton } from '@mantine/core'
 import { useLocale, useTranslations } from 'next-intl'
-import Link from 'next/link'
 
+import { Link } from '#utils/navigation'
 import type { APIResponseOf } from '#utils/api'
 import { toVideoLink } from '#components/ExternalVideo'
 import useFrontendApi from '#utils/useFrontendApi'

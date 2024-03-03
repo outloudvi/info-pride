@@ -8,7 +8,6 @@ import {
     Skeleton,
 } from '@mantine/core'
 import { AttributeType, CardType } from 'hoshimi-types/ProtoEnum'
-import Link from 'next/link'
 import { Suspense } from 'react'
 import { getLocale, getTranslations } from 'next-intl/server'
 
@@ -17,6 +16,7 @@ import Skills from './Skills'
 import CardStories from './CardStories'
 import CardParamsWrapper from './CardParamsWrapper'
 
+import { Link } from '#utils/navigation'
 import Paths from '#utils/paths'
 import getCardColor from '#utils/getCardColor'
 import type { APIResponseOf, UnArray } from '#utils/api'

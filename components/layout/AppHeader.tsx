@@ -1,7 +1,6 @@
 'use client'
 
 import * as React from 'react'
-import Link from 'next/link'
 import { Burger, Button, useMantineColorScheme } from '@mantine/core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons'
@@ -9,6 +8,8 @@ import { useCallback, useEffect } from 'react'
 import { useTranslations } from 'next-intl'
 
 import LanguageSelection from './LanguageSelection'
+
+import { Link } from '#utils/navigation'
 
 const AppHeader = ({
     navBarOpened,

@@ -1,8 +1,8 @@
 'use client'
 
-import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 
+import { Link } from '#utils/navigation'
 import useFrontendApi from '#utils/useFrontendApi'
 
 const SiteNotice = () => {

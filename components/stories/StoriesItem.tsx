@@ -1,8 +1,8 @@
 import { Button, Skeleton } from '@mantine/core'
 import { useLocale } from 'next-intl'
-import Link from 'next/link'
 import { getTranslations } from 'next-intl/server'
 
+import { Link } from '#utils/navigation'
 import { toVideoLink } from '#components/ExternalVideo'
 import type { SeriesName } from '#data/stories'
 import AssetImage from '#components/AssetImage'

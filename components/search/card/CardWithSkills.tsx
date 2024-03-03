@@ -5,10 +5,10 @@ import { useTranslations } from 'next-intl'
 import dayjs from 'dayjs'
 import dayjsUtc from 'dayjs/plugin/utc'
 import dayjsTz from 'dayjs/plugin/timezone'
-import Link from 'next/link'
 
 import SkillDesc from './SkillDesc'
 
+import { Link } from '#utils/navigation'
 import type { APIResponseOf } from '#utils/api'
 import getCardColor from '#utils/getCardColor'
 import { SOURCE_TIMEZONE } from '#utils/constants'

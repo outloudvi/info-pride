@@ -1,7 +1,8 @@
 import { Card } from '@mantine/core'
 import type { MessageX } from 'hoshimi-types/types'
 import { useTranslations } from 'next-intl'
-import Link from 'next/link'
+
+import { Link } from '#utils/navigation'
 
 const MessageSearchItem = ({ item }: { item: MessageX }) => {
     const $v = useTranslations('v-chr')

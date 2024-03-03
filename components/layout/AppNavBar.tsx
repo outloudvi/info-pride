@@ -1,10 +1,10 @@
 'use client'
 
-import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 
 import LanguageSelection from './LanguageSelection'
 
+import { Link } from '#utils/navigation'
 import Pages from '#data/pages'
 
 const AppNavBar = () => {

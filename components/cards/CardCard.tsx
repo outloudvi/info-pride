@@ -1,7 +1,6 @@
 import { Card, Group } from '@mantine/core'
 import { AttributeType, CardType } from 'hoshimi-types/ProtoEnum'
 import { useTranslations } from 'next-intl'
-import Link from 'next/link'
 
 import { getAssetSlug } from './cardHelper'
 import PropValueBg from './PropValueBg'
@@ -11,6 +10,7 @@ import getCardColor from '#utils/getCardColor'
 import type { APIResponseOf, UnArray } from '#utils/api'
 import AssetImage from '#components/AssetImage'
 import $tp from '#utils/transProtect'
+import { Link } from '#utils/navigation'
 
 const CardCard = ({ card }: { card: UnArray<APIResponseOf<'Card/List'>> }) => {
     const $v = useTranslations('vendor')
@@ -51,7 +51,7 @@ const CardCard = ({ card }: { card: UnArray<APIResponseOf<'Card/List'>> }) => {
 
     return (
         <div>
-            <Link href={`/cards/${id}`} passHref className="no-underline">
+            <Link href={`/card/${id}`} passHref className="no-underline">
                 <Card shadow="sm" p="sm" className="cursor-pointer">
                     <Card.Section>{assetImage}</Card.Section>
 
