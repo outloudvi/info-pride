@@ -45,7 +45,7 @@ const StoriesItem = async (props: PropType) => {
     const StoryData = await fetchApi('Story', {
         id: getBackendStoryId(props),
     })
-    const StoryTrnData = storiesData[locale].data[series][season][chapter]
+    const StoryTrnData = storiesData[locale].data?.[series]?.[season]?.[chapter]
 
     if (!StoryTrnData) {
         return (
