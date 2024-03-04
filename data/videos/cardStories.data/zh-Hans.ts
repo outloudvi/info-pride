@@ -115,6 +115,36 @@ const dataKotono: StoriesData = {
             video: { type: 'bilibili', vid: 'av533316457' },
         },
     },
+    'card-ktn-05-birt-00': {
+        // 雪よ降れ降れバースデー
+        1: {
+            name: 'TODO',
+            video: { type: 'bilibili', vid: 'av792817872' },
+        },
+        2: {
+            name: 'TODO',
+            video: { type: 'bilibili', vid: 'av325313546' },
+        },
+        3: {
+            name: 'TODO',
+            video: { type: 'bilibili', vid: 'av537862391' },
+        },
+    },
+    'card-ktn-05-newy-00': {
+        // 新年祝う雪月花
+        1: {
+            name: 'TODO',
+            video: { type: 'bilibili', vid: 'av538213667' },
+        },
+        2: {
+            name: 'TODO',
+            video: { type: 'bilibili', vid: 'av665729408' },
+        },
+        3: {
+            name: 'TODO',
+            video: { type: 'bilibili', vid: 'av538143479' },
+        },
+    },
 }
 
 // 伊吹渚
@@ -189,10 +219,16 @@ const dataNagisa: StoriesData = {
     },
     'card-ngs-05-casl-02': {
         // もしも幼なじみと恋をしたら
-        1: { name: '恋爱的少女 伊吹渚', video: { type: 'bilibili', vid: 'av236619409' } },
+        1: {
+            name: '恋爱的少女 伊吹渚',
+            video: { type: 'bilibili', vid: 'av236619409' },
+        },
         2: { name: '爆发！', video: { type: 'bilibili', vid: 'av536562028' } },
-        3: { name: '你没有我在是真的不行啊', video: { type: 'bilibili', vid: 'av324064282' } },
-    }
+        3: {
+            name: '你没有我在是真的不行啊',
+            video: { type: 'bilibili', vid: 'av324064282' },
+        },
+    },
 }
 
 // 白石沙季
@@ -305,6 +341,21 @@ const dataSaki: StoriesData = {
         3: {
             name: '压倒性的舞台',
             video: { type: 'bilibili', vid: 'av359467268' },
+        },
+    },
+    'card-ski-05-newy-00': {
+        // 飛躍を願う新春
+        1: {
+            name: '唯独不在其中之物',
+            video: { type: 'bilibili', vid: 'av1151328541' },
+        },
+        2: {
+            name: '赐福',
+            video: { type: 'bilibili', vid: 'av1601471114' },
+        },
+        3: {
+            name: '愿能飞向更高处',
+            video: { type: 'bilibili', vid: 'av1651372502' },
         },
     },
 }
@@ -725,6 +776,36 @@ const dataShizuku: StoriesData = {
         3: {
             name: '与平时不同的心跳加速',
             video: { type: 'bilibili', vid: 'av315972124' },
+        },
+    },
+    'card-szk-05-birt-00': {
+        // 全開！推し活バースデー
+        1: {
+            name: '过于大胆的企划',
+            video: { type: 'bilibili', vid: 'av920249972' },
+        },
+        2: {
+            name: '拜托了kana桑',
+            video: { type: 'bilibili', vid: 'av962702683' },
+        },
+        3: {
+            name: '热情的粉丝服务',
+            video: { type: 'bilibili', vid: 'av365264344' },
+        },
+    },
+    'card-szk-05-sail-00': {
+        // 夢のアングラークイーン
+        1: {
+            name: '让人明白是偶像的事物',
+            video: { type: 'bilibili', vid: 'av836372003' },
+        },
+        2: {
+            name: '把冷气开到最大',
+            video: { type: 'bilibili', vid: 'av368794925' },
+        },
+        3: {
+            name: '海岸冰人也在看吗',
+            video: { type: 'bilibili', vid: 'av283781123' },
         },
     },
 }
@@ -1270,6 +1351,21 @@ const dataYu: StoriesData = {
             video: { type: 'bilibili', vid: 'av574213961' },
         },
     },
+    'card-yu-05-idol-04': {
+        // 鴨川ロマンス
+        1: {
+            name: '就像煮鸡蛋一样',
+            video: { type: 'bilibili', vid: 'av917736388' },
+        },
+        2: {
+            name: '可以挽着胳膊吗？',
+            video: { type: 'bilibili', vid: 'av277701992' },
+        },
+        3: {
+            name: '请好好注视我',
+            video: { type: 'bilibili', vid: 'av407666919' },
+        },
+    },
 }
 
 // 奥山堇
@@ -1376,6 +1472,21 @@ const dataSumire: StoriesData = {
         3: {
             name: '和瑠依酱一起闹翻天',
             video: { type: 'bilibili', vid: 'av231695849' },
+        },
+    },
+    'card-smr-05-idol-04': {
+        // 飛び立つための羽休め
+        1: {
+            name: '让我来招待您吧！',
+            video: { type: 'bilibili', vid: 'av366968664' },
+        },
+        2: {
+            name: '用舌头品尝也算是观光',
+            video: { type: 'bilibili', vid: 'av877259815' },
+        },
+        3: {
+            name: '奥山家的早饭也很豪华',
+            video: { type: 'bilibili', vid: 'av537850854' },
         },
     },
 }
@@ -1595,6 +1706,21 @@ const dataAoi: StoriesData = {
             video: { type: 'bilibili', vid: 'av703916111' },
         },
     },
+    'card-aoi-05-miku-01': {
+        // 分かち合う最高の時間
+        1: {
+            name: 'miku很厉害呢',
+            video: { type: 'bilibili', vid: 'av1700391759' },
+        },
+        2: {
+            name: '冬日初晨的天空',
+            video: { type: 'bilibili', vid: 'av1400422713' },
+        },
+        3: {
+            name: '总有一天将要起飞',
+            video: { type: 'bilibili', vid: 'av1800530378' },
+        },
+    },
 }
 
 // 小美山爱
@@ -1692,6 +1818,36 @@ const dataAi: StoriesData = {
             video: { type: 'bilibili', vid: 'av865158936' },
         },
     },
+    'card-ai-05-fest-00': {
+        // 火花散らす熱いキモチ
+        1: {
+            name: '要向前方冲刺了哦',
+            video: { type: 'bilibili', vid: 'av407146285' },
+        },
+        2: {
+            name: '不能退让的喜爱之情',
+            video: { type: 'bilibili', vid: 'av534677602' },
+        },
+        3: {
+            name: '闪光之处不尽相同',
+            video: { type: 'bilibili', vid: 'av962193496' },
+        },
+    },
+    'card-ai-05-miku-01': {
+        // 鳴り止まないアンコール
+        1: {
+            name: '悄悄溜出去',
+            video: { type: 'bilibili', vid: 'av1751437404' },
+        },
+        2: {
+            name: '这样的话就没法登场了',
+            video: { type: 'bilibili', vid: 'av1001381629' },
+        },
+        3: {
+            name: '最具魅力之处',
+            video: { type: 'bilibili', vid: 'av1001438809' },
+        },
+    },
 }
 
 // 赤崎心
@@ -1786,15 +1942,15 @@ const dataKokoro: StoriesData = {
     'card-kkr-05-fest-00': {
         // 戯言に隠すホントの願い
         1: {
-            name: 'TODO',
+            name: 'こころ绝对要唱的！',
             video: { type: 'bilibili', vid: 'av959533460' },
         },
         2: {
-            name: 'TODO',
+            name: '明明没有破坏掉的打算',
             video: { type: 'bilibili', vid: 'av364652636' },
         },
         3: {
-            name: 'TODO',
+            name: '要去继承优点',
             video: { type: 'bilibili', vid: 'av277169074' },
         },
     },
@@ -1812,7 +1968,7 @@ const dataKokoro: StoriesData = {
             name: '玩闹直播',
             video: { type: 'bilibili', vid: 'av367176816' },
         },
-    }
+    },
 }
 
 // ---- 3X ----
@@ -2084,6 +2240,20 @@ const dataMana: StoriesData = {
             video: { type: 'bilibili', vid: 'av360175583' },
         },
     },
+    'card-mna-05-fest-02': {
+        1: {
+            name: 'TODO',
+            video: { type: 'bilibili', vid: 'av665334108' },
+        },
+        2: {
+            name: 'TODO',
+            video: { type: 'bilibili', vid: 'av240261463' },
+        },
+        3: {
+            name: 'TODO',
+            video: { type: 'bilibili', vid: 'av533316457' },
+        },
+    },
 }
 
 const dataCollab: StoriesData = {
@@ -2101,6 +2271,21 @@ const dataCollab: StoriesData = {
             video: { type: 'bilibili', vid: 'av217526570' },
         },
     },
+    'card-ymk-05-miku-01': {
+        // 雪と花と奇跡の結晶
+        1: {
+            name: '共演的谢礼',
+            video: { type: 'bilibili', vid: 'av1350955522' },
+        },
+        2: {
+            name: '卡拉OK大会 with miku',
+            video: { type: 'bilibili', vid: 'av1000987302' },
+        },
+        3: {
+            name: '欢迎来到函馆！',
+            video: { type: 'bilibili', vid: 'av1700765884' },
+        },
+    },
     'card-rik-05-sush-00': {
         // Riko - 同志の熱さ
         1: {
@@ -2115,9 +2300,8 @@ const dataCollab: StoriesData = {
             name: '想多和雫酱聊会天',
             video: { type: 'bilibili', vid: 'av578927333' },
         },
-    }
+    },
 }
-
 
 const data: StoriesData = {
     ...dataKotono,

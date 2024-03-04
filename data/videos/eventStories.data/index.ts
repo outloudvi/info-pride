@@ -28,6 +28,22 @@ export const eventGroup: EventGroupData = {
     'st-eve-2209-contest': 'TRINITYAiLE',
     'st-eve-2210-race': '莉央/琴乃',
     'st-eve-2211-marathon-raid': 'ⅢX',
+    'st-eve-2212-race': '月スト',
+    'st-eve-2301-contest': 'LizNoir',
+    'st-eve-2302-marathon-raid': 'TRINITYAiLE',
+    'st-eve-2303-race': 'ぱじゃパ！',
+    'st-eve-2304-marathon-raid': '琴乃',
+    'st-eve-2305-race': 'けいおん！',
+    'st-eve-2306-contest': '遙子',
+    'st-eve-2307-race': 'ⅢX',
+    'st-eve-2308-marathon-raid': '優',
+    'st-eve-2309-backside': '怜/遙子',
+    'st-eve-2310-race': '芽衣/すず',
+    'st-eve-2311-marathon-raid': 'TRINITYAiLE',
+    'st-eve-2312-contest': 'Aqours!',
+    'st-eve-2401-race': '猫',
+    'st-eve-2402-contest': '雪ミク',
+    'st-eve-2403-race': 'SUNNY PEACE',
 }
 
 export default _

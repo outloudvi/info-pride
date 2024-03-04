@@ -509,6 +509,27 @@ const data: Record<string, ChapterItem> = {
         name: 'Super nice 的 twins',
         video: { type: 'bilibili', vid: 'av365121170' },
     },
+    // 君と輝くサンシャイン!!
+    'st-eve-2312-contest-001': {
+        name: '',
+        video: { type: 'bilibili', vid: 'av281492651', pid: 1 },
+    },
+    'st-eve-2312-contest-002': {
+        name: '',
+        video: { type: 'bilibili', vid: 'av281492651', pid: 2 },
+    },
+    'st-eve-2312-contest-003': {
+        name: '',
+        video: { type: 'bilibili', vid: 'av281492651', pid: 3 },
+    },
+    'st-eve-2312-contest-004': {
+        name: '',
+        video: { type: 'bilibili', vid: 'av281492651', pid: 4 },
+    },
+    'st-eve-2312-contest-005': {
+        name: '',
+        video: { type: 'bilibili', vid: 'av281492651', pid: 5 },
+    },
 }
 
 const _ = {
