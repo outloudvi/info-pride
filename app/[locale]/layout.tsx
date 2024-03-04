@@ -5,9 +5,9 @@ import { Notifications } from '@mantine/notifications'
 import type { Metadata } from 'next'
 import { pick } from 'lodash'
 import { getMessages, unstable_setRequestLocale } from 'next-intl/server'
-import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import { config as faConfig } from '@fortawesome/fontawesome-svg-core'
+import Script from 'next/script'
 
 import Layout from '#components/layout/Layout'
 import locales from '#locales/locales.json'
@@ -94,6 +94,11 @@ export default async function RootLayout({
                     name="viewport"
                     content="minimum-scale=1, initial-scale=1, width=device-width"
                 />
+                <Script
+                    async
+                    src="https://umami.outv.im/script.js"
+                    data-website-id="045561c1-e049-4c12-8504-2c3f5370fc8e"
+                />
             </head>
             <body>
                 <Suspense fallback={null}>
@@ -104,7 +109,6 @@ export default async function RootLayout({
                             <Layout>{children}</Layout>
                         </NextIntlClientProvider>
                     </MantineProvider>
-                    <Analytics />
                     <SpeedInsights />
                 </Suspense>
             </body>
