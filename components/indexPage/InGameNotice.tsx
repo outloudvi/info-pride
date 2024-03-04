@@ -34,7 +34,7 @@ const InGameNotice = ({ type }: { type: NoticeType }) => {
             <Modal
                 opened={modalOpened}
                 onClose={() => setModalOpened(false)}
-                title={modalNews?.listTitle}
+                title={modalNews?.title}
                 size="xl"
             >
                 <iframe
@@ -52,7 +52,7 @@ const InGameNotice = ({ type }: { type: NoticeType }) => {
             </Modal>
             <ul>
                 {news.map((item, key) => {
-                    const { listTitle } = item
+                    const { title } = item
                     return (
                         <li key={key}>
                             <Anchor
@@ -62,7 +62,7 @@ const InGameNotice = ({ type }: { type: NoticeType }) => {
                                 }}
                                 lang="ja"
                             >
-                                {listTitle}
+                                {title}
                             </Anchor>{' '}
                             <small>
                                 {dayjs(Number(item.startTime)).format(
