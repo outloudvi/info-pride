@@ -1,11 +1,12 @@
 import { Button, Card } from '@mantine/core'
 import type { CommuX } from 'hoshimi-types/types'
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
+import Link from 'next/link'
 
-import { Link } from '#utils/navigation'
 import managerize from '#utils/managerize'
 
 const StorySearchItem = ({ item }: { item: CommuX }) => {
+    const locale = useLocale()
     const $t = useTranslations('story_search')
 
     return (
@@ -16,7 +17,7 @@ const StorySearchItem = ({ item }: { item: CommuX }) => {
                 </span>
                 <p lang="ja">{item.text}</p>
             </div>
-            <Link href={`/story/by-part/${item.advAssetId}`}>
+            <Link href={`/${locale}/story/by-part/${item.advAssetId}`}>
                 <Button>{$t('Original story')}</Button>
             </Link>
             <small className="ml-3">{item.title}</small>
