@@ -1,1 +1,10 @@
-{}
+{
+    "Photos": "사진",
+    "Character Group": "캐릭터 그룹",
+    "Skills": "스킬",
+    "Initial level": "초기 레벨",
+    "photos_description": "이 페이지에서는 IDOLY PRIDE에 실장된 사진만 검색 할 수 있으며, 직접 촬영한 사진은 포함하지 않습니다.",
+    "loading_photo_list": "사진 목록을 불러오는 중 입니다...",
+    "select_a_photo": "목록에서 사진을 선택하세요.",
+    "select_level": "사진 레벨 선택: "
+}

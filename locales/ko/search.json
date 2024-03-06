@@ -20,5 +20,5 @@
     "no_skip_sp_on_ctfilter_desc": "CT 필터와 일치하는 스킬이 없더라도 SP가 포함된 카드는 제외되지 않습니다. 다른 필터를 함께 사용하면서 이 옵션을 선택할 수도 있습니다.",
     "skill_type_desc": "What's this? (중국어)",
     "card_total": "{num}개의 카드가 있습니다.",
-    "card_filtered": "{total}개 중 {num}개의 카드가 검색되었습니다.."
+    "card_filtered": "{total}개 중 {num}개의 카드가 검색되었습니다."
 }
