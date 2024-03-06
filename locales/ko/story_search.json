@@ -2,5 +2,6 @@
     "Story search": "스토리 검색",
     "Original story": "원본 스토리",
     "description": "스토리를 검색합니다. 검색 결과는 30개까지 표시됩니다.",
-    "search_placeholder": "대사를 입력하세요."
+    "search_placeholder": "대사를 입력하세요.",
+    "no_results": "일치하는 결과가 없습니다."
 }
