@@ -502,6 +502,21 @@ const dataSuzu: StoriesData = {
             video: { type: 'bilibili', vid: 'av875875995' },
         },
     },
+    'card-suz-05-angl-00': {
+        // 天使の怠惰な午後
+        1: {
+            name: '心心念念的广告',
+            video: { type: 'bilibili', vid: 'av1550933132' },
+        },
+        2: {
+            name: '太糜烂了！',
+            video: { type: 'bilibili', vid: 'av1751316149' },
+        },
+        3: {
+            name: '情人节快乐',
+            video: { type: 'bilibili', vid: 'av1501604570' },
+        },
+    },
 }
 
 // 早坂芽衣
@@ -1967,6 +1982,21 @@ const dataKokoro: StoriesData = {
         3: {
             name: '玩闹直播',
             video: { type: 'bilibili', vid: 'av367176816' },
+        },
+    },
+    'card-kkr-05-miku-01': {
+        // 心震える熱き想い
+        1: {
+            name: '有点冷过头了',
+            video: { type: 'bilibili', vid: 'av1051391560' },
+        },
+        2: {
+            name: '要抓紧消耗卡路里',
+            video: { type: 'bilibili', vid: 'av1651533655' },
+        },
+        3: {
+            name: '最喜欢北海道啦',
+            video: { type: 'bilibili', vid: 'av1401619919' },
         },
     },
 }
