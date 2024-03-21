@@ -185,7 +185,7 @@ async function main() {
             writeFileSync(join(currDir, CardsJson), JSON.stringify(cardInfo))
             writeFileSync(
                 join(currDir, CardsCnTransJson),
-                JSON.stringify(cardCnTrans),
+                JSON.stringify(cardCnTrans, null, 4),
             )
             await sleep(3000)
         }
