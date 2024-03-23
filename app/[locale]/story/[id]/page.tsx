@@ -63,13 +63,17 @@ const StoryReplayPage = async ({
 }
 
 export async function generateMetadata({
-    params: { locale },
+    params: { id, locale },
 }: {
-    params: { locale: string }
+    params: { id: string; locale: string }
 }) {
     const $t = await getTranslations({ locale, namespace: 'storyreplay' })
+    const StoryData = await fetchApi('Story', {
+        id,
+    })
+
     return {
-        title: $t('Story replay'),
+        title: `${$t('Story replay')} · ${StoryData.name}`,
     }
 }
 
