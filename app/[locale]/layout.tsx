@@ -26,9 +26,10 @@ const META_DESCRIPTION = 'The IDOLY PRIDE (アイプラ) game database.'
 const OG_IMAGE = Paths.self('/social.png')
 
 export const metadata: Metadata = {
-    metadataBase: process.env.VERCEL_URL
-        ? new URL(`https://${process.env.VERCEL_URL}`)
-        : new URL(`http://localhost:${process.env.PORT ?? 3000}`),
+    metadataBase:
+        process.env.VERCEL_ENV === 'production'
+            ? new URL(Paths.self(''))
+            : new URL(`http://localhost:${process.env.PORT ?? 3000}`),
     title: {
         template: `%s | ${BASE_TITLE.toUpperCase()}`,
         default: BASE_TITLE.toUpperCase(),
