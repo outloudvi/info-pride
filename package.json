@@ -41,7 +41,6 @@
         "@pixi/unsafe-eval": "^7.4.0",
         "@sentry/browser": "^7.102.1",
         "@sentry/nextjs": "^7.102.1",
-        "@sentry/replay": "^7.102.1",
         "@vercel/speed-insights": "^1.0.10",
         "autoprefixer": "^10.4.17",
         "base58": "^2.0.1",
