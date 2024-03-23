@@ -55,24 +55,6 @@ export const metadata: Metadata = {
         description: META_DESCRIPTION,
         images: OG_IMAGE,
     },
-    icons: {
-        apple: [
-            {
-                url: '/apple-touch-icon.png?v=2',
-                sizes: '180x180',
-            },
-        ],
-        icon: [
-            {
-                url: '/favicon-16x16.png?v=2',
-                sizes: '16x16',
-            },
-            {
-                url: '/favicon-32x32.png?v=2',
-                sizes: '32x32',
-            },
-        ],
-    },
     manifest: '/site.webmanifest?v=2',
 }
 
@@ -94,7 +76,6 @@ export default async function RootLayout({
         <html lang={locale}>
             <head>
                 <ColorSchemeScript />
-                <link rel="shortcut icon" href="/favicon.svg" />
                 <meta
                     name="viewport"
                     content="minimum-scale=1, initial-scale=1, width=device-width"
