@@ -1,3 +1,5 @@
+'use client'
+
 import { Grid, NativeSelect } from '@mantine/core'
 import { useState } from 'react'
 import { useTranslations } from 'next-intl'

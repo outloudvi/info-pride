@@ -1,16 +1,17 @@
-'use client'
-
 import {
     Blockquote,
     Button,
     Grid,
+    GridCol,
     Group,
-    Skeleton,
     Stack,
     Table,
-    useMantineColorScheme,
+    TableTbody,
+    TableTd,
+    TableTr,
 } from '@mantine/core'
-import { useLocale, useTranslations } from 'next-intl'
+import { useLocale } from 'next-intl'
+import { getTranslations } from 'next-intl/server'
 
 import { HometownIntroductionPageUrl } from './const'
 import SquareColor from './SquareColor'
@@ -18,7 +19,7 @@ import CharacterAnimation from './CharacterAnimation'
 import InGameVoice from './InGameVoice'
 import styles from './index.module.css'
 
-import useApi from '#utils/useApi'
+import ProfileData from '#data/profile.data'
 import type { APIResponseOf, UnArray } from '#utils/api'
 import type { CharacterId } from '#data/vendor/characterId'
 import { PrimaryCharacterIds } from '#data/vendor/characterId'
@@ -26,8 +27,8 @@ import Paths from '#utils/paths'
 import { IdolyFashionUrl, IdolyRoomUrl } from '#data/ipcmmu.data'
 import BirthdayCommu from '#components/characters/BirthdayCommu'
 import { toHashColor } from '#utils/toHashColor'
-import useFrontendApi from '#utils/useFrontendApi'
 import AssetImage from '#components/AssetImage'
+import { fetchApi } from '#utils/fetchApi'
 
 const BirthdayCommuException: CharacterId[] = ['char-mna']
 const VoiceException: CharacterId[] = ['char-mku']
@@ -39,29 +40,22 @@ function formatMonthDate(birthday: string): string {
     return `${match[1]}/${match[2]}`
 }
 
-const CharacterItem = ({
+const CharacterItem = async ({
     character,
 }: {
     character: UnArray<APIResponseOf<'Character/List'>>
 }) => {
-    const $t = useTranslations('characters')
-    const $vc = useTranslations('v-chr')
-    const $vg = useTranslations('v-group')
+    const $t = await getTranslations('characters')
+    const $vc = await getTranslations('v-chr')
+    const $vg = await getTranslations('v-group')
     const locale = useLocale()
-    const { colorScheme } = useMantineColorScheme()
 
     const { id, characterGroupId, name, enName, color } = character
 
-    const { data: CharacterData, isSuccess } = useApi('Character', { ids: id })
-    const { data: ProfileData } = useFrontendApi('characters/profile', {
-        id,
-        locale,
-    })
-    const shortId = id.replace(/^char-/, '')
+    const CharacterData = await fetchApi('Character', { ids: id })
+    const profileData = ProfileData?.[locale]?.[id as CharacterId]
 
-    if (!isSuccess) {
-        return <Skeleton height={700} />
-    }
+    const shortId = id.replace(/^char-/, '')
 
     const {
         cv,
@@ -151,34 +145,34 @@ const CharacterItem = ({
                     ></span>
                 </Blockquote>
             )}
-            <p>{ProfileData?.profile ?? profile}</p>
+            <p>{profileData ?? profile}</p>
             <Grid>
-                <Grid.Col span={{ base: 12, lg: 8 }}>
+                <GridCol span={{ base: 12, lg: 8 }}>
                     {CharacterData && (
                         <div>
                             <Table className="max-w-xl text-center mx-auto">
-                                <Table.Tbody>
+                                <TableTbody>
                                     {tableItem.map(([label, value], key) => (
-                                        <Table.Tr
+                                        <TableTr
                                             key={key}
                                             className="border-0 border-solid border-b- border-b-gray-400 even:bg-gray-100 dark:even:bg-gray-800"
                                         >
-                                            <Table.Td className="py-1  w-1/4">
+                                            <TableTd className="py-1  w-1/4">
                                                 {label}
-                                            </Table.Td>
-                                            <Table.Td className="py-1">
+                                            </TableTd>
+                                            <TableTd className="py-1">
                                                 {value}
-                                            </Table.Td>
-                                        </Table.Tr>
+                                            </TableTd>
+                                        </TableTr>
                                     ))}
-                                    <Table.Tr>
-                                        <Table.Td>{$t('Theme color')}</Table.Td>
-                                        <Table.Td>
+                                    <TableTr>
+                                        <TableTd>{$t('Theme color')}</TableTd>
+                                        <TableTd>
                                             <SquareColor color={color} />{' '}
                                             {toHashColor(color)}
-                                        </Table.Td>
-                                    </Table.Tr>
-                                </Table.Tbody>
+                                        </TableTd>
+                                    </TableTr>
+                                </TableTbody>
                             </Table>
                             <Group justify="center" className="mt-4">
                                 {/* Chinese only */}
@@ -204,8 +198,8 @@ const CharacterItem = ({
                             </Group>
                         </div>
                     )}
-                </Grid.Col>
-                <Grid.Col
+                </GridCol>
+                <GridCol
                     span={{
                         base: 12,
                         lg: 4,
@@ -225,19 +219,14 @@ const CharacterItem = ({
                                 alt={$t('Signature')}
                                 ratio={1}
                                 width={150}
-                                style={{
-                                    filter:
-                                        colorScheme === 'dark'
-                                            ? ''
-                                            : 'invert(1)',
-                                }}
+                                className="dark:invert"
                             />
                         </Group>
                         {PrimaryCharacterIds.includes(
                             id as (typeof PrimaryCharacterIds)[number],
                         ) && <CharacterAnimation charId={id as CharacterId} />}
                     </Stack>
-                </Grid.Col>
+                </GridCol>
             </Grid>
             {/* eslint-disable-next-line @typescript-eslint/no-explicit-any  */}
             {PrimaryCharacterIds.includes(id as any) &&
