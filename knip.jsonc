@@ -1,0 +1,16 @@
+{
+    "$schema": "https://unpkg.com/knip@5/schema.json",
+    "entry": [
+        "app/**/*.ts{,x}",
+        "i18n.ts",
+        "scripts/*.mjs",
+        "data/*/{build,validate,fetch}.{ts,mjs}",
+        "next.config.js",
+    ],
+    "project": ["./**/*.{ts,tsx,js,mjs,json}"],
+    "ignoreDependencies": [
+        "@babel/core",
+        "@babel/preset-env",
+        "sharp", // used for Next.js OG generation
+    ],
+}

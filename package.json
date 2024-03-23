@@ -21,7 +21,7 @@
         "postinstall": "husky init",
         "prepare": "husky",
         "t:build": "turbo build lint",
-        "unimported": "unimported"
+        "knip": "knip"
     },
     "dependencies": {
         "@babel/core": "^7.23.9",
@@ -91,13 +91,13 @@
         "hoshimi-types": "^2.13.0",
         "husky": "^9.0.11",
         "json-schema-to-typescript": "^13.1.2",
+        "knip": "^5.2.2",
         "mocha": "^10.3.0",
         "prettier": "^3.2.5",
         "tsconfig-paths": "^4.2.0",
         "tslib": "^2.6.2",
         "turbo": "^1.12.4",
         "typescript": "5.3.3",
-        "unimported": "^1.31.1",
         "wtf_wikipedia": "^10.3.0"
     },
     "imports": {
