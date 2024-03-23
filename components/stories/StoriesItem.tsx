@@ -47,18 +47,6 @@ const StoriesItem = async (props: PropType) => {
     })
     const StoryTrnData = storiesData[locale].data?.[series]?.[season]?.[chapter]
 
-    if (!StoryTrnData) {
-        return (
-            <>
-                <div className="text-4xl">
-                    {$t(`series.${series}`)} {$t('season', { s: season })} -{' '}
-                    {chapter}
-                </div>
-                <Skeleton height={200} className="mt-2" />
-            </>
-        )
-    }
-
     const subtitle = StoryData?.sectionName
 
     const localTitle =
