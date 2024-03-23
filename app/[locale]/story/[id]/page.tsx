@@ -73,7 +73,7 @@ export async function generateMetadata({
     })
 
     return {
-        title: `${$t('Story replay')} · ${StoryData.name}`,
+        title: `${$t('Story replay')} · ${StoryData.name.replaceAll('\n', '')}`,
     }
 }
 
