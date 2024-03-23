@@ -1,12 +1,12 @@
 'use client'
 
-import { Blockquote, Button, Skeleton } from '@mantine/core'
+import { Blockquote, Button } from '@mantine/core'
 import { useLocale, useTranslations } from 'next-intl'
 
 import { Link } from '#utils/navigation'
 import type { APIResponseOf } from '#utils/api'
+import EventStoriesData from '#data/videos/eventStories.data'
 import { toVideoLink } from '#components/ExternalVideo'
-import useFrontendApi from '#utils/useFrontendApi'
 
 const EventEpisodeDetail = ({
     id,
@@ -18,18 +18,11 @@ const EventEpisodeDetail = ({
     const $c = useTranslations('common')
     const { name: jaName, description } = story
     const locale = useLocale()
-    const { data: VideoInfoData, isSuccess } = useFrontendApi(
-        'eventStories',
-        {
-            id,
-            locale,
-        },
-        !!locale,
-    )
+    const VideoInfoData = EventStoriesData?.[locale]?.data?.[id]
 
     return (
         <>
-            {isSuccess && VideoInfoData ? (
+            {VideoInfoData ? (
                 <h3 lang="zh">
                     {VideoInfoData.name} /{' '}
                     <small lang="ja" className="">
@@ -54,17 +47,13 @@ const EventEpisodeDetail = ({
                 </Link>
             )}
             <div className="mt-2">
-                {isSuccess ? (
-                    !VideoInfoData && (
-                        <div className="mt-4 text-gray-500">
-                            {$c.rich('no_trans', {
-                                field: `data[${id}]`,
-                                file: 'data/eventStories.data.ts',
-                            })}
-                        </div>
-                    )
-                ) : (
-                    <Skeleton height={120} />
+                {!VideoInfoData && (
+                    <div className="mt-4 text-gray-500">
+                        {$c.rich('no_trans', {
+                            field: `data[${id}]`,
+                            file: 'data/eventStories.data.ts',
+                        })}
+                    </div>
                 )}
             </div>
         </>

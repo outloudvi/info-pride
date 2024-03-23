@@ -6,9 +6,7 @@ import type { QueryFunction } from 'react-query'
 import { useQuery } from 'react-query'
 import { useMemo } from 'react'
 
-import type { ChapterItem } from '#data/types'
 import type { SkillLaunchItem } from '#components/notemap/types'
-import type { BirthdayCommuList } from '#data/videos/birthday.data/types'
 
 const frontendQueryFn: QueryFunction = ({ queryKey: [path] }) =>
     fetch(('/api/' + path) as string).then((x) =>
@@ -16,8 +14,6 @@ const frontendQueryFn: QueryFunction = ({ queryKey: [path] }) =>
     )
 
 export type FrontendAPIResponseMapping = {
-    birthdayCommu: BirthdayCommuList
-    eventStories: ChapterItem | null
     skillRunner: SkillLaunchItem[]
 }
 
