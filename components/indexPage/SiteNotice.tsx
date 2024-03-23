@@ -1,13 +1,12 @@
-'use client'
+import { getTranslations } from 'next-intl/server'
 
-import { useTranslations } from 'next-intl'
+import getSiteNews from './getSiteNews'
 
 import { Link } from '#utils/navigation'
-import useFrontendApi from '#utils/useFrontendApi'
 
-const SiteNotice = () => {
-    const $c = useTranslations('common')
-    const { data: news } = useFrontendApi('news')
+const SiteNotice = async () => {
+    const $c = await getTranslations('common')
+    const news = await getSiteNews()
 
     return news && news.length > 0 ? (
         <ul>

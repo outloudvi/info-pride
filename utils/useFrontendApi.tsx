@@ -23,7 +23,6 @@ export type FrontendAPIResponseMapping = {
         profile: string
     }
     eventStories: ChapterItem | null
-    news: { title: string; link?: string }[]
     skillRunner: SkillLaunchItem[]
 }
 

@@ -3,8 +3,13 @@ import * as cheerio from 'cheerio'
 
 const NEWS_PAGE = 'https://idolypride.jp/recent-news/'
 
-async function getNews() {
-    const html = await fetch(NEWS_PAGE).then((x) => x.text())
+export default async function getSiteNews() {
+    const html = await fetch(NEWS_PAGE, {
+        next: {
+            // forced cache for 30min
+            revalidate: 1800,
+        },
+    }).then((x) => x.text())
 
     const $ = cheerio.load(html)
     const titles = $('li a')
@@ -24,12 +29,4 @@ async function getNews() {
             title: title as string,
             link: String(new URL(link as string, 'https://idolypride.jp')),
         }))
-}
-
-export async function GET() {
-    return Response.json(await getNews(), {
-        headers: {
-            'Cache-Control': 'max-age=86400',
-        },
-    })
 }
