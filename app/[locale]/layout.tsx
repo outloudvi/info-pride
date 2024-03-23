@@ -23,21 +23,25 @@ const DESCRIPTION = 'Informational site for Project IDOLY PRIDE fans.'
 const BASE_TITLE = 'Info Pride'
 const META_TITLE = `${BASE_TITLE} - ${DESCRIPTION}`
 const META_DESCRIPTION = 'The IDOLY PRIDE (アイプラ) game database.'
-const BASEURL = Paths.self('')
-const OG_IMAGE = BASEURL + '/social.png'
+const OG_IMAGE = Paths.self('/social.png')
 
 export const metadata: Metadata = {
-    metadataBase: new URL(BASEURL),
+    metadataBase: process.env.VERCEL_URL
+        ? new URL(`https://${process.env.VERCEL_URL}`)
+        : new URL(`http://localhost:${process.env.PORT ?? 3000}`),
     title: {
         template: `%s | ${BASE_TITLE.toUpperCase()}`,
         default: BASE_TITLE.toUpperCase(),
     },
     description: META_DESCRIPTION,
+    alternates: {
+        canonical: './',
+    },
     openGraph: {
         type: 'website',
         siteName: META_TITLE,
         description: META_DESCRIPTION,
-        url: BASEURL,
+        url: './',
         images: {
             alt: META_DESCRIPTION,
             url: OG_IMAGE,
