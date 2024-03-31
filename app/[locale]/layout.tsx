@@ -20,7 +20,7 @@ import '../../styles/globals.css'
 faConfig.autoAddCss = false
 
 const DESCRIPTION = 'Informational site for Project IDOLY PRIDE fans.'
-const BASE_TITLE = 'Info Pride'
+const BASE_TITLE = 'Gyogyo Pride'
 const META_TITLE = `${BASE_TITLE} - ${DESCRIPTION}`
 const META_DESCRIPTION = 'The IDOLY PRIDE (アイプラ) game database.'
 const OG_IMAGE = Paths.self('/social.png')
