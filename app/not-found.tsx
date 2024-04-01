@@ -8,7 +8,7 @@ const Custom404 = async () => {
     return (
         <html>
             <head>
-                <title>404 | GYOGYO PRIDE</title>
+                <title>404 | INFO PRIDE</title>
                 <link rel="shortcut icon" href="/favicon.svg" />
                 <meta
                     name="viewport"
@@ -26,7 +26,7 @@ const Custom404 = async () => {
                         <Link href="/">{$t('back_to_main_page')}</Link>
                     </p>
                     <p>
-                        GYOGYO PRIDE |{' '}
+                        INFO PRIDE |{' '}
                         <a href="https://github.com/outloudvi/info-pride/issues">
                             {$t('bug_report')}
                         </a>

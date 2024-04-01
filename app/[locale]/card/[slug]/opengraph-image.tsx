@@ -64,7 +64,7 @@ export default async function OGImage({
                 <div tw="flex h-[80px] w-full items-center px-2">
                     <img tw="w-12 h-12 mx-4" src={siteLogo} alt="site logo" />
                     <div tw="flex text-3xl grow">
-                        gyogyo-pride /{' '}
+                        info-pride /{' '}
                         <span tw="ml-3 text-3xl text-neutral-500">Card</span>
                     </div>
                     <div tw="flex self-end pb-1 text-md text-neutral-600">
