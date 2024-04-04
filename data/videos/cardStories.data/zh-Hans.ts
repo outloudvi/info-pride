@@ -701,6 +701,21 @@ const dataSakura: StoriesData = {
             video: { type: 'bilibili', vid: 'av354226365', pid: 3 },
         },
     },
+    'card-skr-05-birt-00': {
+        // 感謝伝えるバースデー
+        1: {
+            name: '家人可是要重视哦',
+            video: { type: 'bilibili', vid: 'av1152609193' },
+        },
+        2: {
+            name: '鱼鱼摩托车',
+            video: { type: 'bilibili', vid: 'av1352722684' },
+        },
+        3: {
+            name: '惊喜x惊喜',
+            video: { type: 'bilibili', vid: 'av1452568741' },
+        },
+    },
 }
 
 // 兵藤雫
