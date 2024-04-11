@@ -29,6 +29,7 @@ import BirthdayCommu from '#components/characters/BirthdayCommu'
 import { toHashColor } from '#utils/toHashColor'
 import AssetImage from '#components/AssetImage'
 import { fetchApi } from '#utils/fetchApi'
+import lfToBr from '#utils/lfToBr'
 
 const BirthdayCommuException: CharacterId[] = ['char-mna']
 const VoiceException: CharacterId[] = ['char-mku']
@@ -138,11 +139,7 @@ const CharacterItem = async ({
                     className="text-gray-700 dark:text-gray-200 !mb-2"
                     lang="ja"
                 >
-                    <span
-                        dangerouslySetInnerHTML={{
-                            __html: catchphrase.replace(/\n/g, '<br />'),
-                        }}
-                    ></span>
+                    <span>{lfToBr(catchphrase)}</span>
                 </Blockquote>
             )}
             <p>{profileData ?? profile}</p>

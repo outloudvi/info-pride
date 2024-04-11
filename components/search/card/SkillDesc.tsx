@@ -2,6 +2,8 @@ import { SkillCategoryType } from 'hoshimi-types/ProtoEnum'
 import type { Skill } from 'hoshimi-types/ProtoMaster'
 import { useTranslations } from 'next-intl'
 
+import lfToBr from '#utils/lfToBr'
+
 const SkillDesc = ({ skill }: { skill: Skill }) => {
     const $v = useTranslations('vendor')
 
@@ -15,11 +17,7 @@ const SkillDesc = ({ skill }: { skill: Skill }) => {
             <br />
             <span>{$v(SkillCategoryType[categoryType])}</span>
             <br />
-            <span
-                dangerouslySetInnerHTML={{
-                    __html: description.replace(/\n/g, '<br/>'),
-                }}
-            ></span>
+            <span>{lfToBr(description)}</span>
         </div>
     )
 }
