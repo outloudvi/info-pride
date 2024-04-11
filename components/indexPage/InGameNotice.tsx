@@ -40,7 +40,7 @@ const InGameNotice = ({ type }: { type: NoticeType }) => {
                 <iframe
                     title="modal"
                     className="text-center h-[75vh] w-full"
-                    src={modalNews?.linkDetail}
+                    src={`/api/notifProxy?url=${encodeURIComponent(modalNews?.linkDetail ?? '')}`}
                 ></iframe>
                 <div className="text-center">
                     {$t('Published: ')}{' '}
@@ -52,18 +52,23 @@ const InGameNotice = ({ type }: { type: NoticeType }) => {
             </Modal>
             <ul>
                 {news.map((item, key) => {
-                    const { title } = item
+                    const { title, linkDetail } = item
+                    const linkBody = linkDetail ? (
+                        <Anchor
+                            onClick={() => {
+                                setModalNews(item)
+                                setModalOpened(true)
+                            }}
+                            lang="ja"
+                        >
+                            {title}
+                        </Anchor>
+                    ) : (
+                        <span lang="ja">{title}</span>
+                    )
                     return (
                         <li key={key}>
-                            <Anchor
-                                onClick={() => {
-                                    setModalNews(item)
-                                    setModalOpened(true)
-                                }}
-                                lang="ja"
-                            >
-                                {title}
-                            </Anchor>{' '}
+                            {linkBody}{' '}
                             <small>
                                 {dayjs(Number(item.startTime)).format(
                                     'YYYY-MM-DD',

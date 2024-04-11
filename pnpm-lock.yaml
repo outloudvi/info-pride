@@ -98,6 +98,9 @@ dependencies:
   nextjs-progressbar:
     specifier: ^0.0.16
     version: 0.0.16(next@14.1.0)(react@18.2.0)
+  node-html-parser:
+    specifier: ^6.1.13
+    version: 6.1.13
   pixi.js:
     specifier: ^7.4.0
     version: 7.4.0
@@ -5889,7 +5892,6 @@ packages:
   /he@1.2.0:
     resolution: {integrity: sha512-F/1DnUGPopORZi0ni+CvrCgHQ5FyEAHRLSApuYWMmrbSwoN2Mn/7k+Gl38gJnR7yyDZk6WLXwiGod1JOWNDKGw==}
     hasBin: true
-    dev: true
 
   /hoist-non-react-statics@3.3.2:
     resolution: {integrity: sha512-/gGivxi8JPKWNm/W0jSmzcMPpfpPLc3dY/6GxhX2hQ9iGj3aDfklV4ET7NjKpSinLpJ5vafa9iiGIEZg10SfBw==}
@@ -6935,6 +6937,13 @@ packages:
     transitivePeerDependencies:
       - domexception
     dev: true
+
+  /node-html-parser@6.1.13:
+    resolution: {integrity: sha512-qIsTMOY4C/dAa5Q5vsobRpOOvPfC4pB61UVW2uSwZNUp0QU/jCekTal1vMmbO0DgdHeLUJpv/ARmDqErVxA3Sg==}
+    dependencies:
+      css-select: 5.1.0
+      he: 1.2.0
+    dev: false
 
   /node-releases@2.0.14:
     resolution: {integrity: sha512-y10wOWt8yZpqXmOgRo77WaHEmhYQYGNA6y421PKsKYWEK8aW+cqAphborZDhqfyKrbZEN92CN1X2KbafY2s7Yw==}
