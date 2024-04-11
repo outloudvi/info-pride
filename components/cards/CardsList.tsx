@@ -63,7 +63,6 @@ const CardsList = ({
     return (
         <>
             <SimpleGrid
-                key={Math.random()}
                 className="max-w-7xl mx-auto"
                 spacing="lg"
                 cols={{
@@ -78,8 +77,8 @@ const CardsList = ({
                     lg: 'lg',
                 }}
             >
-                {cards.map((item, key) => (
-                    <CardCard key={key} card={item} />
+                {cards.map((item) => (
+                    <CardCard key={item.id} card={item} />
                 ))}
             </SimpleGrid>
             {!isFinished && (
