@@ -36,7 +36,16 @@ const CardsList = ({
                     setIsFinished(true)
                 }
             }
-            setCards((x) => [...x, ...newCards])
+            setCards((oldCards) => {
+                // dedup - in case that card db is updated during view
+                const firstNewCard = newCards.findIndex(
+                    (x) => oldCards.findIndex((y) => y.id === x.id) === -1,
+                )
+                return [
+                    ...oldCards,
+                    ...newCards.slice(Math.max(firstNewCard, 0)),
+                ]
+            })
         },
         [searchOptions, cards.length],
     )
