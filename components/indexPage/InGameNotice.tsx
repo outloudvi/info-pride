@@ -78,16 +78,18 @@ const InGameNotice = ({ type }: { type: NoticeType }) => {
                     )
                 })}
             </ul>
-            {(isLoading || news.length === limit) && (
-                <Anchor
-                    onClick={() => {
-                        if (isLoading) return
-                        setLimit((x) => x + 5)
-                    }}
-                >
-                    {isLoading ? $t('loading_news') : $t('More')}
-                </Anchor>
-            )}
+            {news.length >= limit &&
+                (isLoading ? (
+                    <span>{$t('loading_news')}</span>
+                ) : (
+                    <Anchor
+                        onClick={() => {
+                            setLimit((x) => x + 5)
+                        }}
+                    >
+                        {$t('More')}
+                    </Anchor>
+                ))}
         </>
     ) : (
         <p className="text-gray-500">{$t('loading_news')}</p>
