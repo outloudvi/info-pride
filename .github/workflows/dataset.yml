@@ -31,6 +31,7 @@ jobs:
                   git config --local user.name "GitHub Actions"
                   git add data/ locales/
                   git commit -m "feat: update dataset"
+                  git pull --rebase
 
             - name: Push changes
               uses: ad-m/github-push-action@master
