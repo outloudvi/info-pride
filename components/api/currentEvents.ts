@@ -37,6 +37,7 @@ const CalendarEventTypeMapping: Record<CalendarEventType, EventType> = {
     形象训练活动: EventType.ImageTraining,
     若恋活动: EventType.Moshikoi,
     'medley live活动': EventType.MedleyLive,
+    双六活动: EventType.RollTheDice,
 }
 
 async function getCurrentEvents() {

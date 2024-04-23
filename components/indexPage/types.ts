@@ -34,4 +34,5 @@ export enum EventType {
     ImageTraining,
     Moshikoi,
     MedleyLive,
+    RollTheDice,
 }

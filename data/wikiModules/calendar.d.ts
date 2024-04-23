@@ -42,7 +42,8 @@ export type EventType =
   | "生日卡池"
   | "形象训练活动"
   | "若恋活动"
-  | "medley live活动";
+  | "medley live活动"
+  | "双六活动";
 /**
  * Each YYYY/MM in the calendar.
  */
