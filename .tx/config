@@ -1,0 +1,308 @@
+[main]
+host = https://app.transifex.com
+
+[o:info-pride:p:frontend-8:r:locales-en-404-json--master]
+file_filter            = locales/<lang>/404.json
+source_file            = locales/en/404.json
+type                   = KEYVALUEJSON
+minimum_perc           = 0
+resource_name          = locales/en/404.json (master)
+replace_edited_strings = false
+keep_translations      = false
+
+[o:info-pride:p:frontend-8:r:locales-en-about-json--master]
+file_filter            = locales/<lang>/about.json
+source_file            = locales/en/about.json
+type                   = KEYVALUEJSON
+minimum_perc           = 0
+resource_name          = locales/en/about.json (master)
+replace_edited_strings = false
+keep_translations      = false
+
+[o:info-pride:p:frontend-8:r:locales-en-analyze-json--master]
+file_filter            = locales/<lang>/analyze.json
+source_file            = locales/en/analyze.json
+type                   = KEYVALUEJSON
+minimum_perc           = 0
+resource_name          = locales/en/analyze.json (master)
+replace_edited_strings = false
+keep_translations      = false
+
+[o:info-pride:p:frontend-8:r:locales-en-cards-json--master]
+file_filter            = locales/<lang>/cards.json
+source_file            = locales/en/cards.json
+type                   = KEYVALUEJSON
+minimum_perc           = 0
+resource_name          = locales/en/cards.json (master)
+replace_edited_strings = false
+keep_translations      = false
+
+[o:info-pride:p:frontend-8:r:locales-en-cards-slug-json--master]
+file_filter            = locales/<lang>/cards_slug.json
+source_file            = locales/en/cards_slug.json
+type                   = KEYVALUEJSON
+minimum_perc           = 0
+resource_name          = locales/en/cards_slug.json (master)
+replace_edited_strings = false
+keep_translations      = false
+
+[o:info-pride:p:frontend-8:r:locales-en-characters-json--master]
+file_filter            = locales/<lang>/characters.json
+source_file            = locales/en/characters.json
+type                   = KEYVALUEJSON
+minimum_perc           = 0
+resource_name          = locales/en/characters.json (master)
+replace_edited_strings = false
+keep_translations      = false
+
+[o:info-pride:p:frontend-8:r:locales-en-colors-json--master]
+file_filter            = locales/<lang>/colors.json
+source_file            = locales/en/colors.json
+type                   = KEYVALUEJSON
+minimum_perc           = 0
+resource_name          = locales/en/colors.json (master)
+replace_edited_strings = false
+keep_translations      = false
+
+[o:info-pride:p:frontend-8:r:locales-en-common-json--master]
+file_filter            = locales/<lang>/common.json
+source_file            = locales/en/common.json
+type                   = KEYVALUEJSON
+minimum_perc           = 0
+resource_name          = locales/en/common.json (master)
+replace_edited_strings = false
+keep_translations      = false
+
+[o:info-pride:p:frontend-8:r:locales-en-diary-json--master]
+file_filter            = locales/<lang>/diary.json
+source_file            = locales/en/diary.json
+type                   = KEYVALUEJSON
+minimum_perc           = 0
+resource_name          = locales/en/diary.json (master)
+replace_edited_strings = false
+keep_translations      = false
+
+[o:info-pride:p:frontend-8:r:locales-en-emblems-json--master]
+file_filter            = locales/<lang>/emblems.json
+source_file            = locales/en/emblems.json
+type                   = KEYVALUEJSON
+minimum_perc           = 0
+resource_name          = locales/en/emblems.json (master)
+replace_edited_strings = false
+keep_translations      = false
+
+[o:info-pride:p:frontend-8:r:locales-en-eventstories-json--master]
+file_filter            = locales/<lang>/eventstories.json
+source_file            = locales/en/eventstories.json
+type                   = KEYVALUEJSON
+minimum_perc           = 0
+resource_name          = locales/en/eventstories.json (master)
+replace_edited_strings = false
+keep_translations      = false
+
+[o:info-pride:p:frontend-8:r:locales-en-index-json--master]
+file_filter            = locales/<lang>/index.json
+source_file            = locales/en/index.json
+type                   = KEYVALUEJSON
+minimum_perc           = 0
+resource_name          = locales/en/index.json (master)
+replace_edited_strings = false
+keep_translations      = false
+
+[o:info-pride:p:frontend-8:r:locales-en-message-search-json--master]
+file_filter            = locales/<lang>/message_search.json
+source_file            = locales/en/message_search.json
+type                   = KEYVALUEJSON
+minimum_perc           = 0
+resource_name          = locales/en/message_search.json (master)
+replace_edited_strings = false
+keep_translations      = false
+
+[o:info-pride:p:frontend-8:r:locales-en-messages-json--master]
+file_filter            = locales/<lang>/messages.json
+source_file            = locales/en/messages.json
+type                   = KEYVALUEJSON
+minimum_perc           = 0
+resource_name          = locales/en/messages.json (master)
+replace_edited_strings = false
+keep_translations      = false
+
+[o:info-pride:p:frontend-8:r:locales-en-moshikoi-json--master]
+file_filter            = locales/<lang>/moshikoi.json
+source_file            = locales/en/moshikoi.json
+type                   = KEYVALUEJSON
+minimum_perc           = 0
+resource_name          = locales/en/moshikoi.json (master)
+replace_edited_strings = false
+keep_translations      = false
+
+[o:info-pride:p:frontend-8:r:locales-en-mtalk-json--master]
+file_filter            = locales/<lang>/mtalk.json
+source_file            = locales/en/mtalk.json
+type                   = KEYVALUEJSON
+minimum_perc           = 0
+resource_name          = locales/en/mtalk.json (master)
+replace_edited_strings = false
+keep_translations      = false
+
+[o:info-pride:p:frontend-8:r:locales-en-notemap-json--master]
+file_filter            = locales/<lang>/notemap.json
+source_file            = locales/en/notemap.json
+type                   = KEYVALUEJSON
+minimum_perc           = 0
+resource_name          = locales/en/notemap.json (master)
+replace_edited_strings = false
+keep_translations      = false
+
+[o:info-pride:p:frontend-8:r:locales-en-notice-json--master]
+file_filter            = locales/<lang>/notice.json
+source_file            = locales/en/notice.json
+type                   = KEYVALUEJSON
+minimum_perc           = 0
+resource_name          = locales/en/notice.json (master)
+replace_edited_strings = false
+keep_translations      = false
+
+[o:info-pride:p:frontend-8:r:locales-en-photo-ability-type-json--master]
+file_filter            = locales/<lang>/photo_ability_type.json
+source_file            = locales/en/photo_ability_type.json
+type                   = KEYVALUEJSON
+minimum_perc           = 0
+resource_name          = locales/en/photo_ability_type.json (master)
+replace_edited_strings = false
+keep_translations      = false
+
+[o:info-pride:p:frontend-8:r:locales-en-photos-json--master]
+file_filter            = locales/<lang>/photos.json
+source_file            = locales/en/photos.json
+type                   = KEYVALUEJSON
+minimum_perc           = 0
+resource_name          = locales/en/photos.json (master)
+replace_edited_strings = false
+keep_translations      = false
+
+[o:info-pride:p:frontend-8:r:locales-en-search-json--master]
+file_filter            = locales/<lang>/search.json
+source_file            = locales/en/search.json
+type                   = KEYVALUEJSON
+minimum_perc           = 0
+resource_name          = locales/en/search.json (master)
+replace_edited_strings = false
+keep_translations      = false
+
+[o:info-pride:p:frontend-8:r:locales-en-search-skills-json--master]
+file_filter            = locales/<lang>/search_skills.json
+source_file            = locales/en/search_skills.json
+type                   = KEYVALUEJSON
+minimum_perc           = 0
+resource_name          = locales/en/search_skills.json (master)
+replace_edited_strings = false
+keep_translations      = false
+
+[o:info-pride:p:frontend-8:r:locales-en-settings-json--master]
+file_filter            = locales/<lang>/settings.json
+source_file            = locales/en/settings.json
+type                   = KEYVALUEJSON
+minimum_perc           = 0
+resource_name          = locales/en/settings.json (master)
+replace_edited_strings = false
+keep_translations      = false
+
+[o:info-pride:p:frontend-8:r:locales-en-spine-json--master]
+file_filter            = locales/<lang>/spine.json
+source_file            = locales/en/spine.json
+type                   = KEYVALUEJSON
+minimum_perc           = 0
+resource_name          = locales/en/spine.json (master)
+replace_edited_strings = false
+keep_translations      = false
+
+[o:info-pride:p:frontend-8:r:locales-en-spine-animation-json--master]
+file_filter            = locales/<lang>/spine_animation.json
+source_file            = locales/en/spine_animation.json
+type                   = KEYVALUEJSON
+minimum_perc           = 0
+resource_name          = locales/en/spine_animation.json (master)
+replace_edited_strings = false
+keep_translations      = false
+
+[o:info-pride:p:frontend-8:r:locales-en-stories-json--master]
+file_filter            = locales/<lang>/stories.json
+source_file            = locales/en/stories.json
+type                   = KEYVALUEJSON
+minimum_perc           = 0
+resource_name          = locales/en/stories.json (master)
+replace_edited_strings = false
+keep_translations      = false
+
+[o:info-pride:p:frontend-8:r:locales-en-story-search-json--master]
+file_filter            = locales/<lang>/story_search.json
+source_file            = locales/en/story_search.json
+type                   = KEYVALUEJSON
+minimum_perc           = 0
+resource_name          = locales/en/story_search.json (master)
+replace_edited_strings = false
+keep_translations      = false
+
+[o:info-pride:p:frontend-8:r:locales-en-storyreplay-json--master]
+file_filter            = locales/<lang>/storyreplay.json
+source_file            = locales/en/storyreplay.json
+type                   = KEYVALUEJSON
+minimum_perc           = 0
+resource_name          = locales/en/storyreplay.json (master)
+replace_edited_strings = false
+keep_translations      = false
+
+[o:info-pride:p:frontend-8:r:locales-en-units-json--master]
+file_filter            = locales/<lang>/units.json
+source_file            = locales/en/units.json
+type                   = KEYVALUEJSON
+minimum_perc           = 0
+resource_name          = locales/en/units.json (master)
+replace_edited_strings = false
+keep_translations      = false
+
+[o:info-pride:p:frontend-8:r:locales-en-vendor-json--master]
+file_filter            = locales/<lang>/vendor.json
+source_file            = locales/en/vendor.json
+type                   = KEYVALUEJSON
+minimum_perc           = 0
+resource_name          = locales/en/vendor.json (master)
+replace_edited_strings = false
+keep_translations      = false
+
+[o:info-pride:p:vendor-strings:r:locales-ja-v-card-name-json--master]
+file_filter            = locales/<lang>/v-card-name.json
+source_file            = locales/ja/v-card-name.json
+type                   = KEYVALUEJSON
+minimum_perc           = 0
+resource_name          = Card names
+replace_edited_strings = false
+keep_translations      = false
+
+[o:info-pride:p:vendor-strings:r:locales-ja-v-chr-json--master]
+file_filter            = locales/<lang>/v-chr.json
+source_file            = locales/ja/v-chr.json
+type                   = KEYVALUEJSON
+minimum_perc           = 0
+resource_name          = Character names
+replace_edited_strings = false
+keep_translations      = false
+
+[o:info-pride:p:vendor-strings:r:locales-ja-v-event-name-json--master]
+file_filter            = locales/<lang>/v-event-name.json
+source_file            = locales/ja/v-event-name.json
+type                   = KEYVALUEJSON
+minimum_perc           = 0
+resource_name          = Event names
+replace_edited_strings = false
+keep_translations      = false
+
+[o:info-pride:p:vendor-strings:r:locales-ja-v-group-json--master]
+file_filter            = locales/<lang>/v-group.json
+source_file            = locales/ja/v-group.json
+type                   = KEYVALUEJSON
+minimum_perc           = 0
+resource_name          = Group names
+replace_edited_strings = false
+keep_translations      = false
