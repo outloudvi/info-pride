@@ -1050,6 +1050,36 @@ const dataRei: StoriesData = {
             video: { type: 'bilibili', vid: 'av533171812' },
         },
     },
+    'card-rei-05-birt-00': {
+        // わくわく遊園地バースデー
+        1: {
+            name: 'TODO',
+            video: { type: 'bilibili', vid: 'av1702425566' },
+        },
+        2: {
+            name: 'TODO',
+            video: { type: 'bilibili', vid: 'av1702425566' },
+        },
+        3: {
+            name: 'TODO',
+            video: { type: 'bilibili', vid: 'av1702425566' },
+        },
+    },
+    'card-rei-05-chia-00': {
+        // ダンシングキューピッド
+        1: {
+            name: '想要进行恋爱咨询',
+            video: { type: 'bilibili', vid: 'av1352274675' },
+        },
+        2: {
+            name: '能去您的房间吗？',
+            video: { type: 'bilibili', vid: 'av1502738274' },
+        },
+        3: {
+            name: '为努力的你应援',
+            video: { type: 'bilibili', vid: 'av1102645072' },
+        },
+    },
 }
 
 // 佐伯遥子
@@ -1280,6 +1310,21 @@ const dataRui: StoriesData = {
             video: { type: 'bilibili', vid: 'av918354216' },
         },
     },
+    'card-rui-05-fest-01': {
+        // 空駆ける絆の翼
+        1: {
+            name: 'TODO',
+            video: { type: 'bilibili', vid: 'av1652696587' },
+        },
+        2: {
+            name: 'TODO',
+            video: { type: 'bilibili', vid: 'av1652696587' },
+        },
+        3: {
+            name: 'TODO',
+            video: { type: 'bilibili', vid: 'av1652696587' },
+        },
+    },
 }
 
 // 铃村优
@@ -1394,6 +1439,21 @@ const dataYu: StoriesData = {
         3: {
             name: '请好好注视我',
             video: { type: 'bilibili', vid: 'av407666919' },
+        },
+    },
+    'card-yu-05-fest-01': {
+        // 君と広げた絆の翼
+        1: {
+            name: 'TODO',
+            video: { type: 'bilibili', vid: 'av1252325081' },
+        },
+        2: {
+            name: 'TODO',
+            video: { type: 'bilibili', vid: 'av1252325081' },
+        },
+        3: {
+            name: 'TODO',
+            video: { type: 'bilibili', vid: 'av1252325081' },
         },
     },
 }
@@ -1517,6 +1577,21 @@ const dataSumire: StoriesData = {
         3: {
             name: '奥山家的早饭也很豪华',
             video: { type: 'bilibili', vid: 'av537850854' },
+        },
+    },
+    'card-smr-05-maid-00': {
+        // 花開く名演技
+        1: {
+            name: 'TODO',
+            video: { type: 'bilibili', vid: 'av1203265110' },
+        },
+        2: {
+            name: 'TODO',
+            video: { type: 'bilibili', vid: 'av1203265110' },
+        },
+        3: {
+            name: 'TODO',
+            video: { type: 'bilibili', vid: 'av1203265110' },
         },
     },
 }
@@ -2150,6 +2225,21 @@ const dataKana: StoriesData = {
         3: {
             name: 'TODO',
             video: { type: 'bilibili', vid: 'av450019910' },
+        },
+    },
+    'card-kan-05-buny-00': {
+        // バズらせバニー
+        1: {
+            name: '以名人为名的猎物',
+            video: { type: 'bilibili', vid: 'av1852540008' },
+        },
+        2: {
+            name: '绝对爆火惯用梗',
+            video: { type: 'bilibili', vid: 'av1952739947' },
+        },
+        3: {
+            name: 'kana超级努力了捏',
+            video: { type: 'bilibili', vid: 'av1802592321' },
         },
     },
 }

@@ -99,7 +99,7 @@ const StoriesItem = async (props: PropType) => {
                 <div className="mt-4 mb-2 text-gray-500">
                     {$c.rich('no_trans', {
                         field: `StoriesData[${series}][${season}][${chapter}]`,
-                        file: 'data/stories.data.ts',
+                        file: `data/eventStories.data/${locale}.ts`,
                     })}
                 </div>
             )}

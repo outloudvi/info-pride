@@ -1462,6 +1462,28 @@ const data: StoriesData['data'] = {
                 video: { type: 'bilibili', vid: 'av575595038', pid: 5 },
             },
         },
+        3: {
+            1: {
+                name: '兵藤雫的过去',
+                video: { type: 'bilibili', vid: 'av1851686795' },
+            },
+            2: {
+                name: '我只是在应援',
+                video: { type: 'bilibili', vid: 'av1901868740' },
+            },
+            3: {
+                name: '我保证',
+                video: { type: 'bilibili', vid: 'av1003232656' },
+            },
+            4: {
+                name: '我来帮你破除诅咒',
+                video: { type: 'bilibili', vid: 'av1003072059' },
+            },
+            5: {
+                name: '这就是我的青春',
+                video: { type: 'bilibili', vid: 'av1853488676' },
+            },
+        },
     },
 }
 
