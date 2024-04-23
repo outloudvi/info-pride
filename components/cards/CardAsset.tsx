@@ -59,7 +59,7 @@ const CardAsset = ({
                 value={imageType}
                 onChange={setImageType as Dispatch<SetStateAction<string>>}
             >
-                <Group>
+                <Group className="mt-2">
                     <Radio value="thumb" label={$t('Thumbnail')} />
                     <Radio value="upper" label={$t('Vertical')} />
                     <Radio value="rect" label={$t('Landscape')} />
