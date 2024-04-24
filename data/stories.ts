@@ -18,7 +18,7 @@ export const Episodes: Record<SeriesName, number[]> = {
     // adv_main_02_
     Tokyo: [25, 44],
     // adv_main_03_
-    Big4: [50],
+    Big4: [55],
     // adv_group_tri_
     TRINITYAiLE: [30],
     // adv_group_liz_
