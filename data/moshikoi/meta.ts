@@ -21,6 +21,12 @@ const MoshikoiMeta: Record<
         startStory: 'st-love-23-1114-001',
         img: 'img_photo_full_photo-love-23-1114-01',
     },
+    '240517': {
+        title: 'もしも君と恋をしたら',
+        characterId: 'char-mei',
+        startStory: 'st-love-24-0517-001',
+        img: 'img_photo_full_photo-love-24-0517-01',
+    },
 }
 
 export default MoshikoiMeta
