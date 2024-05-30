@@ -10,8 +10,7 @@ import {
     TableTd,
     TableTr,
 } from '@mantine/core'
-import { useLocale } from 'next-intl'
-import { getTranslations } from 'next-intl/server'
+import { getLocale, getTranslations } from 'next-intl/server'
 
 import { HometownIntroductionPageUrl } from './const'
 import SquareColor from './SquareColor'
@@ -49,7 +48,7 @@ const CharacterItem = async ({
     const $t = await getTranslations('characters')
     const $vc = await getTranslations('v-chr')
     const $vg = await getTranslations('v-group')
-    const locale = useLocale()
+    const locale = await getLocale()
 
     const { id, characterGroupId, name, enName, color } = character
 

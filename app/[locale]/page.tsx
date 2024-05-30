@@ -1,6 +1,7 @@
 import { Button, Flex, Grid, GridCol, Group, Stack } from '@mantine/core'
 import { useTranslations } from 'next-intl'
 import { useMemo } from 'react'
+import { unstable_setRequestLocale } from 'next-intl/server'
 
 import CurrentEvents from '#components/indexPage/CurrentEvents'
 import Notice from '#components/indexPage/Notice'
@@ -43,7 +44,8 @@ const MainPageSiteData = [
     },
 ]
 
-const Home = () => {
+const Home = ({ params: { locale } }: { params: { locale: string } }) => {
+    unstable_setRequestLocale(locale)
     const $t = useTranslations('index')
 
     const startOfToday = useMemo(() => getStartOfToday(), [])
