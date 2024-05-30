@@ -2,8 +2,11 @@
 
 import { useState } from 'react'
 import { Skeleton, Slider, Stack } from '@mantine/core'
-import type { ActivityAbility, LiveAbility } from 'hoshimi-types/ProtoMaster'
-import { Skill } from 'hoshimi-types/ProtoMaster'
+import type {
+    ActivityAbility,
+    LiveAbility,
+    Skill,
+} from 'hoshimi-types/ProtoMaster'
 import { SkillCategoryType } from 'hoshimi-types/ProtoEnum'
 import { useTranslations } from 'next-intl'
 
@@ -11,7 +14,13 @@ import SkillImage from './SkillImage'
 
 import lfToBr from '#utils/lfToBr'
 
-const Skill = ({ skill, className }: { skill: Skill; className?: string }) => {
+const SkillBlock = ({
+    skill,
+    className,
+}: {
+    skill: Skill
+    className?: string
+}) => {
     const { name, categoryType, levels } = skill
 
     const $v = useTranslations('vendor')
@@ -84,7 +93,7 @@ const Skills = ({
         <Stack>
             {skills.map((skill, key) => (
                 <div key={key} className="flex items-center">
-                    <Skill key={key} skill={skill} />
+                    <SkillBlock key={key} skill={skill} />
                 </div>
             ))}
             {yellSkill === null ? (

@@ -17,7 +17,7 @@ dayjs.extend(dayjsTz)
 
 const ExtendedDateFormat = 'YYYY/M/D H:mm:ss'
 
-const EventItem = ({ item }: { item: EventItem }) => {
+const EventItemBlock = ({ item }: { item: EventItem }) => {
     const $t = useTranslations('index')
 
     const { title, type, start, end, link } = item
@@ -78,4 +78,4 @@ const EventItem = ({ item }: { item: EventItem }) => {
     )
 }
 
-export default EventItem
+export default EventItemBlock
