@@ -21,5 +21,8 @@ module.exports = {
         'border-[#d894fc]',
         'border-[#81c275]',
     ],
+    corePlugins: {
+        preflight: false,
+    },
     plugins: [],
 }
