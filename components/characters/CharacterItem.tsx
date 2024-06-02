@@ -215,7 +215,7 @@ const CharacterItem = async ({
                                 alt={$t('Signature')}
                                 ratio={1}
                                 width={150}
-                                className="dark:invert"
+                                className="invert dark:invert-0"
                             />
                         </Group>
                         {PrimaryCharacterIds.includes(
