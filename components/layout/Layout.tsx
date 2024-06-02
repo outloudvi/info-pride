@@ -55,13 +55,6 @@ const Layout = ({ children }: { children: ReactNode }) => {
                         },
                     }}
                     padding="md"
-                    style={{
-                        main: {
-                            backgroundColor: `light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-8))`,
-                            maxHeight: 'calc(100vh - 60px)',
-                            overflowY: 'scroll',
-                        },
-                    }}
                 >
                     <AppShell.Header>
                         <AppHeader
