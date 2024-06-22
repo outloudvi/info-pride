@@ -11,7 +11,7 @@ import { useTranslations } from 'next-intl'
 import AssetImage from '#components/AssetImage'
 
 const START_DATE = dayjs('2016-05-05')
-const END_DATE = dayjs('2017-12-26')
+const END_DATE = dayjs('2017-12-27')
 
 const VALID_DATE_LIST = [
     '0-56',
@@ -84,7 +84,7 @@ const VALID_DATE_LIST = [
     '571-576',
     '578-583',
     '585-590',
-    '592-600',
+    '592-601',
 ]
 
 const toShortDate = (date: Date) =>
