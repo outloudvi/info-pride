@@ -1,28 +1,15 @@
 import { getTranslations, unstable_setRequestLocale } from 'next-intl/server'
 
-import SearchCardPageMainView from '#components/search/card/SearchCardPageMainView'
-import { fetchApi } from '#utils/fetchApi'
 import { withAsyncMessages } from '#utils/withMessages'
 import type { ParamsWithLocale } from '#utils/types'
+import SearchCardPageWrapper from '#components/search/card/SearchCardPageWrapper'
 
 const CardSearchPage = async ({ params: { locale } }: ParamsWithLocale) => {
     unstable_setRequestLocale(locale)
-    const $t = await getTranslations('search')
-
-    const CardData = await fetchApi('Card')
-    const SkillAllData = await fetchApi('Skill/All')
-
-    return (
-        <>
-            <h2>{$t('Card search')}</h2>
-            <SearchCardPageMainView
-                CardData={CardData}
-                SkillAllData={SkillAllData}
-            />
-        </>
-    )
+    return <SearchCardPageWrapper />
 }
 
+// TODO: [FIXME] Use server-side filtering
 export async function generateMetadata({
     params: { locale },
 }: {
