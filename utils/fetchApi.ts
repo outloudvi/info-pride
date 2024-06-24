@@ -14,5 +14,11 @@ export function fetchApi<T extends keyof APIMapping>(
         url.searchParams.set(k, String(v))
     })
 
-    return fetch(String(url)).then((res) => res.json())
+    return fetch(String(url), {
+        next: { revalidate: 3600 },
+    }).then((res) => {
+        console.log(url)
+        console.log(res.headers)
+        return res.json()
+    })
 }
