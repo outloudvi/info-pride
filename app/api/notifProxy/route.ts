@@ -50,6 +50,7 @@ export async function GET(request: NextRequest) {
     return new Response(tryConvert(pageHtml), {
         headers: {
             'Content-Type': 'text/html',
+            'Cache-Control': 'public, s-maxage=86400',
         },
     })
 }

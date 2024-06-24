@@ -36,5 +36,10 @@ export async function GET(request: NextRequest) {
             skills: skillData,
             chartLine: chartData.chart[Number(track) as 1 | 2 | 3 | 4 | 5],
         }),
+        {
+            headers: {
+                'Cache-Control': 'public, s-maxage=86400',
+            },
+        },
     )
 }
