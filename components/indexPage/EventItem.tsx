@@ -7,15 +7,18 @@ import dayjs from 'dayjs'
 import dayjsUtc from 'dayjs/plugin/utc'
 import dayjsTz from 'dayjs/plugin/timezone'
 
-import { EventItem, EventType } from './types'
+import type { EventItem } from './types'
+import { EventType } from './types'
 
 import Paths from '#utils/paths'
-import { COMMON_DATE_FORMAT, SOURCE_TIMEZONE } from '#utils/constants'
+import {
+    COMMON_DATE_FORMAT,
+    ExtendedDateFormat,
+    SOURCE_TIMEZONE,
+} from '#utils/constants'
 
 dayjs.extend(dayjsUtc)
 dayjs.extend(dayjsTz)
-
-const ExtendedDateFormat = 'YYYY/M/D H:mm:ss'
 
 const EventItemBlock = ({ item }: { item: EventItem }) => {
     const $t = useTranslations('index')

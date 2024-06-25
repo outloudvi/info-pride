@@ -17,6 +17,7 @@ import {
 } from '#components/indexPage/venusEvents'
 import RoutineCountdown from '#components/indexPage/RoutineCountdown'
 import { withMessages } from '#utils/withMessages'
+import CurrentGachas from '#components/indexPage/CurrentGachas'
 
 const MainPageSiteData = [
     {
@@ -72,6 +73,9 @@ const Home = ({ params: { locale } }: { params: { locale: string } }) => {
                 />
             </Flex>
             <Grid className="mt-3">
+                <GridCol span={12}>
+                    <CurrentGachas />
+                </GridCol>
                 <GridCol span={{ base: 12, lg: 6 }}>
                     <Stack gap={15} justify="center" className="mt-2">
                         {MainPageSiteData.map((items, _key) => (

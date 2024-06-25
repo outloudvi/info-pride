@@ -7,3 +7,4 @@ export const PLACEHOLDER_SVG =
 export const COMMON_DATE_FORMAT = 'YYYY/M/D'
 export const SOURCE_TIMEZONE = 'Asia/Tokyo'
 export const NEXT_INTL_LOCALE_PREFIX = 'always'
+export const ExtendedDateFormat = 'YYYY/M/D H:mm:ss'
