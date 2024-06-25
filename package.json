@@ -8,7 +8,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "build:analyze": "NODE_OPTIONS='--max-old-space-size=8192' ANALYZE=1 next build",
+    "build:analyze": "NODE_OPTIONS='--max-old-space-size=12288' ANALYZE=1 next build",
     "start": "next start",
     "format": "prettier --write **/*.ts{,x}",
     "lint": "next lint",
@@ -86,7 +86,7 @@
     "eslint-config-prettier": "^9.1.0",
     "eslint-import-resolver-typescript": "^3.6.1",
     "eslint-plugin-import": "^2.29.1",
-    "hoshimi-types": "^2.13.0",
+    "hoshimi-types": "^2.14.1",
     "json-schema-to-typescript": "^14.0.4",
     "knip": "^5.17.3",
     "mocha": "^10.4.0",

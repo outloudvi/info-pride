@@ -43,7 +43,7 @@ importers:
         version: 4.0.3(@pixi/core@7.4.2)(@pixi/display@7.4.2(@pixi/core@7.4.2))(@pixi/graphics@7.4.2(@pixi/core@7.4.2)(@pixi/display@7.4.2(@pixi/core@7.4.2))(@pixi/sprite@7.4.2(@pixi/core@7.4.2)(@pixi/display@7.4.2(@pixi/core@7.4.2))))(@pixi/mesh-extras@7.4.2(@pixi/core@7.4.2)(@pixi/mesh@7.4.2(@pixi/core@7.4.2)(@pixi/display@7.4.2(@pixi/core@7.4.2))))(@pixi/mesh@7.4.2(@pixi/core@7.4.2)(@pixi/display@7.4.2(@pixi/core@7.4.2)))(@pixi/sprite@7.4.2(@pixi/core@7.4.2)(@pixi/display@7.4.2(@pixi/core@7.4.2)))
       '@pixi-spine/loader-3.8':
         specifier: ^4.0.3
-        version: 4.0.3(@pixi-spine/loader-base@4.0.4(@pixi-spine/base@4.0.3(@pixi/core@7.4.2)(@pixi/display@7.4.2(@pixi/core@7.4.2))(@pixi/graphics@7.4.2(@pixi/core@7.4.2)(@pixi/display@7.4.2(@pixi/core@7.4.2))(@pixi/sprite@7.4.2(@pixi/core@7.4.2)(@pixi/display@7.4.2(@pixi/core@7.4.2))))(@pixi/mesh-extras@7.4.2(@pixi/core@7.4.2)(@pixi/mesh@7.4.2(@pixi/core@7.4.2)(@pixi/display@7.4.2(@pixi/core@7.4.2))))(@pixi/mesh@7.4.2(@pixi/core@7.4.2)(@pixi/display@7.4.2(@pixi/core@7.4.2)))(@pixi/sprite@7.4.2(@pixi/core@7.4.2)(@pixi/display@7.4.2(@pixi/core@7.4.2))))(@pixi/assets@7.4.2(@pixi/core@7.4.2))(@pixi/core@7.4.2))(@pixi-spine/runtime-3.8@4.0.3(@pixi-spine/base@4.0.3(@pixi/core@7.4.2)(@pixi/display@7.4.2(@pixi/core@7.4.2))(@pixi/graphics@7.4.2(@pixi/core@7.4.2)(@pixi/display@7.4.2(@pixi/core@7.4.2))(@pixi/sprite@7.4.2(@pixi/core@7.4.2)(@pixi/display@7.4.2(@pixi/core@7.4.2))))(@pixi/mesh-extras@7.4.2(@pixi/core@7.4.2)(@pixi/mesh@7.4.2(@pixi/core@7.4.2)(@pixi/display@7.4.2(@pixi/core@7.4.2))))(@pixi/mesh@7.4.2(@pixi/core@7.4.2)(@pixi/display@7.4.2(@pixi/core@7.4.2)))(@pixi/sprite@7.4.2(@pixi/core@7.4.2)(@pixi/display@7.4.2(@pixi/core@7.4.2))))(@pixi/core@7.4.2))
+        version: 4.0.3(6whkgie6wk2aezz3hagazzu5hy)
       '@pixi-spine/runtime-3.8':
         specifier: ^4.0.3
         version: 4.0.3(@pixi-spine/base@4.0.3(@pixi/core@7.4.2)(@pixi/display@7.4.2(@pixi/core@7.4.2))(@pixi/graphics@7.4.2(@pixi/core@7.4.2)(@pixi/display@7.4.2(@pixi/core@7.4.2))(@pixi/sprite@7.4.2(@pixi/core@7.4.2)(@pixi/display@7.4.2(@pixi/core@7.4.2))))(@pixi/mesh-extras@7.4.2(@pixi/core@7.4.2)(@pixi/mesh@7.4.2(@pixi/core@7.4.2)(@pixi/display@7.4.2(@pixi/core@7.4.2))))(@pixi/mesh@7.4.2(@pixi/core@7.4.2)(@pixi/display@7.4.2(@pixi/core@7.4.2)))(@pixi/sprite@7.4.2(@pixi/core@7.4.2)(@pixi/display@7.4.2(@pixi/core@7.4.2))))(@pixi/core@7.4.2)
@@ -196,8 +196,8 @@ importers:
         specifier: ^2.29.1
         version: 2.29.1(@typescript-eslint/parser@7.11.0(eslint@8.57.0)(typescript@5.4.5))(eslint-import-resolver-typescript@3.6.1)(eslint@8.57.0)
       hoshimi-types:
-        specifier: ^2.13.0
-        version: 2.13.0
+        specifier: ^2.14.1
+        version: 2.14.1
       json-schema-to-typescript:
         specifier: ^14.0.4
         version: 14.0.4
@@ -3391,8 +3391,8 @@ packages:
   hoist-non-react-statics@3.3.2:
     resolution: {integrity: sha512-/gGivxi8JPKWNm/W0jSmzcMPpfpPLc3dY/6GxhX2hQ9iGj3aDfklV4ET7NjKpSinLpJ5vafa9iiGIEZg10SfBw==}
 
-  hoshimi-types@2.13.0:
-    resolution: {integrity: sha512-I4fXNLYZxVw6Q2Uvabid4lCuAut1EOC0xOlasLJnChgoRtt9mssTIRcZ3OMBWqY10/SDaeXW1orGaQR3zyBOcw==}
+  hoshimi-types@2.14.1:
+    resolution: {integrity: sha512-LmTF5wY7bgsExHlNiXY8oNo/SjJMuAI2yVFh6vyD5nTeAMOHAtcPdcYtX5wP5plCHe2cuzB2hxRKnVHZScWzvA==}
 
   hosted-git-info@4.1.0:
     resolution: {integrity: sha512-kyCuEOWjJqZuDbRHzL8V93NzQhwIB71oFWSyzVo+KPZI+pnQPPxucdkrOZvkLRnrf5URsQM+IJ09Dw29cRALIA==}
@@ -6475,8 +6475,8 @@ snapshots:
       '@pixi/mesh-extras': 7.4.2(@pixi/core@7.4.2)(@pixi/mesh@7.4.2(@pixi/core@7.4.2)(@pixi/display@7.4.2(@pixi/core@7.4.2)))
       '@pixi/sprite': 7.4.2(@pixi/core@7.4.2)(@pixi/display@7.4.2(@pixi/core@7.4.2))
 
-  ? '@pixi-spine/loader-3.8@4.0.3(@pixi-spine/loader-base@4.0.4(@pixi-spine/base@4.0.3(@pixi/core@7.4.2)(@pixi/display@7.4.2(@pixi/core@7.4.2))(@pixi/graphics@7.4.2(@pixi/core@7.4.2)(@pixi/display@7.4.2(@pixi/core@7.4.2))(@pixi/sprite@7.4.2(@pixi/core@7.4.2)(@pixi/display@7.4.2(@pixi/core@7.4.2))))(@pixi/mesh-extras@7.4.2(@pixi/core@7.4.2)(@pixi/mesh@7.4.2(@pixi/core@7.4.2)(@pixi/display@7.4.2(@pixi/core@7.4.2))))(@pixi/mesh@7.4.2(@pixi/core@7.4.2)(@pixi/display@7.4.2(@pixi/core@7.4.2)))(@pixi/sprite@7.4.2(@pixi/core@7.4.2)(@pixi/display@7.4.2(@pixi/core@7.4.2))))(@pixi/assets@7.4.2(@pixi/core@7.4.2))(@pixi/core@7.4.2))(@pixi-spine/runtime-3.8@4.0.3(@pixi-spine/base@4.0.3(@pixi/core@7.4.2)(@pixi/display@7.4.2(@pixi/core@7.4.2))(@pixi/graphics@7.4.2(@pixi/core@7.4.2)(@pixi/display@7.4.2(@pixi/core@7.4.2))(@pixi/sprite@7.4.2(@pixi/core@7.4.2)(@pixi/display@7.4.2(@pixi/core@7.4.2))))(@pixi/mesh-extras@7.4.2(@pixi/core@7.4.2)(@pixi/mesh@7.4.2(@pixi/core@7.4.2)(@pixi/display@7.4.2(@pixi/core@7.4.2))))(@pixi/mesh@7.4.2(@pixi/core@7.4.2)(@pixi/display@7.4.2(@pixi/core@7.4.2)))(@pixi/sprite@7.4.2(@pixi/core@7.4.2)(@pixi/display@7.4.2(@pixi/core@7.4.2))))(@pixi/core@7.4.2))'
-  : dependencies:
+  '@pixi-spine/loader-3.8@4.0.3(6whkgie6wk2aezz3hagazzu5hy)':
+    dependencies:
       '@pixi-spine/loader-base': 4.0.4(@pixi-spine/base@4.0.3(@pixi/core@7.4.2)(@pixi/display@7.4.2(@pixi/core@7.4.2))(@pixi/graphics@7.4.2(@pixi/core@7.4.2)(@pixi/display@7.4.2(@pixi/core@7.4.2))(@pixi/sprite@7.4.2(@pixi/core@7.4.2)(@pixi/display@7.4.2(@pixi/core@7.4.2))))(@pixi/mesh-extras@7.4.2(@pixi/core@7.4.2)(@pixi/mesh@7.4.2(@pixi/core@7.4.2)(@pixi/display@7.4.2(@pixi/core@7.4.2))))(@pixi/mesh@7.4.2(@pixi/core@7.4.2)(@pixi/display@7.4.2(@pixi/core@7.4.2)))(@pixi/sprite@7.4.2(@pixi/core@7.4.2)(@pixi/display@7.4.2(@pixi/core@7.4.2))))(@pixi/assets@7.4.2(@pixi/core@7.4.2))(@pixi/core@7.4.2)
       '@pixi-spine/runtime-3.8': 4.0.3(@pixi-spine/base@4.0.3(@pixi/core@7.4.2)(@pixi/display@7.4.2(@pixi/core@7.4.2))(@pixi/graphics@7.4.2(@pixi/core@7.4.2)(@pixi/display@7.4.2(@pixi/core@7.4.2))(@pixi/sprite@7.4.2(@pixi/core@7.4.2)(@pixi/display@7.4.2(@pixi/core@7.4.2))))(@pixi/mesh-extras@7.4.2(@pixi/core@7.4.2)(@pixi/mesh@7.4.2(@pixi/core@7.4.2)(@pixi/display@7.4.2(@pixi/core@7.4.2))))(@pixi/mesh@7.4.2(@pixi/core@7.4.2)(@pixi/display@7.4.2(@pixi/core@7.4.2)))(@pixi/sprite@7.4.2(@pixi/core@7.4.2)(@pixi/display@7.4.2(@pixi/core@7.4.2))))(@pixi/core@7.4.2)
 
@@ -8852,7 +8852,7 @@ snapshots:
     dependencies:
       react-is: 16.13.1
 
-  hoshimi-types@2.13.0: {}
+  hoshimi-types@2.14.1: {}
 
   hosted-git-info@4.1.0:
     dependencies:
