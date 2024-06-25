@@ -45,9 +45,7 @@ const AssetImage = (props: Props) => {
                 height={undefined}
                 width={undefined}
                 alt={alt}
-                className={`object-fill hover:cursor-pointer ${
-                    props.className ?? ''
-                }`}
+                className={`object-fill ${props.className ?? ''}`}
             />
         </div>
     )
