@@ -1,9 +1,10 @@
 /**
- * To add a story series, please add:
+ * To add a story series, please update:
  *
  * * `Series` below
  * * `Episodes` below
  * * `Prefix` below
+ * * Each language under `data/videos/stories.data/`
  */
 
 export const Series = [

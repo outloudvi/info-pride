@@ -5,6 +5,7 @@ const special: StoriesData['special'] = []
 const data: StoriesData['data'] = {
     Hoshimi: {},
     Tokyo: {},
+    Stellar: {},
     TRINITYAiLE: {},
     LizNoir: {},
     Mana: {},

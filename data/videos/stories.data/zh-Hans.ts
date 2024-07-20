@@ -795,6 +795,7 @@ const data: StoriesData['data'] = {
             },
         },
     },
+    Stellar: {},
     TRINITYAiLE: {
         1: {
             1: {
