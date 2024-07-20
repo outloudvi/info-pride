@@ -1,7 +1,16 @@
+/**
+ * To add a story series, please add:
+ *
+ * * `Series` below
+ * * `Episodes` below
+ * * `Prefix` below
+ */
+
 export const Series = [
     'Hoshimi',
     'Tokyo',
     'Big4',
+    'Stellar',
     'TRINITYAiLE',
     'LizNoir',
     'Mana',
@@ -19,6 +28,8 @@ export const Episodes: Record<SeriesName, number[]> = {
     Tokyo: [25, 44], // FIN
     // adv_main_03_
     Big4: [66], // FIN
+    // adv_main_04_
+    Stellar: [5],
     // adv_group_tri_
     TRINITYAiLE: [30], // FIN
     // adv_group_liz_
@@ -31,4 +42,17 @@ export const Episodes: Record<SeriesName, number[]> = {
     Tsuki: [5, 5, 5, 5, 5], // FIN
     // adv_group_sun
     Sunny: [5, 5, 5],
+}
+
+export const Prefix: Record<SeriesName, string> = {
+    Hoshimi: 'st-original-cmn-01',
+    Tokyo: 'st-main-cmn-01',
+    Big4: 'st-main-cmn-02',
+    Stellar: 'st-main-cmn-03',
+    TRINITYAiLE: 'st-group-tri-01',
+    LizNoir: 'st-group-liz-01',
+    Mana: 'st-group-mna-01',
+    ThreeX: 'st-group-thrx-01',
+    Tsuki: 'st-group-moon-01',
+    Sunny: 'st-group-sun-01',
 }

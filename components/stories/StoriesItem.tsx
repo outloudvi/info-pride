@@ -1,10 +1,10 @@
-import { Button, Skeleton } from '@mantine/core'
+import { Button } from '@mantine/core'
 import { useLocale } from 'next-intl'
 import { getTranslations } from 'next-intl/server'
 
 import { Link } from '#utils/navigation'
 import { toVideoLink } from '#components/ExternalVideo'
-import type { SeriesName } from '#data/stories'
+import { Prefix, type SeriesName } from '#data/stories'
 import AssetImage from '#components/AssetImage'
 import { fetchApi } from '#utils/fetchApi'
 import storiesData from '#data/videos/stories.data'
@@ -18,17 +18,7 @@ type PropType = {
 
 function getBackendStoryId(props: PropType): string {
     const { series, season, chapter } = props
-    const Prefix: Record<SeriesName, string> = {
-        Hoshimi: 'st-original-cmn-01',
-        Tokyo: 'st-main-cmn-01',
-        Big4: 'st-main-cmn-02',
-        TRINITYAiLE: 'st-group-tri-01',
-        LizNoir: 'st-group-liz-01',
-        Mana: 'st-group-mna-01',
-        ThreeX: 'st-group-thrx-01',
-        Tsuki: 'st-group-moon-01',
-        Sunny: 'st-group-sun-01',
-    }
+
     return [
         Prefix[series],
         String(season).padStart(2, '0'),
