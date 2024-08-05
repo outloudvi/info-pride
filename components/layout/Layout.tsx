@@ -6,6 +6,7 @@ import { AppShell, useMantineColorScheme } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import NextNProgress from 'nextjs-progressbar'
+import { usePathname } from 'next/navigation'
 
 import AppHeader from './AppHeader'
 import AppNavBar from './AppNavBar'
@@ -33,12 +34,21 @@ const Layout = ({ children }: { children: ReactNode }) => {
             }),
     )
 
-    const [navbarOpened, { toggle }] = useDisclosure()
-
+    const pathname = usePathname()
+    const [navbarOpened, { toggle, close: closeNavbar }] = useDisclosure(false)
     const { setColorScheme } = useMantineColorScheme()
+
     useEffect(() => {
         startupHook(setColorScheme)
     }, [setColorScheme])
+
+    useEffect(() => {
+        if (
+            matchMedia('screen and (max-width: 40em)')?.matches === false // size sm
+        )
+            return
+        closeNavbar()
+    }, [pathname, closeNavbar])
 
     return (
         <>
