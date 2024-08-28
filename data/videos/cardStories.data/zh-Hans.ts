@@ -1456,6 +1456,21 @@ const dataYu: StoriesData = {
             video: { type: 'bilibili', vid: 'av1252325081' },
         },
     },
+    'card-yu-05-nurs-00': {
+        // 悪戯エンジェル
+        1: {
+            name: 'TODO',
+            video: { type: 'bilibili', vid: 'av113034060104935' },
+        },
+        2: {
+            name: 'TODO',
+            video: { type: 'bilibili', vid: 'av113037868533229' },
+        },
+        3: {
+            name: 'TODO',
+            video: { type: 'bilibili', vid: 'av113038707460028' },
+        },
+    },
 }
 
 // 奥山堇
