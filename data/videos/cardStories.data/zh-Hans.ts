@@ -1609,6 +1609,21 @@ const dataSumire: StoriesData = {
             video: { type: 'bilibili', vid: 'av1203265110' },
         },
     },
+    'card-smr-05-nurs-00': {
+        // ベッドサイド・エンジェル
+        1: {
+            name: 'TODO',
+            video: { type: 'bilibili', vid: 'av113050250119017' },
+        },
+        2: {
+            name: 'TODO',
+            video: { type: 'bilibili', vid: 'av113050250119017' },
+        },
+        3: {
+            name: 'TODO',
+            video: { type: 'bilibili', vid: 'av113050250119017' },
+        },
+    },
 }
 
 // ---- LizNoir ----
