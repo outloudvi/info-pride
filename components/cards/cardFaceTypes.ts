@@ -1,17 +1,18 @@
 const CardFaceTypes = [
-    'schl',
-    'casl',
-    'idol',
-    'vlnt',
     'eve',
-    'chna',
+    'idol',
     'mizg',
-    'xmas',
+    'casl',
     'fest',
-    'wedd',
+    'birt',
+    'schl',
     'prem',
+    'xmas',
+    'miku',
+    'wedd',
+    'vlnt',
+    'yukt',
     'newy',
-    'pajm',
 ] as const
 
 export default CardFaceTypes
