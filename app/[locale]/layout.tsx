@@ -83,7 +83,7 @@ export default async function RootLayout({
                 <Script
                     async
                     src="https://umami.outv.im/script.js"
-                    data-website-id="045561c1-e049-4c12-8504-2c3f5370fc8e"
+                    data-website-id="d4ac34a0-ddca-4e4c-be43-bd82eee15bc7"
                 />
             </head>
             <body>
