@@ -50,6 +50,9 @@ export async function generateMetadata({
     }
 }
 
+// We want latest data constrained by current time
+export const fetchCache = 'force-no-store'
+
 export default withMessages(CardInfoPageWrapper, [
     'cards_slug',
     'vendor',
