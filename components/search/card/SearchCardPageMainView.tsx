@@ -14,7 +14,7 @@ import jpCharas from '#locales/ja/v-chr.json'
 import tryJSONParse from '#utils/tryJsonParse'
 import { LOCALSTORAGE_BOX_TAG } from '#utils/startupHook'
 import type { APIResponseOf } from '#utils/api'
-import { FilterSelect } from '#components/search/card/FilterSelect'
+import { MultipleFilterSelect } from '#components/search/card/FilterSelect'
 import type { CharacterId } from '#data/vendor/characterId'
 import { CharacterIds } from '#data/vendor/characterId'
 import ResultList from '#components/search/card/ResultList'
@@ -209,10 +209,9 @@ const SearchCardPageMainView = ({
                     label={$t('Keyword')}
                     {...getInputProps('keyword')}
                 />
-                <FilterSelect
+                <MultipleFilterSelect
                     className="mx-1"
                     label={$t('Character')}
-                    multiple
                     list={CharacterIds}
                     displayAs={useJpStr ? undefined : $vc}
                     listNamemap={useJpStr ? jpCharas : undefined}
@@ -220,10 +219,9 @@ const SearchCardPageMainView = ({
                     formProps={getInputProps('selectedCharacters')}
                     maxDropdownHeight={400}
                 />
-                <FilterSelect
+                <MultipleFilterSelect
                     className="mx-1"
                     label={$t('Type')}
-                    multiple
                     list={['1', '2', '3']}
                     listNamemap={{
                         1: $v('Appeal'),
