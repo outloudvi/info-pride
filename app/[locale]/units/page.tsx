@@ -27,4 +27,4 @@ const UnitsPage = async ({ params: { locale } }: ParamsWithLocale) => {
     )
 }
 
-export default withAsyncMessages(UnitsPage, ['units'])
+export default withAsyncMessages(UnitsPage, ['units', 'vendor', 'v-chr'])
