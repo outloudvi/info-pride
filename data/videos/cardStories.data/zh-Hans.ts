@@ -2272,6 +2272,21 @@ const dataKana: StoriesData = {
             video: { type: 'bilibili', vid: 'av1802592321' },
         },
     },
+    'card-kan-05-pair-00': {
+        // 欲望叶える天使の戯れ
+        1: {
+            name: '心那家伙、绝对要弄到她哭',
+            video: { type: 'bilibili', vid: 'av113398478016469' },
+        },
+        2: {
+            name: '好耶、中计了吧！！',
+            video: { type: 'bilibili', vid: 'av113409702037082' },
+        },
+        3: {
+            name: '小孩子简单单纯的就是好啊',
+            video: { type: 'bilibili', vid: 'av113416060536283' },
+        },
+    },
 }
 
 // miho
