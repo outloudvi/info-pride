@@ -25,15 +25,9 @@ const MainPageSiteData = [
         ['Official Twitter']: 'https://twitter.com/idolypride',
     },
     {
-        // For l10n: these websites/accounts are in Chinese
-        // A fan-run information publishing account
-        ['情报站微博']: 'https://weibo.com/7326542616/',
         // A group publishing podcasts by Chinese i-pri gamers
         ['星见编辑部']: 'https://space.bilibili.com/1637756387',
-    },
-    {
         ['Game wiki (Bilibili)']: 'https://wiki.biligame.com/idolypride/',
-        ['Game wiki (AppMedia)']: 'https://appmedia.jp/idolypride',
     },
     {
         ['Telegram Group']: 'https://t.me/hayasaka_mei',
