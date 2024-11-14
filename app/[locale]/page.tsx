@@ -37,7 +37,7 @@ const MainPageSiteData = [
     },
     {
         ['Telegram Group']: 'https://t.me/hayasaka_mei',
-        ['QQ Group']: Paths.wiki('更多群组'),
+        ['QQ Group']: Paths.wiki('相关群组'),
     },
     {
         ['Discord Group (English)']: 'https://discord.gg/XPXBvxGS96',
