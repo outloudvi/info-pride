@@ -17,7 +17,7 @@ import CompMWV from './lines/MWV'
 import CompXBranch from './lines/XBranch'
 import Box from './Box'
 import StoryContext, { StoryStateStorageContext } from './StoryContext'
-import evaluateLogic from './logicParser'
+import runLogics from './logicParser'
 import { STORY_STORAGE_PREFIX, getBaseId, getPartId } from './utils'
 
 import { Link } from '#utils/navigation'
@@ -131,7 +131,7 @@ const StoryReplayView = ({
         () =>
             // @ts-expect-error Normal tests
             logics?.[baseId]?.[partId] &&
-            evaluateLogic(
+            runLogics(
                 // @ts-expect-error Normal tests
                 logics?.[baseId]?.[partId],
                 koiState,
