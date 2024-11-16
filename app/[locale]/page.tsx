@@ -35,8 +35,7 @@ const MainPageSiteData = [
     },
     {
         ['Unofficial Discord Group (English)']: 'https://discord.gg/XPXBvxGS96',
-        ['Unofficial Discord Group (Chinese)']:
-            'https://discord.com/invite/66j2jQJSc2',
+        ['Unofficial Discord Group (Chinese)']: 'https://discord.gg/idolypride',
     },
 ]
 
