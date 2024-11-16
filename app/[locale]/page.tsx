@@ -34,8 +34,9 @@ const MainPageSiteData = [
         ['QQ Group']: Paths.wiki('相关群组'),
     },
     {
-        ['Discord Group (English)']: 'https://discord.gg/XPXBvxGS96',
-        ['Discord Group (Chinese)']: 'https://discord.com/invite/66j2jQJSc2',
+        ['Unofficial Discord Group (English)']: 'https://discord.gg/XPXBvxGS96',
+        ['Unofficial Discord Group (Chinese)']:
+            'https://discord.com/invite/66j2jQJSc2',
     },
 ]
 
