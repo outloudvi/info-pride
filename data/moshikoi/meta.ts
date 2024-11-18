@@ -27,6 +27,12 @@ const MoshikoiMeta: Record<
         startStory: 'st-love-24-0517-001',
         img: 'img_photo_full_photo-love-24-0517-01',
     },
+    '241114': {
+        title: 'もしも芸能人と恋をしたら',
+        characterId: 'char-yu',
+        startStory: 'st-love-24-1114-001',
+        img: 'img_photo_full_photo-love-24-1114-01',
+    }
 }
 
 export default MoshikoiMeta
