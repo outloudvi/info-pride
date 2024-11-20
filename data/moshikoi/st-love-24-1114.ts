@@ -1,5 +1,11 @@
 import type { Logic } from '#components/storyreplay/logicParser'
 
+export const yuPointNumber = [
+    [[['[002:20]', '=', 0], '*', 1], '+', [['[002:45]', '=', 1], '*', 1]],
+    '+',
+    [[['[005:20]', '=', 0], '*', 3], '+', [['[007:4.60]', '=', 1], '*', 2]],
+] as const
+
 // https://miro.com/app/board/uXjVLGn9Zrk=/
 const rules: Record<string, [Logic, string | null][]> = {
     '001': [[['TRUE'], '002']],
@@ -13,6 +19,14 @@ const rules: Record<string, [Logic, string | null][]> = {
     '006': [[['TRUE'], '007']],
     '007': [
         [['EQU', '[007:4]', 0], '008-bad'], // 電話に出ない
+        [
+            [
+                'EVAL',
+                // ([002:20]==0)*1+([002:45]==1)*1([005:20]==0)*3+([007:4.60]==1)*2 >= 4
+                [yuPointNumber, '>', 3],
+            ],
+            '008-bad',
+        ], // That complicated scoring system
         [
             [
                 'AND',
