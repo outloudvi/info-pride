@@ -14,7 +14,7 @@ import {
     TextInput,
 } from '@mantine/core'
 import { showNotification } from '@mantine/notifications'
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import { useSearchParams } from 'next/navigation'
 
 import type { SearchParams } from './sp'
@@ -38,6 +38,7 @@ const UnitsPageMainView = ({
     ChartListData: APIResponseOf<'MusicChartList'>
 }) => {
     const $t = useTranslations('units')
+    const locale = useLocale()
 
     const musicChartList: MusicChartItem[] = ChartListData.map((x) =>
         x.charts.map((r) => ({
@@ -167,11 +168,9 @@ const UnitsPageMainView = ({
                     导入
                 </Button>
             </Modal>
-            <Alert className="mb-2">
-                {$t.rich('check_out_sakura_love', {
-                    a: (c) => <a href="https://ipr.vibbit.me/">{c}</a>,
-                })}
-            </Alert>
+            {locale !== 'zh-Hans' && (
+                <Alert className="mb-2">{$t('no_translation_yet')}</Alert>
+            )}
             <Grid gutter={20}>
                 <Grid.Col span={{ base: 12, lg: 6 }}>
                     <div className="mb-2">
