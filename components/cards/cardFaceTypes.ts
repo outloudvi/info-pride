@@ -13,6 +13,7 @@ const CardFaceTypes = [
     'vlnt',
     'yukt',
     'newy',
+    'goch',
 ] as const
 
 export default CardFaceTypes

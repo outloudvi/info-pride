@@ -36,6 +36,8 @@ const _: Record<DataCharacterId, CharacterSdPersonalityType> = {
     'char-rik': 3,
     'char-chk': 1,
     'char-ymk': 1,
+    'char-chn': 5,
+    'char-cca': 2,
 } as const
 
 export default _

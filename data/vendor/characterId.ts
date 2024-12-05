@@ -1,7 +1,7 @@
 /**
  * This should be updated with:
  *
- * * vendor:Character.json
+ * * locales/~/characters.json
  */
 
 export const PrimaryCharacterIds = [
@@ -54,6 +54,10 @@ export const CharacterIds = [
 
     // Collab: Hatsune miku #2
     'char-ymk',
+
+    // Collab: GochiUSA
+    'char-chn',
+    'char-cca',
 ] as const
 
 // Characters listed by Character.json (non-inclusive)
