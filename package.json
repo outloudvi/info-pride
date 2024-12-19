@@ -104,5 +104,10 @@
     "#api/*": "pages/api/*.js",
     "#locales/*": "locales/*.js"
   },
-  "nextBundleAnalysis": {}
+  "nextBundleAnalysis": {
+    "budget": 358400,
+    "budgetPercentIncreaseRed": 20,
+    "minimumChangeThreshold": 0,
+    "showDetails": true
+  }
 }
