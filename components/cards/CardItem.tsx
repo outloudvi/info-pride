@@ -159,7 +159,10 @@ const CardItem = async ({
                     </h3>
                     <Suspense fallback={<Skeleton height={300} />}>
                         <Skills
-                            skills={SkillData}
+                            skills={SkillData.slice(0, 3)}
+                            kizunaSkill={
+                                hasKizunaAwakening ? SkillData[3] : undefined
+                            }
                             yellSkill={
                                 liveAbilityId === '' && activityAbilityId === ''
                                     ? null

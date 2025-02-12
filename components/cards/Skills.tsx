@@ -16,7 +16,7 @@ import lfToBr from '#utils/lfToBr'
 
 const SkillBlock = ({
     skill,
-    className,
+    className = '',
 }: {
     skill: Skill
     className?: string
@@ -83,9 +83,11 @@ const YellSkill = ({ skill }: { skill: LiveAbility | ActivityAbility }) => {
 
 const Skills = ({
     skills,
+    kizunaSkill,
     yellSkill,
 }: {
     skills: Skill[]
+    kizunaSkill?: Skill
     yellSkill?: LiveAbility | ActivityAbility | null
 }) => {
     const $t = useTranslations('cards_slug')
@@ -96,10 +98,21 @@ const Skills = ({
                     <SkillBlock key={key} skill={skill} />
                 </div>
             ))}
+            {kizunaSkill !== undefined && (
+                <fieldset>
+                    <legend>{$t('Kizuna skill')}</legend>
+                    <div className="flex items-center">
+                        <SkillBlock skill={kizunaSkill} />
+                    </div>
+                </fieldset>
+            )}
             {yellSkill === null ? (
                 <p>{$t('no_yell_skill')}</p>
             ) : yellSkill ? (
-                <YellSkill skill={yellSkill} />
+                <fieldset>
+                    <legend>{$t('Yell skill')}</legend>
+                    <YellSkill skill={yellSkill} />
+                </fieldset>
             ) : (
                 <Skeleton height={300} />
             )}
