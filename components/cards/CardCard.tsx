@@ -35,7 +35,7 @@ const CardCard = ({ card }: { card: UnArray<APIResponseOf<'Card/List'>> }) => {
             <MixedImageBox assetId={assetId} />
         ) : (
             <AssetImage
-                name={getAssetSlug(assetId, 'rect', true)}
+                name={getAssetSlug(assetId, 'rect', 1)}
                 ratio="16 / 9"
                 alt={'Card image'}
                 className="object-fill"

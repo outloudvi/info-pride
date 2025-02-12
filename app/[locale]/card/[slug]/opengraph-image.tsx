@@ -38,7 +38,7 @@ export default async function OGImage({
     const cardMeta = cardResults[0]
     const { id, assetId } = cardMeta
 
-    const fullIconSlug = getAssetSlug(assetId, 'full', true)
+    const fullIconSlug = getAssetSlug(assetId, 'full', 1)
 
     const copyrightMark = [
         ...(id.includes('mku') || id.includes('ymk') || id.includes('miku')

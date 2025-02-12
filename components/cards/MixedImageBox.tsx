@@ -38,7 +38,7 @@ const MixedImageBox = ({ assetId }: { assetId: string }) => {
             <Image
                 alt={'Non-awakened card image'}
                 fill={true}
-                src={Paths.assetsImg(getAssetSlug(assetId, 'rect', false))}
+                src={Paths.assetsImg(getAssetSlug(assetId, 'rect', 0))}
                 className={`!static object-cover transition-all !h-auto ${
                     zoom === ZoomStatus.Left
                         ? '!w-full'
@@ -58,7 +58,7 @@ const MixedImageBox = ({ assetId }: { assetId: string }) => {
             <Image
                 alt={'Awakened card image'}
                 fill={true}
-                src={Paths.assetsImg(getAssetSlug(assetId, 'rect', true))}
+                src={Paths.assetsImg(getAssetSlug(assetId, 'rect', 1))}
                 className={`!static object-cover transition-all !h-auto ${
                     zoom === ZoomStatus.Right
                         ? '!w-full'

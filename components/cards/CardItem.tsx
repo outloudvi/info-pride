@@ -48,6 +48,7 @@ const CardItem = async ({
         liveAbilityId,
         activityAbilityId,
     } = card
+    const hasKizunaAwakening = card.skillId4 !== ''
 
     const locale = await getLocale()
 
@@ -172,6 +173,7 @@ const CardItem = async ({
                     <CardAsset
                         cardAssetId={card.assetId}
                         isInitiallyAwaken={card.initialRarity >= 5}
+                        hasKizunaAwakening={hasKizunaAwakening}
                     />
                     <h3>{$t('Story replay')}</h3>
                     {stories.length > 0 && (

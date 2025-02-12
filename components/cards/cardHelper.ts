@@ -3,9 +3,9 @@ export type CardImageType = 'thumb' | 'rect' | 'upper' | 'full' | 'vfull'
 export function getAssetSlug(
     cardAssetId: string,
     type: CardImageType,
-    isAwaken: boolean,
+    awakenType: number,
 ): string {
-    return `img_card_${type}_${isAwaken ? 1 : 0}_${cardAssetId}`
+    return `img_card_${type}_${awakenType}_${cardAssetId}`
 }
 
 export const CardSizeConfig: {
