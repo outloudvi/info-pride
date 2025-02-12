@@ -86,7 +86,7 @@
     "eslint-config-prettier": "^9.1.0",
     "eslint-import-resolver-typescript": "^3.6.1",
     "eslint-plugin-import": "^2.29.1",
-    "hoshimi-types": "^2.14.1",
+    "hoshimi-types": "^2.15.1",
     "json-schema-to-typescript": "^14.0.4",
     "knip": "^5.17.3",
     "mocha": "^10.4.0",
@@ -109,5 +109,18 @@
     "budgetPercentIncreaseRed": 20,
     "minimumChangeThreshold": 0,
     "showDetails": true
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@fortawesome/fontawesome-common-types",
+      "@fortawesome/fontawesome-svg-core",
+      "@fortawesome/free-solid-svg-icons",
+      "@sentry/cli",
+      "@vercel/speed-insights",
+      "es5-ext",
+      "esbuild",
+      "sharp",
+      "wtf_wikipedia"
+    ]
   }
 }

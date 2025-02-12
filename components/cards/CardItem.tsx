@@ -52,7 +52,12 @@ const CardItem = async ({
     const locale = await getLocale()
 
     const SkillData = await fetchApi('Skill', {
-        ids: `${card.skillId1},${card.skillId2},${card.skillId3}`,
+        ids: [
+            card.skillId1,
+            card.skillId2,
+            card.skillId3,
+            ...[card.skillId4 !== '' ? [card.skillId4] : []],
+        ].join(','),
     })
 
     const YellLiveData = liveAbilityId
