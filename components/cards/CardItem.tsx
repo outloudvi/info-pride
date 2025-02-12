@@ -56,7 +56,7 @@ const CardItem = async ({
             card.skillId1,
             card.skillId2,
             card.skillId3,
-            ...[card.skillId4 !== '' ? [card.skillId4] : []],
+            ...(hasKizunaAwakening ? [card.skillId4] : []),
         ].join(','),
     })
 
