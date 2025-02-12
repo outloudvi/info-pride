@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Skeleton, Slider, Stack } from '@mantine/core'
+import { Skeleton, Slider, Stack, Tooltip } from '@mantine/core'
 import type {
     ActivityAbility,
     LiveAbility,
@@ -13,6 +13,8 @@ import { useTranslations } from 'next-intl'
 import SkillImage from './SkillImage'
 
 import lfToBr from '#utils/lfToBr'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 
 const SkillBlock = ({
     skill,
@@ -91,6 +93,8 @@ const Skills = ({
     yellSkill?: LiveAbility | ActivityAbility | null
 }) => {
     const $t = useTranslations('cards_slug')
+    const $c = useTranslations('common')
+
     return (
         <Stack>
             {skills.map((skill, key) => (
@@ -99,20 +103,30 @@ const Skills = ({
                 </div>
             ))}
             {kizunaSkill !== undefined && (
-                <fieldset>
-                    <legend>{$t('Kizuna skill')}</legend>
+                <div>
+                    <div>
+                        {$t('Kizuna skill')}{' '}
+                        <Tooltip label={$t('kizuna_skill_tooltip')}>
+                            <FontAwesomeIcon icon={faInfoCircle} />
+                        </Tooltip>
+                    </div>
                     <div className="flex items-center">
                         <SkillBlock skill={kizunaSkill} />
                     </div>
-                </fieldset>
+                </div>
             )}
             {yellSkill === null ? (
                 <p>{$t('no_yell_skill')}</p>
             ) : yellSkill ? (
-                <fieldset>
-                    <legend>{$t('Yell skill')}</legend>
+                <div>
+                    <div>
+                        {$t('Yell skill')}{' '}
+                        <Tooltip label={$t('yell_skill_tooltip')}>
+                            <FontAwesomeIcon icon={faInfoCircle} />
+                        </Tooltip>
+                    </div>
                     <YellSkill skill={yellSkill} />
-                </fieldset>
+                </div>
             ) : (
                 <Skeleton height={300} />
             )}

@@ -26,5 +26,7 @@
     "skill_icons_beta": "技能图标显示功能正在实装中。欢迎<a>报告</a>遇到的任何问题。",
     "no_yell_skill": "此卡片没有应援技能。",
     "part": "第 {s} 部分",
-    "aka": "别名："
+    "aka": "别名：",
+    "kizuna_skill_tooltip": "羁绊技能在卡片羁绊觉醒后解锁。",
+    "yell_skill_tooltip": "应援技能为被动技能。"
 }
