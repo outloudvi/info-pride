@@ -24,7 +24,7 @@ export default function getCopyrightMarks(id: string): string[] {
         return ret
     }
 
-    if (id.includes('hruh')) {
+    if (id.includes('hruh') || id === 'card-ski-02-eve-01') {
         ret.push('© 2006 N·N/SOS') // The Melancholy of Haruhi Suzumiya
         return ret
     }
