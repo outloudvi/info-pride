@@ -1,6 +1,5 @@
 import { Button } from '@mantine/core'
-import { useLocale } from 'next-intl'
-import { getTranslations } from 'next-intl/server'
+import { getLocale, getTranslations } from 'next-intl/server'
 
 import { Link } from '#utils/navigation'
 import { toVideoLink } from '#components/ExternalVideo'
@@ -30,7 +29,7 @@ const StoriesItem = async (props: PropType) => {
     const { series, season, chapter } = props
     const $t = await getTranslations('stories')
     const $c = await getTranslations('common')
-    const locale = useLocale()
+    const locale = await getLocale()
 
     const StoryData = await fetchApi('Story', {
         id: getBackendStoryId(props),

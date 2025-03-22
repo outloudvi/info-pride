@@ -57,11 +57,11 @@ const SearchCardPageMainView = ({
             initial5Only: false,
         },
         validate: {
-            ctMin: (x) =>
+            ctMin: (x:string) =>
                 x.trim() !== '' && Number.isNaN(Number(x))
                     ? 'Invalid ctMin'
                     : null,
-            ctMax: (x) =>
+            ctMax: (x:string) =>
                 x.trim() !== '' && Number.isNaN(Number(x))
                     ? 'Invalid ctMax'
                     : null,
