@@ -35,7 +35,11 @@ export function displayLine(
             const id = backgroundGroup[line.id]
             return (
                 <Box>
-                    <CompBackgroundSetting id={id} />
+                    {id ? (
+                        <CompBackgroundSetting id={id} />
+                    ) : (
+                        <div>Unknown Image</div>
+                    )}
                 </Box>
             )
         }
