@@ -2,7 +2,7 @@
 
 import type { BackgroundGroup, Line, Title } from '@hoshimei/adv/types'
 import { useTranslations } from 'next-intl'
-import { useMemo, Fragment, useState } from 'react'
+import { useMemo, useState } from 'react'
 import { Button } from '@mantine/core'
 
 import CompBackgroundSetting from './lines/BackgroundSetting'
@@ -16,6 +16,7 @@ import type { MergedLine } from './types'
 import CompMWV from './lines/MWV'
 import CompXBranch from './lines/XBranch'
 import Box from './Box'
+import ErrorBoundary from '#utils/errorBoundary'
 import StoryContext, { StoryStateStorageContext } from './StoryContext'
 import runLogics from './logicParser'
 import { STORY_STORAGE_PREFIX, getBaseId, getPartId } from './utils'
@@ -149,9 +150,9 @@ const StoryReplayView = ({
             <StoryContext.Provider value={storyContext}>
                 <h3>{title}</h3>
                 {mergedLines.map((line, key) => (
-                    <Fragment key={key}>
+                    <ErrorBoundary key={key}>
                         {displayLine(line, backgroundGroup, String(key))}
-                    </Fragment>
+                    </ErrorBoundary>
                 ))}
                 {nextPart === null ? (
                     <div className="text-center">{$t('(End)')}</div>
