@@ -1,10 +1,11 @@
-import { Divider } from '@mantine/core'
+import { Alert, Divider } from '@mantine/core'
 import { getTranslations, unstable_setRequestLocale } from 'next-intl/server'
+import * as Sentry from '@sentry/nextjs'
 
 import StoryReplayViewSkeleton from '#components/storyreplay/StoryReplayViewSkeleton'
 import { fetchApi } from '#utils/fetchApi'
 import { withAsyncMessages } from '#utils/withMessages'
-import type { ParamsWithLocale } from '#utils/types'
+import type { BackendError, ParamsWithLocale } from '#utils/types'
 
 const StoryReplayPage = async ({
     params: { id, locale },
@@ -19,6 +20,15 @@ const StoryReplayPage = async ({
     const $t = await getTranslations('storyreplay')
 
     const items = StoryData.advAssetIds
+
+    if (!items) {
+        Sentry.captureException(new Error(`Inexistent story: ${id}`))
+        return (
+            <Alert color="red">
+                {(StoryData as unknown as BackendError).message}
+            </Alert>
+        )
+    }
 
     return (
         <>
@@ -73,7 +83,9 @@ export async function generateMetadata({
     })
 
     return {
-        title: `${$t('Story replay')} · ${StoryData.name.replaceAll('\n', '')}`,
+        title:
+            $t('Story replay') +
+            (StoryData.name ? ` · ${StoryData.name.replaceAll('\n', '')}` : ''),
     }
 }
 
