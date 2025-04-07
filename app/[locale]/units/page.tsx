@@ -27,4 +27,15 @@ const UnitsPage = async ({ params: { locale } }: ParamsWithLocale) => {
     )
 }
 
+export async function generateMetadata({
+    params: { locale },
+}: {
+    params: { locale: string }
+}) {
+    const $t = await getTranslations({ locale, namespace: 'units' })
+    return {
+        title: $t('Units'),
+    }
+}
+
 export default withAsyncMessages(UnitsPage, ['units', 'vendor', 'v-chr'])
