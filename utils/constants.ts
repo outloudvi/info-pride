@@ -8,3 +8,6 @@ export const COMMON_DATE_FORMAT = 'YYYY/M/D'
 export const SOURCE_TIMEZONE = 'Asia/Tokyo'
 export const NEXT_INTL_LOCALE_PREFIX = 'always'
 export const ExtendedDateFormat = 'YYYY/M/D H:mm:ss'
+
+// localStorage settings: Use JP strings during search
+export const USE_JP_STRINGS_DURING_SEARCH = 'use-jp-strings-during-searching'

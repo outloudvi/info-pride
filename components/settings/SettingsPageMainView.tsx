@@ -12,6 +12,8 @@ import { CCIDTableWithName } from '#data/ccid'
 import type { CharacterId } from '#data/vendor/characterId'
 import { CharacterIds } from '#data/vendor/characterId'
 import type { LocalBox } from '#components/settings/types'
+import { useLocalStorage } from '@mantine/hooks'
+import { USE_JP_STRINGS_DURING_SEARCH } from '#utils/constants'
 
 const clone = rfdc({
     proto: true,
@@ -20,6 +22,12 @@ const clone = rfdc({
 const SettingsPageMainView = () => {
     const $t = useTranslations('settings')
     const $vc = useTranslations('v-chr')
+
+    const [useJpStr, setUseJpStr] = useLocalStorage({
+        key: USE_JP_STRINGS_DURING_SEARCH,
+        defaultValue: false,
+    })
+    const [tmpUseJpStr, setTmpUseJpStr] = useState(useJpStr)
 
     const [localBox, setLocalBox] = useState<LocalBox>({})
 
@@ -58,8 +66,22 @@ const SettingsPageMainView = () => {
         })
     }
 
+    const saveSettings = () => {
+        saveLocalBox()
+        setUseJpStr(tmpUseJpStr)
+    }
+
     return (
         <>
+            <h3>{$t('Miscellaneous')}</h3>
+            <Checkbox
+                label={$t('use_jp_str')}
+                checked={useJpStr}
+                onChange={(e) => {
+                    setTmpUseJpStr(e.target.checked)
+                }}
+                className="mt-2"
+            ></Checkbox>
             <h3>{$t('My box')}</h3>
             <p>{$t('mybox_header')}</p>
 
@@ -98,7 +120,7 @@ const SettingsPageMainView = () => {
                     </Grid.Col>
                 ))}
             </Grid>
-            <Button variant="outline" onClick={() => saveLocalBox()}>
+            <Button variant="outline" onClick={() => saveSettings()}>
                 {$t('Save')}
             </Button>
         </>

@@ -19,6 +19,7 @@ import type { CharacterId } from '#data/vendor/characterId'
 import { CharacterIds } from '#data/vendor/characterId'
 import ResultList from '#components/search/card/ResultList'
 import CCIDTable from '#data/ccid'
+import { USE_JP_STRINGS_DURING_SEARCH } from '#utils/constants'
 
 const SearchCardPageMainView = ({
     CardData,
@@ -35,7 +36,7 @@ const SearchCardPageMainView = ({
     const [localBox, setLocalBox] = useState<LocalBox>({})
     // provides a escape hatch for those who have already get used to in-game literatures
     const [useJpStr, setUseJpStr] = useLocalStorage({
-        key: 'use-jp-strings-during-searching',
+        key: USE_JP_STRINGS_DURING_SEARCH,
         defaultValue: false,
     })
     useEffect(() => {
@@ -57,11 +58,11 @@ const SearchCardPageMainView = ({
             initial5Only: false,
         },
         validate: {
-            ctMin: (x:string) =>
+            ctMin: (x: string) =>
                 x.trim() !== '' && Number.isNaN(Number(x))
                     ? 'Invalid ctMin'
                     : null,
-            ctMax: (x:string) =>
+            ctMax: (x: string) =>
                 x.trim() !== '' && Number.isNaN(Number(x))
                     ? 'Invalid ctMax'
                     : null,
