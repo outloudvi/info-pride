@@ -30,7 +30,7 @@ export const Episodes: Record<SeriesName, number[]> = {
     // adv_main_03_
     Big4: [66], // FIN
     // adv_main_04_
-    Stellar: [10],
+    Stellar: [15],
     // adv_group_tri_
     TRINITYAiLE: [30], // FIN
     // adv_group_liz_
