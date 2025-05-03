@@ -13,6 +13,7 @@ import {
 import { useTranslations } from 'next-intl'
 
 import Paths from '#utils/paths'
+import { setMaxIdleHTTPParsers } from 'http'
 
 const AssetAudioButton = ({
     id,
@@ -25,16 +26,12 @@ const AssetAudioButton = ({
 }) => {
     const $t = useTranslations('common')
     const aud = useRef<HTMLAudioElement | null>(null)
-    const [isActivated, setActivated] = useState(false)
-    /**
-     * -2: Error
-     * -1: Not clicked/activated
-     * 0: Loading
-     * 1: Ready
-     */
-    const [playReady, setPlayReady] = useState(-1)
+    const [isActivated, setIsActivated] = useState(false)
+    const [isReady, setIsReady] = useState(false)
+    const [isError, setIsError] = useState(false)
     const [isPlaying, setIsPlaying] = useState(false)
 
+    // For central audio playback management
     useEffect(() => {
         const cur = aud.current
         if (cur === null || atom === null) return
@@ -43,29 +40,36 @@ const AssetAudioButton = ({
         }
     }, [atom, aud, id])
 
-    const reset = () => {
-        const a = aud.current
-        if (a) {
-            a.currentTime = 0
+    useEffect(() => {
+        if (isPlaying) {
+            aud.current?.pause()
         }
-    }
+        setIsPlaying(false)
+        setIsActivated(false)
+        setIsReady(false)
+        setIsError(false)
+        aud.current?.load()
+    }, [id])
 
     const onClick = () => {
-        if (playReady === -1) {
-            setActivated(true)
-            setPlayReady(0)
+        setIsActivated(true)
+
+        if (isError) {
+            // retry
+            setIsError(false)
+            aud.current?.play()
             return
         }
-        const a = aud.current
-        if (!a) return
+
         if (isPlaying) {
-            a.pause()
+            // pause
+            aud.current?.pause()
             // and pause event will reset the time
             return
         }
-        if (playReady === 1) {
-            a.play()
-        }
+
+        // play
+        aud.current?.play()
     }
 
     return (
@@ -75,13 +79,17 @@ const AssetAudioButton = ({
                 variant="outline"
                 size="lg"
                 onClick={onClick}
-                disabled={!playReady}
                 tabIndex={0}
             >
-                {playReady === 0 ? (
-                    <FontAwesomeIcon icon={faSpinner} title={$t('Loading')} />
-                ) : playReady === -2 ? (
+                {!isActivated ? (
+                    <FontAwesomeIcon
+                        icon={isPlaying ? faPauseCircle : faPlayCircle}
+                        title={isPlaying ? $t('Pause') : $t('Play')}
+                    />
+                ) : isError ? (
                     <FontAwesomeIcon icon={faXmarkCircle} title={$t('Error')} />
+                ) : !isReady ? (
+                    <FontAwesomeIcon icon={faSpinner} title={$t('Loading')} />
                 ) : (
                     <FontAwesomeIcon
                         icon={isPlaying ? faPauseCircle : faPlayCircle}
@@ -93,12 +101,15 @@ const AssetAudioButton = ({
                 <audio
                     controls={false}
                     ref={aud}
+                    preload="metadata"
                     onError={() => {
-                        setPlayReady(-2)
+                        setIsError(true)
                     }}
                     onLoadedData={() => {
-                        setPlayReady(1)
-                        aud.current?.play()
+                        setIsReady(true)
+                        if (isActivated) {
+                            aud?.current?.play()
+                        }
                     }}
                     onPlay={() => {
                         setAtom?.(id)
@@ -106,11 +117,13 @@ const AssetAudioButton = ({
                     }}
                     onPause={() => {
                         setIsPlaying(false)
-                        reset()
+                        const a = aud.current
+                        if (a) {
+                            a.currentTime = 0
+                        }
                     }}
                     onEnded={() => {
                         setIsPlaying(false)
-                        reset()
                     }}
                 >
                     <source
