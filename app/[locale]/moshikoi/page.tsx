@@ -1,4 +1,4 @@
-import { Grid, GridCol } from '@mantine/core'
+import { Alert, Grid, GridCol } from '@mantine/core'
 import { useTranslations } from 'next-intl'
 import { getTranslations, unstable_setRequestLocale } from 'next-intl/server'
 
@@ -20,6 +20,9 @@ const MoshikoiPage = ({ params: { locale } }: ParamsWithLocale) => {
                 {$t('Moshikoi')} (<span lang="ja">もし恋</span>)
             </h2>
             <p>{$t('description')}</p>
+            <Alert color="yellow" className="mb-2">
+                {$t('logic_may_be_inaccurate')}
+            </Alert>
             <Grid>
                 {Object.entries(MoshikoiMeta)
                     .reverse()
