@@ -1,7 +1,7 @@
-import type { Logic } from '#components/storyreplay/logicParser'
+import type { GameLogic } from './types'
 
 // https://twitter.com/Alterna_Endo/status/1792827325870129657
-const rules: Record<string, [Logic, string | null][]> = {
+const rules: GameLogic = {
     '001': [[['TRUE'], '002']],
     '002': [[['TRUE'], '003']],
     '003': [

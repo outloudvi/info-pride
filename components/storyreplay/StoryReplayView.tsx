@@ -24,6 +24,8 @@ import { STORY_STORAGE_PREFIX, getBaseId, getPartId } from './utils'
 import { Link } from '#utils/navigation'
 import logics from '#data/moshikoi' // TODO: import on-demand
 import tryJSONParse from '#utils/tryJsonParse'
+import { MoshikoiConfig } from '#data/moshikoi/types'
+import KoiPartsList from './KoiPartsList'
 
 export function displayLine(
     line: MergedLine,
@@ -97,9 +99,11 @@ export function displayLine(
 const StoryReplayView = ({
     lines,
     storyId,
+    koi,
 }: {
     lines: Line[]
     storyId: string
+    koi?: MoshikoiConfig
 }) => {
     const $t = useTranslations('storyreplay')
 
@@ -134,13 +138,8 @@ const StoryReplayView = ({
     )
     const nextPart = useMemo(
         () =>
-            // @ts-expect-error Normal tests
-            logics?.[baseId]?.[partId] &&
-            runLogics(
-                // @ts-expect-error Normal tests
-                logics?.[baseId]?.[partId],
-                koiState,
-            ),
+            koi?.gameLogic?.[partId] &&
+            runLogics(koi?.gameLogic?.[partId], koiState),
         [koiState, baseId, partId],
     )
 
@@ -152,6 +151,13 @@ const StoryReplayView = ({
     return (
         <div>
             <StoryContext.Provider value={storyContext}>
+                {koi && (
+                    <KoiPartsList
+                        parts={koi.parts}
+                        baseId={baseId}
+                        currentPartId={partId}
+                    />
+                )}
                 <h3>{title}</h3>
                 {mergedLines.map((line, key) => (
                     <ErrorBoundary key={key}>

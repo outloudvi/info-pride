@@ -1,8 +1,8 @@
-import type { Logic } from '#components/storyreplay/logicParser'
+import type { GameLogic } from './types'
 
 // https://miro.com/app/board/uXjVNPKbA60=/
 // https://t.me/hayasaka_mei/139110
-const rules: Record<string, [Logic, string | null][]> = {
+const rules: GameLogic = {
     '001': [[['TRUE'], '002']],
     '002': [
         [['EQU', '[002:44]', 1], null], // that's end #1

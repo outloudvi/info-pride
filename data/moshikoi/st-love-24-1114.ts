@@ -1,4 +1,4 @@
-import type { Logic } from '#components/storyreplay/logicParser'
+import type { GameLogic } from './types'
 
 export const yuPointNumber = [
     [[['[002:20]', '=', 0], '*', 1], '+', [['[002:45]', '=', 1], '*', 1]],
@@ -7,7 +7,7 @@ export const yuPointNumber = [
 ] as const
 
 // https://miro.com/app/board/uXjVLGn9Zrk=/
-const rules: Record<string, [Logic, string | null][]> = {
+const rules: GameLogic = {
     '001': [[['TRUE'], '002']],
     '002': [[['TRUE'], '003']],
     '003': [[['TRUE'], '004']],

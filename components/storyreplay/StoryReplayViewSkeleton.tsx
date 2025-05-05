@@ -7,6 +7,8 @@ import dynamic from 'next/dynamic'
 import type { AdvFromAsset } from './types'
 
 import Paths from '#utils/paths'
+import { getBaseId } from './utils'
+import moshikoiLogics from '#data/moshikoi'
 
 const StoryReplayView = dynamic(() => import('./StoryReplayView'), {
     ssr: false,
@@ -27,10 +29,14 @@ const StoryReplayViewSkeleton = async ({
         x.json(),
     )
 
+    const baseId = getBaseId(storyId)
+    const moshikoiData = moshikoiLogics[baseId]
+
     return StoryLines ? (
         <StoryReplayView
             lines={StoryLines.l.filter((x) => x._t !== 'Unknown')}
             storyId={storyId}
+            {...(moshikoiData ? { koi: moshikoiData } : {})}
         />
     ) : (
         <>
