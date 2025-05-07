@@ -70,6 +70,7 @@
     "@hoshimei/adv": "^0.8.1",
     "@next/bundle-analyzer": "^14.2.25",
     "@sentry/cli": "^2.42.4",
+    "@types/base58": "^2.0.0",
     "@types/chai": "^4.3.20",
     "@types/d3": "^7.4.3",
     "@types/lodash": "^4.17.16",

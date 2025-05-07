@@ -147,6 +147,9 @@ importers:
       '@sentry/cli':
         specifier: ^2.42.4
         version: 2.42.4
+      '@types/base58':
+        specifier: ^2.0.0
+        version: 2.0.0
       '@types/chai':
         specifier: ^4.3.20
         version: 4.3.20
@@ -1966,6 +1969,9 @@ packages:
 
   '@tybys/wasm-util@0.9.0':
     resolution: {integrity: sha512-6+7nlbMVX/PVDCwaIQ8nTOPveOcFLSt8GcXdx8hD0bt39uWxYT88uXzqTd4fTvqta7oeUJqudepapKNt2DYJFw==}
+
+  '@types/base58@2.0.0':
+    resolution: {integrity: sha512-40HkSVPOOMVOnpuaJYiMua9k110894LlSM4BsrMllqkrDsjIfhjN5+SjXU30B+ax1uisgND0+dotU3voYE0SkA==}
 
   '@types/chai@4.3.20':
     resolution: {integrity: sha512-/pC9HAB5I/xMlc5FP77qjCnI16ChlJfW0tGa0IUcFn38VJrTV6DeZ60NU5KZBtaOZqjdpwTWohz5HU1RrhiYxQ==}
@@ -7073,6 +7079,8 @@ snapshots:
     dependencies:
       tslib: 2.8.1
     optional: true
+
+  '@types/base58@2.0.0': {}
 
   '@types/chai@4.3.20': {}
 
