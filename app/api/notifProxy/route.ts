@@ -16,6 +16,7 @@ function convert(html: string): string {
             const actualHref = href.searchParams.get('detail')
             if (actualHref) {
                 x.setAttribute('href', actualHref)
+                x.setAttribute('target', '_blank')
             }
         }
     })
