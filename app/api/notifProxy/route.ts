@@ -20,6 +20,18 @@ function convert(html: string): string {
             }
         }
     })
+    $.querySelector('body')?.insertAdjacentHTML(
+        'beforeend',
+        `<style>
+*,
+*:before,
+*:after {
+  cursor: revert;
+  -webkit-user-select: revert;
+  user-select: revert;
+}
+        </style>`,
+    )
 
     return $.toString()
 }
