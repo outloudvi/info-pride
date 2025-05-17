@@ -10,7 +10,7 @@ const AppNavBar = () => {
 
     return (
         <div
-            className="w-full overflow-y-scroll"
+            className="w-full overflow-y-auto"
             style={{
                 transition: 'width 0.2s ease-out',
                 height: 'calc(100vh - 60px)',
