@@ -4,7 +4,7 @@ const MoshikoiMeta: Record<
     string,
     {
         title: string
-        characterId: CharacterId
+        characterId?: CharacterId
         startStory: string
         img: string
     }
@@ -32,7 +32,12 @@ const MoshikoiMeta: Record<
         characterId: 'char-yu',
         startStory: 'st-love-24-1114-001',
         img: 'img_photo_full_photo-love-24-1114-01',
-    }
+    },
+    '250426': {
+        title: 'みんつく！サキュバスvs魔法少女',
+        startStory: 'st-love-25-0426-001',
+        img: 'img_photo_full_photo-love-25-0426-01',
+    },
 }
 
 export default MoshikoiMeta

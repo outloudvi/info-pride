@@ -45,6 +45,28 @@ const moshikoiLogics: Partial<Record<string, MoshikoiConfig>> = {
         },
         gameLogic: stLoveYu,
     },
+    'st-love-25-0426': {
+        parts: {
+            '001': '共通1',
+            '002': '共通2',
+            '003-magical': '魔法少女共通3',
+            '003-succubus': 'サキュバス共通3',
+            '004-magical-smr': 'すみれ4',
+            '004-magical-ngs': '渚4',
+            '004-succubus-chs': 'チサ4',
+            '004-succubus-rui': 'ルイ4',
+            '005-bad-end': 'ハーレムBE',
+            '005-happy-end': 'ハーレムHE',
+            '005-magical-smr-bad': 'すみれBE',
+            '005-magical-smr-good': 'すみれGE',
+            '005-magical-ngs-bad': '渚BE',
+            '005-magical-ngs-good': '渚GE',
+            '005-succubus-chs-bad': 'チサBE',
+            '005-succubus-chs-good': 'チサGE',
+            '005-succubus-rui-bad': 'ルイBE',
+            '005-succubus-rui-good': 'ルイGE',
+        },
+    },
 } as const
 
 export default moshikoiLogics

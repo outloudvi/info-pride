@@ -16,9 +16,7 @@ const MoshikoiPage = ({ params: { locale } }: ParamsWithLocale) => {
 
     return (
         <>
-            <h2>
-                {$t('Moshikoi')} (<span lang="ja">もし恋</span>)
-            </h2>
+            <h2>{$t('Moshikoi')}</h2>
             <p>{$t('description')}</p>
             <Alert color="yellow" className="mb-2">
                 {$t('logic_may_be_inaccurate')}
@@ -48,8 +46,12 @@ const MoshikoiPage = ({ params: { locale } }: ParamsWithLocale) => {
                                 >
                                     <div className="absolute left-0 right-0 bottom-0 bg-[#eeec] p-2 text-neutral-800">
                                         <b className="text-lg">{title}</b>
-                                        <br />
-                                        {$vc(characterId)}
+                                        {characterId && (
+                                            <>
+                                                <br />
+                                                {$vc(characterId)}
+                                            </>
+                                        )}
                                     </div>
                                 </div>
                             </Link>

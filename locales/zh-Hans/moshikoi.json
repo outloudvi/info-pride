@@ -1,5 +1,5 @@
 {
-    "Moshikoi": "若恋",
-    "description": "选择一个若恋故事以开始。",
+    "Moshikoi": "若恋/みんつく",
+    "description": "选择一个故事以开始。",
     "logic_may_be_inaccurate": "请注意，由于我们无法获得完整的分支逻辑，info-pride 上游玩时各选项分支的结果可能与实际游戏中不同。"
 }
