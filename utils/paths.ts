@@ -18,8 +18,7 @@ const Paths = {
     repo: (path: string) =>
         `https://github.com/outloudvi/info-pride/tree/master/${path}`,
     mgw: (pageName: string) => `https://zh.moegirl.org.cn/${pageName}`,
-    ipcommu: (postId: string) =>
-        `https://community.idolypride.jp/posts/${postId}`,
+    ipweb: (postId: string) => `https://idolypride.jp/gallery/${postId}`,
     assetsImg: (assetId: string) =>
         `https://ac.ip.outv.im/api/${
             assetId.startsWith('env') ? 'env' : 'img'
