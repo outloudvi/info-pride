@@ -34,7 +34,7 @@ export const Episodes: Record<SeriesName, number[]> = {
     // adv_group_tri_
     TRINITYAiLE: [30], // FIN
     // adv_group_liz_
-    LizNoir: [30], // FIN
+    LizNoir: [30, 10],
     // adv_group_mna_
     Mana: [15], // FIN
     // adv_group_thrx_
