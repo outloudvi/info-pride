@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import { getTranslations } from 'next-intl/server'
 import dynamic from 'next/dynamic'
+import * as Sentry from '@sentry/nextjs'
 
 import type { AdvFromAsset } from './types'
 
@@ -25,9 +26,14 @@ const StoryReplayViewSkeleton = async ({
 }) => {
     const $t = await getTranslations('storyreplay')
 
-    const StoryLines: AdvFromAsset = await fetch(Paths.advJson(id)).then((x) =>
-        x.json(),
-    )
+    const StoryLines: AdvFromAsset = await fetch(Paths.advJson(id))
+        .then((x) => x.json())
+        .catch((e) => String(e))
+
+    if (typeof StoryLines === 'string') {
+        Sentry.captureException(new Error(`Inexistent story adv: ${id}`))
+        return <Alert color="red">{StoryLines}</Alert>
+    }
 
     const baseId = getBaseId(storyId)
     const moshikoiData = moshikoiLogics[baseId]
