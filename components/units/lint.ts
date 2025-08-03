@@ -6,12 +6,14 @@ import type { LintMessage } from './types'
 // linting rules
 import spAbsentWhenNeeded from './rules/sp-absent-when-needed'
 import ctOvertime from './rules/ct-overtime'
+import { useTranslations } from 'next-intl'
 
 const rules = [spAbsentWhenNeeded, ctOvertime]
 
 export default function lint(
     skills: Skill[],
-    chartLine: number[]
+    chartLine: number[],
+    defaultMessage: string = '一切正常。'
 ): LintMessage[] {
     // TODO: inter-track effects
 
@@ -26,7 +28,7 @@ export default function lint(
 
     if (messages.length === 0) {
         messages.push({
-            text: '一切正常。',
+            text: defaultMessage,
             severity: 0,
         })
     }

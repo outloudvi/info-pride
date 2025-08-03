@@ -1,4 +1,33 @@
 {
     "Units": "Units",
-    "no_translation_yet": "We don't have translation for this page yet due to lack of time and limited usages. Tell us on GitHub if you want to contribute to translations!"
+    "Invalid Team Code": "Invalid Team Code",
+    "Invalid Team Code Description": "This code is either invalid or is from a newer version of INFO PRIDE.",
+    "Import Team Code": "Import With a Team Code",
+    "Import Team Description": "A team code can represent a five-person team's member and positions, but does not include any level or skill information.",
+    "Import Team Tip": "It should start with 1P-",
+    "Import Team Success Title": "Team Imported",
+    "Import Team Success Description": "Team code imported successfully.",
+    "Team Code": "Team Code",
+    "Import": "Import",
+    "Select Beatmap": "Select Beatmap",
+    "Team Code Generation Error - New Card": " (Currently Unable to generate code. Some new cards do not exist in the ccid database)",
+    "Team Code Generation Error - Not Full": " (Please select cards for all positions)",
+    "Show Beatmap": "Show Beatmap",
+    "Hide Beatmap": "Hide Beatmap",
+    "Team Not Complete": "Team Not Complete",
+
+    "Select Card At Position": "Select Card at Position {position}",
+    "Select Card": "Select Card",
+    "No Card Selected": "No Card Selected",
+
+    "Middle": "Middle",
+    "Middle Left": "Middle Left",
+    "Middle Right": "Middle Right",
+    "Most Left": "Most Left",
+    "Most Right": "Most Right",
+
+    "Track Simulation Result": "{trackNumber} track ({trackDesc}) simulation result with card {cardName}.",
+    "CT Fail at Track": "A skill at track {trackNum} may fail due to CT",
+    "SP Skill Missing": "No SP skill at SP track",
+    "Normal": "Everything is normal."
 }

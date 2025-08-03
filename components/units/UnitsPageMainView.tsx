@@ -109,8 +109,8 @@ const UnitsPageMainView = ({
             }
             if (result === null) {
                 showNotification({
-                    title: `错误的队伍编码：${unitId}`,
-                    message: '此编码无效，或来自更新版本的 INFO PRIDE。',
+                    title: `${$t("Invalid Team Code")}: ${unitId}`,
+                    message: $t("Invalid Team Code Description"),
                     color: 'red',
                 })
                 return
@@ -120,8 +120,8 @@ const UnitsPageMainView = ({
                 ...result.map((x) => CardData.find((y) => y.id === x) ?? null),
             ])
             showNotification({
-                title: '导入了队伍。',
-                message: '队伍编码导入成功。',
+                title: $t("Import Team Success Title"),
+                message: $t("Import Team Success Description"),
                 color: 'green',
             })
             setModalImportUnit(false)
@@ -141,19 +141,22 @@ const UnitsPageMainView = ({
             <Modal
                 opened={modalImportUnit}
                 onClose={() => setModalImportUnit(false)}
-                title="导入队伍编码"
+                title={$t("Import Team Code")}
                 closeButtonProps={{
                     'aria-label': 'Close',
                 }}
             >
-                <p className="p-2">
-                    队伍编码可以表示一个五人队伍的卡组及站位，但不包含等级或技能信息。{' '}
-                    <br />
-                    它应该以 1P- 开头。
-                </p>
+                <div className='p-2'>
+                    <p>
+                        {$t("Import Team Description")}
+                    </p>
+                    <p>
+                        {$t("Import Team Tip")}
+                    </p>
+                </div>
                 <TextInput
                     placeholder="1P-..."
-                    label="队伍编码"
+                    label={$t("Team Code")}
                     onChange={(e) => {
                         setImportUnitId(e.target.value)
                     }}
@@ -165,17 +168,17 @@ const UnitsPageMainView = ({
                         importUnitCode(importUnitId)
                     }}
                 >
-                    导入
+                    {$t("Import")}
                 </Button>
             </Modal>
-            {locale !== 'zh-Hans' && (
+            {locale === 'ko' && (
                 <Alert className="mb-2">{$t('no_translation_yet')}</Alert>
             )}
             <Grid gutter={20}>
                 <Grid.Col span={{ base: 12, lg: 6 }}>
                     <div className="mb-2">
                         <NativeSelect
-                            label="选择谱面"
+                            label={$t("Select Beatmap")}
                             data={musicChartList.map((x) => ({
                                 value: x.id,
                                 label: `${x.songTitle} - ${x.desc}`,
@@ -189,19 +192,19 @@ const UnitsPageMainView = ({
                     </div>
                     <Group>
                         <div className="grow">
-                            队伍编码：
+                            {$t("Team Code")}:
                             {unitId
                                 ? unitId.includes('!')
-                                    ? '（部分新卡片在 ccid 数据库中不存在，暂时无法生成编码。）'
+                                    ? $t("Team Code Generation Error - New Card")
                                     : unitId
-                                : '（请先选择所有位置的卡片。）'}
+                                : $t("Team Code Generation Error - Not Full")}
                         </div>
                         <Button
                             onClick={() => {
                                 setModalImportUnit(true)
                             }}
                         >
-                            导入队伍编码
+                            {$t("Import Team Code")}
                         </Button>
                     </Group>
                     <div className="grid grid-cols-5 gap-x-2 gap-y-1 mt-3">
@@ -235,7 +238,7 @@ const UnitsPageMainView = ({
                             setShowNotemap((x) => !x)
                         }}
                     >
-                        {showNotemap ? '隐藏曲谱' : '显示曲谱'}
+                        {showNotemap ? $t("Hide Beatmap") :$t("Show Beatmap")}
                     </Button>
                     {ChartData ? (
                         <Collapse in={showNotemap}>

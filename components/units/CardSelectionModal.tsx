@@ -21,6 +21,7 @@ const CardSelectionModal = ({
     cardList: CardTiny[]
 }) => {
     const $vc = useTranslations('v-chr')
+    const $t = useTranslations('card_selection_modal')
     return (
         <Modal
             size="xl"
@@ -32,7 +33,7 @@ const CardSelectionModal = ({
             }}
         >
             <Select
-                label="选择一张卡片"
+                label={$t("Select a card")}
                 data={cardList.map((x) => ({
                     label: `${x.name} / ${$vc(x.characterId)}`,
                     value: x.id,
