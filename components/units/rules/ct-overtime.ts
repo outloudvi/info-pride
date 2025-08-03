@@ -4,7 +4,10 @@ import type { LintRule } from '../types'
 
 import skillRunner from '#utils/skillRunner'
 
+import { useTranslations } from 'next-intl'
+
 const ctOvertime: LintRule = (skills, chartLine) => {
+    const $t = useTranslations('units')
     const runnerFailedResults = skillRunner({
         skills: skills.filter(
             (x) => x.categoryType === SkillCategoryType.Active
@@ -13,7 +16,9 @@ const ctOvertime: LintRule = (skills, chartLine) => {
     }).filter((x) => x.success === false)
 
     return runnerFailedResults.map((x) => ({
-        text: `位于 ${x.start} 拍的 A 技能可能因为 CT 失败`,
+        text: $t('CT Fail at Track', {
+            trackNum: x.start
+        }),
         severity: 2,
     }))
 }

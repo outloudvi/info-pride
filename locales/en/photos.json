@@ -1,1 +1,10 @@
-{}
+{
+    "Photos": "Photos",
+    "Character Group": "Character Group",
+    "Skills": "Skills",
+    "Initial level": "Initial level",
+    "photos_description": "This page can only query built-in photos from IDOLY PRIDE, which does not include photos taken by yourself.",
+    "loading_photo_list": "Loading list of photo……",
+    "select_a_photo": "Select a photo to view details",
+    "select_level": "Select photo level:"
+}

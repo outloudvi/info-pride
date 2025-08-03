@@ -1,3 +1,33 @@
 {
-    "Units": "组队"
+    "Units": "组队",
+    "Invalid Team Code": "错误的队伍编码",
+    "Invalid Team Code Description": "此编码无效，或来自更新版本的 INFO PRIDE。",
+    "Import Team Code": "导入队伍编码",
+    "Import Team Description": "队伍编码可以表示一个五人队伍的卡组及站位，但不包含等级或技能信息。",
+    "Import Team Tip": "它应该以 1P- 开头。",
+    "Import Team Success Title": "导入了队伍。",
+    "Import Team Success Description": "队伍编码导入成功。",
+    "Team Code": "队伍编码",
+    "Import": "导入",
+    "Select Beatmap": "选择谱面",
+    "Team Code Generation Error - New Card": "（部分新卡片在 ccid 数据库中不存在，暂时无法生成编码。）",
+    "Team Code Generation Error - Not Full": "（请先选择所有位置的卡片。）",
+    "Show Beatmap": "显示曲谱",
+    "Hide Beatmap": "隐藏曲谱",
+    
+    "Select Card At Position": "选择位置 {position} 的卡片",
+    "Select Card": "选择卡片",
+    "No Card Selected": "未选择卡片",
+    "Team Not Complete": "队伍不完整",
+
+    "Middle": "中间",
+    "Middle Left": "中左",
+    "Middle Right": "中右",
+    "Most Left": "最左",
+    "Most Right": "最右",
+
+    "Track Simulation Result": "{trackNumber} 轨道（{trackDesc}）的验证结果（{cardName}）",
+    "CT Fail at Track": "位于 {trackNum} 拍的 A 技能可能因为 CT 失败",
+    "SP Skill Missing": "SP 轨道上的卡片没有 SP 技能",
+    "Normal": "一切正常。"
 }

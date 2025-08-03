@@ -4,6 +4,7 @@ import { Button } from '@mantine/core'
 import type { CardTiny } from './types'
 import CardInUnit from './CardInUnit'
 import CardSelectionModal from './CardSelectionModal'
+import { useTranslations } from 'next-intl'
 
 const UnitPosition = ({
     position,
@@ -19,13 +20,16 @@ const UnitPosition = ({
     col: number
 }) => {
     const [modalOpened, setModalOpened] = useState(false)
+    const $t = useTranslations('units')
 
     return (
         <>
             <CardSelectionModal
                 opened={modalOpened}
                 onClose={() => setModalOpened(false)}
-                title={`选择位置 ${position} 的卡片`}
+                title={$t("Select Card At Position", {
+                    position: position,
+                })}
                 cardList={cardList}
                 value={card}
                 onSelect={setCard}
@@ -37,7 +41,7 @@ const UnitPosition = ({
                     gridColumn: col,
                 }}
             >
-                选择卡片
+                {$t("Select Card")}
             </Button>
             {card ? (
                 <CardInUnit card={card} col={col} />
@@ -46,7 +50,7 @@ const UnitPosition = ({
                     className="text-center text-gray-500 mt-3"
                     style={{ gridRow: '2 / span 7', gridColumn: col }}
                 >
-                    未选择卡片
+                    {$t("No Card Selected")}
                 </div>
             )}
         </>

@@ -11,8 +11,6 @@ import useApi from '#utils/useApi'
 import Paths from '#utils/paths'
 import { notUndefined } from '#utils/nonEmpty'
 
-const TRACK_DESC = [undefined, '中间', '中左', '中右', '最左', '最右']
-
 const UnitAnalyzer = ({
     unitCards,
     chart,
@@ -22,6 +20,10 @@ const UnitAnalyzer = ({
     chart: MusicChart
     skills: Skill[]
 }) => {
+
+    const $t = useTranslations('units')
+    const TRACK_DESC = [undefined, $t('Middle'), $t('Middle Left'), $t('Middle Right'), $t('Most Left'), $t('Most Right')]
+
     return (
         <>
             {_range(5)
@@ -32,7 +34,8 @@ const UnitAnalyzer = ({
                         [card.skillId1, card.skillId2, card.skillId3]
                             .map((x) => skills.find((sk) => sk.id === x))
                             .filter(notUndefined),
-                        chart.chart[_key as 1 | 2 | 3 | 4 | 5]
+                        chart.chart[_key as 1 | 2 | 3 | 4 | 5],
+                        $t("Normal")
                     )
 
                     const maxSeverity = Math.max(
@@ -42,7 +45,11 @@ const UnitAnalyzer = ({
 
                     return (
                         <Alert
-                            title={`${_key} 轨道（${TRACK_DESC[_key]}）的验证结果（${card.name}）`}
+                            title={$t("Track Simulation Result", {
+                                trackNumber: _key,
+                                trackDesc: TRACK_DESC[_key],
+                                cardName: card.name,
+                            })}
                             color={
                                 maxSeverity === 3
                                     ? 'red'
@@ -141,10 +148,12 @@ const UnitAnalyzerWrapper = ({
     unitCards: (CardTiny | null)[]
     musicChart: MusicChartItem
 }) => {
+
+    const $t = useTranslations('units')
     if (unitCards.slice(1, 6).filter((x) => x === null).length !== 0) {
         return (
-            <Alert title="队伍不完整" color="red">
-                请先选择完整队伍或导入队伍编码。
+            <Alert title={$t("Team is Incomplete")} color="red">
+                
             </Alert>
         )
     }

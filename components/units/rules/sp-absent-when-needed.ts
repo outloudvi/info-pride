@@ -1,8 +1,11 @@
 import { SkillCategoryType } from 'hoshimi-types/ProtoEnum'
 
 import type { LintRule } from '../types'
+import { useTranslations } from 'next-intl'
 
 const spAbsentWhenNeeded: LintRule = (skills, chartLine) => {
+    const $t = useTranslations('units')
+
     if (
         chartLine.filter((x) => x < 0).length > 0 &&
         skills.filter((x) => x.categoryType === SkillCategoryType.Special)
@@ -10,7 +13,7 @@ const spAbsentWhenNeeded: LintRule = (skills, chartLine) => {
     ) {
         return [
             {
-                text: 'SP 轨道上的卡片没有 SP 技能',
+                text: $t('SP Skill Missing'),
                 severity: 3,
             },
         ]
