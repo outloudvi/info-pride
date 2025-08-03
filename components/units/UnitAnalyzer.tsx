@@ -70,7 +70,9 @@ const UnitAnalyzer = ({
                                                 : ''
                                         }
                                     >
-                                        {msg.text}
+                                        {$t(msg.text, {
+                                            trackNum: msg.trackNum,
+                                        })}
                                     </li>
                                 ))}
                             </ul>

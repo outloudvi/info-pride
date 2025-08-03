@@ -12,7 +12,8 @@ export type MusicChartItem = {
 
 export type LintMessage = {
     text: string
-    severity: 0 | 1 | 2 | 3
+    severity: 0 | 1 | 2 | 3,
+    trackNum?: number
 }
 
 export type LintRule = (

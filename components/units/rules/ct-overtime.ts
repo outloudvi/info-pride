@@ -4,10 +4,7 @@ import type { LintRule } from '../types'
 
 import skillRunner from '#utils/skillRunner'
 
-import { useTranslations } from 'next-intl'
-
 const ctOvertime: LintRule = (skills, chartLine) => {
-    const $t = useTranslations('units')
     const runnerFailedResults = skillRunner({
         skills: skills.filter(
             (x) => x.categoryType === SkillCategoryType.Active
@@ -16,10 +13,9 @@ const ctOvertime: LintRule = (skills, chartLine) => {
     }).filter((x) => x.success === false)
 
     return runnerFailedResults.map((x) => ({
-        text: $t('CT Fail at Track', {
-            trackNum: x.start
-        }),
+        text: 'CT Fail at Track',
         severity: 2,
+        trackNum: x.start,
     }))
 }
 

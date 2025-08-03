@@ -6,7 +6,6 @@ import type { LintMessage } from './types'
 // linting rules
 import spAbsentWhenNeeded from './rules/sp-absent-when-needed'
 import ctOvertime from './rules/ct-overtime'
-import { useTranslations } from 'next-intl'
 
 const rules = [spAbsentWhenNeeded, ctOvertime]
 
