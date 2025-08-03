@@ -153,11 +153,7 @@ const UnitAnalyzerWrapper = ({
 
     const $t = useTranslations('units')
     if (unitCards.slice(1, 6).filter((x) => x === null).length !== 0) {
-        return (
-            <Alert title={$t("Team is Incomplete")} color="red">
-                
-            </Alert>
-        )
+        return <Alert title={$t('Team Not Complete')} color="red"></Alert>
     }
 
     // TODO: fix it typescript-ly
