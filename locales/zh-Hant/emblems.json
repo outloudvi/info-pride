@@ -1,0 +1,23 @@
+{
+    "Emblems": "稱號",
+    "Type": "類型",
+    "type_Various": "雜項",
+    "type_MLv": "經紀人等級",
+    "type_HiscoreLive": "High Score公演",
+    "type_TowerLevel": "主線/VENUS 天塔",
+    "type_IdolJobLevel": "偶像工作等級",
+    "type_StoryGroup": "劇情",
+    "type_StoryAndRate": "偶像劇情/信賴度",
+    "type_FanNumber": "偶像粉絲數",
+    "type_Score10M": "偶像個人得分",
+    "type_Birthday": "偶像生日",
+    "type_April": "愚人節",
+    "type_Valentine": "情人節",
+    "type_Purchase": "特典",
+    "type_VenusLeague": "VENUS LEAGUE",
+    "type_PVP": "VENUS BATTLE",
+    "type_GVG": "UNION BATTLE",
+    "type_EventResult": "活動",
+    "type_Love": "もし恋",
+    "type_All": "(全部)"
+}

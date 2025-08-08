@@ -1,0 +1,9 @@
+{
+    "loop_idle": "一般（向前）",
+    "loop_idle_forward": "一般（向後）",
+    "pose": "姿勢",
+    "loop_mouth_positive": "喜悦",
+    "loop_mouth_negative": "不悦",
+    "loop_mouth_normal": "一般",
+    "": "無"
+}

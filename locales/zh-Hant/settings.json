@@ -1,0 +1,12 @@
+{
+    "Settings": "設置",
+    "Miscellaneous": "其他",
+    "My box": "我的 box",
+    "Save": "保存",
+    "Success": "成功",
+    "Browser compatiblity problem": "瀏覽器兼容性問題",
+    "localstorage_unsupported": "此瀏覽器不支持 localStorage。請升級至更新的瀏覽器或切換至一般模式以保存設置。",
+    "settings_saved": "你的設置已經保存。",
+    "mybox_header": "在此設置 box 後，搜尋時將會顯示卡片的持有狀態。",
+    "use_jp_str": "卡片搜尋時使用日文卡片名稱"
+}

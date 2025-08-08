@@ -1,0 +1,6 @@
+{
+    "Message Search": "訊息搜尋",
+    "description": "本頁可以通過消息文案搜尋到相應消息。最多顯示 30 條結果。",
+    "search_placeholder": "消息文案...",
+    "no_results": "無結果。"
+}

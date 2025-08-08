@@ -1,0 +1,22 @@
+{
+    "Story replay": "劇情重播",
+    "Background": "背景圖片",
+    "BGM": "背景音樂",
+    "Message": "台詞",
+    "Manager": "マネージャー",
+    "SFX": "音效",
+    "Voice": "聲音",
+    "Narration": "旁白",
+    "ChoiceGroup": "選項",
+    "BranchGroup": "分支",
+    "Next chapter": "下一章節",
+    "(End)": "（完）",
+    "Related stories": "相關故事",
+    "be_patient": "本頁數據量較大，因此載入時間較長。放鬆請坐。",
+    "no_story": "沒有找到故事。",
+    "multiple_parts": "故事分為 {len} 部分。",
+    "story_part": "這是故事的第 {p} 部分。",
+    "no_title": "（無標題）",
+    "story_part_live": "這是一段 Live 片段。",
+    "story_not_found": "找不到有關劇情。"
+}

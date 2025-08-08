@@ -1,0 +1,21 @@
+{
+    "MacaronTalk": "MacaronTalk",
+    "Toggle Editor Mode": "切換至編輯模式",
+    "Insert a stamp": "插入貼圖",
+    "Toggle menu": "展開/折疊目錄",
+    "Send": "發送",
+    "Import/Export": "匯入/匯出",
+    "Import from text": "從文本導入",
+    "Import from file": "從文件導入",
+    "Save as file": "保存成文件",
+    "Export as Image": "匯出成圖片",
+    "mtalk_description": "MacaronTalk 是 <a>YuzuTalk</a> 的 IDOLY PRIDE 版本。用戶可以使用此功能創建自訂訊息通訊。",
+    "n_import_failed": "匯入失敗",
+    "n_import_success": "匯入成功。",
+    "n_invalid_json": "無效的 JSON。",
+    "n_not_array": "匯入資料應為一個陣列。",
+    "n_failed_to_read_file": "文件讀取失敗。",
+    "n_export_image": "正在匯出圖片...",
+    "n_error_export_image": "圖片匯出失敗",
+    "n_image_exported": "圖片匯出成功。"
+}
