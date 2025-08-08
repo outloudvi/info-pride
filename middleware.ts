@@ -14,7 +14,7 @@ export const config = {
     // Match only internationalized pathnames
     matcher: [
         '/',
-        '/(en|zh-Hans|ko)/:path*',
+        '/(en|zh-Hans|zh-Hant|ko)/:path*',
 
         // old paths that may have non-i18n-prefixed references
         '/about/:path*',

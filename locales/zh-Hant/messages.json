@@ -1,0 +1,13 @@
+{
+    "Messages": "訊息",
+    "Fullscreen": "全屏",
+    "Exit fullscreen": "退出全屏",
+    "Manager": "マネージャー",
+    "Delete": "刪除",
+    "line_response": "選項回應 {src}",
+    "line_choice": "選項 {src}",
+    "full_screen_advised": "建議使用全螢幕查看本頁。",
+    "full_screen_unsupported": "設備不支援全螢幕",
+    "communication_ended": "訊息結束。",
+    "select_a_commu": "選擇訊息。"
+}

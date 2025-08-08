@@ -1,0 +1,10 @@
+{
+    "Photos": "照片",
+    "Character Group": "角色組合",
+    "Skills": "技能",
+    "Initial level": "初始等級",
+    "photos_description": "此頁面只能查詢 IDOLY PRIDE 內置照片，不包括自行拍攝的照片數據。",
+    "loading_photo_list": "正在載入照片列表……",
+    "select_a_photo": "選擇一張照片。",
+    "select_level": "選擇照片等級："
+}

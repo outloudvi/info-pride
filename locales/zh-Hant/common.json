@@ -1,0 +1,49 @@
+{
+    "sidebar": {
+        "Stories": "劇情",
+        "Event Stories": "活動劇情",
+        "Moshikoi": "若戀/みんつく",
+        "Notemaps": "譜面",
+        "Characters": "角色",
+        "Cards": "卡片",
+        "Units": "組隊",
+        "Messages": "消息",
+        "Card Search": "卡片搜尋",
+        "Mana Diary": "麻奈日記",
+        "MacaronTalk": "MacaronTalk",
+        "Spine Viewer": "SD 查看器",
+        "Story Search": "劇情搜尋",
+        "Message Search": "訊息搜尋",
+        "Photos": "照片",
+        "Emblems": "稱號",
+        "Colors": "系列顏色",
+        "Settings": "設置",
+        "About": "關於"
+    },
+    "Switch theme": "切換網頁配色",
+    "footer": {
+        "Source code": "原始碼",
+        "copy": "遊戲數據 © QualiArts 及相關組織",
+        "bwiki": {
+            "prefix": "來自 ",
+            "bwikilinktitle": "bwiki",
+            "middle": " 的內容以 ",
+            "suffix": " 授權"
+        }
+    },
+    "Video": "影片",
+    "Back": "返回",
+    "Color": "顏色",
+    "Loading": "載入中",
+    "Error": "錯誤",
+    "Pause": "暫停",
+    "Play": "播放",
+    "loading": "載入中。",
+    "Export as image": "匯出成圖片",
+    "Story replay": "劇情重播",
+    "Clear": "重設",
+    "audio_loading": "正在載入音訊。首次載入可能需要較長時間。",
+    "audio_load_failed": "未能載入音訊 {id} 。",
+    "no_trans": "尚無翻譯信息。請添加翻譯信息到 {file} 的 {field} 。",
+    "load_progress": "正在載入數據：完成 {cur}/{total}"
+}

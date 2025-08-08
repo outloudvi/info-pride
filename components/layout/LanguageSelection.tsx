@@ -9,6 +9,7 @@ import { usePathname, useRouter } from '#utils/navigation'
 
 const CurrentLanguage: Record<string, string> = {
     'zh-Hans': '中文（简体）',
+    'zh-Hant': '中文（繁體）',
     en: 'English',
     ko: '한국어',
 }
