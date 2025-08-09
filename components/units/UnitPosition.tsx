@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import { Button } from '@mantine/core'
+import { useTranslations } from 'next-intl'
 
 import type { CardTiny } from './types'
 import CardInUnit from './CardInUnit'
 import CardSelectionModal from './CardSelectionModal'
-import { useTranslations } from 'next-intl'
 
 const UnitPosition = ({
     position,

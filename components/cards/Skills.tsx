@@ -9,12 +9,12 @@ import type {
 } from 'hoshimi-types/ProtoMaster'
 import { SkillCategoryType } from 'hoshimi-types/ProtoEnum'
 import { useTranslations } from 'next-intl'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 
 import SkillImage from './SkillImage'
 
 import lfToBr from '#utils/lfToBr'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 
 const SkillBlock = ({
     skill,
@@ -93,7 +93,6 @@ const Skills = ({
     yellSkill?: LiveAbility | ActivityAbility | null
 }) => {
     const $t = useTranslations('cards_slug')
-    const $c = useTranslations('common')
 
     return (
         <Stack>

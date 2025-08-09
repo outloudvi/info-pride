@@ -5,6 +5,7 @@ import { Button, Checkbox, Grid } from '@mantine/core'
 import rfdc from 'rfdc'
 import { useTranslations } from 'next-intl'
 import { useEffect, useState } from 'react'
+import { useLocalStorage } from '@mantine/hooks'
 
 import { Link } from '#utils/navigation'
 import { LOCALSTORAGE_BOX_TAG } from '#utils/startupHook'
@@ -12,7 +13,6 @@ import { CCIDTableWithName } from '#data/ccid'
 import type { CharacterId } from '#data/vendor/characterId'
 import { CharacterIds } from '#data/vendor/characterId'
 import type { LocalBox } from '#components/settings/types'
-import { useLocalStorage } from '@mantine/hooks'
 import { USE_JP_STRINGS_DURING_SEARCH } from '#utils/constants'
 
 const clone = rfdc({

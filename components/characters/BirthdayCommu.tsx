@@ -1,8 +1,9 @@
+import { getLocale } from 'next-intl/server'
+
 import BirthdayCommuView from './BirthdayCommuView'
 
 import BirthdayCommuData from '#data/videos/birthday.data'
 import type { CharacterId } from '#data/vendor/characterId'
-import { getLocale } from 'next-intl/server'
 
 const BirthdayCommu = async ({ charaId }: { charaId: string }) => {
     const locale = await getLocale()

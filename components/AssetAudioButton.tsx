@@ -13,7 +13,6 @@ import {
 import { useTranslations } from 'next-intl'
 
 import Paths from '#utils/paths'
-import { setMaxIdleHTTPParsers } from 'http'
 
 const AssetAudioButton = ({
     id,
@@ -41,9 +40,7 @@ const AssetAudioButton = ({
     }, [atom, aud, id])
 
     useEffect(() => {
-        if (isPlaying) {
-            aud.current?.pause()
-        }
+        aud.current?.pause()
         setIsPlaying(false)
         setIsActivated(false)
         setIsReady(false)

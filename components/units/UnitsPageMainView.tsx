@@ -109,8 +109,8 @@ const UnitsPageMainView = ({
             }
             if (result === null) {
                 showNotification({
-                    title: `${$t("Invalid Team Code")}: ${unitId}`,
-                    message: $t("Invalid Team Code Description"),
+                    title: `${$t('Invalid Team Code')}: ${unitId}`,
+                    message: $t('Invalid Team Code Description'),
                     color: 'red',
                 })
                 return
@@ -120,13 +120,13 @@ const UnitsPageMainView = ({
                 ...result.map((x) => CardData.find((y) => y.id === x) ?? null),
             ])
             showNotification({
-                title: $t("Import Team Success Title"),
-                message: $t("Import Team Success Description"),
+                title: $t('Import Team Success Title'),
+                message: $t('Import Team Success Description'),
                 color: 'green',
             })
             setModalImportUnit(false)
         },
-        [CardData],
+        [CardData, $t],
     )
 
     useEffect(() => {
@@ -141,22 +141,18 @@ const UnitsPageMainView = ({
             <Modal
                 opened={modalImportUnit}
                 onClose={() => setModalImportUnit(false)}
-                title={$t("Import Team Code")}
+                title={$t('Import Team Code')}
                 closeButtonProps={{
                     'aria-label': 'Close',
                 }}
             >
-                <div className='p-2'>
-                    <p>
-                        {$t("Import Team Description")}
-                    </p>
-                    <p>
-                        {$t("Import Team Tip")}
-                    </p>
+                <div className="p-2">
+                    <p>{$t('Import Team Description')}</p>
+                    <p>{$t('Import Team Tip')}</p>
                 </div>
                 <TextInput
                     placeholder="1P-..."
-                    label={$t("Team Code")}
+                    label={$t('Team Code')}
                     onChange={(e) => {
                         setImportUnitId(e.target.value)
                     }}
@@ -168,7 +164,7 @@ const UnitsPageMainView = ({
                         importUnitCode(importUnitId)
                     }}
                 >
-                    {$t("Import")}
+                    {$t('Import')}
                 </Button>
             </Modal>
             {locale === 'ko' && (
@@ -178,7 +174,7 @@ const UnitsPageMainView = ({
                 <Grid.Col span={{ base: 12, lg: 6 }}>
                     <div className="mb-2">
                         <NativeSelect
-                            label={$t("Select Beatmap")}
+                            label={$t('Select Beatmap')}
                             data={musicChartList.map((x) => ({
                                 value: x.id,
                                 label: `${x.songTitle} - ${x.desc}`,
@@ -192,19 +188,21 @@ const UnitsPageMainView = ({
                     </div>
                     <Group>
                         <div className="grow">
-                            {$t("Team Code")}:
+                            {$t('Team Code')}:
                             {unitId
                                 ? unitId.includes('!')
-                                    ? $t("Team Code Generation Error - New Card")
+                                    ? $t(
+                                          'Team Code Generation Error - New Card',
+                                      )
                                     : unitId
-                                : $t("Team Code Generation Error - Not Full")}
+                                : $t('Team Code Generation Error - Not Full')}
                         </div>
                         <Button
                             onClick={() => {
                                 setModalImportUnit(true)
                             }}
                         >
-                            {$t("Import Team Code")}
+                            {$t('Import Team Code')}
                         </Button>
                     </Group>
                     <div className="grid grid-cols-5 gap-x-2 gap-y-1 mt-3">
@@ -238,7 +236,7 @@ const UnitsPageMainView = ({
                             setShowNotemap((x) => !x)
                         }}
                     >
-                        {showNotemap ? $t("Hide Beatmap") :$t("Show Beatmap")}
+                        {showNotemap ? $t('Hide Beatmap') : $t('Show Beatmap')}
                     </Button>
                     {ChartData ? (
                         <Collapse in={showNotemap}>

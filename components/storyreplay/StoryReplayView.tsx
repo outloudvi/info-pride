@@ -16,16 +16,15 @@ import type { MergedLine } from './types'
 import CompMWV from './lines/MWV'
 import CompXBranch from './lines/XBranch'
 import Box from './Box'
-import ErrorBoundary from '#utils/errorBoundary'
 import StoryContext, { StoryStateStorageContext } from './StoryContext'
 import runLogics from './logicParser'
 import { STORY_STORAGE_PREFIX, getBaseId, getPartId } from './utils'
-
-import { Link } from '#utils/navigation'
-import logics from '#data/moshikoi' // TODO: import on-demand
-import tryJSONParse from '#utils/tryJsonParse'
-import { MoshikoiConfig } from '#data/moshikoi/types'
 import KoiPartsList from './KoiPartsList'
+
+import ErrorBoundary from '#utils/errorBoundary'
+import { Link } from '#utils/navigation'
+import tryJSONParse from '#utils/tryJsonParse'
+import type { MoshikoiConfig } from '#data/moshikoi/types'
 
 export function displayLine(
     line: MergedLine,
@@ -140,7 +139,7 @@ const StoryReplayView = ({
         () =>
             koi?.gameLogic?.[partId] &&
             runLogics(koi?.gameLogic?.[partId], koiState),
-        [koiState, baseId, partId],
+        [koiState, partId, koi?.gameLogic],
     )
 
     const storyContext = useMemo(

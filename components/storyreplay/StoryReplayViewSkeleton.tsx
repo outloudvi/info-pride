@@ -6,9 +6,9 @@ import dynamic from 'next/dynamic'
 import * as Sentry from '@sentry/nextjs'
 
 import type { AdvFromAsset } from './types'
+import { getBaseId } from './utils'
 
 import Paths from '#utils/paths'
-import { getBaseId } from './utils'
 import moshikoiLogics from '#data/moshikoi'
 
 const StoryReplayView = dynamic(() => import('./StoryReplayView'), {
