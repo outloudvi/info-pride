@@ -6,16 +6,18 @@ import { useLocale } from 'next-intl'
 import { useSearchParams } from 'next/navigation'
 
 import { usePathname, useRouter } from '#utils/navigation'
+import type { ValidLocale } from '#locales/types'
 
-const CurrentLanguage: Record<string, string> = {
+const CurrentLanguage: Record<ValidLocale, string> = {
     'zh-Hans': '中文（简体）',
     'zh-Hant': '中文（繁體）',
     en: 'English',
     ko: '한국어',
 }
+const _CurrentLanguage = CurrentLanguage as Record<string, string>
 
-const LanguageKeys = Object.keys(CurrentLanguage)
-const LanguageNames = LanguageKeys.map((x) => CurrentLanguage[x])
+const LanguageKeys = Object.keys(_CurrentLanguage)
+const LanguageNames = LanguageKeys.map((x) => _CurrentLanguage[x])
 
 const LanguageSelection = ({ className }: { className?: string }) => {
     const pathname = usePathname()
@@ -31,7 +33,7 @@ const LanguageSelection = ({ className }: { className?: string }) => {
         <NativeSelect
             className={`mr-2 ${className}`}
             data={LanguageNames}
-            value={CurrentLanguage[locale]}
+            value={_CurrentLanguage[locale]}
             aria-label="Language selection"
             onChange={(x) => {
                 const localeName = x.target.value
