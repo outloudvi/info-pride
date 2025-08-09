@@ -16,9 +16,9 @@ defaults:
     working-directory: ./
 
 permissions:
-  contents: read # for checkout repository
-  actions: read # for fetching base branch bundle stats
-  pull-requests: write # for comments
+  contents: read
+  actions: read
+  pull-requests: write
 
 jobs:
   analyze:
@@ -121,3 +121,4 @@ jobs:
           body: ${{ steps.get-comment-body.outputs.body }}
           comment-id: ${{ steps.fc.outputs.comment-id }}
           edit-mode: replace
+          token: ${{ secrets.GITHUB_TOKEN }}
