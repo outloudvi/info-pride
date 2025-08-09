@@ -1,12 +1,11 @@
+import type { ValidLocale } from './types'
+
 export interface LocaleObject {
     [key: string]: string | LocaleObject
 }
 
-import type locales from './locales.json'
-type Locales = (typeof locales)[number]
-
 const localeStrings: () => Promise<
-    Record<Locales, LocaleObject>
+    Record<ValidLocale, LocaleObject>
 > = async () => ({
     en: await import('./en/0000').then((x) => x.default),
     'zh-Hans': await import('./zh-Hans/0000').then((x) => x.default),
