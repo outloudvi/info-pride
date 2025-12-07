@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "engines": {
-    "node": ">=22.0.0"
+    "node": ">=24.0.0"
   },
   "scripts": {
     "dev": "next dev",
@@ -75,7 +75,7 @@
     "@types/d3": "^7.4.3",
     "@types/lodash": "^4.17.21",
     "@types/mocha": "^10.0.10",
-    "@types/node": "^22.19.1",
+    "@types/node": "^24.10.1",
     "@types/react": "18.3.3",
     "@typescript-eslint/eslint-plugin": "^7.18.0",
     "@typescript-eslint/parser": "^7.18.0",
