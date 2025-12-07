@@ -29,5 +29,10 @@ export default function getCopyrightMarks(id: string): string[] {
         return ret
     }
 
+    if (id.includes('trbl')) {
+        ret.push('© Y·H/S·TDP') // To Love Ru
+        return ret
+    }
+
     return ret
 }
