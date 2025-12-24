@@ -7,6 +7,7 @@ import { ExtraLinks } from '#components/characters/const'
 import { fetchApi } from '#utils/fetchApi'
 import { withAsyncMessages } from '#utils/withMessages'
 import { CharacterIds } from '#data/vendor/characterId'
+import type { CharacterId } from '#data/vendor/characterId'
 import CharacterItem from '#components/characters/CharacterItem'
 import CharacterList from '#components/characters/CharacterList'
 import type { SearchParams } from '#components/characters/sp'
@@ -24,8 +25,8 @@ const CharactersPage = async ({
     const $vc = await getTranslations('v-chr')
 
     const CharacterListData = await fetchApi('Character/List')
-    const supportedCharacters = CharacterListData.filter(
-        (x) => $vc(x.id) !== x.id,
+    const supportedCharacters = CharacterListData.filter((x) =>
+        CharacterIds.includes(x.id as CharacterId),
     )
 
     // Params
