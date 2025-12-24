@@ -50,7 +50,7 @@
     "jotai": "^2.15.2",
     "jotai-location": "^0.5.5",
     "lodash": "^4.17.21",
-    "next": "14.2.25",
+    "next": "14.2.35",
     "next-intl": "~3.9.5",
     "nextjs-progressbar": "^0.0.16",
     "node-html-parser": "^6.1.13",
