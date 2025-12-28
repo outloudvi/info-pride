@@ -8,6 +8,8 @@ import { fetchApi } from '#utils/fetchApi'
 import { withMessages } from '#utils/withMessages'
 import $tp from '#utils/transProtect'
 import type { ParamsWithLocale } from '#utils/types'
+import locales from '#locales/locales.json'
+import { MAX_LEVEL, MAX_RARITY } from '#utils/constants'
 
 const CardInfoPageWrapper = ({
     params: { slug, locale },
@@ -50,8 +52,32 @@ export async function generateMetadata({
     }
 }
 
-// We want latest data constrained by current time
-export const fetchCache = 'force-no-store'
+// cache it after the first generation
+export const dynamic = 'force-static'
+
+export async function generateStaticParams() {
+    // pre-render 12 latest cards on build
+    const latest12CardIds = await fetchApi('Card/List', {
+        level: String(MAX_LEVEL),
+        rarity: String(MAX_RARITY),
+    }).then((x) =>
+        x
+            .sort((a, b) => {
+                const diff = Number(b.releaseDate) - Number(a.releaseDate)
+                if (isNaN(diff)) return 0
+                return diff
+            })
+            .slice(0, 8)
+            .map((y) => y.id),
+    )
+
+    return locales.flatMap((locale) =>
+        latest12CardIds.map((id) => ({
+            locale,
+            slug: id,
+        })),
+    )
+}
 
 export default withMessages(CardInfoPageWrapper, [
     'cards_slug',
