@@ -37,38 +37,39 @@ const nextConfig = withNextIntl({
         domains: ['ac.ip.outv.im', 'idoly-assets.outv.im'],
         unoptimized: true,
     },
+    output: 'standalone',
 })
 
 const conf =
     process.env.VERCEL_ENV === 'production'
         ? withSentryConfig(
-              nextConfig,
-              {
-                  // Suppresses source map uploading logs during build
-                  silent: true,
-                  org: 'librehouse',
-                  project: 'info-pride',
-              },
-              {
-                  // For all available options, see:
-                  // https://docs.sentry.io/platforms/javascript/guides/nextjs/manual-setup/
+            nextConfig,
+            {
+                // Suppresses source map uploading logs during build
+                silent: true,
+                org: 'librehouse',
+                project: 'info-pride',
+            },
+            {
+                // For all available options, see:
+                // https://docs.sentry.io/platforms/javascript/guides/nextjs/manual-setup/
 
-                  // Upload a larger set of source maps for prettier stack traces (increases build time)
-                  widenClientFileUpload: true,
+                // Upload a larger set of source maps for prettier stack traces (increases build time)
+                widenClientFileUpload: true,
 
-                  // Transpiles SDK to be compatible with IE11 (increases bundle size)
-                  transpileClientSDK: true,
+                // Transpiles SDK to be compatible with IE11 (increases bundle size)
+                transpileClientSDK: true,
 
-                  // Routes browser requests to Sentry through a Next.js rewrite to circumvent ad-blockers (increases server load)
-                  tunnelRoute: '/monitoring',
+                // Routes browser requests to Sentry through a Next.js rewrite to circumvent ad-blockers (increases server load)
+                tunnelRoute: '/monitoring',
 
-                  // Hides source maps from generated client bundles
-                  hideSourceMaps: true,
+                // Hides source maps from generated client bundles
+                hideSourceMaps: true,
 
-                  // Automatically tree-shake Sentry logger statements to reduce bundle size
-                  disableLogger: true,
-              },
-          )
+                // Automatically tree-shake Sentry logger statements to reduce bundle size
+                disableLogger: true,
+            },
+        )
         : nextConfig
 
 const generateGlobalData = () => {
@@ -90,6 +91,6 @@ module.exports =
     generateGlobalData() &&
     (process.env.ANALYZE
         ? require('@next/bundle-analyzer')({
-              enabled: true,
-          })(conf)
+            enabled: true,
+        })(conf)
         : conf)
