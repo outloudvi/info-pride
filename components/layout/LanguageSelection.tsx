@@ -13,6 +13,7 @@ const CurrentLanguage: Record<ValidLocale, string> = {
     'zh-Hant': '中文（繁體）',
     en: 'English',
     ko: '한국어',
+    ja: "日本語"
 }
 const _CurrentLanguage = CurrentLanguage as Record<string, string>
 
