@@ -14,11 +14,11 @@
     "Team Code Generation Error - Not Full": "（請先選擇所有位置的卡片。）",
     "Show Beatmap": "顯示曲譜",
     "Hide Beatmap": "隱藏曲譜",
-    
+    "Team Not Complete": "隊伍不完整",
+
     "Select Card At Position": "選擇位置 {position} 的卡片",
     "Select Card": "選擇卡片",
     "No Card Selected": "未選擇卡片",
-    "Team Not Complete": "隊伍不完整",
 
     "Middle": "中間",
     "Middle Left": "中左",
