@@ -1,124 +1,13 @@
----
-# Transifex GitHub Integration Configuration
-# This file configures how Transifex syncs with this GitHub repository
-# See: https://docs.transifex.com/integration/github/
-
-organization: info-pride
-projects:
-  - frontend-8
-  - vendor-strings
-
-# Frontend-8 project configuration
-frontend-8:
-  source:
-    language: en
-  languages:
-    - ja
-    - ko
-    - zh-Hans
-    - zh-Hant
-  resource_mapping:
-    - path: locales/en/404.json
-      resource: locales-en-404-json--master
-    - path: locales/en/about.json
-      resource: locales-en-about-json--master
-    - path: locales/en/analyze.json
-      resource: locales-en-analyze-json--master
-    - path: locales/en/card_selection_modal.json
-      resource: locales-en-card-selection-modal-json--master
-    - path: locales/en/cards.json
-      resource: locales-en-cards-json--master
-    - path: locales/en/cards_slug.json
-      resource: locales-en-cards-slug-json--master
-    - path: locales/en/characters.json
-      resource: locales-en-characters-json--master
-    - path: locales/en/colors.json
-      resource: locales-en-colors-json--master
-    - path: locales/en/common.json
-      resource: locales-en-common-json--master
-    - path: locales/en/diary.json
-      resource: locales-en-diary-json--master
-    - path: locales/en/emblems.json
-      resource: locales-en-emblems-json--master
-    - path: locales/en/eventstories.json
-      resource: locales-en-eventstories-json--master
-    - path: locales/en/index.json
-      resource: locales-en-index-json--master
-    - path: locales/en/message_search.json
-      resource: locales-en-message-search-json--master
-    - path: locales/en/messages.json
-      resource: locales-en-messages-json--master
-    - path: locales/en/moshikoi.json
-      resource: locales-en-moshikoi-json--master
-    - path: locales/en/mtalk.json
-      resource: locales-en-mtalk-json--master
-    - path: locales/en/notemap.json
-      resource: locales-en-notemap-json--master
-    - path: locales/en/notice.json
-      resource: locales-en-notice-json--master
-    - path: locales/en/photo_ability_type.json
-      resource: locales-en-photo-ability-type-json--master
-    - path: locales/en/photos.json
-      resource: locales-en-photos-json--master
-    - path: locales/en/search.json
-      resource: locales-en-search-json--master
-    - path: locales/en/search_skills.json
-      resource: locales-en-search-skills-json--master
-    - path: locales/en/settings.json
-      resource: locales-en-settings-json--master
-    - path: locales/en/spine.json
-      resource: locales-en-spine-json--master
-    - path: locales/en/spine_animation.json
-      resource: locales-en-spine-animation-json--master
-    - path: locales/en/stories.json
-      resource: locales-en-stories-json--master
-    - path: locales/en/story_search.json
-      resource: locales-en-story-search-json--master
-    - path: locales/en/storyreplay.json
-      resource: locales-en-storyreplay-json--master
-    - path: locales/en/units.json
-      resource: locales-en-units-json--master
-    - path: locales/en/vendor.json
-      resource: locales-en-vendor-json--master
-
-# Vendor-strings project configuration (Japanese as source)
-vendor-strings:
-  source:
-    language: ja
-  languages:
-    - en
-    - ko
-    - zh-Hans
-    - zh-Hant
-  resource_mapping:
-    - path: locales/ja/v-card-alias.json
-      resource: locales-ja-v-card-alias-json--master
-    - path: locales/ja/v-card-name.json
-      resource: locales-ja-v-card-name-json--master
-    - path: locales/ja/v-chr.json
-      resource: locales-ja-v-chr-json--master
-    - path: locales/ja/v-event-name.json
-      resource: locales-ja-v-event-name-json--master
-    - path: locales/ja/v-group.json
-      resource: locales-ja-v-group-json--master
-
-# GitHub integration settings
-webhook: true
-auto_push: true
-auto_pull: true
-
-# File format settings
-file_format: json
-
-# Branch filtering (optional - adjust as needed)
-branches:
-  - master
-
-# Pull request settings (optional)
-create_pull_requests: true
-pull_request_base: master
-pull_request_title: "Transifex translation update"
-pull_request_body: "This PR contains updated translations from Transifex."
-
-# Commit message format
-commit_message: "chore: [Transifex] update translations for {language}"
+filters:
+  - filter_type: dir
+    file_format: KEYVALUEJSON
+    source_file_extension: json
+    source_language: en
+    source_file_dir: locales/en/
+    translation_files_expression: "locales/<lang>/"
+    ignore_files:
+      - locales/en/v-card-alias.json
+      - locales/en/v-card-name.json
+      - locales/en/v-chr.json
+      - locales/en/v-event-name.json
+      - locales/en/v-group.json
