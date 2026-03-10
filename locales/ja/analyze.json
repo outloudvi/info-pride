@@ -1,1 +1,6 @@
-{}
+{
+    "Analyze": "解析",
+    "Analyzing": "解析中",
+    "Analyzed": "解析済み",
+    "a_error": "解析時のエラー"
+}
