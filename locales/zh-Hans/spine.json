@@ -1,17 +1,17 @@
 {
-    "Spine viewer": "SD 查看器",
-    "Select the body animation": "选择身体动画",
-    "Select the mouth animation": "选择口型动画",
+    "Spine viewer": "Spine 查看器",
+    "Select the body animation": "Select the body animation",
+    "Select the mouth animation": "Select the mouth animation",
     "Direction": "方向",
     "Left": "左",
     "Right": "右",
     "Spine ID": "Spine ID",
     "View": "查看",
-    "Spine license confirmation": "Spine 授权确认",
-    "Character": "角色",
-    "Costume": "服装",
-    "license_info": "根据 <link>Spine Editor License Agreement</link>，您需要拥有 Spine 软件授权（例如 Spine Professional 或者 Spine Essential）才能访问此页面。",
-    "btn_license_confirmed": "是的，我有一份 Spine 授权",
-    "webgl_unsupported": "WebGL 不支持",
-    "webgl_unsupported_text": "此浏览器不支持本页面所需要的 WebGL 特性。如欲访问本页，请升级浏览器或启用 WebGL 后重试。"
+    "Spine license confirmation": "Spine license confirmation",
+    "Character": "Character",
+    "Costume": "Costume",
+    "license_info": "According to <link>Spine Editor License Agreement</link>, you need to have a Spine license (e.g. Spine Professional or Spine Essential) to view this page.",
+    "btn_license_confirmed": "Yes, I have that license.",
+    "webgl_unsupported": "WebGL is not supported",
+    "webgl_unsupported_text": "Your browser does not support WebGL, which is required for this page. To visit this page, please upgrade your browser or enable WebGL and then retry."
 }
