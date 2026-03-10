@@ -1,1 +1,11 @@
-{}
+{
+    "choose_a_date": "日付を選択",
+    "date": "日付",
+    "date_from_to": "{START_DATE} から {END_DATE} まで",
+    "mana_diary": "麻奈の日記",
+    "mana_diary_not_updating": "麻奈の日記は2022年、12月23日にて完結しました。（星見界では12月26日）",
+    "no_diary": "今日の日記はありません。",
+    "included_diary_dates": "現在含まれる日記の日付：",
+    "previous_day": "前日",
+    "next_day": "次の日"
+}
