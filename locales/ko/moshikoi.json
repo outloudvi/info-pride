@@ -1,4 +1,5 @@
 {
     "Moshikoi": "모시코이",
-    "description": "감상을 원하는 모시코이 스토리를 선택하세요."
+    "description": "감상을 원하는 모시코이 스토리를 선택하세요.",
+    "logic_may_be_inaccurate": "Please be noted that due to absence of canonical logic details, the outcoming story branch led by player choices on info-pride may be different from the in-game one."
 }
