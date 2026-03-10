@@ -1,1 +1,49 @@
-{}
+{
+    "sidebar": {
+        "Stories": "ストーリー",
+        "Event Stories": "イベントストーリー",
+        "Moshikoi": "もし恋・みんつく！",
+        "Notemaps": "譜面",
+        "Characters": "キャラクター",
+        "Cards": "カード一覧",
+        "Units": "ユニット",
+        "Messages": "メッセージ",
+        "Card Search": "カード検索",
+        "Mana Diary": "麻奈の日記",
+        "MacaronTalk": "マカロントーク",
+        "Spine Viewer": "Spine表示ツール",
+        "Story Search": "ストーリー検索",
+        "Message Search": "メッセージ検索",
+        "Photos": "フォト",
+        "Emblems": "称号",
+        "Colors": "イメージカラー",
+        "Settings": "設定",
+        "About": "INFO PRIDE について"
+    },
+    "Switch theme": "テーマを変更",
+    "footer": {
+        "Source code": "ソースコード",
+        "copy": "ゲームデータ© QualiArts 及び関係者一同",
+        "bwiki": {
+            "prefix": "　※",
+            "bwikilinktitle": "biliwiki",
+            "middle": "からのコンテンツのライセンス先：",
+            "suffix": " "
+        }
+    },
+    "Video": "動画",
+    "Back": "戻る",
+    "Color": "イメージカラー",
+    "Loading": "読み込み中",
+    "Error": "エラー",
+    "Pause": "一時停止",
+    "Play": "再生",
+    "loading": "読み込み中…",
+    "Export as image": "画像をエクスポート",
+    "Story replay": "ストーリー再生",
+    "Clear": "解除",
+    "audio_loading": "オーディオは読み込み中です - 最初の読み込みは所有時間が長い可能性があります。",
+    "audio_load_failed": "オーディオ{id}の読み込みに失敗しました。",
+    "no_trans": "翻訳情報が見つかりませんでした。{file}の{field}にて追加してください。",
+    "load_progress": "データを読み込み中… [{cur}/{total}]"
+}
