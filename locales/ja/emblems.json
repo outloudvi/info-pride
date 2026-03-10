@@ -1,1 +1,23 @@
-{}
+{
+    "Emblems": "称号",
+    "Type": "タイプ",
+    "type_Various": "その他",
+    "type_MLv": "マネージャーレベル",
+    "type_HiscoreLive": "ハイスコアライブ",
+    "type_TowerLevel": "タワーレベル",
+    "type_IdolJobLevel": "アイドル仕事レベル",
+    "type_StoryGroup": "グループストーリー",
+    "type_StoryAndRate": "ストーリー・レート",
+    "type_FanNumber": "ファン数",
+    "type_Score10M": "スコア1000万",
+    "type_Birthday": "バースデー",
+    "type_April": "エイプリルフール",
+    "type_Valentine": "バレンタイン",
+    "type_Purchase": "有料",
+    "type_VenusLeague": "VENUSリーグ",
+    "type_PVP": "PVP",
+    "type_GVG": "ユニオン対抗",
+    "type_EventResult": "イベント結果",
+    "type_Love": "もし恋",
+    "type_All": "（全種）"
+}
