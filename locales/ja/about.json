@@ -1,1 +1,16 @@
-{}
+{
+    "About": "INFO PRIDE について",
+    "Contributors:": "貢献者一覧",
+    "site_desc": "INFO PRIDE は Project IDOLY PRIDE のファンやプレイヤーに向けた情報まとめサイトです。",
+    "loading_contribs": "貢献者一覧を読み込み中…",
+    "emoji_a11y": "アクセシビリティ",
+    "emoji_audio": "オーディオ",
+    "emoji_blog": "ブログ",
+    "emoji_bug": "バグ",
+    "emoji_code": "コード",
+    "emoji_content": "コンテンツ",
+    "emoji_data": "データ",
+    "emoji_design": "デザイン",
+    "emoji_doc": "解説",
+    "emoji_translation": "翻訳"
+}
