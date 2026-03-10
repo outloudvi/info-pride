@@ -2,6 +2,7 @@ import en from './en'
 import zhHans from './zh-Hans'
 import zhHant from './zh-Hant'
 import ko from './ko'
+import ja from './ja'
 import type { StoriesData } from './types'
 import type { ValidLocale } from '#locales/types'
 
@@ -10,6 +11,7 @@ const _: Record<ValidLocale, StoriesData> = {
     'zh-Hans': zhHans,
     'zh-Hant': zhHant,
     ko: ko,
+    ja: ja,
 }
 
 // Let's not complicate things as `getLocale()` from `next-intl` is not such typed
