@@ -1,1 +1,12 @@
-{}
+{
+    "Technique": "バッファー",
+    "Appeal": "スコアラー",
+    "Support": "サポーター",
+    "Active": "A",
+    "Passive": "P",
+    "Special": "SP",
+    "Vocal": "ボーカル",
+    "Dance": "ダンス",
+    "Visual": "ビジュアル",
+    "Stamina": "スタミナ"
+}
