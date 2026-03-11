@@ -1,1 +1,17 @@
-{}
+{
+    "Spine viewer": "Spine表示ツール",
+    "Select the body animation": "体のアニメーションを選択",
+    "Select the mouth animation": "口のアニメーションを選択",
+    "Direction": "方向",
+    "Left": "左",
+    "Right": "右",
+    "Spine ID": "Spine ID",
+    "View": "表示",
+    "Spine license confirmation": "Spine ライセンス確認",
+    "Character": "キャラクター",
+    "Costume": "衣装",
+    "license_info": "<link>Spine 編集ツールライセンス同意書</link>によると、このページを表示するにはSpine ライセンス（例：Spine ProfessionalもしくはSpine Essential) が必要です",
+    "btn_license_confirmed": "はい、ライセンスを所有しています。",
+    "webgl_unsupported": "WebGLは非対応です",
+    "webgl_unsupported_text": "ブラウザーがこのページに必要なWebGLに対応しておりません。このページを表示するには、ブラウザーを更新するか、WebGLを有効化して再度お試しください。"
+}
