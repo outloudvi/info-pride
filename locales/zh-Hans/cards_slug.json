@@ -29,5 +29,5 @@
     "aka": "别名：",
     "kizuna_skill_tooltip": "羁绊技能在卡片羁绊觉醒后解锁。",
     "yell_skill_tooltip": "应援技能为被动技能。",
-    "card_level": "等级{level}"
+    "card_level": "Level {level}"
 }
