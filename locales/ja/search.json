@@ -1,1 +1,24 @@
-{}
+{
+    "Card search": "カード検索",
+    "notice_mybox": "所有カードが表示されない場合は、<link>コレクション</link>を設定してください。",
+    "use_hs_search": "スキルからの検索は未実装です - <link>星見ステージ</link>を代わりに使用してください。",
+    "Keyword": "キーワード",
+    "Character": "キャラクター",
+    "Type": "タイプ",
+    "show_only_owned": "所持中のカードのみ表示",
+    "show_only_rare": "初期レア度5★以上のものを表示",
+    "Minimum CT": "最小CT",
+    "Maximum CT": "最大CT",
+    "Unlimited": "無制限",
+    "Skill type": "スキルタイプ",
+    "Target type": "Target type",
+    "Dual A skills": "Aスキル2つ持ち",
+    "Wiki Page (Chinese)": "Wikiページ（中国語）",
+    "Released": "実装日",
+    "Use original strings": "元の表示を使用",
+    "no_skip_sp_on_ctfilter": "SPスキルにCT絞り込みを適用しない",
+    "no_skip_sp_on_ctfilter_desc": "選択した場合、CT絞り込みに当てはまるスキルがなくても、SPスキル持ちのカードは除外されません。他の絞り込みが適用中の際に選択することを推奨します。",
+    "skill_type_desc": "What's this? (Chinese)",
+    "card_total": "合計{num}カード",
+    "card_filtered": "カードが{num} / {num}見つかりました。"
+}
