@@ -1,1 +1,21 @@
-{}
+{
+    "MacaronTalk": "マカロントーク",
+    "Toggle Editor Mode": "編集モード入・切",
+    "Insert a stamp": "スタンプを挿入",
+    "Toggle menu": "メニュー表示・非表示",
+    "Send": "送信",
+    "Import/Export": "インポート・エキスポート",
+    "Import from text": "テキストからインポート",
+    "Import from file": "ファイルからインポート",
+    "Save as file": "ファイルとして保存",
+    "Export as Image": "画像としてエクスポート",
+    "mtalk_description": "マカロントーク　ー　<a>YuzuTalk</a>のIDOLY PRIDE版であり、ユーザーがカスタムのコミュを作成できるツールです。",
+    "n_import_failed": "インポート失敗",
+    "n_import_success": "インポート成功",
+    "n_invalid_json": "無効なJSON",
+    "n_not_array": "アレイである必要があります。",
+    "n_failed_to_read_file": "ファイルの読み込みに失敗しました。",
+    "n_export_image": "画像をエクスポート中…",
+    "n_error_export_image": "画像をエクスポート時のエラー",
+    "n_image_exported": "画像のエクスポート完了"
+}
