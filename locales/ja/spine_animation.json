@@ -1,1 +1,9 @@
-{}
+{
+    "loop_idle": "通常（後ろ）",
+    "loop_idle_forward": "通常（前）",
+    "pose": "ポーズ",
+    "loop_mouth_positive": "ご機嫌",
+    "loop_mouth_negative": "不機嫌",
+    "loop_mouth_normal": "会話中",
+    "": "なし"
+}
