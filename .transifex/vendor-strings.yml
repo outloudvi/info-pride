@@ -1,0 +1,31 @@
+filters:
+  - filter_type: file
+    file_format: KEYVALUEJSON
+    source_language: ja
+    source_file: locales/ja/v-card-alias.json
+    translation_files_expression: "locales/<lang>/v-card-alias.json"
+    mode: onlytranslated
+  - filter_type: file
+    file_format: KEYVALUEJSON
+    source_language: ja
+    source_file: locales/ja/v-card-name.json
+    translation_files_expression: "locales/<lang>/v-card-name.json"
+    mode: onlytranslated
+  - filter_type: file
+    file_format: KEYVALUEJSON
+    source_language: ja
+    source_file: locales/ja/v-chr.json
+    translation_files_expression: "locales/<lang>/v-chr.json"
+    mode: onlytranslated
+  - filter_type: file
+    file_format: KEYVALUEJSON
+    source_language: ja
+    source_file: locales/ja/v-event-name.json
+    translation_files_expression: "locales/<lang>/v-event-name.json"
+    mode: onlytranslated
+  - filter_type: file
+    file_format: KEYVALUEJSON
+    source_language: ja
+    source_file: locales/ja/v-group.json
+    translation_files_expression: "locales/<lang>/v-group.json"
+    mode: onlytranslated
