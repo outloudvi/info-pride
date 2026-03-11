@@ -8,6 +8,8 @@ const Transformations = {
     'v-card-alias.json': ['/Card', (x) => [x.assetId, x.name]],
     'v-card-name.json': ['/Card', (x) => x.name],
     'v-event-name.json': ['/EventStory/List', (x) => x.description],
+    'v-chr.json': ['/Character/List', (x) => x.id],
+    'v-group.json': ['/Character/List', (x) => x.characterGroupId]
 }
 
 async function main() {
@@ -26,6 +28,9 @@ async function main() {
                     } else {
                         ret[$tp(key[0])] = key[1]
                     }
+                }
+                if (ret[""] !== undefined) {
+                    delete ret[""]
                 }
                 writeFileSync(filePath, JSON.stringify(ret, null, 4))
                 console.log(`[DONE] ${filename}`)
