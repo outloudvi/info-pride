@@ -1,1 +1,6 @@
-{}
+{
+    "Event Stories": "イベントストーリー",
+    "Event banner": "イベントバナー",
+    "episode": "Episode {ep}",
+    "stories_ordering": "Event stories are ordered from latest to oldest."
+}
