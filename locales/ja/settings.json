@@ -1,1 +1,12 @@
-{}
+{
+    "Settings": "設定",
+    "Miscellaneous": "その他",
+    "My box": "コレクション",
+    "Save": "保存",
+    "Success": "成功",
+    "Browser compatiblity problem": "ブラウザー非対応",
+    "localstorage_unsupported": "このブラウザーは localStorage に対応しておりません。設定を保存するにはブラウザーを更新するか、通常モードに変更してください。",
+    "settings_saved": "設定が保存されました。",
+    "mybox_header": "コレクションを設定すると、検索の際にカード所有状況が表示されます。",
+    "use_jp_str": "カード検索時に日本語名を使用"
+}
