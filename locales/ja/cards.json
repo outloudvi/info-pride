@@ -12,7 +12,7 @@
     "vocalPt": "ボーカル値",
     "dancePt": "ダンス値",
     "visualPt": "ビジュアル値",
-    "page_header": "カードの各値はレア度 {rarity}、レベル {220}の場合のものです。",
+    "page_header": "カードの各値はレア度 {rarity}、レベル {level}の場合のものです。",
     "cardface_schl": "学校・トレーニング",
     "cardface_casl": "カジュアル",
     "cardface_idol": "アイドル衣装",
