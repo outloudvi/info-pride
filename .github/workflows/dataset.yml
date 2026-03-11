@@ -3,7 +3,7 @@ name: Update dataset
 on:
     schedule:
         # Update Thu 04:15 (CST) per week
-        - cron: '15 20 * * 3'
+        - cron: "15 20 * * 3"
     workflow_dispatch: {}
 
 jobs:
@@ -30,6 +30,7 @@ jobs:
                   git config --local user.email "noreply@outv.im"
                   git config --local user.name "GitHub Actions"
                   git add data/ locales/
+                  git status
                   git commit -m "feat: update dataset"
                   git pull --rebase
 
