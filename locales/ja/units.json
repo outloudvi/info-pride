@@ -1,1 +1,33 @@
-{}
+{
+    "Units": "ユニット",
+    "Invalid Team Code": "チームコードが無効",
+    "Invalid Team Code Description": "入力されたコードは無効、もしくはINFO PRIDEの新しいバージョンのものです。",
+    "Import Team Code": "チームコードよりインポート",
+    "Import Team Description": "チームコードは5人チームのメンバー構成とポジションが含まれ、レベルやスキル情報は含まれません。",
+    "Import Team Tip": "コードは1P- で始まります",
+    "Import Team Success Title": "チームインポート済み",
+    "Import Team Success Description": "チームが正常にインポートされました。",
+    "Team Code": "チームコード",
+    "Import": "インポート",
+    "Select Beatmap": "譜面を選択",
+    "Team Code Generation Error - New Card": "（現在コードを生成できません。新しいカードはccidデータベースに存在しません）",
+    "Team Code Generation Error - Not Full": "（全てのポジションにカードを選択してください）",
+    "Show Beatmap": "譜面を表示",
+    "Hide Beatmap": "譜面を非表示",
+    "Team Not Complete": "チームが未完成です",
+
+    "Select Card At Position": "ポジション{position}のカードを選択",
+    "Select Card": "カードを選択",
+    "No Card Selected": "カードが未選択",
+
+    "Middle": "センター",
+    "Middle Left": "センター左",
+    "Middle Right": "センター右",
+    "Most Left": "最左",
+    "Most Right": "最右",
+
+    "Track Simulation Result": "カード{cardName}のレーン{trackNumber}({trackDesc})のシミュレーション結果",
+    "CT Fail at Track": "CTにより、レーン{trackNum}のスキルが失敗する恐れがあります",
+    "SP Skill Missing": "SPレーンにSPスキルがありません",
+    "Normal": "全て正常です。"
+}
