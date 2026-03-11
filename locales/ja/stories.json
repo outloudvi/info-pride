@@ -1,1 +1,19 @@
-{}
+{
+    "Stories": "ストーリー",
+    "Others": "その他",
+    "Video": "動画",
+    "season": " {s}章",
+    "series": {
+        "Hoshimi": "星見編",
+        "Tokyo": "東京編",
+        "Stellar": "星空編",
+        "Big4": "BIG4編",
+        "TRINITYAiLE": "TRINITYAiLE",
+        "LizNoir": "LizNoir",
+        "Mana": "長瀬麻奈",
+        "ThreeX": "ⅢⅩ",
+        "Tsuki": "月のテンペスト",
+        "Sunny": "SUNNY PEACE",
+        "Special": "その他"
+    }
+}
