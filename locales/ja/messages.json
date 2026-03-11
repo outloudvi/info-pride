@@ -1,1 +1,13 @@
-{}
+{
+    "Messages": "メッセージ",
+    "Fullscreen": "フル画面表示",
+    "Exit fullscreen": "フル画面表示解除",
+    "Manager": "マネージャー",
+    "Delete": "削除",
+    "line_response": "返事 {src}",
+    "line_choice": "選択 {src}",
+    "full_screen_advised": "このページはフル画面推奨です。",
+    "full_screen_unsupported": "フル画面に対応しておりません。",
+    "communication_ended": "コミュの終わり",
+    "select_a_commu": "コミュを選択してください。"
+}
