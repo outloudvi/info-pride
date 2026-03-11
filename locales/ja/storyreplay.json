@@ -1,1 +1,22 @@
-{}
+{
+    "Story replay": "ストーリー再生",
+    "Background": "背景",
+    "BGM": "BGM",
+    "Message": "メッセージ",
+    "Manager": "マネージャー",
+    "SFX": "効果音",
+    "Voice": "ボイス",
+    "Narration": "ナレーション",
+    "ChoiceGroup": "選択",
+    "BranchGroup": "ルート",
+    "Next chapter": "次の話",
+    "(End)": "（終わり）",
+    "Related stories": "関連話",
+    "be_patient": "このページには多くのデータがあるため、読み込み時間が長くなる恐れがあります。リラックスしてお待ちください。",
+    "no_story": "ストーリーが見つかりませんでした。",
+    "multiple_parts": "このストーリーは{len}パートあります。",
+    "story_part": "ストーリーのパート{p}です。",
+    "no_title": "（無名）",
+    "story_part_live": "このパートはライブ映像です。",
+    "story_not_found": "関連話が見つかりませんでした。"
+}
