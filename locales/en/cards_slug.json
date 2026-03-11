@@ -28,5 +28,6 @@
     "part": "Part {s}",
     "aka": "Also known as:",
     "kizuna_skill_tooltip": "Kizuna Skill is unlocked after Kizuna Awakening.",
-    "yell_skill_tooltip": "Yell Skill is a passive skill."
+    "yell_skill_tooltip": "Yell Skill is a passive skill.",
+    "card_level": "Level {level}"
 }

@@ -25,6 +25,7 @@ const SkillBlock = ({
 }) => {
     const { name, categoryType, levels } = skill
 
+    const $t = useTranslations('cards_slug')
     const $v = useTranslations('vendor')
 
     const [level, setLevel] = useState(1)
@@ -42,9 +43,9 @@ const SkillBlock = ({
                     min={levels[0].level}
                     max={levels[levels.length - 1].level}
                     value={level}
-                    label={(v) => `Level ${v}`}
+                    label={(v) => $t('card_level', { level: v })}
                     onChange={setLevel}
-                    aria-label={'Level'}
+                    aria-label={$t('Level')}
                 />
                 <span>{lfToBr(levels[level - 1].description, true)}</span>
             </div>
@@ -56,6 +57,7 @@ const YellSkill = ({ skill }: { skill: LiveAbility | ActivityAbility }) => {
     const { name, levels } = skill
 
     const [level, setLevel] = useState(1)
+    const $t = useTranslations('cards_slug')
 
     return (
         <>
@@ -67,9 +69,9 @@ const YellSkill = ({ skill }: { skill: LiveAbility | ActivityAbility }) => {
                             min={levels[0].level}
                             max={levels[levels.length - 1].level}
                             value={level}
-                            label={(v) => `Level ${v}`}
+                            label={(v) => $t('card_level', { level: v })}
                             onChange={setLevel}
-                            aria-label={'Level'}
+                            aria-label={$t('Level')}
                         />
                     }
                 </div>
