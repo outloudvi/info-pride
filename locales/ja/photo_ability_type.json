@@ -26,8 +26,8 @@
     "AudienceAmountUp": "来場ファン数上昇",
     "ReceivedStrengthEffectValueIncrease": "強化効果増強",
     "ReceivedStrengthEffectCountIncrease": "強化効果延長",
-    "AffectStrengthEffectValueIncrease": "AffectStrengthEffectValueIncrease",
-    "AffectStrengthEffectCountIncrease": "AffectStrengthEffectCountIncrease",
+    "AffectStrengthEffectValueIncrease": "付与するブースト増強",
+    "AffectStrengthEffectCountIncrease": "付与するブースト上昇",
     "CoolTimeReductionSkill1": "CT減少",
     "CoolTimeReductionSkill2": "CT減少",
     "CoolTimeReductionSkill3": "CT減少"
