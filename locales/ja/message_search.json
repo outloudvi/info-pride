@@ -1,1 +1,6 @@
-{}
+{
+    "Message Search": "メッセージ検索",
+    "description": "メッセージテキストから検索。30件まで表示されます。",
+    "search_placeholder": "メッセージテキスト…",
+    "no_results": "対象の検索結果がありません。"
+}
