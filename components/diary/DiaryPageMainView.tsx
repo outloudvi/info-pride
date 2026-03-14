@@ -10,6 +10,9 @@ import { useTranslations } from 'next-intl'
 
 import AssetImage from '#components/AssetImage'
 
+// This is per required by HTML <input> element, and thus unrelated with user locale
+const INPUT_DATE_PICK_FORMAT = 'YYYY-MM-DD'
+
 const START_DATE = dayjs('2016-05-05')
 const END_DATE = dayjs('2017-12-27')
 
@@ -130,29 +133,38 @@ const DiaryPageMainView = () => {
                 <div>
                     <p>
                         {`${$t('included_diary_dates')} ${$t('date_from_to', {
-                            START_DATE: toShortDate(START_DATE.toDate()),
-                            END_DATE: toShortDate(END_DATE.toDate()),
+                            START_DATE:
+                                START_DATE.toDate().toLocaleDateString(),
+                            END_DATE: END_DATE.toDate().toLocaleDateString(),
                         })}`}
                     </p>
                     <div>
                         <div className="flex-col">
-                            <DatePickerInput
+                            <div>
+                                <label htmlFor="date-input" className="text-sm">
+                                    {$t('date')}
+                                </label>
+                            </div>
+                            <input
+                                name="date-input"
+                                className="w-48"
+                                type="date"
+                                title={$t('date')}
                                 placeholder={$t('choose_a_date')}
-                                label={$t('date')}
-                                required
-                                className="w-72"
-                                value={currDate}
-                                minDate={START_DATE.toDate()}
-                                maxDate={END_DATE.toDate()}
+                                min={START_DATE.format(INPUT_DATE_PICK_FORMAT)}
+                                max={END_DATE.format(INPUT_DATE_PICK_FORMAT)}
+                                value={dayjs(currDate).format(
+                                    INPUT_DATE_PICK_FORMAT,
+                                )}
                                 onChange={(e) => {
-                                    if (e) setCurrDate(e)
+                                    if (e.target.value)
+                                        setCurrDate(new Date(e.target.value))
                                 }}
-                                clearButtonProps={{
-                                    'aria-label': $c('Clear'),
-                                }}
+                                required
                             />
                         </div>
                     </div>
+
                     <div className="mt-2">
                         <Button
                             className="mr-2"
