@@ -9,7 +9,7 @@ const SiteNotice = async () => {
     const news = await getSiteNews()
 
     return news && news.length > 0 ? (
-        <ul>
+        <ul lang="ja">
             {news.map(({ title, link }, key) => (
                 <li key={key}>
                     <Link href={link ? link : '#'}>{title}</Link>

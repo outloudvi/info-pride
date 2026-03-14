@@ -50,7 +50,7 @@ const InGameNotice = ({ type }: { type: NoticeType }) => {
                         )}
                 </div>
             </Modal>
-            <ul>
+            <ul lang="ja">
                 {news.map((item, key) => {
                     const { title, linkDetail } = item
                     const linkBody = linkDetail ? (
