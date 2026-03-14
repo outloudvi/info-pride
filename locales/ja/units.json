@@ -27,9 +27,9 @@
     "CT Fail at Track": "CTにより、レーン{trackNum}のスキルが失敗する恐れがあります",
     "SP Skill Missing": "SPレーンにSPスキルがありません",
     "Normal": "全て正常です。",
-    "track_color_vocal": "Vocal",
-    "track_color_dance": "Dance",
-    "track_color_visual": "Visual",
-    "track_color_stamina": "Stamina",
+    "track_color_vocal": "ボーカル",
+    "track_color_dance": "ダンス",
+    "track_color_visual": "ビジュアル",
+    "track_color_stamina": "スタミナ",
     "track_color_default": "Default"
 }
