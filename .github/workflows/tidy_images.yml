@@ -17,11 +17,11 @@ jobs:
           REPOSITORY_OWNER="outloudvi"
           PACKAGE_NAME="info-pride"
 
-          ids=$(gh api -X GET "/orgs/${REPOSITORY_OWNER}/packages/container/${PACKAGE_NAME}/versions" -F package_type=container -F per_page=100 -q '.[] | select(.metadata.container.tags | length == 0) | .id')
+          ids=$(gh api -X GET "/users/${REPOSITORY_OWNER}/packages/container/${PACKAGE_NAME}/versions" -F package_type=container -F per_page=100 -q '.[] | select(.metadata.container.tags | length == 0) | .id')
 
           for id in $ids; do
             echo "Deleting untagged image with ID: $id"
-            gh api -X DELETE "/orgs/${REPOSITORY_OWNER}/packages/container/${PACKAGE_NAME}/versions/$id"
+            gh api -X DELETE "/users/${REPOSITORY_OWNER}/packages/container/${PACKAGE_NAME}/versions/$id"
           done
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
