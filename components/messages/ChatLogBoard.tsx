@@ -31,6 +31,7 @@ const ChatLogBoard = ({
             style={{
                 height: 'calc(100% - 4rem)',
             }}
+            lang="ja"
         >
             {msgs.map((line, key) => (
                 <MessageItem
