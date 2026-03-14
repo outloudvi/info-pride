@@ -35,7 +35,6 @@ const CharactersPage = async ({
     return (
         <>
             <h2>{$t('Characters')}</h2>
-            <p>{$vc('char-mna')}</p>
             <Grid gutter={20} className="my-3">
                 <GridCol span={{ base: 12, lg: 4 }}>
                     <Suspense>

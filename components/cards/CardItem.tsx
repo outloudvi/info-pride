@@ -129,7 +129,7 @@ const CardItem = async ({
             </div>
             <Grid gutter={20}>
                 <GridCol span={{ base: 12, lg: 6 }}>
-                    <div className="text-gray-600 dark:text-gray-400">
+                    <div className="text-gray-600 dark:text-gray-400" lang="ja">
                         {lfToBr(description)}
                     </div>
 

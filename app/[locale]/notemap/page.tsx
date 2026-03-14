@@ -41,4 +41,4 @@ export async function generateMetadata({
     }
 }
 
-export default withAsyncMessages(NotemapPage, ['notemap'])
+export default withAsyncMessages(NotemapPage, ['notemap', 'units'])

@@ -28,5 +28,6 @@
     "part": "第 {s} 部分",
     "aka": "別名：",
     "kizuna_skill_tooltip": "羈絆技能在卡片羈絆覺醒後解鎖。",
-    "yell_skill_tooltip": "應援技能為被動技能。"
+    "yell_skill_tooltip": "應援技能為被動技能。",
+    "card_level": "Level {level}"
 }

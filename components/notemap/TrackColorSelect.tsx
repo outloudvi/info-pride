@@ -13,6 +13,8 @@ const TrackColorSelect = ({
     setLaneColors: Dispatch<SetStateAction<string[]>>
 }) => {
     const $t = useTranslations('common')
+    const $tu = useTranslations('units')
+
     return (
         <div className="flex justify-around">
             {_range(0, 5).map((val, key) => {
@@ -23,7 +25,7 @@ const TrackColorSelect = ({
                         label={`${$t('Color')} ${uiNumber}`}
                         value={laneColors[val]}
                         data={Object.entries(Colors).map(([label, value]) => ({
-                            label,
+                            label: $tu(`track_color_${label.toLowerCase()}`),
                             value,
                         }))}
                         onChange={(i) => {

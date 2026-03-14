@@ -60,6 +60,15 @@
       "contributions": [
         "translation"
       ]
+    },
+    {
+      "login": "micr-nex",
+      "name": "micronex",
+      "avatar_url": "https://avatars.githubusercontent.com/u/267436674?v=4",
+      "profile": "https://github.com/micr-nex",
+      "contributions": [
+        "translation"
+      ]
     }
   ],
   "contributorsPerLine": 7,

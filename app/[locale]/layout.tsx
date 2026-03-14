@@ -13,6 +13,7 @@ import Layout from '#components/layout/Layout'
 import locales from '#locales/locales.json'
 import { theme } from '#components/theme'
 import Paths from '#utils/paths'
+import pickFontSetForLocale from '#utils/pickFontSetForLocale'
 
 import '../../styles/globals.css'
 
@@ -85,6 +86,11 @@ export default async function RootLayout({
                     src="https://umami.outv.im/script.js"
                     data-website-id="d4ac34a0-ddca-4e4c-be43-bd82eee15bc7"
                 />
+                <style
+                    dangerouslySetInnerHTML={{
+                        __html: `:root{--loc-fonts:${pickFontSetForLocale(locale, true)}}:lang(ja){font-family:${pickFontSetForLocale('ja', false)}`,
+                    }}
+                ></style>
             </head>
             <body>
                 <Suspense fallback={null}>

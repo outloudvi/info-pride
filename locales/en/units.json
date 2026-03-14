@@ -15,19 +15,21 @@
     "Show Beatmap": "Show Beatmap",
     "Hide Beatmap": "Hide Beatmap",
     "Team Not Complete": "Team Not Complete",
-
     "Select Card At Position": "Select Card at Position {position}",
     "Select Card": "Select Card",
     "No Card Selected": "No Card Selected",
-
     "Middle": "Middle",
     "Middle Left": "Middle Left",
     "Middle Right": "Middle Right",
     "Most Left": "Most Left",
     "Most Right": "Most Right",
-
     "Track Simulation Result": "{trackNumber} track ({trackDesc}) simulation result with card {cardName}.",
     "CT Fail at Track": "A skill at track {trackNum} may fail due to CT",
     "SP Skill Missing": "No SP skill at SP track",
-    "Normal": "Everything is normal."
+    "Normal": "Everything is normal.",
+    "track_color_vocal": "Vocal",
+    "track_color_dance": "Dance",
+    "track_color_visual": "Visual",
+    "track_color_stamina": "Stamina",
+    "track_color_default": "Default"
 }
