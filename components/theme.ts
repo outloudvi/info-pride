@@ -7,7 +7,7 @@ export const theme = createTheme({
         lg: '64em',
         xl: '80em',
     },
-    fontFamily: 'var(--loc-fonts, system-ui, sans-serif)',
+    fontFamily: 'var(--loc-fonts, "system-ui, sans-serif")',
     components: {
         AppShell: {
             styles: {
