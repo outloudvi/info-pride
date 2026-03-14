@@ -7,8 +7,7 @@ export const theme = createTheme({
         lg: '64em',
         xl: '80em',
     },
-    fontFamily:
-        '-apple-system, system-ui, "Segoe UI", "Helvetica Neue", Arial, "Hiragino Sans GB", "PingFang SC", "Heiti SC", "Noto Sans CJK SC", "Source Han Sans SC", "Microsoft YaHei UI", "Microsoft YaHei", sans-serif',
+    fontFamily: 'var(--loc-fonts, system-ui, sans-serif)',
     components: {
         AppShell: {
             styles: {
