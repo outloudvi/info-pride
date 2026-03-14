@@ -1,0 +1,27 @@
+name: Cleanup Untagged Images
+
+on:
+  workflow_dispatch: {}
+
+permissions:
+  packages: write
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Remove untagged images
+        run: |
+          set -euo pipefail
+
+          REPOSITORY_OWNER="outloudvi"
+          PACKAGE_NAME="info-pride"
+
+          ids=$(gh api -X GET "/orgs/${REPOSITORY_OWNER}/packages/container/${PACKAGE_NAME}/versions" -F package_type=container -F per_page=100 -q '.[] | select(.metadata.container.tags | length == 0) | .id')
+
+          for id in $ids; do
+            echo "Deleting untagged image with ID: $id"
+            gh api -X DELETE "/orgs/${REPOSITORY_OWNER}/packages/container/${PACKAGE_NAME}/versions/$id"
+          done
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
