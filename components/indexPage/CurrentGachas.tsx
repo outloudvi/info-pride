@@ -17,7 +17,12 @@ const CurrentGachas = async () => {
     )
 
     return (
-        <Group wrap="nowrap" align="flex-start" className="overflow-x-auto">
+        <Group
+            wrap="nowrap"
+            align="flex-start"
+            className="overflow-x-auto"
+            lang="ja"
+        >
             {gachas.map((x, key) => {
                 const {
                     name,
