@@ -27,9 +27,9 @@
     "CT Fail at Track": "位於 {trackNum} 拍的 A 技能可能因為 CT 失敗",
     "SP Skill Missing": "SP 軌道上的卡片沒有 SP 技能",
     "Normal": "一切正常。",
-    "track_color_vocal": "Vocal",
-    "track_color_dance": "Dance",
-    "track_color_visual": "Visual",
-    "track_color_stamina": "Stamina",
+    "track_color_vocal": "歌唱",
+    "track_color_dance": "舞蹈",
+    "track_color_visual": "視覺",
+    "track_color_stamina": "體力",
     "track_color_default": "Default"
 }
