@@ -15,19 +15,21 @@
     "Show Beatmap": "顯示曲譜",
     "Hide Beatmap": "隱藏曲譜",
     "Team Not Complete": "隊伍不完整",
-
     "Select Card At Position": "選擇位置 {position} 的卡片",
     "Select Card": "選擇卡片",
     "No Card Selected": "未選擇卡片",
-
     "Middle": "中間",
     "Middle Left": "中左",
     "Middle Right": "中右",
     "Most Left": "最左",
     "Most Right": "最右",
-
     "Track Simulation Result": "{trackNumber} 軌道（{trackDesc}）的驗證結果（{cardName}）",
     "CT Fail at Track": "位於 {trackNum} 拍的 A 技能可能因為 CT 失敗",
     "SP Skill Missing": "SP 軌道上的卡片沒有 SP 技能",
-    "Normal": "一切正常。"
+    "Normal": "一切正常。",
+    "track_color_vocal": "Vocal",
+    "track_color_dance": "Dance",
+    "track_color_visual": "Visual",
+    "track_color_stamina": "Stamina",
+    "track_color_default": "Default"
 }

@@ -15,19 +15,21 @@
     "Show Beatmap": "譜面を表示",
     "Hide Beatmap": "譜面を非表示",
     "Team Not Complete": "チームが未完成です",
-
     "Select Card At Position": "ポジション{position}のカードを選択",
     "Select Card": "カードを選択",
     "No Card Selected": "カードが未選択",
-
     "Middle": "センター",
     "Middle Left": "センター左",
     "Middle Right": "センター右",
     "Most Left": "最左",
     "Most Right": "最右",
-
     "Track Simulation Result": "カード{cardName}のレーン{trackNumber}({trackDesc})のシミュレーション結果",
     "CT Fail at Track": "CTにより、レーン{trackNum}のスキルが失敗する恐れがあります",
     "SP Skill Missing": "SPレーンにSPスキルがありません",
-    "Normal": "全て正常です。"
+    "Normal": "全て正常です。",
+    "track_color_vocal": "Vocal",
+    "track_color_dance": "Dance",
+    "track_color_visual": "Visual",
+    "track_color_stamina": "Stamina",
+    "track_color_default": "Default"
 }
