@@ -23,19 +23,24 @@ function wrap(fontName: string) {
     return `"${fontName}"`
 }
 
-export default function pickFontSetForLocale(locale: string) {
-    return [
+export default function pickFontSetForLocale(
+    locale: string,
+    useSystemFontsFirst: boolean,
+) {
+    const systemFonts = [
         // system UI font
         'system-ui',
 
         // only Apple can do
         '-apple-system',
         'BlinkMacSystemFont',
+    ]
 
-        // language-specific fonts
-        ...getPreferredCustomFonts(locale).map(wrap),
+    const prefeerredFonts = getPreferredCustomFonts(locale).map(wrap)
+    const fallbackFonts = ['sans-serif']
+    const fontList = useSystemFontsFirst
+        ? [...systemFonts, ...prefeerredFonts, ...fallbackFonts]
+        : [...prefeerredFonts, ...systemFonts, ...fallbackFonts]
 
-        // final fallback
-        'sans-serif',
-    ].join(', ')
+    return fontList.join(',')
 }

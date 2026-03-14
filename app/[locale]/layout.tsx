@@ -88,7 +88,7 @@ export default async function RootLayout({
                 />
                 <style
                     dangerouslySetInnerHTML={{
-                        __html: `:root{--loc-fonts:${pickFontSetForLocale(locale)}}:lang(ja){font-family:${pickFontSetForLocale('ja')}`,
+                        __html: `:root{--loc-fonts:${pickFontSetForLocale(locale, true)}}:lang(ja){font-family:${pickFontSetForLocale('ja', false)}`,
                     }}
                 ></style>
             </head>
