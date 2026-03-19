@@ -32,7 +32,7 @@ const StoryReplayPage = async ({
 
     return (
         <>
-            <div className="max-w-3xl mx-auto">
+            <div className="max-w-3xl mx-auto relative">
                 {items.length === 0 ? (
                     <p>{$t('no_story')}</p>
                 ) : items.length > 1 ? (

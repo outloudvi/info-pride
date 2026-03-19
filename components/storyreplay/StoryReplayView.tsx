@@ -148,34 +148,36 @@ const StoryReplayView = ({
     )
 
     return (
-        <div>
-            <StoryContext.Provider value={storyContext}>
-                {koi && (
-                    <KoiPartsList
-                        parts={koi.parts}
-                        baseId={baseId}
-                        currentPartId={partId}
-                    />
-                )}
-                <h3>{title}</h3>
-                {mergedLines.map((line, key) => (
-                    <ErrorBoundary key={key}>
-                        {displayLine(line, backgroundGroup, String(key))}
-                    </ErrorBoundary>
-                ))}
-                {nextPart === null ? (
-                    <div className="text-center">{$t('(End)')}</div>
-                ) : nextPart !== undefined ? (
-                    <div className="text-center">
-                        <Link href={`/story/${baseId}-${nextPart}`}>
-                            <Button>{$t('Next chapter')}</Button>
-                        </Link>
-                    </div>
-                ) : (
-                    <></>
-                )}
-            </StoryContext.Provider>
-        </div>
+        <>
+            {koi && (
+                <KoiPartsList
+                    parts={koi.parts}
+                    baseId={baseId}
+                    currentPartId={partId}
+                />
+            )}
+            <div>
+                <StoryContext.Provider value={storyContext}>
+                    <h3>{title}</h3>
+                    {mergedLines.map((line, key) => (
+                        <ErrorBoundary key={key}>
+                            {displayLine(line, backgroundGroup, String(key))}
+                        </ErrorBoundary>
+                    ))}
+                    {nextPart === null ? (
+                        <div className="text-center">{$t('(End)')}</div>
+                    ) : nextPart !== undefined ? (
+                        <div className="text-center">
+                            <Link href={`/story/${baseId}-${nextPart}`}>
+                                <Button>{$t('Next chapter')}</Button>
+                            </Link>
+                        </div>
+                    ) : (
+                        <></>
+                    )}
+                </StoryContext.Provider>
+            </div>
+        </>
     )
 }
 
