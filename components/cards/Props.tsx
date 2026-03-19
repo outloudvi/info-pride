@@ -59,7 +59,7 @@ const Props = ({
             <Grid.Col span="content">
                 <Grid>
                     <Grid.Col span={6}>
-                        <div className="text-vocal text-center">
+                        <div className="text-vocal flex items-center justify-center mb-1">
                             <img
                                 src={Paths.sprite('x-icon_parameter_vocal')}
                                 alt="Vocal parameter icon"
@@ -68,7 +68,7 @@ const Props = ({
                             />
                             {calc(vocalRatioPermil)}
                         </div>
-                        <div className="text-visual text-center">
+                        <div className="text-visual flex items-center justify-center">
                             <img
                                 src={Paths.sprite('x-icon_parameter_visual')}
                                 alt="Vocal parameter icon"
@@ -79,7 +79,7 @@ const Props = ({
                         </div>
                     </Grid.Col>
                     <Grid.Col span={6}>
-                        <div className="text-dance text-center">
+                        <div className="text-dance flex items-center justify-center mb-1">
                             <img
                                 src={Paths.sprite('x-icon_parameter_dance')}
                                 alt="Vocal parameter icon"
@@ -88,7 +88,7 @@ const Props = ({
                             />
                             {calc(danceRatioPermil)}
                         </div>
-                        <div className="text-stamina text-center">
+                        <div className="text-stamina flex items-center justify-center">
                             <img
                                 src={Paths.sprite('x-icon_parameter_stamina')}
                                 alt="Vocal parameter icon"
