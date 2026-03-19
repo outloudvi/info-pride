@@ -1,5 +1,5 @@
 export const DEFAULT_LANGUAGE = 'zh-Hans'
-export const MAX_LEVEL = 220
+export const MAX_LEVEL = 230
 export const MAX_RARITY = 10
 export const MAX_LEVEL_BEFORE_POTENTIAL = 200
 export const PLACEHOLDER_SVG =
