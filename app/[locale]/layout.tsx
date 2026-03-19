@@ -28,7 +28,7 @@ const OG_IMAGE = Paths.self('/social.png')
 
 export const metadata: Metadata = {
     metadataBase:
-        process.env.VERCEL_ENV === 'production'
+        process.env.NODE_ENV === 'production'
             ? new URL(Paths.self(''))
             : new URL(`http://localhost:${process.env.PORT ?? 3000}`),
     title: {
