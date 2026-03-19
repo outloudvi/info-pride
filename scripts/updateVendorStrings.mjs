@@ -23,9 +23,9 @@ async function main() {
                 let ret = JSON.parse(readFileSync(filePath, 'utf-8'))
                 for (const i of items) {
                     const key = lambda(i)
-                    if (typeof key === 'string') {
+                    if (typeof key === 'string' && !ret[$tp(key)]) {
                         ret[$tp(key)] = key
-                    } else {
+                    } else if (!ret[$tp(key[0])]) {
                         ret[$tp(key[0])] = key[1]
                     }
                 }
