@@ -3,10 +3,14 @@ type Predicate2 = 'AND' | 'OR'
 type Predicate3 = 'EQU'
 type Predicate4 = 'TRUE' | 'FALSE'
 type Predicate5 = 'EVAL'
+type Predicate6 = 'SUM'
 
 type Op = '+' | '-' | '*' | '/' | '>' | '<' | '='
 type NumberOrCtxNumber = number | `[${string}]`
-type NumberLike = readonly [NumberLike, Op, NumberLike] | NumberOrCtxNumber
+type NumberLike =
+    | readonly [Predicate6, readonly NumberLike[]]
+    | readonly [NumberLike, Op, NumberLike]
+    | NumberOrCtxNumber
 
 type Logic1 = readonly [Predicate1, Logic]
 type Logic2 = readonly [Predicate2, Logic, Logic]
@@ -60,6 +64,9 @@ export function evaluate(
         return getValue(exp, context)
     }
     const [left, op, right] = exp
+    if (left === 'SUM') {
+        return op.map((x) => evaluate(x, context)).reduce((a, b) => a + b, 0)
+    }
     switch (op) {
         case '+': {
             return evaluate(left, context) + evaluate(right, context)

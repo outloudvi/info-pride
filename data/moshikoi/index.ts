@@ -3,6 +3,7 @@ import stLoveRei from './st-love-23-0514'
 import stLoveNagisa from './st-love-23-1114'
 import stLoveMei from './st-love-24-0517'
 import stLoveYu from './st-love-24-1114'
+import stLoveRio from './st-love-26-0313'
 
 const STD_KOI = {
     '001': 'Part 1',
@@ -16,6 +17,19 @@ const STD_KOI = {
     '008-happy': 'Happy End',
     '008-normal': 'Normal End',
 } as const
+
+const STD_KOI_8 = {
+    '001': 'Part 1',
+    '002': 'Part 2',
+    '003': 'Part 3',
+    '004': 'Part 4',
+    '005': 'Part 5',
+    '006': 'Part 6',
+    '007': 'Part 7',
+    '008-bad': 'Bad End',
+    '008-happy': 'Happy End',
+    '008-normal': 'Normal End',
+}
 
 const moshikoiLogics: Partial<Record<string, MoshikoiConfig>> = {
     'st-love-23-0514': {
@@ -31,18 +45,7 @@ const moshikoiLogics: Partial<Record<string, MoshikoiConfig>> = {
         gameLogic: stLoveMei,
     },
     'st-love-24-1114': {
-        parts: {
-            '001': 'Part 1',
-            '002': 'Part 2',
-            '003': 'Part 3',
-            '004': 'Part 4',
-            '005': 'Part 5',
-            '006': 'Part 6',
-            '007': 'Part 7',
-            '008-bad': 'Bad End',
-            '008-happy': 'Happy End',
-            '008-normal': 'Normal End',
-        },
+        parts: STD_KOI_8,
         gameLogic: stLoveYu,
     },
     'st-love-25-0426': {
@@ -66,6 +69,10 @@ const moshikoiLogics: Partial<Record<string, MoshikoiConfig>> = {
             '005-succubus-rui-bad': 'ルイBE',
             '005-succubus-rui-good': 'ルイGE',
         },
+    },
+    'st-love-26-0313': {
+        parts: STD_KOI_8,
+        gameLogic: stLoveRio,
     },
 } as const
 

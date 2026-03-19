@@ -38,6 +38,12 @@ const MoshikoiMeta: Record<
         startStory: 'st-love-25-0426-001',
         img: 'img_photo_full_photo-love-25-0426-01',
     },
+    '260313': {
+        title: 'もしも職場で恋をしたら',
+        characterId: 'char-rio',
+        startStory: 'st-love-26-0313-001',
+        img: 'img_photo_full_photo-love-26-0318-01',
+    },
 }
 
 export default MoshikoiMeta

@@ -4,6 +4,7 @@ import { expect } from 'chai'
 import { evaluate, evaluateLogic } from './logicParser'
 
 import { yuPointNumber } from '#data/moshikoi/st-love-24-1114'
+import { rioNegativePointNumber } from '#data/moshikoi/st-love-26-0313'
 
 const okFlag0 = {
     '002:20': 1,
@@ -23,6 +24,7 @@ const badFlag4 = {
     '005:20': 0,
     '007:4.60': 0,
 }
+const normalFlag8 = {}
 
 describe('evaluate', function () {
     it('Moshikoi Yu - Good end', function () {
@@ -42,5 +44,9 @@ describe('evaluate', function () {
         expect(
             evaluateLogic(['EVAL', [yuPointNumber, '>', 3]], badFlag4),
         ).to.eq(true)
+    })
+
+    it('Moshikoi Rio - Good end', function () {
+        expect(evaluate(rioNegativePointNumber, normalFlag8)).to.eq(8)
     })
 })
