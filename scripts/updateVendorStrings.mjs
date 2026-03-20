@@ -8,8 +8,7 @@ const Transformations = {
     'v-card-alias.json': ['/Card', (x) => [x.assetId, x.name]],
     'v-card-name.json': ['/Card', (x) => x.name],
     'v-event-name.json': ['/EventStory/List', (x) => x.description],
-    'v-chr.json': ['/Character/List', (x) => x.id],
-    'v-group.json': ['/Character/List', (x) => x.characterGroupId]
+    'v-chr.json': ['/Character/List', (x) => [x.id, x.name]],
 }
 
 async function main() {
