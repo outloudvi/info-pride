@@ -113,9 +113,11 @@ const CharacterItem = async ({
                 <b className="text-4xl" lang="zh-Hans">
                     {$vc(id)}
                 </b>{' '}
-                <span className="text-2xl ml-4" lang="ja">
-                    {name}
-                </span>
+                {locale !== 'ja' && (
+                    <span className="text-2xl ml-4" lang="ja">
+                        {name}
+                    </span>
+                )}
                 {/* Hidden for en */}
                 {locale !== 'en' && (
                     <div
