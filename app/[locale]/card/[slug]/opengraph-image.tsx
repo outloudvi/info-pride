@@ -33,13 +33,7 @@ export default async function OGImage({
 
     const fullIconSlug = getAssetSlug(assetId, 'full', 1)
     const imageBuf = await fetch(Paths.assetsImg(fullIconSlug) + '.png').then(
-        (x) => {
-            const contentType = x.headers.get('Content-Type')
-            if (contentType?.toLowerCase() !== 'image/png') {
-                throw new Error(`Invalid image Content-Type: ${contentType}`)
-            }
-            return x.arrayBuffer()
-        },
+        (x) => x.arrayBuffer(),
     )
 
     const copyrightMarks = getImageCopyrightMarks(id)
