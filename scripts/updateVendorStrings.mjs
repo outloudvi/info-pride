@@ -6,8 +6,8 @@ const __dirname = dirname(new URL(import.meta.url).pathname)
 
 const Transformations = {
     'v-card-alias.json': ['/Card', (x) => [x.assetId, x.name]],
-    'v-card-name.json': ['/Card', (x) => x.name],
-    'v-event-name.json': ['/EventStory/List', (x) => x.description],
+    'v-card-name.json': ['/Card', (x) => [x.name, x.name]],
+    'v-event-name.json': ['/EventStory/List', (x) => [x.description, x.description]],
     'v-chr.json': ['/Character/List', (x) => [x.id, x.name]],
 }
 
@@ -21,11 +21,10 @@ async function main() {
                 ).then((x) => x.json())
                 let ret = JSON.parse(readFileSync(filePath, 'utf-8'))
                 for (const i of items) {
-                    const key = lambda(i)
-                    if (typeof key === 'string' && !ret[$tp(key)]) {
-                        ret[$tp(key)] = key
-                    } else if (!ret[$tp(key[0])]) {
-                        ret[$tp(key[0])] = key[1]
+                    const [key, value] = lambda(i)
+                    const escapedKey = $tp(key)
+                    if (!ret[escapedKey]) {
+                        ret[escapedKey] = value
                     }
                 }
                 if (ret[""] !== undefined) {
