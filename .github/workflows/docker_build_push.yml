@@ -7,6 +7,8 @@ on:
 
 jobs:
   build-and-push:
+    concurrency:
+      cancel-in-progress: true
     runs-on: ubuntu-latest
     permissions:
       contents: read
