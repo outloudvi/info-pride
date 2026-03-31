@@ -109,16 +109,16 @@ const CardItem = async ({
                 <Anchor href="/cards" className="no-underline">
                     {$t('Card list')}
                 </Anchor>
-                <Anchor>{name}</Anchor>
+                {''}
             </Breadcrumbs>
             <div>
                 {title !== card.name ? (
                     <>
-                        <div className="text-3xl mb-2" lang={locale}>
-                            {title}
-                        </div>
-                        <div className="text-xl mb-2" lang="ja">
+                        <div className="text-3xl mb-2" lang="ja">
                             {name}
+                        </div>
+                        <div className="text-xl mb-2" lang={locale}>
+                            {title}
                         </div>
                     </>
                 ) : (

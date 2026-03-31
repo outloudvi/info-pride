@@ -62,12 +62,14 @@ const CardCard = ({ card }: { card: UnArray<APIResponseOf<'Card/List'>> }) => {
                         {$vcn($tp(name)) !== name && (
                             <>
                                 <br />
-                                <span>{$vcn($tp(name))}</span>
+                                <span className="opacity-60 underline">
+                                    {$vcn($tp(name))}
+                                </span>
                             </>
                         )}
                     </div>
 
-                    <div className="my-2">
+                    <div className="mt-3 mb-2 text-sm">
                         {$vc(characterId)} / {$v(CardType[type])} /{' '}
                         {$v(AttributeType[cardColor])} / {$t('Initially')}{' '}
                         {initialRarity}★
