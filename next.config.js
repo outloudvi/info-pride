@@ -34,7 +34,7 @@ const nextConfig = withNextIntl({
         ]
     },
     images: {
-        domains: ['ac.ip.outv.im', 'idoly-assets.outv.im'],
+        domains: ['idoly-ac.outv.im', 'ac.ip.outv.im', 'idoly-assets.outv.im'],
         unoptimized: true,
     },
     output: 'standalone',

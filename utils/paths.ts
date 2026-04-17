@@ -20,7 +20,7 @@ const Paths = {
     mgw: (pageName: string) => `https://zh.moegirl.org.cn/${pageName}`,
     ipweb: (postId: string) => `https://idolypride.jp/gallery/${postId}`,
     assetsImg: (assetId: string) =>
-        `https://ac.ip.outv.im/api/${
+        `https://idoly-ac.outv.im/api/${
             assetId.startsWith('env') ? 'env' : 'img'
         }/${assetId}`,
     assetsRaw: (assetPath?: string) => Paths.s3(`assets/${assetPath ?? ''}`),
