@@ -63,6 +63,19 @@ export function generateStaticParams() {
     return locales.map((locale) => ({ locale }))
 }
 
+const trackingSrc = `
+var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//tomo.outv.im/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();`.trim()
+
 export default async function RootLayout({
     children,
     params: { locale },
@@ -81,11 +94,7 @@ export default async function RootLayout({
                     name="viewport"
                     content="minimum-scale=1, initial-scale=1, width=device-width"
                 />
-                <Script
-                    async
-                    src="https://umami.outv.im/script.js"
-                    data-website-id="d4ac34a0-ddca-4e4c-be43-bd82eee15bc7"
-                />
+                <Script>{trackingSrc}</Script>
                 <style
                     dangerouslySetInnerHTML={{
                         __html: `:root{--loc-fonts:${pickFontSetForLocale(locale, true)}}:lang(ja){font-family:${pickFontSetForLocale('ja', false)}`,
