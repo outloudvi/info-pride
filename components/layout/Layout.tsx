@@ -11,10 +11,10 @@ import { usePathname } from 'next/navigation'
 import AppHeader from './AppHeader'
 import AppNavBar from './AppNavBar'
 import Footer from './Footer'
+import MatomoRouteTracker from './MatomoRouteTracker'
 
 import startupHook from '#utils/startupHook'
 import Paths from '#utils/paths'
-import MatomoRouteTracker from './MatomoRouteTracker'
 
 const Layout = ({ children }: { children: ReactNode }) => {
     const [queryClient] = useState(

@@ -1,6 +1,5 @@
 'use client'
 
-import { DatePickerInput } from '@mantine/dates'
 import { Button, Grid } from '@mantine/core'
 import dayjs from 'dayjs'
 import { atomWithHash } from 'jotai-location'
@@ -118,7 +117,6 @@ const shortDateAtom = atomWithHash('date', new Date(0), {
 
 const DiaryPageMainView = () => {
     const $t = useTranslations('diary')
-    const $c = useTranslations('common')
 
     const [currDate, setCurrDate] = useAtom(shortDateAtom)
     const isValid = isValidDate(toShortDate(currDate))

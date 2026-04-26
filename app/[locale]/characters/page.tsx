@@ -22,7 +22,6 @@ const CharactersPage = async ({
 } & ParamsWithLocale) => {
     unstable_setRequestLocale(locale)
     const $t = await getTranslations('characters')
-    const $vc = await getTranslations('v-chr')
 
     const CharacterListData = await fetchApi('Character/List')
     const supportedCharacters = CharacterListData.filter((x) =>

@@ -13,5 +13,5 @@ _paq.push(['enableLinkTracking']);
 })();`.trim()
 
 export default function Matomo() {
-    return <Script>{trackingSrc}</Script>
+    return <Script id="matomo">{trackingSrc}</Script>
 }
