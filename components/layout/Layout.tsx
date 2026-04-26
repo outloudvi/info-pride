@@ -14,6 +14,7 @@ import Footer from './Footer'
 
 import startupHook from '#utils/startupHook'
 import Paths from '#utils/paths'
+import MatomoRouteTracker from './MatomoRouteTracker'
 
 const Layout = ({ children }: { children: ReactNode }) => {
     const [queryClient] = useState(
@@ -53,6 +54,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
     return (
         <>
             <NextNProgress />
+            <MatomoRouteTracker />
             <QueryClientProvider client={queryClient}>
                 <AppShell
                     header={{ height: 60 }}
