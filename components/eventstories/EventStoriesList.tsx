@@ -45,7 +45,7 @@ const EventStoriesList = ({
                         onClick={() => {
                             setSearch('id', item.id)
                         }}
-                        label={`${$ev(item.description)} ${
+                        label={`${$ev(item.description) || item.description} ${
                             props && `(${props})`
                         }`}
                     />
