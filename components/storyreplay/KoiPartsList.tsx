@@ -17,7 +17,7 @@ const KoiPartsList = ({
             shadow="xs"
             p="xs"
             radius="md"
-            className="hidden lg:block absolute left-[-135px]"
+            className="hidden lg:block fixed -mt-1 left-2"
         >
             <div className="text-center mb-2">{$t('Related stories')}</div>
             {Object.entries(parts).map(([partId, text], index) => (
