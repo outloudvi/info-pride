@@ -6,7 +6,7 @@ import type { MergedLine } from './types'
 // Assumption: a voice is linked to all messages before it after the last voice
 export default function mergeMWV(
     lines: MergedLine[],
-    title: string
+    title: string,
 ): MergedLine[] {
     let stashedMessages: Message[] = []
     const ret: MergedLine[] = []
@@ -23,7 +23,7 @@ export default function mergeMWV(
                 ]
                 if (speakers.length > 1) {
                     Sentry.captureMessage(
-                        `MWV Anomaly: [${title}] Voice ownership of ${item.voice}`
+                        `MWV Anomaly: [${title}] Voice ownership of ${item.voice}`,
                     )
                 }
                 ret.push({
@@ -33,7 +33,7 @@ export default function mergeMWV(
                         speakers.length === 1
                             ? speakers[0]
                             : speakers.join('/'),
-                    text: stashedMessages.map((x) => x.text).join('\n'),
+                    text: stashedMessages.map((x) => x.text).join('\\n'), // `\\n` will be transformed to `\n` later
                     thumbnail: stashedMessages.find((x) => x.thumbnail)
                         ?.thumbnail,
                 })

@@ -24,7 +24,9 @@ import KoiPartsList from './KoiPartsList'
 import ErrorBoundary from '#utils/errorBoundary'
 import { Link } from '#utils/navigation'
 import tryJSONParse from '#utils/tryJsonParse'
+import downloadUrl from '#utils/downloadUrl'
 import type { MoshikoiConfig } from '#data/moshikoi/types'
+import { generateASS } from './generateAss'
 
 export function displayLine(
     line: MergedLine,
@@ -147,6 +149,12 @@ const StoryReplayView = ({
         [storyId],
     )
 
+    const handleExportASS = () => {
+        const assContent = generateASS(mergedLines, title)
+        const dataUrl = `data:text/plain;charset=utf-8,${encodeURIComponent(assContent)}`
+        downloadUrl(dataUrl, `${storyId}.ass`)
+    }
+
     return (
         <>
             {koi && (
@@ -159,6 +167,11 @@ const StoryReplayView = ({
             <div>
                 <StoryContext.Provider value={storyContext}>
                     <h3>{title}</h3>
+                    <div className="mt-2 rounded-md border-solid border-6 border-sky-500 p-2 flex flex-wrap items-center">
+                        <Button onClick={handleExportASS}>
+                            {$t('export_subtitles')}
+                        </Button>
+                    </div>
                     {mergedLines.map((line, key) => (
                         <ErrorBoundary key={key}>
                             {displayLine(line, backgroundGroup, String(key))}
