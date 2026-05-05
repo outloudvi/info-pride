@@ -18,5 +18,7 @@
     "story_part": "전체 스토리의 {p}번째 부분입니다.",
     "no_title": "(제목 없음)",
     "story_part_live": "이 부분은 라이브가 삽입됩니다.",
-    "story_not_found": "관련된 스토리를 찾지 못했습니다."
+    "story_not_found": "관련된 스토리를 찾지 못했습니다.",
+    "export_subtitles": "Export Subtitles (.ass)",
+    "export_subtitles_txt": "Export Subtitles (.txt)"
 }
