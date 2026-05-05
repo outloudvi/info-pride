@@ -18,5 +18,7 @@
     "story_part": "這是故事的第 {p} 部分。",
     "no_title": "（無標題）",
     "story_part_live": "這是一段 Live 片段。",
-    "story_not_found": "找不到有關劇情。"
+    "story_not_found": "找不到有關劇情。",
+    "export_subtitles": "Export Subtitles (.ass)",
+    "export_subtitles_txt": "Export Subtitles (.txt)"
 }
