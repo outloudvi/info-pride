@@ -18,5 +18,7 @@
     "story_part": "ストーリーのパート{p}です。",
     "no_title": "（無名）",
     "story_part_live": "このパートはライブ映像です。",
-    "story_not_found": "関連話が見つかりませんでした。"
+    "story_not_found": "関連話が見つかりませんでした。",
+    "export_subtitles": "Export Subtitles (.ass)",
+    "export_subtitles_txt": "Export Subtitles (.txt)"
 }
