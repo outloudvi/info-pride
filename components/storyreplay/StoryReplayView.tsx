@@ -156,7 +156,7 @@ const StoryReplayView = ({
     }
 
     const handleExportTXT = () => {
-        const text = generateText(mergedLines)
+        const text = generateText(mergedLines, title)
         const dataUrl = `data:text/plain;charset=utf-8,${encodeURIComponent(text)}`
         downloadUrl(dataUrl, `${storyId}.txt`)
     }

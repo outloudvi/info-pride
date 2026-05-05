@@ -87,10 +87,10 @@ ${styles}
     ].join('\n')
 }
 
-export function generateText(lines: MergedLine[]): string {
+export function generateText(lines: MergedLine[], title: string): string {
     const assLines = buildASS(lines)
 
-    return assLines.map((x) => x.text).join('\n')
+    return title + '\n\n' + assLines.map((x) => x.text).join('\n')
 }
 
 function formatTime(sec: number): string {
