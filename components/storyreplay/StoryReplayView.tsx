@@ -26,7 +26,7 @@ import { Link } from '#utils/navigation'
 import tryJSONParse from '#utils/tryJsonParse'
 import downloadUrl from '#utils/downloadUrl'
 import type { MoshikoiConfig } from '#data/moshikoi/types'
-import { generateASS } from './generateAss'
+import { generateASS, generateText } from './generateAss'
 
 export function displayLine(
     line: MergedLine,
@@ -155,6 +155,12 @@ const StoryReplayView = ({
         downloadUrl(dataUrl, `${storyId}.ass`)
     }
 
+    const handleExportTXT = () => {
+        const text = generateText(mergedLines)
+        const dataUrl = `data:text/plain;charset=utf-8,${encodeURIComponent(text)}`
+        downloadUrl(dataUrl, `${storyId}.txt`)
+    }
+
     return (
         <>
             {koi && (
@@ -167,9 +173,12 @@ const StoryReplayView = ({
             <div>
                 <StoryContext.Provider value={storyContext}>
                     <h3>{title}</h3>
-                    <div className="mt-2 rounded-md border-solid border-6 border-sky-500 p-2 flex flex-wrap items-center">
+                    <div className="mt-2 rounded-md border-solid border-6 border-sky-500 p-2 flex flex-wrap items-center gap-2">
                         <Button onClick={handleExportASS}>
                             {$t('export_subtitles')}
+                        </Button>
+                        <Button onClick={handleExportTXT}>
+                            {$t('export_subtitles_txt')}
                         </Button>
                     </div>
                     {mergedLines.map((line, key) => (

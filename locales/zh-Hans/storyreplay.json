@@ -19,5 +19,6 @@
     "no_title": "（无标题）",
     "story_part_live": "这是一段 Live 片段。",
     "story_not_found": "没有找到关联的剧情。",
-    "export_subtitles": "导出字幕 (.ass)"
+    "export_subtitles": "导出字幕 (.ass)",
+    "export_subtitles_txt": "导出字幕 (.txt)"
 }

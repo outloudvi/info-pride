@@ -19,5 +19,6 @@
     "no_title": "(Untitled)",
     "story_part_live": "This part is a live movie.",
     "story_not_found": "Failed to find a related story.",
-    "export_subtitles": "Export Subtitles (.ass)"
+    "export_subtitles": "Export Subtitles (.ass)",
+    "export_subtitles_txt": "Export Subtitles (.txt)"
 }
