@@ -29,7 +29,8 @@ const Paths = {
     sprite: (id: string) => Paths.s3(`sprite/${id}.png`),
     repoIssue: (id?: number) =>
         `https://github.com/outloudvi/info-pride/issues/${id ?? ''}`,
-    api: (path: string) => `https://idoly-backend.outv.im/api/${path}`,
+    api: (path: string) =>
+        `${process.env.BACKEND_BASE_URL ?? 'https://idoly-backend.outv.im'}/api/${path}`,
     advJson: (id: string) => Paths.s3(`processed/adv/adv_${id}.txt.json`),
     self: (path: string) => `https://ip.outv.im${path}`,
 
