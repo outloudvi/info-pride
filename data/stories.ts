@@ -42,7 +42,7 @@ export const Episodes: Record<SeriesName, number[]> = {
     // adv_group_moon_
     Tsuki: [5, 5, 5, 5, 5], // FIN
     // adv_group_sun
-    Sunny: [5, 5, 5],
+    Sunny: [5, 5, 5, 5, 5],
 }
 
 export const Prefix: Record<SeriesName, string> = {
