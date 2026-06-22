@@ -110,18 +110,5 @@
     "budgetPercentIncreaseRed": 20,
     "minimumChangeThreshold": 0,
     "showDetails": true
-  },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "@fortawesome/fontawesome-common-types",
-      "@fortawesome/fontawesome-svg-core",
-      "@fortawesome/free-solid-svg-icons",
-      "@sentry/cli",
-      "@vercel/speed-insights",
-      "es5-ext",
-      "esbuild",
-      "sharp",
-      "wtf_wikipedia"
-    ]
   }
 }
