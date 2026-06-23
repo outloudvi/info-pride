@@ -40,7 +40,7 @@ const ExtraStoriesList = ({ activate }: { activate: boolean }) => {
                                 />
                             </Card.Section>
                             <Flex direction="column" mt="xs" mb="xs">
-                                <b>{name}</b>
+                                <b lang="ja">{name}</b>
                                 <div>
                                     {episodes.map(
                                         ({ storyId, episode }, index) => {
