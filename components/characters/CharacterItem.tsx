@@ -105,8 +105,8 @@ const CharacterItem = async ({
     ]
 
     const hasBirthdayAndBondCommus =
-        PrimaryCharacterIds.includes(id as any) &&
-        !CharacterCommuException.includes(id as CharacterId)
+        (PrimaryCharacterIds as readonly string[]).includes(id) &&
+        !(CharacterCommuException as readonly string[]).includes(id)
 
     return (
         <div>
