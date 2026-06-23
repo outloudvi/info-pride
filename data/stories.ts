@@ -11,6 +11,7 @@ import {
     EXTRA_SERIES_TAG,
     SPECIAL_SERIES_TAG,
 } from '#components/stories/constants'
+import storyPrefix from './storyprefix.json'
 
 export const Series = [
     'Hoshimi',
@@ -33,38 +34,18 @@ export const SeriesMapping: Record<number, string> = {
 
 export type SeriesName = (typeof Series)[number]
 
+// Update with `updateStoryList.mjs` when needed
 export const Episodes: Record<SeriesName, number[]> = {
-    // adv_main_01_
     Hoshimi: [28, 45, 25, 24], // FIN
-    // adv_main_02_
     Tokyo: [25, 44], // FIN
-    // adv_main_03_
     Big4: [66], // FIN
-    // adv_main_04_
-    Stellar: [15],
-    // adv_group_tri_
-    TRINITYAiLE: [30], // FIN
-    // adv_group_liz_
-    LizNoir: [30, 10],
-    // adv_group_mna_
-    Mana: [15], // FIN
-    // adv_group_thrx_
+    Stellar: [55],
+    TRINITYAiLE: [30],
+    LizNoir: [30, 11],
+    Mana: [15],
     ThreeX: [20],
-    // adv_group_moon_
-    Tsuki: [5, 5, 5, 5, 5], // FIN
-    // adv_group_sun
+    Tsuki: [5, 5, 5, 5, 5],
     Sunny: [5, 5, 5, 5, 5],
 }
 
-export const Prefix: Record<SeriesName, string> = {
-    Hoshimi: 'st-original-cmn-01',
-    Tokyo: 'st-main-cmn-01',
-    Big4: 'st-main-cmn-02',
-    Stellar: 'st-main-cmn-03',
-    TRINITYAiLE: 'st-group-tri-01',
-    LizNoir: 'st-group-liz-01',
-    Mana: 'st-group-mna-01',
-    ThreeX: 'st-group-thrx-01',
-    Tsuki: 'st-group-moon-01',
-    Sunny: 'st-group-sun-01',
-}
+export const Prefix: Record<SeriesName, string> = storyPrefix
