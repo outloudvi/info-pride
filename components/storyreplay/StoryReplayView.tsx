@@ -20,13 +20,13 @@ import StoryContext, { StoryStateStorageContext } from './StoryContext'
 import runLogics from './logicParser'
 import { STORY_STORAGE_PREFIX, getBaseId, getPartId } from './utils'
 import KoiPartsList from './KoiPartsList'
+import { generateASS, generateText } from './generateAss'
 
 import ErrorBoundary from '#utils/errorBoundary'
 import { Link } from '#utils/navigation'
 import tryJSONParse from '#utils/tryJsonParse'
 import downloadUrl from '#utils/downloadUrl'
 import type { MoshikoiConfig } from '#data/moshikoi/types'
-import { generateASS, generateText } from './generateAss'
 
 export function displayLine(
     line: MergedLine,

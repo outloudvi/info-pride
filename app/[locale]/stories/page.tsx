@@ -12,7 +12,10 @@ import { Episodes, Series } from '#data/stories'
 import storiesData from '#data/videos/stories.data'
 import type { IStoriesData } from '#data/videos/stories.data/types'
 import type { SearchParams } from '#components/stories/sp'
-import { SPECIAL_SERIES_TAG } from '#components/stories/constants'
+import {
+    EXTRA_SERIES_TAG,
+    SPECIAL_SERIES_TAG,
+} from '#components/stories/constants'
 import SpecialStoriesItem from '#components/stories/SpecialStoriesItem'
 import StoriesItem from '#components/stories/StoriesItem'
 import type { UnsafeSearchParams } from '#utils/typeutils'
@@ -67,7 +70,8 @@ const StoriesPage = ({
                     </Suspense>
                 </GridCol>
                 <GridCol span={{ base: 12, lg: 6 }}>
-                    {curSeries === SPECIAL_SERIES_TAG ? (
+                    {curSeries === EXTRA_SERIES_TAG ? null : curSeries ===
+                      SPECIAL_SERIES_TAG ? (
                         <SpecialStoriesItem item={special[curChapter]} />
                     ) : (
                         <Suspense fallback={<Skeleton height={600} />}>

@@ -1,13 +1,15 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import { Button, Tabs } from '@mantine/core'
 import { useTranslations } from 'next-intl'
 import { useSearchParams } from 'next/navigation'
 
-import { SPECIAL_SERIES_TAG } from './constants'
+import { EXTRA_SERIES_TAG, SPECIAL_SERIES_TAG } from './constants'
 import type { SearchParams } from './sp'
+import ExtraStoriesList from './ExtraStoriesList'
 
-import { Episodes, Series } from '#data/stories'
+import { Episodes, Series, SeriesMapping } from '#data/stories'
 import SeasonChapterList from '#components/stories/SeasonChapterList'
 import type { ChapterItem } from '#data/types'
 import useSetSearchParams from '#utils/useSetSearchParams'
@@ -28,15 +30,30 @@ const StoriesList = ({
     const curSeason = params.get('s')
     const curChapter = params.get('c')
 
+    const [activeTab, setActiveTab] = useState<string | null>(
+        SeriesMapping[Number(curSeries)] || 'Hoshimi',
+    )
+
+    useEffect(() => {
+        if (activeTab === 'extra') {
+            setSearchs([['series', String(EXTRA_SERIES_TAG)]])
+        }
+    }, [activeTab, setSearchs])
+
     return (
-        <Tabs defaultValue="Hoshimi">
+        <Tabs value={activeTab} onChange={setActiveTab}>
             <Tabs.List>
                 {Series.map((seriesSlug, seriesKey) => (
                     <Tabs.Tab value={seriesSlug} key={seriesKey}>
                         {$t(`series.${seriesSlug}`)}
                     </Tabs.Tab>
                 ))}
-                <Tabs.Tab value="special">{$t('Others')}</Tabs.Tab>
+                <Tabs.Tab value={SeriesMapping[EXTRA_SERIES_TAG]}>
+                    {$t('Extra')}
+                </Tabs.Tab>
+                <Tabs.Tab value={SeriesMapping[SPECIAL_SERIES_TAG]}>
+                    {$t('Others')}
+                </Tabs.Tab>
             </Tabs.List>
             {Series.map((seriesSlug, seriesKey) => {
                 return (
@@ -81,7 +98,12 @@ const StoriesList = ({
                     </Tabs.Panel>
                 )
             })}
-            <Tabs.Panel value="special">
+            <Tabs.Panel value={SeriesMapping[EXTRA_SERIES_TAG]}>
+                <ExtraStoriesList
+                    activate={activeTab === SeriesMapping[EXTRA_SERIES_TAG]}
+                />
+            </Tabs.Panel>
+            <Tabs.Panel value={SeriesMapping[SPECIAL_SERIES_TAG]}>
                 <div>
                     <p>{$t('Others')}</p>
                     {(special ?? []).map((item, key) => {

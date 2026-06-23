@@ -7,6 +7,11 @@
  * * Each language under `data/videos/stories.data/`
  */
 
+import {
+    EXTRA_SERIES_TAG,
+    SPECIAL_SERIES_TAG,
+} from '#components/stories/constants'
+
 export const Series = [
     'Hoshimi',
     'Tokyo',
@@ -19,6 +24,12 @@ export const Series = [
     'Tsuki',
     'Sunny',
 ] as const
+
+export const SeriesMapping: Record<number, string> = {
+    ...Series,
+    [EXTRA_SERIES_TAG]: 'extra',
+    [SPECIAL_SERIES_TAG]: 'special',
+}
 
 export type SeriesName = (typeof Series)[number]
 

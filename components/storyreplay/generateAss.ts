@@ -1,5 +1,6 @@
-import Paths from '#utils/paths'
 import type { MergedLine } from './types'
+
+import Paths from '#utils/paths'
 
 const FINAL_SENTENTH_DURATION_IN_SEC = 5
 
