@@ -1,6 +1,7 @@
 import {
     Blockquote,
     Button,
+    Flex,
     Grid,
     GridCol,
     Group,
@@ -11,6 +12,8 @@ import {
     TableTr,
 } from '@mantine/core'
 import { getLocale, getTranslations } from 'next-intl/server'
+import _range from 'lodash/range'
+import Link from 'next/link'
 
 import { HometownIntroductionPageUrl } from './const'
 import SquareColor from './SquareColor'
@@ -30,9 +33,10 @@ import AssetImage from '#components/AssetImage'
 import { fetchApi } from '#utils/fetchApi'
 import lfToBr from '#utils/lfToBr'
 
-const BirthdayCommuException: CharacterId[] = ['char-mna']
+const CharacterCommuException: CharacterId[] = ['char-mna']
 const VoiceException: CharacterId[] = ['char-mku']
 const OriginalName: CharacterId[] = ['char-kor', 'char-kan', 'char-mhk']
+const BondCommuLevelRequirements = [0, 10, 30, 35, 40, 45, 50, 55, 60]
 
 function formatMonthDate(birthday: string): string {
     const match = birthday.match(/^(\d{1,2})月(\d{1,2})日$/)
@@ -99,6 +103,10 @@ const CharacterItem = async ({
         [$t('Accustomed hand'), isLeftHanded ? $t('Left') : $t('Right')],
         [$t('Three size'), threeSize],
     ]
+
+    const hasBirthdayAndBondCommus =
+        PrimaryCharacterIds.includes(id as any) &&
+        !CharacterCommuException.includes(id as CharacterId)
 
     return (
         <div>
@@ -226,14 +234,29 @@ const CharacterItem = async ({
                     </Stack>
                 </GridCol>
             </Grid>
-            {/* eslint-disable-next-line @typescript-eslint/no-explicit-any  */}
-            {PrimaryCharacterIds.includes(id as any) &&
-                !BirthdayCommuException.includes(id as CharacterId) && (
-                    <>
-                        <h2>{$t('Birthday stories')}</h2>
-                        <BirthdayCommu charaId={id} />
-                    </>
-                )}
+            {hasBirthdayAndBondCommus && (
+                <>
+                    <h2>{$t('Birthday stories')}</h2>
+                    <BirthdayCommu charaId={id} />
+                    <h2>{$t('Bond stories')}</h2>
+                    <Flex gap="xs">
+                        {Object.entries(BondCommuLevelRequirements)
+                            .slice(1)
+                            .map(([index, levelRequired]) => (
+                                <Link
+                                    href={`/en/story/st-company-bond-${id.slice('char-'.length)}-01-${String(index).padStart(2, '0')}`}
+                                    key={index}
+                                >
+                                    <Button>
+                                        {$t('bond-level', {
+                                            level: levelRequired,
+                                        })}
+                                    </Button>
+                                </Link>
+                            ))}
+                    </Flex>
+                </>
+            )}
             {!VoiceException.includes(id as CharacterId) && (
                 <>
                     <h2>{$t('In-game voices')}</h2>

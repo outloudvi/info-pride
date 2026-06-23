@@ -131,5 +131,6 @@
     "no-bday-translation": "No birthday commu translations found. Please add translation info to BirthdayCommu[{charaId}] in data/birthday.data.ts.",
     "name-char-kor": "Yamada Franziska Kaori",
     "name-char-kan": "Kojima Kana",
-    "name-char-mhk": "Takeda Mihoko"
+    "name-char-mhk": "Takeda Mihoko",
+    "bond-level": "Bond Lvl. {level}"
 }
