@@ -131,5 +131,6 @@
     "no-bday-translation": "번역 데이터가 없습니다. data/birthday.data.ts. 파일의 BirthdayCommu[{charaId}] 값을 확인하세요.",
     "name-char-kor": "야마다 프란지스카 카오리",
     "name-char-kan": "코지마 카나",
-    "name-char-mhk": "타게다 미호코"
+    "name-char-mhk": "타게다 미호코",
+    "bond-level": "Bond Lvl. {level}"
 }
