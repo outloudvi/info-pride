@@ -1,7 +1,60 @@
 allowBuilds:
-  '@sentry/cli': true
+  "@sentry/cli": true
   es5-ext: true
   esbuild: true
   sharp: true
   unrs-resolver: true
   wtf_wikipedia: true
+minimumReleaseAgeExclude:
+  - hoshimi-types
+  - fast-json-patch@3.1.1
+  - webpack@5.94.0
+  - esbuild@0.24.3
+  - glob@10.5.0
+  - undici@7.18.2
+  - next@15.5.10
+  - next@15.0.8
+  - diff@8.0.3
+  - webpack@5.104.1
+  - webpack@5.104.0
+  - qs@6.14.2
+  - minimatch@3.1.3
+  - minimatch@8.0.5
+  - minimatch@9.0.6
+  - rollup@4.59.0
+  - minimatch@8.0.6
+  - minimatch@9.0.7
+  - minimatch@3.1.4
+  - serialize-javascript@7.0.3
+  - ajv@6.14.0
+  - ajv@8.18.0
+  - qs@6.14.1
+  - flatted@3.4.0
+  - undici@7.24.0
+  - next@15.5.13
+  - next@15.5.14
+  - flatted@3.4.2
+  - smol-toml@1.6.1
+  - brace-expansion@1.1.13
+  - brace-expansion@2.0.3
+  - picomatch@2.3.2
+  - picomatch@4.0.4
+  - lodash@4.17.24
+  - next@15.5.15
+  - postcss@8.5.10
+  - next-intl@4.9.1
+  - next-intl@4.9.2
+  - fast-uri@3.1.1
+  - fast-uri@3.1.2
+  - next@15.5.16
+  - turbo@2.9.14
+  - serialize-javascript@7.0.5
+  - uuid@11.1.1
+  - qs@6.15.2
+  - '@babel/plugin-transform-modules-systemjs@7.29.4'
+  - lodash@4.17.23
+  - ws@7.5.11
+  - js-yaml@4.1.2
+  - '@babel/core@7.29.1'
+  - '@opentelemetry/core@2.8.0'
+  - undici@7.28.0
