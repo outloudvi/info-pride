@@ -1,4 +1,4 @@
-import { Button, Flex, Grid, GridCol, Group, Stack } from '@mantine/core'
+import { Button, Flex, Grid, GridCol, SimpleGrid } from '@mantine/core'
 import { useTranslations } from 'next-intl'
 import { useMemo } from 'react'
 import { unstable_setRequestLocale } from 'next-intl/server'
@@ -18,26 +18,22 @@ import {
 import RoutineCountdown from '#components/indexPage/RoutineCountdown'
 import { withMessages } from '#utils/withMessages'
 import CurrentGachas from '#components/indexPage/CurrentGachas'
+import Link from 'next/link'
 
-const MainPageSiteData = [
-    {
-        ['Official website']: 'https://idolypride.jp',
-        ['Official Twitter']: 'https://twitter.com/idolypride',
-    },
-    {
-        // A group publishing podcasts by Chinese i-pri gamers
-        ['星见编辑部']: 'https://space.bilibili.com/1637756387',
-        ['Game wiki (Bilibili)']: 'https://wiki.biligame.com/idolypride/',
-    },
-    {
-        ['Telegram Group']: 'https://t.me/hayasaka_mei',
-        ['QQ Group']: Paths.wiki('相关群组'),
-    },
-    {
-        ['Unofficial Discord Group (English)']: 'https://discord.gg/XPXBvxGS96',
-        ['Unofficial Discord Group (Chinese)']: 'https://discord.gg/idolypride',
-    },
-]
+const MainPageSiteData = {
+    ['Official website']: 'https://idolypride.jp',
+    ['Official Twitter']: 'https://twitter.com/idolypride',
+
+    // A group publishing podcasts by Chinese i-pri gamers
+    ['星见编辑部']: 'https://space.bilibili.com/1637756387',
+    ['Game wiki (Bilibili)']: 'https://wiki.biligame.com/idolypride/',
+
+    ['Telegram Group']: 'https://t.me/hayasaka_mei',
+    ['QQ Group']: Paths.wiki('相关群组'),
+
+    ['Unofficial Discord Group (English)']: 'https://discord.gg/XPXBvxGS96',
+    ['Unofficial Discord Group (Chinese)']: 'https://discord.gg/idolypride',
+}
 
 const Home = ({ params: { locale } }: { params: { locale: string } }) => {
     unstable_setRequestLocale(locale)
@@ -71,27 +67,30 @@ const Home = ({ params: { locale } }: { params: { locale: string } }) => {
                     <CurrentGachas />
                 </GridCol>
                 <GridCol span={{ base: 12, lg: 6 }}>
-                    <Stack gap={15} justify="center" className="mt-2">
-                        {MainPageSiteData.map((items, _key) => (
-                            <Group key={_key}>
-                                {Object.entries(items).map(
-                                    ([title, link], key) => (
-                                        <Button
-                                            key={key}
-                                            variant="outline"
-                                            component="a"
-                                            href={link}
-                                            target="_blank"
-                                            rel="noopener"
-                                            className="basis-0 grow mx-2"
-                                        >
-                                            {$t(title)}
-                                        </Button>
-                                    ),
-                                )}
-                            </Group>
-                        ))}
-                    </Stack>
+                    <SimpleGrid cols={2}>
+                        {Object.entries(MainPageSiteData).map(
+                            ([title, link], _key) => (
+                                <Link
+                                    key={_key}
+                                    href={link}
+                                    target="_blank"
+                                    rel="noopener"
+                                    className="no-underline"
+                                >
+                                    <Button
+                                        variant="outline"
+                                        className="basis-0 grow mx-2"
+                                        fullWidth
+                                        classNames={{
+                                            label: 'whitespace-normal',
+                                        }}
+                                    >
+                                        {$t(title)}
+                                    </Button>
+                                </Link>
+                            ),
+                        )}
+                    </SimpleGrid>
                 </GridCol>
                 <GridCol span={{ base: 12, lg: 6 }}>
                     <CurrentEvents />
