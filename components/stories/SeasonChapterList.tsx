@@ -22,7 +22,7 @@ const SeasonChapterList = ({
     const $t = useTranslations('stories')
 
     return (
-        <div>
+        <div className="overflow-y-scroll">
             <p>
                 {$t(`series.${series}`)}{' '}
                 {$t('season', {
