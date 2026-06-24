@@ -239,7 +239,7 @@ const CharacterItem = async ({
                     <h2>{$t('Birthday stories')}</h2>
                     <BirthdayCommu charaId={id} />
                     <h2>{$t('Bond stories')}</h2>
-                    <Flex gap="xs">
+                    <Flex gap="xs" wrap="wrap">
                         {Object.entries(BondCommuLevelRequirements)
                             .slice(1)
                             .map(([index, levelRequired]) => (
