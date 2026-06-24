@@ -29,5 +29,5 @@
     "aka": "別名：",
     "kizuna_skill_tooltip": "絆覚醒スキルは絆覚醒後に解放されます。",
     "yell_skill_tooltip": "エールスキルはパッシブスキルです。",
-    "card_level": "交流Lv{level}"
+    "card_level": "Lv{level}"
 }
