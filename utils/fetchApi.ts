@@ -15,6 +15,6 @@ export function fetchApi<T extends keyof APIMapping>(
     })
 
     return fetch(String(url), {
-        next: { revalidate: 1800 },
+        next: { revalidate: 3600 },
     }).then((res) => res.json())
 }

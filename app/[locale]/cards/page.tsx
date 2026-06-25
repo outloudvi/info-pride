@@ -61,3 +61,5 @@ export default withMessages(CardsPage, [
     'v-chr',
     'v-card-name',
 ])
+
+export const revalidate = 30 * 60
