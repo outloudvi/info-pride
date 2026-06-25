@@ -12,6 +12,12 @@ function spiAssetIdToBasePath(assetId: string): string {
     return splits.slice(0, 4).join('/')
 }
 
+const clientBackendBaseUrl =
+    process.env.NEXT_PUBLIC_C_BACKEND_BASE_URL ??
+    'https://idoly-backend.outv.im'
+const serverBackendBaseUrl =
+    process.env.S_BACKEND_BASE_URL ?? clientBackendBaseUrl
+
 const Paths = {
     wiki: (pageName: string) =>
         `https://wiki.biligame.com/idolypride/${pageName}`,
@@ -30,7 +36,7 @@ const Paths = {
     repoIssue: (id?: number) =>
         `https://github.com/outloudvi/info-pride/issues/${id ?? ''}`,
     api: (path: string) =>
-        `${process.env.NEXT_PUBLIC_BACKEND_BASE_URL ?? 'https://idoly-backend.outv.im'}/api/${path}`,
+        `${typeof window === 'undefined' ? serverBackendBaseUrl : clientBackendBaseUrl}/api/${path}`,
     advJson: (id: string) => Paths.s3(`processed/adv/adv_${id}.txt.json`),
     self: (path: string) => `https://ip.outv.im${path}`,
 

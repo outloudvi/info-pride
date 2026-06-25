@@ -7,7 +7,7 @@
   },
   "scripts": {
     "dev": "next dev",
-    "dev:local": "NEXT_PUBLIC_BACKEND_BASE_URL=http://localhost:8000 next dev",
+    "dev:local": "NEXT_PUBLIC_C_BACKEND_BASE_URL=http://localhost:8000 next dev",
     "build": "next build",
     "build:analyze": "NODE_OPTIONS='--max-old-space-size=12288' ANALYZE=1 next build",
     "start": "next start",
