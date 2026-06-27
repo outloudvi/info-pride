@@ -1,7 +1,7 @@
 'use client'
 
 import { Button, Card, Flex } from '@mantine/core'
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import Link from 'next/link'
 import { uniqBy } from 'lodash'
 
@@ -13,6 +13,7 @@ const ExtraStoriesList = ({ activate }: { activate: boolean }) => {
     const { data, isLoading } = useApi('Story/Extra', undefined, {
         enabled: activate,
     })
+    const locale = useLocale()
 
     if (!activate) return null
     if (isLoading) return <p>{$c('Loading')}</p>
@@ -46,7 +47,7 @@ const ExtraStoriesList = ({ activate }: { activate: boolean }) => {
                                         ({ storyId, episode }, index) => {
                                             return (
                                                 <Link
-                                                    href={`/en/story/${storyId}`}
+                                                    href={`/${locale}/story/${storyId}`}
                                                     key={index}
                                                 >
                                                     <Button

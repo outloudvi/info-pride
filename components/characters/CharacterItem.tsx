@@ -244,7 +244,7 @@ const CharacterItem = async ({
                             .slice(1)
                             .map(([index, levelRequired]) => (
                                 <Link
-                                    href={`/en/story/st-company-bond-${id.slice('char-'.length)}-01-${String(index).padStart(2, '0')}`}
+                                    href={`/${locale}/story/st-company-bond-${id.slice('char-'.length)}-01-${String(index).padStart(2, '0')}`}
                                     key={index}
                                 >
                                     <Button>
