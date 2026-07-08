@@ -39,7 +39,7 @@ export const Episodes: Record<SeriesName, number[]> = {
     Hoshimi: [28, 45, 25, 24], // FIN
     Tokyo: [25, 44], // FIN
     Big4: [66], // FIN
-    Stellar: [55],
+    Stellar: [56],
     TRINITYAiLE: [30],
     LizNoir: [30, 11],
     Mana: [15],
