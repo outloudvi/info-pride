@@ -10,6 +10,7 @@
     "ChoiceGroup": "Choice",
     "BranchGroup": "Branch",
     "Next chapter": "Next chapter",
+    "Report an Issue": "Report an Issue",
     "(End)": "(End)",
     "Related stories": "Related stories",
     "be_patient": "There is a large amount of data on this page, leading to longer load time. Please sit back and relax.",
@@ -20,5 +21,7 @@
     "story_part_live": "This part is a live movie.",
     "story_not_found": "Failed to find a related story.",
     "export_subtitles": "Export Subtitles (.ass)",
-    "export_subtitles_txt": "Export Subtitles (.txt)"
+    "export_subtitles_txt": "Export Subtitles (.txt)",
+    "story_does_not_exist": "Story script not found.",
+    "story_does_not_exist_description": "This may be due to the story being too new or some data pipeline issues. If you are sure the story has been published for over 12 hours, it's our issues. In either case, please feel free to contact us or send us an issue. (Error message: {message})"
 }
