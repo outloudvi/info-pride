@@ -1,12 +1,12 @@
 import { Alert, Button, Divider } from '@mantine/core'
 import { getTranslations, unstable_setRequestLocale } from 'next-intl/server'
 import * as Sentry from '@sentry/nextjs'
+import Link from 'next/link'
 
 import StoryReplayViewSkeleton from '#components/storyreplay/StoryReplayViewSkeleton'
 import { fetchApi } from '#utils/fetchApi'
 import { withAsyncMessages } from '#utils/withMessages'
 import type { BackendError, ParamsWithLocale } from '#utils/types'
-import Link from 'next/link'
 import Paths from '#utils/paths'
 
 const StoryReplayPage = async ({
