@@ -26,14 +26,13 @@ const Paths = {
     mgw: (pageName: string) => `https://zh.moegirl.org.cn/${pageName}`,
     ipweb: (postId: string) => `https://idolypride.jp/gallery/${postId}`,
     assetsImg: (assetId: string) =>
-        `https://idoly-ac.outv.im/api/${
-            assetId.startsWith('env') ? 'env' : 'img'
+        `https://idoly-ac.outv.im/api/${assetId.startsWith('env') ? 'env' : 'img'
         }/${assetId}`,
     assetsRaw: (assetPath?: string) => Paths.s3(`assets/${assetPath ?? ''}`),
     assets: (assetId: string) => Paths.s3(`assets/${assetIdToPath(assetId)}`),
     s3: (path: string) => `https://idoly-assets.outv.im/${path}`,
     sprite: (id: string) => Paths.s3(`sprite/${id}.png`),
-    repoIssue: (id?: number) =>
+    repoIssue: (id?: number | "new") =>
         `https://github.com/outloudvi/info-pride/issues/${id ?? ''}`,
     api: (path: string) =>
         `${typeof window === 'undefined' ? serverBackendBaseUrl : clientBackendBaseUrl}/api/${path}`,
