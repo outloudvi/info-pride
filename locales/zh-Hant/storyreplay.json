@@ -10,6 +10,7 @@
     "ChoiceGroup": "選項",
     "BranchGroup": "分支",
     "Next chapter": "下一章節",
+    "Report an Issue": "Report an Issue",
     "(End)": "（完）",
     "Related stories": "相關故事",
     "be_patient": "本頁數據量較大，因此載入時間較長。放鬆請坐。",
@@ -20,5 +21,7 @@
     "story_part_live": "這是一段 Live 片段。",
     "story_not_found": "找不到有關劇情。",
     "export_subtitles": "Export Subtitles (.ass)",
-    "export_subtitles_txt": "Export Subtitles (.txt)"
+    "export_subtitles_txt": "Export Subtitles (.txt)",
+    "story_does_not_exist": "Story script not found.",
+    "story_does_not_exist_description": "This may be due to the story being too new or some data pipeline issues. If you are sure the story has been published for over 12 hours, it's our issues. In either case, please feel free to contact us or send us an issue. (Error message: {message})"
 }
