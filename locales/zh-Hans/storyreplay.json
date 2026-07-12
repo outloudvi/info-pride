@@ -10,6 +10,7 @@
     "ChoiceGroup": "选项",
     "BranchGroup": "分支",
     "Next chapter": "下一章节",
+    "Report an Issue": "报告问题",
     "(End)": "（完）",
     "Related stories": "相关故事",
     "be_patient": "本页数据量较大，因此加载时间较长。请坐和放宽。",
@@ -20,5 +21,7 @@
     "story_part_live": "这是一段 Live 片段。",
     "story_not_found": "没有找到关联的剧情。",
     "export_subtitles": "导出字幕 (.ass)",
-    "export_subtitles_txt": "导出字幕 (.txt)"
+    "export_subtitles_txt": "导出字幕 (.txt)",
+    "story_does_not_exist": "剧情文本未找到。",
+    "story_does_not_exist_description": "这可能是因为剧情较新或数据管线出现故障。如果你确定剧情已经发布超过 12 小时，那这是网站问题。无论哪种情况，都欢迎你联系我们或提出 issue。（报错消息：{message}）"
 }
