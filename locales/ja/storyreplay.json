@@ -10,6 +10,7 @@
     "ChoiceGroup": "選択",
     "BranchGroup": "ルート",
     "Next chapter": "次の話",
+    "Report an Issue": "Report an Issue",
     "(End)": "（終わり）",
     "Related stories": "関連話",
     "be_patient": "このページには多くのデータがあるため、読み込み時間が長くなる恐れがあります。リラックスしてお待ちください。",
@@ -20,5 +21,7 @@
     "story_part_live": "このパートはライブ映像です。",
     "story_not_found": "関連話が見つかりませんでした。",
     "export_subtitles": "Export Subtitles (.ass)",
-    "export_subtitles_txt": "Export Subtitles (.txt)"
+    "export_subtitles_txt": "Export Subtitles (.txt)",
+    "story_does_not_exist": "Story script not found.",
+    "story_does_not_exist_description": "This may be due to the story being too new or some data pipeline issues. If you are sure the story has been published for over 12 hours, it's our issues. In either case, please feel free to contact us or send us an issue. (Error message: {message})"
 }
