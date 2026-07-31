@@ -28,7 +28,7 @@
             "prefix": "來自 ",
             "bwikilinktitle": "bwiki",
             "middle": " 的內容以 ",
-            "suffix": " 授權"
+            "suffix": " "
         }
     },
     "Video": "影片",
@@ -41,7 +41,10 @@
     "loading": "載入中。",
     "Export as image": "匯出成圖片",
     "Story replay": "劇情重播",
+    "Keyword": "關鍵詞",
     "Clear": "重設",
+    "Filter": "Filter",
+    "(All)": "(全部)",
     "audio_loading": "正在載入音訊。首次載入可能需要較長時間。",
     "audio_load_failed": "未能載入音訊 {id} 。",
     "no_trans": "尚無翻譯信息。請添加翻譯信息到 {file} 的 {field} 。",
