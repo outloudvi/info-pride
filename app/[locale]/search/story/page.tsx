@@ -14,21 +14,23 @@ const StorySearchPage = ({
     searchParams,
     params: { locale },
 }: {
-    searchParams: UnsafeSearchParams<SearchParams>
+    searchParams: UnsafeSearchParams<SearchParams & { chname?: string }>
 } & ParamsWithLocale) => {
     unstable_setRequestLocale(locale)
     const $t = useTranslations('story_search')
     const q = searchParams.q === undefined ? '' : String(searchParams.q)
+    const characterName =
+        searchParams.chname === undefined ? '' : String(searchParams.chname)
 
     return (
         <>
             <h2>{$t('Story search')}</h2>
             <p>{$t('description')}</p>
             <div className="max-w-7xl mx-auto">
-                <SearchBox q={q} />
+                <SearchBox q={q} returnType="name" character={characterName} />
                 {q !== undefined && (
                     <Suspense fallback={<Skeleton height={600} />}>
-                        <SearchResult q={q} />
+                        <SearchResult q={q} characterName={characterName} />
                     </Suspense>
                 )}
             </div>

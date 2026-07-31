@@ -88,7 +88,7 @@
     "eslint-config-prettier": "^9.1.2",
     "eslint-import-resolver-typescript": "^3.10.1",
     "eslint-plugin-import": "^2.32.0",
-    "hoshimi-types": "^2.15.2",
+    "hoshimi-types": "^2.15.3",
     "json-schema-to-typescript": "^14.1.0",
     "knip": "^5.77.1",
     "mocha": "^11.7.5",

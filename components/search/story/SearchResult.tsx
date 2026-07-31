@@ -5,10 +5,17 @@ import StorySearchItem from './StorySearchItem'
 
 import { fetchApi } from '#utils/fetchApi'
 
-const SearchResult = async ({ q }: { q: string }) => {
+const SearchResult = async ({
+    q,
+    characterName,
+}: {
+    q: string
+    characterName?: string
+}) => {
     const $t = await getTranslations('story_search')
     const data = await fetchApi('Search/Commu', {
         q,
+        ...(characterName ? { characterName } : {}),
     })
 
     if (data.length === 0) {
