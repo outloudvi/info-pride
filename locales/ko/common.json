@@ -28,7 +28,7 @@
             "prefix": "콘텐츠는 ",
             "bwikilinktitle": "biliwiki",
             "middle": "에서 가져오며 ",
-            "suffix": "를 따릅니다."
+            "suffix": " "
         }
     },
     "Video": "비디오",
@@ -41,7 +41,10 @@
     "loading": "로딩중...",
     "Export as image": "이미지로 저장하기",
     "Story replay": "스토리 다시보기",
+    "Keyword": "키워드",
     "Clear": "초기화",
+    "Filter": "Filter",
+    "(All)": "(전체)",
     "audio_loading": "오디오 로딩중... 처음 불러오는 경우 오래 걸릴 수 있습니다.",
     "audio_load_failed": "{id} 오디오를 불러오지 못했습니다.",
     "no_trans": "번역 데이터가 없습니다. {file} 파일의 {field} 값을 확인하세요.",
