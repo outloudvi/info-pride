@@ -10,11 +10,6 @@ const _: Record<DataCharacterId, CharacterSdPersonalityType> = {
     'char-kan': 1,
     'char-kkr': 1,
     'char-koh': 1,
-    'char-konazusa': 1,
-    'char-konmio': 1,
-    'char-konmugi': 1,
-    'char-konritsu': 1,
-    'char-konyui': 1,
     'char-kor': 4,
     'char-ktn': 4,
     'char-mei': 1,
@@ -38,6 +33,15 @@ const _: Record<DataCharacterId, CharacterSdPersonalityType> = {
     'char-ymk': 1,
     'char-chn': 5,
     'char-cca': 2,
+    'char-konazusa': 1,
+    'char-konmio': 1,
+    'char-konmugi': 1,
+    'char-konritsu': 1,
+    'char-konyui': 1,
+    "char-cinnamo": 1,
+    "char-kitty": 1,
+    "char-kuromi": 1,
+    "char-melody": 1
 } as const
 
 export default _
