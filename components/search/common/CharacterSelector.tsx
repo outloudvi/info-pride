@@ -5,6 +5,7 @@ import { NativeSelect } from '@mantine/core'
 import { useTranslations } from 'next-intl'
 import vChr from '#locales/ja/v-chr.json'
 import type { ChType } from '../types'
+import { uniqBy } from 'lodash'
 
 interface CharacterSelectorProps {
     value: string
@@ -21,24 +22,30 @@ const CharacterSelector = ({
     const $vc = useTranslations('v-chr')
 
     const [search, setSearch] = useState(value)
+
+    const isReturnName = returnType === 'name'
+    const characters = Object.keys(vChr).map((key) => ({
+        value: key,
+        label: $vc(key),
+    }))
+    const deduped = isReturnName
+        ? uniqBy(characters, (x) => (vChr as Record<string, string>)[x.value])
+        : characters.map((x) => (x.label = `${x.label} (${x.value})`))
     const candidates = [
         {
             label: $c('(All)'),
             value: '',
         },
-        ...Object.entries(vChr).map(([key, str]) => ({
-            value: key,
-            label: $vc(key),
-        })),
+        ...deduped,
     ]
 
     useEffect(() => {
         if (search === '') {
             onChange('')
-        } else if (returnType === 'id') {
-            onChange(search)
-        } else {
+        } else if (isReturnName) {
             onChange((vChr as Record<string, string>)[search] ?? search)
+        } else {
+            onChange(search)
         }
     }, [search])
 
