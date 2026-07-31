@@ -49,4 +49,4 @@ export async function generateMetadata({
     }
 }
 
-export default withMessages(StorySearchPage, ['story_search'])
+export default withMessages(StorySearchPage, ['story_search', 'v-chr'])
