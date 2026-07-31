@@ -10,6 +10,7 @@
     "ChoiceGroup": "선택지",
     "BranchGroup": "분기",
     "Next chapter": "다음 챕터",
+    "Report an Issue": "Report an Issue",
     "(End)": "(종료)",
     "Related stories": "Related stories",
     "be_patient": "스토리 데이터가 많기 떄문에 로딩에 오랜 시간이 소요 될 수 있습니다. 잠시만 기다려 주세요...",
@@ -20,5 +21,7 @@
     "story_part_live": "이 부분은 라이브가 삽입됩니다.",
     "story_not_found": "관련된 스토리를 찾지 못했습니다.",
     "export_subtitles": "Export Subtitles (.ass)",
-    "export_subtitles_txt": "Export Subtitles (.txt)"
+    "export_subtitles_txt": "Export Subtitles (.txt)",
+    "story_does_not_exist": "Story script not found.",
+    "story_does_not_exist_description": "This may be due to the story being too new or some data pipeline issues. If you are sure the story has been published for over 12 hours, it's our issues. In either case, please feel free to contact us or send us an issue. (Error message: {message})"
 }
