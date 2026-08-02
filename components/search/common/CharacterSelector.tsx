@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { NativeSelect } from '@mantine/core'
 import { useTranslations } from 'next-intl'
 import vChr from '#locales/ja/v-chr.json'
+import { CharacterIds } from '#data/vendor/characterId'
 import type { ChType } from '../types'
 import { uniqBy } from 'lodash'
 
@@ -28,9 +29,25 @@ const CharacterSelector = ({
         value: key,
         label: $vc(key),
     }))
+    const characterOrder: Map<string, number> = new Map(
+        CharacterIds.map((id, index) => [id, index]),
+    )
+    const sortedCharacters = [...characters].sort((a, b) => {
+        const aIndex = characterOrder.get(a.value)
+        const bIndex = characterOrder.get(b.value)
+        if (aIndex !== undefined && bIndex !== undefined) {
+            return aIndex - bIndex
+        }
+        if (aIndex !== undefined) return -1
+        if (bIndex !== undefined) return 1
+        return a.value.localeCompare(b.value)
+    })
     const deduped = isReturnName
-        ? uniqBy(characters, (x) => (vChr as Record<string, string>)[x.value])
-        : characters.map((x) => (x.label = `${x.label} (${x.value})`))
+        ? uniqBy(
+              sortedCharacters,
+              (x) => (vChr as Record<string, string>)[x.value],
+          )
+        : sortedCharacters.map((x) => (x.label = `${x.label} (${x.value})`))
     const candidates = [
         {
             label: $c('(All)'),
