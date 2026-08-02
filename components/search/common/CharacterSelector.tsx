@@ -1,12 +1,14 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { NativeSelect } from '@mantine/core'
+import { Autocomplete } from '@mantine/core'
 import { useTranslations } from 'next-intl'
+import { uniqBy } from 'lodash'
+
+import type { ChType } from '../types'
+
 import vChr from '#locales/ja/v-chr.json'
 import { CharacterIds } from '#data/vendor/characterId'
-import type { ChType } from '../types'
-import { uniqBy } from 'lodash'
 
 interface CharacterSelectorProps {
     value: string
@@ -14,20 +16,20 @@ interface CharacterSelectorProps {
     onChange: (value: string) => void
 }
 
-const CharacterSelector = ({
-    value,
-    returnType,
-    onChange,
-}: CharacterSelectorProps) => {
-    const $c = useTranslations('common')
-    const $vc = useTranslations('v-chr')
+interface CharacterCandidate {
+    value: string
+    label: string
+}
 
-    const [search, setSearch] = useState(value)
-
+const buildCharacterCandidates = (
+    returnType: ChType,
+    translateCharacter: (key: string) => string,
+    translateCommon: (key: string) => string,
+): CharacterCandidate[] => {
     const isReturnName = returnType === 'name'
     const characters = Object.keys(vChr).map((key) => ({
         value: key,
-        label: $vc(key),
+        label: translateCharacter(key),
     }))
     const characterOrder: Map<string, number> = new Map(
         CharacterIds.map((id, index) => [id, index]),
@@ -47,30 +49,59 @@ const CharacterSelector = ({
               sortedCharacters,
               (x) => (vChr as Record<string, string>)[x.value],
           )
-        : sortedCharacters.map((x) => (x.label = `${x.label} (${x.value})`))
-    const candidates = [
+        : sortedCharacters.map((x) => ({
+              value: x.value,
+              label: `${x.label} (${x.value})`,
+          }))
+    return [
         {
-            label: $c('(All)'),
+            label: translateCommon('(All)'),
             value: '',
         },
         ...deduped,
     ]
+}
+
+const createSelectionToValue = (
+    candidates: CharacterCandidate[],
+    returnType: ChType,
+) => {
+    const labelToId = new Map(candidates.map((c) => [c.label, c.value]))
+    const isReturnName = returnType === 'name'
+    return (sel: string) => {
+        if (sel === '' || (!isReturnName && labelToId.get(sel) === ''))
+            return ''
+        if (isReturnName) return sel
+        return labelToId.get(sel) ?? sel
+    }
+}
+
+const CharacterSelector = ({
+    value,
+    returnType,
+    onChange,
+}: CharacterSelectorProps) => {
+    const $c = useTranslations('common')
+    const $vc = useTranslations('v-chr')
+
+    const candidates = buildCharacterCandidates(
+        returnType,
+        (key) => $vc(key),
+        (key) => $c(key),
+    )
+    const selectionToValue = createSelectionToValue(candidates, returnType)
+
+    const [search, setSearch] = useState(selectionToValue(value))
 
     useEffect(() => {
-        if (search === '') {
-            onChange('')
-        } else if (isReturnName) {
-            onChange((vChr as Record<string, string>)[search] ?? search)
-        } else {
-            onChange(search)
-        }
-    }, [search])
+        onChange(selectionToValue(search))
+    }, [search, onChange, selectionToValue])
 
     return (
-        <NativeSelect
-            data={candidates}
+        <Autocomplete
+            data={candidates.map((c) => c.label)}
             value={search}
-            onChange={(event) => setSearch(event.currentTarget.value)}
+            onChange={setSearch}
             label={$c('Filter')}
         />
     )
