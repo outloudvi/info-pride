@@ -3,7 +3,7 @@ name: Update dataset
 on:
     schedule:
         # Update Thu 04:15 (CST) per week
-        - cron: "15 20 * * 3"
+        - cron: '15 20 * * 3'
     workflow_dispatch: {}
 
 jobs:
@@ -23,6 +23,7 @@ jobs:
               run: |
                   bash scripts/buildAndValidate.sh
                   node scripts/updateVendorStrings.mjs
+                  node scripts/updateStoryList.mjs
 
             - name: Commit files
               continue-on-error: true

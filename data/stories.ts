@@ -12,6 +12,7 @@ import {
     SPECIAL_SERIES_TAG,
 } from '#components/stories/constants'
 import storyPrefix from './storyprefix.json'
+import stories from './stories.json'
 
 export const Series = [
     'Hoshimi',
@@ -34,18 +35,7 @@ export const SeriesMapping: Record<number, string> = {
 
 export type SeriesName = (typeof Series)[number]
 
-// Update with `updateStoryList.mjs` when needed
-export const Episodes: Record<SeriesName, number[]> = {
-    Hoshimi: [28, 45, 25, 24], // FIN
-    Tokyo: [25, 44], // FIN
-    Big4: [66], // FIN
-    Stellar: [56],
-    TRINITYAiLE: [30],
-    LizNoir: [30, 11],
-    Mana: [15],
-    ThreeX: [20],
-    Tsuki: [5, 5, 5, 5, 5],
-    Sunny: [5, 5, 5, 5, 5],
-}
+export const Episodes: Record<SeriesName, string[]> = stories
 
 export const Prefix: Record<SeriesName, string> = storyPrefix
+
