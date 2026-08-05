@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Autocomplete } from '@mantine/core'
+import { Autocomplete, Flex, Tooltip } from '@mantine/core'
 import { useTranslations } from 'next-intl'
 import { uniqBy } from 'lodash'
 
@@ -9,6 +9,8 @@ import type { ChType } from '../types'
 
 import vChr from '#locales/ja/v-chr.json'
 import { CharacterIds } from '#data/vendor/characterId'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 
 interface CharacterSelectorProps {
     value: string
@@ -27,53 +29,36 @@ const buildCharacterCandidates = (
     translateCommon: (key: string) => string,
 ): CharacterCandidate[] => {
     const isReturnName = returnType === 'name'
-    const characters = Object.keys(vChr).map((key) => ({
-        value: key,
-        label: translateCharacter(key),
-    }))
+    const allVendorCharacterIds = Object.keys(vChr)
     const characterOrder: Map<string, number> = new Map(
         CharacterIds.map((id, index) => [id, index]),
     )
-    const sortedCharacters = [...characters].sort((a, b) => {
-        const aIndex = characterOrder.get(a.value)
-        const bIndex = characterOrder.get(b.value)
+    const sortedCharacterIds = [...allVendorCharacterIds].sort((a, b) => {
+        const aIndex = characterOrder.get(a)
+        const bIndex = characterOrder.get(b)
         if (aIndex !== undefined && bIndex !== undefined) {
             return aIndex - bIndex
         }
         if (aIndex !== undefined) return -1
         if (bIndex !== undefined) return 1
-        return a.value.localeCompare(b.value)
+        return a.localeCompare(b)
     })
-    const deduped = isReturnName
-        ? uniqBy(
-              sortedCharacters,
-              (x) => (vChr as Record<string, string>)[x.value],
-          )
-        : sortedCharacters.map((x) => ({
-              value: x.value,
-              label: `${x.label} (${x.value})`,
+    const listItems = isReturnName
+        ? sortedCharacterIds.map((id) => ({
+              value: (vChr as Record<string, string>)[id], // original name
+              label: translateCharacter(id), // translated name
+          }))
+        : sortedCharacterIds.map((id) => ({
+              value: id, // character id
+              label: `${translateCharacter(id)} (${id})`, // translated name
           }))
     return [
         {
             label: translateCommon('(All)'),
             value: '',
         },
-        ...deduped,
+        ...uniqBy(listItems, (x) => x.value),
     ]
-}
-
-const createSelectionToValue = (
-    candidates: CharacterCandidate[],
-    returnType: ChType,
-) => {
-    const labelToId = new Map(candidates.map((c) => [c.label, c.value]))
-    const isReturnName = returnType === 'name'
-    return (sel: string) => {
-        if (sel === '' || (!isReturnName && labelToId.get(sel) === ''))
-            return ''
-        if (isReturnName) return sel
-        return labelToId.get(sel) ?? sel
-    }
 }
 
 const CharacterSelector = ({
@@ -81,28 +66,42 @@ const CharacterSelector = ({
     returnType,
     onChange,
 }: CharacterSelectorProps) => {
+    const $t = useTranslations('story_search')
     const $c = useTranslations('common')
     const $vc = useTranslations('v-chr')
 
-    const candidates = buildCharacterCandidates(
-        returnType,
-        (key) => $vc(key),
-        (key) => $c(key),
-    )
-    const selectionToValue = createSelectionToValue(candidates, returnType)
+    const candidates = buildCharacterCandidates(returnType, $vc, $c)
 
-    const [search, setSearch] = useState(selectionToValue(value))
+    const [search, setSearch] = useState(() =>
+        value === ''
+            ? ''
+            : (candidates.find((x) => x.value === value)?.label ?? ''),
+    )
 
     useEffect(() => {
-        onChange(selectionToValue(search))
-    }, [search, onChange, selectionToValue])
+        onChange(
+            search === ''
+                ? ''
+                : (candidates.find((x) => x.label === search)?.value ?? search),
+        )
+    }, [search, onChange])
 
     return (
         <Autocomplete
             data={candidates.map((c) => c.label)}
             value={search}
             onChange={setSearch}
-            label={$c('Filter')}
+            label={
+                <Flex align="center">
+                    <span>{$c('Filter')}</span>
+                    <Tooltip
+                        className="ml-2"
+                        label={$t('name_in_original_language')}
+                    >
+                        <FontAwesomeIcon icon={faInfoCircle} />
+                    </Tooltip>
+                </Flex>
+            }
         />
     )
 }

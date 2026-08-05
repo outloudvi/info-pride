@@ -2,5 +2,6 @@
     "Story search": "Story search",
     "description": "Search story dialogues to find the exact story. 30 results are shown at most.",
     "search_placeholder": "Story dialogue...",
-    "no_results": "No results."
+    "no_results": "No results.",
+    "name_in_original_language": "Any custom name entered should be in Japanese."
 }
