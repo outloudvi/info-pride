@@ -1,25 +1,26 @@
 import { useTranslations } from 'next-intl'
-import _range from 'lodash/range'
 import { Button } from '@mantine/core'
 
 import type { SeriesName } from '#data/stories'
+import parseEpisodes from '#utils/parseEpisodes'
 
 const SeasonChapterList = ({
     series,
     season,
-    length,
+    notation,
     selected,
     completion,
     onClick,
 }: {
     series: SeriesName
     season: number
-    length: number
+    notation: string
     selected: number | null
     completion: Record<number, 0 | 1>
     onClick: (c: number) => void
 }) => {
     const $t = useTranslations('stories')
+    const episodes = parseEpisodes(notation)
 
     return (
         <div className="overflow-y-scroll">
@@ -29,13 +30,13 @@ const SeasonChapterList = ({
                     s: season,
                 })}
             </p>
-            {_range(1, length + 1).map((chapter) => {
+            {episodes.map((chapter) => {
                 const currentSelection = chapter === selected
                 return (
                     <Button
                         variant="subtle"
                         size="compact-sm"
-                        color={completion[chapter - 1] ? 'blue' : 'teal'}
+                        color={completion[chapter] ? 'blue' : 'teal'}
                         key={chapter}
                         onClick={() => {
                             onClick(chapter)
