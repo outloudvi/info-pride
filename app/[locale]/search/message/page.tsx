@@ -14,21 +14,23 @@ const MessageSearchPage = ({
     searchParams,
     params: { locale },
 }: {
-    searchParams: UnsafeSearchParams<SearchParams>
+    searchParams: UnsafeSearchParams<SearchParams & { chid?: string }>
 } & ParamsWithLocale) => {
     unstable_setRequestLocale(locale)
     const $t = useTranslations('message_search')
     const q = searchParams.q === undefined ? '' : String(searchParams.q)
+    const characterId =
+        searchParams.chid === undefined ? '' : String(searchParams.chid)
 
     return (
         <>
             <h2>{$t('Message Search')}</h2>
             <p>{$t('description')}</p>
             <div className="max-w-7xl mx-auto">
-                <SearchBox q={q} />
+                <SearchBox q={q} returnType="id" character={characterId} />
                 {q !== undefined && (
                     <Suspense fallback={<Skeleton height={600} />}>
-                        <SearchResult q={q} />
+                        <SearchResult q={q} characterId={characterId} />
                     </Suspense>
                 )}
             </div>

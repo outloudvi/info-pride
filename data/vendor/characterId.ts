@@ -74,6 +74,12 @@ export const DataCharacterIds = [
     'char-konmugi',
     'char-konritsu',
     'char-konyui',
+
+    // Collab: Sanrio
+    "char-cinnamo",
+    "char-kitty",
+    "char-kuromi",
+    "char-melody"
 ] as const
 
 export type CharacterId = (typeof CharacterIds)[number]

@@ -93,12 +93,14 @@ const StoriesItem = async (props: PropType) => {
                 </div>
             )}
 
-            <AssetImage
-                name={`img_story_thumb_${StoryData.advAssetIds[0]}`}
-                ratio="16 / 9"
-                alt="Story thumb image"
-                className="my-2 mx-3"
-            />
+            {StoryData.advAssetIds.length > 0 && (
+                <AssetImage
+                    name={`img_story_thumb_${StoryData.advAssetIds?.[0]}`}
+                    ratio="16 / 9"
+                    alt="Story thumb image"
+                    className="my-2 mx-3"
+                />
+            )}
         </>
     )
 }

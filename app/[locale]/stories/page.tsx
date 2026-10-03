@@ -1,7 +1,6 @@
 import { useTranslations } from 'next-intl'
 import { getTranslations, unstable_setRequestLocale } from 'next-intl/server'
 import { Grid, GridCol, Skeleton } from '@mantine/core'
-import _range from 'lodash/range'
 import { Suspense } from 'react'
 
 import StoriesList from '#components/stories/StoriesList'
@@ -20,6 +19,7 @@ import SpecialStoriesItem from '#components/stories/SpecialStoriesItem'
 import StoriesItem from '#components/stories/StoriesItem'
 import type { UnsafeSearchParams } from '#utils/typeutils'
 import type { ParamsWithLocale } from '#utils/types'
+import parseEpisodes from '#utils/parseEpisodes'
 
 const StoriesPage = ({
     searchParams,
@@ -43,15 +43,18 @@ const StoriesPage = ({
             ret[seriesSlug] = [
                 // skip index 0
                 [],
-                ...Episodes[seriesSlug].map((length, episodeKey) =>
-                    _range(1, length + 1).map((chapterId) =>
-                        storiesData?.[locale]?.data?.[
+                ...Episodes[seriesSlug].map((notation, episodeKey) => {
+                    const episodes = parseEpisodes(notation)
+                    const seasonData: Record<number, 0 | 1> = {}
+                    for (const chapterId of episodes) {
+                        seasonData[chapterId] = storiesData?.[locale]?.data?.[
                             seriesSlug as SeriesName
                         ]?.[episodeKey + 1]?.[chapterId]
                             ? 1
-                            : 0,
-                    ),
-                ),
+                            : 0
+                    }
+                    return seasonData
+                }),
             ]
         }
         return ret as IStoriesData<0 | 1>

@@ -2,6 +2,7 @@ import { Button, Flex, Grid, GridCol, SimpleGrid } from '@mantine/core'
 import { useTranslations } from 'next-intl'
 import { useMemo } from 'react'
 import { unstable_setRequestLocale } from 'next-intl/server'
+import Link from 'next/link'
 
 import CurrentEvents from '#components/indexPage/CurrentEvents'
 import Notice from '#components/indexPage/Notice'
@@ -18,7 +19,6 @@ import {
 import RoutineCountdown from '#components/indexPage/RoutineCountdown'
 import { withMessages } from '#utils/withMessages'
 import CurrentGachas from '#components/indexPage/CurrentGachas'
-import Link from 'next/link'
 
 const MainPageSiteData = {
     ['Official website']: 'https://idolypride.jp',

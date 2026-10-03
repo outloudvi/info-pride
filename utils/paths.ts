@@ -12,6 +12,12 @@ function spiAssetIdToBasePath(assetId: string): string {
     return splits.slice(0, 4).join('/')
 }
 
+const clientBackendBaseUrl =
+    process.env.NEXT_PUBLIC_C_BACKEND_BASE_URL ??
+    'https://idoly-backend.outv.im'
+const serverBackendBaseUrl =
+    process.env.S_BACKEND_BASE_URL ?? clientBackendBaseUrl
+
 const Paths = {
     wiki: (pageName: string) =>
         `https://wiki.biligame.com/idolypride/${pageName}`,
@@ -20,17 +26,16 @@ const Paths = {
     mgw: (pageName: string) => `https://zh.moegirl.org.cn/${pageName}`,
     ipweb: (postId: string) => `https://idolypride.jp/gallery/${postId}`,
     assetsImg: (assetId: string) =>
-        `https://idoly-ac.outv.im/api/${
-            assetId.startsWith('env') ? 'env' : 'img'
+        `https://idoly-ac.outv.im/api/${assetId.startsWith('env') ? 'env' : 'img'
         }/${assetId}`,
     assetsRaw: (assetPath?: string) => Paths.s3(`assets/${assetPath ?? ''}`),
     assets: (assetId: string) => Paths.s3(`assets/${assetIdToPath(assetId)}`),
     s3: (path: string) => `https://idoly-assets.outv.im/${path}`,
     sprite: (id: string) => Paths.s3(`sprite/${id}.png`),
-    repoIssue: (id?: number) =>
+    repoIssue: (id?: number | "new") =>
         `https://github.com/outloudvi/info-pride/issues/${id ?? ''}`,
     api: (path: string) =>
-        `${process.env.NEXT_PUBLIC_BACKEND_BASE_URL ?? 'https://idoly-backend.outv.im'}/api/${path}`,
+        `${typeof window === 'undefined' ? serverBackendBaseUrl : clientBackendBaseUrl}/api/${path}`,
     advJson: (id: string) => Paths.s3(`processed/adv/adv_${id}.txt.json`),
     self: (path: string) => `https://ip.outv.im${path}`,
 

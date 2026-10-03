@@ -12,7 +12,6 @@ import {
     TableTr,
 } from '@mantine/core'
 import { getLocale, getTranslations } from 'next-intl/server'
-import _range from 'lodash/range'
 import Link from 'next/link'
 
 import { HometownIntroductionPageUrl } from './const'
@@ -244,7 +243,7 @@ const CharacterItem = async ({
                             .slice(1)
                             .map(([index, levelRequired]) => (
                                 <Link
-                                    href={`/en/story/st-company-bond-${id.slice('char-'.length)}-01-${String(index).padStart(2, '0')}`}
+                                    href={`/${locale}/story/st-company-bond-${id.slice('char-'.length)}-01-${String(index).padStart(2, '0')}`}
                                     key={index}
                                 >
                                     <Button>

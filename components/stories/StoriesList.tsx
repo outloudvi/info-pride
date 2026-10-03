@@ -59,41 +59,34 @@ const StoriesList = ({
                 return (
                     <Tabs.Panel value={seriesSlug} key={seriesKey}>
                         <div className="max-h-[60vh] overflow-y-auto">
-                            {Episodes[seriesSlug].map(
-                                (episodeLengthInSeason, seasonKey) => {
-                                    const season = seasonKey + 1
-                                    return (
-                                        <SeasonChapterList
-                                            key={season}
-                                            series={seriesSlug}
-                                            season={season}
-                                            length={episodeLengthInSeason}
-                                            completion={
-                                                completion?.[seriesSlug][
-                                                    season
-                                                ] ?? {}
-                                            }
-                                            selected={
-                                                curSeries ===
-                                                    String(seriesKey) &&
-                                                curSeason === String(season)
-                                                    ? Number(curChapter)
-                                                    : null
-                                            }
-                                            onClick={(chapter) => {
-                                                setSearchs([
-                                                    [
-                                                        'series',
-                                                        String(seriesKey),
-                                                    ],
-                                                    ['s', String(season)],
-                                                    ['c', String(chapter)],
-                                                ])
-                                            }}
-                                        />
-                                    )
-                                },
-                            )}
+                            {Episodes[seriesSlug].map((notation, seasonKey) => {
+                                const season = seasonKey + 1
+                                return (
+                                    <SeasonChapterList
+                                        key={season}
+                                        series={seriesSlug}
+                                        season={season}
+                                        notation={notation}
+                                        completion={
+                                            completion?.[seriesSlug][season] ??
+                                            {}
+                                        }
+                                        selected={
+                                            curSeries === String(seriesKey) &&
+                                            curSeason === String(season)
+                                                ? Number(curChapter)
+                                                : null
+                                        }
+                                        onClick={(chapter) => {
+                                            setSearchs([
+                                                ['series', String(seriesKey)],
+                                                ['s', String(season)],
+                                                ['c', String(chapter)],
+                                            ])
+                                        }}
+                                    />
+                                )
+                            })}
                         </div>
                     </Tabs.Panel>
                 )

@@ -1,11 +1,13 @@
-import { Alert, Divider } from '@mantine/core'
+import { Alert, Button, Divider } from '@mantine/core'
 import { getTranslations, unstable_setRequestLocale } from 'next-intl/server'
 import * as Sentry from '@sentry/nextjs'
+import Link from 'next/link'
 
 import StoryReplayViewSkeleton from '#components/storyreplay/StoryReplayViewSkeleton'
 import { fetchApi } from '#utils/fetchApi'
 import { withAsyncMessages } from '#utils/withMessages'
 import type { BackendError, ParamsWithLocale } from '#utils/types'
+import Paths from '#utils/paths'
 
 const StoryReplayPage = async ({
     params: { id, locale },
@@ -23,9 +25,26 @@ const StoryReplayPage = async ({
 
     if (!items) {
         Sentry.captureException(new Error(`Inexistent story: ${id}`))
+
+        const errorMessage = (StoryData as unknown as BackendError).message
+        const issueUrl = (() => {
+            const baseUrl = new URL(Paths.repoIssue('new'))
+            baseUrl.searchParams.set('title', `[Missing Story] ${id}`)
+            baseUrl.searchParams.set('body', `Error message: ${errorMessage}`)
+            baseUrl.searchParams.set('labels', 'bug')
+            return String(baseUrl)
+        })()
+
         return (
-            <Alert color="red">
-                {(StoryData as unknown as BackendError).message}
+            <Alert color="red" title={$t('story_does_not_exist')}>
+                {$t('story_does_not_exist_description', {
+                    message: errorMessage,
+                })}
+                <div className="mt-2">
+                    <Link href={issueUrl}>
+                        <Button color="red">{$t('Report an Issue')}</Button>
+                    </Link>
+                </div>
             </Alert>
         )
     }
