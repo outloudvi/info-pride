@@ -26,16 +26,22 @@ jobs:
                   node scripts/updateStoryList.mjs
 
             - name: Commit files
+              id: commit
               continue-on-error: true
               run: |
                   git config --local user.email "noreply@outv.im"
                   git config --local user.name "GitHub Actions"
                   git add data/ locales/
                   git status
-                  git commit -m "feat: update dataset"
-                  git pull --rebase
+                  if git commit -m "feat: update dataset"; then
+                      echo "has_changes=true" >> "$GITHUB_OUTPUT"
+                      git pull --rebase
+                  else
+                      echo "has_changes=false" >> "$GITHUB_OUTPUT"
+                  fi
 
             - name: Push changes
+              if: steps.commit.outputs.has_changes == 'true'
               uses: ad-m/github-push-action@master
               with:
                   branch: master
