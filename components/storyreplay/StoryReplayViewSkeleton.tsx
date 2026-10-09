@@ -9,6 +9,7 @@ import type { AdvFromAsset } from './types'
 import { getBaseId } from './utils'
 
 import Paths from '#utils/paths'
+import { DATA_CACHE_SECONDS } from '#utils/cachePolicy'
 import moshikoiLogics from '#data/moshikoi'
 
 const StoryReplayView = dynamic(() => import('./StoryReplayView'), {
@@ -26,7 +27,9 @@ const StoryReplayViewSkeleton = async ({
 }) => {
     const $t = await getTranslations('storyreplay')
 
-    const StoryLines: AdvFromAsset = await fetch(Paths.advJson(id))
+    const StoryLines: AdvFromAsset = await fetch(Paths.advJson(id), {
+        next: { revalidate: DATA_CACHE_SECONDS },
+    })
         .then((x) => x.json())
         .catch((e) => String(e))
 

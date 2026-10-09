@@ -1,6 +1,7 @@
 import type { APIMapping } from 'hoshimi-types'
 
 import type { APIResponseOf, GetFirst, LengthOf } from './api'
+import { cacheRevalidateSeconds } from './cachePolicy'
 import Paths from './paths'
 
 export function fetchApi<T extends keyof APIMapping>(
@@ -15,6 +16,6 @@ export function fetchApi<T extends keyof APIMapping>(
     })
 
     return fetch(String(url), {
-        next: { revalidate: 3600 },
+        next: { revalidate: cacheRevalidateSeconds(key) },
     }).then((res) => res.json())
 }

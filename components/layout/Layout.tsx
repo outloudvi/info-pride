@@ -15,6 +15,7 @@ import MatomoRouteTracker from './MatomoRouteTracker'
 
 import startupHook from '#utils/startupHook'
 import Paths from '#utils/paths'
+import { DATA_CACHE_SECONDS } from '#utils/cachePolicy'
 
 const Layout = ({ children }: { children: ReactNode }) => {
     const [queryClient] = useState(
@@ -22,7 +23,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
             new QueryClient({
                 defaultOptions: {
                     queries: {
-                        staleTime: Infinity,
+                        staleTime: DATA_CACHE_SECONDS,
                         queryFn: ({ queryKey: [path] }) => {
                             if (typeof path === 'string') {
                                 const url = new URL(Paths.api(path))

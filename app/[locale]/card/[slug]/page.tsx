@@ -5,6 +5,7 @@ import { Skeleton } from '@mantine/core'
 
 import CardItem from '#components/cards/CardItem'
 import { fetchApi } from '#utils/fetchApi'
+import { CARD_CACHE_SECONDS } from '#utils/cachePolicy'
 import { withMessages } from '#utils/withMessages'
 import $tp from '#utils/transProtect'
 import type { ParamsWithLocale } from '#utils/types'
@@ -50,8 +51,7 @@ export async function generateMetadata({
     }
 }
 
-// cache it after the first generation
-export const dynamic = 'force-static'
+export const revalidate = CARD_CACHE_SECONDS
 
 export default withMessages(CardInfoPageWrapper, [
     'cards_slug',

@@ -4,6 +4,7 @@ import { getTranslations, unstable_setRequestLocale } from 'next-intl/server'
 
 import type { ParamsWithLocale } from '#utils/types'
 import { withAsyncMessages } from '#utils/withMessages'
+import { DATA_CACHE_SECONDS } from '#utils/cachePolicy'
 
 const ALLCONTRIBUTORS_CONFIG_URL =
     'https://raw.githubusercontent.com/outloudvi/info-pride/master/.all-contributorsrc'
@@ -83,7 +84,10 @@ const AboutPage = async ({ params: { locale } }: ParamsWithLocale) => {
     unstable_setRequestLocale(locale)
     const $t = await getTranslations('about')
 
-    const contributors: Contributor[] = await fetch(ALLCONTRIBUTORS_CONFIG_URL)
+    const contributors: Contributor[] = await fetch(
+        ALLCONTRIBUTORS_CONFIG_URL,
+        { next: { revalidate: DATA_CACHE_SECONDS } },
+    )
         .then((x) => x.json())
         .then((x) => x.contributors)
 

@@ -1,3 +1,1 @@
-import OGImage from './opengraph-image'
-
-export default OGImage
+export { default, revalidate } from './opengraph-image'

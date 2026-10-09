@@ -5,6 +5,7 @@ import * as Sentry from '@sentry/browser'
 import type { APIMapping } from 'hoshimi-types'
 import type { QueryKey, UseQueryOptions } from 'react-query'
 import { useQuery } from 'react-query'
+import { cacheRevalidateSeconds } from './cachePolicy'
 
 import type { APIResponseOf, GetFirst, LengthOf } from './api'
 
@@ -28,6 +29,7 @@ function useApi<T extends keyof APIMapping>(
     })
     const rq = useQuery<APIResponseOf<T>>({
         queryKey: key + (withParams ? '?' + urlsp.toString() : ''),
+        staleTime: cacheRevalidateSeconds(key),
         onError: (error) => {
             showNotification({
                 color: 'red',
