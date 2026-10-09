@@ -3,6 +3,7 @@ import stLoveRei from './st-love-23-0514'
 import stLoveNagisa from './st-love-23-1114'
 import stLoveMei from './st-love-24-0517'
 import stLoveYu from './st-love-24-1114'
+import stMintuku2025 from './st-love-25-0426'
 import stLoveRio from './st-love-26-0313'
 
 const STD_KOI = {
@@ -69,6 +70,7 @@ const moshikoiLogics: Partial<Record<string, MoshikoiConfig>> = {
             '005-succubus-rui-bad': 'ルイBE',
             '005-succubus-rui-good': 'ルイGE',
         },
+        gameLogic: stMintuku2025,
     },
     'st-love-26-0313': {
         parts: STD_KOI_8,
