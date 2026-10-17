@@ -9,24 +9,10 @@ import lfToBr from '#utils/lfToBr'
 export default function renderMessage(
     msg: MessageDetail,
     $t: (s: string, r?: Record<string, string>) => string,
-    branchSrc?: string
 ): ReactNode {
     // Text
     if (msg.text) {
-        const isSelection = (msg.messageDetailId ?? '').includes('-')
-        const choiceId = msg.messageDetailId ?? ''
-        return (
-            <>
-                {isSelection && (
-                    <span className="text-gray-600">{`[${
-                        msg.characterId
-                            ? $t('line_response', { src: branchSrc ?? '' })
-                            : $t('line_choice', { src: choiceId ?? '' })
-                    }] `}</span>
-                )}
-                {lfToBr(msg.text.replace(/\{user\}/g, $t('Manager')))}
-            </>
-        )
+        return <>{lfToBr(msg.text.replace(/\{user\}/g, $t('Manager')))}</>
     }
 
     // Image

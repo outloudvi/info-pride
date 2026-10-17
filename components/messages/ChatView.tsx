@@ -33,7 +33,7 @@ const ChatView = async ({ messageId }: { messageId: string }) => {
                 <FontAwesomeIcon icon={faMessage} color="white" size="2x" />
                 <span className="text-2xl">{msg.name}</span>
             </Group>
-            <ChatBoard msg={msg} />
+            <ChatBoard key={msg.id} msg={msg} />
         </>
     )
 }
