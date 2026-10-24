@@ -5,3 +5,4 @@ export const Colors = {
     Stamina: '#99db66',
     Default: 'blue',
 } as const
+ 
