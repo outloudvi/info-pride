@@ -41,11 +41,12 @@ const ColorBlock = ({ name, color }: { name: string; color: string }) => (
     </div>
 )
 
-const ColorsPage = async ({ params: { locale } }: ParamsWithLocale) => {
+const ColorsPage = async ({ params }: ParamsWithLocale) => {
+    const { locale } = await params
     unstable_setRequestLocale(locale)
     const CharacterList = await fetchApi('Character/List')
-    const $t = await getTranslations('colors')
-    const $vc = await getTranslations('v-chr')
+    const $t = await getTranslations({ locale, namespace: 'colors' })
+    const $vc = await getTranslations({ locale, namespace: 'v-chr' })
 
     return (
         <>
@@ -80,10 +81,11 @@ const ColorsPage = async ({ params: { locale } }: ParamsWithLocale) => {
 }
 
 export async function generateMetadata({
-    params: { locale },
+    params,
 }: {
-    params: { locale: string }
+    params: Promise<{ locale: string }>
 }) {
+    const { locale } = await params
     const $t = await getTranslations({ locale, namespace: 'colors' })
     return {
         title: $t('Colors'),

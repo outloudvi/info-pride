@@ -4,7 +4,8 @@ import { getTranslations, unstable_setRequestLocale } from 'next-intl/server'
 const Custom404 = async () => {
     // FIXME: detect the locale on-the-fly
     unstable_setRequestLocale('zh-Hans')
-    const $t = await getTranslations('404')
+    const locale = 'zh-Hans'
+    const $t = await getTranslations({ locale, namespace: '404' })
     return (
         <html>
             <head>

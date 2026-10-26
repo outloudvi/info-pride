@@ -15,13 +15,15 @@ import type { UnsafeSearchParams } from '#utils/typeutils'
 import type { ParamsWithLocale } from '#utils/types'
 
 const CharactersPage = async ({
-    searchParams,
-    params: { locale },
+    searchParams: searchParamsPromise,
+    params,
 }: {
-    searchParams: UnsafeSearchParams<SearchParams>
+    searchParams: Promise<UnsafeSearchParams<SearchParams>>
 } & ParamsWithLocale) => {
+    const searchParams = await searchParamsPromise
+    const { locale } = await params
     unstable_setRequestLocale(locale)
-    const $t = await getTranslations('characters')
+    const $t = await getTranslations({ locale, namespace: 'characters' })
 
     const CharacterListData = await fetchApi('Character/List')
     const supportedCharacters = CharacterListData.filter((x) =>
@@ -67,10 +69,11 @@ const CharactersPage = async ({
 }
 
 export async function generateMetadata({
-    params: { locale },
+    params,
 }: {
-    params: { locale: string }
+    params: Promise<{ locale: string }>
 }) {
+    const { locale } = await params
     const $t = await getTranslations({ locale, namespace: 'characters' })
     return {
         title: $t('Characters'),

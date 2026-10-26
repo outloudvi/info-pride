@@ -3,14 +3,15 @@ import { redirect } from 'next/navigation'
 /**
  * Redirecting /cards/[slug] to /card/[slug] for uniformity.
  */
-const CardsRedirect = ({
-    params: { locale, slug },
+const CardsRedirect = async ({
+    params,
 }: {
-    params: {
+    params: Promise<{
         locale: string
         slug: string
-    }
+    }>
 }) => {
+    const { locale, slug } = await params
     redirect(`/${locale}/card/${slug}`)
 
     return <></>

@@ -1,7 +1,6 @@
 import { getTranslations, unstable_setRequestLocale } from 'next-intl/server'
 import { Suspense } from 'react'
 import { Skeleton } from '@mantine/core'
-import { useTranslations } from 'next-intl'
 
 import { MAX_LEVEL, MAX_RARITY } from '#utils/constants'
 import { withMessages } from '#utils/withMessages'
@@ -12,14 +11,16 @@ import type { UnsafeSearchParams } from '#utils/typeutils'
 import CardsListWrapper from '#components/cards/CardsListWrapper'
 import type { ParamsWithLocale } from '#utils/types'
 
-const CardsPage = ({
-    searchParams,
-    params: { locale },
+const CardsPage = async ({
+    searchParams: searchParamsPromise,
+    params,
 }: {
-    searchParams: UnsafeSearchParams<SearchParams>
+    searchParams: Promise<UnsafeSearchParams<SearchParams>>
 } & ParamsWithLocale) => {
+    const searchParams = await searchParamsPromise
+    const { locale } = await params
     unstable_setRequestLocale(locale)
-    const $t = useTranslations('cards')
+    const $t = await getTranslations({ locale, namespace: 'cards' })
     const searchOptions = spToSo(searchParams)
 
     return (
@@ -45,10 +46,11 @@ const CardsPage = ({
 }
 
 export async function generateMetadata({
-    params: { locale },
+    params,
 }: {
-    params: { locale: string }
+    params: Promise<{ locale: string }>
 }) {
+    const { locale } = await params
     const $t = await getTranslations({ locale, namespace: 'cards' })
     return {
         title: $t('Cards'),

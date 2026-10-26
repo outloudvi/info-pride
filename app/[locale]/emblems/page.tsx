@@ -1,4 +1,3 @@
-import { useTranslations } from 'next-intl'
 import { getTranslations, unstable_setRequestLocale } from 'next-intl/server'
 import { Suspense } from 'react'
 
@@ -8,12 +7,14 @@ import type { SearchParams } from '#components/emblems/sp'
 import EmblemSearch from '#components/emblems/EmblemSearch'
 import type { ParamsWithLocale } from '#utils/types'
 
-const EmblemsPage = ({
-    searchParams,
-    params: { locale },
-}: { searchParams: SearchParams } & ParamsWithLocale) => {
+const EmblemsPage = async ({
+    searchParams: searchParamsPromise,
+    params,
+}: { searchParams: Promise<SearchParams> } & ParamsWithLocale) => {
+    const searchParams = await searchParamsPromise
+    const { locale } = await params
     unstable_setRequestLocale(locale)
-    const $t = useTranslations('emblems')
+    const $t = await getTranslations({ locale, namespace: 'emblems' })
 
     const search = searchParams.s ?? 'Various'
 
@@ -31,10 +32,11 @@ const EmblemsPage = ({
 }
 
 export async function generateMetadata({
-    params: { locale },
+    params,
 }: {
-    params: { locale: string }
+    params: Promise<{ locale: string }>
 }) {
+    const { locale } = await params
     const $t = await getTranslations({ locale, namespace: 'emblems' })
     return {
         title: $t('Emblems'),

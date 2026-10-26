@@ -10,13 +10,15 @@ import type { UnsafeSearchParams } from '#utils/typeutils'
 import type { ParamsWithLocale } from '#utils/types'
 
 const MessagesPage = async ({
-    searchParams,
-    params: { locale },
+    searchParams: searchParamsPromise,
+    params,
 }: {
-    searchParams: UnsafeSearchParams<SearchParams>
+    searchParams: Promise<UnsafeSearchParams<SearchParams>>
 } & ParamsWithLocale) => {
+    const searchParams = await searchParamsPromise
+    const { locale } = await params
     unstable_setRequestLocale(locale)
-    const $t = await getTranslations('messages')
+    const $t = await getTranslations({ locale, namespace: 'messages' })
     const MessageGroups = await fetchApi('MessageGroup')
 
     const messageId = searchParams.d ?? null
@@ -39,10 +41,11 @@ const MessagesPage = async ({
 }
 
 export async function generateMetadata({
-    params: { locale },
+    params,
 }: {
-    params: { locale: string }
+    params: Promise<{ locale: string }>
 }) {
+    const { locale } = await params
     const $t = await getTranslations({ locale, namespace: 'messages' })
     return {
         title: $t('Messages'),

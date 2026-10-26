@@ -13,7 +13,7 @@ const Preview = ({
     pref,
     setCommuData,
 }: {
-    refItem: RefObject<HTMLDivElement>
+    refItem: RefObject<HTMLDivElement | null>
     commu: CommuLine[]
     pref: EditorPref
     setCommuData: Dispatch<SetStateAction<CommuLine[]>>

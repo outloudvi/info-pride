@@ -1,4 +1,3 @@
-import { useTranslations } from 'next-intl'
 import { getTranslations, unstable_setRequestLocale } from 'next-intl/server'
 import { Suspense } from 'react'
 import { Skeleton } from '@mantine/core'
@@ -10,14 +9,16 @@ import SearchResult from '#components/search/message/SearchResult'
 import type { UnsafeSearchParams } from '#utils/typeutils'
 import type { ParamsWithLocale } from '#utils/types'
 
-const MessageSearchPage = ({
-    searchParams,
-    params: { locale },
+const MessageSearchPage = async ({
+    searchParams: searchParamsPromise,
+    params,
 }: {
-    searchParams: UnsafeSearchParams<SearchParams & { chid?: string }>
+    searchParams: Promise<UnsafeSearchParams<SearchParams & { chid?: string }>>
 } & ParamsWithLocale) => {
+    const searchParams = await searchParamsPromise
+    const { locale } = await params
     unstable_setRequestLocale(locale)
-    const $t = useTranslations('message_search')
+    const $t = await getTranslations('message_search')
     const q = searchParams.q === undefined ? '' : String(searchParams.q)
     const characterId =
         searchParams.chid === undefined ? '' : String(searchParams.chid)
@@ -39,10 +40,11 @@ const MessageSearchPage = ({
 }
 
 export async function generateMetadata({
-    params: { locale },
+    params,
 }: {
-    params: { locale: string }
+    params: Promise<{ locale: string }>
 }) {
+    const { locale } = await params
     const $t = await getTranslations({ locale, namespace: 'message_search' })
     return {
         title: $t('Message Search'),

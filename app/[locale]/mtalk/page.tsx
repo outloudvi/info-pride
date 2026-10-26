@@ -1,13 +1,13 @@
-import { useTranslations } from 'next-intl'
 import { getTranslations, unstable_setRequestLocale } from 'next-intl/server'
 
 import EditorView from '#components/mtalk/EditorView'
 import { withMessages } from '#utils/withMessages'
 import type { ParamsWithLocale } from '#utils/types'
 
-const MTalkPage = ({ params: { locale } }: ParamsWithLocale) => {
+const MTalkPage = async ({ params }: ParamsWithLocale) => {
+    const { locale } = await params
     unstable_setRequestLocale(locale)
-    const $t = useTranslations('mtalk')
+    const $t = await getTranslations({ locale, namespace: 'mtalk' })
     return (
         <>
             <h2>{$t('MacaronTalk')}</h2>
@@ -30,10 +30,11 @@ const MTalkPage = ({ params: { locale } }: ParamsWithLocale) => {
 }
 
 export async function generateMetadata({
-    params: { locale },
+    params,
 }: {
-    params: { locale: string }
+    params: Promise<{ locale: string }>
 }) {
+    const { locale } = await params
     const $t = await getTranslations({ locale, namespace: 'mtalk' })
     return {
         title: $t('MacaronTalk'),

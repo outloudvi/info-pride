@@ -1,5 +1,4 @@
 import { Alert, Grid, GridCol } from '@mantine/core'
-import { useTranslations } from 'next-intl'
 import { getTranslations, unstable_setRequestLocale } from 'next-intl/server'
 
 import { Link } from '#utils/navigation'
@@ -8,11 +7,12 @@ import MoshikoiMeta from '#data/moshikoi/meta'
 import type { ParamsWithLocale } from '#utils/types'
 import { withMessages } from '#utils/withMessages'
 
-const MoshikoiPage = ({ params: { locale } }: ParamsWithLocale) => {
+const MoshikoiPage = async ({ params }: ParamsWithLocale) => {
+    const { locale } = await params
     unstable_setRequestLocale(locale)
 
-    const $t = useTranslations('moshikoi')
-    const $vc = useTranslations('v-chr')
+    const $t = await getTranslations({ locale, namespace: 'moshikoi' })
+    const $vc = await getTranslations({ locale, namespace: 'v-chr' })
 
     return (
         <>
@@ -63,10 +63,11 @@ const MoshikoiPage = ({ params: { locale } }: ParamsWithLocale) => {
 }
 
 export async function generateMetadata({
-    params: { locale },
+    params,
 }: {
-    params: { locale: string }
+    params: Promise<{ locale: string }>
 }) {
+    const { locale } = await params
     const $t = await getTranslations({ locale, namespace: 'moshikoi' })
     return {
         title: $t('Moshikoi'),

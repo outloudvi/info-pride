@@ -6,10 +6,11 @@ import PhotoAioView from '#components/photos/PhotoAioView'
 import { withAsyncMessages } from '#utils/withMessages'
 import type { ParamsWithLocale } from '#utils/types'
 
-const PhotosPage = async ({ params: { locale } }: ParamsWithLocale) => {
+const PhotosPage = async ({ params }: ParamsWithLocale) => {
+    const { locale } = await params
     unstable_setRequestLocale(locale)
     const PhotoAioNames = await fetchApi('Photo/AIO/Names')
-    const $t = await getTranslations('photos')
+    const $t = await getTranslations({ locale, namespace: 'photos' })
 
     return (
         <>
@@ -25,10 +26,11 @@ const PhotosPage = async ({ params: { locale } }: ParamsWithLocale) => {
 }
 
 export async function generateMetadata({
-    params: { locale },
+    params,
 }: {
-    params: { locale: string }
+    params: Promise<{ locale: string }>
 }) {
+    const { locale } = await params
     const $t = await getTranslations({ locale, namespace: 'photos' })
     return {
         title: $t('Photos'),

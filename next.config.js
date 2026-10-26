@@ -6,7 +6,7 @@ const cp = require('node:child_process')
 const createNextIntlPlugin = require('next-intl/plugin')
 const { withSentryConfig } = require('@sentry/nextjs')
 
-const withNextIntl = createNextIntlPlugin()
+const withNextIntl = createNextIntlPlugin('./i18n/request.ts')
 
 /** @type {import('next').NextConfig} */
 const nextConfig = withNextIntl({
@@ -34,7 +34,11 @@ const nextConfig = withNextIntl({
         ]
     },
     images: {
-        domains: ['idoly-ac.outv.im', 'ac.ip.outv.im', 'idoly-assets.outv.im'],
+        remotePatterns: [
+            { protocol: 'https', hostname: 'idoly-ac.outv.im' },
+            { protocol: 'https', hostname: 'ac.ip.outv.im' },
+            { protocol: 'https', hostname: 'idoly-assets.outv.im' },
+        ],
         unoptimized: true,
     },
     output: 'standalone',

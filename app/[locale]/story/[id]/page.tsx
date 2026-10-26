@@ -6,20 +6,21 @@ import Link from 'next/link'
 import StoryReplayViewSkeleton from '#components/storyreplay/StoryReplayViewSkeleton'
 import { fetchApi } from '#utils/fetchApi'
 import { withAsyncMessages } from '#utils/withMessages'
-import type { BackendError, ParamsWithLocale } from '#utils/types'
+import type { BackendError } from '#utils/types'
 import Paths from '#utils/paths'
 
 const StoryReplayPage = async ({
-    params: { id, locale },
+    params,
 }: {
-    params: { id: string }
-} & ParamsWithLocale) => {
+    params: Promise<{ id: string; locale: string }>
+}) => {
+    const { id, locale } = await params
     unstable_setRequestLocale(locale)
     const StoryData = await fetchApi('Story', {
         id,
     })
 
-    const $t = await getTranslations('storyreplay')
+    const $t = await getTranslations({ locale, namespace: 'storyreplay' })
 
     const items = StoryData.advAssetIds
 
@@ -92,10 +93,11 @@ const StoryReplayPage = async ({
 }
 
 export async function generateMetadata({
-    params: { id, locale },
+    params,
 }: {
-    params: { id: string; locale: string }
+    params: Promise<{ id: string; locale: string }>
 }) {
+    const { id, locale } = await params
     const $t = await getTranslations({ locale, namespace: 'storyreplay' })
     const StoryData = await fetchApi('Story', {
         id,

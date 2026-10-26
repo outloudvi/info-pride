@@ -1,14 +1,14 @@
 import { Alert } from '@mantine/core'
-import { useTranslations } from 'next-intl'
 import { getTranslations, unstable_setRequestLocale } from 'next-intl/server'
 
 import DiaryPageMainView from '#components/diary/DiaryPageMainView'
 import { withMessages } from '#utils/withMessages'
 import type { ParamsWithLocale } from '#utils/types'
 
-const DiaryPage = ({ params: { locale } }: ParamsWithLocale) => {
+const DiaryPage = async ({ params }: ParamsWithLocale) => {
+    const { locale } = await params
     unstable_setRequestLocale(locale)
-    const $t = useTranslations('diary')
+    const $t = await getTranslations('diary')
 
     return (
         <>
@@ -20,10 +20,11 @@ const DiaryPage = ({ params: { locale } }: ParamsWithLocale) => {
 }
 
 export async function generateMetadata({
-    params: { locale },
+    params,
 }: {
-    params: { locale: string }
+    params: Promise<{ locale: string }>
 }) {
+    const { locale } = await params
     const $t = await getTranslations({ locale, namespace: 'diary' })
     return {
         title: $t('mana_diary'),

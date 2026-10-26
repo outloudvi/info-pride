@@ -1,3 +1,5 @@
+import type { JSX } from 'react'
+
 export default function lfToBr(str: string, foldLf = false): JSX.Element {
     const split = (foldLf ? str.replace(/\n+/g, '\n') : str).split('\n')
     const ret = []

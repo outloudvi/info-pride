@@ -1,20 +1,15 @@
 import { Badge, Group, Skeleton } from '@mantine/core'
-import { useTranslations } from 'next-intl'
 import { getTranslations, unstable_setRequestLocale } from 'next-intl/server'
 import { Suspense } from 'react'
-import dynamic from 'next/dynamic'
 
 import { withMessages } from '#utils/withMessages'
 import type { ParamsWithLocale } from '#utils/types'
+import SpinePageMainView from '#components/spine/SpinePageMainViewLazy'
 
-const SpinePageMainView = dynamic(
-    () => import('#components/spine/SpinePageMainView'),
-    { ssr: false },
-)
-
-const SpinePage = ({ params: { locale } }: ParamsWithLocale) => {
+const SpinePage = async ({ params }: ParamsWithLocale) => {
+    const { locale } = await params
     unstable_setRequestLocale(locale)
-    const $t = useTranslations('spine')
+    const $t = await getTranslations({ locale, namespace: 'spine' })
 
     return (
         <>
@@ -30,10 +25,11 @@ const SpinePage = ({ params: { locale } }: ParamsWithLocale) => {
 }
 
 export async function generateMetadata({
-    params: { locale },
+    params,
 }: {
-    params: { locale: string }
+    params: Promise<{ locale: string }>
 }) {
+    const { locale } = await params
     const $t = await getTranslations({ locale, namespace: 'spine' })
     return {
         title: $t('Spine viewer'),

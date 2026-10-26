@@ -7,9 +7,10 @@ import { fetchApi } from '#utils/fetchApi'
 import UnitsPageMainView from '#components/units/UnitsPageMainView'
 import type { ParamsWithLocale } from '#utils/types'
 
-const UnitsPage = async ({ params: { locale } }: ParamsWithLocale) => {
+const UnitsPage = async ({ params }: ParamsWithLocale) => {
+    const { locale } = await params
     unstable_setRequestLocale(locale)
-    const $t = await getTranslations('units')
+    const $t = await getTranslations({ locale, namespace: 'units' })
 
     const CardData = await fetchApi('Card')
     const ChartListData = await fetchApi('MusicChartList')
@@ -28,10 +29,11 @@ const UnitsPage = async ({ params: { locale } }: ParamsWithLocale) => {
 }
 
 export async function generateMetadata({
-    params: { locale },
+    params,
 }: {
-    params: { locale: string }
+    params: Promise<{ locale: string }>
 }) {
+    const { locale } = await params
     const $t = await getTranslations({ locale, namespace: 'units' })
     return {
         title: $t('Units'),

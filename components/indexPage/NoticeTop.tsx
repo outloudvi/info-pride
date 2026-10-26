@@ -2,7 +2,7 @@
 
 import { useLocalStorage } from '@mantine/hooks'
 import { useTranslations } from 'next-intl'
-import { useEffect } from 'react'
+import { useEffect, type JSX } from 'react'
 
 type NoticeUnit = (x: () => void, y: (s: string) => string) => JSX.Element
 

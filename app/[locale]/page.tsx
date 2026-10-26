@@ -1,7 +1,5 @@
 import { Button, Flex, Grid, GridCol, SimpleGrid } from '@mantine/core'
-import { useTranslations } from 'next-intl'
-import { useMemo } from 'react'
-import { unstable_setRequestLocale } from 'next-intl/server'
+import { getTranslations, unstable_setRequestLocale } from 'next-intl/server'
 import Link from 'next/link'
 
 import CurrentEvents from '#components/indexPage/CurrentEvents'
@@ -10,12 +8,6 @@ import VersionInfo from '#components/indexPage/VersionInfo'
 import Paths from '#utils/paths'
 import NoticeTop from '#components/indexPage/NoticeTop'
 import IndexTitle from '#components/indexPage/IndexTitle'
-import {
-    getStartOfToday,
-    getUnionBattleEvent,
-    getVenusBattleEvent,
-    getVenusLeagueEvent,
-} from '#components/indexPage/venusEvents'
 import RoutineCountdown from '#components/indexPage/RoutineCountdown'
 import { withMessages } from '#utils/withMessages'
 import CurrentGachas from '#components/indexPage/CurrentGachas'
@@ -35,11 +27,10 @@ const MainPageSiteData = {
     ['Unofficial Discord Group (Chinese)']: 'https://discord.gg/idolypride',
 }
 
-const Home = ({ params: { locale } }: { params: { locale: string } }) => {
+const Home = async ({ params }: { params: Promise<{ locale: string }> }) => {
+    const { locale } = await params
     unstable_setRequestLocale(locale)
-    const $t = useTranslations('index')
-
-    const startOfToday = useMemo(() => getStartOfToday(), [])
+    const $t = await getTranslations({ locale, namespace: 'index' })
 
     return (
         <>
@@ -48,17 +39,17 @@ const Home = ({ params: { locale } }: { params: { locale: string } }) => {
                 <IndexTitle />
                 <RoutineCountdown
                     title={'VenusLeague'}
-                    event={getVenusLeagueEvent(startOfToday)}
+                    eventType="VenusLeague"
                     bgColor={'#a5adff'}
                 />
                 <RoutineCountdown
                     title={'VenusBattle'}
-                    event={getVenusBattleEvent(startOfToday)}
+                    eventType="VenusBattle"
                     bgColor={'#d894fc'}
                 />
                 <RoutineCountdown
                     title={'UnionBattle'}
-                    event={getUnionBattleEvent(startOfToday)}
+                    eventType="UnionBattle"
                     bgColor={'#81c275'}
                 />
             </Flex>
@@ -109,4 +100,4 @@ const Home = ({ params: { locale } }: { params: { locale: string } }) => {
     )
 }
 
-export default withMessages(Home, ['index'])
+export default withMessages(Home, ['index', 'notice'])

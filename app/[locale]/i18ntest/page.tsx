@@ -1,15 +1,19 @@
-import { useLocale, useTranslations } from 'next-intl'
-import { unstable_setRequestLocale } from 'next-intl/server'
+import {
+    getLocale,
+    getTranslations,
+    unstable_setRequestLocale,
+} from 'next-intl/server'
 
 import TestTwo from '#components/i18ntest/ClientTests'
 import type { ParamsWithLocale } from '#utils/types'
 import { withMessages } from '#utils/withMessages'
 
-const I18nTestPage = ({ params: { locale } }: ParamsWithLocale) => {
+const I18nTestPage = async ({ params }: ParamsWithLocale) => {
+    const { locale } = await params
     unstable_setRequestLocale(locale)
-    const actualLocale = useLocale()
-    const $t = useTranslations('404')
-    const $c = useTranslations('common')
+    const actualLocale = await getLocale()
+    const $t = await getTranslations({ locale, namespace: '404' })
+    const $c = await getTranslations({ locale, namespace: 'common' })
 
     return (
         <>

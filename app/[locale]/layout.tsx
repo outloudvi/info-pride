@@ -1,5 +1,9 @@
 import React, { Suspense } from 'react'
-import { MantineProvider, ColorSchemeScript } from '@mantine/core'
+import {
+    MantineProvider,
+    ColorSchemeScript,
+    mantineHtmlProps,
+} from '@mantine/core'
 import { NextIntlClientProvider } from 'next-intl'
 import { Notifications } from '@mantine/notifications'
 import type { Metadata } from 'next'
@@ -64,16 +68,17 @@ export function generateStaticParams() {
 
 export default async function RootLayout({
     children,
-    params: { locale },
+    params,
 }: {
     children: React.ReactNode
-    params: { locale: string }
+    params: Promise<{ locale: string }>
 }) {
+    const { locale } = await params
     unstable_setRequestLocale(locale)
     const commonMessages = pick(await getMessages(), ['common'])
 
     return (
-        <html lang={locale}>
+        <html lang={locale} {...mantineHtmlProps}>
             <head>
                 <ColorSchemeScript />
                 <meta

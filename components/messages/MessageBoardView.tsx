@@ -1,7 +1,7 @@
 'use client'
 
 import { Grid, GridCol } from '@mantine/core'
-import { Suspense, useEffect, useRef, useState } from 'react'
+import { Suspense, useEffect, useRef, useState, type JSX } from 'react'
 import { useViewportSize } from '@mantine/hooks'
 import dynamic from 'next/dynamic'
 

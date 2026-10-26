@@ -80,9 +80,10 @@ const ContributorBox = ({ contrib }: { contrib: Contributor }) => {
     )
 }
 
-const AboutPage = async ({ params: { locale } }: ParamsWithLocale) => {
+const AboutPage = async ({ params }: ParamsWithLocale) => {
+    const { locale } = await params
     unstable_setRequestLocale(locale)
-    const $t = await getTranslations('about')
+    const $t = await getTranslations({ locale, namespace: 'about' })
 
     const contributors: Contributor[] = await fetch(
         ALLCONTRIBUTORS_CONFIG_URL,
@@ -117,10 +118,11 @@ const AboutPage = async ({ params: { locale } }: ParamsWithLocale) => {
 }
 
 export async function generateMetadata({
-    params: { locale },
+    params,
 }: {
-    params: { locale: string }
+    params: Promise<{ locale: string }>
 }) {
+    const { locale } = await params
     const $t = await getTranslations({ locale, namespace: 'about' })
     return {
         title: $t('About'),

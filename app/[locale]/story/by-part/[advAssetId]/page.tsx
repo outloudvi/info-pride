@@ -3,10 +3,11 @@ import { redirect, notFound } from 'next/navigation'
 import { fetchApi } from '#utils/fetchApi'
 
 const StoryRedirectPage = async ({
-    params: { advAssetId },
+    params,
 }: {
-    params: { advAssetId: string }
+    params: Promise<{ advAssetId: string }>
 }) => {
+    const { advAssetId } = await params
     const storyId = await fetchApi('Story/Reverse', {
         advAssetId,
     }).then((x) => x.id)

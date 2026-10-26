@@ -12,13 +12,15 @@ import type { UnsafeSearchParams } from '#utils/typeutils'
 import type { ParamsWithLocale } from '#utils/types'
 
 const EventStoriesPage = async ({
-    searchParams,
-    params: { locale },
+    searchParams: searchParamsPromise,
+    params,
 }: {
-    searchParams: UnsafeSearchParams<SearchParams>
+    searchParams: Promise<UnsafeSearchParams<SearchParams>>
 } & ParamsWithLocale) => {
+    const searchParams = await searchParamsPromise
+    const { locale } = await params
     unstable_setRequestLocale(locale)
-    const $t = await getTranslations('eventstories')
+    const $t = await getTranslations({ locale, namespace: 'eventstories' })
 
     const EventStoriesData = await fetchApi('EventStory/List')
     const currEvent = EventStoriesData.find((x) => x.id === searchParams.id)
@@ -53,10 +55,11 @@ const EventStoriesPage = async ({
 }
 
 export async function generateMetadata({
-    params: { locale },
+    params,
 }: {
-    params: { locale: string }
+    params: Promise<{ locale: string }>
 }) {
+    const { locale } = await params
     const $t = await getTranslations({ locale, namespace: 'eventstories' })
     return {
         title: $t('Event Stories'),
