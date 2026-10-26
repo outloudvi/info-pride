@@ -2,7 +2,7 @@
 
 import type { BackgroundGroup, Line, Title } from '@hoshimei/adv/types'
 import { useTranslations } from 'next-intl'
-import { useMemo, useState } from 'react'
+import { useMemo, useState, type JSX } from 'react'
 import { Button } from '@mantine/core'
 
 import CompBackgroundSetting from './lines/BackgroundSetting'

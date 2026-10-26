@@ -13,7 +13,7 @@ const CurrentLanguage: Record<ValidLocale, string> = {
     'zh-Hant': '中文（繁體）',
     en: 'English',
     ko: '한국어',
-    ja: "日本語"
+    ja: '日本語',
 }
 const _CurrentLanguage = CurrentLanguage as Record<string, string>
 
@@ -26,7 +26,7 @@ const LanguageSelection = ({ className }: { className?: string }) => {
     const locale = useLocale()
     const searchParams = useSearchParams()
 
-    const updateLocale = (targetLocale: string) => {
+    const updateLocale = (targetLocale: ValidLocale) => {
         router.replace(pathname + '?' + searchParams, { locale: targetLocale })
     }
 
@@ -40,7 +40,7 @@ const LanguageSelection = ({ className }: { className?: string }) => {
                 const localeName = x.target.value
                 const localeIndex = LanguageNames.indexOf(localeName)
                 if (localeIndex == -1) return
-                updateLocale(LanguageKeys[localeIndex])
+                updateLocale(LanguageKeys[localeIndex] as ValidLocale)
             }}
         />
     )

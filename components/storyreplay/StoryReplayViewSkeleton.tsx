@@ -2,19 +2,15 @@ import { Alert, Skeleton } from '@mantine/core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import { getTranslations } from 'next-intl/server'
-import dynamic from 'next/dynamic'
 import * as Sentry from '@sentry/nextjs'
 
+import StoryReplayView from './StoryReplayViewLazy'
 import type { AdvFromAsset } from './types'
 import { getBaseId } from './utils'
 
 import Paths from '#utils/paths'
 import { DATA_CACHE_SECONDS } from '#utils/cachePolicy'
 import moshikoiLogics from '#data/moshikoi'
-
-const StoryReplayView = dynamic(() => import('./StoryReplayView'), {
-    ssr: false,
-})
 
 const StoryReplayViewSkeleton = async ({
     id,

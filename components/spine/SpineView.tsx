@@ -51,12 +51,12 @@ const SpineView = ({ id }: { id: string }) => {
 
     // Canvas related - we don't want changes on them to trigger re-render
     const $canvasRef = useRef<HTMLCanvasElement>(null)
-    const $app = useRef<PIXI.Application>()
-    const $spine = useRef<Spine>()
+    const $app = useRef<PIXI.Application | undefined>(undefined)
+    const $spine = useRef<Spine | undefined>(undefined)
     const $isAssetInitialized = useRef(false)
-    const $skinLeft = useRef<Skin>()
-    const $skinRight = useRef<Skin>()
-    const $dragTarget = useRef<Spine>()
+    const $skinLeft = useRef<Skin | undefined>(undefined)
+    const $skinRight = useRef<Skin | undefined>(undefined)
+    const $dragTarget = useRef<Spine | undefined>(undefined)
 
     const setAnimation = useCallback(
         (trackIndex: number, animationName: string) => {

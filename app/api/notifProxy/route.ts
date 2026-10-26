@@ -2,6 +2,8 @@ import { redirect } from 'next/navigation'
 import { parse } from 'node-html-parser'
 import type { NextRequest } from 'next/server'
 
+import { DATA_CACHE_SECONDS } from '#utils/cachePolicy'
+
 function convert(html: string): string {
     const $ = parse(html)
     $.querySelectorAll('a').map((x) => {
@@ -58,12 +60,13 @@ export async function GET(request: NextRequest) {
         headers: {
             'User-Agent': 'info-pride-pagecache/1.0',
         },
+        next: { revalidate: DATA_CACHE_SECONDS },
     }).then((x) => x.text())
 
     return new Response(tryConvert(pageHtml), {
         headers: {
             'Content-Type': 'text/html',
-            'Cache-Control': 'public, s-maxage=86400',
+            'Cache-Control': `public, max-age=${DATA_CACHE_SECONDS}, s-maxage=${DATA_CACHE_SECONDS}, must-revalidate`,
         },
     })
 }

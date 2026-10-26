@@ -3,16 +3,22 @@ import { ImageResponse } from 'next/og'
 import { readFile } from 'node:fs/promises'
 
 import { fetchApi } from '#utils/fetchApi'
+import { ASSET_CACHE_SECONDS } from '#utils/cachePolicy'
 import { getAssetSlug } from '#components/cards/cardHelper'
 import getImageCopyrightMarks from '#data/getImageCopyrightMarks'
 import Paths from '#utils/paths'
 import { join } from 'node:path'
 
+// Mirrors CARD_CACHE_SECONDS from utils/cachePolicy.ts (Next.js requires
+// route segment config to be statically analyzable).
+export const revalidate = 3600
+
 export default async function OGImage({
-    params: { slug },
+    params,
 }: {
-    params: { slug: string }
+    params: Promise<{ slug: string }>
 }) {
+    const { slug } = await params
     const [cardResults, fontBuffer] = await Promise.all([
         fetchApi('Card', {
             id: slug,
@@ -32,9 +38,9 @@ export default async function OGImage({
     const { id, assetId } = cardMeta
 
     const fullIconSlug = getAssetSlug(assetId, 'full', 1)
-    const imageBuf = await fetch(Paths.assetsImg(fullIconSlug) + '.png').then(
-        (x) => x.arrayBuffer(),
-    )
+    const imageBuf = await fetch(Paths.assetsImg(fullIconSlug) + '.png', {
+        next: { revalidate: ASSET_CACHE_SECONDS },
+    }).then((x) => x.arrayBuffer())
 
     const copyrightMarks = getImageCopyrightMarks(id)
 

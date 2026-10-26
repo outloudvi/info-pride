@@ -1,7 +1,7 @@
 import type { NextRequest } from 'next/server'
 
-import Paths from '#utils/paths'
-import type { APIResponseOf } from '#utils/api'
+import { DATA_CACHE_SECONDS } from '#utils/cachePolicy'
+import { fetchApi } from '#utils/fetchApi'
 import skillRunner from '#utils/skillRunner'
 
 export async function GET(request: NextRequest) {
@@ -23,13 +23,8 @@ export async function GET(request: NextRequest) {
         return Response.json([])
     }
 
-    const skillData: APIResponseOf<'Skill'> = await fetch(
-        Paths.api('Skill') + `?ids=${skillIds}`,
-    ).then((x) => x.json())
-
-    const chartData: APIResponseOf<'MusicChart'> = await fetch(
-        Paths.api('MusicChart') + `?chartId=${chartId}`,
-    ).then((x) => x.json())
+    const skillData = await fetchApi('Skill', { ids: skillIds })
+    const chartData = await fetchApi('MusicChart', { chartId })
 
     return Response.json(
         skillRunner({
@@ -38,7 +33,7 @@ export async function GET(request: NextRequest) {
         }),
         {
             headers: {
-                'Cache-Control': 'public, s-maxage=86400',
+                'Cache-Control': `public, max-age=${DATA_CACHE_SECONDS}, s-maxage=${DATA_CACHE_SECONDS}, must-revalidate`,
             },
         },
     )
