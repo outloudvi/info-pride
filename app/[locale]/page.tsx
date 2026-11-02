@@ -24,7 +24,7 @@ const MainPageSiteData = {
     ['QQ Group']: Paths.wiki('相关群组'),
 
     ['Unofficial Discord Group (English)']: 'https://discord.gg/XPXBvxGS96',
-    ['Unofficial Discord Group (Chinese)']: 'https://discord.gg/idolypride',
+    ['Unofficial Discord Group (Chinese)']: 'https://discord.gg/jmN2NyK4x',
 }
 
 const Home = async ({ params }: { params: Promise<{ locale: string }> }) => {
