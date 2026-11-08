@@ -10,9 +10,6 @@ const CompMessage = ({ l }: { l: Message }) => {
 
     return (
         <>
-            <div className="uppercase text-gray-300 text-sm mb-2">
-                {$t('Message')}
-            </div>
             <div className="flex flex-col md:flex-row md:items-center">
                 <div className="flex md:flex-col items-center md:mr-2 md:w-32">
                     <div className="mr-2 md:mr-0">
