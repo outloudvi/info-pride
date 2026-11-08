@@ -14,6 +14,14 @@ export default function mergeMWV(
         const item = lines[i]
         switch (item._t) {
             case 'Message': {
+                const currentSpeaker = stashedMessages[0]?.name
+                if (
+                    stashedMessages.length > 0 &&
+                    currentSpeaker !== item.name
+                ) {
+                    ret.push(...stashedMessages)
+                    stashedMessages = []
+                }
                 stashedMessages.push(item)
                 break
             }
